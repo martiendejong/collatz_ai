@@ -1187,7 +1187,12 @@ contraction (q → 1). Formalized as Theorem 19 + Conjecture T (tempering law) i
 First k=20 run (3h42m, 150 iters, converged) crashed in post-analysis WITHOUT saving the
 eigenvector — lesson logged: checkpoint before analysis. Rerun (60 iters suffice, checkpoints
 every 10, chunked analysis, plus the α₂₀ tempering measurement) running in background.
-Predictions on record: α₂₀ ≈ 0.878, CV_res ≈ 0.125, θ ≈ 0.849, (a,c) ≈ (0.472, 0.521).
+Predictions were on record: α₂₀ ≈ 0.878, CV_res ≈ 0.125, θ ≈ 0.849, (a,c) ≈ (0.472, 0.521).
+<b>HARVEST (all four hit):</b> θ = 0.8488, (a,c) = (0.4706, 0.5249), α₂₀ = 0.8785
+(R² = 0.9977 — the power law sharpens with depth), CV_res = 0.1232; q = 0.97232 continues the
+homogenization sequence; implied γ(20) = log₂(1.885) = 0.9146 (float32 feasibility, not yet
+exact-certified). The lattice model and the tempering law both survive their strongest
+out-of-sample referee test — at a depth of 1.16 billion classes.
 The proof program after Campaign IX: <b>(i) prove CV-cascade contraction [open core];
 (ii) Theorem 19 transfers it to γ → 1 [done]; (iii) Theorem C transfers quarter-fair mixing
 to the full conjecture [conditional].</b></p>
