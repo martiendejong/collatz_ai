@@ -1061,6 +1061,63 @@ orbit world are one object seen from two ends; the cascade spectrum (R259), the 
 (R278) and the eigenprofile (R284, R302) are three portraits of the same invariant measure.
 (k=20 referee still computing at press time — 8.6 GB, iteration ~110/150, norm converged.)</p>
 
+<h2>R309–358 — CAMPAIGN VII: the factorization law and the backward wavefront</h2>
+
+<p><b>R309–315 — EXACT ROULETTE THEORY: π = (8,16,11,4,2,22)/63, closed form</b>
+<span class="tag proved">DERIVED</span>: under the geometric-w model the forward mod-3<sup>j</sup>
+chain is exactly solvable (next ≡ (3r+1)·2<sup>−w</sup>, base depends only on r mod 3<sup>j−1</sup>).
+Closed form at mod 9: π(1,2,4,5,7,8) = (8,16,11,4,2,22)/63 — numerically confirmed to 4 digits.
+The bridge triangle at mod 9/27/81: corr(theory, orbits) = 0.997/0.997/0.992,
+corr(theory, eigenvector) = 0.996/0.994/0.992. The K–L eigenvector's fine structure is,
+to 99%, the roulette measure.</p>
+
+<p><b>R316–322 — THE CASCADE IS THE ROULETTE</b>
+<span class="tag measured">MEASURED</span>: the roulette measure's own digit-energy spectrum
+reproduces the eigenvector cascade in detail — 88.4% in digit 0 (eig: 89%), decay ratios
+0.082/0.514/0.149 (eig: 0.079/0.486/0.157) including the period-2 modulation. After dividing
+out the roulette, the residual block-mean field has CV only 0.197 (raw: 0.90). The open
+spectral content is isolated in the residual.</p>
+
+<p><b>R323–333 — THE FACTORIZATION LAW, verified out-of-sample on k=19</b>
+<span class="tag measured">MEASURED</span>: <b>eigvec ≈ roulette × (1 + λ<sub>k</sub>·g)</b>
+with a UNIVERSAL correction field g — cross-k shape correlation 0.9999 (k=13/15/17) — and a
+geometrically shrinking amplitude: residual CV 0.197 → 0.171 → 0.150 (ratio ≈ 0.874 per
+2 digits). Referee test on the 2.9 GB k=19 certificate: predicted CV 0.131, measured
+<b>0.1333</b>; shape correlation with g: 0.9991. The spectral problem is now two questions:
+identify g, prove λ<sub>k</sub> → 0. Caveat: the λ-ratio creeps (0.871/0.876/0.887) —
+whether it stays &lt; 1 asymptotically is the θ<sub>∞</sub> question relocated to this level.</p>
+
+<p><b>R334–340 — g IS NOT A CHAIN MODE; it clings to the spring-blocked rungs</b>
+<span class="tag measured">MEASURED</span>: the roulette chain's relaxation modes decay at
+|λ₂| = 0.003 (instant mixing) and span only R² = 0.20 of g — the correction field is NOT a
+perturbation mode of the chain. Best single local predictor: corr(g, first-preimage-is-spring)
+= +0.52 — g lives on the caste geometry of blocked backward rungs. Identifying g exactly is
+the sharpest open experimental question.</p>
+
+<p><b>R341–353 — THE BACKWARD WAVEFRONT (the user's program): shape, edges, laggards</b>
+<span class="tag measured">MEASURED</span> (exact d(n) for ALL n &lt; 2²⁴): the reached set
+B<sub>t</sub> = {n : d(n) ≤ t} is a wedge in (t, log₂n) space between the pure-doubling edge
+(log₂n = t, slope 1 — the slides) and the laggard edge. The laggard records reproduce OEIS
+A006877 exactly (27, 703, 26623, 837799, …) — validation. The pattern the user predicted
+exists: <b>laggards are ladder-riders</b> — mean trailing-ones k = 3.27 vs population 2.00,
+and every big-jump champion carries a heavy ladder (703: k=6; 26623: k=11 — a deep member of
+family 13; 156159: k=9; 8400511: k=7). Records cluster in chains (ratios 1.05–1.5). The edge
+constant c* = d/log₂n rises 12.6 → 18.4 across the range, consistent with the slow climb
+toward the Lagarias–Weiss stochastic record constant (~29 per log₂). Figure:
+<code>figures/wavefront_shape.png</code>; the same shape lives in
+<code>graph/collatz_backward.graphml</code> (depth attribute) for interactive exploration.</p>
+
+<p><b>R354–358 — SYNTHESIS: what the wavefront reformulation buys</b>
+"No number stays excluded" ⟺ d(n) &lt; ∞ everywhere ⟺ the conjecture — the reformulation is
+exact, and it localizes the difficulty geometrically: a forever-excluded number needs an
+infinite laggard chain, i.e. unbounded climb-chaining, and our machinery prices exactly that
+— ladder-chaining dies geometrically (R223–236, ~0.16/rung), survivor density shrinks as
+0.917<sup>k</sup> (R284), the tail law kills fixed shapes (Thm 9/9′). What remains is the
+same wall as always: measure-zero ≠ empty. But the wavefront gives the wall a coordinate:
+<b>proving any uniform lower bound on the laggard-edge slope (c*(n) &lt; ∞ pointwise) IS the
+conjecture</b>, and the laggard pattern (ladder-riders in small families) says exactly where
+the extremal candidates live.</p>
+
 <h2>FINAL SYNTHESIS — The Conversion Thesis (what ~200 rounds taught us)</h2>
 <div class="hero">
 <p><b>The 3x+1 problem is, in the end, a single question about two number systems:
