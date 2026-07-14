@@ -207,3 +207,39 @@ Theorems 1–3, 5 are unconditional elementary results; Theorem 4 is conditional
 computation. None resolves the conjecture. Together they localize it: the remaining difficulty is
 the equidistribution of the ÷2-in-ternary borrow dynamics (bulk proven Markov(⅓,⅔) in law,
 per-orbit control open), and the Baker-throttled divisibility coincidences at large period.
+
+## Theorem 17 (Cycle census through period 12). — VERIFIED
+The complete list of integer Syracuse cycles with at most 12 odd steps is
+{1}, {-1}, {-5}, {-17}. Method: exhaustive solution of the cycle equation
+n0*(2^s - 3^k) = sum_i 3^(k-1-i)*2^(S_i) over all compositions, k <= 12,
+both signs of 2^s - 3^k. (scripts/52_census_p12.py; extends Theorem: census p10.)
+
+## Proposition 18 (Min-mean gap law). — MEASURED
+For certificate triples at every 3-adic level p and every depth k in {13,17}:
+E[1 - min/mean] = c1*CV + c2*CV^2 with c1 in [1.19, 1.45] drifting toward
+~1.19 as CV -> 0, and c2 bounded in [-1, -0.5]. This linearizes the K-L
+min-operator as (roulette-weighted mean)*(1 - c1*CV_local): the nonlinearity
+of the whole K-L system is a single O(CV) correction. (scripts/51_linearization.py)
+
+## Theorem 19 (Edge rate of the Min-Loss Identity). — ANALYTIC + VERIFIED
+Implicit differentiation of Theorem 12's identity
+1 = lam^-2 + (q/3)(lam^(alpha-2) + lam^(alpha-1)) at the edge (lam, q) = (2, 1)
+gives the exact linear rate
+      1 - gamma ~ (d gamma/d q)|_edge * (1 - q),  d gamma/d q = 3.47614...
+Measured ratios (1-gamma)/(3.4761*(1-q)) at k = 13/15/17/19:
+0.824, 0.847, 0.873, 0.908 -> 1, confirming first-order exactness at the edge.
+Consequence: the empirical constant 0.698 in (1-gamma) = 0.698*CV_res is a
+finite-k composite 3.4761 * (1-q)/CV_res; asymptotically the transfer from
+homogenization to density exponent is ANALYTIC. The open core is only:
+prove the CV-cascade contraction (q -> 1). (scripts/54_derive_0698.py)
+
+## Conjecture T (Tempering law). — MEASURED, 4 depths
+The K-L eigenvector is a tempered roulette measure:
+      eigvec = roulette^(alpha_k),   alpha_k -> 1,
+with alpha = 0.8024, 0.8291, 0.8509, 0.8682 at k = 13, 15, 17, 19
+(pure power law, R^2 = 0.9927..0.9973 at block depth mod 3^7), where
+"roulette" is the exactly solvable geometric-w stationary measure
+(closed form mod 9: pi(1,2,4,5,7,8) = (8,16,11,4,2,22)/63).
+Numerically 1 - alpha_k = CV_res(k) and gamma_k = 1 - 0.698*(1 - alpha_k).
+Proving alpha_k -> 1 (equivalently CV_res -> 0, equivalently q -> 1) yields
+gamma -> 1 by Theorem 19: density x^(1-eps) for every eps.

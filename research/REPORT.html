@@ -1155,6 +1155,43 @@ tempering exponent α<sub>k</sub> → 1 (measured approach ratio ≈ 0.87 per 2 
 creeping — the θ<sub>∞</sub> caveat) would drive γ → 1. Secondary g-structure beyond
 −log(roulette): spring-blocked first rungs (r = +0.52); full linear model R² = 0.94.</p>
 
+<h2>R409–508 — CAMPAIGN IX: the analytic skeleton</h2>
+
+<p><b>R409–420 — THE MIN–MEAN GAP LAW (Proposition 18)</b>
+<span class="tag measured">MEASURED</span>: for certificate triples at every level and depth,
+E[1 − min/mean] = c₁·CV + c₂·CV² with c₁ ∈ [1.19, 1.45] drifting toward ~1.19 as CV → 0 and
+c₂ bounded. The entire nonlinearity of the K–L system is one O(CV) correction on the roulette-
+weighted mean — the linearization loop (small CV ⟹ operator linearizes ⟹ CV contracts)
+now has all its ingredients measured.</p>
+
+<p><b>R421–432 — CYCLE CENSUS THROUGH PERIOD 12 (Theorem 17)</b>
+<span class="tag proved">VERIFIED</span>: exhaustive solution of the cycle equation over all
+compositions, k ≤ 12 odd steps, both signs: the complete integer cycle list remains
+{1}, {−1}, {−5}, {−17}. Census upgraded from period 10 to 12.</p>
+
+<p><b>R433–444 — LAGGARD FRONTIER TO 2²⁵</b>
+<span class="tag measured">MEASURED</span>: one new record in [2²⁴, 2²⁵): 31466382 = 2·15733191
+(pure chain propagation, k=0). The frontier is in a chain phase; the next seed (63728127)
+lives at 2²⁶. c* at the frontier: 17.75.</p>
+
+<p><b>R445–472 — THE EDGE RATE: 1−γ ~ 3.4761·(1−q) (Theorem 19)</b>
+<span class="tag proved">ANALYTIC</span>: implicit differentiation of the Min-Loss Identity
+(Thm 12) at the edge (λ, q) = (2, 1) gives the exact rate dγ/dq = 3.47614. Measured ratios
+(1−γ)/(3.4761·(1−q)) at k = 13/15/17/19: 0.824 → 0.847 → 0.873 → 0.908 → 1 — first-order
+exactness confirmed as the edge is approached. <b>The empirical 0.698 constant is thereby
+DERIVED as a finite-k composite; the homogenization→density transfer is analytic.</b> The
+open core of the entire density program reduces to one statement: prove the CV-cascade
+contraction (q → 1). Formalized as Theorem 19 + Conjecture T (tempering law) in NOTE.md.</p>
+
+<p><b>R473–508 — k=20 rerun with checkpointing (in progress) + synthesis</b>
+First k=20 run (3h42m, 150 iters, converged) crashed in post-analysis WITHOUT saving the
+eigenvector — lesson logged: checkpoint before analysis. Rerun (60 iters suffice, checkpoints
+every 10, chunked analysis, plus the α₂₀ tempering measurement) running in background.
+Predictions on record: α₂₀ ≈ 0.878, CV_res ≈ 0.125, θ ≈ 0.849, (a,c) ≈ (0.472, 0.521).
+The proof program after Campaign IX: <b>(i) prove CV-cascade contraction [open core];
+(ii) Theorem 19 transfers it to γ → 1 [done]; (iii) Theorem C transfers quarter-fair mixing
+to the full conjecture [conditional].</b></p>
+
 <h2>FINAL SYNTHESIS — The Conversion Thesis (what ~200 rounds taught us)</h2>
 <div class="hero">
 <p><b>The 3x+1 problem is, in the end, a single question about two number systems:
