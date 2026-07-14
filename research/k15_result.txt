@@ -1,0 +1,13 @@
+lam=1.84000 min_ratio=1.000625
+lam=1.86000 min_ratio=0.994353
+lam=1.85000 min_ratio=0.997468
+lam=1.84500 min_ratio=0.999041
+lam=1.84250 min_ratio=0.999832
+lam=1.84125 min_ratio=1.000228
+lam=1.84187 min_ratio=1.000030
+lam=1.84219 min_ratio=0.999931
+lam=1.84203 min_ratio=0.999980
+lam=1.84195 min_ratio=1.000005
+lam=1.84199 min_ratio=0.999992
+lam=1.84197 min_ratio=0.999999
+FINAL k=15: lambda=1.84195 gamma=0.88124

@@ -1,0 +1,2 @@
+k=19, lambda_0 = 15/8: 387,420,489 constraints, min slack 1.000939196, violations 0
+VERIFIED + deposited ==> pi(x) >= x^0.9069 certified

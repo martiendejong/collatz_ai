@@ -1,0 +1,12 @@
+setup done
+lam=1.86250 min_ratio=0.999757
+lam=1.85375 min_ratio=1.002380
+lam=1.85812 min_ratio=1.001065
+lam=1.86031 min_ratio=1.000410
+lam=1.86141 min_ratio=1.000084
+lam=1.86195 min_ratio=0.999920
+lam=1.86168 min_ratio=1.000002
+lam=1.86182 min_ratio=0.999961
+lam=1.86175 min_ratio=0.999981
+lam=1.86171 min_ratio=0.999992
+FINAL k=17: lambda=1.86168 gamma=0.89660

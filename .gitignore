@@ -1,0 +1,9 @@
+# certificates above GitHub's 100MB file limit (regenerable via scripts/22_kl_exact.py)
+research/certificates/cert_k17.npy
+research/certificates/cert_k19.npy
+research/certificates/cert_k20*.npy
+# third-party papers (copyright) - referenced by link in README
+research/kl2003.pdf
+2205.0129v1.pdf
+The_Proof_of_the_Collatz_Conjecture.pdf
+__pycache__/

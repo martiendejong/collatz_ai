@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{booktabs}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\title{Improved lower bounds for the $3x+1$ problem via the\\ Krasikov--Lagarias inequalities at depths $3^{13}$ through $3^{19}$}
+\author{Martien de Jong\thanks{With extensive machine assistance (Claude/Jengo); all results
+independently verifiable from the deposited certificates.}}
+\date{July 2026 (draft)}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $\pi_1(x)$ denote the number of integers $n\le x$ whose forward orbit under the $3x+1$ map
+contains $1$. Krasikov and Lagarias (2003) proved $\pi_1(x)\ge x^{0.84}$ for sufficiently large
+$x$ by exhibiting feasible solutions of a linear-program family $L_k^{NT}(\lambda)$ at depth
+$k=11$; this has remained the strongest unconditional lower bound. We solve $L_k^{NT}(\lambda)$
+at depths $k=13,15,17,19$ (up to $387{,}420{,}489$ constraints) and verify explicit rational
+certificates in exact integer arithmetic, obtaining
+\[
+\pi_1(x)\;\ge\; x^{0.9069}\qquad\text{for all sufficiently large }x,
+\]
+with intermediate verified exponents $0.8624$, $0.8805$, $0.8953$. No new mathematics is
+required beyond \cite{KL}: Theorem~2.2 there converts any feasible solution into the density
+bound with exponent $\log_2\lambda$. Our contribution is computational: a monotone (nonlinear
+Perron) iteration replaces the interior-point solver, making depth $3^{19}$ routine on a
+desktop machine, and every certificate is re-verified with all weights replaced by strict
+rational lower bounds. We further observe an exact scalar identity governing the family
+(the ``min-loss identity''), which predicts the feasibility edges to three decimals and
+suggests the method attains $x^{1-\varepsilon}$ for every $\varepsilon>0$.
+\end{abstract}
+
+\section{The system}
+Fix $k\ge 2$ and let $[3^k]=\{m \bmod 3^k:\ m\equiv 2 \bmod 3\}$, $\alpha=\log_2 3$.
+Following \cite[\S2]{KL}, the linear program $L_k^{NT}(\lambda)$ has principal variables
+$c^m\ge 1$ for $m\in[3^k]$, auxiliaries
+$\bar c^{\,t}=\min(c^{t},c^{t+3^{k-1}},c^{t+2\cdot 3^{k-1}})$ for $t\in[3^{k-1}]$, and
+constraints
+\begin{align}
+m\equiv 2\ (9):\quad & c^m \le c^{4m}\lambda^{-2}+\bar c^{\,(4m-2)/3}\lambda^{\alpha-2},\\
+m\equiv 5\ (9):\quad & c^m \le c^{4m}\lambda^{-2},\\
+m\equiv 8\ (9):\quad & c^m \le c^{4m}\lambda^{-2}+\bar c^{\,(2m-1)/3}\lambda^{\alpha-1},
+\end{align}
+with indices taken mod $3^k$ resp.\ $3^{k-1}$. By \cite[Thm.~2.2]{KL}, a feasible positive
+solution at parameter $\lambda$ yields $\pi_a(x)\ge \Delta_1 c^m \lambda^{y}$ for every
+$a\not\equiv 0 \bmod 3$, hence a density exponent $\gamma=\log_2\lambda$.
+
+\section{Method and results}
+The constraint map $F_\lambda$ (right-hand sides, with auxiliaries substituted) is monotone,
+positively homogeneous and concave; feasibility is equivalent to its nonlinear Perron root
+being $\ge 1$, located by power iteration and bisection in $\lambda$. The implementation
+reproduces the published values at $k=9$ ($\gamma=0.8168$; cf.\ $0.81$ in \cite{AL}) and
+$k=11$ ($\gamma=0.8418$; cf.\ $0.84$ in \cite{KL}). At greater depths:
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+$k$ & classes & $\lambda_0$ (rational) & min.\ slack & verified exponent\\
+\midrule
+13 & 531{,}441 & $1818/1000$ & $1.000279$ & $0.8624$\\
+15 & 4{,}782{,}969 & $1841/1000$ & $1.000307$ & $0.8805$\\
+17 & 43{,}046{,}721 & $93/50$ & $1.000504$ & $0.8953$\\
+19 & 387{,}420{,}489 & $15/8$ & $1.000939$ & $\mathbf{0.9069}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{theorem}
+$\pi_1(x)\ \ge\ x^{0.9069}$ for all sufficiently large $x$.
+\end{theorem}
+
+\emph{Verification.} For each depth the deposited integer vector $C$ (scaled Perron vector)
+is checked against all constraints with $\lambda_0$ rational and every weight replaced by a
+strict rational lower bound (80-digit decimal floors minus one ulp, common denominator
+$10^{18}$); comparisons are exact integer arithmetic. Zero violations at all four depths
+($435{,}781{,}620$ constraints in total). Certificates and a standalone {\tt numpy}-only
+verifier are deposited with this note; total verification time is minutes on a laptop.
+
+\section{The min-loss identity and the ceiling}
+Summing the edge equalities over all classes (the maps $m\mapsto 4m$ and the two branch maps
+are class bijections) collapses the system to a scalar law: at the Perron edge,
+\[
+1\;=\;\lambda^{-2}+\frac{q}{3}\left(\lambda^{\alpha-2}+\lambda^{\alpha-1}\right),
+\qquad q \;=\; \frac{3\sum_t \bar c^{\,t}}{\sum_m c^m}.
+\]
+(Verified to $10^{-8}$ at $k=5,\dots,11$.) Note $q=1$ forces $\lambda=2$, i.e.\ $\gamma=1$:
+the entire gap between this method and full density is the ``min-loss'' $1-q$. Measured
+$q$ rises $0.888\ (k{=}5)\to 0.9705\ (k{=}19)$, driven by equalization of the refinement
+triples of the Perron vector; the within-vector heterogeneity profile decays geometrically
+in the trit position with bulk factor $\approx 0.84$, matching the subleading spectral ratio
+of the edge-linearized operator. If this contraction admits a uniform bound below $1$
+(supported by all measurements; we leave it as a conjecture), then $q\to 1$ and the method
+attains $\pi_1(x)\ge x^{1-\varepsilon}$ for every $\varepsilon>0$, as hoped in \cite{KL}.
+
+\begin{remark}
+Depth $k=21$ ($3.5\times 10^9$ classes) is the natural next computation and decides between
+the extrapolations $\gamma_\infty\approx 0.976$ (endpoint Shanks) and $\gamma_\infty=1$
+(profile/contraction model); it requires roughly $64$\,GB of memory.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{KL} I.~Krasikov, J.~C.~Lagarias, \emph{Bounds for the 3x+1 problem using difference
+inequalities}, Acta Arith.\ 109 (2003), 237--258; arXiv:math/0205002.
+\bibitem{AL} D.~Applegate, J.~C.~Lagarias, \emph{Density bounds for the 3x+1 problem II:
+Krasikov inequalities}, Math.\ Comp.\ 64 (1995), 427--438.
+\end{thebibliography}
+\end{document}

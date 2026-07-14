@@ -1,0 +1,7 @@
+k=20: N=1,162,261,467 classes, lambda=1.885, 150 iterations
+  iter 0: max-ratio norm 1.730362
+  iter 25: max-ratio norm 0.975580
+  iter 50: max-ratio norm 1.000163
+  iter 75: max-ratio norm 1.000248
+  iter 100: max-ratio norm 1.000197
+  iter 125: max-ratio norm 1.000195
