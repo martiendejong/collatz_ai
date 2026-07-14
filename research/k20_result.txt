@@ -5,3 +5,14 @@ k=20: N=1,162,261,467 classes, lambda=1.885, 150 iterations
   iter 75: max-ratio norm 1.000248
   iter 100: max-ratio norm 1.000197
   iter 125: max-ratio norm 1.000195
+Traceback (most recent call last):
+  File "E:\projects\collatz\research\scripts\25_k20_profile.py", line 43, in <module>
+    cv_top = float((tri.std(axis=0) / tri.mean(axis=0)).mean(dtype=np.float64))
+                    ^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\site-packages\numpy\_core\_methods.py", line 219, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\site-packages\numpy\_core\_methods.py", line 201, in _var
+    ret = umr_sum(x, axis, dtype, out, keepdims=keepdims, where=where)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 1.44 GiB for an array with shape (387420489,) and data type float32
