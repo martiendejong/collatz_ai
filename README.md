@@ -5,8 +5,8 @@ family/pair framework of Martien de Jong, executed by Jengo (Claude).
 
 ## Headline results
 
-- **Density record:** π₁(x) ≥ x^0.9069 via the Krasikov–Lagarias inequalities at
-  depths 3^13–3^19, with exact-integer verified certificates (previous published
+- **Density record:** π₁(x) ≥ x^0.9146 via the Krasikov–Lagarias inequalities at
+  depths 3^13–3^20 (1.16 billion constraints at k=20, exact-integer verified), with exact-integer verified certificates (previous published
   record: 0.84, since 2003). Paper draft: `research/NOTE_DENSITY.tex`.
 - **16 theorems** on the family/pair structure: Rewriting Theorem (binary
   ⟨a⟩1^k → ternary ⟨a−1⟩2^k), Pair-Merge Law, Sign Theorem + Catalan cycle
