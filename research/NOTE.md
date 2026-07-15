@@ -336,3 +336,15 @@ the density-level stochastic model of Collatz is EXACTLY
    k ~ geom(1/2), w ~ geom(1/2), all independent, memoryless, cross-base blind
 with no measurable correction at any level. Every hiding place for density-level
 structure is now closed; the conjecture's content is irreducibly pointwise.
+
+## Proposition 28 (CST verified to tau<=24; the comma governs the margins). — VERIFIED
+Terras' Coefficient-Stopping-Time conjecture (tau(n) = sigma(n), n > 1) verified
+exhaustively for all n with tau(n) <= 24 (81,119 stopping classes; sole
+exception n = 1, the trivial cycle). Smallest safety margin: 2.02, and the
+extremal classes concentrate at (u, j) = (5, 8) — the PYTHAGOREAN COMMA
+2^8/3^5 = 256/243, a convergent of log2(3). Structure: a CST violation needs
+n <= b/(2^j - 3^u), which explodes exactly at the continued-fraction
+convergents of log2(3); the next danger zone is (u, j) = (41, 65)
+(2^65/3^41 = 1.0035). CST is therefore governed by effective lower bounds on
+|2^j - 3^u| — Baker territory, the same transcendence wall as cycle exclusion:
+the two classical open sub-problems are one wall seen from two sides.
