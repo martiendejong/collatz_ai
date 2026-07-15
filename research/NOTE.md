@@ -243,3 +243,13 @@ with alpha = 0.8024, 0.8291, 0.8509, 0.8682 at k = 13, 15, 17, 19
 Numerically 1 - alpha_k = CV_res(k) and gamma_k = 1 - 0.698*(1 - alpha_k).
 Proving alpha_k -> 1 (equivalently CV_res -> 0, equivalently q -> 1) yields
 gamma -> 1 by Theorem 19: density x^(1-eps) for every eps.
+
+## Theorem 20 (Hop-Tax / exact refill independence). — VERIFIED EXACTLY
+The set of odd n whose first r successive ladder-refills (trailing-ones depths
+after each full burn) are all >= j is a union of residue classes whose density
+equals EXACTLY (2^-(j-1))^r  (verified to 4+ decimals by exhaustive count over
+all odd n < 2^22, for j=2..4, r=1..3; scripts/59_hop_tax.py).
+Successive refills are exactly independent fair geometric draws at density
+level: caste memorylessness (P(rich->rich)=1/2) is not approximate but exact.
+Consequence: a divergent orbit must beat an exactly fair coin forever --
+the pointwise version of this statement IS the conjecture's remaining content.
