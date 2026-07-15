@@ -278,3 +278,15 @@ exponents); the 3n+1 instance exhibits the opposite signature. Together with
 Thm 20 (exact fairness) and Thm 21 (flat 1/4 damping spectrum): the machine is
 maximally forgetful -- the conjecture's remaining content is that the countable
 integer thread cannot exploit a channel that provably has no capacity.
+
+## Proposition 23 (Fine-end saturation). — MEASURED, 9 depths
+The finest-level triple-CV of the K-L eigenvector (each depth at its own
+critical lambda) satisfies CV_1(k) = 0.5136 - 0.337*(0.910)^k to residual
+1e-6 across k = 8..20: it converges geometrically to a FINITE limit ~0.514.
+Together with the measured mid-cascade damping ratio <= 0.86 (R577-585) this
+numerically completes the alpha->1 program: bounded source + uniform damping
+=> top CV -> 0 => q -> 1 => gamma -> 1 by Theorem 19. The two remaining
+ANALYTIC statements are both local: (i) mid-cascade ratio uniformly < 1;
+(ii) CV_1 bounded (limit exists). Note the single rate 0.91 appearing in
+saturation, homogenization, and lambda-decay: one mechanism, three faces.
+(scripts/62_cv1_saturation.py)
