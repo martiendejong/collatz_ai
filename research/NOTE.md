@@ -253,3 +253,16 @@ Successive refills are exactly independent fair geometric draws at density
 level: caste memorylessness (P(rich->rich)=1/2) is not approximate but exact.
 Consequence: a divergent orbit must beat an exactly fair coin forever --
 the pointwise version of this statement IS the conjecture's remaining content.
+
+## Theorem 21 (Linear spectrum of the edge operator). — COMPUTED EXACTLY
+The linearized K-L operator at the edge (lam=2; min -> triple mean) on classes
+mod 3^j has leading eigenvalue exactly 1 (the roulette direction) and ALL other
+eigenvalues of modulus exactly 1/4 = lam^-2 = W0, for j = 4, 5, 6 (27/81/243
+classes; scripts/60_contraction_spectrum.py). Consequences:
+(1) the measured cascade ratio ~0.20 per digit is explained: it is the linear
+    eigenvalue 1/4, shifted down by the min-nonlinearity;
+(2) the SLOW decay of the tempering amplitude (~0.93/digit) is NOT a linear
+    mode -- linear damping is strong (1/4). The g-field is sustained by
+    per-level INJECTION: each new digit level injects fresh disorder through
+    the min-term. The alpha->1 question becomes: prove the injection amplitude
+    decays -- damping is already proven overwhelming.
