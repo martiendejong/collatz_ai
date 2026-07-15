@@ -1,0 +1,8 @@
+loaded eigenvector: 1,162,261,467 float32; min 2.381e-04 max 1.000e+00
+lam=1.885: min_ratio=0.998198
+lam=1.883: min_ratio=0.997743
+lam=1.881: min_ratio=0.997129
+lam=1.879: min_ratio=0.996511
+lam=1.877: min_ratio=0.995893
+lam=1.875: min_ratio=0.995274
+no lambda with sufficient margin; aborting
