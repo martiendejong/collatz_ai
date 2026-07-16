@@ -1313,6 +1313,27 @@ the down-channel starves fine modes while the up-channel transmits freely. Remai
 the contraction on varying parts is uniformly &lt; 1 (anchored by Prop 23's nonzero saturation)
 plus the recurrence bookkeeping — all creativity done, analysis writing remains.</p>
 
+<h2>R846–875 — CAMPAIGN XV: THE LONG SHOT (pointwise via carry-freeness)</h2>
+<p><b>The program</b>: after proving the density machinery cannot cross the measure-zero gap,
+the only untrodden road is a pointwise argument from what makes 3n+1 unique — the carry-freeness
+(Thm 25). <b>R846–855</b>: three exact pointwise facts opened the campaign: the APPEND LAW
+s₃(3x+1) = s₃(x)+1 (every odd step adds exactly 1 to the ternary digit sum); the ORBIT
+CONSERVATION LAW s₃(1) = s₃(n) + u − shed (exact, every orbit); and the climb levy — a pure
+climb of length t forces cumulative shed ≥ 0.262·t − O(log n), pointwise. Dual discovery:
+halvings preserve the BINARY digit sum exactly (s₂(x/2) = s₂(x)) — odd steps are clean in
+base 3, halvings clean in base 2: the Conversion Thesis as a counting machine.
+<b>R856–865</b>: per-step pointwise Lyapunov combos of digit sums ruled out (best combo fails
+on 44% of climbing macro-steps); climbing fraction = 0.286 = the μ-measure, rediscovered.
+<b>R866–875 — THEOREM 36 (proved)</b>: the DIVISION AUTOMATON — base-3 division by 2 sweeps
+trits top-down with carry = prefix trit-sum PARITY, and the shed decomposes exactly per
+position (+1 at (c=0, d≥1), −1 at (c=1, d≤1)). The full Collatz dynamic is EXACTLY a two-rule
+trit-stream automaton: append-1 (odd) + parity-sweep (halving). The pointwise divergence
+question, in its sharpest form ever: <b>can an infinite trit stream sustain forever the
+(prefix-parity, digit) statistics needed to pay shed ≈ u, when the prefix parity is the
+orbit's own running parity?</b> Self-reference as an automaton rule — a question in a language
+(finite automata on digit streams) where real tools exist. Measured margin: orbit halvings
+net 0.049 shed/trit vs 0.033 random.</p>
+
 <h2>FINAL SYNTHESIS — The Conversion Thesis (what ~200 rounds taught us)</h2>
 <div class="hero">
 <p><b>The 3x+1 problem is, in the end, a single question about two number systems:
