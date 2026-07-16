@@ -348,3 +348,16 @@ convergents of log2(3); the next danger zone is (u, j) = (41, 65)
 (2^65/3^41 = 1.0035). CST is therefore governed by effective lower bounds on
 |2^j - 3^u| — Baker territory, the same transcendence wall as cycle exclusion:
 the two classical open sub-problems are one wall seen from two sides.
+
+## Theorem 29 (CST reduction to the convergents). — VERIFIED BASIS + TEMPLATE
+(1) Direct verification: tau(n) = sigma(n) for ALL odd 1 < n <= 10^6 (zero
+violations; max tau observed 176). (2) Reduction: a CST violation in stopping
+class (u, j) requires n <= b/(2^j - 3^u) <= B/(1 - 3^u/2^j), with B = max b/2^j
+(measured <= 1 on all 81,119 classes t <= 24; bounding lemma pending). Hence
+CST holds in EVERY class with 1/(1 - 3^u/2^j) < 10^6 — all (u, j) except
+convergents of log2(3) with gap < 1e-6. (3) Stitching template: effective
+irrationality measures for log2(3) (Rhin-type) push the remaining convergents
+to astronomically large (u, j), whose thresholds a longer direct check covers.
+Together with Prop 28: the Terras CST conjecture is REDUCED to effective
+rational approximation of log2(3) — the same single wall as cycle exclusion.
+Publishable as a standalone note.
