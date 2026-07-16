@@ -374,3 +374,14 @@ the n <= 10^6 basis, and the convergent-zone check-range grows only LINEARLY
 with depth. The comma is simultaneously: the CST danger zone (Prop 28), the
 B-growth driver (this lemma), and the cycle-exclusion wall — one constant,
 three roles.
+
+## UPGRADES from paper-writing (cst_comma.tex, forgetful_machine.tex, tempering_law.tex):
+1. Lemma 30's pending bound PROVED: b/2^j < u/3 (five lines: y = b/3^u = sum of
+   1/(3 rho_i) over odd steps, each rho_i >= 1 before stopping, so y <= u/3;
+   multiply by rho_stop < 1). The Thm 29 reduction is now UNCONDITIONAL and
+   extends CST to tau <= 4700 (Corollary 6.2 of the paper).
+2. Numeric corrections: 2^65/3^41 = 1.011529 (not 1.0035); the exact
+   exceptional set: first escape at semiconvergent u = 2966; first convergent
+   escape (u,j) = (15601, 24727) with threshold 2.86e8.
+3. Closed form: dgamma/dq = 1/ln(4/3) = 3.47606 (Thm 19).
+4. Naming: 256/243 is the Pythagorean LIMMA; the comma proper is 3^12/2^19.
