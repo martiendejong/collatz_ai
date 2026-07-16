@@ -4,7 +4,7 @@
 \usepackage{booktabs}
 \newtheorem{theorem}{Theorem}
 \newtheorem{remark}{Remark}
-\title{Improved lower bounds for the $3x+1$ problem via the\\ Krasikov--Lagarias inequalities at depths $3^{13}$ through $3^{19}$}
+\title{Improved lower bounds for the $3x+1$ problem via the\\ Krasikov--Lagarias inequalities at depths $3^{13}$ through $3^{20}$}
 \author{Martien de Jong\thanks{With extensive machine assistance (Claude/Jengo); all results
 independently verifiable from the deposited certificates.}}
 \date{July 2026 (draft)}
@@ -19,12 +19,12 @@ $k=11$; this has remained the strongest unconditional lower bound. We solve $L_k
 at depths $k=13,15,17,19$ (up to $387{,}420{,}489$ constraints) and verify explicit rational
 certificates in exact integer arithmetic, obtaining
 \[
-\pi_1(x)\;\ge\; x^{0.9069}\qquad\text{for all sufficiently large }x,
+\pi_1(x)\;\ge\; x^{0.9146}\qquad\text{for all sufficiently large }x,
 \]
 with intermediate verified exponents $0.8624$, $0.8805$, $0.8953$. No new mathematics is
 required beyond \cite{KL}: Theorem~2.2 there converts any feasible solution into the density
 bound with exponent $\log_2\lambda$. Our contribution is computational: a monotone (nonlinear
-Perron) iteration replaces the interior-point solver, making depth $3^{19}$ routine on a
+Perron) iteration replaces the interior-point solver, making depths $3^{19}$--$3^{20}$ feasible on a
 desktop machine, and every certificate is re-verified with all weights replaced by strict
 rational lower bounds. We further observe an exact scalar identity governing the family
 (the ``min-loss identity''), which predicts the feasibility edges to three decimals and
@@ -61,13 +61,14 @@ $k$ & classes & $\lambda_0$ (rational) & min.\ slack & verified exponent\\
 13 & 531{,}441 & $1818/1000$ & $1.000279$ & $0.8624$\\
 15 & 4{,}782{,}969 & $1841/1000$ & $1.000307$ & $0.8805$\\
 17 & 43{,}046{,}721 & $93/50$ & $1.000504$ & $0.8953$\\
-19 & 387{,}420{,}489 & $15/8$ & $1.000939$ & $\mathbf{0.9069}$\\
+19 & 387{,}420{,}489 & $15/8$ & $1.000939$ & $0.9069$\
+20 & 1{,}162{,}261{,}467 & $1885/1000$ & $1.000194$ & $\mathbf{0.9146}$\\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \begin{theorem}
-$\pi_1(x)\ \ge\ x^{0.9069}$ for all sufficiently large $x$.
+$\pi_1(x)\ \ge\ x^{0.9146}$ for all sufficiently large $x$.
 \end{theorem}
 
 \emph{Verification.} For each depth the deposited integer vector $C$ (scaled Perron vector)

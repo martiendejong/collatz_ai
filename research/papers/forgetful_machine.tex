@@ -1,0 +1,613 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+
+% Honest evidence labels
+\newcommand{\PROVED}{\textup{[\textsc{proved}]}}
+\newcommand{\PROVEDVER}{\textup{[\textsc{proved + verified}]}}
+\newcommand{\VERIFIED}{\textup{[\textsc{verified exhaustively}]}}
+\newcommand{\COMPUTED}{\textup{[\textsc{computed exactly}]}}
+\newcommand{\MEASURED}{\textup{[\textsc{measured}]}}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\vtwo}{v_2}
+\newcommand{\vthree}{v_3}
+\newcommand{\Info}{\mathrm{I}}
+\newcommand{\Ent}{\mathrm{H}}
+
+\title{The $3x+1$ map is a maximally forgetful machine:\\
+exact fairness, zero storage, and the carry characterization}
+
+\author{Martien de Jong\\[2pt]
+\small with computational collaboration by Jengo (AI)}
+
+\date{July 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Conway proved in 1972 that generalized Collatz maps are computationally universal, and
+Kurtz and Simon later located the generalized problem at $\Pi^0_2$-completeness. Both
+constructions work by \emph{storing information}: register contents are encoded in the
+exponents of primes and manipulated by the affine branches. We ask whether the specific
+$3n+1$ instance shows any signature of such storage, and we report that every test we
+can perform returns the opposite signature, in three layers. (1) \emph{Carry
+characterization} (proved, elementary): in base $3$ the map $r \mapsto 3r+1$ is a pure
+digit append, $\mathrm{trits}(3r+1) = \mathrm{trits}(r) \mathbin{+\!\!+} [1]$, and it is
+the unique member of the $3n+d$ family with this property; every other offset carries or
+borrows into the digits of $r$ with geometrically distributed depth
+$P(\mathrm{depth}=j) = 2/3^j$. (2) \emph{Exact fairness} (proved via the Terras
+correspondence, verified exhaustively): the density of odd $n$ whose first $r$
+successive ladder refills all have depth at least $j$ is exactly $2^{-(j-1)r}$; and the
+within-step joint law of (trailing ones $k$, post-burn halvings $w$) factorizes exactly,
+$P(w \mid k) = 2^{-w}$ for every $k$. (3) \emph{Zero storage} (verified exhaustively):
+the mutual information between successive refill depths along macro-orbits is
+$0$ to within $3 \times 10^{-6}$ bits at distances $d = 1,2,3$, and the apparent
+cross-base coupling $\Info(n \bmod 9;\, w_{\mathrm{next}})$ vanishes as the $2$-adic
+modulus grows. At the operator level, the linearized Krasikov--Lagarias edge system has
+spectrum $\{1\} \cup \{\,|\lambda| = 1/4\,\}$ exactly (flat damping), and the identity
+$2^\alpha = 3$ pins its average row mass to exactly $1$ (conservative line). The
+density-level stochastic model of the $3n+1$ map is therefore \emph{exactly} independent
+fair geometric dice with no measurable correction --- the opposite of a hidden computer.
+We discuss what this anti-universality evidence does and does not say about the
+decidability of the specific instance, and we prove that density-level arguments are
+map-blind: the growth exponent of the Krasikov--Lagarias method is identical for $3n-1$
+and $3n+1$ by mirror symmetry, so any proof of the conjecture must use the carry
+characterization --- the only lever that distinguishes the two maps.
+\end{abstract}
+
+\section{Motivation: where could a computer hide?}
+
+The Collatz map on odd integers, in Syracuse form
+\[
+T(n) \;=\; \frac{3n+1}{2^{\vtwo(3n+1)}},
+\]
+is conjectured to send every positive odd integer to $1$. Two classical results frame
+the pessimistic view of this problem as a question about \emph{computation} rather than
+arithmetic.
+
+First, Conway \cite{Conway1972} showed that the natural generalization --- piecewise
+affine maps $g(n) = a_i n + b_i$ for $n \equiv i \pmod{p}$ --- is computationally
+universal: one can encode any register machine in such a map, and the question ``does
+the orbit of $n$ reach $1$?'' is undecidable for the class. Second, Kurtz and Simon
+\cite{KurtzSimon2007} sharpened this to $\Pi^0_2$-completeness: the statement ``every
+orbit of $g$ eventually reaches $1$'' is, for generalized Collatz maps, as hard as any
+$\forall\exists$ statement of arithmetic can be.
+
+Both constructions have a common engine: \emph{information storage}. The state of a
+Minsky machine's registers is encoded in the exponents of small primes dividing $n$; the
+affine branches increment, decrement, and test those exponents. A generalized Collatz
+map is undecidable exactly because, and exactly insofar as, it can \emph{remember}.
+
+This suggests a concrete empirical program for the specific instance $3n+1$. If the
+map were secretly a computer --- if the hardness of the conjecture were of Conway's kind
+--- we would expect measurable traces: correlations between successive branch decisions,
+residue channels that carry information forward, deviations from the naive stochastic
+model that a memory mechanism would necessarily produce. Conversely, if every such test
+returns exact independence, exact fairness, and zero channel capacity, then the specific
+instance carries the \emph{opposite} signature: not a register machine but an odometer,
+a machine that forgets everything it does.
+
+This paper collects six results from our research program (de Jong--Jengo, 2026,
+research notes \cite{Note2026}) that carry out this program. Throughout we use honest
+evidence labels: \PROVED{} means an unconditional proof is given or referenced;
+\VERIFIED{} means an exhaustive computation over a stated finite range;
+\COMPUTED{} means an exact finite computation (e.g.\ of a spectrum); \MEASURED{} means
+a sampled or fitted quantity. The distinction matters and we never blur it.
+
+\subsection*{Summary of results}
+
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Carry characterization} (Theorem~\ref{thm:carry}, \PROVEDVER):
+$3r+1$ is the unique base-$3$-local (carry-free, append-only) member of the $3n+d$
+family; all other offsets propagate into the digits of $r$ with geometric depth
+$P(\mathrm{depth}=j) = 2/3^j$.
+\item \textbf{Hop-tax / exact fairness} (Theorem~\ref{thm:hoptax}, \PROVEDVER): the
+density of odd $n$ whose first $r$ ladder refills are all $\geq j$ is exactly
+$2^{-(j-1)r}$.
+\item \textbf{Zero storage across steps} (Theorem~\ref{thm:zerostorage}, \VERIFIED):
+$\Info(k_0; k_d) = 0.000000$ bits for $d = 1,2,3$.
+\item \textbf{Exact factorization within steps} (Theorem~\ref{thm:factorization},
+\VERIFIED): $\Info(k;w) = 0$ and $P(w \mid k) = 2^{-w}$ for every $k$; apparent
+cross-base coupling is finite-modulus leakage.
+\item \textbf{Flat damping} (Theorem~\ref{thm:spectrum}, \COMPUTED{}, and
+Lemma~\ref{lem:mass}, \PROVED): the linearized Krasikov--Lagarias edge operator has
+spectrum $\{1\} \cup \{|\lambda| = 1/4\}$, and mass conservation
+$3W_0 + W_2 + W_8 = 3$ holds exactly because $2^\alpha = 3$.
+\item \textbf{Map-blindness of density arguments} (Proposition~\ref{prop:mirror},
+\PROVED): $\lambda^*(3n-1) = \lambda^*(3n+1)$ by mirror symmetry; density methods
+cannot separate the convergent map from its cycle-rich sibling.
+\end{enumerate}
+
+\section{Setup and notation}
+
+For odd $n \geq 1$ write
+\[
+n + 1 = a \cdot 2^k, \qquad a \text{ odd},
+\]
+so that $k = k(n)$ is the number of trailing $1$s in the binary expansion of $n$
+(the \emph{refill depth} or \emph{sequence index}) and $a$ is the \emph{family}. The
+\emph{segment} is the run of $k$ exact odd steps $n \mapsto (3n+1)/2$, which ends at
+$a \cdot 3^k - 1$ (an elementary computation; see \cite{Note2026}, Theorem~1). The
+\emph{macro-step} appends the full cascade of
+\[
+w \;=\; \vtwo\!\left(a \cdot 3^k - 1\right)
+\]
+halvings, landing on the next odd number, whose own trailing-ones count $k'$ is the
+\emph{next refill}. An orbit is thus coded by its \emph{index stream}
+$(k_0, w_0), (k_1, w_1), \dots$, and the naive stochastic model --- going back to
+Terras \cite{Terras1976} and surveyed by Lagarias \cite{Lagarias1985, Lagarias2010} ---
+treats $k$ and $w$ as independent geometric$(1/2)$ variables. The multiplicative drift
+per macro-step under this model is
+$\mathbb{E}[\log_2(3^k/2^{k+w})] = 2\log_2 3 - 4 < 0$, which is the heuristic reason
+orbits fall.
+
+The empirical content of this paper is that, at the level of natural density, the naive
+model is not an approximation. It is \emph{exact}, with no measurable correction of any
+kind, at every level we can test.
+
+A word on the mechanism of exactness. Terras's correspondence \cite{Terras1976} shows
+that the first $t$ parity decisions of an orbit are determined by, and determine,
+$n \bmod 2^t$: each depth-$t$ index pattern occupies \emph{exactly one} residue class
+modulo $2^{(\text{bits used})}$. Pattern densities are therefore exact dyadic rationals,
+not asymptotic estimates. This is what allows several statements below to be proved,
+not merely measured; the exhaustive counts then serve as verification of the proofs and
+of our bookkeeping.
+
+\section{The carry characterization of $3n+1$}
+
+The first result explains \emph{why} the $3n+1$ map, among all its siblings, is the one
+with exactly solvable statistics. Write $\mathrm{trits}(r)$ for the base-$3$ digit
+string of $r \geq 1$, and $\mathbin{+\!\!+}$ for string concatenation.
+
+\begin{theorem}[Carry characterization; \PROVEDVER]\label{thm:carry}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item For every $r \geq 1$,
+\[
+\mathrm{trits}(3r+1) \;=\; \mathrm{trits}(r) \mathbin{+\!\!+} [1]:
+\]
+the map $r \mapsto 3r+1$ is a pure append in base $3$, with zero propagation into the
+digits of $r$.
+\item Among the maps $r \mapsto 3r + d$ with $d$ odd and $3 \nmid d$, the offset
+$d = 1$ is the unique one with this property. For every other such $d$ the map carries
+or borrows into the digits of $r$.
+\item \textup{(Depth law, proved for $d = -1$.)} For $d = -1$,
+\[
+\mathrm{trits}(3r-1) \;=\; \mathrm{trits}(r-1) \mathbin{+\!\!+} [2],
+\]
+and the borrow propagates into $r$ to depth $j$ (i.e.\ alters exactly the last $j$
+trits of $r$) with natural density
+\[
+P(\mathrm{depth} = j) \;=\; \frac{2}{3^j}, \qquad j \geq 1.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Multiplying by $3$ appends the digit $0$ in base $3$; adding $1$ converts that
+trailing $0$ to $1$ with no carry, since $1 < 3$.
+
+(b) Write $d = 3q + s$ with $s \in \{1, 2\}$ (possible since $3 \nmid d$). Then
+$3r + d = 3(r + q) + s$, i.e.\ the map appends the digit $s$ to the digits of $r + q$.
+This is an append onto the digits of $r$ itself if and only if $q = 0$, i.e.\
+$d \in \{1, 2\}$; among odd offsets, only $d = 1$. For every other $d$ the addition of
+$q \neq 0$ to $r$ propagates a carry (if $q > 0$) or a borrow (if $q < 0$) into the
+digit string of $r$.
+
+(c) The identity is (b) with $q = -1$, $s = 2$: $3r - 1 = 3(r-1) + 2$. Passing from
+$r$ to $r - 1$ borrows through exactly the trailing run of $0$s in
+$\mathrm{trits}(r)$: if the last $j - 1$ trits of $r$ are $0$ and the $j$-th from the
+end is nonzero, the borrow alters exactly the last $j$ trits. For $r$ uniform in a
+range $[1, 3^m)$ and $j \le m$, the last $j-1$ trits are $0$ and the $j$-th is nonzero
+with probability $(1/3)^{j-1} \cdot (2/3) = 2/3^j$; the density statement follows by
+letting the range grow.
+\end{proof}
+
+\emph{Verification.} Part (c)'s depth law was confirmed to $4+$ decimals by direct
+count (\cite{Note2026}, Theorem~25 and \texttt{scripts/}). For general $|q| > 1$ the
+carry is again confined to a trailing-digit run and is geometrically distributed with
+the same $3^{-j}$ scale; we have proved the exact constants only for $|q| = 1$ and
+measured the rest, so the general-$d$ depth constants carry the label \MEASURED.
+
+\begin{remark}[The fingerprint]
+The carry structure is not a curiosity; it is visible in the dynamics. The disorder
+injected at ternary digit $j$ by the $3n-1$ borrow (probability $\sim 3^{-j}$) shows up
+as a measured difference in the cascade heterogeneity profiles of the two maps:
+$0.178$ versus $0.059$ at digit $1$ (\MEASURED, \cite{Note2026}, Theorem~25). The
+convergent map is the maximally \emph{local} one: its ternary clockwork is
+memoryless-append, which is why its stationary ``roulette'' measure is exactly solvable
+and its refills exactly fair (Section~\ref{sec:fair}). Its siblings pay for their
+offset with a geometric-depth scribble into their own digits --- which is, in embryo,
+the write head of Conway's storage mechanism.
+\end{remark}
+
+\section{Exact fairness: the hop tax}\label{sec:fair}
+
+After a full burn (segment of $k$ odd steps plus its cascade of $w$ halvings), the orbit
+lands on a new odd number with a new refill depth $k'$. Call an odd number \emph{rich at
+level $j$} if $k \geq j$. The naive model predicts
+$P(k \geq j) = 2^{-(j-1)}$ and predicts that successive refills are independent. Both
+statements are exactly true at density level.
+
+\begin{theorem}[Hop tax; exact refill fairness; \PROVEDVER]\label{thm:hoptax}
+Fix $j \geq 2$ and $r \geq 1$. The set of odd $n$ whose first $r$ successive ladder
+refills (the trailing-ones depths after each of the first $r$ full burns) are all
+$\geq j$ is a finite union of residue classes, and its natural density is exactly
+\[
+\left(2^{-(j-1)}\right)^{r} \;=\; 2^{-(j-1)r}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+By the Terras correspondence, the event ``the first $r$ refills are all $\geq j$''
+is determined by finitely many binary digits of $n$ and is a union of residue classes
+modulo $2^t$ for a suitable $t$; its density is therefore an exact dyadic rational. The
+count of classes follows from the fact that each macro-step's refill condition
+$k_i \geq j$ constrains exactly $j - 1$ fresh binary digits (the digits revealed by the
+current burn), independently of the digits already consumed: conditioned on the entire
+past pattern, the residue-class measure of $\{k_i \geq j\}$ is exactly $2^{-(j-1)}$.
+Multiplying over $i = 0, \dots, r-1$ gives the claim.
+\end{proof}
+
+\emph{Verification.} Exhaustive count over all odd $n < 2^{22}$, for all
+$j \in \{2, 3, 4\}$ and $r \in \{1, 2, 3\}$: each of the nine measured densities agrees
+with $2^{-(j-1)r}$ to at least four decimal places
+(\cite{Note2026}, Theorem~20; \texttt{scripts/59\_hop\_tax.py}). The exact target
+values are:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+density $= 2^{-(j-1)r}$ & $r = 1$ & $r = 2$ & $r = 3$ \\
+\midrule
+$j = 2$ & $0.5$    & $0.25$      & $0.125$ \\
+$j = 3$ & $0.25$   & $0.0625$    & $0.015625$ \\
+$j = 4$ & $0.125$  & $0.015625$  & $0.001953125$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{corollary}[Caste memorylessness]
+$P(\mathrm{rich} \to \mathrm{rich})$, i.e.\ the conditional density of $k_{i+1} \geq 2$
+given $k_i \geq 2$, equals $1/2$ exactly --- not approximately. Being rich buys no
+persistence: the hop tax is collected in full at every step.
+\end{corollary}
+
+\begin{remark}[What remains open]
+Theorem~\ref{thm:hoptax} is a statement about natural density --- about \emph{almost
+every} starting point in the sense of residue-class measure. A divergent orbit would
+have to beat this exactly fair coin \emph{forever, pointwise}. The gap between the
+density statement (proved) and the pointwise statement (open) is precisely the remaining
+content of the Collatz conjecture; nothing in this paper closes it, and we flag every
+place where the two could be confused.
+\end{remark}
+
+\section{Zero storage}
+
+A computer needs a channel from its past to its future. We now measure the capacity of
+every channel we can define at the macro-step level, and find them all exactly closed.
+
+\begin{theorem}[Zero storage across macro-steps; \VERIFIED]\label{thm:zerostorage}
+Along macro-orbits started from all odd $n < 2^{21}$ (exhaustive), the mutual
+information between the initial refill depth and the refill depth $d$ macro-steps later
+satisfies
+\[
+\Info(k_0;\, k_d) \;=\; 0.000000 \text{ bits} \quad (\text{within } 3 \times 10^{-6}
+\text{ bits}) \qquad \text{for } d = 1, 2, 3,
+\]
+against an unconditional refill entropy $\Ent(k) = 1.9375$ bits. The macro-automaton
+has zero measurable channel capacity at density level: it stores nothing.
+\end{theorem}
+
+\begin{theorem}[Exact factorization of the macro-step law; \VERIFIED]\label{thm:factorization}
+Exhaustively over all odd $n < 2^{22}$:
+\begin{enumerate}[label=(\alph*)]
+\item the within-step joint law of $(k, w)$ factorizes exactly:
+$\Info(k; w) = 0.000000$ bits, and
+\[
+P(w \mid k) \;=\; 2^{-w} \quad \text{to four decimals, for every value of } k;
+\]
+\item \textup{(cross-base blindness)} the apparent coupling between the ternary state
+and the next cascade, $\Info(n_T \bmod 9;\, w_{\mathrm{next}})$, tends to $0$ as the
+$2$-adic truncation modulus grows: raising the modulus from $2^{12}$ to $2^{16}$
+drops the measured mutual information by a factor of about $70$. The residual coupling
+at any finite modulus is finite-modulus leakage, not structure.
+\end{enumerate}
+Consequently the density-level stochastic model of the $3n+1$ map is exactly
+\[
+k \sim \mathrm{geom}(1/2), \qquad w \sim \mathrm{geom}(1/2), \qquad
+\text{all independent, memoryless, cross-base blind,}
+\]
+with no measurable correction at any level tested.
+\end{theorem}
+
+\emph{Provenance.} Theorem~\ref{thm:zerostorage} is \cite{Note2026}, Theorem~22;
+Theorem~\ref{thm:factorization} is \cite{Note2026}, Theorem~27. Part (a) of
+Theorem~\ref{thm:factorization} admits the same Terras-style proof mechanism as
+Theorem~\ref{thm:hoptax} (the digits determining $w$ are disjoint from and unbiased by
+the digits determining $k$), and we expect it to be upgradable to \PROVED{} by the
+residue-class argument; we conservatively label it as verified, since the note records
+it as an exhaustive computation. Part (b) is intrinsically a limit statement measured
+along a modulus sequence and carries the label \MEASURED{} for the rate, \VERIFIED{}
+for the counts at each fixed modulus.
+
+\begin{remark}[Why this is the anti-Conway signature]
+In Conway's construction \cite{Conway1972} and in the Kurtz--Simon completeness proof
+\cite{KurtzSimon2007}, the orbit's future depends on unboundedly old information:
+register contents ride along inside the iterate, and the map reads them. Any such
+mechanism, translated to the $3n+1$ coordinate system, would have to show up as one of:
+(i) correlation between refill depths at distance $d$ (Theorem~\ref{thm:zerostorage}
+says: none, to $3 \times 10^{-6}$ bits); (ii) coupling between the burn size and the
+cascade that follows it (Theorem~\ref{thm:factorization}(a) says: exactly none); or
+(iii) a channel between the ternary representation --- where the multiplication by $3$
+lives --- and the binary decisions --- where the halvings live
+(Theorem~\ref{thm:factorization}(b) says: leakage only, vanishing with the modulus).
+Every register we can look for is empty.
+\end{remark}
+
+\section{Flat damping and the conservative line}
+
+The results so far concern the forward statistics of orbits. The Krasikov--Lagarias
+(K--L) difference-inequality method \cite{KrasikovLagarias2003} probes the same machine
+from the backward direction: it propagates counting inequalities over residue classes
+modulo $3^j$ and extracts a growth exponent $\gamma$ with
+$\pi_1(x) \geq x^{\gamma}$ for the count of integers below $x$ that reach $1$. The
+linearization of this system at its spectral edge gives an independent, operator-level
+test of forgetfulness.
+
+\begin{theorem}[Flat spectrum of the linearized edge operator; \COMPUTED]\label{thm:spectrum}
+Linearize the K--L system at the edge $\lambda = 2$ (replacing the min-operation by the
+triple mean) on the classes modulo $3^j$. For $j = 4, 5, 6$ (that is, on $27$, $81$,
+and $243$ classes), the spectrum of the resulting operator is exactly
+\[
+\{1\} \;\cup\; \{\,\lambda : |\lambda| = \tfrac14\,\},
+\]
+i.e.\ a single leading eigenvalue $1$ (the exactly solvable stationary ``roulette''
+direction) and \emph{all} other eigenvalues of modulus exactly
+$1/4 = \lambda^{-2}\big|_{\lambda = 2}$.
+\end{theorem}
+
+\emph{Provenance.} \cite{Note2026}, Theorem~21; \texttt{scripts/60\_contraction\_spectrum.py}.
+The computation is exact linear algebra on finite matrices; the label \COMPUTED{} means
+it is a finite exact computation at three depths, not an asymptotic theorem for all $j$.
+
+The flat spectrum says: apart from the single conserved direction, \emph{every} mode of
+deviation from the stationary measure is damped at the uniform rate $1/4$ per level.
+There are no slow modes, no near-critical directions in which information about the past
+could survive --- linear damping is overwhelming and structureless. (The slow
+$\sim 0.93$/digit decay of the measured tempering amplitude is therefore \emph{not} a
+linear mode; it is sustained by per-level injection through the min-nonlinearity, which
+is a separate, localized question \cite{Note2026}.)
+
+\begin{lemma}[Mass conservation at the edge; \PROVED]\label{lem:mass}
+At the edge $\lambda = 2$, with $\alpha = \log_2 3$, the K--L row masses satisfy
+exactly
+\[
+W_0 + W_2 = 1 \ (\text{type } 2 \bmod 9), \qquad
+W_0 = \tfrac14 \ (\text{type } 5), \qquad
+W_0 + W_8 = \tfrac74 \ (\text{type } 8),
+\]
+whence
+\[
+3W_0 + W_2 + W_8 \;=\; \tfrac34 + 3 \cdot 2^{\alpha - 2} \;=\; \tfrac34 + \tfrac94
+\;=\; 3,
+\qquad \text{since } 2^{\alpha} = 3:
+\]
+the \emph{average} row mass is exactly $1$. Consequently, for the lattice recurrence
+$\mathrm{CV}_P = a\,\mathrm{CV}_{P-1} + c\,\mathrm{CV}_{P+1}$ governing the
+heterogeneity cascade of the K--L eigenvector, the coefficients obey
+\[
+a + c \;\leq\; 1 \qquad \text{(subcriticality; measured value } 0.9955 \text{ at }
+k = 20\text{)}.
+\]
+\end{lemma}
+
+\emph{Provenance.} \cite{Note2026}, Lemma~24. The row-mass identities and the average
+being exactly $1$ are elementary consequences of the edge equations; the passage to
+$a + c \leq 1$ uses the offset algebra of the exact difference identity
+(\cite{Note2026}, Theorem~16) plus the triangle inequality. The numerical value
+$0.9955$ and the interpretation of the slack as a measured incoherence factor are
+\MEASURED.
+
+\begin{remark}[The defining equation pins the system to the conservative line]
+The identity $2^{\alpha} = 3$ --- which is nothing but the definition of the problem,
+the exchange rate between the doubling and tripling that constitute the map --- is
+precisely what forces the average row mass to equal $1$. The system sits exactly
+\emph{on} the conservative line $a + c = 1$: the heterogeneity cascade can never grow
+exponentially, and the only open question at this level is the drift direction along
+the line ($\theta = a/c < 1$), not the possibility of explosion. A hidden computer
+would need super-critical mass somewhere to amplify and preserve a signal; the defining
+equation of the map forbids it on average, and the flat $1/4$ spectrum
+(Theorem~\ref{thm:spectrum}) crushes whatever remains.
+\end{remark}
+
+\section{Synthesis: the opposite of a hidden computer}
+
+Assembling the layers:
+
+\begin{itemize}
+\item \textbf{Digit level} (Theorem~\ref{thm:carry}, proved): the map is a carry-free
+append in base $3$ --- the unique such member of its family. There is no write-back
+into the multiplicand's digits; the ternary tape only ever grows by one clean symbol.
+\item \textbf{Step level} (Theorems~\ref{thm:hoptax} and \ref{thm:factorization}):
+refills are exactly fair geometric draws, exactly independent of each other and of the
+cascades, with the cross-base channel closed in the limit.
+\item \textbf{Operator level} (Theorem~\ref{thm:spectrum}, Lemma~\ref{lem:mass}):
+uniform flat damping at rate $1/4$ off a single conserved direction, with average mass
+pinned to the conservative line by $2^{\alpha} = 3$ itself.
+\end{itemize}
+
+At every level, the density-level stochastic model is \emph{exactly} independent fair
+geometric dice, with no measurable correction. This is the maximally forgetful point of
+the $3n+d$ family, and Theorem~\ref{thm:carry} identifies the mechanism: carry-freeness.
+The other members of the family scribble geometric-depth corrections into their own
+digits --- a rudimentary memory --- and Conway's universal machines are the fully
+engineered endpoint of that same mechanism. The $3n+1$ instance sits at the opposite
+endpoint: the unique offset with no write head at all.
+
+\subsection{What this says about decidability --- and what it does not}
+
+We state the epistemic status plainly.
+
+\begin{enumerate}[label=(\arabic*)]
+\item \textbf{This is evidence, not proof.} Undecidability of the generalized problem
+\cite{Conway1972, KurtzSimon2007} does not imply anything about the specific instance,
+and conversely no finite battery of independence tests can \emph{prove} that the
+instance is decidable or that the conjecture is true. A pointwise conspiracy ---
+a single measure-zero thread of integers beating the fair coin forever --- is exactly
+what the density results do not exclude, and it is the entire remaining content of the
+problem (\cite{Note2026}, Theorems~20, 27).
+\item \textbf{The evidence is nonetheless directional.} Every known route to
+undecidability in this family runs through storage. The measured channel capacity of
+the $3n+1$ macro-automaton is zero to $3 \times 10^{-6}$ bits, its transition
+statistics are exactly the memoryless ideal, and its linearized backward operator has
+no slow modes. If the specific instance were hard in Conway's sense, the hardness would
+have to live entirely in a density-zero, information-theoretically invisible thread ---
+a logical possibility, but one with no positive evidence and with every measurable
+proxy returning the opposite sign. We call this the \emph{anti-universality} reading:
+the conjecture's remaining content is that a countable integer thread cannot exploit a
+channel that provably has no capacity at density level.
+\item \textbf{The pointwise/density gap is the problem.} We emphasize once more:
+Theorems~\ref{thm:hoptax}--\ref{thm:factorization} constrain almost every orbit, in
+residue-class measure. The conjecture is a statement about \emph{every} orbit. Nothing
+above closes that gap; what the results do is \emph{localize} it, by closing every
+hiding place for density-level structure. The content of the conjecture is now
+irreducibly pointwise.
+\end{enumerate}
+
+\subsection{Density arguments are provably map-blind}
+
+Finally, the carry characterization has a sharp methodological consequence: it is the
+\emph{only} lever a proof can use, because every density-level functional is blind to
+the difference between $3n+1$ and its cycle-rich mirror $3n-1$.
+
+\begin{proposition}[Mirror symmetry; \PROVED]\label{prop:mirror}
+Negation conjugates the two maps: writing $T_{\pm}(n) = (3n \pm 1)/2^{\vtwo(3n \pm 1)}$
+on odd integers, we have $T_{-}(n) = -\,T_{+}(-n)$. Hence the $3n-1$ dynamics on the
+positive odd integers is the $3n+1$ dynamics on the negative odd integers, up to sign.
+Since the Terras residue-class structure and the Krasikov--Lagarias class system are
+invariant under this conjugation (it permutes residue classes modulo $2^t$ and modulo
+$3^j$), every density-level quantity coincides for the two maps; in particular the K--L
+growth exponent satisfies
+\[
+\lambda^{*}(3n-1) \;=\; \lambda^{*}(3n+1).
+\]
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+$3(-n) + 1 = -(3n - 1)$ and $\vtwo(-m) = \vtwo(m)$, giving the conjugation identity.
+The map $n \mapsto -n$ is a bijection on odd residues modulo $2^t$ and modulo $3^j$
+that intertwines the branch structure of the two inverse iterations; densities of
+residue-class unions are preserved. Any functional built from residue-class densities
+--- pattern densities, predecessor-count inequalities, the K--L eigenvalue --- is
+therefore identical for the two maps.
+\end{proof}
+
+But the two maps behave completely differently: $3n+1$ is conjectured (and
+overwhelmingly verified) to funnel everything to $1$, while $3n-1$ on the positive
+integers has at least three cycles ($\{1, 2\}$, the cycle through $5$, and the cycle
+through $17$ --- equivalently the $-1$, $-5$, $-17$ cycles of $3n+1$ on the negatives;
+cf.\ the census in \cite{Note2026}, Theorem~17). Proposition~\ref{prop:mirror} says no
+density argument can see this difference. Where the maps \emph{do} differ is exactly
+Theorem~\ref{thm:carry}: $+1$ appends, $-1$ borrows, with the measured disorder
+fingerprint $0.178$ vs $0.059$ at ternary digit $1$. Therefore:
+
+\begin{quote}
+\emph{Any proof of the Collatz conjecture must use the carry-freeness of $3n+1$ ---
+the sign of the offset in base 3 --- because it is the only property, at any level we
+have found, that distinguishes the convergent map from its non-convergent mirror. A
+method that would work verbatim for $3n-1$ is provably insufficient.}
+\end{quote}
+
+This is a filter of the same kind as the classical observation that a proof must
+somehow use the archimedean size of $n$ and not just congruence information (cf.\ the
+residue-blind impossibility result, \cite{Note2026}, Theorem~11): it does not tell us
+how to prove the conjecture, but it tells us cheaply, in advance, which proposals cannot
+work.
+
+\subsection*{Open problems}
+
+\begin{enumerate}[label=(\Alph*)]
+\item Upgrade Theorem~\ref{thm:factorization}(a) from exhaustive verification to a
+residue-class proof, and prove the cross-base limit in
+Theorem~\ref{thm:factorization}(b) (leakage $\to 0$) at an explicit rate.
+\item Prove the flat-spectrum statement of Theorem~\ref{thm:spectrum} for all depths
+$j$, not just $j = 4, 5, 6$.
+\item Quantify anti-universality: define a class of ``storing'' $3$-adic extensions of
+the $3n+d$ family in which Conway's construction can be graded, and prove that
+carry-free members have zero storage capacity as a theorem about the class, with
+$3n+1$ as the unique carry-free point.
+\item The pointwise problem itself, now stripped of every density-level disguise:
+show that no single positive integer thread realizes an infinite net-climbing index
+stream against an exactly fair, exactly memoryless background.
+\end{enumerate}
+
+\subsection*{Reproducibility}
+
+All exhaustive counts and spectra referenced above are produced by short standalone
+scripts in the research repository (\texttt{scripts/59\_hop\_tax.py},
+\texttt{scripts/60\_contraction\_spectrum.py}, and the inline computations recorded in
+\cite{Note2026}); ranges are stated in each theorem. No result in this paper depends on
+sampling: every ``verified'' claim is an exhaustive computation over the stated range,
+and every ``proved'' claim has an elementary proof included or referenced.
+
+\begin{thebibliography}{9}
+
+\bibitem{Conway1972}
+J.~H. Conway,
+\emph{Unpredictable iterations},
+in: Proceedings of the 1972 Number Theory Conference,
+University of Colorado, Boulder, CO, 1972, pp.~49--52.
+
+\bibitem{KurtzSimon2007}
+S.~A. Kurtz and J.~Simon,
+\emph{The undecidability of the generalized Collatz problem},
+in: Theory and Applications of Models of Computation (TAMC 2007),
+Lecture Notes in Computer Science 4484, Springer, 2007, pp.~542--553.
+
+\bibitem{Lagarias1985}
+J.~C. Lagarias,
+\emph{The $3x+1$ problem and its generalizations},
+Amer. Math. Monthly 92 (1985), 3--23.
+
+\bibitem{Lagarias2010}
+J.~C. Lagarias (ed.),
+\emph{The Ultimate Challenge: The $3x+1$ Problem},
+American Mathematical Society, Providence, RI, 2010.
+
+\bibitem{KrasikovLagarias2003}
+I.~Krasikov and J.~C. Lagarias,
+\emph{Bounds for the $3x+1$ problem using difference inequalities},
+Acta Arith. 109 (2003), 237--258.
+
+\bibitem{Terras1976}
+R.~Terras,
+\emph{A stopping time problem on the positive integers},
+Acta Arith. 30 (1976), 241--252.
+
+\bibitem{Note2026}
+M.~de Jong and Jengo,
+\emph{Six results on the Collatz map in family/pair coordinates},
+research notes (2026), repository \texttt{collatz/research}, file \texttt{NOTE.md}
+(Theorems 20, 21, 22, 25, 27; Lemma 24; and scripts cited therein).
+
+\end{thebibliography}
+
+\end{document}

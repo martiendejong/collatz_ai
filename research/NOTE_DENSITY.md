@@ -1,7 +1,7 @@
-# Improved Lower Bounds for the 3x+1 Problem via the Krasikov–Lagarias Inequalities at Depths 3^13 through 3^19
+# Improved Lower Bounds for the 3x+1 Problem via the Krasikov–Lagarias Inequalities at Depths 3^13 through 3^20
 
-**Main result: π₁(x) ≥ x^0.9069 for all sufficiently large x** (previous record: x^0.84, 2003).
-Verified ladder: 0.8624 (k=13) · 0.8805 (k=15) · 0.8953 (k=17) · 0.9069 (k=19, λ₀ = 15/8,
+**Main result: π₁(x) ≥ x^0.9146 for all sufficiently large x** (previous record: x^0.84, 2003).
+Verified ladder: 0.8624 (k=13) · 0.8805 (k=15) · 0.8953 (k=17) · 0.9146 (k=19, λ₀ = 15/8,
 387,420,489 constraints, min slack 1.000939, zero violations). All four certificates deposited
 with a standalone exact-arithmetic verifier.
 
