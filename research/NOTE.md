@@ -361,3 +361,16 @@ to astronomically large (u, j), whose thresholds a longer direct check covers.
 Together with Prop 28: the Terras CST conjecture is REDUCED to effective
 rational approximation of log2(3) — the same single wall as cycle exclusion.
 Publishable as a standalone note.
+
+## Lemma 30 (B-growth law; CORRECTS Thm 29's clause "B <= 1"). — MEASURED + SKETCH
+B(t) = max b/2^j over stopping classes at depth t GROWS: 1.25 (t=8), 2.27 (16),
+3.24 (24), 4.09 (27) — and the extremal classes are exactly the REPEATED
+PYTHAGOREAN COMMA words: (u,j) = (5,8), (10,16), (15,24), ... Growth ~ 1 + t/8:
+one unit per comma cycle (sketch: y = b/3^u gains 1/(3 rho) per odd step, so
+y-growth requires near-critical rho ~ 1, i.e. comma repetitions of length 8).
+Theorem 29's reduction survives with the polynomial correction: violation
+threshold <= (1 + t/8)/(1 - 3^u/2^j); non-convergent classes remain covered by
+the n <= 10^6 basis, and the convergent-zone check-range grows only LINEARLY
+with depth. The comma is simultaneously: the CST danger zone (Prop 28), the
+B-growth driver (this lemma), and the cycle-exclusion wall — one constant,
+three roles.
