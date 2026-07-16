@@ -479,3 +479,21 @@ DRIFT CHAIN — every link now either proven or empirically pinned:
 Lemma 24 (proved) + balance (proved) + directional low-pass (proved core)
 + kappa uniform < 1 (this Prop) + Thm 19 (proved, 1/ln(4/3)).
 Remaining: the variational write-up (LP duality over the fixed point).
+
+## Theorem 36 (The division automaton / exact shed law). — PROVED + VERIFIED
+Dividing an even x by 2 in base 3: sweep trits top-down with carry
+c' = (c + d) mod 2, i.e. THE CARRY AT POSITION i IS THE PARITY OF THE PREFIX
+TRIT-SUM. The digit-sum shed decomposes exactly per position:
+   shed contribution = +1 if (c=0, d in {1,2}); -1 if (c=1, d in {0,1}); else 0.
+(Verified 5000/5000; proof: q = (3c+d)//2 case table.) Combined with the
+append law (Thm 25 counting form: odd step appends trit 1), the full Collatz
+orbit is EXACTLY a two-rule trit-stream automaton:
+   odd step: append 1 at the bottom (s3 += 1, no other change);
+   halving: top-down parity-sweep with the six-entry shed table (s2 invariant).
+Measured state statistics: orbit halvings run net shed 0.049/trit (random
+evens: 0.033), with the +1-states enriched (0.376 vs 0.357). The pointwise
+divergence question becomes: can an orbit maintain forever the
+(prefix-parity, digit) statistics needed to shed at rate ~u? — where the
+prefix-parity IS the orbit's own running parity (s3(x) = x mod 2): the
+self-reference of the clockwork, now in exact automaton form. This is the
+sharpest exact formulation of the long shot.
