@@ -398,3 +398,24 @@ functions of ONE constant, ln(4/3) — the drift of the map. Predictions for
 k=21: flow and saturation rates exactly delta and sqrt(delta). No convincing
 closed form yet for theta_inf (~0.8490; 27/32 = 0.84375 off by 0.6%) or
 CV1_inf (~0.5136).
+
+## Proposition 32 (Balance + attenuation: the drift mechanism identified). — 2 PROVEN LINKS + 1 MEASURED
+(i) BALANCE IDENTITY (proved, 3 lines): at the edge, the offset-magnitude
+flows are exactly equal: up-flow = W0*(3/4) = 3/16 = wbar*(1/4) = down-flow,
+since wbar = (W2+W8)/3 = 3/4 (mass conservation) and W0 = 1/4. The
+zeroth-order scale-drift of difference mass is exactly ZERO — the system is
+perfectly balanced by 2^alpha = 3, at both L1 (Lemma 24) and offset-magnitude
+level.
+(ii) ATTENUATION ASYMMETRY (structural): the down-channel passes through the
+1-Lipschitz min (attenuation kappa < 1 whenever triples are non-comonotone);
+the up-channel (transport) passes unattenuated. Hence effective down-flow =
+(3/16)*kappa < up-flow = 3/16, giving c > a and theta = a/c < 1.
+(iii) IDENTIFICATION (measured): kappa(P) = std(min-triple diffs)/std(member
+diffs) = 0.908, 0.899, 0.888, 0.875, 0.860, 0.841 at P = 2..7 — converging
+into the theta range (theta series -> 0.849). Hypothesis: theta_inf =
+lim kappa at deep scales.
+REMAINING for a full drift proof: kappa bounded away from 1 uniformly in k
+(triples never asymptotically comonotone) — which is implied by CV_1
+saturation at a nonzero limit (Prop 23). The gamma->1 chain is now:
+Lemma 24 (proven) + balance (proven) + [kappa < 1 uniform, measured + linked
+to Prop 23] + Thm 19 (proven).
