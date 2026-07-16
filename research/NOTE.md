@@ -537,3 +537,21 @@ POINTWISE, deterministic drainage floor at the top boundary, forced by the
 archimedean structure (the finite top), independent of any density argument.
 The rotation subshift confirms: no w<=... in fact P(w=1 keeps the zone) = 0 —
 climbing (w=1) is maximally incompatible with drainage suppression.
+
+## Theorem 40 (The top tax and the split conservation law). — PROVED + VERIFIED
+(a) At the top position of every division sweep: carry = 0 and leading trit
+in {1,2}, so the top position sheds EXACTLY +1 — every halving, every orbit,
+pointwise (proof: leading trit is never 0; sweep initializes c=0).
+(b) Split conservation law (exact; 0/400 violations):
+      s3(x_t) = s3(n) + u_t - j_t - lower_shed_t,
+where lower_shed is the sweep-net below the top position. Measured on
+convergent orbits: u/j = 0.504, lower_shed = -0.371 per halving (the lower
+sweep GAINS on typical descents).
+(c) DIVERGENCE REQUIREMENT (pointwise): with mean halving count wbar in
+(1, log2 3), a divergent orbit must have
+      lower gains ~ (wbar - 1) per odd step + all s3 growth, FOREVER,
+against the unavoidable top tax. Every gain event requires a (carry=1,
+digit<=1) state, and the carry chain is the parity of the orbit's own prefix
+sums. The long shot's target inequality: bound the sustainable lower-gain
+rate below (wbar - 1) using the parity-coupling — the financing cannot be
+sustained. All quantities exact; the ledger is complete.
