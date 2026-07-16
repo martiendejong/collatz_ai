@@ -509,3 +509,19 @@ exact form: no infinite self-consistent trit-stream statistics compatible
 with sustained climb can be realized by a finite-top stream. This is the
 'per-orbit rigidity / archimedean bridge' missing theorem, now surrounded by
 exact machinery (Thms 25, 36, this lemma) on all sides.
+
+## Proposition 38 (The boundary force: descent is powered by the finite top). — MEASURED
+Net shed per trit by relative depth along real orbit halvings:
+  TOP layer (0-10%):    +0.485 per trit  (~10x bulk)
+  bulk (10-90%):        ~0 (+-0.04)
+  BOTTOM layer (90-100%): -0.207 per trit (anti-shed)
+Mechanism: every sweep initializes at c=0 at the finite top, and leading
+trits are d=1-enriched ((c=0,d=1) occupancy 0.303 top vs 0.151 bulk), so the
+top layer is a concentrated +1-shed engine. CONSEQUENCE: the digit-sum
+drainage that pays the orbit conservation law (shed ~ u) is produced almost
+entirely by the TOP BOUNDARY — the one feature integers have and 3-adic
+pseudo-orbits lack. Descent is powered by the boundary that only integers
+possess. Bridge-argument map: leading-trit statistics are governed by the
+Sturmian rotation (irrationality of log2(3)) — the pointwise entry of
+irrationality; divergence would require suppressing top drainage forever
+against the rotation. The long shot now has a mechanism to formalize.
