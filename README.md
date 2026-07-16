@@ -20,6 +20,20 @@ family/pair framework of Martien de Jong, executed by Jengo (Claude).
   (4^y−1)/3; spring gates are provably shut; 93% of all traffic passes the
   turnstiles 13 and 53.
 
+## The current research frontier (July 2026)
+
+- **Theorems 17-29, Lemmas 24/26/30, Propositions 23/28/31-35** in `research/NOTE.md`:
+  cycle census to period 12; hop-tax exactness; zero-storage; carry characterization
+  (3n+1 is the unique base-3-local map); perfect-dice factorization; CST reduced to
+  rational approximation of log2(3) and verified for tau <= 4700; the master constant
+  delta = log2(16/9); the drift chain (balance identity + directional low-pass +
+  attenuation constant kappa_inf = 0.839).
+- **Five papers** in `research/papers/`: density record (x^0.9146), tempering law,
+  CST & the limma, the forgetful machine, the drift low-pass.
+- **13 pre-registered predictions** for k=21 in `research/PREDICTIONS.md`.
+- The gamma->1 program: every link proved or empirically pinned; remaining work is
+  the variational write-up (LP duality over the K-L fixed point).
+
 ## Repository layout
 
 | Path | Contents |
