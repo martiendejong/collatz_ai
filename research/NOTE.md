@@ -601,3 +601,20 @@ runs have mean length 2). Lesson (fourth of its kind): bottom-anchored
 coordinates are not sweep-invariant across appends; all per-position claims
 must specify the coordinate frame. The financing analysis continues with
 run-local constraints + the append-shift as an explicit part of the automaton.
+
+## Theorem 43 (Slot lifecycle: every append repays exactly 1). — PROVED + VERIFIED
+Track SLOTS (digit positions with identity: created by appends at the bottom
+with digit 1, or present in n at birth; rewritten in place by sweeps;
+destroyed at the top as leading zeros). Telescoping (gains raise elevation
++1, sheds lower it -1; death digit = 0):
+   sheds - gains over a completed slot's lifetime = ITS BIRTH DIGIT, exactly.
+Verified: 12,069 completed slots, 0 violations; append-born slots (79%) each
+net-shed EXACTLY 1. Consequence: every odd step's appended trit eventually
+repays its own +1 to the drainage — the appends fund the top tax slot by
+slot, pointwise. DIVERGENCE IN SLOT TERMS: financing requires an ever-growing
+population of IMMORTAL, ELEVATED slots (few deaths = few leading-zero drops;
+elevation toward 2). The target bound (flagged, not yet claimed): the twos
+population n2 <= length forces (wbar - 1) <= (1 - wbar*log3(2)), i.e.
+wbar <= 2/(1 + log3 2) ~ 1.226 — strictly stronger than the classical
+wbar < log2(3) ~ 1.585. Deriving this cleanly (with exact boundary
+bookkeeping, learned from two prior sign traps) is the campaign's next goal.
