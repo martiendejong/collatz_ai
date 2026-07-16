@@ -555,3 +555,19 @@ digit<=1) state, and the carry chain is the parity of the orbit's own prefix
 sums. The long shot's target inequality: bound the sustainable lower-gain
 rate below (wbar - 1) using the parity-coupling — the financing cannot be
 sustained. All quantities exact; the ledger is complete.
+
+## Theorem 41 (Demote/promote machine and the zeros ledger). — PROVED + VERIFIED
+The division sweep acts on digits as: carry 0 DEMOTES (2->1, 1->0, 0->0),
+carry 1 PROMOTES (0->1, 1->2, 2->2) — one-line proof from q = (3c+d)//2.
+Zeros are created ONLY by (c=0,d=1) shed events, consumed ONLY by (c=1,d=0)
+gain events (appends add a 1; leading zeros of quotients drop). EXACT ledger
+(0/300 violations):
+   n0(t) = n0(0) + #sheds(0,1) - #gains(1,0) - #leading-drops.
+Since n0 >= 0 pointwise:
+   #gains(1,0)  <=  n0(0) + #sheds(0,1)      (POINTWISE, every orbit).
+The first pointwise inequality chaining gains to sheds: the (1,0)-gain
+channel of divergence financing is capped by the initial zeros plus the
+shed-created supply. Remaining channel: (1,1)-gains (promote 1->2), fed by
+appends and (0,2)/(1,0) events — the full three-reservoir flow network
+(n0, n1, n2) is exact and closed; its perpetual-financing analysis is the
+next stage of the long shot.
