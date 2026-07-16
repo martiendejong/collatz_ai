@@ -385,3 +385,16 @@ three roles.
    escape (u,j) = (15601, 24727) with threshold 2.86e8.
 3. Closed form: dgamma/dq = 1/ln(4/3) = 3.47606 (Thm 19).
 4. Naming: 256/243 is the Pythagorean LIMMA; the comma proper is 3^12/2^19.
+
+## Proposition 31 (The master constant delta = log2(16/9)). — MEASURED, 2 hits < 0.15%
+Define delta = 4 - 2*log2(3) = 2*log2(4/3) = 0.830075 (twice the per-T-step
+log2-drift of the map). Then, from the measured constants of the program:
+  (i)  the (a-c) renormalization flow rate = 0.830 = delta   (rel. err 0.01%);
+  (ii) the fine-end saturation / homogenization rate = 0.910 = sqrt(delta)
+       (rel. err 0.12%);
+  (iii) the edge rate dgamma/dq = 1/ln(4/3) (Thm 19, closed form).
+The entire quantitative skeleton of the gamma->1 program appears to be
+functions of ONE constant, ln(4/3) — the drift of the map. Predictions for
+k=21: flow and saturation rates exactly delta and sqrt(delta). No convincing
+closed form yet for theta_inf (~0.8490; 27/32 = 0.84375 off by 0.6%) or
+CV1_inf (~0.5136).
