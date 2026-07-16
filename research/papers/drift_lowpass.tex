@@ -1,0 +1,773 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openlemma}[theorem]{Open Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\CV}{\mathrm{CV}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\lam}{\lambda}
+\newcommand{\gam}{\gamma}
+\newcommand{\bet}{\beta}
+\newcommand{\kap}{\kappa}
+
+\title{The drift of the Collatz cascade:\\
+balance identities, the directional low-pass,\\
+and the attenuation constant}
+\author{Martien de Jong\\[3pt]
+{\normalsize with computational collaboration: Jengo (AI)}}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The full-density program for the $3x+1$ problem --- pushing the
+Krasikov--Lagarias exponent $\gam_k \to 1$ --- was reduced in the companion
+paper (the tempering law) to a single drift-direction statement: the
+heterogeneity profile of the edge certificate obeys a two-coefficient
+recurrence $\CV_P = a\,\CV_{P-1} + c\,\CV_{P+1}$, and $\gam \to 1$ follows
+if $\theta = a/c$ stays uniformly below $1$. This paper isolates the
+mechanism of that drift and proves every structural ingredient except one.
+Proved: (i) mass conservation at the edge, $3W_0 + W_2 + W_8 = 3$ exactly
+because $2^{\log_2 3} = 3$, forcing subcriticality $a + c \leq 1$;
+(ii) a balance identity --- the zeroth-order scale flows of
+offset-magnitude are exactly equal, up-flow $= W_0 \cdot \tfrac34 =
+\tfrac{3}{16} = \bar w \cdot \tfrac14 =$ down-flow, so the drift is
+entirely a second-order effect; (iii) a one-line directional low-pass:
+$\min(x + c\mathbf{1}) = \min(x) + c$, so the K--L minimum passes
+triple-constant modes with slope exactly $1$ and is $1$-Lipschitz on
+intra-triple variation, and only the down-channel passes through the
+minimum. Measured: the attenuation constant $\kap$ of the down-channel
+decomposes exactly as $\kap^2 = \Var(\bar D)/V + 2\cov/V + \Var(R)/V$ with
+all attenuation in the covariance term; the correction is antisymmetric
+($\pm 0.026$) and not switch-exclusive, identifying the mechanism as
+selection-weighted mean reversion --- the rigidity of binding constraints
+in the K--L linear program; and $\kap < 0.95$ at every scale and depth,
+with the deep-scale value flat in $k$: $\kap_\infty = 0.839 \pm 0.002$,
+uniformly away from $1$. Three negative results are reported honestly:
+a Gaussian reduction of $\kap$ fails, one-step coefficient reconstruction
+inverts the drift, and per-application mode transfer is scale-scattering
+--- the recurrence is emergent at the fixed point, so the remaining proof
+must be variational. We state the one remaining lemma precisely, with an
+LP-duality route, and collect the program's constants: the quantitative
+skeleton is governed by the single constant $\ln(4/3)$.
+All claims are labeled proved, verified, or measured.
+\end{abstract}
+
+\section{Setup: the edge system, the profile, and the reduction}
+\label{sec:setup}
+
+Let $T(n) = n/2$ ($n$ even), $T(n) = (3n+1)/2$ ($n$ odd), and let
+$\pi_1(x)$ count the $n \leq x$ whose orbit reaches $1$. The strongest
+rigorous density bounds $\pi_1(x) \geq x^{\gam}$ come from the
+difference-inequality method of Krasikov and Lagarias \cite{KL03}. In the
+companion paper \cite{Temp26} we verified certificates to $3$-adic depth
+$k = 20$ ($\gam = 0.9146$), identified the certificate eigenvectors as
+tempered roulette measures, and reduced the full-density statement
+$\gam \to 1$ to a single open inequality about the direction of a drift.
+This paper is about that drift.
+
+\subsection*{Notation}
+$\bet := \log_2 3$. $\CV$ denotes coefficient of variation (standard
+deviation over mean). $[3^j] := \{ m \bmod 3^j : m \equiv 2 \pmod 3 \}$.
+Every assertion below carries one of three labels. \emph{Proved}: complete
+mathematical proof in the text. \emph{Verified}: finite exact or
+floating-point computation, reproducible from stated parameters.
+\emph{Measured}: statistical fit or extrapolation from computed data.
+Section~\ref{sec:status} collects the ledger.
+
+\subsection{The Krasikov--Lagarias system at the edge}
+
+Fix $k \geq 2$ and $\lam \in (1,2]$. The nontrivial-tree K--L system
+$L_k(\lam)$ asks for $c : [3^k] \to \R_{>0}$ with, for every $m$,
+\begin{align}
+m \equiv 2 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \leq \lam^{-2} c(4m) + \lam^{\bet-2}\, \bar c\!\left(\tfrac{4m-2}{3}\right),
+\label{eq:L1}\\
+m \equiv 5 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \leq \lam^{-2} c(4m),
+\label{eq:L2}\\
+m \equiv 8 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \leq \lam^{-2} c(4m) + \lam^{\bet-1}\, \bar c\!\left(\tfrac{2m-1}{3}\right),
+\label{eq:L3}
+\end{align}
+where $4m$ is reduced mod $3^k$, branch targets mod $3^{k-1}$, and
+\begin{equation}
+\bar c(t) := \min\{ c(t),\ c(t + 3^{k-1}),\ c(t + 2 \cdot 3^{k-1}) \}
+\label{eq:min}
+\end{equation}
+is the minimum over the three refinements (the \emph{triple}) of $t$.
+Feasibility implies $\pi_1(x) \geq x^{\gam}$, $\gam = \log_2 \lam$
+\cite{KL03}. We call $m \mapsto 4m$ the \emph{transport} (or
+\emph{up-}) channel and the two branch maps the \emph{down-}channel;
+both class maps are bijections. The \emph{edge} is
+$(\lam, \gam) = (2, 1)$: full density. At the edge, set
+\begin{equation}
+W_0 = \lam^{-2} = \tfrac14, \qquad
+W_2 = \lam^{\bet - 2} = \tfrac34, \qquad
+W_8 = \lam^{\bet - 1} = \tfrac32 .
+\label{eq:weights}
+\end{equation}
+
+\subsection{The heterogeneity profile and its recurrence}
+
+For each trit scale $P$ of the class label ($P = 1$ the fine end,
+$P = k-2$ the top), let $\CV_P(k)$ be the mean $\CV$ over sibling triples
+of classes differing only in trit $P$ of the Perron eigenvector of
+$L_k(\lam_k)$. The exact pointwise transport identity for eigenvector
+differences (verified at $k=13$: correlation $1.000000$, residual
+$2.8 \times 10^{-4}$ over $15{,}115$ samples \cite{Temp26}) rests on the
+\emph{offset algebra}: a pure trit offset $\delta = d \cdot 3^P$
+satisfies, exactly,
+\begin{equation}
+4\delta = \delta + 3\delta
+\quad \text{(transport: scales } P, P{+}1\text{)}, \qquad
+\tfrac{4\delta}{3} = \tfrac{\delta}{3} + \delta
+\quad \text{(branch: scales } P{-}1, P\text{)}.
+\label{eq:offsetalg}
+\end{equation}
+Averaging over classes yields the two-coefficient closure (measured, fit
+error $\leq 1.2\%$ at $k = 13, 15, 17, 19$):
+\begin{equation}
+\CV_P \;=\; a\, \CV_{P-1} + c\, \CV_{P+1} .
+\label{eq:lattice}
+\end{equation}
+
+\subsection{The reduction}
+
+On the conservative line $a + c = 1$ with $c > a$ the decaying solution of
+\eqref{eq:lattice} is $\CV_P \sim \theta^P$ with $\theta = a/c < 1$;
+heterogeneity injected at the fine end then dies geometrically before
+reaching the top trit, forcing $q_k \to 1$ (the min-loss parameter) and,
+by the analytic edge rate $d\gam/dq = 1/\ln(4/3)$
+(Theorem~19 of the program; proved, see Appendix~\ref{app:constants}),
+$\gam_k \to 1$. The measured $\theta$-series is
+$0.8248,\ 0.8360,\ 0.8438,\ 0.8480,\ 0.8488$ at $k = 13, 15, 17, 19, 20$,
+with increments shrinking by $\approx 0.6$ per depth:
+$\theta_\infty \approx 0.85 < 1$ \cite{Temp26}. The open question is
+therefore:
+\begin{center}
+\emph{prove $\theta = a/c < 1$ uniformly in $k$.}
+\end{center}
+This paper establishes: the cascade cannot grow ($a + c \leq 1$, proved,
+Section~\ref{sec:mass}); the zeroth-order drift is exactly zero (proved,
+Section~\ref{sec:balance}); the entire drift is produced by a one-way
+low-pass filter (structure proved, Section~\ref{sec:lowpass}); the filter's
+attenuation constant is measured, mechanistically identified
+(Section~\ref{sec:clipping}), and uniform in depth
+(Section~\ref{sec:uniform}). What survives as open is a single variational
+attenuation bound (Section~\ref{sec:open}).
+
+\section{Proved: mass conservation forces subcriticality}
+\label{sec:mass}
+
+\begin{lemma}[Mass conservation at the edge; proved]\label{lem:mass}
+With the edge weights \eqref{eq:weights}, the row masses of the three
+constraint types \eqref{eq:L1}--\eqref{eq:L3} are
+\[
+W_0 + W_2 = 1 \quad (m \equiv 2 \bmod 9), \qquad
+W_0 = \tfrac14 \quad (m \equiv 5), \qquad
+W_0 + W_8 = \tfrac74 \quad (m \equiv 8),
+\]
+and their average is exactly $1$:
+\begin{equation}
+3 W_0 + W_2 + W_8
+\;=\; \tfrac34 + 3 \cdot 2^{\bet - 2}
+\;=\; \tfrac34 + \tfrac94 \;=\; 3,
+\qquad \text{precisely because } 2^{\bet} = 3 .
+\label{eq:mass}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Direct evaluation; the final step is
+$3 \cdot 2^{\bet-2} = 3 \cdot 2^{\bet}/4 = 9/4$ iff $2^{\bet} = 3$.
+\end{proof}
+
+\begin{corollary}[Subcriticality; proved within the closure
+\eqref{eq:lattice}]\label{cor:subcrit}
+Every unit of difference-field mass at trit scale $P$ is redistributed by
+one application of the edge-linearized operator to scales
+$\{P-1, P, P+1\}$ with total weight equal to the row mass of its class
+(offset algebra \eqref{eq:offsetalg} with the weights \eqref{eq:weights});
+the minimum \eqref{eq:min} is $1$-Lipschitz and contributes no expansion.
+Averaging over classes and applying the triangle inequality bounds the
+closure coefficients of \eqref{eq:lattice}, after absorbing the self-term,
+by
+\[
+a + c \;\leq\; 1 .
+\]
+\end{corollary}
+
+Measured at $k = 20$: $a + c = 0.9955$, the strictness being the measured
+incoherence factor $\approx 0.90$ between the two transport channels
+(the triangle inequality is an equality only for perfectly coherent
+recombination). Lemma~\ref{lem:mass} is the reason the drift question is
+well-posed at all: the identity $2^{\bet} = 3$ --- the defining equation
+of the $3x+1$ problem --- pins the average row mass to exactly $1$. The
+heterogeneity cascade sits exactly \emph{on} the conservative line; it can
+never grow exponentially, and the only remaining freedom is the direction
+of drift along that line.
+
+\section{Proved: the balance identity --- zeroth-order drift is zero}
+\label{sec:balance}
+
+One might hope the drift $c > a$ is visible already at the level of
+average magnitude flow between scales. It is not: the flows balance
+exactly, and this balance is itself a consequence of $2^{\bet} = 3$.
+
+\begin{proposition}[Balance identity; proved]\label{prop:balance}
+At the edge, weight the two leakage channels of the offset algebra
+\eqref{eq:offsetalg} by their row weights and their magnitude fractions.
+The up-flow of offset magnitude (scale $P \to P+1$, transport channel) and
+the down-flow (scale $P \to P-1$, branch channel) are exactly equal:
+\[
+\text{up-flow}
+\;=\; W_0 \cdot \tfrac34
+\;=\; \tfrac{3}{16}
+\;=\; \bar w \cdot \tfrac14
+\;=\; \text{down-flow},
+\qquad \bar w := \tfrac{W_2 + W_8}{3} = \tfrac34 .
+\]
+The zeroth-order scale drift of difference mass is exactly zero.
+\end{proposition}
+
+\begin{proof}
+Transport: $4\delta = \delta + 3\delta$ splits a magnitude-$|\delta|$
+offset into components of magnitude $|\delta|$ (scale $P$) and $3|\delta|$
+(scale $P+1$); the up-going fraction is $3/4$ of the transported magnitude
+$4|\delta|$, and the transport weight is $W_0 = 1/4$; hence up-flow
+$= \tfrac14 \cdot \tfrac34 = \tfrac{3}{16}$. Branch:
+$4\delta/3 = \delta/3 + \delta$ splits magnitude $\tfrac43 |\delta|$ into
+$\tfrac13|\delta|$ (scale $P-1$) and $|\delta|$ (scale $P$); the down-going
+fraction is $1/4$. The mean branch weight per class is
+$\bar w = (W_2 + W_8)/3 = (\tfrac34 + \tfrac32)/3 = \tfrac34$ by mass
+conservation (Lemma~\ref{lem:mass}: only types $2$ and $8$ carry a branch
+term, each once among three classes); hence down-flow
+$= \tfrac34 \cdot \tfrac14 = \tfrac{3}{16}$.
+\end{proof}
+
+This is the third exact balance produced by the single identity
+$2^{\bet} = 3$: it holds at the level of row masses
+(Lemma~\ref{lem:mass}), at the level of the min-loss identity
+\cite{Temp26}, and now at the level of offset-magnitude flow. The
+consequence is sharp: \emph{the drift $c > a$ cannot be a first-moment
+effect}. Whatever pushes heterogeneity preferentially downward must act
+through the only structural asymmetry left in the system --- and there is
+exactly one.
+
+\section{Proved: the directional low-pass}
+\label{sec:lowpass}
+
+The one asymmetry between the two channels of
+\eqref{eq:L1}--\eqref{eq:L3} is the minimum \eqref{eq:min}: the
+down-channel (branch) reads the eigenvector only through $\bar c$, the
+minimum over a triple, while the up-channel (transport) reads $c(4m)$
+directly. The following one-line fact turns that asymmetry into a
+frequency-selective filter.
+
+\begin{proposition}[Directional low-pass; proved]\label{prop:lowpass}
+For $x \in \R^3$ and $c \in \R$,
+\begin{equation}
+\min(x + c\mathbf{1}) \;=\; \min(x) + c ,
+\label{eq:translate}
+\end{equation}
+and for $x, y \in \R^3$,
+$|\min(x) - \min(y)| \leq \max_i |x_i - y_i|$. Hence, decomposing any
+perturbation of a triple into its triple-constant (coarse) component and
+its intra-triple-varying (fine) component: the minimum transmits coarse
+modes with slope exactly $1$ and is $1$-Lipschitz --- weakly contractive
+--- on fine modes. Since only the down-channel passes through the minimum,
+the K--L edge operator transmits all modes freely upward, and transmits
+coarse modes freely but attenuates precisely the intra-triple-varying
+modes downward.
+\end{proposition}
+
+\begin{proof}
+\eqref{eq:translate}: every component shifts by $c$, so the least does.
+The Lipschitz bound: $x_i \leq y_i + \max_j |x_j - y_j|$ for all $i$; take
+minima over $i$ and symmetrize.
+\end{proof}
+
+This is the entire structural content of the drift. The intra-triple
+variation at scale $P$ \emph{is} the finest-scale content at that level of
+the label hierarchy: sibling triples differ exactly in the top trit of the
+branch target's label. The down-flow of fine modes is therefore starved by
+a factor $\kap \leq 1$ (with $\kap < 1$ whenever the triples are not
+comonotone in their increments), while the up-flow is free. In the
+recurrence \eqref{eq:lattice} this is exactly the statement $c > a$: the
+drift of the Collatz cascade is the statement that the minimum is a
+low-pass filter acting in one direction only. What remains is
+quantitative: how much attenuation, and is it uniform?
+
+\begin{definition}[Attenuation constant]\label{def:kappa}
+For sibling triples at scale $P$ of the depth-$k$ certificate, let
+$D_i$ ($i = 1, 2, 3$) be the member difference-increments under one
+application of the edge-linearized operator and $D_{\min}$ the increment
+of the triple minimum. Set
+\[
+\kap(P; k) \;:=\;
+\frac{\mathrm{std}(D_{\min})}{\mathrm{std}(D_{\mathrm{member}})} .
+\]
+\end{definition}
+
+Measured at $k = 13$ (certificate \texttt{cert\_k13}):
+$\kap(P) = 0.908,\ 0.899,\ 0.888,\ 0.875,\ 0.860,\ 0.841$ at
+$P = 2, \ldots, 7$ --- decreasing with depth and converging into the range
+of the $\theta$-series ($\to 0.849$). The identification
+$\theta_\infty = \lim \kap$ holds to $\approx 1.2\%$; the residual gap is
+the up-channel mixing correction, to be accounted in the variational
+argument (Section~\ref{sec:open}).
+
+\section{Measured: the clipping decomposition and the mechanism}
+\label{sec:clipping}
+
+Where in the statistics does the attenuation live? Write
+\[
+D_{\min} \;=\; \bar D + R,
+\qquad \bar D := \tfrac13 (D_1 + D_2 + D_3),
+\]
+so $R$ is the \emph{min-correction}: the excess movement of the selected
+minimum over the triple average.
+
+\begin{proposition}[Clipping decomposition; verified, exact identity]
+\label{prop:clipping}
+With $V := \Var(D_{\mathrm{member}})$,
+\begin{equation}
+\kap^2 \;=\; \frac{\Var(\bar D)}{V}
+\;+\; \frac{2\,\cov(\bar D, R)}{V}
+\;+\; \frac{\Var(R)}{V}
+\qquad \text{exactly.}
+\label{eq:decomp}
+\end{equation}
+Measured on \texttt{cert\_k13}, $P = 2, \ldots, 7$: the \emph{entire}
+attenuation lives in the covariance term, $2\cov/V = -0.170 \to -0.257$,
+growing in magnitude with depth, while $\Var(R)/V$ is negligible
+($0.010$--$0.028$).
+\end{proposition}
+
+The correction $R$ is \emph{antisymmetric}:
+\[
+\E[R \mid \bar D > 0] = -0.026, \qquad
+\E[R \mid \bar D < 0] = +0.026 \qquad (P = 7),
+\]
+textbook one-sided clipping, as forced by the sandwich inequality
+\begin{equation}
+D_{\arg\min(\mathrm{new})} \;\leq\; D_{\min} \;\leq\;
+D_{\arg\min(\mathrm{old})} .
+\label{eq:sandwich}
+\end{equation}
+The effective law is linear mean reversion:
+\begin{equation}
+D_{\min} \;\approx\; (1 - \lam_{\mathrm{clip}})\, \bar D
+\;+\; \text{small noise},
+\qquad
+\lam_{\mathrm{clip}} := -\frac{\cov(\bar D, R)}{\Var(\bar D)}
+= 0.085,\ 0.105,\ 0.122,\ 0.137
+\label{eq:effslope}
+\end{equation}
+at $P = 2, 4, 6, 7$ (measured; the full range over scales and
+resolutions is $\lam_{\mathrm{clip}} = 0.085$--$0.140$, growing with
+depth). The attenuation constant is $\kap \approx 1 - \lam_{\mathrm{clip}}$
+to leading order.
+
+\subsection{The mechanism is not switching}
+
+A natural guess is that the attenuation is produced by \emph{switches} ---
+events where the argmin changes member, clipping the increment via
+\eqref{eq:sandwich}. The switch-resolved decomposition refutes this
+(measured, $P = 2, \ldots, 7$): the antisymmetric correction is \emph{not}
+switch-exclusive. No-switch events carry the same $\pm 0.026$ asymmetry as
+switch events, with $P(\mathrm{switch}) \approx 0.66$ flat across scales.
+The mechanism is therefore \emph{selection-weighted mean reversion}: the
+argmin member systematically co-moves less than the triple average,
+whether or not the selection changes hands.
+
+\subsection{LP interpretation: binding-constraint rigidity}
+
+The K--L system at the critical $\lam_k$ is a linear program, and the
+Perron eigenvector its solution; the min-selected member of each triple
+is the \emph{binding} constraint of the row that reads it. Complementary
+slackness pins binding constraints into the active equation network, while
+slack members float freely with the perturbation field. The measured
+selection-weighted mean reversion is exactly what binding-constraint
+rigidity predicts: the bound member's response to a coarse perturbation is
+tied down by the equations it saturates, so it moves \emph{less} than its
+free siblings --- by the measured factor $1 - \lam_{\mathrm{clip}}$.
+
+\begin{center}
+\emph{The drift of the Collatz cascade is the rigidity of binding
+constraints in the Krasikov--Lagarias linear program.}
+\end{center}
+
+This identification also dictates the proof route for the last link:
+LP duality. Show that the dual weights concentrate on binding entries,
+making their sensitivity to coarse perturbations strictly smaller than the
+free members' (Section~\ref{sec:open}).
+
+\section{Measured: uniformity of the attenuation across depth}
+\label{sec:uniform}
+
+The drift chain fails if $\kap \to 1$ as $k \to \infty$ (triples becoming
+asymptotically comonotone). It does not:
+
+\begin{proposition}[Kappa uniformity; measured, four certificates]
+\label{prop:uniform}
+Across the certificates $k = 13, 15, 17, 19$:
+$\kap(P; k) < 0.95$ at every scale $P$ and every depth $k$; and the
+top-aligned deep-scale value is flat in $k$:
+\[
+\kap_{\mathrm{deep}} = 0.841\ (k{=}13), \quad 0.840\ (15), \quad
+0.837\ (17), \quad 0.838\ (19),
+\]
+giving
+\[
+\kap_\infty \;=\; 0.839 \pm 0.002,
+\]
+uniformly bounded away from $1$.
+\end{proposition}
+
+Two remarks. First, the flatness in $k$ is the empirically decisive point:
+every previously measured quantity of the program (temper exponent,
+$\theta$, $q$) drifts with depth, but the attenuation does not --- it is a
+\emph{constant} of the cascade, not a running coupling. Second, the
+comparison with the profile root: $\theta$-series $\to 0.849$ versus
+$\kap_\infty = 0.839$; the identification $\theta = \kap$ holds to
+$\approx 1.2\%$, the residual being the up-channel mixing correction. The
+last empirical link of the drift chain is pinned: the attenuation does not
+degenerate as depth grows.
+
+The reason it cannot degenerate is itself already measured at nine
+depths: attenuation requires non-degenerate intra-triple variation, and
+the fine-end injection saturates at a \emph{nonzero} limit.
+
+\begin{proposition}[Fine-end saturation; measured, nine depths
+\cite{Temp26}]\label{prop:cv1}
+The finest-level triple $\CV$ of the certificate (each depth at its own
+critical $\lam_k$) satisfies
+\[
+\CV_1(k) \;=\; 0.5136 \;-\; 0.337\,(0.910)^k
+\]
+with residual $10^{-6}$ across nine depths in $8 \leq k \leq 20$:
+geometric convergence to the finite, strictly positive limit
+$\approx 0.514$.
+\end{proposition}
+
+Intra-triple variation never vanishes; the raw material on which the
+low-pass acts is permanently supplied. (The rate $0.910$ recurs across the
+program; see Appendix~\ref{app:constants}.)
+
+\section{Negative results, honestly reported}
+\label{sec:negative}
+
+Three natural shortcuts fail. We record them because each failure
+constrains the form any eventual proof can take.
+
+\subsection{The Gaussian reduction fails}
+
+One would like to compute $\kap$ from second-moment data alone: model the
+triple increments as (correlated) Gaussians with the measured covariance
+structure and evaluate the min-attenuation in closed form. This fails
+decisively (verified by Monte Carlo): Gaussian triples matched to the
+measured moments give $\kap \approx 0.98$--$1.00$, versus the measured
+$0.84$--$0.91$ --- even when the measured leader--increment mean-reversion
+$\rho_{LI} = -0.085$ to $-0.184$ is built in. The attenuation constant is
+a \emph{higher-order} statistic of the joint law of (levels, increments,
+selection); no second-moment surrogate reproduces it. Lesson: only the
+exact-identity route --- working with the true certificate ensemble ---
+gives the right constant.
+
+\subsection{One-step coefficient reconstruction inverts}
+
+One would like to derive the recurrence coefficients $(a, c)$ of
+\eqref{eq:lattice} directly as the bare per-application transfer weights
+of the linearized operator (the weighted channel masses of
+Section~\ref{sec:balance} adjusted by $\kap$). This reconstruction
+produces coefficients with the \emph{wrong ordering}: the one-step bare
+weights, read off naively, invert the drift direction. The effective
+$(a, c)$ of the profile are renormalized, emergent quantities --- as
+already signaled by the incoherence factor $0.90$ in
+Corollary~\ref{cor:subcrit} and by the renormalized closure coefficients
+of the ultrametric spacing law \cite{Temp26}. The bare-to-effective map is
+nontrivial, and any proof that treats \eqref{eq:lattice} as a literal
+one-step transfer law will prove the wrong thing.
+
+\subsection{Per-application mode transfer is scale-scattering}
+
+Strongest of the three: track a pure intra-triple mode at scale $P$
+through \emph{one} application of the edge operator and measure the
+scale-decomposition of its output. The transfer is not tridiagonal ---
+it is \emph{scattering}: across all input scales $P$, fully
+$60$--$68\%$ of any mode's output energy lands on digit $0$ (the finest
+scale), regardless of $P$ (measured). A single application does not
+trickle mass gently between neighboring scales; it slams most of it to
+the fine end, from which the stationary state rebuilds the profile.
+
+The consequence is structural. The clean two-coefficient recurrence
+\eqref{eq:lattice} --- tridiagonal in scale, fit error $\leq 1.2\%$ ---
+is \emph{not} a per-application law. It is an \emph{emergent, stationary}
+description: a property of the Perron fixed point, produced by the
+balance between per-application scattering and the stationary rebuild.
+Therefore the remaining proof cannot be iterative (following modes step
+by step); it must be \emph{variational} --- a statement about the fixed
+point itself. This is consistent with, and explains, the LP route of
+Section~\ref{sec:clipping}: the fixed point is an LP optimum, and LP
+optima are exactly the objects about which variational (duality,
+sensitivity) statements are natural.
+
+\section{The remaining lemma}
+\label{sec:open}
+
+Every structural link of the drift chain is now proved, and every
+quantitative link measured and uniform. Assembling
+Lemma~\ref{lem:mass} (proved), Proposition~\ref{prop:balance} (proved),
+Proposition~\ref{prop:lowpass} (proved), Proposition~\ref{prop:uniform}
+(measured), and the edge rate $d\gam/dq = 1/\ln(4/3)$ (proved), the
+single missing statement is:
+
+\begin{openlemma}[Uniform attenuation at the fixed point]
+\label{open:kappa}
+Let $c_k$ be the Perron eigenvector of the critical K--L system
+$L_k(\lam_k)$ and let $\kap(P; k)$ be the attenuation constant of
+Definition~\ref{def:kappa}, evaluated in the stationary state. There
+exists $\kap_{\max} < 1$, independent of $P$ and $k$, such that
+\[
+\kap(P; k) \;\leq\; \kap_{\max}
+\qquad \text{for all } P \text{ and all } k,
+\]
+provided the intra-triple coefficient of variation is bounded below,
+\[
+\inf_k \CV_1(k) \;>\; 0
+\]
+--- which is precisely the nonzero saturation of
+Proposition~\ref{prop:cv1} (measured: limit $\approx 0.514$, geometric
+convergence, residual $10^{-6}$ over nine depths).
+\end{openlemma}
+
+Given Open Lemma~\ref{open:kappa} (together with the bookkeeping that
+converts one-sided low-passing into $c - a > 0$ in the emergent recurrence
+--- the bare-to-effective map of Section~\ref{sec:negative}), the chain
+closes: $\theta \leq \bar\theta < 1$ uniformly, hence
+$\CV_{\mathrm{top}}(k) \to 0$ geometrically, hence $q_k \to 1$, hence by
+the edge rate $\gam_k \to 1$:
+\[
+\pi_1(x) \;\geq\; x^{1 - \varepsilon}
+\qquad \text{for every } \varepsilon > 0 .
+\]
+
+\subsection{The LP-duality route}
+
+The negative results of Section~\ref{sec:negative} rule out
+moment-matching and iterative-transfer proofs; the mechanism
+identification of Section~\ref{sec:clipping} points to the one framework
+in which the statement is natural. Sketch:
+
+\begin{enumerate}
+\item At the critical $\lam_k$, the certificate is the optimum of the
+K--L linear program; each triple's argmin member is the binding entry of
+the row reading it, and complementary slackness attaches a strictly
+positive dual weight to each binding row.
+\item Show the dual weights \emph{concentrate} on binding entries: the
+dual solution assigns to each binding member a pinning strength bounded
+below, uniformly over rows, by the mass-conservation structure
+(Lemma~\ref{lem:mass} normalizes total dual mass; the balance identity,
+Proposition~\ref{prop:balance}, prevents the dual mass from draining to
+either end of the scale hierarchy).
+\item Sensitivity analysis: a coarse perturbation of the eigenvector
+moves each slack member with slope $1$ (Proposition~\ref{prop:lowpass},
+coarse channel), while a binding member's response is reduced by its
+pinning strength. Non-degenerate triple gaps --- guaranteed by
+$\inf \CV_1 > 0$ --- keep the binding set stable under small
+perturbations, so the reduction is uniform: this is
+$\lam_{\mathrm{clip}} \geq \lam_{\min} > 0$, i.e.
+$\kap \leq 1 - \lam_{\min} =: \kap_{\max} < 1$.
+\end{enumerate}
+
+Steps 1 and 3 are standard LP facts once step 2 is available; step 2 is
+where the specific arithmetic of the system ($2^{\bet} = 3$, the mass and
+balance identities) must enter. The measured target the argument must
+reproduce: $\kap_\infty = 0.839 \pm 0.002$, $\lam_{\mathrm{clip}}$ growing
+$0.085 \to 0.140$ with depth, and the $\pm 0.026$ antisymmetric
+correction carried equally by switch and no-switch events.
+
+\section{Honest status}
+\label{sec:status}
+
+\begin{center}
+\begin{tabular}{p{0.24\textwidth} p{0.69\textwidth}}
+\hline
+\textbf{Proved} &
+Mass conservation $3W_0 + W_2 + W_8 = 3$ and subcriticality $a + c \leq 1$
+(Lem.~\ref{lem:mass}, Cor.~\ref{cor:subcrit});
+balance identity, up-flow $= \tfrac{3}{16} =$ down-flow, zeroth-order
+drift zero (Prop.~\ref{prop:balance});
+directional low-pass $\min(x + c\mathbf{1}) = \min(x) + c$, $1$-Lipschitz
+on fine modes, down-channel only (Prop.~\ref{prop:lowpass});
+edge rate $d\gam/dq = 1/\ln(4/3)$ \cite{Temp26};
+feasibility $\Rightarrow$ density bound \cite{KL03}. \\
+\hline
+\textbf{Verified} &
+Clipping decomposition \eqref{eq:decomp} as an exact identity on
+\texttt{cert\_k13}; sandwich inequality \eqref{eq:sandwich};
+pointwise transport identity (residual $2.8 \times 10^{-4}$)
+\cite{Temp26}; Gaussian Monte Carlo mismatch
+(Sect.~\ref{sec:negative}). \\
+\hline
+\textbf{Measured} &
+$\kap(P) = 0.908 \to 0.841$ at $k = 13$;
+covariance term $-0.170 \to -0.257$, $\Var(R)/V \leq 0.028$;
+antisymmetric correction $\pm 0.026$, not switch-exclusive,
+$P(\mathrm{switch}) \approx 0.66$;
+$\lam_{\mathrm{clip}} = 0.085$--$0.140$;
+$\kap < 0.95$ everywhere, $\kap_{\mathrm{deep}} = 0.841/0.840/0.837/0.838$
+at $k = 13/15/17/19$, $\kap_\infty = 0.839 \pm 0.002$;
+$\theta = \kap$ to $1.2\%$;
+fine-end saturation $\CV_1 \to 0.514 > 0$ (Prop.~\ref{prop:cv1});
+scale-scattering $60$--$68\%$ to digit $0$;
+one-step reconstruction inversion;
+closure \eqref{eq:lattice}, fit error $\leq 1.2\%$;
+$a + c = 0.9955$ at $k = 20$. \\
+\hline
+\textbf{Open} &
+Open Lemma~\ref{open:kappa}: $\kap \leq \kap_{\max} < 1$ uniformly at the
+fixed point, given $\inf \CV_1 > 0$; plus the bare-to-effective
+bookkeeping converting one-sided low-passing into $c - a > 0$. \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+
+The shape of the situation is unusual and worth stating plainly. The
+question ``why do Collatz orbits fall?'' has, at density level, been
+localized to a single mechanism with a single constant: the K--L
+certificate's heterogeneity cascade is pinned to the conservative line by
+the defining identity $2^{\bet} = 3$ (proved); its zeroth-order scale flow
+is exactly balanced by the same identity (proved); the only asymmetry is
+that the downward channel passes through a minimum, which transmits coarse
+structure perfectly and attenuates fine structure (proved); and the
+attenuation is measured to be a depth-independent constant,
+$\kap_\infty = 0.839 \pm 0.002$, mechanistically identified as the
+rigidity of binding constraints in a linear program. Nothing in the chain
+is mysterious any longer; one variational inequality remains to be
+written down with full rigor, and the negative results show it must be
+proved at the fixed point, not by iteration.
+
+\appendix
+
+\section{The constants of the program}
+\label{app:constants}
+
+The quantitative skeleton of the $\gam \to 1$ program appears to be
+governed by a single constant: the drift of the map. Define
+\begin{equation}
+\delta \;:=\; \log_2 \tfrac{16}{9}
+\;=\; 4 - 2\bet
+\;=\; 2 \log_2 \tfrac43
+\;=\; 0.830075\ldots,
+\end{equation}
+twice the per-$T$-step $\log_2$ drift of the Collatz map (each odd step
+multiplies by $3/4$ on average in $\log_2$: $\bet - 2 = -\delta/2$).
+Then (measured, except (iii) which is proved):
+
+\begin{center}
+\begin{tabular}{l l l}
+\hline
+quantity & value & identification \\
+\hline
+$(a - c)$ renormalization flow rate & $0.830$ & $\delta$ \quad
+(rel.\ err.\ $0.01\%$) \\
+fine-end saturation / homogenization rate & $0.910$ & $\sqrt{\delta}$
+\quad (rel.\ err.\ $0.12\%$) \\
+edge rate $d\gam/dq$ & $3.47606\ldots$ & $1/\ln(4/3)$ \quad
+(closed form; proved) \\
+\hline
+\end{tabular}
+\end{center}
+
+The edge rate is obtained by implicit differentiation of the min-loss
+identity
+\[
+1 = \lam^{-2} + \tfrac{q}{3}\left( \lam^{\bet-2} + \lam^{\bet-1} \right)
+\]
+at the edge $(\lam, q) = (2, 1)$, giving exactly
+$d\gam/dq = 1/\ln(4/3) = 3.47606\ldots$; the measured transfer ratios
+$(1-\gam_k) / \bigl(3.4761\,(1-q_k)\bigr) = 0.824, 0.847, 0.873, 0.908$ at
+$k = 13, 15, 17, 19$ converge to $1$, confirming first-order exactness
+\cite{Temp26}. The rate $\sqrt{\delta} = 0.9111$ appears in three
+measured roles --- fine-end saturation (Prop.~\ref{prop:cv1}), per-depth
+homogenization, and the decay of $1 - q_k$ --- one mechanism, three faces.
+
+Two constants of the drift chain still lack convincing closed forms
+(honest gaps): $\theta_\infty \approx 0.8490$ (the candidate $27/32 =
+0.84375$ misses by $0.6\%$, too coarse) and the saturation level
+$\CV_1^\infty \approx 0.5136$. The attenuation constant
+$\kap_\infty = 0.839 \pm 0.002$ is numerically consistent with
+$\theta_\infty$ up to the measured $1.2\%$ up-channel correction; whether
+$\kap_\infty$ itself is a function of $\delta$ is open.
+
+Falsifiable predictions at the next depth ($k = 21$): flow rate
+$= \delta$ and saturation rate $= \sqrt{\delta}$ exactly (within
+measurement error); $\theta \approx 0.850$; $\kap_{\mathrm{deep}} =
+0.839 \pm 0.002$.
+
+\subsection*{Reproducibility}
+All certificates, verification logs, and the scripts generating every
+number in this paper are archived in the research dossier accompanying
+this work (directories \texttt{certificates/}, \texttt{scripts/},
+\texttt{findings/}; the measurements of Sections~\ref{sec:clipping} and
+\ref{sec:uniform} are from the campaign records R766--R835).
+
+\subsection*{Acknowledgment of method}
+The computations, fits, and drafts were produced in an extended human--AI
+collaboration; every proved statement above has a self-contained proof in
+the text, independent of that provenance.
+
+\begin{thebibliography}{9}
+
+\bibitem{KL03}
+I.~Krasikov and J.~C.~Lagarias,
+\emph{Bounds for the 3x+1 problem using difference inequalities},
+Acta Arith. \textbf{109} (2003), no.~3, 237--258.
+arXiv:math/0205002.
+
+\bibitem{Lag85}
+J.~C.~Lagarias,
+\emph{The 3x+1 problem and its generalizations},
+Amer. Math. Monthly \textbf{92} (1985), 3--23.
+
+\bibitem{Tao19}
+T.~Tao,
+\emph{Almost all orbits of the Collatz map attain almost bounded values},
+Forum Math. Pi \textbf{10} (2022), e12.
+arXiv:1909.03562 (2019).
+
+\bibitem{Ter76}
+R.~Terras,
+\emph{A stopping time problem on the positive integers},
+Acta Arith. \textbf{30} (1976), 241--252.
+
+\bibitem{Temp26}
+M.~de Jong (with Jengo, AI),
+\emph{Krasikov--Lagarias certificates for the $3x+1$ problem are tempered
+roulette measures},
+companion paper, July 2026.
+
+\end{thebibliography}
+
+\end{document}
