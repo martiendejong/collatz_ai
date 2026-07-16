@@ -435,3 +435,17 @@ which follows from non-degenerate triple gaps — i.e. from CV saturation at a
 nonzero limit (Prop 23). The drift proof chain is now:
 Lemma 24 + balance identity (both proven) + clipping slope > 0 (one-sided
 local inequality, all ingredients measured) + Thm 19 (proven).
+
+## Proposition 34 (Binding-constraint rigidity: the final form of the drift). — MEASURED + ROUTE
+Switch-resolved decomposition (P = 2..7, cert_k13): the antisymmetric
+correction R is NOT switch-exclusive — no-switch events carry the same
++-0.026 asymmetry as switches (P(switch) ~ 0.66 throughout). Hence the
+mechanism is not clipping-at-switches but SELECTION-WEIGHTED MEAN REVERSION:
+the argmin member co-moves less than the triple average (lambda_clip = 0.087
+-> 0.140, growing with depth). LP interpretation: the min-selected member is
+the BINDING constraint of the K-L linear program; binding constraints are
+pinned by the equation network (complementary slackness) while slack members
+float. PROOF ROUTE for the last drift link: LP duality — show the dual
+weights concentrate on binding entries, making their response to coarse
+perturbations strictly smaller than the free members'. The drift of the
+Collatz cascade = the rigidity of binding constraints in the K-L LP.
