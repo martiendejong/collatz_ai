@@ -449,3 +449,19 @@ float. PROOF ROUTE for the last drift link: LP duality — show the dual
 weights concentrate on binding entries, making their response to coarse
 perturbations strictly smaller than the free members'. The drift of the
 Collatz cascade = the rigidity of binding constraints in the K-L LP.
+
+## Proposition 34b (The min is a directional low-pass). — PROVED (one line) + MEASURED
+Exact fact: min(x + c*1) = min(x) + c — the min passes components that are
+CONSTANT across the triple (coarse modes) with slope exactly 1, and is
+1-Lipschitz-contractive on the intra-triple-varying components (fine modes),
+with measured contraction 1 - lambda (lambda = 0.087..0.140, Props 33-34).
+Consequence for the two channels: the UP-channel (transport) transmits ALL
+modes freely; the DOWN-channel passes through the min and therefore transmits
+coarse modes freely but ATTENUATES precisely the components that vary within
+triples — the finest-scale content at each level. The down-flow of fine modes
+is starved while the up-flow is free: the drift c > a is the statement that
+the min-operator is a low-pass filter acting in one direction only.
+Remaining to quantify rigorously: the contraction factor on the varying part
+is uniformly < 1 (equivalently: intra-triple variation never degenerates —
+Prop 23's nonzero saturation), and the bookkeeping that converts one-sided
+low-passing into c - a > 0 in the profile recurrence.
