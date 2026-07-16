@@ -525,3 +525,15 @@ possess. Bridge-argument map: leading-trit statistics are governed by the
 Sturmian rotation (irrationality of log2(3)) — the pointwise entry of
 irrationality; divergence would require suppressing top drainage forever
 against the rotation. The long shot now has a mechanism to formalize.
+
+## Theorem 39 (The 2->1 top law; pointwise drainage floor). — PROVED (two lines)
+If x has leading trit 2 (x in [2*3^L, 3^{L+1})) then x/2 in [3^L, 1.5*3^L)
+has leading trit 1 — always. Multiplication by 3 preserves the leading trit.
+Hence NO orbit can hold leading trit 2 through two consecutive halvings:
+suppression streaks have length exactly <= 1 (measured: max streak 1 over
+4000 orbits — the theorem, observed). Consequence: at least every other
+halving initializes its sweep at (c=0, d=1), a +1 top-shed event — a
+POINTWISE, deterministic drainage floor at the top boundary, forced by the
+archimedean structure (the finite top), independent of any density argument.
+The rotation subshift confirms: no w<=... in fact P(w=1 keeps the zone) = 0 —
+climbing (w=1) is maximally incompatible with drainage suppression.
