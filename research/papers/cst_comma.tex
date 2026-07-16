@@ -1,0 +1,682 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\lb}{\log_2 3}
+
+\title{The Terras coefficient-stopping conjecture\\ and the Pythagorean comma}
+\author{Martien de Jong\\[2pt]
+\normalsize with computational collaboration by Jengo (AI)}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Terras (1976) attached to each positive integer $n$ two quantities: the stopping
+time $\sigma(n)$, the first iterate of the accelerated Collatz map that falls
+below $n$, and the coefficient stopping time $\tau(n)$, the first time the
+accumulated multiplicative coefficient $3^{u}/2^{t}$ falls below $1$. Always
+$\tau(n) \le \sigma(n)$; the \emph{coefficient stopping time conjecture} (CST)
+asserts $\tau(n) = \sigma(n)$ for all $n > 1$. We verify CST exhaustively over
+all $81{,}119$ stopping classes of depth $\le 24$ (covering every $n$ with
+$\tau(n) \le 24$; the sole sub-threshold class member is $n = 1$, the trivial
+cycle, an exact equality case) and directly for all odd $1 < n \le 10^{6}$
+(zero violations; largest $\tau$ observed $176$). A violation in the stopping
+class with $u$ odd steps among $j$ total steps and additive constant $b$
+requires $n \le b/(2^{j}-3^{u})$. We prove the unconditional bound
+$b/2^{j} < u/3$, from which the verified basis yields
+$\tau(n)=\sigma(n)$ \emph{for all $n>1$ with $\tau(n) \le 4700$}, and, beyond
+that depth, confines every possible failure of CST to an explicit thin set of
+classes: those whose $(u,j)$ is a best rational approximation to $\lb$ from
+above. The smallest safety margins concentrate at $(u,j)=(5,8)$, the
+Pythagorean interval $2^{8}/3^{5} = 256/243$, the first nontrivial upper
+convergent of $\lb$; the next danger zones are $(41,65)$, $(306,485)$, and
+$(15601,24727)$. The maximal constant $B(t) = \max b/2^{j}$ over stopping
+classes of depth $t$ is measured to grow like $1 + t/8$, one unit per comma
+block, with the extremal classes given by repeated comma words; we prove the
+weaker linear bound $B(t) < t/(3\lb)$, which suffices for all reductions used.
+Consequently CST is reduced to effective rational approximation of $\lb$ ---
+the same transcendence wall (Baker, Rhin) that governs the exclusion of
+nontrivial cycles. One Diophantine question controls both classical
+subproblems.
+\end{abstract}
+
+\section{Introduction}
+
+Let $T$ denote the accelerated Collatz (``Terras'') map on the positive
+integers,
+\[
+T(n) \;=\;
+\begin{cases}
+ n/2, & n \equiv 0 \pmod 2,\\[2pt]
+ (3n+1)/2, & n \equiv 1 \pmod 2.
+\end{cases}
+\]
+The $3x+1$ conjecture asserts that every orbit reaches $1$; see Lagarias
+\cite{Lagarias1985} for the classical survey. Terras \cite{Terras1976}
+introduced the \emph{stopping time}
+\[
+\sigma(n) \;=\; \inf\{\, t \ge 1 : T^{t}(n) < n \,\},
+\]
+proved that $\sigma(n)$ is finite for almost every $n$, and observed that the
+iterate admits the exact affine form
+\begin{equation}\label{eq:affine}
+T^{t}(n) \;=\; \frac{3^{u_t(n)}\, n + b_t(n)}{2^{t}},
+\end{equation}
+where $u_t(n)$ counts the odd iterates among $n, T(n), \dots, T^{t-1}(n)$ and
+$b_t(n) \ge 0$ depends only on the parity word of the first $t$ steps. The
+\emph{coefficient stopping time} is
+\[
+\tau(n) \;=\; \inf\{\, t \ge 1 : 3^{u_t(n)} < 2^{t} \,\},
+\]
+the first time the multiplicative coefficient in \eqref{eq:affine} drops below
+$1$. Since $b_t \ge 0$, a drop of the value forces a drop of the coefficient:
+$\tau(n) \le \sigma(n)$ for all $n$. Terras conjectured that the combinatorial
+quantity captures the arithmetic one exactly:
+
+\begin{conjecture}[Coefficient stopping time conjecture, CST; Terras 1976]
+\label{conj:cst}
+$\tau(n) = \sigma(n)$ for every integer $n > 1$.
+\end{conjecture}
+
+The conjecture matters because $\tau$ is a function of the residue of $n$
+modulo $2^{\tau}$ alone. If CST holds, the level sets
+$\{n : \sigma(n) = t\}$ are exactly finite unions of arithmetic progressions
+modulo $2^{t}$, and all stopping-time densities are exactly computable ---
+this was Terras' motivation. The exclusion $n>1$ is forced: $\tau(1)=2$ while
+$\sigma(1)=\infty$, because $1 \to 2 \to 1$ is the trivial cycle. As we will
+see, this exception is not an accident but the exact \emph{equality case} of
+the violation inequality, and the entire conjecture turns out to be governed
+by how well $\lb = 1.5849625\ldots$ can be approximated from above by
+rationals $j/u$ --- that is, by the continued fraction convergents of $\lb$,
+whose first nontrivial upper member is the Pythagorean interval
+$2^{8}/3^{5} = 256/243$.\footnote{Strictly, $256/243$ is the Pythagorean
+\emph{limma} (the diatonic semitone); the comma proper is
+$3^{12}/2^{19} = 531441/524288$, attached to the next convergent $19/12$, and
+Mercator's comma $3^{53}/2^{84}$ belongs to $84/53$. We follow loose usage and
+call all these small intervals ``commas.'' The from-below members ($19/12$,
+$84/53$, \dots) satisfy $3^{u} > 2^{j}$ and are harmless for CST; the danger
+zones are exactly the from-above members $2/1$, $8/5$, $65/41$, $485/306$,
+$24727/15601$, \dots}
+
+\subsection*{Results}
+
+\begin{enumerate}
+\item[(a)] CST holds for every $n>1$ with $\tau(n) \le 24$, by exhaustive
+symbolic enumeration of all $81{,}119$ stopping classes of depth $\le 24$
+(Proposition~\ref{prop:enum}). The only class whose minimal member does not
+clear its violation threshold is the class of $n=1$, where the threshold is
+attained with equality --- the trivial cycle.
+\item[(b)] CST holds for every odd $1 < n \le 10^{6}$ by direct computation
+(zero violations; maximal $\tau$ observed $176$;
+Proposition~\ref{prop:direct}).
+\item[(c)] We prove the unconditional bound $b/2^{j} < u/3$ for every stopping
+class (Lemma~\ref{lem:bbound}). Combined with (b) this gives: CST holds for
+\emph{all} $n > 1$ with $\tau(n) \le 4700$ (Corollary~\ref{cor:4700}), and in
+every deeper stopping class except those whose $(u,j)$ lies in an explicit
+sparse set of upper convergents and semiconvergents of $\lb$
+(Theorem~\ref{thm:reduction}).
+\item[(d)] The smallest safety margins concentrate at $(u,j) = (5,8)$, ratio
+$256/243$; the closest observed approach to a violation is $n = 39$, which
+after one comma word of eight steps lands on $38$, one unit below itself
+(Section~\ref{sec:comma}).
+\item[(e)] The extremal constant $B(t) = \max b/2^{j}$ over stopping classes
+of depth $t$ is \emph{measured} to grow linearly, approximately one unit per
+comma block ($1.25, 2.27, 3.24$ at $t = 8, 16, 24$), with extremal classes at
+the repeated comma budgets $(5,8), (10,16), (15,24)$; we give a heuristic
+sketch of the mechanism (Section~\ref{sec:bgrowth}). Only the proven bound of
+Lemma~\ref{lem:bbound} is used elsewhere in the paper.
+\item[(f)] CST is thereby reduced to \emph{effective rational approximation of
+$\lb$}: lower bounds for $2^{j} - 3^{u}$ at the upper convergents, i.e.\ the
+territory of Baker's theorem and Rhin's effective measures --- the identical
+wall behind the exclusion of nontrivial cycles (Steiner \cite{Steiner1977},
+Simons--de Weger \cite{SimonsDeWeger2005}, Hercher \cite{Hercher2023}).
+Section~\ref{sec:onewall} makes the correspondence exact: a cycle attains the
+violation threshold with equality, so CST violations are precisely
+\emph{sub-threshold near-cycles}.
+\end{enumerate}
+
+Throughout we label every statement as PROVED (full proof supplied or cited),
+VERIFIED (exhaustive computation, exact integer/rational arithmetic), MEASURED
+(finite-range computation exhibiting a pattern), or SKETCH (heuristic
+argument). The one genuinely heuristic item, the sharp $B$-growth law (e), is
+quarantined: no other result depends on it.
+
+\section{Preliminaries}\label{sec:prelim}
+
+Fix $n \ge 1$ and let $(\epsilon_0, \epsilon_1, \dots)$,
+$\epsilon_i \in \{0,1\}$, be the parity word: $\epsilon_i = T^{i}(n) \bmod 2$.
+Iterating $T$ gives \eqref{eq:affine} with $u_t = \epsilon_0 + \cdots +
+\epsilon_{t-1}$ and the constant $b_t$ obeying
+\begin{equation}\label{eq:brec}
+b_0 = 0, \qquad
+b_{t+1} \;=\;
+\begin{cases}
+ b_t, & \epsilon_t = 0,\\
+ 3 b_t + 2^{t}, & \epsilon_t = 1.
+\end{cases}
+\end{equation}
+Terras' basic lemma \cite{Terras1976} states that the first $t$ parities
+depend only on $n \bmod 2^{t}$, and that the map from residues mod $2^{t}$ to
+parity words of length $t$ is a bijection. Consequently, for each parity word
+$w$ of length $j$ there is a unique residue $r \bmod 2^{j}$ realizing it, and
+the triple $(u, j, b) = (u_j, j, b_j)$ is a function of $w$ alone.
+
+\begin{definition}[Stopping class]
+A parity word $w$ of length $j$ is a \emph{stopping word} if
+$3^{u_t} \ge 2^{t}$ for all $t < j$ and $3^{u_j} < 2^{j}$. The associated
+\emph{stopping class} is the residue class $\{ n \equiv r \pmod{2^{j}} \}$,
+recorded as the state $(r, u, j, b)$. Every $n \ge 1$ with finite $\tau$ lies
+in exactly one stopping class, and $\tau(n) = j$ for all members.
+\end{definition}
+
+For $j \ge 2$ every stopping word begins with $\epsilon_0 = 1$ (otherwise
+$3^{0} < 2^{1}$ stops it at $t=1$), so all members of a stopping class of
+depth $\ge 2$ are odd; conversely all even $n$ satisfy
+$\tau(n)=\sigma(n)=1$. Hence CST is a statement about odd $n$.
+
+\begin{lemma}[Violation inequality; PROVED]\label{lem:viol}
+Let $(r,u,j,b)$ be a stopping class. Every member $n$ satisfies
+$\sigma(n) \ge \tau(n) = j$, and
+\[
+\sigma(n) > \tau(n)
+\quad\Longleftrightarrow\quad
+n \;\le\; \frac{b}{2^{j} - 3^{u}} \;=:\; \Theta(w).
+\]
+\end{lemma}
+
+\begin{proof}
+For $t < j$ we have $3^{u_t} \ge 2^{t}$ and $b_t \ge 0$, so
+$T^{t}(n) = (3^{u_t} n + b_t)/2^{t} \ge n$: no drop occurs before $j$, i.e.
+$\sigma(n) \ge j$. At $t = j$,
+$T^{j}(n) < n \iff 3^{u} n + b < 2^{j} n \iff n(2^{j}-3^{u}) > b$, and
+$2^{j} > 3^{u}$ by definition of stopping.
+\end{proof}
+
+We call $\Theta(w)$ the \emph{violation threshold} of the class and
+$r/\Theta(w)$ its \emph{margin}: CST holds in the class iff the margin of its
+least member exceeds $1$ (then all members $r + k\,2^{j}$ exceed $\Theta$ as
+well).
+
+\begin{lemma}[The final step is a halving; PROVED]\label{lem:lastsGtep}
+Every stopping word ends in $\epsilon_{j-1} = 0$, and consequently
+\[
+j \;=\; \ceil{\,u \lb\,}.
+\]
+Thus a stopping class' depth is determined by its odd-step count, and
+\[
+1 - \frac{3^{u}}{2^{j}} \;=\; 1 - 2^{-d(u)}, \qquad
+d(u) := \ceil{\,u\lb\,} - u\lb \in (0,1).
+\]
+\end{lemma}
+
+\begin{proof}
+Suppose $\epsilon_{j-1} = 1$. Then $u = u_{j-1} + 1$ and, since the word did
+not stop at $j-1$, $3^{u-1} \ge 2^{j-1}$, whence
+$3^{u} \ge 3 \cdot 2^{j-1} > 2^{j}$, contradicting stopping. So
+$\epsilon_{j-1}=0$, $u = u_{j-1}$, and $2^{j-1} \le 3^{u} < 2^{j}$, i.e.
+$j - 1 \le u \lb < j$; since $\lb$ is irrational, $j = \ceil{u\lb}$.
+\end{proof}
+
+Lemma~\ref{lem:lastsGtep} is the hinge of the whole paper: the denominator
+$2^{j} - 3^{u}$ of the violation threshold is small exactly when $d(u)$ is
+small, i.e.\ when $u\lb$ lies just below an integer --- when $j/u$ is a good
+rational approximation of $\lb$ \emph{from above}. By the classical theory of
+one-sided best approximations (see e.g.\ Khinchin \cite{Khinchin}), such $u$
+are precisely the denominators of the upper convergents and upper intermediate
+fractions (semiconvergents) of the continued fraction
+\[
+\lb = [1; 1, 1, 2, 2, 3, 1, 5, 2, 23, 2, \dots],
+\]
+with convergents
+$1,\ 2,\ \tfrac32,\ \tfrac85,\ \tfrac{19}{12},\ \tfrac{65}{41},\
+\tfrac{84}{53},\ \tfrac{485}{306},\ \tfrac{1054}{665},\
+\tfrac{24727}{15601},\ \dots$; the upper ones are
+$\tfrac21, \tfrac85, \tfrac{65}{41}, \tfrac{485}{306},
+\tfrac{24727}{15601}, \dots$
+
+\section{Exhaustive verification}\label{sec:verify}
+
+\subsection{Symbolic enumeration of stopping classes}
+
+The recursion \eqref{eq:brec} together with Terras' bijection yields a direct
+breadth-first enumeration. Maintain the set of \emph{survivor} states
+$(r, u, j, b)$ (words with $3^{u_t} \ge 2^{t}$ for all $t \le j$), starting
+from $(1, 0, 0, 0)$. Each survivor has two children $r' \in
+\{r,\, r + 2^{j}\}$ modulo $2^{j+1}$; the child's next parity is the parity of
+$(3^{u} r' + b)/2^{j}$, computable by modular arithmetic. A child with
+$3^{u'} < 2^{j'}$ is a stopping class: record it, compute
+$\Theta = b'/(2^{j'} - 3^{u'})$ in exact rational arithmetic, and if
+$r' \le \Theta$ check the candidate $n = r'$ by direct iteration. All other
+members of the class exceed $r'$ by multiples of $2^{j'} > \Theta$ in the
+range explored, so $r'$ is the only candidate.
+
+\begin{proposition}[VERIFIED]\label{prop:enum}
+There are exactly $81{,}119$ stopping classes of depth $j \le 24$. In exactly
+one of them the least member fails to exceed the violation threshold: the
+class $(r,u,j,b) = (1, 1, 2, 1)$ of $n = 1$, where
+$\Theta = 1/(2^{2}-3^{1}) = 1$ and the threshold is attained with
+\emph{equality} --- the trivial cycle $1 \to 2 \to 1$. Consequently
+\[
+\tau(n) = \sigma(n) \quad \text{for every } n > 1 \text{ with } \tau(n)\le 24.
+\]
+The smallest margin $r/\Theta$ among all other classes is $2.020$.
+\end{proposition}
+
+(Computation: \texttt{scripts/70\_cst\_attack.py}; integer arithmetic
+throughout, thresholds as exact fractions; re-run and confirmed for this
+paper.)
+
+\subsection{Direct verification to $10^{6}$}
+
+\begin{proposition}[VERIFIED]\label{prop:direct}
+For every odd $n$ with $1 < n \le 10^{6}$: $\tau(n) = \sigma(n)$. The maximal
+coefficient stopping time observed is $\tau = 176$. Together with the trivial
+even case, CST holds for all $1 < n \le 10^{6}$.
+\end{proposition}
+
+The two propositions overlap but are logically independent:
+Proposition~\ref{prop:enum} covers all integers of small $\tau$ regardless of
+size; Proposition~\ref{prop:direct} covers all small integers regardless of
+$\tau$, and it is the second form --- a \emph{basis} --- that powers the
+reduction of Section~\ref{sec:reduction}, because violation candidates are
+forced to be small.
+
+\section{The margins and the comma}\label{sec:comma}
+
+Proposition~\ref{prop:enum} yields margin statistics over all $81{,}119$
+classes. The ten smallest margins are:
+
+\begin{center}
+\begin{tabular}{crrr}
+\hline
+margin $r/\Theta$ & $(u,j)$ & $r$ & $2^{j}/3^{u}$ \\
+\hline
+$2.020$ & $(5,8)$   & $39$  & $1.05350$ \\
+$2.391$ & $(3,5)$   & $11$  & $1.18519$ \\
+$3.805$ & $(17,27)$ & $251$ & $1.03924$ \\
+$3.965$ & $(5,8)$   & $79$  & $1.05350$ \\
+$4.200$ & $(2,4)$   & $3$   & $1.77778$ \\
+$4.507$ & $(4,7)$   & $7$   & $1.58025$ \\
+$5.013$ & $(5,8)$   & $123$ & $1.05350$ \\
+$5.853$ & $(5,8)$   & $95$  & $1.05350$ \\
+$6.053$ & $(3,5)$   & $23$  & $1.18519$ \\
+$9.141$ & $(5,8)$   & $199$ & $1.05350$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Five of the ten smallest margins, including the minimum, live at
+$(u,j) = (5,8)$: the Pythagorean interval
+\[
+\frac{2^{8}}{3^{5}} \;=\; \frac{256}{243} \;=\; 1.053497\ldots,
+\]
+the first nontrivial upper convergent $8/5$ of $\lb$. The minimal-margin
+witness is concrete and pleasing: $n = 39$ has parity word $11101100$
+($u=5$, $j=8$, $b=251$, $\Theta = 251/13 = 19.31$), and
+\[
+T^{8}(39) \;=\; \frac{3^{5}\cdot 39 + 251}{2^{8}} \;=\; \frac{9728}{256}
+\;=\; 38.
+\]
+After one full comma word, $39$ lands one unit below itself. This is the
+closest approach to a CST violation anywhere in the $81{,}119$ classes.
+
+The mechanism is transparent from Lemmas \ref{lem:viol} and
+\ref{lem:lastsGtep}: the threshold
+$\Theta = (b/2^{j}) / (1 - 3^{u}/2^{j})$ explodes exactly when
+$1 - 2^{-d(u)}$ is small, i.e.\ at upper convergents of $\lb$. The relevant
+data for the first few are (exact rational arithmetic; threshold bound from
+Lemma~\ref{lem:bbound} below):
+
+\begin{center}
+\begin{tabular}{crrrr}
+\hline
+$(u,j)$ & $2^{j}/3^{u}$ & $1 - 3^{u}/2^{j}$ & $\dfrac{u/3}{1-3^{u}/2^{j}}$ &
+status \\
+\hline
+$(1,2)$        & $1.33333$   & $2.50\cdot 10^{-1}$ & $1.34$ &
+ equality case $n=1$ \\
+$(5,8)$        & $1.05350$   & $5.08\cdot 10^{-2}$ & $32.9$ &
+ covered ($\ge 2.02\times$) \\
+$(41,65)$      & $1.011529$  & $1.14\cdot 10^{-2}$ & $1.20\cdot 10^{3}$ &
+ covered by basis \\
+$(306,485)$    & $1.0010228$ & $1.02\cdot 10^{-3}$ & $9.99\cdot 10^{4}$ &
+ covered by basis \\
+$(15601,24727)$& $1.0000182$ & $1.82\cdot 10^{-5}$ & $2.86\cdot 10^{8}$ &
+ open (needs larger basis) \\
+\hline
+\end{tabular}
+\end{center}
+
+The next danger zone after the comma is thus $(u,j) = (41,65)$ with
+$2^{65}/3^{41} = 1.011529\ldots$; its threshold bound $1.2\cdot 10^{3}$ is
+comfortably inside the verified basis $10^{6}$, as is that of
+$(306,485)$.\footnote{An earlier internal note quoted $2^{65}/3^{41} \approx
+1.0035$; the correct value, $36893488147419103232 / 36472996377170786403 =
+1.011529\ldots$, is used here.} The first zone that escapes the $10^{6}$
+basis under the proven bound is the semiconvergent $u = 2966$ (see
+Corollary~\ref{cor:4700}), and the first \emph{convergent} to escape is
+$(15601, 24727)$.
+
+\section{The growth of $B(t)$}\label{sec:bgrowth}
+
+The threshold $\Theta = (b/2^{j})/(1 - 3^{u}/2^{j})$ has two factors: the
+Diophantine denominator, discussed above, and the numerator $b/2^{j}$. Define
+\[
+B(t) \;=\; \max\{\, b/2^{j} \;:\; (r,u,j,b) \text{ a stopping class with }
+j = t \,\}.
+\]
+
+\begin{lemma}[Linear bound; PROVED]\label{lem:bbound}
+For every stopping class $(r,u,j,b)$,
+\[
+\frac{b}{2^{j}} \;<\; \frac{u}{3},
+\qquad\text{hence}\qquad
+\Theta \;<\; \frac{u/3}{1 - 3^{u}2^{-j}}
+\quad\text{and}\quad
+B(t) \;<\; \frac{t}{3\lb} \;<\; 0.2104\, t .
+\]
+\end{lemma}
+
+\begin{proof}
+Set $y_t = b_t/3^{u_t}$, so $y_0 = 0$. By \eqref{eq:brec}, an even step leaves
+$y$ unchanged and an odd step at depth $t$ gives
+\[
+y_{t+1} \;=\; \frac{3b_t + 2^{t}}{3^{u_t+1}} \;=\; y_t +
+\frac{1}{3}\cdot\frac{2^{t}}{3^{u_t}} \;\le\; y_t + \frac13,
+\]
+since the survivor condition at depth $t$ ($3^{u_t} \ge 2^{t}$) holds for
+every proper prefix of a stopping word. With $u$ odd steps in total,
+$y_j \le u/3$. At the stopping depth, $3^{u} < 2^{j}$, so
+\[
+\frac{b}{2^{j}} \;=\; y_j \cdot \frac{3^{u}}{2^{j}} \;<\; y_j \;\le\;
+\frac{u}{3}.
+\]
+For the global form, stopping gives $3^{u} < 2^{j}$, i.e.\
+$u < j/\lb$.
+\end{proof}
+
+This settles, with room to spare, the bounding step that the reduction below
+requires. The measured truth is sharper and structurally striking:
+
+\begin{observation}[MEASURED, $t \le 27$]\label{obs:bgrowth}
+$B(8) = 1.246$, $B(16) = 2.271$, $B(24) = 3.243$, $B(27) = 4.086$, attained at
+the classes $(u,j) = (5,8), (10,16), (15,24), (17,27)$ respectively: the
+extremal classes carry exactly the repeated comma budget $u/j \approx 5/8$,
+and $B$ grows by approximately one unit per comma block,
+$B(t) \approx 1 + t/8$.
+\end{observation}
+
+\begin{remark}[SKETCH of the mechanism]
+In the proof of Lemma~\ref{lem:bbound} the gain of $y$ at an odd step of
+depth $t$ is exactly $\tfrac13 \rho_t^{-1}$ with
+$\rho_t = 3^{u_t}/2^{t} \ge 1$, and the final value is
+$b/2^{j} = y_j\rho_j$ with $\rho_j < 1$. Both factors therefore reward
+trajectories that hug criticality: gains are maximal ($\to \tfrac13$) when
+$\rho \approx 1$, and the final discount $\rho_j$ is mildest when the word
+stops barely below $1$. A survivor word that stays near-critical for $t$
+steps must spend its odd steps at rate $\approx 1/\lb = 0.6309$, and the
+integer word lengths realizing this most efficiently are the comma budgets
+$(5k, 8k)$ (with the odd steps front-loaded so that every prefix survives).
+Each 8-step comma block then contributes about
+$5 \cdot \tfrac13 \cdot \langle \rho^{-1} \rangle \approx 1$ to $y$ while
+$\rho$ decays only by the comma factor $3^{5}/2^{8} = 0.9494$, giving the
+linear law with slope $\approx 1/8$. We emphasize: this paragraph is a
+heuristic; the results of Section~\ref{sec:reduction} use only
+Lemma~\ref{lem:bbound}.
+\end{remark}
+
+\section{The reduction theorem}\label{sec:reduction}
+
+\begin{theorem}[Reduction to the upper convergents; PROVED, with
+computational input]\label{thm:reduction}
+Suppose $\tau(n) = \sigma(n)$ has been verified for all $1 < n \le N$
+(as in Proposition~\ref{prop:direct} with $N = 10^{6}$). Then
+$\tau(n) = \sigma(n)$ for every $n > 1$ lying in any stopping class
+$(u, j)$, $j = \ceil{u\lb}$, with
+\[
+\frac{u/3}{1 - 2^{-d(u)}} \;<\; N, \qquad d(u) = \ceil{u\lb} - u\lb .
+\]
+In particular CST can fail only in classes whose $(u,j)$ makes $j/u$ a best
+one-sided rational approximation of $\lb$ from above --- an upper convergent
+or upper semiconvergent --- with $d(u)$ of order $u/N$ or smaller.
+\end{theorem}
+
+\begin{proof}
+Let $n > 1$ violate CST in such a class. By Lemma~\ref{lem:viol} and
+Lemma~\ref{lem:bbound},
+\[
+n \;\le\; \Theta \;<\; \frac{u/3}{1 - 3^{u}2^{-j}} \;=\;
+\frac{u/3}{1 - 2^{-d(u)}} \;<\; N,
+\]
+using Lemma~\ref{lem:lastsGtep} for $j = \ceil{u\lb}$. Classes of depth
+$j \ge 2$ consist of odd numbers, so $n$ is an odd integer in $(1, N]$,
+contradicting the verified basis. For the final assertion: if
+$\tfrac{u/3}{1-2^{-d(u)}} \ge N$ then $1 - 2^{-d(u)} \le u/(3N)$, so
+$d(u) \le \log_2\bigl(1 - u/(3N)\bigr)^{-1} = O(u/N)$; small $d(u)$ forces
+$j/u$ to approximate $\lb$ from above, and the one-sided best approximations
+are the upper convergents and semiconvergents \cite{Khinchin}.
+\end{proof}
+
+\begin{corollary}[VERIFIED, exact rational arithmetic]\label{cor:4700}
+With the basis $N = 10^{6}$:
+\[
+\frac{u/3}{1 - 2^{-d(u)}} < 10^{6} \quad\text{for every } u \le 2965,
+\]
+hence $\tau(n) = \sigma(n)$ for every $n > 1$ with $\tau(n) \le 4700$
+(depths $j \le 4700$ correspond exactly to $u \le 2965$). The first
+exceptional odd-step count is $u = 2966$ (a semiconvergent:
+$2966 = 306 + 4\cdot 665$), with $j = 4701$ and threshold bound
+$1.17 \cdot 10^{6}$, marginally beyond the basis. Among all
+$u \le 40{,}000$ exactly $385$ values escape the $10^{6}$ basis, all of them
+upper semiconvergent or convergent denominators; the largest threshold bound
+in that range is $2.86\cdot 10^{8}$, at $u = 15601$ and $u = 2\cdot 15601$.
+\end{corollary}
+
+Three remarks on what the reduction does and does not achieve.
+
+\emph{(i) The verified frontier moves from $\tau \le 24$ to $\tau \le 4700$.}
+The enumeration of Proposition~\ref{prop:enum} costs exponential work in the
+depth; the reduction replaces it, up to depth $4700$, by a one-dimensional
+Diophantine scan plus the fixed basis. Extending the basis to
+$3\cdot 10^{8}$ --- a modest computation by current standards (full Collatz
+convergence has been machine-verified to $2^{68}$ \cite{Barina2021}, and a
+$\tau$-$\sigma$ check stops at the first drop, on average after $\approx 3.5$
+steps) --- would cover every $u \le 40{,}000$, i.e.\ every $n>1$ with
+$\tau(n) \le 63{,}397$.
+
+\emph{(ii) No finite basis finishes the job.} Along the upper convergents
+$d(u) \to 0$ faster than any fixed multiple of $1/u$ infinitely often
+(indeed $d(u_k) \asymp 1/(a_{k+1} u_k)$), so the thresholds
+$\tfrac{u/3}{1-2^{-d(u)}} \asymp u^{2} a_{k+1}$ are unbounded: each new upper
+convergent eventually demands a larger basis. The sequence of demands is,
+however, only polynomial in the depth \emph{if} $\lb$ admits an effective
+irrationality measure, which it does: Baker's theorem \cite{Baker1966} gives
+effective lower bounds for $|j - u\lb|$, and Rhin's Pade-based measure
+\cite{Rhin1987} gives, in the form used by Simons and de Weger
+\cite{SimonsDeWeger2005}, a bound of the shape $d(u) > c\, u^{-\kappa}$ with
+explicit $c$ and $\kappa$ ($\kappa = 13.3$ in their application). Through
+Theorem~\ref{thm:reduction} this makes the basis requirement for depth $T$
+effectively computable and polynomial in $T$, roughly $O(T^{\kappa + 1})$:
+CST up to any prescribed depth is a \emph{finite, effectively bounded}
+computation. What no current bound delivers is a uniform closure: full CST
+would follow from $d(u) \ge c\,u/N_0$ for a fixed verified basis $N_0$ and
+all large $u$ --- a strength of effective approximation far beyond present
+technology.
+
+\emph{(iii) The failure set is thin and explicit.} Any counterexample to CST
+must be an odd $n$, larger than every verified basis, sitting inside a
+specific residue class modulo $2^{j}$ whose modulus $2^{j}$ is
+\emph{astronomically} larger than the violation threshold $O(u^{2}a)$: the
+class contains at most one candidate below its threshold, namely its least
+element $r$, and a violation requires the arithmetically determined $r$ to be
+freakishly small ($r < \Theta$ while $r$ ranges over $[1, 2^{j}]$;
+heuristically probability $\Theta/2^{j} \approx 0$). CST failures are exactly
+\emph{near-cycles}, as the next section makes precise.
+
+\section{One wall, two sides: CST and cycle exclusion}\label{sec:onewall}
+
+Suppose $n$ is a periodic point of $T$ with period $j$ and $u$ odd steps per
+period. Then \eqref{eq:affine} gives $n = (3^{u} n + b)/2^{j}$, i.e.
+\begin{equation}\label{eq:cycle}
+n \;=\; \frac{b}{2^{j} - 3^{u}} \;=\; \Theta(w):
+\end{equation}
+\emph{a positive cycle attains the violation threshold of its parity word
+with equality}. The trivial cycle is the instance $(u,j,b) = (1,2,1)$,
+$\Theta = 1$ --- precisely the unique sub-threshold member found in
+Proposition~\ref{prop:enum}. Lemma~\ref{lem:viol} says that a CST violation
+is the inequality relaxation of \eqref{eq:cycle}: an integer that does not
+close the loop but sits at or below the rational fixed point of its own
+word.\footnote{For a violating $n$, $T^{j}(n) \ge n$ with the coefficient
+already below $1$: the orbit has failed to fall despite a falling word ---
+it is shadowing the rational fixed point $\Theta$ from below.}
+
+The known partial results on cycles run through lower bounds on the same
+denominator $2^{j} - 3^{u}$. Steiner \cite{Steiner1977} excluded nontrivial
+$1$-circuit cycles using Baker's theorem; Simons and de Weger
+\cite{SimonsDeWeger2005} excluded $m$-circuit cycles for $m \le 68$ using
+Rhin's effective measure \cite{Rhin1987}; Hercher \cite{Hercher2023} pushed
+this to $m \le 91$. In every case the engine is: a cycle forces
+$(2^{j}-3^{u}) \mid b$ with $b$ of size comparable to $2^{j}$, which is
+incompatible with effective lower bounds for $|2^{j}-3^{u}|$ unless
+$(u,j)$ is enormous. Theorem~\ref{thm:reduction} shows that CST consumes the
+identical input: effective lower bounds for $2^{j} - 3^{u}$ at upper
+convergents of $\lb$. The two classical subproblems of the $3x+1$ problem
+that admit partial rigorous progress --- ``no nontrivial cycles'' and
+``stopping is decided by the parity word'' (CST) --- are thus a single
+question about the effective rational approximation of $\lb$, seen from two
+sides: equality (divisibility) for cycles, inequality (smallness of the
+least class member) for CST. The Pythagorean comma $256/243$ is the first
+nontrivial post of that wall; the margin $2.02$ of Section~\ref{sec:comma}
+is how close the integers come to it at small depth.
+
+\section{Conclusion and honest status}\label{sec:conclusion}
+
+We have verified the Terras coefficient stopping conjecture exhaustively in
+depth ($\tau \le 24$, all $81{,}119$ stopping classes) and in height (all
+$n \le 10^{6}$), proved the linear bound $B(t) < t/(3\lb)$ on the additive
+constants, and combined the two into an unconditional extension of the
+verified frontier to $\tau \le 4700$ together with a complete localization of
+any possible failure: CST can fail only at explicitly listed upper
+convergents and semiconvergents of $\lb$, only at integers below an
+explicitly computable threshold $O(u^{2} a_{k+1})$, and only in the guise of
+a sub-threshold near-cycle. The conjecture is thereby reduced to effective
+rational approximation of $\lb$ --- Baker--Rhin territory --- the same wall
+that bounds cycle exclusion.
+
+Status of each component:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Statement & Location & Status \\
+\hline
+$\tau \le \sigma$; violation inequality & Lemma~\ref{lem:viol} & proved \\
+Final halving; $j = \ceil{u\lb}$ & Lemma~\ref{lem:lastsGtep} & proved \\
+CST for $\tau(n) \le 24$ & Prop.~\ref{prop:enum} &
+ verified (exhaustive, exact) \\
+CST for $1 < n \le 10^{6}$ & Prop.~\ref{prop:direct} &
+ verified (exhaustive) \\
+Margin concentration at $256/243$ & Sec.~\ref{sec:comma} &
+ verified (finite range) \\
+$B(t) < t/(3\lb)$ & Lemma~\ref{lem:bbound} & proved \\
+$B(t) \approx 1 + t/8$, comma extremizers & Obs.~\ref{obs:bgrowth} &
+ measured ($t \le 27$) + sketch \\
+Reduction theorem & Thm.~\ref{thm:reduction} & proved (uses
+ Prop.~\ref{prop:direct}) \\
+CST for $\tau(n) \le 4700$ & Cor.~\ref{cor:4700} &
+ proved + verified scan \\
+Stitching via Rhin-type measures & Sec.~\ref{sec:reduction}(ii) &
+ template, not carried out \\
+\hline
+\end{tabular}
+\end{center}
+
+Two computations would extend the frontier mechanically: (a) a basis to
+$3\cdot 10^{8}$ lifts Corollary~\ref{cor:4700} to $\tau \le 63{,}397$; (b)
+instantiating Rhin's explicit constants in Theorem~\ref{thm:reduction} turns
+``CST up to depth $T$'' into an explicit function of feasible computation for
+every $T$. The step that would close CST outright --- a uniform effective
+bound $d(u) \gg u/N_0$ --- is of the same order of difficulty as excluding
+all cycles, and we do not claim it. What this note establishes is that both
+problems now wait at the same door, and that the door is labeled
+$256/243$.
+
+\subsection*{Computational note}
+
+All enumerations use exact integer and rational arithmetic (Python,
+\texttt{fractions.Fraction}); the stopping-class enumeration is
+\texttt{scripts/70\_cst\_attack.py} in the authors' repository, and every
+number quoted in this paper (class counts, margins, $B(t)$ values, convergent
+gaps, the boundary cases $u = 2965, 2966$ of Corollary~\ref{cor:4700}) was
+recomputed independently for the final text.
+
+\begin{thebibliography}{9}
+
+\bibitem{Terras1976}
+R.~Terras,
+\emph{A stopping time problem on the positive integers},
+Acta Arithmetica \textbf{30} (1976), 241--252.
+
+\bibitem{Lagarias1985}
+J.~C.~Lagarias,
+\emph{The $3x+1$ problem and its generalizations},
+American Mathematical Monthly \textbf{92} (1985), 3--23.
+
+\bibitem{Steiner1977}
+R.~P.~Steiner,
+\emph{A theorem on the Syracuse problem},
+Proceedings of the 7th Manitoba Conference on Numerical Mathematics and
+Computing (Winnipeg, 1977), 553--559.
+
+\bibitem{SimonsDeWeger2005}
+J.~Simons and B.~de~Weger,
+\emph{Theoretical and computational bounds for $m$-cycles of the $3n+1$
+problem},
+Acta Arithmetica \textbf{117} (2005), 51--70.
+
+\bibitem{Hercher2023}
+C.~Hercher,
+\emph{There are no Collatz $m$-cycles with $m \le 91$},
+arXiv:2201.00406 (2023).
+
+\bibitem{Baker1966}
+A.~Baker,
+\emph{Linear forms in the logarithms of algebraic numbers I},
+Mathematika \textbf{13} (1966), 204--216.
+
+\bibitem{Rhin1987}
+G.~Rhin,
+\emph{Approximants de Pad\'e et mesures effectives d'irrationalit\'e},
+S\'eminaire de Th\'eorie des Nombres, Paris 1985--86,
+Progress in Mathematics \textbf{71}, Birkh\"auser (1987), 155--164.
+
+\bibitem{Khinchin}
+A.~Ya.~Khinchin,
+\emph{Continued Fractions},
+University of Chicago Press, 1964.
+
+\bibitem{Barina2021}
+D.~Barina,
+\emph{Convergence verification of the Collatz problem},
+The Journal of Supercomputing \textbf{77} (2021), 2681--2688.
+
+\end{thebibliography}
+
+\end{document}

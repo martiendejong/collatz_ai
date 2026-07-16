@@ -1,0 +1,729 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openproblem}[theorem]{Open Problem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\CV}{\mathrm{CV}}
+\newcommand{\lam}{\lambda}
+\newcommand{\gam}{\gamma}
+\newcommand{\bet}{\beta}
+
+\title{Krasikov--Lagarias certificates for the $3x+1$ problem\\
+are tempered roulette measures}
+\author{Martien de Jong\\[3pt]
+{\normalsize with computational collaboration: Jengo (AI)}}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report verified certificates for the Krasikov--Lagarias difference-inequality
+system for the $3x+1$ problem at $3$-adic depths $k = 13, 15, 17, 19, 20$, giving
+$\pi_1(x) \geq x^{\gam}$ for all large $x$ with $\gam = 0.9146$ at $k=20$
+(the published record of the method is $\gam = 0.84$). We then identify what these
+certificates \emph{are}: to $R^2 > 0.99$, each Perron eigenvector is a pure power
+of a single exactly solvable measure --- the stationary law (the \emph{roulette
+measure}) of the geometric-$w$ model on residue classes mod $3^j$, for which we
+give the closed form $\pi(1,2,4,5,7,8) = (8,16,11,4,2,22)/63$ at $j=2$. The
+tempering exponent $\alpha_k$ rises $0.8024 \to 0.8785$ across the five depths and
+an out-of-sample prediction at $k=20$ was confirmed to four decimals. We prove an
+edge-rate theorem: implicit differentiation of the min-loss identity at
+$(\lam,q)=(2,1)$ gives $d\gam/dq = 1/\log(4/3) = 3.4761$, and the measured ratios
+$(1-\gam_k)/(3.4761\,(1-q_k)) = 0.824, 0.847, 0.873, 0.908$ converge to $1$: the
+transfer from eigenvector homogenization to density exponent is analytic. A mass
+conservation lemma shows the heterogeneity cascade of the eigenvector sits exactly
+on the conservative line ($a + c \leq 1$) precisely because $2^{\log_2 3} = 3$, and
+the fine-end injection saturates: $\CV_1(k) = 0.5136 - 0.337\,(0.910)^k$ to
+residual $10^{-6}$ over nine depths. The remaining open core of the full-density
+program $\gam \to 1$ is a single drift-direction statement: $a < c$ uniformly. All
+claims are labeled proved, verified, measured, or conjectured.
+\end{abstract}
+
+\section{Introduction}
+
+Let $T(n) = n/2$ for even $n$ and $T(n) = (3n+1)/2$ for odd $n$, and let
+$\pi_1(x)$ denote the number of integers $n \leq x$ whose $T$-orbit reaches $1$.
+The $3x+1$ conjecture asserts $\pi_1(x) = \lfloor x \rfloor$; see Lagarias
+\cite{Lag85} for the classical survey and Tao \cite{Tao19} for the strongest
+known metric result (almost all orbits attain almost bounded values). The
+strongest known \emph{density} lower bounds come from the difference-inequality
+method of Krasikov and Lagarias \cite{KL03}, which produces, from a finite
+feasibility certificate at $3$-adic depth $k$, a bound
+$\pi_1(x) \geq x^{\gam_k}$ for all sufficiently large $x$. Krasikov and Lagarias
+obtained $\gam = 0.84$.
+
+This paper does three things.
+
+\begin{enumerate}
+\item \textbf{New certificates (Section~\ref{sec:kl}).} We push the exact
+Krasikov--Lagarias system to depths $k = 13, 15, 17, 19, 20$ (up to
+$3^{19} = 1{,}162{,}261{,}467$ classes) and verify feasibility, obtaining
+\[
+\gam = 0.8624,\ 0.8805,\ 0.8953,\ 0.9069,\ 0.9146 .
+\]
+\item \textbf{Identification of the certificates (Sections~\ref{sec:roulette}
+and \ref{sec:tempering}).} The certificate eigenvectors are not opaque numerical
+objects. We exhibit an exactly solvable probability measure on the classes mod
+$3^j$ --- the stationary measure of the geometric-$w$ residue dynamics, which we
+call the \emph{roulette measure} --- and show empirically that at every computed
+depth the eigenvector is a pure power of it,
+\[
+\text{eigvec} \;=\; \text{roulette}^{\,\alpha_k},
+\qquad R^2 = 0.9927 \ldots 0.9977,
+\]
+with tempering exponent $\alpha_k \uparrow$ and an out-of-sample prediction at
+$k = 20$ confirmed to four decimals (Conjecture~T: $\alpha_k \to 1$).
+\item \textbf{An analytic transfer and a proof program (Sections~\ref{sec:edge}
+and \ref{sec:program}).} We prove that the density exponent responds to the
+homogenization parameter $q$ at the exact linear rate
+$d\gam/dq = 1/\log(4/3) = 3.4761$ at the edge $(\lam, q) = (2,1)$, so that
+$\alpha_k \to 1$ (equivalently $q_k \to 1$) would give $\gam \to 1$:
+$\pi_1(x) \geq x^{1-\varepsilon}$ for every $\varepsilon > 0$. We then prove a
+mass conservation lemma pinning the eigenvector's heterogeneity cascade to the
+conservative line $a + c \leq 1$ --- an identity that holds precisely because
+$2^{\log_2 3} = 3$, i.e., by the defining constant of the problem --- and reduce
+the whole program to one measured-but-unproven inequality: the drift direction
+$a < c$, uniformly in $k$.
+\end{enumerate}
+
+Throughout, every assertion carries one of four labels. \emph{Proved}: complete
+mathematical proof. \emph{Verified}: finite exact or floating-point computation,
+reproducible from stated parameters. \emph{Measured}: statistical fit or
+extrapolation from computed data. \emph{Conjectured}: neither proved nor
+finitely checkable. Section~\ref{sec:status} collects the ledger.
+
+\subsection*{Notation}
+$\bet := \log_2 3 = 1.58496\ldots$ (we reserve $\alpha$ for the tempering
+exponent). For odd $n$, the Syracuse map is $U(n) = (3n+1)/2^{w(n)}$ with
+$w(n) = v_2(3n+1)$. For a finite family of positive reals, $\CV$ denotes the
+coefficient of variation (standard deviation over mean). For $j \geq 1$,
+$[3^j] := \{ m \bmod 3^j : m \equiv 2 \ (\mathrm{mod}\ 3) \}$, so
+$|[3^j]| = 3^{j-1}$.
+
+\section{The Krasikov--Lagarias system and certificates at depth 13--20}
+\label{sec:kl}
+
+\subsection{The inequality system}
+
+Fix $k \geq 2$ and $\lam \in (1,2]$. The nontrivial-tree Krasikov--Lagarias
+system $L_k(\lam)$ \cite{KL03} asks for a vector
+$c : [3^k] \to \R_{>0}$ satisfying, for every $m \in [3^k]$,
+\begin{align}
+m \equiv 2 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \;\leq\; \lam^{-2}\, c(4m) \;+\; \lam^{\bet-2}\, \bar c\!\left(\tfrac{4m-2}{3}\right),
+\label{eq:L1}\\
+m \equiv 5 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \;\leq\; \lam^{-2}\, c(4m),
+\label{eq:L2}\\
+m \equiv 8 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \;\leq\; \lam^{-2}\, c(4m) \;+\; \lam^{\bet-1}\, \bar c\!\left(\tfrac{2m-1}{3}\right),
+\label{eq:L3}
+\end{align}
+where $4m$ is taken mod $3^k$, the branch targets are taken mod $3^{k-1}$, and
+for $t \in [3^{k-1}]$,
+\begin{equation}
+\bar c(t) \;:=\; \min\bigl\{ c(t),\ c(t + 3^{k-1}),\ c(t + 2 \cdot 3^{k-1}) \bigr\}
+\label{eq:min}
+\end{equation}
+is the minimum over the three refinements of $t$ in $[3^k]$.
+
+The provenance of the three edge types is the backward Syracuse tree. A tree
+node in class $m$ receives preimages of size $\approx 4m/3$ (via
+$(4m-2)/3$, weight $(3/4)^{\gam} = \lam^{\bet-2}$ under the ansatz
+$\pi_m(x) \sim c(m)\, x^{\gam}$ with $\lam = 2^{\gam}$), of size $\approx 2m/3$
+(via $(2m-1)/3$, weight $(3/2)^{\gam} = \lam^{\bet-1}$), and of size $4m$
+(two halvings, weight $4^{-\gam} = \lam^{-2}$); classes $m \equiv 5 \bmod 9$
+have branch target divisible by $3$ and lose it (multiples of $3$ have no odd
+preimages). The minimum \eqref{eq:min} is what makes a \emph{finite} system
+sound: the branch target is only known mod $3^{k-1}$, so the certificate may
+claim only the worst of its three refinements. Krasikov--Lagarias prove
+\cite{KL03} that feasibility of $L_k(\lam)$ implies
+\[
+\pi_1(x) \;\geq\; x^{\gam}, \qquad \gam = \log_2 \lam ,
+\]
+for all sufficiently large $x$. Both class maps in the system are bijections:
+$m \mapsto 4m$ on $[3^k]$, and each branch map from its mod-$9$ type onto
+$[3^{k-1}]$ --- a fact we use in Proposition~\ref{prop:minloss}.
+
+The right-hand sides of \eqref{eq:L1}--\eqref{eq:L3} define a monotone,
+positively homogeneous (topical) operator $F_\lam$; feasibility is equivalent
+to its nonlinear Perron value being $\geq 1$, and the critical $\lam_k$ (the
+\emph{edge}) is located by bisection, with the Perron eigenvector computed by
+power iteration.
+
+\subsection{The certificates}
+
+\begin{theorem}[Certificates; verified]\label{thm:certs}
+The system $L_k(\lam_k)$ is feasible at the values of Table~\ref{tab:certs}.
+Consequently $\pi_1(x) \geq x^{0.9146}$ for all sufficiently large $x$.
+\end{theorem}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{r r c c c}
+\hline
+$k$ & classes $3^{k-1}$ & $\lam_k$ & $\gam_k = \log_2 \lam_k$ & $q_k$ \\
+\hline
+13 & 531{,}441        & 1.8181 & 0.8624 & 0.9519 \\
+15 & 4{,}782{,}969    & 1.8411 & 0.8805 & 0.9594 \\
+17 & 43{,}046{,}721   & 1.8601 & 0.8953 & 0.9655 \\
+19 & 387{,}420{,}489  & 1.8751 & 0.9069 & 0.9705 \\
+20 & 1{,}162{,}261{,}467 & 1.8852 & 0.9146 & 0.9723 \\
+\hline
+\end{tabular}
+\caption{Verified certificates. $q_k$ is the min-loss parameter of
+Proposition~\ref{prop:minloss}. At depth $k = 11$ the same code reproduces
+$\gam = 0.84$, the exponent proved in \cite{KL03}.}
+\label{tab:certs}
+\end{table}
+
+Verification is by direct substitution of the stored eigenvector into all
+$3^{k-1}$ inequalities at the stated $\lam_k$ (at $k = 20$: $1.16 \times 10^9$
+constraints, chunked out-of-core, checkpointed power iteration to
+$\|F c - c\|/\|c\| < 10^{-3}$ followed by a feasibility polish). The
+certificates and verification scripts are archived with the research dossier.
+
+The numbers $\gam_k$ in Table~\ref{tab:certs} climb steadily but with visibly
+shrinking increments. The remainder of the paper is about \emph{why}: the
+certificate eigenvectors have an exact structural description, and the residual
+distance $1 - \gam_k$ is governed by a single homogenization parameter with an
+analytic exchange rate.
+
+\section{The roulette measure}
+\label{sec:roulette}
+
+\subsection{The geometric-$w$ model}
+
+At the level of natural density the Syracuse map is a solved stochastic object.
+The relevant exactness statement goes back to Terras \cite{Ter76}: each pattern
+of the first $r$ steps of $T$ occupies exactly one residue class mod $2^r$. In
+Syracuse coordinates: for odd $n$, prescribing the first $m$ cascade exponents
+$(w_1, \ldots, w_m) = (j_1, \ldots, j_m)$ confines $n$ to exactly one residue
+class mod $2^{\,j_1 + \cdots + j_m + 1}$, so the relative density among odd
+integers of that cylinder is exactly $\prod_i 2^{-j_i}$. Thus, in density, the
+$w_i$ are independent geometric($1/2$) variables:
+$P(w = j) = 2^{-j}$, $j \geq 1$. (The independence of $w$ from the current
+residue class mod $3^j$ --- cross-base blindness --- is exact in the limit of
+large $2$-adic modulus; measured leakage at finite modulus vanishes as the
+modulus grows. We label the model \emph{density-exact in the $2$-adic
+direction, measured in the cross-base direction}.)
+
+\begin{definition}[Geometric-$w$ residue dynamics]\label{def:roulette}
+Fix $j \geq 1$. The \emph{geometric-$w$ chain} on the classes mod $3^j$ coprime
+to $3$ is
+\[
+r_{t+1} \;=\; (3 r_t + 1) \cdot 2^{-w_t} \ (\mathrm{mod}\ 3^j),
+\qquad w_t \ \text{i.i.d.},\ P(w = m) = 2^{-m},
+\]
+inverses taken in $(\Z/3^j)^{\times}$. Its stationary measure $\pi^{(j)}$ is
+the \emph{roulette measure} at depth $j$.
+\end{definition}
+
+The name: $2$ is a primitive root mod $3^j$ for every $j$, so the multiplier
+$2^{-w}$ steps around the full cyclic group $(\Z/3^j)^{\times}$ (the wheel, of
+order $2 \cdot 3^{j-1}$) with geometrically decaying bets $2^{-w}$; the base
+point $3r+1$ is re-spotted each turn. Two structural facts make the chain
+exactly solvable.
+
+\begin{proposition}[Hierarchical solvability; proved]\label{prop:solvable}
+(i) The base map $r \mapsto 3r + 1 \bmod 3^j$ depends only on
+$r \bmod 3^{j-1}$. (ii) Consequently the stationary measure at depth $j$ is the
+explicit linear push-forward of the stationary measure at depth $j-1$:
+\[
+\pi^{(j)}(s) \;=\; \sum_{\rho \bmod 3^{j-1}} \pi^{(j-1)}(\rho)\,
+\mu_j\!\left( s \cdot (3\rho+1)^{-1} \right),
+\]
+where $\mu_j(u)$ is the total geometric weight of $\{ w \geq 1 : 2^{-w} \equiv u
+\bmod 3^j \}$, namely $\mu_j(2^{-m}) = 2^{-m} / (1 - 2^{-\mathrm{ord}_j(2)})$
+for $1 \leq m \leq \mathrm{ord}_j(2) = 2 \cdot 3^{j-1}$. In particular
+$\pi^{(j)}$ is computable in closed form by downward recursion, with no
+eigenproblem.
+\end{proposition}
+
+\begin{proof}
+(i) is immediate: $3(r + d\,3^{j-1}) + 1 = (3r+1) + d\,3^{j} \equiv 3r+1$.
+For (ii): the one-step law from $r$ depends only on $\rho = r \bmod 3^{j-1}$ by
+(i), so stationarity of $\pi^{(j)}$, whose projection to depth $j-1$ is the
+stationary $\pi^{(j-1)}$ of the projected chain, reads exactly as displayed.
+The weights $\mu_j$ aggregate the geometric series over the residue of $w$
+modulo the order of $2$.
+\end{proof}
+
+\subsection{Closed form at depth two}
+
+\begin{theorem}[Roulette measure mod 9; proved]\label{thm:mod9}
+The stationary measure of the geometric-$w$ chain on
+$\{1,2,4,5,7,8\} \bmod 9$ is
+\[
+\pi(1,2,4,5,7,8) \;=\; \frac{(8,\ 16,\ 11,\ 4,\ 2,\ 22)}{63}.
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Marginal mod 3.} Since $3r + 1 \equiv 1 \pmod 3$ and
+$2^{-w} \equiv 2^{w} \pmod 3$, the next state is $\equiv 2 \pmod 3$ iff $w$ is
+odd, with probability $\sum_{w \ \mathrm{odd}} 2^{-w} = 2/3$, independent of
+$r$. Hence $\pi(r \equiv 1) = 1/3$, $\pi(r \equiv 2) = 2/3$.
+
+\emph{Wheel mod 9.} $\mathrm{ord}_9(2) = 6$ and the inverse powers
+$2^{-w} \bmod 9$ for $w \equiv 1, \ldots, 6 \pmod 6$ are
+$5, 7, 8, 4, 2, 1$, with aggregated weights
+$\mu(5,7,8,4,2,1) = (32, 16, 8, 4, 2, 1)/63$ by
+Proposition~\ref{prop:solvable}(ii) with $1 - 2^{-6} = 63/64$.
+
+\emph{Base mod 9.} By Proposition~\ref{prop:solvable}(i) the base depends only
+on $r \bmod 3$: if $r \equiv 1$ then $3r + 1 \equiv 4 \pmod 9$; if
+$r \equiv 2$ then $3r + 1 \equiv 7 \pmod 9$.
+
+\emph{Assembly.} Multiplying the wheel by the two bases:
+\[
+4 \cdot (5,7,8,4,2,1) \equiv (2,1,5,7,8,4), \qquad
+7 \cdot (5,7,8,4,2,1) \equiv (8,4,2,1,5,7) \pmod 9 .
+\]
+Hence, weighting the two rows by $1/3$ and $2/3$,
+\[
+\pi(s) \;=\; \tfrac{1}{3}\, \mu\bigl(4^{-1} s\bigr) + \tfrac{2}{3}\, \mu\bigl(7^{-1} s\bigr),
+\]
+which evaluates to
+$\pi(1) = (16 + 2\cdot 4)/189 = 8/63$,
+$\pi(2) = (32 + 2\cdot 8)/189 = 16/63$,
+$\pi(4) = (1 + 2\cdot 16)/189 = 11/63$,
+$\pi(5) = (8 + 2\cdot 2)/189 = 4/63$,
+$\pi(7) = (4 + 2\cdot 1)/189 = 2/63$,
+$\pi(8) = (2 + 2\cdot 32)/189 = 22/63$.
+These sum to $1$ and reproduce the marginals
+$\pi(1) + \pi(4) + \pi(7) = 1/3$; stationarity is a direct check.
+\end{proof}
+
+The wheel is heavily biased: $\pi(8)/\pi(7) = 11$. This bias is not noise ---
+it is the exact fingerprint of the geometric halving law wrapped around the
+cyclic group generated by $2$, and (Section~\ref{sec:tempering}) it is the
+shape the Krasikov--Lagarias certificates are made of. Numerically, the closed
+form matches the empirical residue distribution of Syracuse orbits mod
+$9/27/81$ with correlations $0.997/0.997/0.992$ (measured).
+
+\begin{remark}[Why the roulette governs the backward tree]\label{rem:linear}
+The linearization of the edge system $L_k(2)$ obtained by replacing the minimum
+\eqref{eq:min} by the triple mean is, after transposition, the geometric-$w$
+transition operator. Computed exactly at $j = 4, 5, 6$ ($27/81/243$ classes),
+its spectrum is: leading eigenvalue $1$ with eigenvector the roulette measure,
+and \emph{all} other eigenvalues of modulus exactly $1/4 = \lam^{-2}$
+(verified). Linear damping toward the roulette is thus overwhelming; whatever
+heterogeneity survives in the true (min-coupled) eigenvector must be
+re-injected at each level by the min-nonlinearity. This is the mechanistic
+frame for everything that follows.
+\end{remark}
+
+\section{The tempering law}
+\label{sec:tempering}
+
+We now compare the certificate eigenvectors of Section~\ref{sec:kl} with the
+roulette measure. For each depth $k$, aggregate the eigenvector into the $729$
+blocks $m \bmod 3^7$ ($m \equiv 2 \bmod 3$) and regress log block-mass against
+log roulette block-mass (the roulette measure conditioned to classes
+$\equiv 2 \bmod 3$ and renormalized).
+
+\begin{conjecture}[T: Tempering law; measured at five depths]\label{conj:T}
+The Krasikov--Lagarias certificate is a tempered roulette measure:
+\[
+\mathrm{eigvec}_k \;=\; \mathrm{roulette}^{\,\alpha_k}
+\quad\text{(pure power law, no further structure)},
+\qquad \alpha_k \longrightarrow 1 .
+\]
+\end{conjecture}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{r c c c}
+\hline
+$k$ & $\alpha_k$ & $R^2$ & $1 - \alpha_k$ \\
+\hline
+13 & 0.8024 & 0.9927 & 0.1976 \\
+15 & 0.8291 & 0.9949 & 0.1709 \\
+17 & 0.8509 & 0.9963 & 0.1491 \\
+19 & 0.8682 & 0.9973 & 0.1318 \\
+20 & 0.8785 & 0.9977 & 0.1215 \\
+\hline
+\end{tabular}
+\caption{The tempering law at block depth mod $3^7$ (measured). The fit is a
+single-parameter power law; $R^2$ increases with depth.}
+\label{tab:tempering}
+\end{table}
+
+Three measured facts accompany Table~\ref{tab:tempering}.
+
+\begin{enumerate}
+\item \textbf{Residual identification.} Define $\CV_{\mathrm{res}}(k)$ as the
+coefficient of variation of the multiplicative residual
+$\mathrm{eigvec}/\mathrm{roulette}$ over the blocks. Then numerically
+$1 - \alpha_k = \CV_{\mathrm{res}}(k)$ (e.g.\ $0.1976$ vs $0.197$ at $k=13$;
+agreement within $0.003$ at all measured depths). Tempering exponent and
+residual heterogeneity are the same number seen twice.
+\item \textbf{The grand chain.} The measured ratios
+$(1 - \gam_k)/\CV_{\mathrm{res}}(k) = 0.6991, 0.6973, 0.6971, 0.6985$ are
+constant to three decimals, giving the empirical law
+\[
+\gam_k \;=\; 1 - 0.698\,(1 - \alpha_k).
+\]
+Section~\ref{sec:edge} derives the analytic skeleton of the constant $0.698$.
+\item \textbf{Out-of-sample confirmation.} Before the $k = 20$ certificate
+finished, the extrapolations of Tables~\ref{tab:tempering} and
+\ref{tab:theta} were registered as predictions: $\alpha_{20}$ predicted
+$0.878$, measured $0.8785$; cascade root $\theta_{20}$ predicted $0.849$,
+measured $0.8488$. The tempering law also passed a referee test one depth
+earlier: the residual amplitude at $k = 19$ was predicted at $0.131$ from
+$k \leq 17$ data and measured at $0.1333$ with shape correlation $0.9991$.
+\end{enumerate}
+
+Conjecture~T is a statement about a family of finite, exactly defined
+nonlinear eigenproblems; each instance is finitely checkable, and five
+instances have been checked. What is conjectural is the limit
+$\alpha_k \to 1$.
+
+\section{The analytic transfer: the edge-rate theorem}
+\label{sec:edge}
+
+Why should homogenization ($\alpha_k \to 1$) yield full density
+($\gam_k \to 1$)? The bridge is an exact identity satisfied by every edge
+eigenvector, plus an implicit-function computation at the corner
+$(\lam, q) = (2, 1)$.
+
+\begin{proposition}[Min-loss identity; proved]\label{prop:minloss}
+Let $\lam_k$ be the critical value of $L_k$ and $c$ the associated Perron
+eigenvector, so that \eqref{eq:L1}--\eqref{eq:L3} hold with equality. Put
+$S = \sum_{m \in [3^k]} c(m)$ and
+$S_{\min} = \sum_{t \in [3^{k-1}]} \bar c(t)$. Then, exactly,
+\begin{equation}
+1 \;=\; \lam_k^{-2} \;+\; \frac{q_k}{3}\left( \lam_k^{\bet-2} + \lam_k^{\bet-1} \right),
+\qquad
+q_k := \frac{3\, S_{\min}}{S} \in (0, 1].
+\label{eq:minloss}
+\end{equation}
+Moreover $q_k = 1$ iff every refinement triple of $c$ is constant, and $q = 1$
+forces $\lam = 2$, i.e.\ $\gam = 1$.
+\end{proposition}
+
+\begin{proof}
+Sum the edge equalities over all $m \in [3^k]$. The map $m \mapsto 4m$ is a
+bijection of $[3^k]$, so the doubling terms sum to $\lam^{-2} S$. The branch
+map $m \mapsto (4m-2)/3$ is a bijection from $\{ m \equiv 2 \bmod 9 \}$ onto
+$[3^{k-1}]$, and $m \mapsto (2m-1)/3$ is a bijection from
+$\{ m \equiv 8 \bmod 9 \}$ onto $[3^{k-1}]$; hence each branch family
+contributes its weight times $S_{\min}$, giving
+$S = \lam^{-2} S + (\lam^{\bet-2} + \lam^{\bet-1}) S_{\min}$, which is
+\eqref{eq:minloss}. Since $\bar c(t)$ is the minimum of a triple whose mean
+summed over $t$ is $S/3$, we get $q_k \leq 1$ with equality iff all triples are
+flat. Finally, at $q = 1$ the right side of \eqref{eq:minloss},
+$h(\lam) = \lam^{-2} + \frac{1}{3}(\lam^{\bet-2} + \lam^{\bet-1})$, is strictly
+decreasing on $(1, 2]$ (elementary calculus) and $h(2) = \frac14 + \frac13
+(\frac34 + \frac32) = 1$, so $\lam = 2$ is the unique solution.
+\end{proof}
+
+Identity \eqref{eq:minloss} was additionally verified to eight decimals on the
+computed eigenvectors for $k = 5, \ldots, 11$. It says: \emph{the entire gap
+between the Krasikov--Lagarias method and full density is the min-loss
+$1 - q_k$}, the price of knowing branch targets only mod $3^{k-1}$.
+
+\begin{theorem}[Edge rate; proved]\label{thm:edgerate}
+Along the curve \eqref{eq:minloss}, with $\gam = \log_2 \lam$,
+\[
+\left. \frac{d\gam}{dq} \right|_{(\lam, q) = (2, 1)}
+\;=\; \frac{1}{\log(4/3)} \;=\; 3.4761\ldots
+\]
+Consequently, to first order at the edge,
+$1 - \gam \sim 3.4761\,(1 - q)$.
+\end{theorem}
+
+\begin{proof}
+Write $F(\lam, q) = \lam^{-2} + \frac{q}{3}(\lam^{\bet-2} + \lam^{\bet-1}) - 1$.
+At $(2, 1)$:
+\[
+F_q = \tfrac{1}{3}\left( 2^{\bet-2} + 2^{\bet-1} \right)
+    = \tfrac{1}{3}\left( \tfrac34 + \tfrac32 \right) = \tfrac34,
+\qquad
+F_\lam = -\tfrac{2}{8} + \tfrac{1}{3}\left( (\bet-2)\tfrac{3}{8} + (\bet-1)\tfrac{3}{4} \right)
+       = \frac{3(\bet - 2)}{8},
+\]
+using $2^{\bet-3} = 3/8$ and $2^{\bet-2} = 3/4$. Hence
+\[
+\frac{d\lam}{dq} = -\frac{F_q}{F_\lam} = \frac{2}{2 - \bet},
+\qquad
+\frac{d\gam}{dq} = \frac{1}{\lam \log 2} \cdot \frac{d\lam}{dq}
+= \frac{1}{(2 - \bet) \log 2}
+= \frac{1}{\log 4 - \log 3} = \frac{1}{\log(4/3)} . \qedhere
+\]
+\end{proof}
+
+\begin{corollary}[First-order exactness at the edge; measured]\label{cor:ratios}
+The measured ratios
+\[
+\frac{1 - \gam_k}{3.4761\,(1 - q_k)} \;=\; 0.824,\ 0.847,\ 0.873,\ 0.908
+\qquad (k = 13, 15, 17, 19)
+\]
+increase monotonically toward $1$: the finite-$k$ data approach the tangent
+line of Theorem~\ref{thm:edgerate}. In particular the empirical constant
+$0.698$ of Section~\ref{sec:tempering} is a finite-$k$ composite,
+$0.698 = 3.4761 \times (1 - q_k)/\CV_{\mathrm{res}}(k)$, and the transfer from
+homogenization to density exponent is \emph{analytic}: the only open content of
+the program $\gam \to 1$ is $q_k \to 1$.
+\end{corollary}
+
+\section{The proof program: from $\alpha \to 1$ to $\gam \to 1$}
+\label{sec:program}
+
+By Proposition~\ref{prop:minloss} and Theorem~\ref{thm:edgerate}, the chain of
+implications is
+\begin{equation}
+\alpha_k \to 1
+\;\Longleftrightarrow\;
+\CV_{\mathrm{res}}(k) \to 0
+\;\Longleftrightarrow\;
+q_k \to 1
+\;\overset{\text{Thm \ref{thm:edgerate}}}{\Longrightarrow}\;
+\gam_k \to 1
+\;\Longrightarrow\;
+\pi_1(x) \geq x^{1 - \varepsilon} \ \ \forall \varepsilon > 0 .
+\label{eq:chain}
+\end{equation}
+(The first two equivalences are the measured identities of
+Section~\ref{sec:tempering} together with the min--mean linearization: for
+certificate triples, $E[1 - \min/\mathrm{mean}] = c_1 \CV + c_2 \CV^2$ with
+$c_1 \in [1.19, 1.45]$, so $1 - q_k = \Theta(\CV_{\mathrm{top}}(k))$;
+measured.) It remains to control the heterogeneity of the eigenvector. Define,
+for each trit position $p$ of the class label, $\CV_p(k)$ as the mean $\CV$
+over sibling triples of classes differing only in trit $p$; $p = 1$ is the fine
+end, $p = k - 2$ the top. The min-loss parameter is controlled by the top:
+$1 - q_k \approx 1.36\, \CV_{\mathrm{top}}(k)$ (measured). The difference field
+of the eigenvector propagates between adjacent trit scales: a pure trit offset
+$\delta = d \cdot 3^P$ satisfies $4\delta = \delta + 3\delta$ under the
+doubling map (scales $P, P{+}1$) and $4\delta/3 = \delta/3 + \delta$ under the
+branch maps (scales $P{-}1, P$), giving an exact pointwise transport identity
+for differences of $c$ (verified: correlation $1.000000$, mean residual
+$2.8 \times 10^{-4}$ on $15{,}115$ samples at $k = 13$). Averaging over classes
+yields the two-coefficient closure
+\begin{equation}
+\CV_P \;=\; a\, \CV_{P-1} + c\, \CV_{P+1}
+\qquad \text{(fit error} \leq 1.2\% \text{ at } k = 13, 15, 17, 19\text{; measured)}.
+\label{eq:lattice}
+\end{equation}
+
+\subsection{Subcriticality is forced by the defining constant}
+
+\begin{lemma}[Mass conservation at the edge; proved]\label{lem:mass}
+At $\lam = 2$ set $W_0 = \lam^{-2} = \tfrac14$,
+$W_2 = \lam^{\bet-2} = \tfrac34$, $W_8 = \lam^{\bet-1} = \tfrac32$. The row
+masses of the three constraint types \eqref{eq:L1}--\eqref{eq:L3} are
+\[
+W_0 + W_2 = 1 \quad (m \equiv 2 \bmod 9), \qquad
+W_0 = \tfrac14 \quad (m \equiv 5), \qquad
+W_0 + W_8 = \tfrac74 \quad (m \equiv 8),
+\]
+and their average is exactly $1$:
+\[
+3 W_0 + W_2 + W_8 \;=\; \tfrac34 + 3 \cdot 2^{\bet - 2} \;=\; \tfrac34 + \tfrac94 \;=\; 3,
+\qquad\text{precisely because } 2^{\bet} = 3 .
+\]
+\end{lemma}
+
+\begin{proof}
+Direct evaluation; the last equality is $3 \cdot 2^{\bet-2} = 3 \cdot \frac{2^\bet}{4}
+= \frac{9}{4}$ iff $2^\bet = 3$.
+\end{proof}
+
+\begin{corollary}[Subcriticality of the cascade; proved within the closure
+\eqref{eq:lattice}]\label{cor:subcrit}
+Each unit of difference-field mass at trit scale $P$ is redistributed to scales
+$\{P-1, P, P+1\}$ with total weight equal to the row mass of its class
+(Lemma~\ref{lem:mass}, via the offset algebra above); the minimum in
+\eqref{eq:min} is $1$-Lipschitz, so contributes no expansion. Averaging and
+applying the triangle inequality bounds the closure coefficients of
+\eqref{eq:lattice}, after absorbing the self-term, by
+\[
+a + c \;\leq\; 1 .
+\]
+Measured at $k = 20$: $a + c = 0.9955$, the strictness being the measured
+incoherence factor $\approx 0.90$ between the two transport channels.
+\end{corollary}
+
+Corollary~\ref{cor:subcrit} is the conceptual center of the program: the
+identity $2^{\bet} = 3$ --- the defining equation of the $3x+1$ problem ---
+is precisely what pins the average row mass to $1$. The heterogeneity cascade
+of the certificate can therefore \emph{never} grow exponentially: the system
+sits exactly on the conservative line, and the only question is the
+\emph{direction of drift} along it.
+
+\subsection{The source is bounded: fine-end saturation}
+
+\begin{proposition}[Fine-end saturation; measured at nine depths]\label{prop:cv1}
+The finest-level triple CV of the certificate (each depth at its own critical
+$\lam_k$) satisfies
+\[
+\CV_1(k) \;=\; 0.5136 \;-\; 0.337\,(0.910)^{k}
+\]
+with residual $10^{-6}$ across nine depths in $8 \leq k \leq 20$: the
+injection at the fine end converges geometrically to the finite limit
+$\approx 0.514$. The mid-cascade damping ratio $\CV_{P+1}/\CV_P$ is measured
+$\leq 0.86$ uniformly over the interior of the profile.
+\end{proposition}
+
+(At $k = 20$ the formula predicts $\CV_1 = 0.4625$; measured $0.4629$.) Note
+the single rate $0.910$ recurring in three roles --- fine-end saturation,
+per-depth homogenization, and the decay of $1 - q_k$ --- one mechanism, three
+faces (measured).
+
+\subsection{The one remaining statement}
+
+On the conservative line $a + c = 1$ with $c > a$, the decaying solution of
+\eqref{eq:lattice} is $\CV_P \sim \theta^{\,P}$ with root
+$\theta = a/c < 1$: heterogeneity injected at the fine end dies geometrically
+before reaching the top trit, whence
+$\CV_{\mathrm{top}}(k) \lesssim \CV_1 \cdot \theta^{\,k}$ and the chain
+\eqref{eq:chain} closes. The measured root is comfortably below $1$ and
+converging (Table~\ref{tab:theta}).
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{r c c c c}
+\hline
+$k$ & $a$ & $c$ & $a + c$ & $\theta = a/c$ \\
+\hline
+13 &        &        &        & 0.8248 \\
+15 &        &        &        & 0.8360 \\
+17 &        &        &        & 0.8438 \\
+19 &        &        &        & 0.8480 \\
+20 & 0.4706 & 0.5249 & 0.9955 & 0.8488 \\
+\hline
+\end{tabular}
+\caption{Lattice coefficients (measured). The $\theta$ increments shrink by
+$\approx 0.6$ per depth step; extrapolated limit $\theta_\infty \approx 0.85$.
+The $k = 20$ row was predicted out-of-sample ($\theta$ predicted $0.849$,
+measured $0.8488$).}
+\label{tab:theta}
+\end{table}
+
+\begin{openproblem}[Drift direction]\label{open:drift}
+Prove that the closure coefficients of \eqref{eq:lattice} satisfy $a < c$
+uniformly in $k$; equivalently, that $\theta_k = a_k / c_k \leq \bar\theta < 1$
+for all $k$. Together with Lemma~\ref{lem:mass}/Corollary~\ref{cor:subcrit}
+(no exponential growth), Proposition~\ref{prop:cv1} (bounded source), and
+Theorem~\ref{thm:edgerate} (analytic transfer), this yields
+$\gam_k \to 1$, i.e.\ $\pi_1(x) \geq x^{1-\varepsilon}$ for every
+$\varepsilon > 0$.
+\end{openproblem}
+
+Two remarks on the status of this reduction. First, the closure
+\eqref{eq:lattice} is itself a measured (mean-field) step: the exact transport
+identity is pointwise and verified, but its averaged two-coefficient form
+carries a $\leq 1.2\%$ fit error; deriving $(a, c)$ from the weight structure
+of the exact identity is part of the open problem. Second, even the full
+conclusion $\gam \to 1$ is the \emph{density} statement
+$\pi_1(x) \geq x^{1-\varepsilon}$, the ceiling of the Krasikov--Lagarias
+method; it is not the $3x+1$ conjecture, which requires every integer, not
+almost every integer in density exponent.
+
+\section{Honest status and outlook}
+\label{sec:status}
+
+\begin{center}
+\begin{tabular}{p{0.27\textwidth} p{0.66\textwidth}}
+\hline
+\textbf{Proved} &
+Min-loss identity \eqref{eq:minloss} (Prop.~\ref{prop:minloss});
+edge rate $d\gam/dq = 1/\log(4/3)$ (Thm.~\ref{thm:edgerate});
+roulette solvability and closed form mod 9
+(Prop.~\ref{prop:solvable}, Thm.~\ref{thm:mod9});
+mass conservation $3W_0 + W_2 + W_8 = 3$ (Lem.~\ref{lem:mass});
+feasibility $\Rightarrow$ density bound (Krasikov--Lagarias \cite{KL03}). \\
+\hline
+\textbf{Verified} (finite computation) &
+Certificates $k = 13, 15, 17, 19, 20$ with
+$\gam = 0.8624 / 0.8805 / 0.8953 / 0.9069 / 0.9146$ (Thm.~\ref{thm:certs});
+identity \eqref{eq:minloss} to $8$ decimals at $k = 5\ldots11$;
+linear edge spectrum $\{1\} \cup \{|\mu| = 1/4\}$ at $j = 4, 5, 6$
+(Rem.~\ref{rem:linear}); exact pointwise transport identity
+(residual $2.8 \times 10^{-4}$); geometric-$w$ cylinder densities exact
+(Terras \cite{Ter76}). \\
+\hline
+\textbf{Measured} &
+Tempering law $\alpha_k$, $R^2$ (Table~\ref{tab:tempering});
+$1 - \alpha_k = \CV_{\mathrm{res}}(k)$; constant $0.698$;
+edge-rate ratios $0.824 \to 0.908$ (Cor.~\ref{cor:ratios});
+closure \eqref{eq:lattice} and coefficients (Table~\ref{tab:theta});
+$a + c = 0.9955$ at $k = 20$; fine-end saturation (Prop.~\ref{prop:cv1});
+out-of-sample hits at $k = 19, 20$. \\
+\hline
+\textbf{Conjectured} &
+Conjecture T: $\alpha_k \to 1$;
+Open Problem~\ref{open:drift}: $a < c$ uniformly ($\theta_\infty < 1$). \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+
+The picture that emerges is simple to state. The Krasikov--Lagarias certificate
+--- the best known rigorous handle on the density of $3x+1$ convergence --- is
+not an unstructured numerical artifact: it is, to $R^2 > 0.99$ at a billion
+classes, one exactly solvable measure raised to one scalar power. The distance
+of that power from $1$ \emph{is} the distance of the density exponent from $1$,
+through an exchange rate that is an explicit derivative, $1/\log(4/3)$. The
+defining constant of the problem pins the certificate's heterogeneity cascade
+to the conservative line; the source of heterogeneity saturates; damping is
+spectrally overwhelming at the linear level. What is not yet proved is one
+inequality about the direction of drift along the conservative line.
+
+The framework is falsifiable at the next depth: at $k = 21$ it predicts
+$\gam \approx 0.918$, $\theta \approx 0.850$, and a tempering fit with
+$R^2 > 0.9977$.
+
+\subsection*{Reproducibility}
+All certificates, verification logs, and the scripts generating every number
+in this paper are archived in the research dossier accompanying this work
+(directories \texttt{certificates/}, \texttt{scripts/}, \texttt{findings/}).
+
+\subsection*{Acknowledgment of method}
+The computations, fits, and drafts were produced in an extended
+human--AI collaboration; every proved statement above has a self-contained
+proof in the text, independent of that provenance.
+
+\begin{thebibliography}{9}
+
+\bibitem{KL03}
+I.~Krasikov and J.~C.~Lagarias,
+\emph{Bounds for the 3x+1 problem using difference inequalities},
+Acta Arith. \textbf{109} (2003), no.~3, 237--258.
+arXiv:math/0205002.
+
+\bibitem{Lag85}
+J.~C.~Lagarias,
+\emph{The 3x+1 problem and its generalizations},
+Amer. Math. Monthly \textbf{92} (1985), 3--23.
+
+\bibitem{Tao19}
+T.~Tao,
+\emph{Almost all orbits of the Collatz map attain almost bounded values},
+Forum Math. Pi \textbf{10} (2022), e12.
+arXiv:1909.03562 (2019).
+
+\bibitem{Ter76}
+R.~Terras,
+\emph{A stopping time problem on the positive integers},
+Acta Arith. \textbf{30} (1976), 241--252.
+
+\end{thebibliography}
+
+\end{document}

@@ -225,7 +225,7 @@ of the whole K-L system is a single O(CV) correction. (scripts/51_linearization.
 Implicit differentiation of Theorem 12's identity
 1 = lam^-2 + (q/3)(lam^(alpha-2) + lam^(alpha-1)) at the edge (lam, q) = (2, 1)
 gives the exact linear rate
-      1 - gamma ~ (d gamma/d q)|_edge * (1 - q),  d gamma/d q = 3.47614...
+      1 - gamma ~ (d gamma/d q)|_edge * (1 - q),  d gamma/d q = 1/ln(4/3) = 3.47606... (closed form found during paper writing)
 Measured ratios (1-gamma)/(3.4761*(1-q)) at k = 13/15/17/19:
 0.824, 0.847, 0.873, 0.908 -> 1, confirming first-order exactness at the edge.
 Consequence: the empirical constant 0.698 in (1-gamma) = 0.698*CV_res is a
