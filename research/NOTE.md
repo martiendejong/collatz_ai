@@ -419,3 +419,19 @@ REMAINING for a full drift proof: kappa bounded away from 1 uniformly in k
 saturation at a nonzero limit (Prop 23). The gamma->1 chain is now:
 Lemma 24 (proven) + balance (proven) + [kappa < 1 uniform, measured + linked
 to Prop 23] + Thm 19 (proven).
+
+## Proposition 33 (The clipping decomposition of kappa). — VERIFIED, exact identity
+Write Dmin = Dbar + R (Dbar = mean member increment, R = min-correction). Then
+kappa^2 = Var(Dbar)/V + 2cov(Dbar,R)/V + Var(R)/V exactly, and measured on
+cert_k13 (P = 2..7): the ENTIRE attenuation lives in the covariance term
+(2cov/V = -0.170 -> -0.257, growing with depth) while Var(R)/V is negligible
+(0.010-0.028). The correction is antisymmetric: E[R | Dbar>0] = -0.026,
+E[R | Dbar<0] = +0.026 (P=7) — textbook one-sided clipping from the sandwich
+inequality Dx_{argmin(new)} <= Dmin <= Dx_{argmin(old)}. Effective law:
+   Dmin ~ (1 - lambda_clip) * Dbar + small noise,
+lambda_clip = -cov/Var(Dbar) = 0.085, 0.105, 0.122, 0.137 at P = 2, 4, 6, 7.
+KAPPA-LEMMA REDUCTION: kappa < 1 uniformly <= lambda_clip >= lambda_min > 0,
+which follows from non-degenerate triple gaps — i.e. from CV saturation at a
+nonzero limit (Prop 23). The drift proof chain is now:
+Lemma 24 + balance identity (both proven) + clipping slope > 0 (one-sided
+local inequality, all ingredients measured) + Thm 19 (proven).
