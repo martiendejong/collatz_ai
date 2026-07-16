@@ -587,3 +587,17 @@ therefore be spread across ~(gain excess)/2 ACTIVE positions; the width of
 the financing frontier is the new constrained resource. (A resulting wbar
 bound requires careful append/top boundary bookkeeping — flagged as the next
 derivation, not yet claimed.)
+
+## CORRECTION to Theorem 42 (R941-950). — the ledger clause is RESTRICTED
+The per-position |gains - sheds| <= 2 ledger holds ONLY WITHIN a halving run
+(consecutive halvings, no intervening append): odd steps SHIFT bottom-anchored
+coordinates, so across appends the fixed-coordinate ledger accumulates over
+DIFFERENT physical digits. Falsified by direct measurement: max per-position
+|gains-sheds| = 113 over full random orbits (21-99 on climb segments). The
+frontier-width consequence is RETRACTED. What SURVIVES of Thm 42: the
+forbidden transitions (0->2, 1->1, 2->0 per halving, measured between
+consecutive halvings: exact) and the within-run ledger (|Delta| <= 2 per run,
+runs have mean length 2). Lesson (fourth of its kind): bottom-anchored
+coordinates are not sweep-invariant across appends; all per-position claims
+must specify the coordinate frame. The financing analysis continues with
+run-local constraints + the append-shift as an explicit part of the automaton.
