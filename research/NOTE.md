@@ -497,3 +497,15 @@ divergence question becomes: can an orbit maintain forever the
 prefix-parity IS the orbit's own running parity (s3(x) = x mod 2): the
 self-reference of the clockwork, now in exact automaton form. This is the
 sharpest exact formulation of the long shot.
+
+## Lemma 37 (Alternating-sum law; the problem closes inside base 3). — PROVED
+Since 3 == -1 (mod 4): x mod 4 = alternating trit sum (exact); generally
+x mod 2^j = sum_i d_i * (3^i mod 2^j), with weights periodic of period
+2^{j-2} (the clockwork, reversed). Verified 5000/5000 (mod 4 and mod 8).
+With Theorem 36, the ENTIRE Collatz dynamic is internal to base 3: append-1,
+parity-sweep shed, w-decisions as weighted trit sums. The single remaining
+non-stream ingredient is INTEGRALITY (finite top). The conjecture, final
+exact form: no infinite self-consistent trit-stream statistics compatible
+with sustained climb can be realized by a finite-top stream. This is the
+'per-orbit rigidity / archimedean bridge' missing theorem, now surrounded by
+exact machinery (Thms 25, 36, this lemma) on all sides.
