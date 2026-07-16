@@ -618,3 +618,19 @@ population n2 <= length forces (wbar - 1) <= (1 - wbar*log3(2)), i.e.
 wbar <= 2/(1 + log3 2) ~ 1.226 — strictly stronger than the classical
 wbar < log2(3) ~ 1.585. Deriving this cleanly (with exact boundary
 bookkeeping, learned from two prior sign traps) is the campaign's next goal.
+
+## Theorem 44 (Run pairing). — PROVED + VERIFIED
+In every division sweep of an even number, each carry-1 run opens with
+exactly one (0,1) shed and closes with exactly one (1,1) gain (final carry
+is 0 since s3(x) is even). Hence #(0,1) = #(1,1) = #runs per sweep, exactly
+(0/2000 violations). Consequence: the (0,1)/(1,1) channels cancel pairwise;
+the NET drainage of every sweep lives entirely in the (0,2)-vs-(1,0) channel
+difference — sharpening all financing analysis to one channel pair.
+
+## Block conclusion R926-975: all static ledgers are tautologically closed.
+Exact structure proven this block: Thms 40-44. The binding content of the
+divergence question is DYNAMIC REALIZABILITY (which (c,d)-sequences are
+achievable across successive sweeps: per-slot subshift with forbidden
+transitions, coupled through carry chains), plus the flagged wbar <= 1.226
+bound whose derivation requires the run/slot machinery with exact boundary
+bookkeeping. The long shot's frontier is now precisely these two items.
