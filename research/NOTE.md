@@ -571,3 +571,19 @@ shed-created supply. Remaining channel: (1,1)-gains (promote 1->2), fed by
 appends and (0,2)/(1,0) events — the full three-reservoir flow network
 (n0, n1, n2) is exact and closed; its perpetual-financing analysis is the
 next stage of the long shot.
+
+## Theorem 42 (The position ledger and forbidden transitions). — PROVED + VERIFIED
+Per bottom-anchored position, the digit performs a constrained walk on the
+path {0,1,2} under successive halvings: transitions 0->{0,1}, 1->{0,2},
+2->{1,2} only — 0->2, 1->1, 2->0 are FORBIDDEN (proof: q in {demote(d),
+promote(d)} and d=1 always moves; measured: exactly 0.000 each).
+Gains move the digit up, sheds move it down; hence PER POSITION, over any
+time window: cumulative gains - cumulative sheds = elevation change in
+[-2, +2] — pointwise, every position, forever. Same-channel gain gaps >= 2
+(measured P(gap=1) = 0 exactly; mean gap 6.45). Financing structure: a
+double gain (0->1->2) forces a double demote (two sheds) before the position
+can gain again — the three-phase re-arming cycle. Divergence financing must
+therefore be spread across ~(gain excess)/2 ACTIVE positions; the width of
+the financing frontier is the new constrained resource. (A resulting wbar
+bound requires careful append/top boundary bookkeeping — flagged as the next
+derivation, not yet claimed.)
