@@ -1126,3 +1126,37 @@ large halving (3-4) adjacent to runs of 1s — and are NOT rotations of
 balanced/Sturmian words, contrary to the limma-repetition expectation
 from Lemma 30 (which governs B-growth extremals, a different functional).
 Geometry of clearance words: open.
+
+## Proposition 65 (Bushell no-go + THE ADDITIVE DRIFT LAW). — MEASURED,
+## scripts/75-series experiments, R1591-1610
+(1) NO-GO #8: finite-horizon cone absorption fails. Delta(m) curves for
+spike heights 1e6/1e12/1e24 remain separated by exactly the initial
+height differences — there is NO m with T^m(cone) of bounded Hilbert
+diameter. Birkhoff/Bushell strictness at fixed horizon is dead.
+(2) What replaces it: at large Hilbert distance the operator removes an
+ADDITIVE chunk per sweep: c = 1.343/1.357/1.393 (k=9/11/13, spike start,
+converging to ln 4 = 1.3863 — the halving tax), c = 1.5-1.8 for random
+starts. Uniform (mildly increasing) in k. Near-ray multiplicative rate
+IMPROVES with k: 0.745/0.678/0.638.
+
+## Proposition 66 (THE TROPICAL RECESSION DECOMPOSITION of wall 1).
+## — MEASURED + structural, R1611-1625
+The large-amplitude limit of the K-L operator in log space is its
+recession map, a pure min-max (tropical) map:
+   out[i] = max( x[i4] - ln4 ,  min3(x[children]) + w_{2|8} ).
+Long iteration (1200 sweeps): oscillation drifts additively down to a
+FINITE PLATEAU — 6.25 (k=9), 7.5 (k=11) — the tropical periodic core —
+and stays there forever. The tropical map does not contract to zero;
+the smooth (log-sum-exp) part of the true operator takes over below the
+plateau scale and contracts multiplicatively (0.64-0.87).
+CONSEQUENCE — wall 1 splits into two clean sub-problems:
+(a) TROPICAL DRIFT (osc > core): additive decrease per sweep of a finite
+    min-max map — max-plus spectral theory; per-k decidable by cycle-time
+    / Karp minimum-cycle-mean analysis on the K-L digraph; the measured
+    rate ln 4 suggests the top path is forced through W0-edges (-ln 4
+    each). Candidate theorem, combinatorial, no analysis needed.
+(b) SMOOTH SWITCHING CONTRACTION confined to the BOUNDED core (osc <= ~8
+    uniformly-ish in k): the switching/near-tie mechanism (Props 23, 61)
+    now only needs to work on a compact oscillation window, not globally.
+This is the sharpest shape wall 1 has had: combinatorics outside a
+bounded set, one local contraction estimate inside it.
