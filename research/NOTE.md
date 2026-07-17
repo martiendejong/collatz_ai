@@ -668,3 +668,19 @@ The Open Lemma's variational quantity is now measured and agrees with the
 statistical one: the directional low-pass holds in fixed-point response form.
 Campaign XVII (R976-1075) complete: digit-sum sector closed with proofs
 (Prop 45 no-go), variational front advanced to quantitative agreement.
+
+## Campaign XVIII updates (R1076-1175):
+1. THEOREM 17 EXTENDED to period 14: the complete integer cycle list through
+   14 odd steps remains {1, -1, -5, -17} (exhaustive, both signs).
+2. THEOREM 29 BASIS EXTENDED to 10^7: tau = sigma for all odd 1 < n <= 10^7,
+   zero violations (max tau observed 246) — all stopping classes with
+   violation threshold < 10^7 are now covered; the exceptional set retreats
+   further into the deep convergent zone.
+3. Variational slope uniformity (R1076-1090): intra-triple attenuation in
+   [0.81, 0.92] at k = 9, 11, 13 — uniformly below 1 at every tested depth
+   (noisier than the statistical kappa but consistent).
+4. NO-GO (continuity link, R1091-1105): coarse-binned resampling does NOT
+   reproduce kappa (0.978 vs 0.861) — the attenuation is carried by FINE
+   correlations; kappa is not a functional of any coarse histogram. Third
+   independent confirmation: only exact structure works; the uniformity
+   proof must go through the exact identity, not distributional convergence.
