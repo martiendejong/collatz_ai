@@ -879,3 +879,20 @@ nearest-critical siblings (5,3), (13,...?) form a spectrum of laboratories.
    congruence certificate of divergence, with the alternators as mirrored
    shadow numbers), and the (x,p) table with the (5,3) near-critical
    laboratory (Prop 54).
+
+## Theorem 55 (Universality of the perfect dice across the (x,p) table).
+## — VERIFIED EXACTLY for (5,3) + general proof sketch, R1351-1365
+For the base-p family (p|n -> n/p; else (xn+y_r)/p^w, y_r < p forced):
+the refill law is EXACTLY P(w=j) = (1-1/p)(1/p)^{j-1} and consecutive w's
+are EXACTLY independent — verified exhaustively for (5,3) mod 3^13 (ratios
+1.0000, I = 0.000000 bits), matching (3,2) (Thms 20/27). General proof: x is
+a unit mod p^j, so n -> xn+y_r permutes residues; the forced class leaves
+the higher p-digits uniform. Hence: THE DICE ARE THE SAME IN EVERY CELL of
+the two-parameter table. Also the append property generalizes: xn+y_r
+appends digit y_r in base x — minimal coupling is table-wide.
+SHARPENED PROOF CONSTRAINT: since fairness, independence and carry-freeness
+are universal, the convergence of (3,2) CANNOT be explained by them. What
+distinguishes cells is ONLY (i) the drift log_p(x) - p/(p-1) and (ii) the
+comma ladder of log_p(x). Any proof of Collatz must therefore consume the
+drift and the specific Diophantine structure of log2(3) — nothing else
+differs. The proof-search space, reduced by one more axis.
