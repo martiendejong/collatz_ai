@@ -1193,3 +1193,23 @@ REMAINING for the full tropical wall-1 statement: the mirror BOTTOM lemma
 children — the spreading requirement mirrored) + the smooth-regime
 switching estimate on the bounded core. Wall 1's tropical half is DONE
 in principle: exact combinatorial statements, both verified, one proved.
+
+## Proposition 69 (BOTTOM TRANSPORT AND THE TROPICAL DRIFT FORMULA).
+## — measured + structural, R1666-1690
+(i) RESIDUE RIGIDITY: all three children of a branch coord share one base
+t, hence share branch/pure status (t mod 9 common to the triple), and by
+induction ALL residue-level status along descent chains is choice-free:
+the min-player's freedom (pick any child) is an ILLUSION at residue level
+— "some child" = "all children" there. Consequently the pure child-edge
+descent web dies by the SAME peeling as Lemma 67 (<= k-1 steps).
+(ii) The sustained bottom is therefore a MIXED cycle: long w2-branch
+chains (descent -0.2877/step) renewed through P-edge reinjections; its
+exact rate is the value of a mean-payoff game (min transports lows, the
+operator's max picks the worse term). Measured: beta = -0.2811/sweep
+(k=11) = w2 + 0.0066 (~1% renewal cost); argmin sits at pure coords
+(5 mod 9) via P-edges, 250/250 sweeps.
+(iii) THE DRIFT FORMULA: net tropical oscillation drift (triple-free
+regime) = ln4 - |beta| = 1.3863 - 0.2811 = 1.1052 — matches the measured
+net drift 1.1052 to FOUR decimals. Wall 1's tropical half is now fully
+quantified: top decays at exactly ln4 (Thm 68, proved), bottom descends
+at game value beta (computable by policy iteration), drift = ln4 + beta.
