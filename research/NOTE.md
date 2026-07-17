@@ -1280,3 +1280,16 @@ eigenvector ratios compete with the g-gap (the competition condition,
 Prop 23). Core strictness = transport combinatorics (Lemma 71) + sibling
 competition (eigen-data). The two ingredients are now provably BOTH
 necessary — the proof shape is fixed.
+
+## Observation 73 (THE ITERATED REINTERPRETATION CHAIN — M. de Jong's
+## question), R1796-1810
+R(n) = binary string of n read as ternary; the chain n, R(n), R(R(n))...
+isolates the pure conversion toll (each step = one ternary->binary
+conversion; the free direction is trivial: ternary(R(n)) = binary(n)
+verbatim). Results: unique fixed point 1 (no cycles <= 10^4); length
+growth -> log2(3) = 1.5850 exactly; bit fraction -> 0.5000; block-2
+entropy -> 1.9999/2.0; successive-string agreement -> 0.504 (= random);
+base-5 digits of deep iterates uniform. THE PATTERN LIVES EXACTLY ONE
+STEP: total at one conversion (the free transplant), erased at two (the
+toll). Confirms and sharpens Thm 22 / the Conversion Thesis: the toll is
+a perfect pseudo-randomizer, and Collatz iterates precisely this toll.
