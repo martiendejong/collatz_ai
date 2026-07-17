@@ -896,3 +896,22 @@ distinguishes cells is ONLY (i) the drift log_p(x) - p/(p-1) and (ii) the
 comma ladder of log_p(x). Any proof of Collatz must therefore consume the
 drift and the specific Diophantine structure of log2(3) — nothing else
 differs. The proof-search space, reduced by one more axis.
+
+## Theorem 56 (The three regimes; Collatz is the unique mystery cell of
+## base 2). — PROVED (one line each), instigated by M. de Jong's (2,3) question
+For the proper (x,p) family:
+(a) x < p: TRIVIALLY CONVERGENT, pointwise: (xn + y_r)/p^w <= (xn+p-1)/p < n
+for n > (p-1)/(p-x) — every step strictly decreases; all orbits reach the
+finite core in linear time. Verified: (2,3) has exactly the fixed points
+{1} and {2} (both on the 3-2=1 touch; the 9/8 home is dynamically
+unreachable since each multiply forces at least one divide: s >= k).
+NO dice, no conjecture — one line.
+(b) p < x < p^{p/(p-1)}: THE CONJECTURE ZONE — drift negative but the map is
+pointwise non-monotone: descent is true statistically, unprovable pointwise.
+(c) x > p^{p/(p-1)}: divergent-type.
+THE CENSUS OF THE MYSTERY DIAGONAL: p=2: 2 < x < 4 gives x = 3 ONLY —
+COLLATZ IS THE UNIQUE CONJECTURE-ZONE CELL OF BASE 2. p=3: x in {4, 5};
+p=5: x in {6, 7}; p=7: x in {8, 9, 10 (gcd!), 11}... finitely many per p,
+none as isolated as (3,2). The famous problem is the smallest, loneliest
+inhabitant of the entire mystery diagonal — the minimal cell where
+statistics and pointwise truth first come apart.
