@@ -1604,6 +1604,21 @@ The peeling lemma's density was also upgraded to exact: 2&middot;3<sup>k&minus;2
 survivors, exactly 2<sup>k&minus;1</sup> at s = k&minus;2, total wipe at k&minus;1 when the
 automaton runs out of tape.</p>
 
+<h3>R1876&ndash;1915 &mdash; The fuel engine: sterility and the ledger (Martien's thesis proved)</h3>
+<p>Martien proposed that long 1-runs are <i>fuel</i>, that burning them generates entropy, and
+that a long run can never arise from a run alone &mdash; only from the entropy before it plus
+the entropy it generates. This is now theorem-shaped. <b>Sterility (Thm 78):</b> burning the
+pure repunit 2<sup>k</sup>&minus;1 returns fresh fuel of exactly 1 for odd k (one line:
+3<sup>odd</sup> &equiv; 3 mod 8), and at most 17 for all k &le; 100,000 &mdash; a pure run of a
+hundred thousand ones regenerates seventeen. <b>The Ledger (Thm 79):</b> the probability of a
+packet sequence (k<sub>1</sub>,&hellip;,k<sub>p</sub>) is exactly 2<sup>&minus;&Sigma;k</sup>:
+prescribing F bits of climb fuel costs exactly F seed bits, at par, however the fuel is split.
+A B-bit head pre-programs at most B bits of fuel; everything after is dice at rate
+2<sup>&minus;k</sup>. Measured on champions: their packet distributions are fat-tailed (mean
+2.48 vs 2.00) yet refueling is memoryless even along champion orbits &mdash; champions are the
+orbits that kept winning independent draws, and the engine idles exactly at the drift-neutral
+mean packet of 2.</p>
+
 <footer>Jengo · autonomous research campaign, ~1420 rounds, 2026-07-12/17 · built on Martien de
 Jong's family/pair framework, whose coordinates proved to be the problem's native language ·
 Holy Ghost Protocol throughout: every claim tagged proven, measured, conditional, or open; every

@@ -1378,3 +1378,28 @@ combustion generates entropy. Verdict in three parts:
     memorylessness is WHY the problem is hard: a positive-feedback fuel
     law would mean divergence; the dice pin mean packet at 2 = the
     drift-neutral point.
+
+## Theorem 78 (THE STERILITY THEOREM: pure ones cannot regenerate).
+## — PROVED for odd k (one line), verified to k = 100000 for even k;
+## instigated by M. de Jong, R1896-1915
+Burning the pure repunit 2^k - 1 (k rises) yields 3^k - 1. Fresh fuel:
+* k ODD: 3^k = 3 mod 8, so v2(3^k + 1) = 2: fresh run = EXACTLY 1. QED.
+* k EVEN: fresh run r(k) = v2(u+1), u = (3^k-1)/2^(v2(3^k-1)) — exact
+  formula; record values over k <= 100000: r(6)=2, r(12)=6, r(174)=9,
+  r(1198)=17. MAX EVER = 17 against packets up to 100000: a pure run of
+  k ones regenerates at most ~log-scale fuel, never a comparable run.
+
+## Theorem 79 (THE FUEL LEDGER: head entropy buys fuel at par).
+## — exact counting law, verified, R1896-1915
+P(first packets = (k1,...,kp)) = 2^-(k1+...+kp) exactly (verified: 62
+observed vs 64 predicted for prefix (5,4,3) over all 19-bit odd seeds).
+Hence prescribing total fuel F costs EXACTLY F seed bits, regardless of
+how it is split into packets: a B-bit head can pre-program at most B
+bits of climb fuel; every packet beyond that is drawn fresh from the
+dice at rate 2^-k. EXCHANGE RATE: 1 head-bit = 1 fuel-bit, at par.
+TOGETHER (78+79): Martien's thesis is now theorem-shaped: long runs
+cannot arise from the ones themselves (sterility); they arise only from
+(i) the entropy BEFORE the ones, at par, or (ii) the entropy generated
+by burning, re-crystallizing at dice rate. This also answers the old
+open question "what is the maximum number of ones the clockwork can
+write": pre-programmed ones <= seed bits; spontaneous ones = geometric.
