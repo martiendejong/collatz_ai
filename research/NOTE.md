@@ -836,3 +836,23 @@ RECOMMENDED ATTACK ORDER (recorded): prove funnel-avoidance for huge-x maps
 FIRST — any technique that does it (p-adic equidistribution along
 piecewise-affine orbits) transfers toward Collatz. The easiest flank of the
 symmetric wall.
+
+## Proposition 54 (The base-3 column; instigated by M. de Jong's "7n+2/3").
+## — MEASURED + structural, R1331-1345
+The natural base-p Collatz family: p|n -> n/p; else n -> (xn+y_r)/p^w with
+y_r forcing p | xn+y (y depends on n mod p — for p=3: y in {1,2}).
+Critical multiplier: drift = log_p(x) - p/(p-1); critical x = p^{p/(p-1)}
+(base 3: x_c = 3^{3/2} = 5.196).
+(a) THE (5,3) SYSTEM — the family's nearest-to-critical convergent member:
+drift -0.0350 trits/step, TWELVE TIMES closer to critical than Collatz's
+-0.415 bits. All tested orbits fall into the cycle {4, 7} — which lives on
+5^2 vs 3^3 (25 vs 27, gap 2): the (5,3)-family's Catalan-pair analog. The
+"(5,3) conjecture" (all orbits reach {4,7}) is a HARDER margin than Collatz
+— the family's most dangerous convergent laboratory. Comma ladder:
+5^2/3^3, 5^13/3^19, 5^15/3^22, 5^28/3^41...
+(b) THE (7,3) SYSTEM — the base-3 mirror of 5n+1: drift +0.271, small cycle
+{4,5,8,10,19} coexists with exploding orbits (7 and 11 pass 2^600).
+(c) The entire two-parameter (x,p) table inherits the full theory: commas =
+convergents of log_p(x), cycles on near-touches, fair p-adic dice,
+convergent/divergent split at the critical line. Collatz = (3,2); its
+nearest-critical siblings (5,3), (13,...?) form a spectrum of laboratories.
