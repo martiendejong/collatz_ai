@@ -212,3 +212,28 @@ channel — sustained self-exemption from proven fairness.
 THE ASYMMETRY: cycles are localized (finite checks per site + one gap bound
 would finish them); divergence is delocalized (no site to check — the wall
 is the pointwise/measure-zero gap itself).
+
+## 12. "Infinitely many numbers, so some number must satisfy all conditions?"
+## (M. de Jong Q) — No, and where the 'winner' actually lives
+(a) CYCLES: the conditions are EQUATIONS, not lottery tickets. Infinity of
+candidates is powerless against a modular obstruction: there are infinitely
+many integers, yet none satisfies 2^n = 3^m + 1 beyond 4 (proved today,
+mod 8 kills ALL infinitely many candidates at once). For the remaining
+cycle sites, the standard count: expected number of divisibility miracles
+= sum over sites of ~1/gap-scale, which CONVERGES — infinity supplies
+candidates logarithmically, the conditions cut exponentially.
+(b) DIVERGENCE: per candidate n, the model probability of beating the fair
+coin forever is exactly 0 (limit of 2^-cT). Infinitely many candidates,
+each with probability zero: countable additivity gives expected winners
+= 0. The infinite-candidates heuristic argues FOR the conjecture.
+(c) THE DEEP PART — where the winner DOES live: at every finite depth T,
+integer satisfiers of the first T conditions EXIST (survivor classes,
+S(T) ~ 1.834^T, never empty). But they are DIFFERENT integers each time,
+running off to infinity, and their limit exists — in Z_2, not in Z. The
+pure-climb example: the k-condition satisfier is 2^k - 1; the limit is
+-1 = ...111 in Z_2, not a positive integer. In the 2-adic completion,
+divergent orbits are ABUNDANT (almost every 2-adic point diverges). The
+compactness winner exists — as a pseudo-orbit, real in one receiver,
+not dually finite. THE CONJECTURE IS EXACTLY: the limit always escapes
+the integers. Infinity does produce the winner your intuition demands —
+one substrate up, outside the countable thread.
