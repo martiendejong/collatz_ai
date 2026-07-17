@@ -1483,3 +1483,19 @@ Empirically r(k) ~ 1.07 log2(k). RIGOROUS: r(k) = v2-type valuation of
 PROVABLE: a pure run of k ones can never return more than logarithmic
 fuel, with an effective constant. The engine's no-feedback law is
 Baker-effective, not just empirical.
+
+## Observation 85 (THE EXIT GAUNTLET AND THE REPUNIT GATES), R2031-2050
+(1) The last 15 odd steps of every orbit have a fixed non-dice signature
+    (j=4: 16.6% vs 6.25%; j=1 depleted to 39.5%) — the deterministic
+    funnel that contaminated the naive census (Obs 83).
+(2) THE FINAL-GATE LAW (exact): the last odd value before the 2^j tower
+    must satisfy 3m+1 = 2^j: m = (2^j-1)/3 with j EVEN (2^j = 1 mod 3),
+    and j not = 0 mod 6 (else 3 | m and m is unreachable — multiples of
+    3 never occur mid-orbit). The gates are exactly the BASE-4 REPUNITS:
+    5 = 11_4 (93.9% of all orbits), 85 = 1111_4 (2.3%), 341 = 11111_4
+    (3.7%), 5461, 21845, 349525 (traces) — repunit lengths j/2 not
+    divisible by 3. EVERY Collatz orbit ends through a base-4 repunit
+    gate; the missing gates (21, 1365, 87381 = lengths 3,6,9) are the
+    mod-3 shadow of Thm 41-style exclusions. The problem that begins
+    with binary repunits (fuel) provably ENDS in quaternary repunits
+    (gates): the +1 anchor family closes the loop.
