@@ -699,3 +699,19 @@ kappa_in -> kappa_out along the cascade is descending with fixed point < 1
 all instruments cohere). What remains is the stability proof of a
 one-dimensional fixed point with all coefficients measured to 0.06% — the
 smallest formulation the gamma->1 problem has ever had.
+
+## Proposition 48 (The comma-cycle correspondence; conjectured by M. de Jong,
+## verified same session). — PROVED (elementary) + VERIFIED
+For each near-touch pair (3^k, 2^s) with gap d = 2^s - 3^k > 0, the map
+n -> (3n+d)/2^w has FREE cycles with exactly k odd steps and s halvings:
+the cycle equation n*(2^s - 3^k) = d*B cancels to n = B, so EVERY composition
+shape yields a cycle (subject only to n odd). Verified:
+- 3n+13 (limma 256/243): SEVEN distinct cycles — starters 211, 227, 251,
+  259, 283, 287, 319; explicit: 211 -> 323 -> 491 -> 743 -> 1121 -> 211.
+- 3n+5 (32/27): cycles at 19, 23, 29, 31 (19 -> 31 -> 49 -> 19).
+- 3n+7 (16/9): cycles at 5, 7, 11.
+The 3n+d cycle zoo IS the comma ladder made flesh: each convergent of
+log2(3) endows its gap-value d with a full family of C(s-1,k-1) free cycles.
+Conversely 3n+1's cycle scarcity is the statement that its d=1 sits ONLY on
+the Catalan pairs (Mihailescu). One ladder — music, CST margins, B-growth
+extremals, cycle homes — now also generates the variant-cycle taxonomy.
