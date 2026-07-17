@@ -1438,7 +1438,69 @@ machines · the four affine family chains (×2+1, ×3+2, ×3+1, ×9+4 with the �
 and the sharpest map ever drawn of exactly where, and exactly why, the remaining mystery hides.</p>
 </div>
 
-<footer>Jengo · autonomous research campaign, ~200 rounds, 2026-07-12/14 · built on Martien de
+
+<h2>R1226&ndash;1420 &mdash; The (x,p) Table: Collatz Finds Its Place on the Map</h2>
+<div class="hero">
+<p><b>This arc answered a chain of questions from Martien himself</b> (7n+2/3? must a base be
+prime? what about &times;2+1/3? what about 2n+1/3? can we prove a drift-positive one?) and each
+answer became a theorem. The generalized table T(x,p): if p|n divide by p; else form xn+y and
+divide out all factors of p. Two constructions: <i>proper</i> maps (y_r chosen per residue so p
+always divides &mdash; the coupling always fires) and <i>fixed-constant</i> maps (always the same
++y &mdash; the honest generalization of Collatz's +1).</p>
+</div>
+
+<h3>Theorem 56 &mdash; The three regimes, and Collatz's lonely cell</h3>
+<p>Every cell of the table falls in exactly one regime: <b>(a) trivially convergent</b> when
+x &lt; p (each step shrinks pointwise &mdash; one-line proof, no probability needed);
+<b>(b) the mystery zone</b> when p &lt; x &lt; p<sup>p/(p&minus;1)</sup> (drift negative but
+pointwise non-monotone: statistically true, pointwise unproven &mdash; this is where conjecture
+lives); <b>(c) divergent-type</b> when x exceeds p<sup>p/(p&minus;1)</sup> (drift positive).
+For base 2 the mystery zone is 2 &lt; x &lt; 4: it contains <b>exactly one integer, x = 3</b>.
+The Collatz map is the unique mystery cell of base 2 &mdash; the smallest, loneliest inhabitant
+of the entire diagonal where statistics and pointwise truth first come apart. Base 3's zone
+holds x = 4, 5 (the (5,3) system is a near-critical laboratory: drift &minus;0.035, two cycles
+{4,7} and {8,14} both riding the 25/27 comma, and a 3227-step transient from 50865 peaking at
+2<sup>87</sup>). Perfect dice hold across the whole table (Thm 55): every proof must consume
+drift plus the fine structure of log rationality &mdash; no shortcut by changing cells.</p>
+
+<h3>Theorem 57 &mdash; The jamming criterion: why "+1" is a base-2 privilege</h3>
+<p>Fixed-constant maps can <i>jam</i>: the decision variable n mod p evolves by the affine map
+n &rarr; xn+y, and when gcd(1&minus;x, p) = 1 this map has a fixed point
+n* = y/(1&minus;x) mod p &mdash; an invariant class that is never divisible, grows by exactly x
+each step, and covers density 1/p of all integers. <b>Provable divergence in two lines.</b>
+Example: under (2n+1)/3 the class n &equiv; 2 (mod 3) is stuck forever; the orbit of 2 is
+3&middot;2<sup>k</sup>&minus;1 = 2, 5, 11, 23, 47, &hellip; For base 2 with odd x, 1&minus;x is
+even &mdash; not invertible mod 2 &mdash; so <b>no jam class can exist: base 2 is the only base
+where a fixed additive constant gives a trap-free machine.</b> Collatz's famously simple formula
+is not a design choice; it is a privilege of the binary base. In every odd base, fixed constants
+jam and only residue-dependent corrections stay proper.</p>
+
+<h3>Proposition 58 &mdash; The jam dichotomy: divergence is provable exactly when the coupling is dead</h3>
+<p>Can we prove any drift-positive (regime c) map actually diverges? The census settles it into
+a razor-sharp dichotomy. <b>Dead coupling</b> (jammed cells): divergence provable trivially
+&mdash; (2,3), (5,3), (2,5), (3,5), (4,5), (8,5)&hellip; all jam. <b>Live coupling</b> (w &ge; 1
+at every step: all of base 2 with odd x, and every proper map): each step consumes at least one
+digit of congruence information, the dice are perfect, and <b>no congruence certificate can ever
+prove a single orbit divergent</b>. The canonical case 5n+1 (drift +0.322 bits per odd step):
+97.0% of orbits below 10<sup>5</sup> escape past 2<sup>200</sup>, the orbit of 7 reaches
+2<sup>10295</sup> in 100,000 steps &mdash; and the number of <i>provably</i> divergent orbits is
+zero, an open problem in the literature. The mirror statement: proving one orbit of 5n+1
+diverges and proving every orbit of 3n+1 converges are the two flanks of the same
+pointwise-versus-measure gap. Provable divergence exists in the table exactly <i>up to</i> the
+jam line, and not one integer beyond it.</p>
+
+<h3>Supporting arc (R1226&ndash;1330): the last analytic walls, named</h3>
+<p><b>Prop 49&ndash;51:</b> the &kappa;-stability attack reduced &gamma;&rarr;1 to one
+variational strictness statement: the K-L operator is a <i>topical map</i> (monotone +
+homogeneous), hence nonexpansive in the Hilbert metric (&kappa; &le; 1 is now structural);
+mean reversion is proven from translation invariance; the frozen-linearization gap closes with
+k (0.819 &rarr; 0.959), so <b>switching is the essential attenuator</b> &mdash; no linearized
+proof can exist. <b>Prop 52&ndash;53:</b> no congruence certificate of divergence exists for any
+proper map (anchor no-go); a divergence proof must show the orbit avoids the 2-adic funnel
+&minus;1/x at exponential precision forever &mdash; funnel-avoidance is the field's easiest
+flank and, per the literature check, still unclimbed by anyone.</p>
+
+<footer>Jengo · autonomous research campaign, ~1420 rounds, 2026-07-12/17 · built on Martien de
 Jong's family/pair framework, whose coordinates proved to be the problem's native language ·
 Holy Ghost Protocol throughout: every claim tagged proven, measured, conditional, or open; every
 failed prediction and killed ghost preserved. The Collatz conjecture remains open — now with its

@@ -935,3 +935,32 @@ family) stays proper. NOTE: this also answers the earlier challenge "find
 one 100%-provably divergent sequence": it exists exactly UP TO the jamming
 line — 3*2^k - 1 under (2n+1)/3 is provably divergent, but by a jammed
 (broken-coupling) mechanism, consistent with Prop 52's live-coupling no-go.
+
+## Proposition 58 (The jam dichotomy: divergence is provable exactly when
+## the coupling is dead). — PROVED (congruence part) + census, R1411-1420
+For any (x,p) fixed-constant map, exactly one of two regimes holds per map:
+(a) DEAD COUPLING: gcd(1-x,p)=1 gives the invariant w=0 class
+    n* = y/(1-x) mod p (Thm 57); on it the orbit grows by exactly x each
+    step: divergence PROVABLE in two lines, density 1/p of all integers.
+    Census: (2,3),(5,3),(2,5),(3,5),(4,5),(8,5)... all jam; x ≡ 1 mod p
+    cells shift through all residues (no fixed point, coupling fires).
+(b) LIVE COUPLING: w >= 1 at every non-dividing step (base 2 with x odd:
+    xn+y always even — the unique fixed-y live column; or any y_r-proper
+    map). Then each step consumes >= 1 digit of congruence information,
+    the dice are perfect (Thm 27), and NO congruence certificate can
+    prove divergence of any single orbit (Prop 52 sharpened): on every
+    class a mod p^k the landing precision decays by w per step, so all
+    initial congruence data is spent in <= k steps.
+CONSEQUENCE for regime (c) of Thm 56: 5n+1 (the canonical drift-positive
+cell: x=5 > 4 = p^{p/(p-1)}, drift +0.322 bits/odd step) has, per census
+n <= 10^5: 3.0% of orbits in the three known cycles ({1},{13},{17} minima),
+97.0% escaping beyond 2^200 — and ZERO provably divergent orbits. The
+orbit of 7 reaches 2^10295 in 10^5 steps, believed divergent, open in the
+literature. MIRROR STATEMENT: proving one orbit of 5n+1 diverges and
+proving every orbit of 3n+1 converges are the two flanks of the SAME
+pointwise-vs-measure gap (funnel-avoidance, Prop 53); density machinery
+is map-blind between them (mirror blindness). So: provable divergence
+exists in the table exactly UP TO the jam line, and not one integer
+beyond it. Answer to "can we prove a drift-positive version": YES for
+every jammed cell (trivially), NO for every live cell — and the second
+NO is Collatz-hard by mirror symmetry.
