@@ -1213,3 +1213,25 @@ regime) = ln4 - |beta| = 1.3863 - 0.2811 = 1.1052 — matches the measured
 net drift 1.1052 to FOUR decimals. Wall 1's tropical half is now fully
 quantified: top decays at exactly ln4 (Thm 68, proved), bottom descends
 at game value beta (computable by policy iteration), drift = ln4 + beta.
+
+## Proposition 70 (ANATOMY OF THE CORE CONTRACTION). — MEASURED, R1691-1740
+On the bounded core (the smooth regime where wall 1's open estimate
+lives), two-point contraction mu = 0.85-0.87 decomposes as:
+(i) The oscillation TOP rides the sigma-orbit on pure coords (argmax
+    residue census: 5 mod 9 dominant, never 2), and at branch transits it
+    is WELL-SUPPORTED: a child's g sits within 5-7% of max in 88-100% of
+    transits. The top erodes slowly (~6%/sweep), not by deep mixing bites.
+(ii) The BOTTOM rises ~6-9%/sweep; the AND-condition (both terms at min)
+    rarely holds at the argmin; argmin-switching at bottom coords is
+    modest (0-14%).
+(iii) Top decay + bottom rise sum to 1 - mu: the contraction is
+    DISTRIBUTED across the level-set bands, while the extreme points
+    themselves are locally protected.
+CONSEQUENCE for the proof shape: strictness on the core is a BAND
+phenomenon — argmax/argmin chain arguments (which powered the tropical
+side, Thm 68) cannot work here; the proof must track level-set masses
+(a Lyapunov functional over bands: each band leaks mass toward the
+middle at a rate bounded by balance x alignment statistics). Mechanism
+now fully mapped; the quantitative band-leak estimate is THE remaining
+open kernel of wall 1 — everything else (tropical top ln4 = Thm 68,
+bottom game = Prop 69, peeling = Lemma 67) is proved or computable.
