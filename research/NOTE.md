@@ -1353,3 +1353,28 @@ Scan to 10^7 (records through 8400511, 685 steps):
     ([1,1,3,7]) both END in seven ones; 6649279 ends in six.
 (3) GEM: record 3732423 = 1110001111001111000111 is a perfect BINARY
     PALINDROME (runs 3-3-4-2-4-3-3). No explanation; filed as curiosity.
+
+## Observation 77 (THE FUEL-ENTROPY THESIS, tested — M. de Jong),
+## R1876-1895
+Thesis: orbits consolidate bits into long 1-runs; the runs are FUEL whose
+combustion generates entropy. Verdict in three parts:
+(1) FUEL: CORRECT and exact. A trailing run of k ones = exactly k rise
+    steps x3/2 - the only climb mechanism. Champion orbits are fat-tailed
+    in fuel packets: mean 2.481 vs geometric 2.000; k=6 packets 3x
+    enriched (4.7% vs 1.6%). Control (300 random 20-bit orbits): mean
+    2.018, geometric to within noise - the enrichment is pure SELECTION:
+    champions ARE the orbits that drew heavy fuel, repeatedly.
+(2) REFUEL IS DICE, not dynamics: on champion orbits themselves,
+    P(next packet >= 4 | current >= 4) = 0.250 vs unconditional 0.234 -
+    memoryless. There is NO consolidation law: mean max-run along the
+    champion orbit 3.87 vs 3.70 random control (mild selection tilt
+    only). Long orbits are not CAUSED by a merging mechanism; they are
+    the orbits that kept winning independent draws.
+(3) ENTROPY: CORRECT. Consuming a packet of k writes ~k log2(3) fresh
+    top bits at near-maximal entropy (block-2 entropy 1.862/2.0 along
+    the champion orbit) - the toll. Thermodynamic summary: the orbit is
+    an engine burning 1-run fuel into entropy; a fraction of the exhaust
+    re-crystallizes into new fuel at exactly the dice rate 2^-k. This
+    memorylessness is WHY the problem is hard: a positive-feedback fuel
+    law would mean divergence; the dice pin mean packet at 2 = the
+    drift-neutral point.
