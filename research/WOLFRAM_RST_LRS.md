@@ -92,3 +92,25 @@ underneath (no channel exists) — the noise is irreducible FOR ANY receiver
 of one base, while the full two-base observer sees pure clockwork. The
 conjecture itself is then: even the signal's own thread cannot exploit its
 determinism against the interface — self-decoherence.
+
+## 7. Is multi-layer resonance impossible? No — it is QUANTIZED (M. de Jong Q)
+What the corpus proves is sharper than impossibility:
+- GENERIC (broadband) cross-substrate coherence is impossible: exact fair
+  dice, zero storage, MI = 0 — a generic signal cannot hold both receivers.
+- But RESONANCES EXIST: cycles ARE cross-substrate standing waves, coherent
+  in both frames forever. They are possible ONLY at the quantized resonance
+  points of the interface — the comma ladder (convergents of log2 3), with
+  widths set by the gap (Prop 48: every gap-d endows 3n+d with a full
+  resonance family). Perfect "free" resonances require exact touch
+  (difference 1) and those are FINITE — exhausted by Catalan/Mihailescu.
+- The ground state {1,4,2} is itself a resonance (living on the 4-3=1 touch).
+  The conjecture is therefore NOT "no resonance" but: THE GROUND RESONANCE
+  IS GLOBALLY ATTRACTING — everything decoheres INTO the one permitted mode.
+- Dynamical-systems name for all of this: MODE-LOCKING / Arnold tongues.
+  The comma ladder is the Arnold-tongue spectrum of the 2:3 coupling; the
+  cycle zoo of 3n+d is its tongue structure, measured.
+LRS LAW (proposed): between incommensurable layers, resonance exists only on
+the discrete comma-spectrum of the coupling constant (its continued-fraction
+convergents); broadband coherence is impossible; systems drain into the
+lowest available resonance. Resonance across layers is not forbidden —
+it is spectral.
