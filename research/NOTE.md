@@ -1293,3 +1293,27 @@ base-5 digits of deep iterates uniform. THE PATTERN LIVES EXACTLY ONE
 STEP: total at one conversion (the free transplant), erased at two (the
 toll). Confirms and sharpens Thm 22 / the Conversion Thesis: the toll is
 a perfect pseudo-randomizer, and Collatz iterates precisely this toll.
+
+## Observation 74 (SEED ANATOMY OF TOTAL SEQUENCE LENGTH — the anchor
+## trichotomy; M. de Jong's question), R1811-1835
+Census of all 20-bit seeds, total stopping time:
+(1) Trailing ones (2-adic closeness to -1): mean length rises LINEARLY,
+    +6.2 steps per extra trailing one (0 ones: 132.9; 14 ones: 216.9).
+    Martien's intuition correct ON AVERAGE.
+(2) But records are NOT the max-trailing seeds: top-10 record holders
+    have 0-8 trailing ones (837799, the champion at 524 steps: only 3);
+    the pure repunit 2^20-1 scores 178 vs record 524, barely above the
+    mean 139. Reason = "the pattern lives one step" (Obs 73): trailing
+    ones buy exactly ONE deterministic rise-run; after it the toll rolls
+    fresh dice. Records = moderate trailing structure + repeated lucky
+    re-entries into rise-rich regions, which no seed structure can buy.
+(3) THE ANCHOR TRICHOTOMY (mod 2^14 conditioning, global mean 139.1):
+    near -1  (repunit anchor):   mean 230.2  -> LONGEST on average
+    near +1  (trivial-cycle anchor): 128.2   -> exactly TYPICAL, because
+        the +1-word (3n+1)/4 is the drift-neutral typical word (2
+        halvings per rise) - proximity to the cycle buys nothing!
+    near -1/3 (alternator anchor): 66.2     -> SHORTEST (3n+1 = 0 mod
+        2^m: one rise then m halvings - the crash word).
+    The three rational anchors of the (3,2) cell thus label the three
+    speed classes of seeds: climb / typical / crash. Seed 2-adic
+    geometry determines the first word; the dice do the rest.
