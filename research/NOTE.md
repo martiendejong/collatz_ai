@@ -990,3 +990,33 @@ the p-adic geometry of rational anchors, present in every cell. What
 DIFFERS per cell is only which anchors rise vs fall (regime, Thm 56) and
 whether an anchor lands on a positive integer (then it is a cycle: +1
 for 3n+1, {1},{2} for (2,3), {4,7},{8,14} comma-anchors for (5,3)).
+
+## Proposition 60 (Cross-base anchor spectroscopy). — VERIFIED (laws L2/L3
+## proved for prime denominators), R1436-1460, instigated by M. de Jong
+Scan of all main anchors (3n+1 ladder 1/(2^j-3), 5n+1 ladder 1/(2^j-5),
+(7,3) anchors -y/4) across prime bases q = 2..29 (+131):
+L1  UNIVERSALS: -1 is the repunit (digit q-1) in EVERY base; +1 trivial
+    everywhere; -1/2 is the "middle-digit repunit" (constant digit
+    (q-1)/2) in every odd base.
+L2  PERIOD LAW: tail period of an anchor with denominator d in base q is
+    ord_q(mod d) (elementary but organizing): constant <=> q = 1 mod d;
+    alternator (period 2) <=> q = -1 mod d for prime d.
+L3  COMPLEMENTARITY: every period-2 anchor -1/d (d prime) has its two
+    digits summing to EXACTLY q-1 in every base (proved: block
+    B = (q^2-1)/d = q(c-1)+(q-c) with c=(q+1)m/d). The binary alternator
+    01 (sum 1) is the smallest instance.
+L4  CYCLOTOMIC SCATTERING: the 3n+1 anchor ladder has denominators
+    2^j-3 = 5, 13, 29, 61, 125, 253...; the first prime base seeing rung
+    j as constant is 11, 53, 59, 367, 251, 1013 — each rung lives in its
+    own arithmetic progression q = 1 mod (2^j-3). Double-rung bases exist
+    (131 sees rungs 5 AND 13) but grow like the lcm: no base sees the
+    whole ladder. Prime-splitting table verified: 31 and 61 see {3,5};
+    53 is the first to see 13; 59 the first to see 29.
+MORAL: the cross-base structure of the problem lives ENTIRELY in the
+anchors — generic orbit values carry exactly zero cross-base information
+(Thm 22) — and the anchor spectrum is cyclotomic: each prime base is a
+spectral filter passing exactly the rungs with d | q-1. Base 2 is the
+unique base that engages ALL rungs dynamically yet renders none of them
+simple: it interrogates the whole ladder precisely because it resolves
+none of it. Spectroscopy metaphor exact: bases = filters, anchors =
+lines, splitting governed by residues mod d (cyclotomic arithmetic).
