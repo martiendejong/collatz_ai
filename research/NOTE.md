@@ -1342,3 +1342,14 @@ All 44 total-stopping-time records <= 837799, examined binary + ternary:
     #3 511935 = 1111100111110111111 (16 of 19 bits ones, 6 trailing),
     #7 156159 (9 trailing), #9 106239 (8 trailing), #14 26623 =
     110011111111111 (11 trailing ones of 15 bits).
+
+## Observation 76 (ONE-RUN BLOCKS ACROSS RECORD LADDERS), R1861-1875
+Scan to 10^7 (records through 8400511, 685 steps):
+(1) Blocks of >= 5 ones appear in 31% of records vs 22% in same-length
+    random odds - MILD enrichment; 511935's perfect [5,5,6] triple is
+    exceptional, not typical. The driving structure remains the TRAILING
+    block (Obs 74); interior blocks help only via later re-entries.
+(2) The champions after 837799: 1723519 (runs [2,1,1,2,7]) and 8400511
+    ([1,1,3,7]) both END in seven ones; 6649279 ends in six.
+(3) GEM: record 3732423 = 1110001111001111000111 is a perfect BINARY
+    PALINDROME (runs 3-3-4-2-4-3-3). No explanation; filed as curiosity.
