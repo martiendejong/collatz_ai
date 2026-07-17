@@ -237,3 +237,26 @@ compactness winner exists — as a pseudo-orbit, real in one receiver,
 not dually finite. THE CONJECTURE IS EXACTLY: the limit always escapes
 the integers. Infinity does produce the winner your intuition demands —
 one substrate up, outside the countable thread.
+
+## 13. Which numbers can we NOT prove are in the tree of 1? (M. de Jong Q)
+(a) INDIVIDUALLY: none. Membership is semi-decidable with SHORT certificates:
+if n is in the tree, its own orbit is the proof, and it has length
+<= c*(n) log2(n) (laggard edge, c* ~ 18 at 2^24, slowly growing toward ~29)
+— a polynomial-size certificate. Every number ever named has been proven in
+(all n < 2^71 verified). There is no known 'hard number' — only numbers
+nobody has run yet. If the conjecture is true, EVERY number has a short
+membership proof.
+(b) NON-membership is worse than hard: not even semi-decidable by running
+(a divergent orbit never confesses). No number can ever be proven OUT by
+computation alone — the asymmetry of the tree.
+(c) UNIFORMLY (one proof for infinitely many at once): the classes lacking
+a depth-k uniform proof are exactly the SURVIVOR classes mod 2^k
+(S(k) ~ 1.834^k count, density 0.917^k -> 0): the ones-rich residues
+(63 mod 64 and kin), the shadow set of the rational phases (-1, -5, -17),
+mean ones-fraction 0.653. The uniformly-unproven set shrinks in density
+with every k but never empties at finite depth — and proving it empties in
+the limit for every thread IS the conjecture.
+(d) The wavefront picture: at proof-budget t, the unproven region is
+exactly above the laggard edge (log2 n > t / c*). The tree is provable
+number by number, at logarithmic cost each; what cannot yet be bought at
+any finite budget is the single sentence 'and this works for all of them'.
