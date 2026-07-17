@@ -1,0 +1,788 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{principle}[theorem]{Principle}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Anchor macro: every structural claim in this essay carries one of these,
+% pointing into the companion corpus.
+\newcommand{\anchor}[1]{\textup{[#1]}}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Ztwo}{\mathbb{Z}_2}
+\newcommand{\vtwo}{v_2}
+\newcommand{\vthree}{v_3}
+\newcommand{\Info}{\mathrm{I}}
+\newcommand{\Ent}{\mathrm{H}}
+\newcommand{\CV}{\mathrm{CV}}
+
+\title{The $3x+1$ problem as interface physics:\\
+two substrates, quantized resonance, and the limits of proof}
+
+\author{Martien de Jong \and Jengo (AI collaboration)}
+
+\date{July 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is a discussion paper, but of an unusual kind: every structural claim in it
+is backed by a theorem, an exact identity, or an exhaustive computation from a
+companion corpus on the $3x+1$ map \cite{Note2026, Forgetful2026, CstComma2026,
+Tempering2026, Drift2026, GammaOne2026}. We propose reading the map as the
+\emph{minimal coupling of two substrates}: a $2$-adic substrate in which halving
+is clean, and a $3$-adic substrate in which the odd step is a pure digit append
+--- the unique carry-free member of the $3n+d$ family. Each substrate alone is
+completely integrable; all difficulty is concentrated at the interface, whose
+coupling constant is the irrational relation $2^{\alpha}=3$. From this reading
+four theses follow, each anchored in proof rather than analogy. (1) The map's
+celebrated pseudo-randomness is a \emph{theorem}, not an observation: refills
+are exactly fair, the macro-step law factorizes exactly, storage is exactly
+zero, and cross-base mutual information vanishes --- randomness is what one
+substrate's observer sees of clockwork coherent in the other, and noise is a
+relation between incommensurable receivers, not a property of the signal.
+(2) Cross-substrate coherence is not impossible but \emph{quantized}: cycles
+are standing waves living only on the ladder of continued-fraction convergents
+of $\log_2 3$ (Arnold tongues of the $2{:}3$ coupling), a correspondence made
+flesh by the verified cycle zoo of the $3n+d$ family ($3n+13$, sitting on the
+Pythagorean limma $256/243$, has exactly seven free $5$-step cycles).
+(3) Wolfram's irreducibility thesis must be refined in both directions: the
+ensemble level is \emph{more} reducible than his picture suggests (exactly
+solvable), while the pointwise level resists all reduction \emph{provably};
+moreover the zero-storage results weigh against the standard (Conway-style)
+mechanism for undecidability of this instance. (4) The two failure modes of the
+conjecture obey opposite ledgers --- cycles are localized and spectral,
+divergence is delocalized and diffuse --- and this asymmetry is mirrored in
+logic: membership in the tree of $1$ has short certificates of length
+$O(\log n)$, while non-membership is not even semi-decidable by computation.
+The hypothetical ``infinite winner'' demanded by compactness intuition does
+exist --- but in $\Ztwo$, not in $\Z$: the conjecture is exactly the statement
+that the limit always escapes the integers. We close with an honest ledger of
+what is proved, what is structural template, and the three walls that remain.
+\end{abstract}
+
+\section{The two-substrate reading}
+\label{sec:substrates}
+
+\subsection{A map with two homes}
+
+The Syracuse form of the Collatz map sends an odd integer $n$ to
+$T(n) = (3n+1)/2^{\vtwo(3n+1)}$. Sixty years of work have treated this as one
+dynamical system on one space. The reading we develop here --- and which the
+companion corpus turns from metaphor into mathematics --- is that it is better
+seen as \emph{two} exactly solvable systems and one hard \emph{interface}.
+
+Write an integer simultaneously in base $2$ and in base $3$. The two halves of
+the map then live in different worlds:
+
+\begin{itemize}[leftmargin=2em]
+\item \textbf{The $2$-adic substrate.} Halving is a pure shift in binary: the
+binary digit sum $s_2$ is invariant, and the branching decision (how many
+halvings $w$ follow an odd step) is read off the low binary bits. The map's
+entire control flow --- the parity word --- is $2$-adic. By the Terras
+correspondence, depth-$r$ index patterns occupy exactly one residue class
+modulo $2^{\text{bits used}}$, so pattern densities are \emph{exact}, not
+asymptotic \anchor{Note, Thm.~10}, \cite{Terras1976}.
+\item \textbf{The $3$-adic substrate.} The odd step is invisible complexity in
+base $2$ (a multiplication with carries) but trivial in base $3$: $3r+1$
+\emph{appends the trit} $1$, with zero propagation into the digits of $r$, so
+the ternary digit sum obeys $s_3 \mapsto s_3+1$ exactly \anchor{Note,
+Thm.~25}. Halving in base $3$ is likewise an exact automaton: a top-down
+parity sweep with a six-entry shed table \anchor{Note, Thm.~36}, and even the
+branch condition closes inside base $3$, since $x \bmod 2^j$ is an explicit
+periodic-weight trit sum \anchor{Note, Lem.~37}.
+\end{itemize}
+
+So each substrate, taken alone, is clean: the map is an odometer in one world
+and a clockwork in the other. Where, then, does sixty years of difficulty
+live?
+
+\subsection{Each substrate alone is exactly solvable --- and therefore empty}
+
+The corpus contains two no-go results, one per substrate, and together they
+answer the question with unusual precision.
+
+On the $2$-adic side: \emph{no function of the residue $n \bmod 2^j$ can be a
+strict Lyapunov certificate at any depth $j$} \anchor{Note, Thm.~11}. The
+proof is the sharpness of the shadowing bound: the residue class of $-5$ mod
+$2^j$ admits, at every depth, a consistent macro-step continuation returning
+to the class of $-5$ with value multiplied by $9/8 > 1$. The negative cycles
+of the map are proof obstructions for the whole class of congruence-state
+methods; any certificate must use archimedean information.
+
+On the $3$-adic side: after an entire campaign that produced the exact
+division automaton and a family of exact conservation laws --- the top tax
+\anchor{Note, Thm.~40}, the zeros ledger \anchor{Note, Thm.~41}, run pairing
+\anchor{Note, Thm.~44}, the slot lifecycle \anchor{Note, Thm.~43} --- the
+sector was proved \emph{completely integrable}: every static ledger and every
+digit-sum currency in the append/sweep automaton closes tautologically by
+conservation, and no Lyapunov function exists in this sector either
+\anchor{Note, Prop.~45}.
+
+This pair of results deserves to be stated as the structural heart of the
+two-substrate reading:
+
+\begin{principle}[Integrable substrates, hard interface]
+\label{prin:interface}
+Each substrate of the $3x+1$ map is completely integrable, and precisely for
+that reason carries no proof: its conservation laws close on themselves. All
+content of the conjecture lives at the interface between the substrates,
+whose coupling constant is the irrational relation $2^{\alpha} = 3$
+(i.e.\ $\alpha = \log_2 3 \notin \mathbb{Q}$).
+\end{principle}
+
+The phrase ``coupling constant'' is not decorative. The identity $2^\alpha=3$
+is literally what pins the interface to criticality: at the edge of the
+Krasikov--Lagarias system the average row mass is \emph{exactly} $1$ because
+$3/4 + 3\cdot 2^{\alpha-2} = 3$ \anchor{Note, Lem.~24}, and the offset-mass
+flows up and down the $3$-adic scale ladder balance exactly, $3/16 = 3/16$
+\anchor{Note, Prop.~32(i)}. The defining equation of the problem is precisely
+the statement that the system sits on the conservative line: neither substrate
+wins for free.
+
+\subsection{Minimality: $3n+1$ is the weakest coupling that still couples}
+
+Within the family $3n+d$ ($d$ odd), the choice $d=1$ is distinguished twice
+over, and both distinctions are theorems.
+
+First, the carry characterization: $3n+1$ is the \emph{unique} base-$3$-local
+member of the family. For every other offset, $3r+d$ carries or borrows into
+the digits of $r$ with geometrically distributed depth (for $3r-1$, the borrow
+depth law is exactly $P(\text{depth}=j) = 2/3^j$) \anchor{Note, Thm.~25}. Only
+$d=1$ touches the ternary clockwork with a bare append --- the minimal
+possible contact.
+
+Second, the pair law: consecutive segment endpoints within a family satisfy
+$x' = 3x+2$, hence $x'/2 = 3(x/2)+1$; the guaranteed merge structure of the
+Collatz graph exists for the multiplier $3$ and for \emph{no other} map $cn+1$
+\anchor{Note, Thm.~2}.
+
+The convergent map is thus the minimally coupled and maximally local member of
+its family. This inverts the usual intuition that $3n+1$ is a generic
+representative made hard by accident: it is the \emph{extremal} member, the
+weakest coupling that still connects the two substrates --- and, empirically
+and conjecturally, the one that converges. The reading suggested by the whole
+corpus is that these two facts are the same fact.
+
+\section{Randomness from determinism as a theorem}
+\label{sec:randomness}
+
+\subsection{Three grades of deterministic pseudo-randomness}
+
+Wolfram's \emph{A New Kind of Science} \cite{Wolfram2002} made Rule 30 the
+emblem of randomness generated by simple deterministic rules. But the epistemic
+status of that randomness is empirical: the center column of Rule 30 passes
+statistical tests, and no proof of any strong randomness property is known.
+Rule 110 sits differently: its interesting property --- universality --- is
+proved \cite{Cook2004}, and its randomness is incidental. The $3x+1$ map, we
+claim, occupies a third grade, strictly above both for this purpose:
+\emph{its randomness is a theorem}. Specifically:
+
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Exact fairness.} The set of odd $n$ whose first $r$ successive
+ladder refills (trailing-ones depths after each full burn) are all $\geq j$
+has density \emph{exactly} $(2^{-(j-1)})^r$: successive refills are exactly
+independent fair geometric draws at density level \anchor{Note, Thm.~20}.
+\item \textbf{Exact factorization.} Exhaustively over odd $n < 2^{22}$, the
+within-step joint law of (trailing ones $k$, post-burn halvings $w$)
+factorizes exactly: $\Info(k;w) = 0.000000$ bits and $P(w \mid k) = 2^{-w}$
+for every $k$, so $P(k,w) = 2^{-k}2^{-w}$ \anchor{Note, Thm.~27}.
+\item \textbf{Zero storage.} The mutual information between refill depths
+along macro-orbits, $\Info(k_0; k_d)$ for $d=1,2,3$, is $0$ to within
+$3\times 10^{-6}$ bits against an entropy of $1.9375$ bits: the macro-automaton
+has zero channel capacity at density level \anchor{Note, Thm.~22}.
+\item \textbf{Cross-base blindness.} The apparent coupling
+$\Info(n \bmod 9;\, w_{\mathrm{next}})$ vanishes as the $2$-adic modulus
+grows: it was finite-modulus leakage, and the true cross-base mutual
+information is zero \anchor{Note, Thm.~27}.
+\end{itemize}
+
+These are counted quantities, not estimated ones. The density-level stochastic
+model of the map is \emph{exactly} independent fair geometric dice with no
+measurable correction at any level; every hiding place for density-level
+structure is closed \anchor{Note, Thm.~27; Forgetful}.
+
+\subsection{The mechanism: noise as inter-receiver incommensurability}
+
+What makes this more than a curiosity is that the corpus also identifies the
+\emph{mechanism}, and the mechanism is the interface of
+Section~\ref{sec:substrates}. The ``randomness'' seen in the $2$-adic frame is
+the $2$-adic reading of structure that is perfectly coherent in the $3$-adic
+frame: an append-only clockwork \anchor{Note, Thm.~25}, driven at the top by a
+Sturmian rotation governed by the irrationality of $\log_2 3$ \anchor{Note,
+Prop.~38}. Below the interface sits a rational odometer (perfectly periodic
+bit-clocks); above it, an irrational rotation; their product, read in either
+single-base frame, is exact fair dice. The incommensurability of the coupling
+constant $2^\alpha = 3$ \emph{is} the noise source.
+
+This suggests a definition that we state as a proposal, because its
+mathematical content here is proved while its generality is not:
+
+\begin{principle}[Noise as a relation]
+\label{prin:noise}
+Noise is not a property of a signal; it is a relation between receivers.
+Determinism in substrate $A$ appears as randomness in receiver $B$ exactly
+when their bases are incommensurable. In the $3x+1$ instance this is
+quantitative: the fairness is exact at ensemble level \anchor{Note,
+Thms.~20, 27}, and the anti-storage theorem \anchor{Note, Thm.~22} shows no
+bounded single-base receiver can exploit the determinism underneath ---
+there is no channel --- while the full two-base observer sees pure clockwork.
+\end{principle}
+
+Under this reading the conjecture itself acquires a striking form: even the
+orbit's \emph{own thread} cannot exploit its determinism against the
+interface. Convergence is self-decoherence.
+
+\section{Quantized resonance: cycles on the comma ladder}
+\label{sec:resonance}
+
+\subsection{Not ``no coherence'' but ``spectral coherence''}
+
+Section~\ref{sec:randomness} might suggest that cross-substrate coherence is
+simply impossible: exact fair dice, zero storage, zero mutual information.
+But that would overstate what is proved, and the overstatement would miss the
+most beautiful structure in the problem. What the theorems exclude is
+\emph{generic}, broadband coherence: a typical signal cannot hold both
+receivers. Coherent objects nonetheless exist --- cycles. A cycle is a
+standing wave at the interface: periodic, hence coherent in the $2$-adic frame
+(its parity word repeats) and in the $3$-adic frame (its trit-stream
+statistics repeat), forever.
+
+Where can such standing waves live? The cycle equation for a shape with $k$
+odd steps and $s$ total halvings reads
+\[
+n \,(2^{s} - 3^{k}) \;=\; B(\text{shape}), \qquad B > 0
+\text{ a sum of positive terms,}
+\]
+so an integer cycle forces $2^s - 3^k$ to be small and positive relative to
+$B$: the ratio $s/k$ must be a near-best rational approximation of
+$\alpha = \log_2 3$ \anchor{Note, Thm.~5}. The permitted sites are the
+continued-fraction convergents of $\log_2 3$ --- in musical language, the
+ladder of \emph{commas}: $2^2/3^1$ (the touch $4-3=1$), $2^5/3^3 = 32/27$,
+$2^8/3^5 = 256/243$ (the Pythagorean limma), $2^{19}/3^{12}$ (the comma
+proper), and so on. Cycles are not forbidden; they are \emph{quantized}. The
+dynamical-systems name for this phenomenon is mode-locking: the comma ladder
+is the Arnold-tongue spectrum \cite{Arnold1965} of the $2{:}3$ coupling.
+
+\subsection{The comma--cycle correspondence, made flesh}
+
+If this spectral picture is right, it should be \emph{constructive}: sitting a
+map exactly on a rung of the ladder should produce cycles in abundance. It
+does, and this is a theorem with a verified zoo attached. For each near-touch
+pair $(3^k, 2^s)$ with gap $d = 2^s - 3^k > 0$, the map $n \mapsto (3n+d)/2^w$
+has \emph{free} cycles with exactly $k$ odd steps and $s$ halvings: the cycle
+equation $n(2^s-3^k) = dB$ cancels to $n = B$, so every composition shape
+yields a cycle, subject only to parity --- $\binom{s-1}{k-1}$ shapes per rung
+\anchor{Note, Prop.~48}. Verified instances:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+map & rung of the ladder & gap $d$ & free cycles (odd starters) \\
+\midrule
+$3n+7$ & $2^4/3^2 = 16/9$ & $7$ & $5,\ 7,\ 11$ \\
+$3n+5$ & $2^5/3^3 = 32/27$ & $5$ & $19,\ 23,\ 29,\ 31$ \\
+$3n+13$ & $2^8/3^5 = 256/243$ (limma) & $13$ &
+$211,\ 227,\ 251,\ 259,\ 283,\ 287,\ 319$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The map $3n+13$, sitting on the limma, has exactly \emph{seven}
+distinct free $5$-step cycles; explicitly,
+$211 \to 323 \to 491 \to 743 \to 1121 \to 211$. The notorious cycle zoo of the
+$3n+d$ family is not a zoo at all: it is the comma ladder made flesh, each
+convergent of $\log_2 3$ endowing its gap value $d$ with a full resonance
+family.
+
+\subsection{Why $3n+1$ is poor: the free resonances are exhausted}
+
+Conversely, the cycle \emph{scarcity} of $3n+1$ is the statement that $d=1$
+sits only on the exact touches: integrality in the cycle equation is automatic
+iff $|2^{s} - 3^{k}| = 1$. By Mih\u{a}ilescu's theorem (Catalan's conjecture)
+\cite{Mihailescu2004} the difference-$1$ pairs are exhausted by
+$(k,s) = (1,2)$ and $(2,3)$: exactly the trivial cycle $\{1,4,2\}$ and the
+$-5$ cycle. The two free cycles arithmetic can give, it has given
+\anchor{Note, Thm.~5, Cor.}.
+
+For the cases actually needed, full Catalan is a luxury: elementary
+congruences suffice, and the observation is old. Modulo $8$, $3^m + 1$ is
+$2$ or $4$, never $0$, so $2^n = 3^m + 1$ has no solution with $n \geq 3$
+--- one line kills all infinitely many candidates at once \anchor{Note,
+\S12}. And $3^m = 2^n + 1$ forces $m$ even, whence
+$(3^{m/2}-1)(3^{m/2}+1) = 2^n$ gives $9 = 8+1$ only. This last case --- that
+$(8,9)$ is the final pair of consecutive $3$-smooth numbers --- was proved by
+Levi ben Gershon (Gersonides) in 1343, in \emph{De numeris harmonicis},
+answering a question of the composer Philippe de Vitry about which pairs of
+harmonic numbers can differ by one \cite{Gersonides1343}. The exhaustion of
+the free resonances of the $2{:}3$ interface is, fittingly, a result born in
+music theory --- the same ladder that governs why a circle of twelve fifths
+misses seven octaves by a comma.
+
+The ground state $\{1,4,2\}$ is itself a resonance, living on the touch
+$4 - 3 = 1$. The conjecture is therefore \emph{not} ``there is no resonance''
+--- that is false, the trivial cycle is one --- but:
+
+\begin{principle}[The conjecture as a ground-state statement]
+The ground resonance is globally attracting: every orbit decoheres into the
+one permitted mode. Between incommensurable substrates, coherence exists only
+on the discrete comma spectrum of the coupling constant; broadband coherence
+is impossible; and released systems drain into the lowest available
+resonance.
+\end{principle}
+
+\subsection{The same ladder governs the stopping-time structure}
+
+That the comma ladder is the problem's true skeleton --- not merely its cycle
+bookkeeping --- is confirmed from an independent direction. Terras'
+coefficient-stopping-time conjecture (that $\tau(n) = \sigma(n)$ for $n>1$)
+was verified exhaustively for all stopping classes with $\tau \leq 24$
+($81{,}119$ classes) and all odd $1 < n \leq 10^7$; the smallest safety margin
+observed is $2.02$, and the extremal classes concentrate at
+$(u,j) = (5,8)$ --- the limma again \anchor{Note, Props.~28, 29}. A CST
+violation in class $(u,j)$ requires $n \leq b/(2^j - 3^u)$, which explodes
+exactly at the convergents of $\log_2 3$; with the five-line bound
+$b/2^j < u/3$ the reduction becomes unconditional and extends CST to
+$\tau \leq 4700$ \anchor{CstComma, Cor.~6.2}. Even the growth of the extremal
+numerators is comma-governed: $B(t) \sim 1 + t/8$, one unit per repetition of
+the limma word $(5,8)$ \anchor{Note, Lem.~30}. Cycle exclusion and CST are
+one wall seen from two sides: effective rational approximation of $\log_2 3$
+--- Baker territory \cite{Baker1966, Rhin1987}.
+
+\section{Wolfram's irreducibility thesis, refined}
+\label{sec:wolfram}
+
+Wolfram presents the Collatz problem as a poster child of computational
+irreducibility, with the suggestion --- backed by Conway's universality
+theorem for the generalized class \cite{Conway1972} --- that the instance may
+be undecidable \cite{Wolfram2002}. The corpus forces a refinement of this
+picture in \emph{both} directions at once, and the refinement is more
+interesting than either verdict alone.
+
+\subsection{The ensemble level is more reducible than Wolfram's picture}
+
+Irreducibility, in Wolfram's usage, admits ``pockets of reducibility.'' What
+the corpus shows is stronger: at ensemble (density) level the $3x+1$ map is
+not a pocket but \emph{exactly solvable}. The stationary roulette measure has
+closed form (mod $9$: $\pi(1,2,4,5,7,8) = (8,16,11,4,2,22)/63$); refills are
+exactly fair \anchor{Note, Thm.~20}; the macro-step law factorizes exactly
+\anchor{Note, Thm.~27}; storage is exactly zero \anchor{Note, Thm.~22}; the
+linearized Krasikov--Lagarias edge operator has spectrum
+$\{1\} \cup \{|\lambda| = 1/4\}$ exactly \anchor{Note, Thm.~21}; and the
+Perron eigenvectors of the certificate system are, to $R^2 > 0.99$, pure
+powers of the roulette measure \anchor{Tempering}. In the language of
+coarse-graining: lumpability of the macro-chain is exact --- a theorem here,
+not an approximation. Tao's celebrated ``almost all orbits attain almost
+bounded values'' \cite{Tao2019} is, in this reading, exactly what
+coarse-graining success at ensemble level looks like from the analytic side.
+
+\subsection{The pointwise level resists all reduction, provably}
+
+At the level of the individual orbit the resistance is not an impression but
+a set of impossibility results: no residue-based Lyapunov certificate at any
+$2$-adic depth \anchor{Note, Thm.~11}; complete integrability (hence
+certificate-emptiness) of the entire digit-sum sector \anchor{Note,
+Prop.~45}; mirror-blindness --- the Krasikov--Lagarias growth exponent is
+identical for $3n-1$ and $3n+1$, so density methods cannot even distinguish
+the convergent map from a map with three known nontrivial cycles
+\anchor{Forgetful}; and the no-go on coarse resampling --- the cascade
+attenuation $\kappa$ is not a functional of any coarse histogram; only exact
+structure reproduces it \anchor{Note, Campaign~XVIII}. The
+reducible/irreducible boundary is thus not fuzzy but \emph{located}: it is
+the ensemble/pointwise split, and it is proved from both sides.
+
+\subsection{Against the hidden computer}
+
+Wolfram's suspicion of undecidability inherits its plausibility from Conway:
+generalized Collatz maps can simulate arbitrary register machines, encoding
+registers in the exponents of primes, and the generalized problem is
+$\Pi^0_2$-complete \cite{Conway1972, KurtzSimon2007}. But every known
+construction of this type works by \emph{storing information}. The specific
+$3n+1$ instance exhibits the opposite signature on every test: zero channel
+capacity at density level \anchor{Note, Thm.~22}, exact memorylessness
+\anchor{Note, Thms.~20, 27}, and the carry characterization --- the unique
+append-only, maximally forgetful member of its family \anchor{Note, Thm.~25}.
+This is the signature of an odometer, not of a Turing machine
+\anchor{Forgetful}. Undecidability of the instance remains possible; what the
+evidence weighs against is the \emph{standard mechanism} for it. If the
+$3x+1$ problem is independent of strong theories, it will not be because a
+computer hides in it, but for a reason not yet named --- which would itself
+be a discovery about the reach of the Conway paradigm.
+
+\section{The two requirement ledgers and the semi-decidability asymmetry}
+\label{sec:ledgers}
+
+The conjecture has exactly two failure modes: a nontrivial cycle, or a
+divergent orbit. The corpus compiles, from proved results only, what each
+would have to satisfy --- and the two ledgers turn out to have \emph{opposite
+shapes}.
+
+\subsection{The cycle ledger: localized and spectral}
+
+A hypothetical cycle with $k$ odd steps and $s$ halvings must, simultaneously
+\anchor{Note, \S11 of the synthesis; Thms.~5, 9, 17}:
+\begin{enumerate}[leftmargin=2em, itemsep=1pt]
+\item live on the comma ladder: $n = B/(2^s-3^k) \in \Z$ forces
+$s/k \approx \log_2 3$ (near-touch), so its possible homes are spectrally
+enumerated;
+\item survive the exhaustion of the free homes: gap-$1$ sites carry only the
+trivial cycle (elementary today; Gersonides 1343 for the $9/8$ case;
+Mih\u{a}ilescu in general), so it needs the divisibility miracle
+$(2^s-3^k) \mid B(\text{shape})$ against superpolynomially growing gaps;
+\item have a net-falling shape, by the Sign Theorem: every net-climbing shape
+realizes at a \emph{negative} $2$-adic point \anchor{Note, Thm.~5};
+\item balance exact periodic ledgers: per period the digit-sum shed equals
+$u$ exactly and the top tax equals $j$, so its lower sweep must gain exactly
+$j-u$ per period \anchor{Note, Thm.~40};
+\item be large: no integer cycles with $\leq 14$ odd steps beyond the known
+four $\{1, -1, -5, -17\}$ \anchor{Note, Thm.~17, extended}; at least
+$1.375 \times 10^{11}$ odd terms and $\geq 92$ circuits by Hercher's bound
+\cite{Hercher2023}; all elements above $2^{71}$ by exhaustive verification
+\cite{Barina2021}.
+\end{enumerate}
+This ledger is \emph{localized}: the candidate sites are known, discrete,
+and individually checkable; finitely many checks per site plus one effective
+gap bound (Baker-type) would finish cycles off entirely. A cycle, if it
+exists, is a standing wave on a named Arnold tongue --- we know exactly where
+it could live.
+
+\subsection{The divergence ledger: delocalized and diffuse}
+
+A hypothetical divergent orbit must \anchor{Note, \S11; Thms.~9, 9$'$, 10, 20,
+40; Prop.~13}:
+\begin{enumerate}[leftmargin=2em, itemsep=1pt]
+\item hold $\bar{w} < \log_2 3$ forever --- a sustained excess of $w=1$ steps
+against dice proved exactly fair, an event of measure zero in every window,
+required pointwise \anchor{Note, Thm.~20};
+\item have an aperiodic parity word (else it is a cycle), and moreover escape
+\emph{every} periodic and eventually-periodic index pattern within
+logarithmically many digits: shadowing any non-realized rational phase is
+throttled at $r \leq \log_2(n+|\rho|)/d$ periods, unconditionally
+\anchor{Note, Thms.~9, 9$'$} --- divergence requires unbounded aperiodic
+complexity, quantitatively;
+\item pay for every monotone climb at the exact exponential price
+$\mu^r$ with $\mu = 0.28627450\ldots$ \anchor{Note, Thm.~10};
+\item pay the top tax --- an exact $+1$ shed at the top of every halving,
+pointwise, every orbit \anchor{Note, Thm.~40} --- while its length grows;
+\item and yet need \emph{no arithmetic coincidence at all}: no divisibility
+miracle, no special site. Its requirement is diffuse --- it must win
+everywhere, forever.
+\end{enumerate}
+Divergent orbits are excluded to density $x^{0.9146}$ (certified at $3$-adic
+depth $k=20$ \anchor{Tempering}) and below $2^{71}$ \cite{Barina2021}; what
+survives is a measure-zero possibility with no location. The asymmetry is
+stark: \emph{cycles are localized and spectral; divergence is delocalized and
+diffuse}. The wall protecting cycles is transcendence theory; the wall
+protecting divergence is the pointwise/measure-zero gap itself.
+
+\subsection{The logical mirror: membership confesses, non-membership never}
+
+This dynamical asymmetry has an exact logical shadow. Membership in the tree
+of $1$ is semi-decidable with \emph{short} certificates: if $n$ reaches $1$,
+its own orbit is the proof, and its length is at most $c^*(n)\log_2 n$ with
+the laggard-edge constant $c^* \approx 18$ at $2^{24}$, growing slowly toward
+$\approx 29$ --- a polynomial-size certificate \anchor{Note, \S13}. Every
+number ever named has been proven in; there are no known hard numbers, only
+numbers nobody has run. If the conjecture is true, \emph{every} integer has a
+short membership proof.
+
+Non-membership is worse than hard: it is not even semi-decidable by running,
+because a divergent orbit never confesses. No individual integer can ever be
+proven \emph{out} by computation alone. Uniformly, the residue classes
+lacking a depth-$k$ proof are exactly the survivor classes mod $2^k$ ---
+counting $\sim 1.834^k$, density $0.917^k \to 0$, ones-rich (the kin of $63
+\bmod 64$, the shadow set of the rational phases $-1, -5, -17$, mean
+ones-fraction $0.653$) \anchor{Note, \S13}. At proof budget $t$ the unproven
+region is exactly the wavefront $\log_2 n > t/c^*$: the tree is provable
+number by number at logarithmic cost each; what cannot be bought at any
+finite budget is the single sentence \emph{and this works for all of them}.
+This is the $\Pi^0_2$ shape of the problem \cite{KurtzSimon2007} made
+concrete: a $\Sigma_1$ membership predicate with short witnesses, universally
+quantified.
+
+\section{Where the infinite winner lives}
+\label{sec:winner}
+
+There is a persistent intuition --- every student of the problem has felt it
+--- that runs: \emph{there are infinitely many integers; the conditions for
+escape are just statistics; surely some number satisfies all of them}. The
+corpus lets us answer this intuition precisely, and the answer has three
+layers, of which the third is the deepest fact in this essay.
+
+\textbf{(a) For cycles, the conditions are equations, not lottery tickets.}
+Infinitely many candidates are powerless against a modular obstruction: there
+are infinitely many integers, and none of them satisfies $2^n = 3^m+1$ beyond
+$4 = 3+1$ --- one congruence mod $8$ kills them all at once \anchor{Note,
+\S12}. For the remaining candidate sites, the expected number of divisibility
+miracles is $\sum_{\text{sites}} O(1/\text{gap})$, which \emph{converges}:
+infinity supplies candidates logarithmically, the conditions cut
+exponentially.
+
+\textbf{(b) For divergence, the heuristic argues for the conjecture.} Per
+candidate $n$, the model probability of beating the exactly fair coin forever
+is the limit of $2^{-cT}$, which is $0$; countable additivity over infinitely
+many candidates gives expected winners $= 0$. Infinity times zero is zero
+here, not a loophole.
+
+\textbf{(c) And yet the winner exists --- one substrate up.} At every finite
+depth $T$, integers satisfying the first $T$ escape conditions \emph{do}
+exist: the survivor classes are never empty, numbering $S(T) \sim 1.834^T$
+\anchor{Note, \S13}. But they are \emph{different} integers at each depth,
+running off to infinity, and the sequence of satisfiers converges --- in
+$\Ztwo$, not in $\Z$. The pure-climb example is exact: the satisfier of the
+$k$-fold climb condition is $2^k - 1$, and as $k \to \infty$,
+\[
+2^k - 1 \;\longrightarrow\; -1 \;=\; \ldots 111_2 \ \in \Ztwo,
+\]
+a genuine fixed point of pure climbing --- and not a positive integer. In the
+$2$-adic completion divergent orbits are not rare but \emph{abundant}: almost
+every $2$-adic point diverges. The compactness winner your intuition demands
+exists as a pseudo-orbit: real in one receiver, noise in the other, finite in
+one substrate only.
+
+This is where the two-substrate reading closes its loop. The integers are
+precisely the objects that are \emph{finite in both substrates
+simultaneously} --- finite binary top and finite ternary top; $2$-adic
+pseudo-orbits are finite in one receiver only, and the archimedean property
+is exactly dual finiteness \anchor{Note, \S3 of the synthesis}. Descent is
+\emph{powered} by the finite top: the digit-sum drainage that pays the
+conservation ledger is produced almost entirely at the top boundary
+($+0.485$ per trit in the top decile, against $\approx 0$ in the bulk), the
+one feature integers have and pseudo-orbits lack \anchor{Note, Props.~38, 39,
+Thm.~40}. Hence:
+
+\begin{principle}[The conjecture as an escape statement]
+The survivor construction always produces its winner --- in $\Ztwo$. The
+Collatz conjecture is exactly the statement that the limit always escapes the
+integers: no dually-finite point realizes the infinite climbing stream. The
+infinite winner demanded by compactness intuition lives one substrate up,
+outside the countable thread.
+\end{principle}
+
+\section{Honest closing: proved, template, and the three walls}
+\label{sec:closing}
+
+A synthesis essay owes its reader an exact accounting of epistemic status.
+We close with three lists.
+
+\subsection{What is proved or exhaustively computed}
+
+Every load-bearing claim above is anchored: the carry characterization and
+uniqueness of $3n+1$ \anchor{Note, Thm.~25}; the pair-law uniqueness of the
+multiplier $3$ \anchor{Note, Thm.~2}; the two substrate no-gos \anchor{Note,
+Thm.~11, Prop.~45}; exact fairness, factorization, and zero storage
+\anchor{Note, Thms.~20, 22, 27}; the conservative-line identities pinned by
+$2^\alpha = 3$ \anchor{Note, Lem.~24, Prop.~32}; the Sign Theorem and the
+Catalan corollary \anchor{Note, Thm.~5}; the cycle census through period $14$
+\anchor{Note, Thm.~17}; the shadowing bounds \anchor{Note, Thms.~9, 9$'$};
+the comma--cycle correspondence with its verified zoo \anchor{Note,
+Prop.~48}; the CST reduction to the convergents of $\log_2 3$, unconditional
+to $\tau \leq 4700$ \anchor{CstComma}; the certified density exponent
+$\gamma = 0.9146$ \anchor{Tempering}; and the exact edge rate
+$d\gamma/dq = 1/\ln(4/3)$ \anchor{Note, Thm.~19}. Where the corpus retracted
+--- the per-position frontier ledger, the flagged $\bar{w} \leq 1.226$ bound
+--- the retractions are recorded in the same documents \anchor{Note,
+corr.~to Thm.~42, Prop.~45}, and nothing in this essay leans on them.
+
+\subsection{What is structural template, not theorem}
+
+The physics vocabulary --- receivers, coherence, decoherence, resonance,
+mode-locking --- is proved \emph{about the $2{:}3$ arithmetic interface} and
+about nothing else. The proposal that noise in general is inter-receiver
+incommensurability (Principle~\ref{prin:noise}), and any transfer of the
+mode-locking template to interfaces outside arithmetic, is a structural
+analogy whose merit is that it is falsifiable in form: a claimed instance
+must name its coupling constant, its convergent, and its tongue width. The
+mathematics here cannot say whether such transfers are deep or merely
+well-matched; we flag the boundary and stay on the proved side of it.
+
+\subsection{The three walls}
+
+What remains of the $3x+1$ problem, after the corpus, is exactly three
+walls --- and naming them precisely is the essay's final claim.
+
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{The transcendence wall} (cycles, and CST). Both cycle exclusion
+and the coefficient-stopping-time conjecture reduce to effective lower bounds
+on $|2^j - 3^u|$ at the convergents of $\log_2 3$ \anchor{Note, Prop.~28,
+Thm.~29}: one wall, two classical sub-problems leaning on it. Current
+effective irrationality measures \cite{Baker1966, Rhin1987} push the danger
+zone out (first convergent escape at $(u,j) = (15601, 24727)$
+\anchor{CstComma}) but do not close it.
+\item \textbf{The pointwise wall} (divergence). Every density-level statement
+is now exact, and exactly fair --- and therefore exactly powerless per orbit:
+the pointwise version of Theorem 20's fairness \emph{is} the remaining
+content of the divergence half \anchor{Note, Thm.~20}. The sharpest exact
+formulation is the automaton form: no finite-top trit stream can sustain the
+self-referential $(c,d)$-statistics that perpetual climb requires
+\anchor{Note, Thms.~36, 40, Lem.~37} --- the archimedean bridge, still
+unbuilt.
+\item \textbf{The contraction wall} (density $\gamma \to 1$). The
+Krasikov--Lagarias program has been reduced to the stability of a
+one-dimensional fixed point: prove the cascade attenuation $\kappa$ stays
+uniformly below $1$ (measured $0.839 \pm 0.002$, flat in depth) and
+$\gamma \to 1$ follows through proved identities \anchor{Note, Thm.~19,
+Props.~35, 47; Drift; GammaOne}. This is the smallest formulation the
+density problem has ever had --- and even fully won, it buys $x^{1-\epsilon}$,
+not the pointwise sentence.
+\end{enumerate}
+
+The three walls are not equally shaped: the first is localized (finitely many
+sites plus one effective bound), the third is a fixed-point stability
+statement with every coefficient measured, and the second is the conjecture's
+irreducible core --- the place where, on the evidence assembled here, the
+ensemble world ends and the individual thread begins. The two-substrate
+reading does not breach that wall. Its contribution is to show exactly where
+the wall stands, why everything on one side of it is clockwork, and why the
+one sentence on the other side --- \emph{every dually-finite signal decoheres
+to the ground state} --- is the whole of the $3x+1$ problem.
+
+\subsection*{Acknowledgements}
+
+This essay synthesizes results obtained over roughly 1200 rounds of
+human--AI collaborative research; the division of labour is recorded in the
+companion papers. The framing questions of Sections 2, 3, and 6 --- whether
+the randomness has a mechanism, whether multi-layer resonance is impossible
+or quantized, and where the infinite winner lives --- are due to the first
+author.
+
+\begin{thebibliography}{99}
+
+\bibitem{Note2026}
+M. de Jong and Jengo (AI),
+\emph{Six results on the Collatz map in family/pair coordinates},
+research note with continuing numbered corpus (Theorems 1--48), July 2026.
+Cited as [Note].
+
+\bibitem{Forgetful2026}
+M. de Jong and Jengo (AI),
+\emph{The $3x+1$ map is a maximally forgetful machine: exact fairness, zero
+storage, and the carry characterization}, companion paper, July 2026.
+Cited as [Forgetful].
+
+\bibitem{CstComma2026}
+M. de Jong and Jengo (AI),
+\emph{The coefficient-stopping-time conjecture and the comma ladder:
+reduction to effective rational approximation of $\log_2 3$}, companion
+paper, July 2026. Cited as [CstComma].
+
+\bibitem{Tempering2026}
+M. de Jong and Jengo (AI),
+\emph{Krasikov--Lagarias certificates for the $3x+1$ problem are tempered
+roulette measures}, companion paper, July 2026. Cited as [Tempering].
+
+\bibitem{Drift2026}
+M. de Jong and Jengo (AI),
+\emph{The drift of the Collatz cascade: the min-operator as a directional
+low-pass filter}, companion paper, July 2026. Cited as [Drift].
+
+\bibitem{GammaOne2026}
+M. de Jong and Jengo (AI),
+\emph{The $\gamma \to 1$ program: reduction of the density version of the
+$3x+1$ problem to a one-dimensional fixed point}, companion paper, July 2026.
+Cited as [GammaOne].
+
+\bibitem{Arnold1965}
+V. I. Arnold,
+\emph{Small denominators. I. Mapping the circle onto itself},
+Izv. Akad. Nauk SSSR Ser. Mat. 25 (1961), 21--86; Amer. Math. Soc. Transl.
+(2) 46 (1965), 213--284.
+
+\bibitem{Baker1966}
+A. Baker,
+\emph{Linear forms in the logarithms of algebraic numbers},
+Mathematika 13 (1966), 204--216.
+
+\bibitem{Barina2021}
+D. Barina,
+\emph{Convergence verification of the Collatz problem},
+J. Supercomput. 77 (2021), 2681--2688; computation since extended to
+$2^{71}$.
+
+\bibitem{Conway1972}
+J. H. Conway,
+\emph{Unpredictable iterations},
+Proc. 1972 Number Theory Conference, Univ. Colorado, Boulder (1972),
+49--52.
+
+\bibitem{Cook2004}
+M. Cook,
+\emph{Universality in elementary cellular automata},
+Complex Systems 15 (2004), 1--40.
+
+\bibitem{Gersonides1343}
+Levi ben Gershon (Gersonides),
+\emph{De numeris harmonicis} (1343); commissioned by Philippe de Vitry.
+See J. Carlebach, \emph{Lewi ben Gerson als Mathematiker}, Berlin, 1910.
+
+\bibitem{Hercher2023}
+C. Hercher,
+\emph{There are no Collatz $m$-cycles with $m \leq 91$},
+J. Integer Seq. 26 (2023), Article 23.3.5.
+
+\bibitem{KrasikovLagarias2003}
+I. Krasikov and J. C. Lagarias,
+\emph{Bounds for the $3x+1$ problem using difference inequalities},
+Acta Arith. 109 (2003), 237--258.
+
+\bibitem{KurtzSimon2007}
+S. A. Kurtz and J. Simon,
+\emph{The undecidability of the generalized Collatz problem},
+Proc. TAMC 2007, Lecture Notes in Comput. Sci. 4484, Springer (2007),
+542--553.
+
+\bibitem{Lagarias1985}
+J. C. Lagarias,
+\emph{The $3x+1$ problem and its generalizations},
+Amer. Math. Monthly 92 (1985), 3--23.
+
+\bibitem{Lagarias2010}
+J. C. Lagarias (ed.),
+\emph{The Ultimate Challenge: The $3x+1$ Problem},
+Amer. Math. Soc., Providence, RI, 2010.
+
+\bibitem{Mihailescu2004}
+P. Mih\u{a}ilescu,
+\emph{Primary cyclotomic units and a proof of Catalan's conjecture},
+J. Reine Angew. Math. 572 (2004), 167--195.
+
+\bibitem{Rhin1987}
+G. Rhin,
+\emph{Approximants de Pad\'e et mesures effectives d'irrationalit\'e},
+S\'emin. Th\'eor. Nombres, Paris 1985--86, Progr. Math. 71, Birkh\"auser
+(1987), 155--164.
+
+\bibitem{Tao2019}
+T. Tao,
+\emph{Almost all orbits of the Collatz map attain almost bounded values},
+Forum Math. Pi 10 (2022), e12.
+
+\bibitem{Terras1976}
+R. Terras,
+\emph{A stopping time problem on the positive integers},
+Acta Arith. 30 (1976), 241--252.
+
+\bibitem{Wolfram2002}
+S. Wolfram,
+\emph{A New Kind of Science},
+Wolfram Media, Champaign, IL, 2002.
+
+\end{thebibliography}
+
+\end{document}
