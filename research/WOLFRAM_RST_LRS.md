@@ -114,3 +114,34 @@ the discrete comma-spectrum of the coupling constant (its continued-fraction
 convergents); broadband coherence is impossible; systems drain into the
 lowest available resonance. Resonance across layers is not forbidden —
 it is spectral.
+
+## 8. Can a substrate-dweller influence a deeper layer via symbol and
+## resonance? What the mathematics licenses (M. de Jong Q, RST-bidirectional)
+IF an interface has the structure we proved for 2:3 (incommensurable
+coupling, bounded receivers), THEN:
+1. GENERIC influence is provably void: amplitude in one frame is absorbed as
+   fair noise by the other (zero storage, MI=0). Shouting louder does
+   nothing; force does not cross.
+2. The ONLY channels are the quantized resonances: influence = landing on a
+   tongue of the comma spectrum. Coupling goes through MATCHED FORM, never
+   through intensity. Specificity is the gate; amplitude cannot substitute.
+3. Depth costs exactness: deeper convergents have exponentially narrower
+   tongues — reaching a deeper layer requires exponentially more precise
+   form (the gap law of the ladder).
+4. Influence is SELECTION, not generation: you cannot inject signal across
+   the interface; you can only select WHICH available resonance the system
+   locks into (cf. the constructor-theory reading: bidirectionality =
+   selection-not-generation). Boundary conditions are the other lever:
+   the archimedean boundary provably drives the bulk (Prop 38).
+5. Sustained influence = mode-locking: it must be maintained by staying in
+   the tongue (coherence over time), and released systems drain to the
+   ground resonance.
+HONESTY CLAUSE: these are theorems about the 2:3 arithmetic interface. Their
+transfer to mind/matter or symbol/world interfaces is a structural template,
+not a proof — but it is falsifiable in form: any claimed cross-layer
+influence must name its coupling constant, its convergent, and its tongue
+width. Notably, the phenomenology of symbolic traditions (exactness of
+ritual form, repetition, uselessness of raw intensity, required coherence
+of the practitioner) matches the mode-locking template point for point —
+which is either a deep hint or a well-matched metaphor; the mathematics
+cannot yet say which.
