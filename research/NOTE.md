@@ -779,3 +779,19 @@ differ — the Hilbert-metric strictness route. Sixth confirmation of the
 central pattern, now at the deepest level: even the fixed point's own
 linearization is a mirage; only the full nonlinear stationary object
 carries the truth.
+
+## Proposition 48b (The overtone law; instigated by M. de Jong's specimen
+## 20000200550 under 3n+13). — PROVED (one line) + SPECIMEN VERIFIED
+Since (a - b) | (a^j - b^j): the gap d = 2^s - 3^k of any near-touch divides
+the gaps of ALL its harmonics (2^{sj} - 3^{kj}). Hence the map 3n+d has
+ENHANCED cycle homes at every harmonic of its native comma: the required
+divisibility miracle shrinks d-fold there. Specimen: 20000200550 under
+3n+13 climbs to 2^43, then falls (418 steps) into a previously uncatalogued
+15-cycle (min 131, max 1853) living on (3^15, 2^24) = the THIRD HARMONIC of
+the limma, where 2^24 - 3^15 = 13 * 186793. The cycle zoo of 3n+d is a
+FUNDAMENTAL plus its OVERTONE SERIES — the musical metaphor completes
+itself. Corollary for 3n+1: its native gap is 1, so it receives no overtone
+discount anywhere — every potential home demands a full-size miracle.
+The scarcity of 3n+1 cycles restated: it is the map without overtones.
+Also, the specimen's climb (2^43 before collapse) illustrates the fair-dice
+lesson: no finite climb is evidence of divergence.
