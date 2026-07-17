@@ -1317,3 +1317,28 @@ Census of all 20-bit seeds, total stopping time:
     The three rational anchors of the (3,2) cell thus label the three
     speed classes of seeds: climb / typical / crash. Seed 2-adic
     geometry determines the first word; the dice do the rest.
+
+## Observation 75 (THE RECORD LADDER IN TWO BASES + a theorem-ette),
+## R1836-1860, M. de Jong's question
+All 44 total-stopping-time records <= 837799, examined binary + ternary:
+(1) THEOREM (one line, verified 43/43 for n > 2): no record is = 2 mod 3.
+    If n = 2 mod 3 (n > 2), then m = (2n-1)/3 is a SMALLER odd number
+    whose orbit reaches n in 2 steps, so total(m) = total(n) + 2 and n
+    cannot be a record. Ternary form: A RECORD NEVER ENDS IN TRIT 2.
+    (Sole exception n = 2: its predecessor is 1, where the orbit stops.)
+(2) DEEP-LEAF ENRICHMENT: 28/44 records are divisible by 3 (64% vs 33%
+    random), 11/44 by 9; multiples of 3 have NO odd predecessors at all
+    (they head their own highways). The ladder's base is exactly ternary
+    round: 27 = 1000_3, 54 = 2000_3.
+(3) BINARY SUFFIX CLUSTERING: odd records mass on three 5-bit suffixes:
+    00111 (10x), 11111 (8x), 11011 (6x) vs uniform 2.5 - all trailing-
+    ones-rich; mod 64 tops: 111111 (7x), 100111 (6x), 011011 (5x, the
+    "27-suffix"). Records RE-USE proven climb suffixes, consistent with
+    Obs 74 (the seed buys the first word deterministically).
+(4) HIGHWAY FUNNELING: the records' orbits merge into few junctions
+    (436 4x, 364 3x, 40 3x): new records = new long approaches to the
+    same descent highway.
+(5) Near the champion, trailing-ones-rich record seeds appear at once:
+    #3 511935 = 1111100111110111111 (16 of 19 bits ones, 6 trailing),
+    #7 156159 (9 trailing), #9 106239 (8 trailing), #14 26623 =
+    110011111111111 (11 trailing ones of 15 bits).
