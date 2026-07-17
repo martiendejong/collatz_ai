@@ -1086,3 +1086,43 @@ windows at strong convergents) cycles die by congruence alone — rerouting
 wall 2 from transcendence to a combinatorial reachability statement.
 NEW OPEN PROBLEM (promoted to top of list): prove the reach-set of the
 cycle-word DP mod D avoids 0 in every critical window.
+
+## Lemma 63 (THE NO-PHANTOM LEMMA). — PROVED (three lines) + exhaustive
+## verification r=5-7, R1541-1550
+(i) Every halving word (j_1..j_r) defines a unique rational cycle: the
+forced word map has multiplier 3^r/2^j != 1, fixed point x0 = W/D in Q.
+(ii) If x0 is a positive integer but some iterate x_i is not, write
+x_i = odd/2^a (a>=1); then 3x_i+1 = (3*odd + 2^a)/2^a has ODD numerator,
+so v2(x_{i+1}) = -a - j_{i+1} < -a: v2 STRICTLY DECREASES for the rest of
+the word and can never return to v2(x0) >= 0 — the orbit cannot close.
+Likewise an even integer iterate forces a non-integer next step. Hence
+all iterates are odd positive integers: a GENUINE cycle.
+COROLLARY: in every positive window (W_min = 3^r - 2^r > D there),
+D | W  <=>  genuine 3n+1 cycle. THERE ARE NO PHANTOMS.
+
+## Correction 62c (reinterpretation of Prop 62). — same-day correction
+Prop 62 called the congruence "necessary, not sufficient": WRONG — by
+Lemma 63 it is exactly equivalent. Consequences, honestly relabeled:
+(1) The census zeros and DP certificates are INDEPENDENT PROOFS of
+    "no r-cycle in windows ceil/ceil+1" for r <= 24 (census) and r <= 18
+    (self-contained poly-time DP, no trajectory verification used).
+    These ranges are consistent with (and implied by) Barina 2^71 +
+    Hercher; the novelty is the METHOD (per-window DP certificate), not
+    the exclusions.
+(2) The "P ~ 6e-5 surprise" is the core mystery quantified: naive
+    equidistribution of W mod D predicts ~10 cycles in r <= 24 critical
+    windows; the reach-sets miss exactly the residue 0. Proving they
+    always miss 0 IS the cycle problem (faithful reformulation as
+    combinatorial reachability — no transcendence in the statement).
+(3) Non-critical windows ceil+1: blocked for all r >= 5; the r=3,4
+    reachable cases are exactly trivial-cycle repetitions (2,2,...,2)
+    with j = 2r landing in that window. UNIFIED LAW: the only cycle-
+    congruence solutions anywhere observed are trivial repetitions.
+
+## Observation 64 (comma words are NOT Sturmian). — MEASURED r<=14, R1551-1560
+The clearance-achieving words (|W - nD| = 1,2,4,5: near-identity
+translations of Z/D exist at distance 1 for most r) are irregular — a
+large halving (3-4) adjacent to runs of 1s — and are NOT rotations of
+balanced/Sturmian words, contrary to the limma-repetition expectation
+from Lemma 30 (which governs B-growth extremals, a different functional).
+Geometry of clearance words: open.
