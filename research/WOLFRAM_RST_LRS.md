@@ -169,3 +169,18 @@ LRS operational form: effect on a deeper layer = (a) position at
 criticality, (b) push in the decision coordinate (form-matched, parity-odd
 in the general sense), (c) minimal amplitude — larger pushes change WHICH
 spectrum you select, not HOW MUCH effect you have.
+
+## 10. Multi-layer specificity (M. de Jong): symbol AND action
+Completion of the operational form: specificity must be expressed PER LAYER,
+simultaneously — symbolically (one receiver's coordinate) and in action
+(another's). The mathematical archetype: an INTEGER is precisely the object
+that is finite/specific in BOTH bases at once (dual finiteness) — vague in
+either frame, and you are a pseudo-orbit: real in one world, noise in the
+other, coupling nothing. Corollaries:
+1. Tongue widths MULTIPLY across layers: vagueness in any single layer
+   gates the whole coupling (weakest-layer bottleneck, multiplicative).
+2. Symbol and action must encode THE SAME selection: if they pick different
+   tongues they decohere each other — alignment of layers is not aesthetics
+   but spectral necessity.
+3. Amplitude remains useless at every layer; what scales is only the DEPTH
+   reachable, and that is bought with exactness, layer by layer.
