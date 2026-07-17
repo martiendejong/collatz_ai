@@ -652,3 +652,19 @@ jointly equivalent to conservation + local automaton rules. The conjecture's
 content lives strictly in the 2-adic w-sequence realizability coupled to the
 finite top — where it has been since the survivor analysis. Value of the
 campaign: this approach space is now CLOSED with proofs, not abandoned.
+
+## Proposition 46 (Variational confirmation of the directional low-pass). — MEASURED, k=11 exact
+Fixed-point response to mode perturbations (multiplicative forcing, eps=0.002):
+- COARSE mode (mod-9 function, constant across triples): min-composite
+  response slope 0.9857 ~ 1 — passes freely, exactly as Prop 34b's proved
+  core predicts (min(x + c*1) = min(x) + c).
+- INTRA-TRIPLE mode (top-digit function, varies within triples): min-composite
+  response slope 0.9154 < 1 — attenuated, matching the statistical kappa
+  (0.908 at comparable scale). Per-class binding rigidity is only ~2%
+  (ratio 0.978-0.986): the rigidity lives in the min-COMPOSITE, not in
+  individual binding entries. Also noted: binding degree is exactly {0, 2}
+  (every argmin serves exactly two parents — the type-2/type-8 pairing).
+The Open Lemma's variational quantity is now measured and agrees with the
+statistical one: the directional low-pass holds in fixed-point response form.
+Campaign XVII (R976-1075) complete: digit-sum sector closed with proofs
+(Prop 45 no-go), variational front advanced to quantitative agreement.
