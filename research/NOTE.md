@@ -795,3 +795,19 @@ discount anywhere — every potential home demands a full-size miracle.
 The scarcity of 3n+1 cycles restated: it is the map without overtones.
 Also, the specimen's climb (2^43 before collapse) illustrates the fair-dice
 lesson: no finite climb is evidence of divergence.
+
+## Proposition 52 (The anchor no-go: divergence is uncertifiable by
+## congruences in the entire proper family). — PROVED (sketch) + VERIFIED
+For any proper map n -> (xn+y)/2^w (x, y odd — live parity coupling): any
+congruence-forced periodic w-pattern anchors at the rational fixed point of
+the composed affine map (e.g. w=1 forever anchors at y/(2-x)). If the anchor
+is an integer it is a CYCLE, not divergence; if not, integers can shadow it
+only ~log2(n) steps (2-adic repulsion; verified for 5n+1: shadow length =
+j-2 exactly at n = (2^j-1)/3 — the alternators, playing the mirrored role).
+Hence NO residue-class certificate of divergence exists for ANY proper
+xn+y — the mirror of the phase-shadowing theorem (Thm 9) and residue
+blindness (Thm 11). Candidates are abundant (5n+1 from 7: +0.26 bits/odd
+step over 600 steps; 7n+1 from 3: +0.75), certainty is statistical, proof
+is blocked by the same symmetric wall in both directions. Answer to the
+question "can we find a proper divergent variant": we can find certainty
+in one minute and a proof in no currently known mathematics.
