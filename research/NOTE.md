@@ -715,3 +715,27 @@ log2(3) endows its gap-value d with a full family of C(s-1,k-1) free cycles.
 Conversely 3n+1's cycle scarcity is the statement that its d=1 sits ONLY on
 the Catalan pairs (Mihailescu). One ladder — music, CST margins, B-growth
 extremals, cycle homes — now also generates the variant-cycle taxonomy.
+
+## Proposition 49 (The condition chain and the multiplicativity unification).
+## — 3 PROVEN LINKS + 1 MEASURED PROPERTY (R1226-1270)
+Attack on kappa_stability's two remaining conditions:
+(i) cov(t,S) <= 0 now has a complete mechanism chain:
+  (a) PROVEN (translation invariance, 2 lines): cov(x, Delta) = -Var(Delta)/2
+      exactly — mean reversion is a theorem (verified -0.51..-0.54);
+  (b) MEASURED: gaps scale with level, corr(level, gapsize) = +0.84
+      (multiplicative field);
+  (c) PROVEN (trivial): S = min(delta+g) is nondecreasing in each g;
+  (d) composition confirmed: corr(t, gapsize) = -0.45..-0.51 and
+      E[S | t-quartile] = +0.064/+0.005/-0.004/-0.064 — monotone, antisymmetric.
+Also: Lemma 3's reflection-symmetry hypothesis TESTED and supported
+(E[W+]/E[W-] = 0.997..1.018, all pairs, both scales).
+(ii) competition uniformity REDUCES TO THE SAME PROPERTY: increments also
+scale with level (corr +0.70..+0.77), so the competition ratio G2/delta-std
+is level-free (quintile spread 0.55-0.65, flat at P=6). BOTH conditions of
+the Open Lemma now hang on ONE structural statement:
+   MULTIPLICATIVITY OF THE K-L FIELD (relative structure independent of
+   scale) — which is the fixed-k face of the tempering law (a power law IS
+   the multiplicative form). Non-circular: fixed-k multiplicativity (per
+   certificate, structural) feeds the k-uniform kappa bound. The single
+   remaining proof obligation of the gamma->1 program: prove the fixed-k
+   field is multiplicative from the K-L equation in log coordinates.
