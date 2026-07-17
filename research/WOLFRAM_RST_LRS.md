@@ -184,3 +184,31 @@ other, coupling nothing. Corollaries:
    but spectral necessity.
 3. Amplitude remains useless at every layer; what scales is only the DEPTH
    reachable, and that is bought with exactness, layer by layer.
+
+## 11. The two requirement ledgers (what a cycle MUST satisfy; what a
+## divergent orbit MUST satisfy) — compiled from the proven corpus
+CYCLE (k odd steps, s halvings): (1) must live on the comma ladder:
+n = B/(2^s - 3^k) integer forces s/k ~ log2(3) (near-touch); (2) free homes
+(gap 1) exhausted — positive side only the trivial cycle (elementary, today;
+Gersonides 1343 for the 9/8 case); any other cycle needs the divisibility
+miracle gap | B; (3) Sign Theorem: positive cycles need net-falling shapes;
+(4) exact periodic ledgers: per period shed_total = u exactly, top tax = j,
+so the lower sweep must GAIN exactly j - u per period; (5) its parity word
+is periodic <=> it is a rational 2-adic point that happens to be an integer;
+(6) size: >= 1.375e11 odd terms, >= 92 descents (Hercher), elements > 2^71,
+no cycles <= 14 odd steps (our census). LRS: a standing wave on an Arnold
+tongue — SPECTRALLY LOCATED: we know exactly where they could live.
+DIVERGENT ORBIT: (1) wbar < log2(3) forever (sustained w=1 frequency vs
+exactly fair dice — measure-zero in every window, needed pointwise);
+(2) aperiodic parity word (else cycle) staying in the climb subshift forever;
+(3) cannot shadow any rational phase beyond log2(n) steps (Thm 9; phase list
+complete) => must hop phases forever, each hop an exactly fair re-roll
+(Thm 20); (4) pays the top tax every halving (Thm 40) while its length
+grows; (5) needs no arithmetic coincidence at all — hence DIFFUSE: no
+location, must win everywhere forever; (6) excluded to density x^0.9146
+(certified) and below 2^71 (literature); alive only as a measure-zero
+possibility. LRS: broadband coherence across both receivers without any
+channel — sustained self-exemption from proven fairness.
+THE ASYMMETRY: cycles are localized (finite checks per site + one gap bound
+would finish them); divergence is delocalized (no site to check — the wall
+is the pointwise/measure-zero gap itself).
