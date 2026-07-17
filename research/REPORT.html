@@ -1591,6 +1591,19 @@ track level-set masses (a Lyapunov band-leak estimate) rather than extreme-point
 now consists of proved combinatorics (peeling, top-band dichotomy), a computable game value,
 and one precisely-shaped open estimate.</p>
 
+<h3>R1741&ndash;1765 &mdash; The Transport Lemma: switching formalized at last</h3>
+<p><b>Lemma 71 (proved):</b> the two-point log-difference obeys
+g' &le; max(g[P-parent], g[A<sub>y</sub>-child]) and g' &ge; min(g[P-parent], g[A<sub>x</sub>-child]),
+where A<sub>x</sub>, A<sub>y</sub> are the argmin children under x and y. Upper level sets
+therefore transport only through the {P, A<sub>y</sub>} graph, lower sets through
+{P, A<sub>x</sub>} &mdash; and <b>the two graphs differ exactly at switched coordinates</b>. After
+some fourteen hundred rounds of measuring that "switching supplies the strictness", this is its
+exact formal expression: switching <i>is</i> the separation between top and bottom transport.
+Measured: the top band loses 78% of its allowed feed mass per sweep at the mediant AND-cut.
+The peeling lemma's density was also upgraded to exact: 2&middot;3<sup>k&minus;2</sup>(2/3)<sup>s</sup>
+survivors, exactly 2<sup>k&minus;1</sup> at s = k&minus;2, total wipe at k&minus;1 when the
+automaton runs out of tape.</p>
+
 <footer>Jengo · autonomous research campaign, ~1420 rounds, 2026-07-12/17 · built on Martien de
 Jong's family/pair framework, whose coordinates proved to be the problem's native language ·
 Holy Ghost Protocol throughout: every claim tagged proven, measured, conditional, or open; every

@@ -1235,3 +1235,33 @@ middle at a rate bounded by balance x alignment statistics). Mechanism
 now fully mapped; the quantitative band-leak estimate is THE remaining
 open kernel of wall 1 — everything else (tropical top ln4 = Thm 68,
 bottom game = Prop 69, peeling = Lemma 67) is proved or computable.
+
+## Lemma 71 (THE TRANSPORT LEMMA). — PROVED (three lines) + verified
+## 0/10993 violations, R1741-1765
+For the two-point log-difference g = log(x/y):
+   g_new[i] <= max( g[i4(i)], g[A_y(i)] )   and mirrored
+   g_new[i] >= min( g[i4(i)], g[A_x(i)] ),
+where A_y(i) = the argmin child of i under y. Proof: the ratio of the
+two-term sums is a mediant, bounded by the max of the term ratios; and
+min3(x)/min3(y) <= x[c]/y[c] at c = argmin_y since min3(x) <= x[c]. QED.
+CONSEQUENCE: upper level sets transport ONLY through the graph {P-edges,
+A_y-edges}; lower level sets through {P-edges, A_x-edges}. THE TWO GRAPHS
+DIFFER EXACTLY AT SWITCHED COORDINATES (A_x != A_y) — switching is,
+precisely and provably, the separation between the top and bottom
+transport structures. This is the sharpest formal expression yet of
+"switching supplies the strictness".
+Obs 71b (measured): the top-quarter band loses 78% of its ALLOWED feed
+mass per sweep at mediant stops (the AND-cut at balanced coords): band
+mass thins fast while the extreme value erodes slowly (~6%/sweep) —
+the Lyapunov functional must combine mass-thinning at fixed level with
+slow max-erosion.
+
+## Lemma 67 — proof upgrade (peeling density is exact), R1741-1765
+The survivor count after s rounds is EXACTLY 2*3^(k-2)*(2/3)^s for
+s <= k-2 (each peeling condition consumes one fresh trit and forbids
+exactly one of its three values — free-trit counting via the division
+automaton of Thms 36-37), giving exactly 2^(k-1) survivors at s = k-2;
+the (k-1)-th condition has no fresh trit left (the automaton runs out of
+tape; modular wrap forces the status) and wipes all survivors at once —
+verified exactly at k = 7, 9, 11, 13 (2^6, 2^8, 2^10, 2^12 -> 0).
+Status: proved modulo the standard shift-conjugacy, final wipe verified.
