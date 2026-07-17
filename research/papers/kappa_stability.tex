@@ -1,0 +1,784 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openlemma}[theorem]{Open Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\CV}{\mathrm{CV}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\lam}{\lambda}
+\newcommand{\gam}{\gamma}
+\newcommand{\bet}{\beta}
+\newcommand{\kap}{\kappa}
+\newcommand{\dl}{\delta}
+
+\title{The attenuation constant of the $3x+1$ cascade:\\
+an exact decomposition and a stability program}
+\author{Martien de Jong\\[3pt]
+{\normalsize with computational collaboration: Jengo (AI)}}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The full-density program for the $3x+1$ problem reduces, by the companion
+papers, to one Open Lemma: the attenuation constant $\kap$ of the
+Krasikov--Lagarias minimum is uniformly bounded away from $1$
+($\kap_\infty = 0.839 \pm 0.002$ measured, nothing proved). This paper is
+the proof-attempt manuscript for that lemma. The engine is a one-line exact
+formula: writing the member increments of a sibling triple as
+$\Delta_i = t + \dl_i$ (common move plus centered fine moves) and the
+static within-triple gaps as $g_i$, the increment of the triple minimum is
+\emph{exactly} $t + S$ with $S = \min_i(\dl_i + g_i)$. The common move
+therefore passes with slope exactly $1$ --- recovering the directional
+low-pass --- and \emph{all} attenuation is carried by the scalar $S$.
+Squaring gives an exact decomposition,
+$\kap^2 = [\Var(t) + 2\cov(t,S) + \Var(S)]\,/\,[\Var(t) + \Var(\dl)]$,
+verified to machine precision on certificate data
+($0.7901 = 0.7901$ at $P = 4$; $0.7431$ at $P = 6$, $k = 13$), so that
+$\kap < 1$ if and only if $2\cov(t,S) + \Var(S) < \Var(\dl)$. Both
+sufficient mechanisms are measured with the right sign and size:
+$\cov(t,S) < 0$ (selection-weighted mean reversion) and
+$\Var(S)/\Var(\dl) = 0.639$, $0.499 < 1$ (min-variance contraction under
+intense competition: the selected member is non-argmin with probability
+$0.658$--$0.665 \approx 2/3$, and the median second gap is only
+$0.13\,\sigma_\dl$). We prove a clean quantitative min-variance contraction
+lemma --- an exact identity with no hypotheses, plus a contraction bound
+whose symmetry hypothesis we state explicitly and confront with the data
+--- and assemble the conditional theorem: \emph{if} the mean-reversion
+sign and the competition condition hold uniformly in depth, \emph{then}
+$\kap \leq \kap_{\max} < 1$ uniformly, the Open Lemma closes, and by the
+companion chain $\gam_k \to 1$: density $x^{1-\varepsilon}$ for every
+$\varepsilon > 0$. What remains unproved is exactly the two hypotheses;
+we state the proof obligations, the supporting measurements at every
+available depth, and the ways the program could fail.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Let $T(n) = n/2$ for even $n$, $T(n) = (3n+1)/2$ for odd $n$, and let
+$\pi_1(x)$ count the $n \leq x$ whose $T$-orbit reaches $1$. The
+difference-inequality method of Krasikov and Lagarias \cite{KL03} converts
+a finite feasibility certificate at $3$-adic depth $k$ into a density
+bound $\pi_1(x) \geq x^{\gam_k}$. The companion papers \cite{Temp26,
+Drift26, Gamma26} assemble a program that would push $\gam_k \to 1$: the
+tempering law and the edge-rate theorem $d\gam/dq = 1/\ln(4/3)$
+\cite{Temp26}, the mass-conservation, balance, and directional low-pass
+identities \cite{Drift26}, and the synthesis as a single conditional
+theorem \cite{Gamma26}. Every link of that chain is proved except one, the
+\emph{Open Lemma}: the attenuation constant $\kap(P;k)$ of the
+Krasikov--Lagarias minimum --- the ratio of the standard deviation of the
+triple-minimum increment to that of the member increments, under one
+application of the edge-linearized operator --- satisfies
+$\kap(P;k) \leq \kap_{\max} < 1$ uniformly in scale $P$ and depth $k$.
+Measured: $\kap < 0.95$ everywhere and $\kap_\infty = 0.839 \pm 0.002$,
+flat across $k = 13, 15, 17, 19$ (Prop.~35 of \cite{NOTE}); proved:
+nothing.
+
+This paper is the proof attempt. Its contributions are:
+
+\begin{enumerate}
+\item \textbf{The $S$-formula} (Lemma~\ref{lem:S}; proved, one line). In
+the natural coordinates --- common move $t$, centered fine moves $\dl_i$,
+static gaps $g_i$ --- the increment of the triple minimum is exactly
+$t + S$ with $S = \min_i(\dl_i + g_i)$. The common move passes with slope
+exactly $1$ (recovering the directional low-pass, Prop.~34b of
+\cite{NOTE}, as a corollary), and the entire attenuation mechanism is
+compressed into the single scalar $S$.
+\item \textbf{The exact $\kap$ decomposition}
+(Corollary~\ref{cor:decomp}; proved, and verified to machine precision on
+certificate data):
+\[
+\kap^2 = \big[\Var(t) + 2\cov(t,S) + \Var(S)\big] \,/\,
+\big[\Var(t) + \Var(\dl)\big].
+\]
+Hence the Open Lemma is \emph{equivalent} to a two-term inequality:
+$2\cov(t,S) + \Var(S) < \Var(\dl)$, uniformly.
+\item \textbf{A min-variance contraction lemma}
+(Lemma~\ref{lem:contraction}; proved). An exact identity --- valid with
+no hypotheses whatsoever --- expresses the variance deficit of a minimum
+as a product of one-sided swap means, $2\,\E[W^+]\,\E[W^-]$, where $W$ is the difference of the competing
+candidates: the min contracts variance exactly when the \emph{order
+swaps} with positive probability in both directions. A quantitative
+contraction bound follows under an explicitly stated reflection-symmetry
+hypothesis; we say precisely which hypotheses the certificate data
+supports and which are untested.
+\item \textbf{The conditional stability theorem}
+(Theorem~\ref{thm:main}; proved as stated). If the mean-reversion sign
+$\cov(t,S) \leq 0$ and the competition condition hold uniformly in depth,
+then $\kap \leq \kap_{\max} < 1$ uniformly: the Open Lemma closes, and by
+\cite{Gamma26} $\gam_k \to 1$, i.e.\ $\pi_1(x) \geq x^{1-\varepsilon}$
+for every $\varepsilon > 0$.
+\item \textbf{The honest gap} (Section~\ref{sec:gap}). What remains is to
+prove the two hypotheses from the cascade structure. The sign hypothesis
+is the selection-weighted mean reversion of Prop.~34 \cite{NOTE} (LP
+duality route sketched); the competition hypothesis ties the gap scale to
+the increment scale --- the ultrametric spacing law (Lemma~26) and the
+fine-end saturation (Prop.~23: $\CV_1 \to 0.5136 > 0$). Both are measured
+across all available depths; neither is proved. We list the falsification
+risks.
+\end{enumerate}
+
+\paragraph{Labels.} As in the companions, every assertion carries one of
+four labels. \emph{Proved}: complete mathematical proof in the text or a
+cited companion. \emph{Verified}: finite exact or floating-point
+computation, reproducible from stated parameters. \emph{Measured}:
+statistical estimate from computed data. \emph{Open}: neither proved nor
+finitely checkable. Section~\ref{sec:status} collects the ledger.
+
+\section{Setup and notation}
+\label{sec:setup}
+
+$\bet := \log_2 3$. For $j \geq 1$, $[3^j] := \{ m \bmod 3^j : m \equiv 2
+\pmod 3 \}$. Fix $k \geq 2$ and $\lam \in (1,2]$. The nontrivial-tree
+Krasikov--Lagarias system $L_k(\lam)$ asks for $c : [3^k] \to \R_{>0}$
+with, for every $m$,
+\begin{align}
+m \equiv 2 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \leq \lam^{-2} c(4m) + \lam^{\bet-2}\, \bar c\!\left(\tfrac{4m-2}{3}\right),
+\label{eq:L1}\\
+m \equiv 5 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \leq \lam^{-2} c(4m),
+\label{eq:L2}\\
+m \equiv 8 \ (\mathrm{mod}\ 9): &\qquad
+c(m) \leq \lam^{-2} c(4m) + \lam^{\bet-1}\, \bar c\!\left(\tfrac{2m-1}{3}\right),
+\label{eq:L3}
+\end{align}
+where $4m$ is reduced mod $3^k$, branch targets mod $3^{k-1}$, and
+$\bar c(t) := \min\{ c(t), c(t + 3^{k-1}), c(t + 2 \cdot 3^{k-1}) \}$ is
+the minimum over the three refinements of $t$ --- the \emph{sibling
+triple}. Feasibility implies $\pi_1(x) \geq x^{\gam}$ with
+$\gam = \log_2 \lam$ \cite{KL03}. The certificate data below refer to the
+critical (Perron) certificates \texttt{cert\_k13} etc.\ of
+\cite{Temp26}; $P$ denotes the $3$-adic scale of the difference being
+tracked, as in \cite{Drift26}.
+
+\subsection{Triple coordinates}
+
+Consider a sibling triple with member levels $x = (x_1, x_2, x_3)$ ---
+the logarithmic certificate values whose minimum the system reads ---
+and let one application of the edge-linearized operator move member $i$
+by the increment $\Delta_i$. Decompose
+\begin{equation}
+\Delta_i = t + \dl_i, \qquad
+t := \tfrac13 \textstyle\sum_i \Delta_i, \qquad
+\textstyle\sum_i \dl_i = 0,
+\label{eq:coords}
+\end{equation}
+so $t$ is the \emph{common (coarse) move} of the triple and $\dl_i$ the
+centered \emph{fine moves}. Let
+\begin{equation}
+g_i := x_i - \min_j x_j \;\geq\; 0
+\label{eq:gaps}
+\end{equation}
+be the static within-triple \emph{gaps} (at least one $g_i = 0$), and
+write $g_{(1)} \leq g_{(2)} \leq g_{(3)}$ for their order statistics
+($g_{(1)} = 0$; $g_{(2)}$ is the \emph{second gap}, the margin by which
+the runner-up trails the argmin).
+
+Statistics are taken over the population of sibling triples of a
+certificate at a given scale $P$: $\Var(t)$ and $\cov(t, \cdot)$ are over
+triples; $\Var(\dl) := \E[\dl_J^2]$ is the pooled fine variance, $J$ a
+uniformly random member label independent of the triple (note
+$\E[\dl_J] = 0$ and $\cov(t, \dl_J) = \E[t \,\E(\dl_J \mid
+\mathrm{triple})] = 0$, both exact); $\sigma_\dl := \Var(\dl)^{1/2}$.
+
+\begin{definition}[Attenuation constant; Def.~10 of \cite{Drift26}]
+\label{def:kappa}
+$\displaystyle \kap(P;k) := \frac{\mathrm{std}\big(\min_i (x_i + \Delta_i)
+- \min_i x_i\big)}{\mathrm{std}(\Delta_J)}$,
+the ratio of the standard deviation of the triple-minimum increment to
+that of the pooled member increments.
+\end{definition}
+
+\section{The $S$-formula}
+\label{sec:S}
+
+\begin{lemma}[$S$-formula]
+\label{lem:S}
+\textup{(Proved.)}
+For any triple, with the coordinates \eqref{eq:coords}--\eqref{eq:gaps},
+\begin{equation}
+\min_i (x_i + \Delta_i) \;-\; \min_i x_i \;=\; t + S,
+\qquad
+S := \min_i \,(\dl_i + g_i).
+\label{eq:S}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$\min_i (x_i + t + \dl_i)
+= t + \min_i \big( \min_j x_j + g_i + \dl_i \big)
+= \min_j x_j + t + \min_i (g_i + \dl_i)$.
+\end{proof}
+
+\emph{Verified:} identity \eqref{eq:S} holds to $1.8 \times 10^{-15}$
+(maximum absolute residual, i.e.\ floating-point roundoff) on $150{,}000$
+certificate triples.
+
+\begin{corollary}[Slope exactly one; all attenuation in $S$]
+\label{cor:slope}
+\textup{(Proved.)}
+The triple minimum passes the common move with slope exactly $1$: if
+$\dl = 0$ then $S = \min_i g_i = 0$ and the min-increment equals $t$.
+This recovers the directional low-pass, Prop.~34b of \cite{NOTE}
+($\min(x + c\mathbf{1}) = \min(x) + c$), as the $\dl = 0$ case of
+Lemma~\ref{lem:S}. In general the min-increment deviates from the common
+move by exactly the scalar $S$, which depends only on the fine moves and
+the gaps; moreover
+\[
+\min_i \dl_i \;\leq\; S \;\leq\; \dl_{i_0},
+\qquad i_0 := \operatorname*{argmin}_i x_i ,
+\]
+the upper bound being the old-argmin half of the sandwich inequality of
+Prop.~33 \cite{NOTE}.
+\end{corollary}
+
+\begin{proof}
+$S \leq \dl_{i_0} + g_{i_0} = \dl_{i_0}$ since $g_{i_0} = 0$;
+$S \geq \min_i \dl_i$ since $g_i \geq 0$.
+\end{proof}
+
+\begin{remark}[Relation to the clipping decomposition]
+Prop.~33 of \cite{NOTE} decomposes the min-increment
+as $\bar D + R$, member mean plus min-correction, and finds the
+attenuation concentrated in the covariance $\cov(\bar D, R) < 0$. The coordinates $(t, S)$ of
+Lemma~\ref{lem:S} are the same budget in a sharper basis: $t = \bar D$
+and $S = R$, but now $S$ has a \emph{closed form} --- a minimum of fine
+moves shifted by gaps --- rather than being defined as a residual. Every
+structural question about the attenuation becomes a question about the
+scalar random variable $S = \min_i(\dl_i + g_i)$.
+\end{remark}
+
+\section{The exact decomposition of $\kap$}
+\label{sec:decomp}
+
+\begin{corollary}[Exact $\kap$ decomposition]
+\label{cor:decomp}
+\textup{(Proved; verified exactly on certificate data.)}
+\begin{equation}
+\kap^2 \;=\;
+\frac{\Var(t) + 2\cov(t,S) + \Var(S)}{\Var(t) + \Var(\dl)} ,
+\label{eq:decomp}
+\end{equation}
+and consequently
+\begin{equation}
+\kap < 1
+\quad\Longleftrightarrow\quad
+2\cov(t,S) + \Var(S) \;<\; \Var(\dl) .
+\label{eq:criterion}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Numerator: by Lemma~\ref{lem:S} the min-increment is $t + S$, and
+$\Var(t+S) = \Var(t) + 2\cov(t,S) + \Var(S)$. Denominator: with $J$ a
+uniform member label independent of the triple,
+$\Var(\Delta_J) = \Var(t + \dl_J) = \Var(t) + \Var(\dl)$, the cross term
+vanishing exactly because $\E[\dl_J \mid \mathrm{triple}] = 0$.
+Divide. The equivalence \eqref{eq:criterion} is numerator minus
+denominator.
+\end{proof}
+
+\emph{Verified:} on \texttt{cert\_k13}, the right side of
+\eqref{eq:decomp} equals the directly computed $\kap^2$ to all displayed
+digits: $0.7901 = 0.7901$ at $P = 4$ and $0.7431 = 0.7431$ at $P = 6$
+(i.e.\ $\kap = 0.889$, $0.862$, matching the independently measured
+attenuation series $0.908 \to 0.841$ of \cite{Drift26} at those scales).
+
+The decomposition splits the Open Lemma into exactly two mechanisms:
+\begin{itemize}
+\item[(M1)] \emph{Mean reversion}: $\cov(t,S) \leq 0$ --- the selected
+fine move anti-correlates with the common move;
+\item[(M2)] \emph{Min-variance contraction}: $\Var(S) < \Var(\dl)$ ---
+the minimum over competing candidates is less variable than a single
+member's fine move.
+\end{itemize}
+Either mechanism alone, if quantitatively uniform, would suffice; the
+data (next section) shows \emph{both} present at every measured scale
+and depth.
+
+\section{Measured inputs}
+\label{sec:measured}
+
+All quantities on \texttt{cert\_k13}; covariances in normalized units
+$V := \Var(t) + \Var(\dl) = 1$.
+
+\begin{center}
+\begin{tabular}{l c c}
+\hline
+quantity & $P = 4$ & $P = 6$ \\
+\hline
+$\kap^2$ (both sides of \eqref{eq:decomp}) & $0.7901$ & $0.7431$ \\
+$\Var(S)/\Var(\dl)$ & $0.639$ & $0.499$ \\
+$\cov(t,S)$ & $-0.0799$ & $-0.0517$ \\
+$\Pr(S \text{ selects a non-argmin member})$ & $0.658$ & $0.665$ \\
+median $g_{(2)} / \sigma_\dl$ & $0.130$ & $0.127$ \\
+implied $\Var(\dl)/V$ (from \eqref{eq:decomp}) & $0.139$ & $0.306$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent Reading of the table (all four rows are \emph{measured}; the
+last row is arithmetic from the rows above and closes the budget):
+
+\begin{itemize}
+\item \emph{Both mechanisms are active with the right sign.}
+$\cov(t,S) < 0$ at both scales (M1), and $\Var(S)/\Var(\dl) < 1$ at both
+scales (M2). The attenuation budget
+$1 - \kap^2 = -2\cov(t,S) + \big(1 - \tfrac{\Var(S)}{\Var(\dl)}\big)
+\tfrac{\Var(\dl)}{V}$
+splits as $0.1598 + 0.0501$ at $P = 4$ (covariance-dominated) and
+$0.1034 + 0.1535$ at $P = 6$ (contraction-dominated): the two mechanisms
+trade weight with scale while their sum grows.
+\item \emph{The competition is intense.} The median second gap is only
+$0.13\,\sigma_\dl$: the runner-up typically trails the argmin by an
+eighth of a fine-move standard deviation, so a single application
+routinely reorders the triple. Consistently, $S$ selects a member other
+than the static argmin with probability $0.658$--$0.665$ --- within one
+percent of the value $2/3$ that full member-exchangeability with
+gap-blind selection would predict. This is the data's vote for the
+exchangeability hypothesis of Lemma~\ref{lem:contraction}(d) below.
+\item \emph{The fine fraction grows with scale.} $\Var(\dl)/V$ rises
+from $0.14$ to $0.31$ between $P = 4$ and $P = 6$: deep scales are
+fine-dominated, which is where mechanism (M2) has the most leverage ---
+consistent with the deepening of the measured attenuation
+($\kap = 0.908 \to 0.841$ across $P$, \cite{Drift26}).
+\end{itemize}
+
+\section{The min-variance contraction}
+\label{sec:contraction}
+
+Mechanism (M2) asks when a minimum of competing random candidates is
+\emph{less} variable than a single candidate. This is not automatic ---
+a minimum of comonotone candidates just tracks the lowest one, with no
+contraction --- so the content must lie in \emph{competition}. The
+following lemma isolates exactly that: an identity with no hypotheses
+whose deficit term is nonzero precisely when the \emph{order swaps},
+plus a quantitative bound under hypotheses we state explicitly.
+
+For a real random variable $W$ write $W^+ = \max(W, 0)$,
+$W^- = \max(-W, 0)$.
+
+\begin{lemma}[Min-variance contraction]
+\label{lem:contraction}
+\textup{(Proved; hypotheses as stated per part.)}
+Let $A, B$ be square-integrable random variables on a common probability
+space, $W := A - B$, $m := \min(A,B)$, $M := \max(A,B)$, and
+$\sigma^2 := \max(\Var A, \Var B)$.
+\begin{itemize}
+\item[(a)] \emph{(Exact identity; no hypotheses.)}
+\begin{equation}
+\Var(m) + \Var(M) \;=\; \Var(A) + \Var(B) \;-\; 2\,\E[W^+]\,\E[W^-].
+\label{eq:pairid}
+\end{equation}
+The deficit $2\E[W^+]\E[W^-]$ is strictly positive if and only if
+$\Pr(A > B) > 0$ and $\Pr(B > A) > 0$: variance is destroyed exactly
+when the order swaps.
+\item[(b)] \emph{(Splitting min from max.)} With
+$\Delta_{\mathrm{skew}} := \Var(m) - \Var(M)$,
+\[
+\Var(m) \;=\; \tfrac12\big(\Var A + \Var B\big) \;-\; \E[W^+]\,\E[W^-]
+\;+\; \tfrac12 \Delta_{\mathrm{skew}} .
+\]
+If the law of $(A,B)$ is invariant under the anti-diagonal reflection
+$(A,B) \mapsto (s - B,\, s - A)$ for some constant $s$, then
+$\Delta_{\mathrm{skew}} = 0$ and
+\[
+\Var(\min(A,B)) \;=\; \tfrac12\big(\Var A + \Var B\big)
+\;-\; \E[W^+]\,\E[W^-] \;\leq\; \sigma^2 - \E[W^+]\,\E[W^-].
+\]
+\item[(c)] \emph{(Quantitative competition bound.)} If, in addition to
+the reflection hypothesis of (b), there are $p_0 > 0$, $c > 0$ with
+\[
+\Pr(W \geq c\,\sigma) \;\geq\; p_0
+\qquad\text{and}\qquad
+\Pr(-W \geq c\,\sigma) \;\geq\; p_0
+\]
+(two-sided order-swap frequency), then
+\[
+\Var(\min(A,B)) \;\leq\; \big(1 - \varepsilon(p_0, c)\big)\,\sigma^2,
+\qquad
+\varepsilon(p_0, c) := p_0^2\, c^2 \;>\; 0 .
+\]
+\item[(d)] \emph{(Exchangeable triple.)} Let $(Y_1, Y_2, Y_3)$ be
+exchangeable with common variance $\sigma^2$ and mean $\mu$, order
+statistics $Y_{(1)} \leq Y_{(2)} \leq Y_{(3)}$, and set
+$a_i := \E[Y_{(i)}] - \mu$. Then, with no further hypotheses,
+\[
+\textstyle\sum_i \Var(Y_{(i)}) \;=\; 3\sigma^2 - \sum_i a_i^2 ,
+\]
+and if additionally the vector is centrally symmetric
+($2\mu\mathbf{1} - Y \overset{d}{=} Y$), then $\Var(Y_{(1)}) =
+\Var(Y_{(3)})$, $a_2 = 0$, and
+\[
+\Var(\min_i Y_i) \;=\; \tfrac12\Big( 3\sigma^2
+\;-\; \tfrac12\big(\E[\,Y_{(3)} - Y_{(1)}\,]\big)^2
+\;-\; \Var(Y_{(2)}) \Big) .
+\]
+In particular $\Var(\min) < \sigma^2$ whenever
+$\big(\E[\mathrm{range}]\big)^2 + 2\Var(\mathrm{median}) > 2\sigma^2$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(a) Pointwise $\{m, M\} = \{A, B\}$, so $\E[m^2 + M^2] = \E[A^2 + B^2]$.
+From $m = \tfrac12(A+B) - \tfrac12|W|$ and $M = \tfrac12(A+B) +
+\tfrac12|W|$, with $\mu := \tfrac12(\E A + \E B)$, $d := \E|W|$,
+$b := \E W$:
+\[
+(\E m)^2 + (\E M)^2 = 2\mu^2 + \tfrac{d^2}{2},
+\qquad
+(\E A)^2 + (\E B)^2 = 2\mu^2 + \tfrac{b^2}{2}.
+\]
+Subtracting, $\Var m + \Var M = \Var A + \Var B - \tfrac12(d^2 - b^2)$.
+Since $|W| = W^+ + W^-$ and $W = W^+ - W^-$,
+$d - b = 2\E[W^-]$ and $d + b = 2\E[W^+]$, so
+$d^2 - b^2 = 4\,\E[W^+]\E[W^-]$, giving \eqref{eq:pairid}. The deficit is
+positive iff both factors are, i.e.\ iff the order swaps both ways with
+positive probability.
+
+(b) The first display is \eqref{eq:pairid} rearranged. Under the
+reflection, $\min(s - B, s - A) = s - \max(A, B)$, so
+$m \overset{d}{=} s - M$ and $\Var m = \Var M$.
+
+(c) $\E[W^+] \geq c\sigma \Pr(W \geq c\sigma) \geq p_0 c \sigma$ and
+symmetrically for $W^-$; insert into (b) and use
+$\tfrac12(\Var A + \Var B) \leq \sigma^2$.
+
+(d) Pointwise $\sum_i Y_{(i)}^2 = \sum_i Y_i^2$, so the second moments
+agree; exchangeability gives $\E Y_i = \mu$ for all $i$, and
+$\sum_i a_i = 0$, so $\sum_i (\E Y_{(i)})^2 = 3\mu^2 + \sum_i a_i^2$,
+proving the first display. Central symmetry maps
+$Y_{(1)} \mapsto 2\mu - Y_{(3)}$ and $Y_{(2)} \mapsto 2\mu - Y_{(2)}$,
+so $\Var Y_{(1)} = \Var Y_{(3)}$, $a_2 = 0$, and
+$a_3 = -a_1 = \tfrac12 \E[Y_{(3)} - Y_{(1)}]$, whence
+$\sum a_i^2 = \tfrac12 (\E[\mathrm{range}])^2$; solve the first display
+for $\Var(Y_{(1)})$.
+\end{proof}
+
+\begin{remark}[Near-ties plus dispersion imply order swaps]
+\label{rem:nearties}
+The intuitive competition event --- ``at least two candidates lie within
+$c_0 \sigma_\dl$ of each other'' --- does not by itself produce
+contraction: two comonotone candidates a hair apart never swap, and part
+(a) then gives deficit zero. What near-ties buy is \emph{leverage} for
+the fine-move dispersion. Concretely, for the two lowest-gap members $a$
+(argmin, $g_a = 0$) and $b$ (runner-up, $g_b = g_{(2)}$),
+$W = Y_a - Y_b = (\dl_a - \dl_b) - g_{(2)}$; on the joint event
+$\{ g_{(2)} \leq c_0 \sigma_\dl \} \cap
+\{ \dl_a - \dl_b \geq c_1 \sigma_\dl \}$ with $c_1 > c_0$ one has
+$W \geq (c_1 - c_0)\sigma_\dl$, while
+$\{-W \geq c_1 \sigma_\dl\} \supseteq \{\dl_b - \dl_a \geq c_1\sigma_\dl\}
+\cap \{g_{(2)} \geq 0\}$ costs nothing. So: \emph{small static gaps}
+(measured: median $g_{(2)} = 0.13\,\sigma_\dl$) \emph{plus two-sided
+anti-concentration of the fine-move differences} (non-comonotonicity)
+deliver the two-sided swap hypothesis of part (c) with $c = c_1 - c_0$.
+The near-tie condition and the swap condition are the static and dynamic
+faces of the same competition.
+\end{remark}
+
+\begin{remark}[Which hypotheses does the data support?]
+\label{rem:hypotheses}
+Honesty requires separating the three hypotheses used above.
+\begin{itemize}
+\item \emph{Exchangeability} (part (d), and implicitly the ``no
+distinguished member'' reading of (c)): supported. Under member-\linebreak
+exchangeability with gaps small relative to fine moves, the selected
+member is nearly uniform over the triple, predicting
+$\Pr(\text{non-argmin selection}) = 2/3 = 0.667$; measured $0.658$ and
+$0.665$ (Section~\ref{sec:measured}).
+\item \emph{Competition / order swaps}: supported. Median
+$g_{(2)}/\sigma_\dl = 0.130$, $0.127$ --- the near-tie regime of
+Remark~\ref{rem:nearties} --- and the $0.66$ non-argmin selection rate
+is direct evidence that the order swaps at nearly the exchangeable
+ceiling.
+\item \emph{Reflection / central symmetry} (the hypothesis that kills
+the skew term $\Delta_{\mathrm{skew}}$): \emph{untested}. We have not
+separately measured $\Var(\min) - \Var(\max)$ on the certificate
+triples; a persistent positive skew would weaken part (c)'s bound by
+$\tfrac12\Delta_{\mathrm{skew}}$. What \emph{is} directly verified is
+the conclusion itself: $\Var(S)/\Var(\dl) = 0.639$, $0.499 < 1$ --- so
+the package (swap frequency $+$ approximate symmetry) is consistent ex
+post, but the symmetry hypothesis is a genuine assumption of the clean
+statement, not a theorem about the cascade. We flag it as such in
+Theorem~\ref{thm:main} and Section~\ref{sec:gap}.
+\end{itemize}
+Note also a bookkeeping point: parts (a)--(d) control $\Var(\min Y)$
+relative to $\Var(Y_i) = \Var(\dl_i + g_i)$, which exceeds $\Var(\dl)$
+when the gaps fluctuate across triples. Converting the contraction into
+the form needed by \eqref{eq:criterion}, $\Var(S) \leq (1 -
+\varepsilon_0)\Var(\dl)$, therefore consumes part of the deficit to pay
+for the gap variance --- which is affordable precisely in the near-tie
+regime where gaps are small on the $\sigma_\dl$ scale. This is where the
+gap-to-increment scale ratio enters irreducibly; see
+Section~\ref{sec:gap}.
+\end{remark}
+
+\section{The conditional stability theorem}
+\label{sec:main}
+
+\begin{theorem}[Conditional uniform attenuation]
+\label{thm:main}
+\textup{(Proved as stated; the hypotheses are the open content.)}
+Suppose there exist constants $\varepsilon_0 > 0$ and $\varphi_0 > 0$
+such that, for every scale $P$ and every depth $k$, in the stationary
+(Perron) state of the critical Krasikov--Lagarias system:
+\begin{itemize}
+\item[(i)] \emph{(Mean-reversion sign)} $\cov(t, S) \leq 0$;
+\item[(ii)] \emph{(Uniform competition)}
+$\Var(S) \leq (1 - \varepsilon_0)\,\Var(\dl)$ \ and \
+$\Var(\dl) \geq \varphi_0 \big( \Var(t) + \Var(\dl) \big)$.
+\end{itemize}
+Then
+\[
+\kap(P; k)^2 \;\leq\; 1 - \varepsilon_0\,\varphi_0 \;=:\; \kap_{\max}^2
+\;<\; 1
+\qquad \text{for all } P, k :
+\]
+the Open Lemma of \cite{Drift26, Gamma26} holds with
+$\kap_{\max} = (1 - \varepsilon_0 \varphi_0)^{1/2}$, and consequently, by
+the conditional theorem of \cite{Gamma26} (whose remaining five links are
+proved there), $\gam_k \to 1$ and
+\[
+\pi_1(x) \;\geq\; x^{1 - \varepsilon}
+\qquad \text{for every } \varepsilon > 0 .
+\]
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:decomp} and (i), then (ii),
+\[
+\kap^2 \leq \frac{\Var(t) + \Var(S)}{\Var(t) + \Var(\dl)}
+\leq \frac{\Var(t) + (1 - \varepsilon_0)\Var(\dl)}{\Var(t) + \Var(\dl)}
+= 1 - \varepsilon_0 \,\frac{\Var(\dl)}{\Var(t) + \Var(\dl)}
+\leq 1 - \varepsilon_0 \varphi_0 .
+\]
+\end{proof}
+
+\begin{remark}[Measured values of the constants]
+The hypotheses hold with room at every measured point:
+$\cov(t,S) = -0.0799$, $-0.0517 < 0$;
+$\varepsilon_0 = 1 - 0.639 = 0.361$ at the weakest measured scale;
+$\varphi_0 = 0.139$ at the coarsest measured scale (and growing with
+$P$). These give $\kap_{\max} = (1 - 0.361 \times 0.139)^{1/2} = 0.975$
+--- a valid but crude bound, since the proof spends hypothesis (i) only
+on its sign. Keeping the measured covariance yields the measured
+$\kap = 0.889$ at $P = 4$; the theorem's job is uniformity, not
+sharpness. Note also that Lemma~\ref{lem:contraction}(c), under its
+stated hypotheses with $(p_0, c)$ uniform in depth and the gap-variance
+bookkeeping of Remark~\ref{rem:hypotheses}, is precisely a mechanism
+that would deliver hypothesis (ii); and Prop.~34's binding rigidity
+\cite{NOTE} is the mechanism proposed for (i). Neither delivery is yet a
+proof.
+\end{remark}
+
+\section{The honest gap}
+\label{sec:gap}
+
+Theorem~\ref{thm:main} is an exact reduction, not a resolution: the Open
+Lemma is now equivalent (via the verified identity \eqref{eq:decomp}) to
+proving hypotheses (i) and (ii) \emph{from the cascade structure}. We
+record what each requires, what is measured, and what would falsify the
+program.
+
+\subsection{Proving (i): selection-weighted mean reversion}
+
+$\cov(t, S) \leq 0$ says: when the triple's common move is up, the
+selected member's fine move is preferentially down, and vice versa. This
+is exactly the phenomenon isolated in Prop.~34 of \cite{NOTE}: the
+antisymmetric min-correction ($\pm 0.026$) is carried equally by switch
+and no-switch events, so the mechanism is not clipping-at-switches but
+\emph{binding-constraint rigidity} --- the argmin member is the binding
+entry of the rows that read it, and binding entries, pinned by the
+equation network through complementary slackness, co-move less than the
+triple average. The proof route (sketched in \cite{Drift26},
+Sect.~``The LP-duality route'') is:
+\begin{enumerate}
+\item at the critical $\lam_k$ the certificate is an LP optimum, and
+each triple's argmin carries a strictly positive dual weight;
+\item show the dual weights concentrate on binding entries with pinning
+strength bounded below uniformly, using the mass-conservation identity
+(normalizing total dual mass) and the balance identity (preventing dual
+mass from draining across the scale hierarchy), both proved in
+\cite{Drift26};
+\item sensitivity analysis then bounds the binding member's response
+slope below the slack members', giving $\cov(t, S) \leq 0$ in the
+stationary state.
+\end{enumerate}
+Step 2 is the missing arithmetic input; nothing here is circular with
+the present paper, but nothing here is proved either.
+
+\subsection{Proving (ii): the gap scale versus the increment scale}
+
+Uniform competition requires that the static gaps do not outgrow the
+fine-move dispersion: the near-tie ratio $g_{(2)}/\sigma_\dl$ must stay
+bounded (measured: median $0.130$, $0.127$ at $P = 4, 6$) and the fine
+fraction $\Var(\dl)/V$ must stay bounded below (measured: $0.139$,
+$0.306$ and growing with scale). Two measured laws of \cite{NOTE} are
+the natural sources:
+\begin{itemize}
+\item \emph{The ultrametric spacing law} (Lemma~26): the triple-$\CV$ of
+the certificate at class-spacing $s$ depends to leading order only on
+$v_3(s)$, with an approximate two-term closure. This is exactly a
+statement tying the gap distribution at each scale to the certificate's
+own $\CV$ profile --- i.e.\ tying the gap scale to the increment scale.
+Measured, with an emergent-coefficient caveat; not proved.
+\item \emph{Fine-end saturation} (Prop.~23): $\CV_1(k) = 0.5136 -
+0.337\,(0.910)^k$ to residual $10^{-6}$ across nine depths --- the
+intra-triple variation converges to a \emph{nonzero} limit. This is
+what keeps $\sigma_\dl$ (and with it the fine fraction $\varphi_0$)
+alive as $k \to \infty$; its failure ($\CV_1 \to 0$) would kill
+competition and push $\kap \to 1$. Measured with striking precision;
+not proved.
+\end{itemize}
+
+\subsection{What is measured across depth}
+
+The program's empirical safety margin is Prop.~35 of \cite{NOTE}:
+$\kap < 0.95$ at every scale and depth, with the deep-scale value flat,
+$\kap_{\mathrm{deep}} = 0.841, 0.840, 0.837, 0.838$ at
+$k = 13, 15, 17, 19$, i.e.\ $\kap_\infty = 0.839 \pm 0.002$. And by the
+scalar closure (Prop.~47 of \cite{NOTE}), the variance budget of the
+exact transport identity closes to $0.06\%$ with $\kap(P)$ as the only
+nonlinear unknown: the entire cascade is governed by a one-dimensional
+map whose measured trajectory descends ($0.917 \to 0.899$ across $P$,
+deep limit $0.839$). The stability program of the title is precisely:
+prove that this one-dimensional fixed point sits below $1$ --- which
+Theorem~\ref{thm:main} reduces to the sign (i) and the competition (ii).
+
+\subsection{Falsification risks}
+
+Stated symmetrically, as in the companions:
+\begin{enumerate}
+\item \emph{Sign creep.} $\cov(t,S)$ could drift to $0$ or turn positive
+at depths beyond measurement. The measured normalized value shrinks from
+$-0.0799$ ($P{=}4$) to $-0.0517$ ($P{=}6$); on the present data the
+contraction term more than compensates (total attenuation grows), but a
+proof of (i) must rule out asymptotic sign loss, and the trend is a
+genuine caution.
+\item \emph{Competition dilution.} The gap scale could grow relative to
+$\sigma_\dl$ at deep scales or depths ($g_{(2)}/\sigma_\dl$ measured
+flat at $0.13$, but only to $P = 6$, $k = 19$), or the fine fraction
+could collapse ($\varphi_0 \to 0$) if Prop.~23's saturation is
+preasymptotic.
+\item \emph{Symmetry breakdown.} The clean contraction bound assumes
+reflection symmetry; a persistent skew $\Delta_{\mathrm{skew}} > 0$
+would eat into the deficit $\E[W^+]\E[W^-]$. This hypothesis is
+currently untested on certificate data (Remark~\ref{rem:hypotheses}) and
+is the cheapest of the risks to retire: measure
+$\Var(\min) - \Var(\max)$ across $P$ and $k$.
+\item \emph{Exchangeability breakdown.} The non-argmin selection rate
+could drift from $2/3$ at large $k$, signaling a distinguished member
+and invalidating the symmetric reading of the competition bound.
+\item \emph{Preasymptotic flatness.} The depth-flatness of
+$\kap_{\mathrm{deep}}$ over $k = 13$--$19$ spans a factor $3^6$ in
+modulus but is still a finite window; all conclusions drawn from it are
+measured, not proved, and are labeled so.
+\end{enumerate}
+
+\section{Status ledger}
+\label{sec:status}
+
+\begin{center}
+\begin{tabular}{p{0.22\textwidth} p{0.71\textwidth}}
+\hline
+\textbf{Proved} &
+$S$-formula \eqref{eq:S} and slope-one corollary
+(Lemma~\ref{lem:S}, Cor.~\ref{cor:slope}), recovering Prop.~34b;
+exact decomposition \eqref{eq:decomp} and criterion \eqref{eq:criterion}
+(Cor.~\ref{cor:decomp});
+min-variance identities and contraction bounds under stated hypotheses
+(Lemma~\ref{lem:contraction}(a)--(d));
+conditional uniform attenuation (Thm.~\ref{thm:main});
+the five other links of the $\gam \to 1$ chain \cite{Temp26, Drift26,
+Gamma26}. \\
+\hline
+\textbf{Verified} &
+$S$-formula to $1.8 \times 10^{-15}$ on $150{,}000$ certificate triples;
+decomposition closure $0.7901 = 0.7901$ ($P{=}4$), $0.7431$ ($P{=}6$),
+$k = 13$. \\
+\hline
+\textbf{Measured} &
+$\Var(S)/\Var(\dl) = 0.639$, $0.499$;
+$\cov(t,S) = -0.0799$, $-0.0517$;
+non-argmin selection $0.658$, $0.665$ (vs.\ $2/3$ exchangeable);
+median $g_{(2)}/\sigma_\dl = 0.130$, $0.127$;
+implied fine fraction $0.139$, $0.306$;
+$\kap$ flat at $0.839 \pm 0.002$ over $k = 13$--$19$ (Prop.~35);
+$\CV_1 \to 0.5136 > 0$ (Prop.~23); spacing law (Lemma~26);
+scalar closure to $0.06\%$ (Prop.~47) \cite{NOTE}. \\
+\hline
+\textbf{Open} &
+Hypothesis (i): $\cov(t,S) \leq 0$ uniformly, from binding-constraint
+rigidity (Prop.~34; LP-duality route, step 2 missing).
+Hypothesis (ii): uniform competition --- gap scale tied to increment
+scale (Lemma~26) and fine-end saturation (Prop.~23), neither proved.
+Reflection-symmetry hypothesis of
+Lemma~\ref{lem:contraction}(b)--(c): untested on certificate data. \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Acknowledgment of method}
+The computations, fits, and drafts were produced in an extended
+human--AI collaboration; every proved statement above has a
+self-contained proof in the text or in a cited companion, independent of
+that provenance.
+
+\begin{thebibliography}{9}
+
+\bibitem{KL03}
+I.~Krasikov and J.~C.~Lagarias,
+\emph{Bounds for the 3x+1 problem using difference inequalities},
+Acta Arith. \textbf{109} (2003), no.~3, 237--258. arXiv:math/0205002.
+
+\bibitem{Lag85}
+J.~C.~Lagarias,
+\emph{The 3x+1 problem and its generalizations},
+Amer. Math. Monthly \textbf{92} (1985), 3--23.
+
+\bibitem{Tao19}
+T.~Tao,
+\emph{Almost all orbits of the Collatz map attain almost bounded values},
+Forum Math. Pi \textbf{10} (2022), e12. arXiv:1909.03562 (2019).
+
+\bibitem{Temp26}
+M.~de Jong (with Jengo, AI),
+\emph{Krasikov--Lagarias certificates for the $3x+1$ problem are tempered
+roulette measures}, companion paper, July 2026.
+
+\bibitem{Drift26}
+M.~de Jong (with Jengo, AI),
+\emph{The drift of the Collatz cascade: balance identities, the directional
+low-pass, and the attenuation constant}, companion paper, July 2026.
+
+\bibitem{Gamma26}
+M.~de Jong (with Jengo, AI),
+\emph{Towards density $x^{1-\varepsilon}$ for the $3x+1$ problem: a program
+with one open lemma}, companion paper, July 2026.
+
+\bibitem{NOTE}
+M.~de Jong (with Jengo, AI),
+\emph{Six results on the Collatz map in family/pair coordinates}, research
+note, July 2026 (Propositions 23, 33, 34, 34b, 35, 47; Lemma 26).
+
+\end{thebibliography}
+
+\end{document}
