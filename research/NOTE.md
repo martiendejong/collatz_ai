@@ -1020,3 +1020,27 @@ unique base that engages ALL rungs dynamically yet renders none of them
 simple: it interrogates the whole ladder precisely because it resolves
 none of it. Spectroscopy metaphor exact: bases = filters, anchors =
 lines, splitting governed by residues mod d (cyclotomic arithmetic).
+
+## Remark 60b (honest relabel + consolidation: THE ANCHOR LATTICE), R1461-1465
+(1) RELABEL: Prop 60's L3 is MIDY'S THEOREM (1836) in p-adic form — the
+half-period digit-complement law. Verified in general form over 79 (d,q)
+pairs: even period L means q^{L/2} = -1 mod d, half-shift maps -1/d to
+1/d = complement; digit-sum per period = (q-1)L/2. Known mathematics;
+we keep it as organizing structure, claim no novelty.
+(2) CONSOLIDATION: Thm 59 (families) + Prop 60 (spectroscopy) + Thm 29
+(CST) + Thm 56 (regimes) are four faces of ONE object, the ANCHOR
+LATTICE: the rationals y_w/(p^j - x^r) indexed by words w. Faces:
+dynamics (families/runs = p-adic proximity), cycles (= anchors landing
+on positive integers; cycle equation (2^j-3^r) | W_word), CST (small
+denominators = convergents of log_2 3; extremal words = repeated limma
+words, Lemma 30), and cross-base structure (cyclotomic splitting by
+residues mod denominator). Wall 2 (cycles/CST) is exactly the ARITHMETIC
+OF THE ANCHOR LATTICE AT THE CONVERGENTS. Walls 1 (variational
+strictness) and 3 (funnel-avoidance) are untouched by this arc.
+(3) NO-GO #7 (base transport): a base resolves an anchor simply iff
+d | q-1, and a resolved anchor is dynamically inert in that base.
+Simplicity and dynamical relevance are MUTUALLY EXCLUSIVE — the problem
+cannot be transported to a base where it becomes easier. Seventh
+independent confirmation of the doctrine: only exact/stationary
+structure works; all statistical, local, linear, and now BASE-CHANGE
+shortcuts are closed.
