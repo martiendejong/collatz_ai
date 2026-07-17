@@ -811,3 +811,28 @@ step over 600 steps; 7n+1 from 3: +0.75), certainty is statistical, proof
 is blocked by the same symmetric wall in both directions. Answer to the
 question "can we find a proper divergent variant": we can find certainty
 in one minute and a proof in no currently known mathematics.
+
+## Proposition 53 (The funnel-avoidance problem: the exact divergence
+## obligation, and why it is the easiest flank). — R1316-1330
+For x*n+1 with huge x (e.g. x = 123121231, drift +24.9 bits/odd step):
+(a) COVERING LEMMA (proved, 2 lines): for every odd x,y and every j,
+{xn+y mod 2^j : n odd} covers all even residues including 0 — w is unbounded
+over inputs for EVERY proper map; no modulus caps the crash channel.
+(b) THE EXACT OBLIGATION: the orbit n_t crashes only via the single event
+   n_t == -x^{-1} (mod 2^{~ht}),  ht ~ height ~ (log2 x - 2)*t,
+i.e. the orbit falling 2-adically into the funnel of ONE bad point -1/x to
+a depth growing linearly in time. Divergence proof = ONE 2-adic
+non-approximation statement:
+   d_2(n_t, -1/x) > 2^{-c t} for all t (any c < log2 x - 2 suffices).
+(c) WHY IT FEELS (AND IS) EASIER: one bad point (vs Collatz's delocalized
+everything), colossal margins (the model gives crash probability ~2^{-25}
+TOTAL over the whole future — note: NOT zero, so even heuristically
+divergence is 99.999997%, never 100%), and the statement has the shape of
+p-adic Diophantine approximation (Baker/S-unit style) — provable for LINEAR
+recurrences; blocked here only by the orbit's self-reference (w's feed back
+into values). This is the family's wall in its SIMPLEST form: per-orbit
+rigidity with one target point and exponential slack.
+RECOMMENDED ATTACK ORDER (recorded): prove funnel-avoidance for huge-x maps
+FIRST — any technique that does it (p-adic equidistribution along
+piecewise-affine orbits) transfers toward Collatz. The easiest flank of the
+symmetric wall.
