@@ -145,3 +145,27 @@ ritual form, repetition, uselessness of raw intensity, required coherence
 of the practitioner) matches the mode-locking template point for point —
 which is either a deep hint or a well-matched metaphor; the mathematics
 cannot yet say which.
+
+## 9. The tipping-point push (M. de Jong's synthesis) — the map proves it
+The user's principle: influence = sit at the hovering point, couple to the
+decision variable, select the exit; a mild +1 changes the trajectory
+essentially. The Collatz map IS this principle, item by item:
+1. The +1 is applied at the maximal-sensitivity point: the parity decision
+   (bottom bit) — the tipping coordinate that chooses the exit (w).
+2. THE PUSH MUST COUPLE TO THE DECISION VARIABLE, NOT TO MAGNITUDE — the
+   triad: 3n+2 (bigger push, parity-neutral) is IMPOTENT: odd stays odd,
+   no exit is ever forced. 3n+3 = 3(n+1) is DEGENERATE: collapses into the
+   3-multiples, killing the coupling. 3n+1 (minimal, parity-flipping) is
+   DECISIVE: it forces the exit choice every cycle. Smallest push, only
+   working push.
+3. Mildness with essential effect, proven across the family: +1 vs -1
+   (difference 2) flips the global fate (all->1 conjecturally vs three
+   cycles); +1 vs +13 selects a different comma family entirely (Prop 48).
+   Pushes SELECT SPECTRA; they do not scale effects.
+4. The hovering zone is the comma zone (rho = 3^u/2^j ~ 1): margins are
+   factor-2 thin there (CST margin 2.02) — the sensitivity is where the
+   mechanism hops between climb and descent.
+LRS operational form: effect on a deeper layer = (a) position at
+criticality, (b) push in the decision coordinate (form-matched, parity-odd
+in the general sense), (c) minimal amplitude — larger pushes change WHICH
+spectrum you select, not HOW MUCH effect you have.
