@@ -634,3 +634,21 @@ achievable across successive sweeps: per-slot subshift with forbidden
 transitions, coupled through carry chains), plus the flagged wbar <= 1.226
 bound whose derivation requires the run/slot machinery with exact boundary
 bookkeeping. The long shot's frontier is now precisely these two items.
+
+## Proposition 45 (Integrability of the digit-sum sector; RETRACTION of the
+## flagged wbar bound). — the honest closure of campaign XV-XVII's sector
+(a) The financing channel is tautological: g10 - s02 = s3(x_t) - s3(n) - u
+EXACTLY (from conservation + run pairing Thm 44) — the "(wbar-1)u financing
+requirement" used in the flagged wbar <= 1.226 sketch was ERRONEOUS
+(divergence requires only 1 <= s3 <= 2 len; no linear gain requirement).
+The flag is RETRACTED. (b) Adversarial measurement confirms: max s3-raising
+rate decays and goes negative within ~len(n) odd steps (T=5..80 enumeration
+over n < 2^17: +2.0 -> -0.84) — true, but equivalent to s3 <= 2 len.
+(c) NO-GO: every static ledger and every digit-sum currency in the
+append/sweep automaton is COMPLETELY INTEGRABLE (closed by conservation):
+no Lyapunov function exists in this sector — extending the spirit of Thm 11
+to the s3 world. The exact laws proven (Thms 36-44) are true, beautiful, and
+jointly equivalent to conservation + local automaton rules. The conjecture's
+content lives strictly in the 2-adic w-sequence realizability coupled to the
+finite top — where it has been since the survivor analysis. Value of the
+campaign: this approach space is now CLOSED with proofs, not abandoned.
