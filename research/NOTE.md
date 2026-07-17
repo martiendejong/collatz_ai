@@ -1265,3 +1265,18 @@ the (k-1)-th condition has no fresh trit left (the automaton runs out of
 tape; modular wrap forces the status) and wipes all survivors at once —
 verified exactly at k = 7, 9, 11, 13 (2^6, 2^8, 2^10, 2^12 -> 0).
 Status: proved modulo the standard shift-conjugacy, final wipe verified.
+
+## Observation 72 (PROPER AND-CLOSED SETS EXIST — the plateau's home;
+## no-go #9 for a purely combinatorial core proof), R1766-1795
+The AND-closure (P-parent in C and, at branch coords, some child in C)
+admits a CANONICAL proper closed subset: peeling all-minus-one-coordinate
+converges, for EVERY seed, to the same size N - 20k exactly
+(k=7: 729-140=589; k=9: 6561-180=6381; k=11: 59049-220=58829; rounds
+20k-1). Interpretation: flat tops CAN live combinatorially on this set —
+it is the home of the tropical plateau (Prop 66). Consequently strict
+contraction on the CORE cannot follow from transport combinatorics alone:
+the argmin must ESCAPE the flat set, which happens exactly when sibling
+eigenvector ratios compete with the g-gap (the competition condition,
+Prop 23). Core strictness = transport combinatorics (Lemma 71) + sibling
+competition (eigen-data). The two ingredients are now provably BOTH
+necessary — the proof shape is fixed.
