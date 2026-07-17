@@ -757,3 +757,25 @@ equation reads L = log(W0 e^{L o sigma} + w e^{min L o tau}) with exact
 degree-1 homogeneity as the one free gift). Status of the gamma->1 program:
 one obligation, one identified (hard) route, four falsified shortcuts —
 all documented.
+
+## Proposition 51 (The topical frame; the frozen gap closes; switching is
+## essential). — R1286-1300
+(a) PROVEN (by citation, nonlinear Perron-Frobenius / Lemmens-Nussbaum):
+the K-L operator is MONOTONE + HOMOGENEOUS degree 1 = a topical map, hence
+NONEXPANSIVE in Hilbert's projective metric. kappa <= 1 is now a structural
+theorem, not a Lipschitz remark.
+(b) MEASURED (decisive): the argmin-FROZEN linearization's second eigenvalue
+RISES with depth: |lambda_2| = 0.819 (k=9), 0.895 (k=11), 0.959 (k=13) —
+the frozen gap CLOSES. Since the true attenuation stays flat (kappa_inf =
+0.839, Prop 35), the burden shifts with depth onto the SWITCHING: the
+selection nonlinearity is not a correction but THE essential attenuator.
+(c) CONSEQUENCE for the proof: no linearized/frozen argument can close the
+Open Lemma. The proof must be a strict-contraction statement for the
+NONLINEAR map, with the contraction constant supplied by switching
+probability (measured 0.66, anchored by the competition condition /
+Prop 23). Proof shape: d_H(T x, T y) < d_H(x, y) strictly on the relevant
+modes, with equality analysis showing strictness whenever argmin patterns
+differ — the Hilbert-metric strictness route. Sixth confirmation of the
+central pattern, now at the deepest level: even the fixed point's own
+linearization is a mirage; only the full nonlinear stationary object
+carries the truth.
