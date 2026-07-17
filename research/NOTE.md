@@ -964,3 +964,29 @@ exists in the table exactly UP TO the jam line, and not one integer
 beyond it. Answer to "can we prove a drift-positive version": YES for
 every jammed cell (trivially), NO for every live cell — and the second
 NO is Collatz-hard by mirror symmetry.
+
+## Theorem 59 (Universal family algebra: anchors y/(p^j - x) generate the
+## family/sequence framework in EVERY cell). — VERIFIED exact, R1421-1435
+For any cell (x,p) and accelerated word dividing by p^j, the rational
+anchor a = y/(p^j - x) is a fixed point; the linear coordinate (n - a)
+multiplies by EXACTLY x/p^j during a run, and run length = number of
+p-adic digits of agreement with a. Martien's 3n+1 families are the x=3,
+p=2 instance (repunit anchor -1 rises x3/2; anchor +1 IS the trivial
+cycle). Verified elsewhere:
+* 5n+1: THE TWO PHASES SWAP ROLES. j=1 anchor -1/3 = the ALTERNATOR
+  ...010101 is now the PRIMARY rising family (1 halving/step, coord
+  (n+1/3) x 5/2; closed-form jump n_r = (5/2)^r(n0+1/3)-1/3 verified over
+  a 23-step run); j=2 anchor -1 = the REPUNIT ...111 is the slow rising
+  family (exactly 2 halvings/step, coord (n+1) x 5/4). Both rise because
+  x=5 > 4: regime (c) = "all families rise".
+* (2,3) proper: j=1 anchors y/(3-2) = y are precisely the two fixed
+  points {1},{2}; all families FALL (x<p), coord (n-y) x 2/3 verified.
+* (7,3) proper: trit-signatures! y=1 anchor -1/4 = trit-ALTERNATOR
+  (tail 2,0,2,0,...); y=2 anchor -1/2 = trit-REPUNIT (tail 1,1,1,1,...);
+  seed agreeing to 15 trits produced a 12-step run of single trit-sheds
+  (x7/3 per step) as predicted.
+MORAL: repunit/alternator phenomenology is not Collatz-specific; it is
+the p-adic geometry of rational anchors, present in every cell. What
+DIFFERS per cell is only which anchors rise vs fall (regime, Thm 56) and
+whether an anchor lands on a positive integer (then it is a cycle: +1
+for 3n+1, {1},{2} for (2,3), {4,7},{8,14} comma-anchors for (5,3)).
