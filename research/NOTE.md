@@ -856,3 +856,26 @@ drift -0.0350 trits/step, TWELVE TIMES closer to critical than Collatz's
 convergents of log_p(x), cycles on near-touches, fair p-adic dice,
 convergent/divergent split at the critical line. Collatz = (3,2); its
 nearest-critical siblings (5,3), (13,...?) form a spectrum of laboratories.
+
+## Literature anchors for Propositions 52-53 (agent sweep, July 2026):
+1. VERDICT CONFIRMED: no proven divergent orbit exists for ANY proper map —
+   not 5x+1, not the 1932 Collatz permutation's orbit of 8 (Lagarias: proving
+   any specific integer lies in an infinite orbit "seems essentially
+   impossible" with current methods; arXiv 2111.02635).
+2. 5x+1: Kontorovich-Lagarias stochastic models (arXiv 0910.1944, 2104.10681)
+   — density-1 divergence heuristic, ZERO proofs. Matches our mirror analysis.
+3. THE FRONTIER, named by the field itself: Tao's 3-adic equidistribution
+   (arXiv 1909.03562) and the non-Archimedean spectral program (arXiv
+   2007.15936, 2412.02902) prove almost-all equidistribution and STOP exactly
+   short of pointwise funnel-avoidance — both authors state the boundary
+   explicitly. Our Prop 53 formulation IS the unclimbed wall, independently
+   derived and now literature-anchored.
+4. BONUS (deep): weak Collatz (no nontrivial cycles) would yield a proof of
+   Baker's theorem simpler than any known — the cycles-transcendence link is
+   BIDIRECTIONAL. Cycle bounds use Laurent-Mignotte-Nesterenko + Yu's p-adic
+   Baker: |2^a - 3^b| > 3^b exp(-c (log b)^2).
+5. Our small additions relative to this literature: the covering lemma
+   (w unbounded for every proper map), the anchor no-go (Prop 52: no
+   congruence certificate of divergence, with the alternators as mirrored
+   shadow numbers), and the (x,p) table with the (5,3) near-critical
+   laboratory (Prop 54).
