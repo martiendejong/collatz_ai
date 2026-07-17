@@ -670,8 +670,8 @@ Campaign XVII (R976-1075) complete: digit-sum sector closed with proofs
 (Prop 45 no-go), variational front advanced to quantitative agreement.
 
 ## Campaign XVIII updates (R1076-1175):
-1. THEOREM 17 EXTENDED to period 14: the complete integer cycle list through
-   14 odd steps remains {1, -1, -5, -17} (exhaustive, both signs).
+1. THEOREM 17 EXTENDED to period 16 (was 12, then 14): the complete integer
+   cycle list through 16 odd steps remains {1, -1, -5, -17} (exhaustive, both signs).
 2. THEOREM 29 BASIS EXTENDED to 10^7: tau = sigma for all odd 1 < n <= 10^7,
    zero violations (max tau observed 246) — all stopping classes with
    violation threshold < 10^7 are now covered; the exceptional set retreats
