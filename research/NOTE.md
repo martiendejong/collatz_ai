@@ -739,3 +739,21 @@ the Open Lemma now hang on ONE structural statement:
    certificate, structural) feeds the k-uniform kappa bound. The single
    remaining proof obligation of the gamma->1 program: prove the fixed-k
    field is multiplicative from the K-L equation in log coordinates.
+
+## Proposition 50 (Homogeneity exact; the locality route falsified). — R1271-1285
+(a) PROVEN (trivial, decisive): the K-L operator is positively homogeneous
+of degree 1 — T(lambda c) = lambda T(c), since min commutes with scaling.
+Global scale invariance is exact.
+(b) FALSIFIED: the locality-based route to multiplicativity. The transport
+map does NOT preserve coarse cells (modal-target coherence = 0.25 at every
+tested coarseness — the scatterer again), and the level-relgap correlation
+does NOT decay under coarse conditioning (+0.328 at all depths: the
+multiplicativity deviation is a FINE-SCALE property).
+(c) CONSEQUENCE (fifth confirmation of the program's central pattern):
+per-application/local arguments fail; every true property of this system is
+a property of the STATIONARY state. The multiplicativity obligation must be
+attacked variationally (fixed-point analysis in log coordinates, where the
+equation reads L = log(W0 e^{L o sigma} + w e^{min L o tau}) with exact
+degree-1 homogeneity as the one free gift). Status of the gamma->1 program:
+one obligation, one identified (hard) route, four falsified shortcuts —
+all documented.
