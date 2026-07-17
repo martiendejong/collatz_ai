@@ -915,3 +915,23 @@ p=5: x in {6, 7}; p=7: x in {8, 9, 10 (gcd!), 11}... finitely many per p,
 none as isolated as (3,2). The famous problem is the smallest, loneliest
 inhabitant of the entire mystery diagonal — the minimal cell where
 statistics and pointwise truth first come apart.
+
+## Theorem 57 (The jamming criterion; base 2 is the unique jam-free
+## fixed-constant base). — PROVED (two lines), instigated by M. de Jong's
+## "2n+1/3" question, R1401-1410
+Fixed-constant map: p|n -> n/p; else n -> (xn+y)/p^{v_p(xn+y)} (w = 0
+allowed). The decision variable n mod p evolves by the affine map
+n -> xn+y; if 1-x is invertible mod p, the class n* = y/(1-x) mod p is a
+FIXED, INVARIANT class on which the orbit never divides and strictly grows:
+a PROVABLE DIVERGENCE TRAP covering density 1/p of all integers.
+Example (2,3): n* = 2 mod 3; the orbit of 2 is 3*2^k - 1 = 2, 5, 11, 23,
+47... — provably divergent (two lines). Cycle {1} coexists.
+BASE-2 UNIQUENESS: for p = 2 and x odd, 1-x is even = not invertible mod 2:
+NO jam class exists — base 2 is the ONLY base where a fixed additive
+constant (like Collatz's +1) yields a trap-free map. Collatz's simple
+formula is not a choice but a base-2 privilege; in every odd base, fixed
+constants jam and only the residue-dependent y_r construction (Thm 55
+family) stays proper. NOTE: this also answers the earlier challenge "find
+one 100%-provably divergent sequence": it exists exactly UP TO the jamming
+line — 3*2^k - 1 under (2n+1)/3 is provably divergent, but by a jammed
+(broken-coupling) mechanism, consistent with Prop 52's live-coupling no-go.
