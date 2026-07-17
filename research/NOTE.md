@@ -1403,3 +1403,16 @@ cannot arise from the ones themselves (sterility); they arise only from
 by burning, re-crystallizing at dice rate. This also answers the old
 open question "what is the maximum number of ones the clockwork can
 write": pre-programmed ones <= seed bits; spontaneous ones = geometric.
+
+## Observation 80 (THE FUEL AUDIT: orbits run on exhaust, not tank),
+## R1916-1920
+Champion orbits' fuel budgets: 837799: tank 20 bits, total fuel burned
+195 bits (90% re-crystallized); 8400511: tank 24, burned 256 (91%);
+27: tank 5, burned 41 (88%). Big packets keep appearing deep in orbits
+(8400511 second half: 8,7,6,5,6). CONSEQUENCE: "tank empty => done" is
+factually false — the engine runs ~90% on re-crystallized entropy. The
+ledger (Thm 79) bounds only PRE-PROGRAMMED fuel; bounding the
+re-crystallization rate pointwise-forever for an individual orbit is
+exactly funnel-avoidance (wall 3), because the post-burn state is
+provably patternless (Obs 73) — the same theorem that makes sterility
+provable for explicit states destroys the tools one step later.
