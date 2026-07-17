@@ -1429,3 +1429,29 @@ drifts down (E[k]=2 vs break-even ~3.4: house edge -0.83 bits/cycle),
 and the shrinking value lowers the ceiling only in the endgame. Fair
 coin, negative house edge, shrinking arena: extinction certain in
 measure — pointwise gap unchanged.
+
+## Proposition 82 (THE COMPLETE PATTERN TAXONOMY + the phase clock).
+## — verified exact, R1956-1980, instigated by M. de Jong
+Beyond the repunit (...1111) and alternator there is an INFINITE LADDER
+of bit patterns, one per halving depth j: the 2-adic tail of the anchor
+1/(2^j - 3), periodic with period ord_{2^j-3}(2):
+  j=1: ...111111 (period 1)  climb +0.585 bits/step (repunit)
+  j=2: ...000001            neutral x3/4 (trivial-cycle anchor)
+  j=3: ...110011001101 (period 4, the "1100 word")  descent -1.415/step
+  j=4: 1/13-tail (period 12) crash -2.415/step
+  j=5: 1/29-tail (period 28) crash -3.415/step
+  j=6: 1/61-tail (period 60) crash -4.415/step
+Verified: seeds agreeing to 18 bits shed exactly j,j,j,... halvings until
+the agreement is consumed. THE PHASE CLOCK: within any pattern-run the
+2-adic agreement depth decreases by exactly j bits per step — a
+DETERMINISTIC, MONOTONE reduction quality per phase; renewals between
+phases are the fair dice. Orbits = concatenations of anchor-phase runs:
+the "step in the pattern" is the true local clock.
+
+## Observation 82b (no local Lyapunov: the 0.666 barrier), R1956-1980
+Best linear combination of (len, pop, nruns, maxrun, pairs11) over 20000
+random weightings achieves P(decrease per odd step) = 0.666 (weights
+dominated by len + maxrun); len+pop gives 0.470, len+2pop 0.522. No
+local string quality approaches monotonicity — as the fair-packet law
+requires. The monotone quality exists only PER PHASE (the phase clock),
+not across renewals.
