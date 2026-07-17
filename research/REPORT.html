@@ -1526,6 +1526,24 @@ Base 2 is the unique base that engages every rung dynamically precisely because 
 of them simple. All cross-base structure lives in the anchors; generic orbit values carry zero
 bits across bases (Thm 22).</p>
 
+<h3>R1466&ndash;1515 &mdash; Wall 1 measured uniform; a congruence law found at Wall 2</h3>
+<p><b>Wall 1 (Prop 61):</b> the true nonlinear K-L operator's two-point Hilbert contraction is
+<b>uniform in k</b>: &mu; &asymp; 0.87 per sweep, flat across k = 9&ndash;13, while the frozen
+linearization's gap grows and the near-tie reservoir deepens (42% &rarr; 57%). The strictness
+lemma &mdash; &gamma;&rarr;1's last link &mdash; is numerically true with margin; the proof
+remains open, but its target is now a measured, stable quantity.</p>
+<p><b>Wall 2 (Prop 62), the surprise:</b> an exact census of all cycle words in every critical
+window (r &le; 24, meet-in-the-middle over up to 15 billion words) found <b>zero</b> nontrivial
+words satisfying the cycle congruence D | W, against ~9.7 expected by chance (P &sim; 6&times;10<sup>&minus;5</sup>).
+The mechanism is a pure congruence obstruction: a polynomial-time DP (validated exactly against
+brute force) shows 0 is <b>unreachable</b> mod D for every critical window r = 3&ndash;17 &mdash;
+even when every prime factor of D individually reaches 0, the full modulus blocks at the
+correlation level (r=6: mod 5 fine, mod 59 fine, mod 295 blocked). Known cycle exclusions rest
+on size and transcendence bounds; this is a different, finite certificate per window that has
+never failed. If the law holds for all r, cycles die by congruence alone &mdash; rerouting the
+cycle half of the problem from transcendence to a combinatorial reachability statement. That
+proof is the new top open problem.</p>
+
 <footer>Jengo · autonomous research campaign, ~1420 rounds, 2026-07-12/17 · built on Martien de
 Jong's family/pair framework, whose coordinates proved to be the problem's native language ·
 Holy Ghost Protocol throughout: every claim tagged proven, measured, conditional, or open; every

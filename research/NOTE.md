@@ -1044,3 +1044,45 @@ cannot be transported to a base where it becomes easier. Seventh
 independent confirmation of the doctrine: only exact/stationary
 structure works; all statistical, local, linear, and now BASE-CHANGE
 shortcuts are closed.
+
+## Proposition 61 (Wall 1: two-point Hilbert contraction is UNIFORM in k).
+## — MEASURED, scripts/71, R1466-1490
+The true nonlinear K-L operator at the edge (lam=2): asymptotic two-point
+Hilbert-metric contraction per sweep mu_true = 0.854 / 0.870 / 0.869 for
+k = 9/11/13 — FLAT, bounded away from 1 (consistent with kappa uniformity,
+Prop 35). Frozen-argmin comparison: mu_frozen = 0.859/0.876/0.879; the
+nonlinear gap GROWS with k (0.005 -> 0.011), switching supplies strictness.
+Near-tie density (competition condition) grows 42% -> 50% -> 57% (k=9-13):
+the switching reservoir DEEPENS with k. Amplitude scan (k=11): mu_true
+0.857-0.878 across eps = 0.01-2.0, switching fraction rising 0.04% -> 0.44%.
+STATUS of the strictness lemma: numerically TRUE WITH MARGIN and uniform;
+the proof remains open (this is still wall 1), but the quantity to bound
+is now measured stable: mu <= 0.88 per sweep at the edge for all tested k.
+
+## Proposition 62 (THE CRITICAL-WINDOW CONGRUENCE LAW). — VERIFIED r <= 17
+## (two independent methods), scripts/72-73, R1466-1515
+Cycle equation: an r-odd-step cycle with j halvings satisfies n*D = W_word,
+D = 2^j - 3^r, W = sum_i 3^{r-1-i} 2^{J_i}. Critical window j = ceil(r a).
+(1) CENSUS (meet-in-the-middle, exact, all C(j-1,r-1) words, r <= 24):
+    ZERO nontrivial words with D | W in every critical window r = 3..24
+    (only trivial-cycle words hit, r=1,2). Expected under equidistribution:
+    ~9.7 phantom hits; observed 0: P ~ 6e-5. NOT equidistribution.
+(2) MECHANISM: pure congruence obstruction. Single-prime blocks at
+    r = 3,4,5,7,8,11,13 (e.g. mod 5 only 4/5 residues reachable, 0 missing;
+    mod 502829: 113441/502829, 0 missing). FULL-MODULUS DP (poly-time,
+    validated exactly vs brute force at r=6,9): 0 is UNREACHABLE mod D for
+    EVERY tested critical window r = 3..17 — even when every prime factor
+    individually reaches 0 (r=6: mod 5 ok, mod 59 ok, mod 295 BLOCKED:
+    the obstruction lives at CRT/correlation level).
+(3) At r=18, 21 the largest prime factors are fully reachable; full-D DP
+    needs a bitpacked implementation (D up to 2.7e11) — open whether the
+    law persists; the census says hits=0 through r=24 regardless.
+SIGNIFICANCE: known exclusions (Simons-de Weger, Hercher m<=91) use size/
+transcendence bounds; this is a different, finite, poly-time certificate
+PER WINDOW (DP reachability), and empirically it never fails. If the law
+"0 not in reach(W mod D) at critical windows" holds for all r, then (with
+Barina's 2^71 forcing n_min large, which forces cycles INTO critical
+windows at strong convergents) cycles die by congruence alone — rerouting
+wall 2 from transcendence to a combinatorial reachability statement.
+NEW OPEN PROBLEM (promoted to top of list): prove the reach-set of the
+cycle-word DP mod D avoids 0 in every critical window.
