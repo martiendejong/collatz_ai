@@ -66,3 +66,29 @@ right question (which levels are reducible), RST supplies the level algebra
 (lumpability is exact here), LRS supplies the physics reading (receivers,
 coherence, decay) — and 1195 rounds supply the proofs for every clause
 except the last one, which is the conjecture itself.
+
+## 6. Randomness from determinism: Collatz as the PROVEN instance (M. de Jong)
+Three grades of deterministic pseudo-randomness:
+- Rule 30 (Wolfram's randomness example): looks random; no proof — empirical.
+- Rule 110: proven UNIVERSAL (structure), randomness incidental.
+- COLLATZ: the randomness is a THEOREM. Exact fairness (Thm 20), exact
+  factorization P(k,w) = 2^-k 2^-w (Thm 27), zero storage (Thm 22), and
+  cross-base mutual information EXACTLY zero. Counted, not estimated.
+THE MECHANISM, identified: the "randomness" is what one substrate's receiver
+sees of structure that is COHERENT in the other substrate's basis. The
+2-adic reading of 3-adic clockwork is provably information-free because the
+coupling constant (2^alpha = 3) is irrational — incommensurability IS the
+noise source. Below: a rational odometer (perfectly periodic bit-clocks);
+above: an irrational rotation (Sturmian); their product is exact fair dice
+in either single-base frame.
+LRS CONSEQUENCE (the theoretical clue): noise is not a property of the
+signal — it is a RELATION between receivers. Determinism in substrate A
+appears as perfect randomness in receiver B iff their bases are
+incommensurable. LRS should define noise as inter-receiver
+incommensurability; "randomness" is interface physics. Collatz supplies the
+quantitative anchors: the fairness is exact at ensemble level, AND the
+anti-storage theorems prove no bounded receiver can exploit the determinism
+underneath (no channel exists) — the noise is irreducible FOR ANY receiver
+of one base, while the full two-base observer sees pure clockwork. The
+conjecture itself is then: even the signal's own thread cannot exploit its
+determinism against the interface — self-decoherence.
