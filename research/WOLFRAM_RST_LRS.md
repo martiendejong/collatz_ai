@@ -260,3 +260,23 @@ the limit for every thread IS the conjecture.
 exactly above the laggard edge (log2 n > t / c*). The tree is provable
 number by number, at logarithmic cost each; what cannot yet be bought at
 any finite budget is the single sentence 'and this works for all of them'.
+
+## 14. Provable divergence in xn+y? The mirror symmetry (M. de Jong Q)
+(a) PROVABLE divergence exists ONLY in degenerate variants: y even (e.g.
+3n+2) breaks the parity coupling — the tipping variable never flips, no exit
+is ever chosen, every odd orbit climbs forever, trivially. This is Thm 25's
+'impotent push' as the divergence certificate: provable divergence <=>
+broken decision-coupling.
+(b) For PROPER variants (y odd) with x >= 5: drift is positive (5n+1: 7
+reaches 2^232 in 2000 steps, wbar = 1.98 vs allowed 2.32) — almost all
+orbits should diverge. Yet NOT A SINGLE orbit of 5n+1 has ever been PROVEN
+divergent. Proving 7 diverges = proving it never hits a long lucky halving
+streak — excluding infinitely many lucky-crash events forever: the exact
+MIRROR of Collatz's problem.
+(c) THE SYMMETRY: the fair coin blocks proof in BOTH directions. One cannot
+prove a single thread is eternally lucky (Collatz divergence) NOR eternally
+typical (5n+1 divergence). The unexploitability (zero storage) is
+direction-blind. The individual-fate problem is hard not because of the
+direction of drift but because of the coupling itself: wherever the
+decision-coupling exists, single-orbit fates become unreachable by current
+mathematics — in either direction. One wall, mirrored twice.
