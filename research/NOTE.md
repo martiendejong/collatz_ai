@@ -1416,3 +1416,16 @@ re-crystallization rate pointwise-forever for an individual orbit is
 exactly funnel-avoidance (wall 3), because the post-burn state is
 provably patternless (Obs 73) — the same theorem that makes sterility
 provable for explicit states destroys the tools one step later.
+
+## Observation 81 (THE COIN STAYS FAIR; ONLY THE ARENA SHRINKS), R1921-1930
+Mean packet size vs current bit-length of n, over 2000 random 20-bit
+orbits: 1.993/1.999/1.982 at 20/16/12 bits — the dice are EXACTLY fair
+at every scale (small-B wobbles are deterministic artifacts of the few
+specific small numbers, e.g. every orbit through 31 = 11111 logs a 5).
+The 8,7,6,5,6 decline in 8400511's late packets happened at bit-lengths
+19,18,21,21,9: the ceiling k <= bits(n) was NOT binding — the decline
+was chance, not law. TRUE PICTURE: packets never weaken; the VALUE
+drifts down (E[k]=2 vs break-even ~3.4: house edge -0.83 bits/cycle),
+and the shrinking value lowers the ceiling only in the endgame. Fair
+coin, negative house edge, shrinking arena: extinction certain in
+measure — pointwise gap unchanged.
