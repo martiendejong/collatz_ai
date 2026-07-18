@@ -1542,3 +1542,25 @@ The orbit is a chain of oracle consultations: burn run k, read c from
 oracle 3^(-k) at the head, form the new head, consult the next oracle.
 Collatz = the machine that reads the 2-adic expansions of 3^(-k) with
 its own output as the address.
+
+## Theorem 88 (THE ADDRESS CODING: how the oracle patterns run on).
+## — verified exhaustively (36 prefixes, all seeds to 2^20), R2151-2175
+The phase chain (run k_i, halvings c_i) obeys the exact affine law
+    m = 3^-k1 (1 - 2^c1) + 3^-k1 2^(c1+k2) m2,
+iterated per phase. Consequences, all verified:
+(a) ADDRESS-BIT LAW: seeds sharing a phase prefix form EXACTLY ONE
+    residue class mod 2^(D+1), D = sum(k_i + c_i) - the oracle bits are
+    literally the seed's address bits; class density = the ledger.
+(b) PERIODIC WORDS -> ANCHOR LATTICE: the reference of the repeated
+    word (k,c) is m* = (1-2^c)/(3^k - 2^(k+c)) - anchor-lattice
+    rationals (denominators 3^r - 2^j). INTEGER references = cycles:
+    (1,1) gives m* = 1 = the trivial cycle; (2,1) gives m* = -1, i.e.
+    n = -5: THE -5 CYCLE OF 3n-1 appears as a negative integer address
+    - the mirror map's cycles live in the same coding, on the negative
+    side. Near-integer references = comma words (near-cycles).
+(c) The infinite-depth limit of the nested references is the 2-adic
+    coding of the full orbit - the classical Bernstein-Lagarias
+    conjugacy, here derived as the limit of Martien's family/oracle
+    refinements. The family framework and the 2-adic conjugacy are THE
+    SAME OBJECT read in opposite directions: families = finite-depth
+    truncations of Phi.
