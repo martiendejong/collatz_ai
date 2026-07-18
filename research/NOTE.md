@@ -2052,3 +2052,20 @@ a low family." Two-sided answer:
     words that keep the identity's O(1) residual pinned at 0 - and the
     clearance measurements say the machine gets to +-1 of that and
     never to 0.
+
+## Observation 108 (THE BIOGRAPHY OF 2^1000 - 1: theory predicts a
+## thousand-bit life to the decimal). R2611-2625
+Family 1, sequence 1000 (Martien's convention: family = head m,
+sequence = run k; the pure repunit). Predictions vs reality:
+  first packet 1000 in ONE conversion: yes (the 1000-high triangle).
+  sterility: post-burn packets 1,2,1,1,6 - crumbs, as Thm 78 demands.
+  biggest later packet: PREDICTED log2(P)+1.3 = 12.0; MEASURED 12.
+  enslavement residual: 0.30 (identity holds at 1000 bits).
+  exit gate: 5 (the 94% gate).
+  total ticks 12157 (~6.9/bit over the 2^1585 post-burn life).
+  fuel audit: 77% of the 4316 fuel bits re-crystallized from entropy.
+The most dramatic first second any number can have - the largest
+guaranteed triangle its size allows - followed by a perfectly ordinary
+dice life. The theory now predicts complete biographies at arbitrary
+scale: fuel laws, Gumbel maxima, enslavement, gates - all confirmed in
+one shot at 1000 bits.
