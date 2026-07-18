@@ -2320,3 +2320,32 @@ both ops cheap per component) fails exactly at the DECISIONS: v2(x) and
 trailing-run reads are non-local in RNS - the dice demand positional
 base 2. The toll always concentrates at the decisions (Thm 116), in
 every representation. There is no house where the rent is zero.
+
+## Block R2881-2930 (50 rounds): three results.
+## Proposition 120 (SIEVE EXPONENT = rotation-driven spectral radius).
+Exact ballot-word counts to s=44: alpha = 1.869/bit mean, with LOG-
+PERIODIC oscillation dipping at s = 0 mod 8 - the 8/5 convergent of
+log2(3): the sieve exponent's state space is the slack on the log2(3)
+circle rotation (CST structure inside the verification sieve). Ballot
+tax ~ 0.048 bits/bit on top of the 0.050 entropy tax: total ~ 0.098.
+## Observation 121 (DETOUR ANATOMY: the 9232 boulevard).
+The +94 detour is, in 3 of 5 traced cases, literally the famous 9232
+plateau route (364 -> 9232 -> 4616 -> 2308 -> 1154 -> 577 -> 1732 ->
+866 -> ... -> 40), identical hub-for-hub across families 5 and 7 and
+different sequence numbers. Hub-graph edges have quantized lengths;
+detour offsets are sums of standard segments (different physical routes
+can share the same total, e.g. +94 also arises via 58->88). The convoy
+break alphabet = routes in the hub graph.
+## Theorem 122 (THE HEAD-START LAW - the m mod 8 curiosity RESOLVED).
+Exact: c1 = v2(3^k m - 1) depends on (m mod 8, k parity):
+  m=1: k odd c1=1, k even c1>=3   (mean ~2.5 halvings)
+  m=3: k odd c1>=3, k even c1=1   (mean ~2.5)
+  m=5: k odd c1=1, k even c1=2    (mean 1.5)
+  m=7: k odd c1=2, k even c1=1    (mean 1.5)
+Heads m = 5,7 mod 8 lose ~1 fewer bit in the first crash; the fixed
+early advantage shifts the exponential tail: measured in [2^23, 2^24),
+top-0.1% orbits have m = 5 mod 8 at 36.3% (+17.0 sigma), m = 7 at
+30.8% (+8.7), m = 1 at 17.9% (-10.7), m = 3 at 15.0% (-15.0). The
+record-census curiosity (43% at m = 5, Obs 106/109) is thereby DERIVED,
+not mysterious: it is oracle bit 2 acting on the extreme-value tail.
+(The 5-vs-7 and 1-vs-3 splits within pairs come from oracle bit 3+.)
