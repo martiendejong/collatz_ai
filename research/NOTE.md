@@ -1605,3 +1605,33 @@ rises): THE FORMULA IS THE BINARY/TERNARY CONVERSION LEDGER ITSELF -
 numerator counts the binary bits consumed, denominator the ternary
 lifts performed. Family-sequence cycles, the oracle ladder, and the
 conversion thesis are one bookkeeping identity.
+
+## Proposition 91 (THE 5% TAX: one constant behind all three walls).
+## R2211-2250, from working out the pre-writing formula
+(a) THE ESCAPE DIMENSION (exact closed form): via Thm 90, divergence
+    requires the seed's 2-adic address to match rise-rich references
+    forever (sum j <= alpha * r). The Hausdorff dimension of the
+    escape-address set is EXACTLY the binary entropy
+        dim_esc = H(1/log2 3) = H(0.63093) = 0.94996,
+    attained by the geometric tilt with mean j = log2 3 (numeric
+    two-parameter optimum 0.94912 = truncation of this closed form).
+(b) THE SAME CONSTANT appears at wall 2: critical-window cycle words
+    number 2^{H(1/alpha) j} against modulus 2^j - the "5% tax"
+    1 - H(1/alpha) = 0.05004 per halving bit is why expected phantom
+    hits vanish (Prop 62 census). Drift-balanced word entropy is ONE
+    object governing cycles (wall 2) and divergence addresses (wall 3).
+(c) THE GAMMA FORK (honest): does the K-L hierarchy converge to 1 or
+    to the word-entropy ceiling H(1/alpha) = 0.950? Free geometric fit
+    of the ladder (0.8624/0.8805/0.8953/0.9069/0.9146) lands at
+    gamma_inf = 0.986 with residual equal to the forced gamma_inf = 1
+    fit - current data CANNOT distinguish, and mildly disfavors the
+    0.950 ceiling (would require bending below trend). DISCRIMINATING
+    TEST: certifications at k ~ 25-30; gamma crossing 0.950 kills the
+    ceiling conjecture. Both models predict gamma_21 = 0.919.
+STATUS of "working it out to prove Collatz": the conjecture now reads
+as ONE quantitative statement - no integer address survives the 5% tax
+forever. Cycles: the tax kills word-counts against the modulus
+(census-verified r <= 24). Divergence: the tax makes escape addresses
+dimension-deficient (0.950 < 1). The remaining gap is, as ever,
+pointwise: integers are countable and dimension arguments see only
+size. But every wall now has the same number on it.

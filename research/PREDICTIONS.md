@@ -19,3 +19,9 @@
 ## CST
 13. no tau!=sigma violation will ever be found below the (15601, 24727)
     convergent zone (threshold 2.86e8) except n=1
+
+## The gamma fork (added R2250, 2026-07-18)
+- Both models predict gamma_21 = 0.919 +- 0.001 (cannot discriminate at k=21).
+- CEILING model (gamma_inf = H(1/log2 3) = 0.950): gamma flattens, never crosses 0.950.
+- DENSITY model (gamma_inf = 1): gamma crosses 0.950 around k ~ 27 +- 3.
+- Discriminating experiment: exact-integer certifications at k = 25-30 (cloud scale).
