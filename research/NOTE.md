@@ -1937,3 +1937,27 @@ and the run grammar R1-R4 (Thm 101) is the M-operator's rule table.
 The one bit of carry state is the ENTIRE coupling between adjacent
 runs: the machine's celebrated complexity is one carry bit streaming
 through a run list, plus one splice, plus one drop.
+
+## Remark 103 (THE PERPETUUM MOBILE FORMULATION — M. de Jong).
+## R2551-2555
+Martien's synthesis: since divergence needs eternal above-rate luck,
+"the best achievable is a cycle: a limited fuel tank that refills
+itself completely through one lucky streak" — repeated forever. This
+is exactly right, and it IS the two-wall split:
+* DIVERGENCE (wall 3) = an infinite conspiracy: alignment above dice
+  rate forever. Unprovable-to-exclude today, measure zero.
+* CYCLE (wall 2) = a FINITE conspiracy repeated: one period whose
+  debris field realigns into exactly the original tank. Finite, hence
+  attackable - which is why all real progress lives here: verification
+  forces n_min > 2^71 (Barina), m <= 91 excluded (Hercher), our
+  reachability certificates kill every critical window r <= 18-24, the
+  5% tax explains why (word count 2^0.95D vs modulus 2^D), and the
+  measured CLEARANCE = 1: the machine already achieves W = nD +- 1 -
+  the engine comes within ONE UNIT of perfect recycling and never
+  closes. The near-cycles are the commas: 2^D vs 3^S is the circle of
+  fifths, and a genuine cycle would be a comma-free tuning - forbidden
+  at every tested window, conjecturally forbidden always by the
+  transcendence of log2 3 (CST wall). The perpetuum mobile is the
+  right name: a cycle is a fuel engine with efficiency exactly 1, and
+  everything we have proven says the efficiency is exactly 1 - (5% tax
+  effects) < 1, with the deficit materializing as the +-1 comma.
