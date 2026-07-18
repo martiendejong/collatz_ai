@@ -1658,3 +1658,29 @@ size. But every wall now has the same number on it.
     no monotone local quality, no locally-conserved density AT ALL. The
     conserved information of Collatz is irreducibly global (the address
     coding), consistent with everything since Thm 22.
+
+## Proposition 93 (THE DYNAMICAL ORDER — M. de Jong's proposal).
+## R2296-2320
+Order integers by index(n) = weighted path cost from 1 in the backward
+tree (w2 per doubling, w3 per odd-inverse step; paths unique). Built by
+Dijkstra; findings:
+(1) THE GATES COME FIRST: the enumeration opens 1,2,4,8,16,5,32,10,64,
+    3,20,21,128,... - the early population is exactly the quaternary-
+    repunit gate family (5,10,20,21,40,42,84,85,168,170,340,341...) and
+    the 2-power spine: the "small numbers" of the dynamical order are
+    the endgame highway of Obs 85. Robust to weighting ((1,1), (1,2),
+    (1,log2 3) nearly identical).
+(2) SHELL GROWTH: N(t) ~ 2^(0.342 t) for plain steps; consistent with
+    branching 1 = 2^-rho(1 + q), q = measured odd-child density 0.26.
+(3) SHEAR + DICE: index = 0.277 log2(n) + const with residual sd ~ 4:
+    the dynamical order is an affine shear of the size order plus the
+    stopping-time fluctuation - the two coordinate systems differ by
+    exactly the dice.
+(4) CANONICAL WEIGHTING: w = bits consumed (the ledger metric) makes
+    shells = address-prefix classes, shell counts = 2^(H D) admissible
+    words: the 5% tax appears as shell-vs-value deficit; gamma (K-L) =
+    how densely dynamical shells cover each size window; and the
+    conjecture itself = "the dynamical order is TOTAL" (every integer
+    receives a finite index). Martien's reindexing is the coordinate
+    system in which the entire machinery (ledger, tax, gates, address
+    coding) is native.
