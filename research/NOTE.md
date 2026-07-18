@@ -1684,3 +1684,18 @@ Dijkstra; findings:
     receives a finite index). Martien's reindexing is the coordinate
     system in which the entire machinery (ledger, tax, gates, address
     coding) is native.
+
+## Proposition 92b (upgrade: NO defect at all — the +1 is a single-cell
+## substitution). R2321-2330
+For odd n the x3 rule always writes base-6 digit 3 at cell 0, so +1 is
+the local substitution 3 -> 4 with NO carry ever (verified 20000/20000).
+The earlier "boundary defect propagating through trailing 5s" never
+fires on the orbit of an odd step. THE FINAL FORM: Collatz is executed
+by exactly TWO radius-1 base-6 rules —
+  ODD tick:  out_i = 3(d_i mod 2) + floor(d_{i-1}/2), then cell0 3->4,
+             then out_i = floor(d_i/2) + 3(d_{i+1} mod 2)
+  EVEN tick: out_i = floor(d_i/2) + 3(d_{i+1} mod 2)
+— with the rule selected each tick by the parity of cell 0 (a controlled
+cellular automaton / transducer; a standard extra signal track makes it
+a single homogeneous CA). The Collatz conjecture = "this two-rule
+automaton always reaches the cell configuration '1'".
