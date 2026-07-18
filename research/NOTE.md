@@ -2153,3 +2153,15 @@ segments are real), but WHICH detour fires is decided by deep
 trajectory data: the pattern-lives-one-step law applies even to the
 convoy timetable. First decision layer: 1-bit shallow (m mod 4,
 Thm 111). Second layer: entropy. The machine's signature, again.
+
+## Certificates r=19 and r=20 (WALL-2 ATTACK: the reachability law
+## extends). R2751-2775, script 76
+Bigint-bitset DP with layer recycling (memory ~4.5GB peak):
+  r=19: D = 985,222,181: 0 mod D BLOCKED (reach fraction 0.0847), 95s.
+  r=20: D = 808,182,895: 0 mod D BLOCKED (reach fraction 0.1616), 80s.
+The critical-window congruence law (Prop 62/Lemma 63: D | W iff genuine
+cycle; 0 unreachable iff no cycle in the window) is now CERTIFIED by
+self-contained polynomial DP for ALL critical windows r = 3..20.
+Combined with the exhaustive census (0 hits through r = 24), the law
+stands unbroken at every window ever tested. Next sizes need ~13-29GB
+(r=22, r=21) - cloud-scale, queued with the k=21 K-L run.
