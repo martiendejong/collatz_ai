@@ -2349,3 +2349,35 @@ top-0.1% orbits have m = 5 mod 8 at 36.3% (+17.0 sigma), m = 7 at
 record-census curiosity (43% at m = 5, Obs 106/109) is thereby DERIVED,
 not mysterious: it is oracle bit 2 acting on the extreme-value tail.
 (The 5-vs-7 and 1-vs-3 splits within pairs come from oracle bit 3+.)
+
+## Theorem 123 (THE COLLATZ-BASE QUESTION, answered — fractional bases
+## and the optimal representation). R2931-2970
+Martien's question (with ChatGPT context): does a fractional base exist
+in which the Collatz step becomes simple/local?
+(1) BASE 3/2 built and measured (digits {0,1,2}, LSB rule d = n mod 3,
+    n <- 2(n-d)/3; numeration verified exact): the ODD STEP is a pure
+    SHIFT plus a boundary fix confined to the bottom w digits, with
+    P(w<=2) = 67%, geometric tail, max 19 - the CLIMB-NATIVE frame:
+    fuel triangles become free drift (viz/ca32_*.png). But /2 is
+    NON-LOCAL (contradiction rate 13% even at window 12): division is
+    a shift by the irrational amount log_{3/2} 2 = 1.71 positions.
+    Base 3/2 is the exact mirror of base 2.
+(2) TOLL CONSERVATION FOR ALL FIXED BASES (incl. fractional): both ops
+    local requires 3 = beta^a, 2 = beta^b: impossible since log2(3) is
+    irrational (Rem 119 extended to real beta). Every fixed radix pays:
+    base 2 at x3, base 3/2 and base 3 at /2, base 6 evenly.
+(3) THE REPRESENTATION CHATGPT DREAMT OF EXISTS - AND WE OWN IT: the
+    ADDRESS NUMERATION (Thms 87-90): R(n) = the phase word. There the
+    Collatz map is THE SHIFT: zero digits changed, one digit consumed
+    per phase. Perfect dynamical locality - the Fourier of Collatz.
+(4) ITS PRICE IS TOTAL (and provable): computing R(n) costs the entire
+    orbit (decompression principle, Thm 115/116). Fourier diagonalizes
+    convolution with a CHEAP transform (n log n); the Collatz transform
+    diagonalizes T with a transform as expensive as the dynamics. The
+    gap between those two situations is exactly level 2 / wall 3: a
+    cheap Collatz transform would be the BBP-style breakthrough.
+CONCLUSION: the perfect Collatz base exists (the address numeration),
+is unique in spirit (any T-diagonalizing representation contains it),
+and the conjecture is equivalent to: ITS TRANSFORM ALWAYS TERMINATES.
+Fixed fractional bases trade where the toll falls; only the dynamical
+base eliminates it - by charging everything at the door.
