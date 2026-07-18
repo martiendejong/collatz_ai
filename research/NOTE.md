@@ -1766,3 +1766,28 @@ is possible" fails at two points, and its corrected form is telling:
     specific map. (Conway 2013 speculated the conjecture might even be
     "unsettleable" - true but unprovable; that too is compatible with
     everything known.)
+
+## Proposition 96 (TANK REACHABILITY: half forbidden, for one phase —
+## M. de Jong's question). R2381-2400
+(a) THEOREM (subgroup, one line): post-burn states are 3^k - 1 with
+    3^k in <3>, an INDEX-2 subgroup of the units mod 2^m for every
+    m >= 3 (membership = 1 or 3 mod 8). So immediately after a pure
+    tank burn, EXACTLY HALF of all 2-adic patterns are forbidden, at
+    every depth (verified: mod 8: {1,3}; mod 16: {1,3,9,11}).
+    Martien's suspicion "beperkt" is proved, with the exact factor: 2.
+(b) BUT the restriction lives exactly ONE phase: phase-1 states from
+    tanks k = 3..600 already cover ALL 8 odd classes mod 16 (8/8; the
+    "+1" and halvings leave the subgroup). The pattern-lives-one-step
+    law again, now on the reachability side.
+(c) LOGICAL CONSEQUENCE FOR TURING COMPLETENESS: the restriction does
+    NOT automatically disprove universality - (i) the machine's input
+    space is all integers, not just tanks; (ii) even the tank family
+    carries unbounded information (k is arbitrary - k could encode a
+    program). What genuinely blocks computation is not reachability
+    thinness but MEMORY: every restriction the machine creates (this
+    index-2 one included) evaporates within one phase. Sharpened open
+    target: prove the 3n+1 map admits NO forward-invariant automatic
+    (finite-automaton-recognizable) set of configurations beyond
+    finite-modulus classes - THAT would be a formal anti-universality
+    theorem, and every result in this corpus (I = 0 bits, no-go #10,
+    one-phase evaporation) is evidence for it.
