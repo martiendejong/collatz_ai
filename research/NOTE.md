@@ -2069,3 +2069,13 @@ guaranteed triangle its size allows - followed by a perfectly ordinary
 dice life. The theory now predicts complete biographies at arbitrary
 scale: fuel laws, Gumbel maxima, enslavement, gates - all confirmed in
 one shot at 1000 bits.
+
+## Addendum to Obs 108 (Martien's frame-change reading, confirmed):
+The burn of 2^1000-1 in +1 coordinates: the string "1 with 1000 zeros"
+keeps its symbols and flips its base label 2 -> 3: the number becomes
+3^1000 - 1. Purest duality on record: in base 3 it is TOTAL ORDER
+(1000 digits, all 2 - the full product block), in base 2 it is
+provable noise (1585 bits, ones fraction 0.4999). Same number,
+perfect order in one base, entropy in the other. "De rest" = the
+machine converting that invisible ternary order back to binary, one
+toll at a time, for 1689 more phases.
