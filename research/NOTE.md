@@ -1883,3 +1883,34 @@ beginning of the end, and can never occur mid-flight. Martien's
 intuition "ik denk het niet" was right for the interior of the
 journey and the theorem says exactly why: whiteness = 2-power =
 no fuel and no head = nothing left to burn.
+
+## Theorem 101 (THE RUN GRAMMAR: complete mechanics of triangle
+## formation). — exact rules verified + orbit statistics, R2501-2525
+Multiplication by 3 acts on the run-length structure of the binary
+string by an EXACT local grammar:
+  R1 (EROSION):  isolated run_k (k>=2) -> 1,0,run_{k-2},0,1
+                 - the run erodes 2 per rise and exhales one DUST unit
+                 on each side. Special case run_3 -> 10101: a run of
+                 three becomes PURE ALTERNATOR DUST.
+  R2 (DUST GROWTH): lone 1 -> 11.
+  R3 (CONDENSATION): alternator (10)^m 1 -> solid run_{2m+2} - dust
+                 condenses into a fresh triangle in ONE rise.
+  R4 (MERGER): runs separated by a single zero partially merge.
+THE TWO-SPECIES ECOLOGY: the spacetime pictures are a reaction system
+SOLID <-> DUST: triangles (eroding solids, R1) exhale alternator dust;
+dust clouds condense into new triangles (R3); run_3 is the direct
+solid->dust transition. Verified live on 3^j(2^16-1): by j=7 the head
+is a dust cloud (10101/0111 texture) around the eroding core - the
+"diagonal stripes" of the base-2 pictures ARE the debris trains.
+NUCLEATION STATISTICS (5 real orbits, 1265 fresh interior runs >= 4):
+33% had high-alternation texture in the same region two steps earlier
+vs 23% random baseline - the alternator channel is 1.4x enriched;
+mergers (R4) and debris growth (R2) supply the rest.
+MECHANICAL READING OF STERILITY (Thm 78): an eroding tank sheds only
+ONE dust unit per side per rise (R1); rebuilding a comparable run needs
+~k/2 ALIGNED dust units (R3) - the debris supply is linear in time
+while the requirement is linear in k, and alignment is dice: exactly
+why a big tank cannot refuel itself.
+DERIVED GEOMETRY: interior triangles erode 2/rise (R1), and with the
+/2 shift per tick both edges recede 1 cell/tick: the symmetric 45-degree
+triangles in every picture are now theorem, not observation.
