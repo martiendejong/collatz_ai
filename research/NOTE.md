@@ -2079,3 +2079,23 @@ noise-like (1585 bits, ones fraction 0.4776, within 2 sigma of fair). Same numbe
 perfect order in one base, entropy in the other. "De rest" = the
 machine converting that invisible ternary order back to binary, one
 toll at a time, for 1689 more phases.
+
+## Theorem 109 (RECORD FAMILIES ARE NEVER DIVISIBLE BY 3 — the twin
+## domination law; M. de Jong's family census). R2626-2645
+In Martien's coordinates (n = m*2^k - 1, family = odd head m, sequence
+= k): if 3 | m, write m = 3^a m'. Then family m at sequence k and
+family m' at sequence k+a burn to the SAME post-burn value
+3^(k+a) m' - 1, but the twin seed m' 2^(k+a) - 1 is SMALLER (2^a < 3^a)
+and takes 2a MORE ticks. The twin strictly dominates: smaller seed,
+longer orbit. Hence no record's family is divisible by 3. QED (verified
+live and by census: 49/49 records to 10^7 have m = 1 or 5 mod 6).
+FURTHER CENSUS FINDINGS:
+* sequence numbers of champions: mean 3.29 vs population 2.00 (the
+  fuel-boost tilt), mode 1-3, tail to k = 11 (26623); no deeper pattern
+  in k beyond the tilted geometric.
+* early records live in the LOW families 1, 5, 7, 11, 13 (n = 3, 7, 9,
+  25, 27, 703, 26623); family 1 only at the very start (sterility bars
+  repunits later); asymptotically the median record family is ~10^3+
+  (pool dominance, Obs 106).
+* curiosity: record families m = 5 mod 8 appear 21/49 (43% vs 25%
+  expected, ~2.5 sigma) - unexplained, filed.
