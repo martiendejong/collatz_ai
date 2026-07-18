@@ -2099,3 +2099,28 @@ FURTHER CENSUS FINDINGS:
   (pool dominance, Obs 106).
 * curiosity: record families m = 5 mod 8 appear 21/49 (43% vs 25%
   expected, ~2.5 sigma) - unexplained, filed.
+
+## Theorem 110 (THE CONVOY THEOREM of family 1 — M. de Jong's
+## within-family pattern question). R2646-2685
+Within family 1 (repunits 2^k - 1, sequence k):
+(a) TREND: steps = 12.41k + 79 (each extra tank-one buys ~12.4 ticks).
+(b) THE CONVOY LAW: for every ODD k >= 3,
+        steps(2^(k+1) - 1) = steps(2^k - 1) + 1   EXACTLY (149/149).
+    PROOF (gluing identity): u = 3^k - 1 has v2(u) = 1 (k odd);
+    v = 3^(k+1) - 1 = 3u + 2; then v/2 = 3(u/2) + 1, so orbit(u)
+    reaches v/2 in 2 steps (u -> u/2 -> 3(u/2)+1) while orbit(v)
+    reaches it in 1: shared tail, offset -1; with the 2-tick burn
+    difference: total +1. QED.
+(c) The even->odd continuation is probabilistic (62%, deeper gluing
+    chains), giving CONVOYS: stretches of consecutive k whose orbits
+    all merge into one highway, steps climbing +1 per k. Observed:
+    mean convoy 5.2, maximum 48 consecutive sequence numbers (!);
+    2^282-1 merges into orbit(2^281-1) after 565 steps.
+(d) The residual pattern beyond convoys: the first-crash oracle
+    c1 = v2(3^k - 1) = 2 + v2(k) for even k: sequences with 8|k lose
+    ~54 steps on average (deep first crash).
+ANSWER to the question: within family 1 the long sequences have no
+numerological k-pattern; they have a CONVOY pattern - which shared
+highway your k glues into. Half of the gluing is exact theorem (odd
+k), half is dice (even k), and the sterility records (k = 12, 174...)
+are invisible at this scale (r <= 9 fuel vs sd 233).
