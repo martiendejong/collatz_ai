@@ -2142,3 +2142,14 @@ junctions 40 and 364 of Obs 75). The tree possesses STANDARD REROUTING
 SEGMENTS with fixed lengths; a break selects one from a small detour
 spectrum. Second-level convoy oracle (which v2/deeper bits select which
 detour): open, promising.
+
+## Observation 113 (the second-level oracle is DEEP). R2736-2750
+The detour selection at convoy breaks is NOT determined by shallow local
+data: cells (v2(u_k), next 3 bits) show broad offset spectra (6/25
+deterministic, most with 10+ distinct values). Refinement of Obs 112:
+the detour VALUES recur heavily across families and cells (-472, -498,
+-211, -30, +94 each appear in multiple unrelated cells - the standard
+segments are real), but WHICH detour fires is decided by deep
+trajectory data: the pattern-lives-one-step law applies even to the
+convoy timetable. First decision layer: 1-bit shallow (m mod 4,
+Thm 111). Second layer: entropy. The machine's signature, again.
