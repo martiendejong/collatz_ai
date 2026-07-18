@@ -1635,3 +1635,26 @@ forever. Cycles: the tax kills word-counts against the modulus
 dimension-deficient (0.950 < 1). The remaining gap is, as ever,
 pointwise: integers are countable and dimension arguments see only
 size. But every wall now has the same number on it.
+
+## Proposition 92 (COLLATZ IS A RADIUS-1 CELLULAR AUTOMATON IN BASE 6;
+## local-invariant no-go #10). R2251-2295
+(1) STRUCTURE (verified exact, 3000/3000 each): in base 6 both elementary
+    maps are carry-free radius-1 sliding rules:
+      x3:  out_i = 3*(d_i mod 2) + floor(d_{i-1}/2)
+      /2:  out_i = floor(d_i/2)  + 3*(d_{i+1} mod 2)
+    The ONLY nonlocality is the +1 (a boundary defect propagating through
+    trailing 5s). Collatz is literally a one-dimensional cellular
+    automaton in the mixed base - the rule-110 intuition (WOLFRAM_RST_LRS
+    arc) is now an exact statement, not an analogy. Note the two rules
+    are mirror transposes: x3 reads parity-up, /2 reads parity-down.
+(2) INVARIANT HUNT (Hattori-Takesue style): window-2 weight functions:
+    - translation-invariant: NO conserved/eigen densities exist (0-dim).
+    - LSD-weighted sum lambda^i f(d_i,d_{i+1}), lambda in {1/3..5}: only
+      the trivial constant. At lambda = 6 the value functional exists
+      (known) but the numerical formulation degenerates (top-window
+      domination); exact-arithmetic version left open.
+    NO-GO #10: the CA has no local additive first integrals at window 2
+    beyond the value itself - sharpens Obs 82b (0.666 barrier): not only
+    no monotone local quality, no locally-conserved density AT ALL. The
+    conserved information of Collatz is irreducibly global (the address
+    coding), consistent with everything since Thm 22.
