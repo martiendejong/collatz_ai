@@ -2242,3 +2242,23 @@ statement of the boundary: the machine's stretches are reducible
 (proven, level 1), its decisions are ensemble-incompressible (proven,
 Thm 115), and whether its decisions are individually PREDICTABLE
 without simulation is the open computational core of Collatz.
+
+## Theorem 116 (THE PAY-PER-DECISION PRINCIPLE — answering "must we
+## reconvert all bits?"). R2821-2840
+NO wholesale reconversion is needed. Every decision (k_i, c_i) is
+computable from a MODULAR WINDOW of exactly the consumed size: track
+the state only mod 2^(consumed + W) via 3^k mod 2^j powering; the
+base-3-scale giant is never materialized. Demonstrated: the first 40
+decisions of a 2005-bit seed computed from 164 consumed bits with
+64-bit working windows, identical to full arithmetic (verified).
+CONSEQUENCE: Martien's shortcut ladder extends one more rung - the
+machine can be run at cost O(polylog) PER CONSUMED BIT, paying for
+information exactly at the ledger rate, never for the representation.
+The toll is bit-metered, not wholesale. This is the OPTIMUM consistent
+with everything proven: below pay-per-decision (predicting a decision
+without paying its bits) is precisely the open level-2 question of
+Rem 115c. The final hierarchy:
+  level 0: pay per tick (the CA)
+  level 1: pay per phase (the reading-glasses machine)  [proved]
+  level 1.5: pay per consumed bit (modular windows)     [proved, here]
+  level 2: pay less than the information content        [open = Collatz]
