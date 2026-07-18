@@ -1791,3 +1791,28 @@ is possible" fails at two points, and its corrected form is telling:
     finite-modulus classes - THAT would be a formal anti-universality
     theorem, and every result in this corpus (I = 0 bits, no-go #10,
     one-phase evaporation) is evidence for it.
+
+## Remark 97 (INTEGRATING THE BURN: one tick, one sweep, or zero steps).
+## R2401-2410, answering M. de Jong
+Can the k conversion ticks (a full climb) be integrated into one? Three
+answers at three levels:
+(1) As a bounded-radius parallel CA tick: NO, provably - after the burn
+    the leftmost output cell depends on all k input cells; a radius-r
+    rule transports information r cells/tick (the CA speed of light),
+    so k ticks are necessary IN THE BASE-6 FRAME.
+(2) As a sequential pass: the k ticks ARE the sweep - the 45-degree
+    fuel triangle is precisely the spacetime picture of a base
+    conversion in progress, one column per tick.
+(3) As a FRAME CHANGE: ZERO steps. In +1-coordinates the burn is the
+    identity on the symbol string re-read in base 3 (demo: 448 =
+    111000000_2 -> 5103 = 21000000_3: head 7 converted value-preserving
+    111->21, zeros transplanted verbatim; pure tank 2^20: the string
+    "1 with 20 zeros" is UNCHANGED, only the base label flips). This is
+    the Conversion Thesis as an integration statement: the machine pays
+    k ticks to physically rewrite what a reader gets free by switching
+    glasses. The toll (real computation) is only the return to base 2.
+(4) Arithmetically, arbitrarily many PHASES integrate into ONE affine
+    map m = R + coef*m' with explicit rational R, coef (Thm 90) - the
+    ultimate integration; the obstruction to exploiting it is that
+    WHICH affine map applies is decided by the dice, one phase at a
+    time. Integration is free; prediction is the whole problem.
