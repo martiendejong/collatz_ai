@@ -1587,3 +1587,21 @@ converges through the 3^-i twist ladder (not to the fixed pattern), the
 front converges as (2^j/3)-scaling, and the interface is ONE-WAY: tail
 drives head, never the reverse. The two-substrate picture is exact at
 string level: 2-adic rear, archimedean front, one-way carry seam.
+
+## Theorem 90 (THE PRE-WRITING FORMULA — M. de Jong's follow-up).
+## — exact, verified live on the 26623 highway, R2196-2210
+The convergence of a sequence toward any future near-repunit is governed
+by one explicit affine formula. Per phase (k, c) compose:
+    R    <- R + coef * 3^-k (1 - 2^c)
+    coef <- coef * 3^-k * 2^(c + k_next)
+Then  starter_head = R + coef * head_at_arrival, and the arrival run of
+L ones is PRE-WRITTEN in the starter as its 2-adic agreement with the
+rational R over the bit window [D - k1, D - k1 + L), D = sum(k_i + c_i).
+LIVE: starter 63105 (a 3|n leaf = true highway head), three phases
+(1,1): R = -37/27, coef = 2^16/27, recovered head = 13 = (26623+1)/2^11
+exactly - the eleven ones of 26623 sat in the starter's bits [5,16) as
+agreement with -37/27. Note coef = 2^(consumed binary depth)/3^(total
+rises): THE FORMULA IS THE BINARY/TERNARY CONVERSION LEDGER ITSELF -
+numerator counts the binary bits consumed, denominator the ternary
+lifts performed. Family-sequence cycles, the oracle ladder, and the
+conversion thesis are one bookkeeping identity.
