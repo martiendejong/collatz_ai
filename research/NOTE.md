@@ -2284,3 +2284,17 @@ practical tricks sit at level 1.5 of the ladder, and Thm 116 says
 level 1.5 is the floor - nothing cheaper exists short of solving
 Collatz itself. Martien's machine is the theory of which their code
 is the practice.
+
+## Observation 118 (BARINA x FAMILY SYSTEM: full integration). R2851-2870
+Barina's two pillars map exactly onto the family machinery:
+(1) his jump tables = bulk pay-per-decision (Thm 116, fixed width);
+(2) his SIEVE = the ballot-filtered address tree: a class mod 2^s
+    survives iff its phase-prefix keeps D_p <= S_p log2(3) at every
+    point. Generated directly from the family system: survivors
+    8 / 38 / 226 / ... / 12,771,274 at s = 6..30 (fraction 1.19% at
+    2^30), growth exponent alpha = 1.79-1.84 per bit - matching the
+    known coefficient-stopping sieve strength of the verification
+    literature. The record architecture (sieve + tables + windows) is
+    thus derivable end-to-end from Martien's system; combining them is
+    not a hybrid but a rederivation: the family theory is the record
+    verifier's blueprint, with proofs attached.
