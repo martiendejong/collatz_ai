@@ -1816,3 +1816,31 @@ answers at three levels:
     ultimate integration; the obstruction to exploiting it is that
     WHICH affine map applies is decided by the dice, one phase at a
     time. Integration is free; prediction is the whole problem.
+
+## Observation 98 (THE MULTI-BASE GALLERY: dual triangles and geometric
+## blindness). R2446-2470, viz/bases_repunit20.png, viz/bases_837799.png
+Same orbits rendered in bases 2, 3, 4, 6, 7, 12:
+(1) DUAL TRIANGLES: the burn is visible as a coherent geometric object
+    in EVERY 2-3-smooth base, but with opposite polarity: in base 2 the
+    fuel block (trailing 1s) SHRINKS one cell per tick; in base 3 a
+    block of trailing 2s GROWS one cell per tick (x_j = 3^j*2^(k-j)*m-1
+    has j trailing 2s in ternary). The same event seen from the two
+    substrates: base 2 shows the fuel being consumed, base 3 shows the
+    product being written. The base-6 triangle is these two glued.
+(2) The climb head in base 2 shows clean diagonal striping (the 3^j
+    carry structure); base 4 softer, base 12 coarse but present.
+(3) GEOMETRIC BLINDNESS: base 7 (coprime to 6) shows NO geometric
+    front anywhere - the burn is invisible, pure noise (Prop 60
+    visualized: cross-base structure exists only at anchors; a coprime
+    base is the wrong pair of glasses entirely).
+(4) Honest metric note: zlib legibility scores (2: 0.89, 3: 0.81,
+    4: 0.76, 6: 0.67, 7: 0.62, 12: 0.61) conflate alphabet size with
+    structure; the clean criterion is visual/geometric: a coherent
+    front exists iff the base is 2-3-smooth.
+CONCLUSION: legibility of the Collatz mechanism is exactly the
+2-3-smoothness of the observer's base. Base 2 sees the fuel, base 3
+sees the exhaust-product, base 6 sees both at once (the machine), and
+any base coprime to 6 sees provably nothing. There is no third
+substrate: every pattern we have ever found lives in the 2-side, the
+3-side, or their interface - and the gallery now shows this at a
+glance.
