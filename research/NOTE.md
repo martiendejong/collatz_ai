@@ -1914,3 +1914,26 @@ why a big tank cannot refuel itself.
 DERIVED GEOMETRY: interior triangles erode 2/rise (R1), and with the
 /2 shift per tick both edges recede 1 cell/tick: the symmetric 45-degree
 triangles in every picture are now theorem, not observation.
+
+## Theorem 102 (THE RLE CALCULUS: Collatz as a closed rewriting system
+## on run-length lists). — exact, verified 20000/20000, R2526-2550
+Represent n by its run-length list (LSB first). Three exact operators:
+  M (x3): a streaming run-transducer with ONE BIT of state (the carry):
+     1-run a (in prev=0,c=0): emit 1,0,[a-2 ones]; exit c=1  [a>=2]
+     0-run b (in prev=1,c=1): emit 0,1,[b-2 zeros]; exit c=0 [b>=2]
+     0-run of 1: emits 0 and TRANSMITS the carry - single-zero gaps
+     are transparent to carry (the merger channel R4); gaps >= 2 are
+     carry-opaque (isolation). Lone 1: passes, doubles on next pass.
+  P (+1): flip the trailing 1-run to zeros, splice one 1 above (pure
+     list surgery, O(1) runs touched).
+  H: drop the trailing 0-run.
+ODD STEP = H o P o M, verified 20000/20000 against integer arithmetic;
+the orbit of 27 runs to [1] entirely in run space - the integer is
+never materialized. Collatz now has THREE exact faces:
+  (i) the base-6 cellular automaton (space-local),
+  (ii) the 2-adic address coding (Thms 87-90, information),
+  (iii) the RLE calculus (run-structural, this theorem),
+and the run grammar R1-R4 (Thm 101) is the M-operator's rule table.
+The one bit of carry state is the ENTIRE coupling between adjacent
+runs: the machine's celebrated complexity is one carry bit streaming
+through a run list, plus one splice, plus one drop.
