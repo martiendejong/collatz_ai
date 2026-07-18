@@ -2014,3 +2014,20 @@ CONCLUSION: in the (size, R) plane every number is fully profiled;
 R is the dynamical size coordinate of Remark 104 in arithmetic form:
 R = (index - log2 n)/(something) - the table is the decompression
 principle in numbers.
+
+## Observation 106 (THE FUEL MARKET: family pays the mean, the pool
+## pays the record — M. de Jong's trade-off, corrected and confirmed).
+## R2591-2605
+Martien's argument: champions live in low families because high family
+caps the sequence number. Correct, with one swap: the FAMILY k is the
+initial guaranteed ones (the first packet); the SEQUENCE m is the
+address book for all LATER fuel (at par, Thm 79) AND the lottery pool.
+20-bit window, per family: mean steps rise +6.3 per family level
+(145 -> 208, k = 1 -> 10: guaranteed fuel pays on average), but MAX
+steps FALL (508/524/503 for k = 1/2/3 down to 348 for k = 11), because
+pool sizes halve per level (65536 -> 64). Window records across 14-20
+bits sit in families 3,3,3,4,6,8,11 - small-to-mid. THE MARKET LAW:
+the mean is fuel-driven, the record is pool-driven; a guaranteed one
+buys +6.3 average steps but costs HALF the lottery tickets, and at the
+extreme-value level the tickets win. Champions are not the best-armed
+numbers; they are the best-drawn numbers from the biggest pools.
