@@ -2298,3 +2298,25 @@ Barina's two pillars map exactly onto the family machinery:
     thus derivable end-to-end from Martien's system; combining them is
     not a hybrid but a rederivation: the family theory is the record
     verifier's blueprint, with proofs attached.
+
+## Remark 119 (THE CONSERVATION OF THE TOLL — can we convert cheaply to
+## base 6 at the burn?). R2871-2880
+(1) NO FREE GLASSES TO BASE 6: the reading-glasses trick works only at
+the 2<->3 seam because the burn's arithmetic IS a relabeling there
+(n+1 = m*2^k -> x+1 = m*3^k: same symbol string, new radix on the
+tail). Binary -> base 6 is a genuine positional conversion (6^i weights
+match neither 2^i nor 3^i): as expensive as the toll being avoided.
+(2) BUT NO CONVERSION IS NEEDED: work in base 6 FROM THE START and
+never leave - every rise and every halving is one local radius-1 sweep
+(Prop 92). The price: the one-step burn trick disappears (CA speed of
+light): a k-burn costs k sweeps.
+(3) THE CONSERVATION LAW: every representation only chooses WHERE the
+toll is paid, never whether: base 2 pays at x3 (carries), base 3 pays
+at /2 (borrows), base 6 pays evenly (one sweep per op), the mixed frame
+pays at the seam (reconversion). A radix where BOTH ops are free shifts
+would force 2^a = 3^b: the irrationality of log2(3) IS the conservation
+of the toll. (4) The CRT/RNS escape (store n as residues mod 2^a 3^b:
+both ops cheap per component) fails exactly at the DECISIONS: v2(x) and
+trailing-run reads are non-local in RNS - the dice demand positional
+base 2. The toll always concentrates at the decisions (Thm 116), in
+every representation. There is no house where the rent is zero.
