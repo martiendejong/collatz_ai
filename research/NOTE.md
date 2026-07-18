@@ -2191,3 +2191,29 @@ mine precisely as many future bits as the seed possesses, and not one
 more. Beyond that the bits still exist and are determined, but their
 statement IS the orbit itself (no shorter theorem) - the decompression
 principle (Rem 104) in its final, bit-exact form.
+
+## Theorem 115 (THE INCOMPRESSIBILITY THEOREM — the provable half of
+## "the shortest theorem is the computation"). R2801-2815
+INFORMATION HALF, PROVED: by the address bijection (Thm 88a), the seeds
+sharing a phase-data prefix that consumes D bits form EXACTLY ONE
+residue class mod 2^(D+1). Hence over uniform seeds, P(each prefix) =
+2^-(D+1) exactly: the phase-data stream of a random seed IS a fair-coin
+stream, entropy = consumed bits + O(1), and NO encoding, theorem-set,
+or pattern language can compress the ensemble below one bit per address
+bit. (Empirical check: budget 8: entropy 9.96 vs 10.02 consumed;
+larger budgets saturate the 60k sample as expected - the theorem itself
+is exact.) This upgrades the ledger from a counting law to an
+information-theoretic impossibility: THE MACHINE'S FUTURE IS EXACTLY AS
+LARGE AS ITS SEED, bit for bit, provably.
+
+## Remark 115b (the computational half - honest boundary).
+The remaining claim - that computing the post-ledger bits REQUIRES
+effectively running the machine (no fast shortcut) - is COMPUTATIONAL
+IRREDUCIBILITY, and it is not provable with current mathematics: it is
+a computational lower bound of the kind complexity theory cannot yet
+establish (cousins of P vs PSPACE). What IS proven is every specific
+shortcut class we ever tested: no local invariants (#10), no local
+Lyapunov (0.666 barrier), no shallow second oracle (Obs 113), zero
+cross-base information (Thm 22), memoryless refuel (Obs 77/83), no
+base transport (no-go #7). Each no-go is a fragment of irreducibility,
+proven; the whole is open and possibly unsettleable (Conway 2013).
