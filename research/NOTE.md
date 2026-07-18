@@ -1961,3 +1961,29 @@ is exactly right, and it IS the two-wall split:
   right name: a cycle is a fuel engine with efficiency exactly 1, and
   everything we have proven says the efficiency is exactly 1 - (5% tax
   effects) < 1, with the deficit materializing as the +-1 comma.
+
+## Remark 104 (THE DECOMPRESSION PRINCIPLE — M. de Jong closes the loop).
+## R2561-2565
+Martien's observation: if the champion burns 195 fuel bits from a 20-bit
+tank, the number must "contain" that fuel already - and must therefore
+rank HIGHER in the dynamical order. Both halves are exactly right, with
+one refinement that dissolves the apparent ledger-paradox:
+(1) DETERMINED, NOT STORED: all 195 fuel bits are indeed fixed by the
+    seed (the orbit is deterministic). But they are not 195 independent
+    bits: the seed stores 20 bits of INFORMATION and the map UNFOLDS
+    them into 195 bits of fuel history. The ledger (Thm 79) caps
+    information, not fuel: Collatz is a DECOMPRESSOR, and champions
+    are the seeds of maximal decompression ratio.
+(2) DYNAMICAL SIZE = FUEL: in the dynamical order (Prop 93) the index
+    IS the unfolded history: champion 837799 has arithmetic size 2^20
+    but dynamical index 524 vs ~139 typical - dynamical shell-rank
+    ~2^(0.342*524) = 2^179 vs 2^48 for a typical 20-bit number. In the
+    right coordinate system the champion IS a huge number that happens
+    to compress into 20 arithmetic bits. The fuel is "in the number" -
+    as its dynamical coordinate, not as its digits.
+(3) This also explains, one more time, why no local string quality can
+    work (Obs 82b): the fuel is not stored in the digits; it is stored
+    in the POSITION of the number within the dynamical order - a
+    globally defined, locally invisible coordinate. The two orders
+    differ by exactly the dice (Prop 93), and champions are the
+    extreme-value tail of that difference.
