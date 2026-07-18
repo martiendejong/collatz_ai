@@ -1520,3 +1520,25 @@ trichotomy. Gate populations are stable across seed scales 2^16-2^30
 (93.4-94.0% for gate 5): no significant log-periodic drift at this
 resolution. The endgame is now THEORY: every orbit exits through a
 quaternary repunit whose basin richness is L mod 3.
+
+## Theorem 87 (THE HALVING ORACLE — M. de Jong's question, closed form).
+## — PROVED (one line) + verified 20000/20000, R2131-2150
+Seed n = m*2^k - 1 (family k, head m odd). After the k-step climb the
+value is 3^k*m - 1, so the halving count is
+    c = v2(3^k*m - 1) = 2-ADIC AGREEMENT DEPTH OF THE HEAD m WITH 3^(-k).
+The pattern per family EXISTS and is the bit string of 3^(-k):
+    family 1: ...101010101011 (the ALTERNATOR, period 2)
+    family 2: ...111000111001 (block 111000, period 6)
+    family k: period ord_{3^k}(2) = 2*3^(k-1) — cyclotomic, tripling.
+Heads halving exactly c times = the residue class m = 3^(-k) mod 2^c
+(and not mod 2^(c+1)). Across random heads the c-distribution is exactly
+dice 2^-c (verified k=1,4,8) — the oracle is the DETERMINISTIC refinement
+of the dice: the coin flip IS the head's next unread oracle bit.
+MERGE LAW (Martien's "merge step"): two sequences of the same family
+whose heads agree 2-adically to depth d have identical post-burn
+behavior to depth d — families/sequences merge exactly as deep as their
+heads agree with each other, and diverge at the first differing bit.
+The orbit is a chain of oracle consultations: burn run k, read c from
+oracle 3^(-k) at the head, form the new head, consult the next oracle.
+Collatz = the machine that reads the 2-adic expansions of 3^(-k) with
+its own output as the address.
