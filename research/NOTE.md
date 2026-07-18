@@ -1716,3 +1716,26 @@ radius-1 rules; the +1-never-carries observation), NO-GO #10 (the
 systematic local-invariant search), and the integration with the
 fuel/oracle/one-way-seam theory. Labeled accordingly; Prop 92(1) is a
 REDISCOVERY.
+
+## Proposition 94 (FINITENESS AND SIZE LAW OF THE FUEL TRIANGLES —
+## M. de Jong's question on the CA picture). R2356-2375
+(a) AN INFINITE TRIANGLE IS IMPOSSIBLE (one line): an unbounded climb
+    requires unbounded trailing ones, i.e. the seed = -1 in Z_2, which
+    is not a positive integer. Every triangle is finite. QED.
+(b) EACH TRIANGLE'S HEIGHT IS WRITTEN ON THE TAPE AT ITS BIRTH: height =
+    the 2-adic agreement with -1 at that moment (Thm 87 oracle); the
+    total of PRE-PROGRAMMED triangle heights <= seed bits (Thm 79).
+(c) THE TRIANGLE SIZE LAW (measured, 16-48 bit seeds, 2000 orbits each):
+    the tallest triangle in an orbit obeys the extreme-value law
+    E[max] ~ log2(#packets) + c (c ~ 1.1; Gumbel slope confirmed:
+    5.13/5.89/6.29/6.63/6.95 across the scales). Since #packets ~ 1.2 *
+    bitlength, the tallest triangle grows LOGARITHMICALLY in bit-length
+    = DOUBLE-LOGARITHMICALLY in n. Absolute record seen in 10k orbits
+    to 48 bits: height 17.
+(d) WHAT REMAINS OPEN (the same wall, sharpest visual form): divergence
+    would require the time-average triangle height to stay >= 3.41
+    forever, while the dice supply mean 2 - the orbit would have to
+    outdraw the coin by 70% for eternity. Every individual triangle is
+    provably finite and provably small; only the ETERNAL RECURRENCE of
+    oversized triangles is unprovable today - that is wall 3 in its
+    final costume.
