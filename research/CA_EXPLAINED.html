@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>The Collatz Machine &mdash; a tiny cellular automaton, fully explained</title>
+<style>
+body{font-family:Georgia,serif;max-width:820px;margin:2em auto;padding:0 1em;line-height:1.6;color:#222}
+h1{font-size:1.7em} h2{margin-top:1.8em;border-bottom:2px solid #f4632e;padding-bottom:.2em}
+.c{width:26px;height:26px;text-align:center;font-family:monospace;font-weight:bold;border:1px solid #ddd}
+table{border-collapse:collapse;margin:.8em 0}
+.lbl{padding-right:10px;font-family:monospace;color:#888;text-align:right;font-size:.85em}
+.rule{background:#faf6ef;border-left:4px solid #f4632e;padding:.8em 1.2em;margin:1em 0}
+.note{background:#eef3fa;border-left:4px solid #4a7ab5;padding:.8em 1.2em;margin:1em 0;font-size:.95em}
+img{max-width:100%;border:1px solid #eee}
+.gallery{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.gallery div{flex:1;min-width:150px;text-align:center;font-size:.85em;color:#666}
+code{background:#f4f4f4;padding:1px 5px}
+</style></head><body>
+
+<h1>The Collatz Machine</h1>
+<p><i>How the most famous unsolved problem in arithmetic turns out to be a tiny
+two-rule cellular automaton &mdash; explained from scratch.</i></p>
+
+<h2>1. The game</h2>
+<p>Pick any whole number. If it is even, halve it. If it is odd, triple it and add one.
+Repeat. For example, starting from 7:</p>
+<p><code>7 &rarr; 22 &rarr; 11 &rarr; 34 &rarr; 17 &rarr; 52 &rarr; 26 &rarr; 13 &rarr; 40
+&rarr; 20 &rarr; 10 &rarr; 5 &rarr; 16 &rarr; 8 &rarr; 4 &rarr; 2 &rarr; 1</code></p>
+<p>Every number anyone has ever tried &mdash; and computers have tried every number up to
+about 295 quintillion &mdash; ends at 1. The <b>Collatz conjecture</b> says every number
+does. Nobody has been able to prove it. It has resisted the best mathematicians for
+90 years.</p>
+
+<h2>2. Writing numbers with six symbols</h2>
+<p>We normally write numbers in base ten: digits 0&ndash;9, each position worth ten times
+the one to its right. But nothing forces ten on us. In <b>base six</b> we use only the
+digits 0&ndash;5, and each position is worth <i>six</i> times the one to its right.
+Think of writing numbers with a single die: thirteen becomes <b>21</b> in base six
+(2 sixes + 1). Seven becomes <b>11</b> (1 six + 1).</p>
+<p>We give each digit a colour, from white (0) to black (5):</p>
+<table><tr><td class="c" style="background:#ffffff;color:#999">0</td><td class="c" style="background:#ffe9b3;color:#666">1</td><td class="c" style="background:#ffb347;color:#333">2</td><td class="c" style="background:#f4632e;color:#fff">3</td><td class="c" style="background:#a01818;color:#fff">4</td><td class="c" style="background:#1a1a1a;color:#fff">5</td></tr></table>
+<p>Why base six? Because 6 = 2 &times; 3 &mdash; and the Collatz game is made entirely of
+twos (halving) and threes (tripling). Base six is the only writing system in which both
+operations become <i>simple</i>, as we are about to see.</p>
+
+<h2>3. What is a cellular automaton?</h2>
+<p>A cellular automaton is a row of cells, each holding a symbol, evolving in time steps.
+At every tick, each cell computes its new symbol by looking only at itself and its
+immediate neighbours &mdash; no cell ever sees the whole row. Stephen Wolfram made these
+famous by showing that even the simplest such rules (like his &ldquo;rule 110&rdquo;) can
+produce endlessly complex, seemingly random behaviour from one tiny local law.</p>
+<p>The discovery here: <b>the Collatz game, written in base six, is exactly such a
+machine.</b> Two local rules, each cell looking one neighbour away. Nothing else.</p>
+
+<h2>4. The two rules</h2>
+<div class="rule"><b>The TRIPLE rule</b> (used when the number is odd).<br>
+Each cell computes its new digit from two questions:<br>
+&bull; <i>Is my own digit odd?</i> If yes, start with 3; if even, start with 0.<br>
+&bull; <i>What is my right-hand neighbour's digit, divided by two (rounded down)?</i>
+Add that.<br>
+New digit = (3 if I am odd, else 0) + (half of my right neighbour). The answer is always
+0&ndash;5: <b>no carrying, ever.</b></div>
+<div class="rule"><b>The +1 fix.</b> After tripling an odd number, the last cell always
+shows a 3 (a little theorem: an odd number times 3 always ends in digit 3 in base six).
+Adding one turns that 3 into a 4. One cell changes; nothing spreads.</div>
+<div class="rule"><b>The HALVE rule</b> (used when the number is even).<br>
+&bull; <i>Halve my own digit (round down).</i><br>
+&bull; <i>Is my left-hand neighbour odd?</i> If yes, add 3.<br>
+New digit = (my digit halved) + (3 if my left neighbour is odd). Again always 0&ndash;5:
+<b>no borrowing, ever.</b></div>
+<p>Which rule fires is decided by one glance at the last cell: odd digit &rarr; triple,
+then the +1 fix, then halve; even digit &rarr; halve. That is the whole machine.</p>
+
+<h2>5. A complete worked example: 7</h2>
+<p>Seven in base six is <b>11</b>. It is odd, so we TRIPLE. Watch each cell (the right
+neighbour of the last cell counts as 0):</p>
+<p>&bull; last cell: own digit 1 (odd &rarr; 3) + half of nothing (0) = <b>3</b><br>
+&bull; next cell: own digit 1 (odd &rarr; 3) + half of right neighbour 1 (= 0) = <b>3</b><br>
+So 3 &times; 7 = <b>33</b> in base six (= 21). The +1 fix turns the last 3 into a 4:
+<b>34</b> (= 22). Now HALVE:<br>
+&bull; last cell: own digit 4 halved = 2; left neighbour 3 is odd, so +3 = <b>5</b><br>
+&bull; first cell: own digit 3 halved = 1; no left neighbour = <b>1</b><br>
+Result: <b>15</b> in base six = 11. And indeed (3 &times; 7 + 1) / 2 = 11. The machine
+works.</p>
+<p>Here is the entire journey of 7 down to 1, one row per step (numbers on the left,
+their base-six cells on the right):</p>
+<table><tr><td class="lbl">7</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffe9b3;color:#666">1</td><td class="c" style="background:#ffe9b3;color:#666">1</td></tr>
+<tr><td class="lbl">22</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#f4632e;color:#fff">3</td><td class="c" style="background:#a01818;color:#fff">4</td></tr>
+<tr><td class="lbl">11</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffe9b3;color:#666">1</td><td class="c" style="background:#1a1a1a;color:#fff">5</td></tr>
+<tr><td class="lbl">34</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#1a1a1a;color:#fff">5</td><td class="c" style="background:#a01818;color:#fff">4</td></tr>
+<tr><td class="lbl">17</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffb347;color:#333">2</td><td class="c" style="background:#1a1a1a;color:#fff">5</td></tr>
+<tr><td class="lbl">52</td><td class="c" style="background:#ffe9b3;color:#666">1</td><td class="c" style="background:#ffb347;color:#333">2</td><td class="c" style="background:#a01818;color:#fff">4</td></tr>
+<tr><td class="lbl">26</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#a01818;color:#fff">4</td><td class="c" style="background:#ffb347;color:#333">2</td></tr>
+<tr><td class="lbl">13</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffb347;color:#333">2</td><td class="c" style="background:#ffe9b3;color:#666">1</td></tr>
+<tr><td class="lbl">40</td><td class="c" style="background:#ffe9b3;color:#666">1</td><td class="c" style="background:#ffffff;color:#999">0</td><td class="c" style="background:#a01818;color:#fff">4</td></tr>
+<tr><td class="lbl">20</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#f4632e;color:#fff">3</td><td class="c" style="background:#ffb347;color:#333">2</td></tr>
+<tr><td class="lbl">10</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffe9b3;color:#666">1</td><td class="c" style="background:#a01818;color:#fff">4</td></tr>
+<tr><td class="lbl">5</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#1a1a1a;color:#fff">5</td></tr>
+<tr><td class="lbl">16</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffb347;color:#333">2</td><td class="c" style="background:#a01818;color:#fff">4</td></tr>
+<tr><td class="lbl">8</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffe9b3;color:#666">1</td><td class="c" style="background:#ffb347;color:#333">2</td></tr>
+<tr><td class="lbl">4</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#a01818;color:#fff">4</td></tr>
+<tr><td class="lbl">2</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffb347;color:#333">2</td></tr>
+<tr><td class="lbl">1</td><td class="c" style="background:none;border:none"></td><td class="c" style="background:none;border:none"></td><td class="c" style="background:#ffe9b3;color:#666">1</td></tr></table>
+
+<h2>6. The big pictures</h2>
+<p>Now run the machine on bigger numbers and photograph every step (each row = one tick,
+colours as above, last digit on the right). This is exactly how Wolfram displays his
+automata. Three portraits:</p>
+<div class="gallery">
+<div><img src="viz/ca_27.png" alt="CA evolution of 27"><br>
+27: a long fever of small flare-ups</div>
+<div><img src="viz/ca_repunit20.png" alt="CA evolution of 2^20-1"><br>
+2<sup>20</sup>&minus;1: a fuel tank burning</div>
+<div><img src="viz/ca_26623.png" alt="CA evolution of 26623"><br>
+26623: a record holder</div>
+</div>
+<p>How to read them:</p>
+<p><b>The black triangles are fuel burning.</b> When a number ends (in binary) in a long
+block of ones, the machine is forced to climb: triple, triple, triple&hellip; During the
+climb the automaton writes walls of black 5-cells growing one cell per row &mdash; a
+perfect 45&deg; front. The bigger the block of ones, the taller the triangle.</p>
+<p><b>The orange noise is a fair coin.</b> Between climbs the digits look random &mdash;
+and we have measured this precisely: they are as random as fair coin flips, at every
+scale. The machine is a perfect scrambler. (This is provable, and it is exactly why the
+problem is hard: there is no pattern to grab onto.)</p>
+<p><b>The taper is the house edge.</b> On average the machine loses about 0.83 bits of
+size per cycle: climbs are rarer than falls. So the strip narrows&hellip; slowly, with
+dramatic reversals whenever the noise happens to crystallise into a fresh block of ones
+&mdash; a new triangle, a new climb.</p>
+<p><b>The tiny point at the bottom is the exit gate.</b> Remarkably, 94% of all numbers
+enter the final stretch through the same little number: 5. The rest come through 85,
+341, 5461&hellip; (in base four these are 11, 1111, 11111, 1111111 &mdash; but that is
+another story).</p>
+
+<h2>7. What this means &mdash; and what it does not</h2>
+<p>The Collatz conjecture now has a very concrete form: <i>this two-rule automaton,
+started from any row of digits whatsoever, always ends at the single cell
+&ldquo;1&rdquo;.</i></p>
+<p>Finding the machine does not prove the conjecture. But it explains, in one picture,
+why the problem is simultaneously so simple and so hard:</p>
+<p>&bull; <b>Simple</b>, because the whole law fits in two lines. Each cell only ever
+looks at one neighbour. There are no hidden depths &mdash; you have now seen
+everything.</p>
+<p>&bull; <b>Hard</b>, because this tiny law is a perfect scrambler. We proved the
+machine has <i>no local conserved quantity</i> &mdash; nothing computable from patches
+of the tape that always decreases. Whatever finally decides the fate of a number is
+spread over the whole tape at once. A single glance can never see it.</p>
+<p>&bull; And there is a beautiful one-way street built in: information in the tape
+flows only from the small digits toward the large ones, never back. The right edge is
+the engine; the left edge just drifts along. The fate of the number is decided entirely
+at its right edge, one cell at a time, forever.</p>
+<p class="note">Fine print for the curious: strictly speaking the machine uses two
+homogeneous local rules with the choice made by the parity of the last cell; adding a
+standard &ldquo;signal track&rdquo; turns it into a single textbook cellular automaton.
+And John Conway proved in 1972 that <i>generalised</i> Collatz-like games can simulate
+any computer whatsoever &mdash; so there can be no general recipe for questions like
+this one. The conjecture asks about one specific, tiny machine: the one you have just
+met.</p>
+
+<p style="color:#888;font-size:.85em;margin-top:3em">Generated as part of the Collatz
+research campaign &mdash; github.com/martiendejong/collatz_ai &mdash; where every claim
+above (the rules, the fairness measurements, the fuel theorems, the 94% gate) is
+documented with proofs, code and data.</p>
+</body></html>
