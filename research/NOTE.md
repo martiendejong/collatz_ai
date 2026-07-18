@@ -2262,3 +2262,25 @@ Rem 115c. The final hierarchy:
   level 1: pay per phase (the reading-glasses machine)  [proved]
   level 1.5: pay per consumed bit (modular windows)     [proved, here]
   level 2: pay less than the information content        [open = Collatz]
+
+## Observation 117 (HONEST COST ACCOUNTING of the shortcut ladder).
+## R2841-2850
+Benchmark, 4000-bit seed, full orbit: naive 30788 ticks/9ms; phase
+machine 5085 steps/7ms (6.1x fewer steps, 1.3x wall-clock); windowed
+1.1x. THE HONEST LESSON: for FULL orbits the total bit-work is
+CONSERVED - each of the R rises must process its multiplication by 3
+somewhere, and the ledger (D_total = log2 n + 0.585R consumed bits)
+is a floor that naive arithmetic already sits near per-bit. The real
+gains: (i) step count/latency 6-7x; (ii) PARTIAL decision streams of
+huge seeds: cost ~ consumed^2, INDEPENDENT of seed size - unbounded
+speedup for prefix questions (40 decisions of a 2005-bit seed from
+164 bits of work). 
+VS THE VERIFICATION RECORD (Barina, 2^71): the record holders' inner
+loop (precomputed 2^w-entry tables jumping w bits per lookup) IS
+pay-per-decision in fixed-width bulk form, and their sieves (skipping
+the overwhelming majority of seeds entirely) are an orthogonal axis we
+did not touch. We do not beat the record; we EXPLAIN it: their
+practical tricks sit at level 1.5 of the ladder, and Thm 116 says
+level 1.5 is the floor - nothing cheaper exists short of solving
+Collatz itself. Martien's machine is the theory of which their code
+is the practice.
