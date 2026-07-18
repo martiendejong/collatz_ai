@@ -1844,3 +1844,42 @@ any base coprime to 6 sees provably nothing. There is no third
 substrate: every pattern we have ever found lives in the 2-side, the
 3-side, or their interface - and the gallery now shows this at a
 glance.
+
+## Observation 99 (phase machine in six bases; coprime precision; the
+## 1010 refuel mechanism). R2471-2500
+(1) Phase-machine multibase plates: viz/phasebases_*.png.
+(2) COPRIME BASES, made precise (answering Martien's justified
+    skepticism): local windows carry information ONLY in 2-smooth-
+    aligned bases: MI(next packet; last 3 bits) = 1.4988 bits vs
+    MI(next packet; last base-7 digit) = 0.000065 bits (CRT-
+    independence: n mod 7^w independent of n mod 2^k). CONCESSION: all
+    base-7 digits TOGETHER still determine n completely - the blindness
+    is strictly LOCAL, not informational.
+(3) THE 1010 MECHANISM (Martien's observation, confirmed): 3 x
+    (101...01) = 111...11 - one rise converts an alternator window into
+    a repunit block. This IS the microscopic refuel mechanism: the
+    "little triangles from 1010 patterns" are alternator windows in the
+    product bits, promoted to fuel by the next x3. Alternator-window
+    records in 3^k: (10,8),(25,11),(144,13),(296,18),(1577,20),
+    (2314,24) - Gumbel/log growth, same law as fuel records (Prop 94).
+    GIANT-TRIANGLE QUESTION: a full-alternator prefix requires
+    3^(k+1) m = 2^(2r)+2: parity-impossible exactly; near-full is
+    Baker-blocked: secondary triangles are capped at ~log k. Ever.
+
+## Proposition 100 (THE WHITE LINE THEOREM - M. de Jong's question).
+(a) A fully white row (value 0) is impossible: every positive integer
+    has a leading 1. One line.
+(b) A NEAR-white row (single leading 1 = a power of 2) is possible,
+    occurs in EVERY convergent orbit EXACTLY ONCE, and is always the
+    TERMINAL event: from 2^a the orbit halves monotonically to 1, no
+    odd step ever follows. The white line = the gate passage of
+    Obs 85/Prop 86 (the row after the base-4-repunit gate fires).
+(c) Explicit tank-to-white-line seeds exist: 3^k | 2^a + 1 solvable
+    (a = 3^(k-1) mod 2*3^(k-1)): seed 3 (k=2) burns into 8; seed 151
+    (k=3) burns 111 -> 227 -> 341 -> 512 = 2^9. A tank can burn
+    DIRECTLY into the white line - through a gate, always.
+So: the white line exists, is unique per orbit, is provably the
+beginning of the end, and can never occur mid-flight. Martien's
+intuition "ik denk het niet" was right for the interior of the
+journey and the theorem says exactly why: whiteness = 2-power =
+no fuel and no head = nothing left to burn.
