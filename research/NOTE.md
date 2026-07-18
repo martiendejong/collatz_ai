@@ -2217,3 +2217,28 @@ Lyapunov (0.666 barrier), no shallow second oracle (Obs 113), zero
 cross-base information (Thm 22), memoryless refuel (Obs 77/83), no
 base transport (no-go #7). Each no-go is a fragment of irreducibility,
 proven; the whole is open and possibly unsettleable (Conway 2013).
+
+## Remark 115c (Martien's objection: "the binary-to-ternary conversion
+## IS a shortcut" — sustained; the shortcut hierarchy). R2816-2820
+Correct, and it sharpens 115b. Three time-scales:
+LEVEL 0 (tick time): the CA, 2R + H elementary steps.
+LEVEL 1 (phase time): the reading-glasses conversion + zero-strip
+  compress every deterministic stretch: P steps. PROVEN shortcut,
+  factor 2R/P + H/P ~ 7.2 (2^1000-1: 12157 ticks -> 1690 phases).
+  The affine composition (Thm 90) compresses any KNOWN phase word to
+  one formula. So computational irreducibility is NOT absolute: the
+  deterministic stretches compress fully.
+LEVEL 2 (the open question): can one compute endpoint data (gate,
+  stopping time) WITHOUT consuming the ~D address bits one phase at a
+  time - i.e., sublinear in the number of DECISIONS, not just the
+  number of ticks? This is the true irreducibility question.
+IMPORTANT HONESTY (the pi/BBP analogy): Theorem 115 (fair-coin
+ensemble) does NOT forbid a fast individual-bit algorithm - the digits
+of pi are statistically random-looking yet BBP computes bit n quickly.
+Statistical incompressibility and computational accessibility can
+coexist. Our no-gos close the LOCAL/shallow level-2 routes; the
+general level-2 question is open in both directions. Refined
+statement of the boundary: the machine's stretches are reducible
+(proven, level 1), its decisions are ensemble-incompressible (proven,
+Thm 115), and whether its decisions are individually PREDICTABLE
+without simulation is the open computational core of Collatz.
