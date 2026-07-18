@@ -2381,3 +2381,30 @@ is unique in spirit (any T-diagonalizing representation contains it),
 and the conjecture is equivalent to: ITS TRANSFORM ALWAYS TERMINATES.
 Fixed fractional bases trade where the toll falls; only the dynamical
 base eliminates it - by charging everything at the door.
+
+## Observation 124 (THE PREDICTABILITY MAP: where the bits ARE
+## predictable — M. de Jong's question). R2971-2995
+(a) THE INFORMATION WATERFALL (trailing side): MI(decision_i; seed mod
+    2^10) = 3.39 / 2.98 / 1.43 / 0.22 / 0.013 / 0.005 bits as mean
+    consumption passes the 10-bit window (0 / 3.7 / 7.5 / 11.2 / 15.0 /
+    18.8). Predictability = window minus consumed, ending in a soft
+    cliff about ONE PHASE wide. Exactly the ledger, probabilistically
+    smeared.
+(b) THE STATE FACTORIZATION (leading side): the TOP bits of n_t are a
+    function of the walk counts (S, D) alone: n_t = (3^S n0 / 2^D) *
+    prod_j (1 + 1/(3 x_j)), and the correction product converges so
+    fast that after 40 ticks the top 10 bits are predicted with 100.0%
+    accuracy (1678/1678) and the top 20 bits with 99.0% - from just
+    TWO INTEGERS. The value's head is a thermometer of the walk.
+CONSEQUENCE - the full map of predictability:
+    TOP of the number: free, given (S, D)          [predictable]
+    BOTTOM window: exact, paid at the ledger rate  [predictable]
+    the WALK increments (k_i, c_i) beyond the window: fair dice
+                                                   [the only mystery]
+The trajectory's entire information content is the walk path itself;
+the value bits are (asymptotically) all reconstructible from it plus
+the unspent seed window. The machine does not hide information in its
+value - the value IS the walk, written twice (top: aggregate, bottom:
+future). What remains unpredictable is exactly ONE random walk on the
+(S, D) lattice - the drift walk of the 5% tax. Collatz, final form:
+does the walk (2, ~2)-per-step always reach D > log2(n0) + S log2(3)?
