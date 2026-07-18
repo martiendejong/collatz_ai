@@ -1987,3 +1987,30 @@ one refinement that dissolves the apparent ledger-paradox:
     globally defined, locally invisible coordinate. The two orders
     differ by exactly the dice (Prop 93), and champions are the
     extreme-value tail of that difference.
+
+## Observation 105 (THE PROFILE TABLE: one free coordinate — M. de
+## Jong's comparison). R2566-2590
+Per number: P = #conversions (burns), R = total ones converted, H =
+extra halvings, family k1, sequence m1, three bases. Findings:
+(1) THE ENSLAVEMENT IDENTITY: H = log2(n) + (log2(3)-1)*R + O(1) -
+    residuals 0.00-0.33 across champions, losers and ordinary numbers
+    alike. The halvings are fully determined by size + conversions:
+    A NUMBER'S ENTIRE COLLATZ PROFILE HAS EXACTLY ONE FREE COORDINATE,
+    R. Champions: R = 195 (837799, 20 bits). Ordinary: R = 46.
+    Losers: R = 2. The champion/loser spectrum IS the single number R.
+(2) THE LOSERS ARE ALTERNATOR-TEXTURED: the 20-bit minimal-orbit
+    numbers are 11010101010101010101 (the pure alternator!) and
+    ...11010101-tailed relatives - pure dust, no fuel, crash through
+    the -1/3 anchor class (Obs 74 trichotomy, now visible in the
+    flesh). Their ternary forms are quasi-periodic (1122101122110).
+(3) FAMILY INDEX IS NEARLY IRRELEVANT: 891793/95/99 (families 1,2,3,
+    same head class) share R = 46, H = 47 - the family buys only the
+    first packet (Thm 87); the luck lives in the sequence m1. Champion
+    families are modest (2, 11, 3): champions are not born from big
+    tanks but from lucky sequences (Obs 74 confirmed again).
+(4) Ternary gems: 27 = 1000_3 (the ur-champion is a pure ternary
+    power); champion 26623 = 1100112001_3.
+CONCLUSION: in the (size, R) plane every number is fully profiled;
+R is the dynamical size coordinate of Remark 104 in arithmetic form:
+R = (index - log2 n)/(something) - the table is the decompression
+principle in numbers.
