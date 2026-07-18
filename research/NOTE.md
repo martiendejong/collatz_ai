@@ -2031,3 +2031,24 @@ the mean is fuel-driven, the record is pool-driven; a guaranteed one
 buys +6.3 average steps but costs HALF the lottery tickets, and at the
 extreme-value level the tickets win. Champions are not the best-armed
 numbers; they are the best-drawn numbers from the biggest pools.
+
+## Remark 107 (WHERE WOULD A COUNTEREXAMPLE LIVE? — population vs
+## propensity). R2606-2610
+Martien: "so the biggest chance for a loop or divergent sequence is in
+a low family." Two-sided answer:
+(1) POPULATION: yes - conditional on a counterexample existing at
+    bit-length B, ticket-counting puts it in family k with probability
+    ~2^-k: most likely family 1 or 2. Same extreme-event logic as the
+    records (Obs 106).
+(2) PROPENSITY: no - the family fixes only the FIRST packet, and the
+    pattern-lives-one-step law makes the eternal tail family-neutral:
+    per individual seed, no family has any divergence advantage.
+    Hunting counterexamples by family is pointless; the low-family
+    concentration is pure population size.
+(3) CYCLES, sharper: a cycle IS its own family-sequence - its members'
+    families are exactly its packet word, and the cycle condition is
+    the enslavement identity (Obs 105) with ZERO size term:
+    H = (log2(3)-1)*R exactly, residual 0 forever. Cycles are the
+    words that keep the identity's O(1) residual pinned at 0 - and the
+    clearance measurements say the machine gets to +-1 of that and
+    never to 0.
