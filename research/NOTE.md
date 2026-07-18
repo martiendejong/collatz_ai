@@ -2124,3 +2124,21 @@ numerological k-pattern; they have a CONVOY pattern - which shared
 highway your k glues into. Half of the gluing is exact theorem (odd
 k), half is dice (even k), and the sterility records (k = 12, 174...)
 are invisible at this scale (r <= 9 fuel vs sd 233).
+
+## Theorem 111 (THE UNIVERSAL CONVOY LAW) + Observation 112 (THE DETOUR
+## SPECTRUM). R2686-2735
+(111) Every family m's ladder u_k = 3^k m - 1 is one affine chain
+u_{k+1} = 3 u_k + 2, and the gluing (+1) law holds DETERMINISTICALLY at
+alternating sequence parities: glue at odd k iff m = 1 mod 4, at even k
+iff m = 3 mod 4 (since 3^k mod 4 alternates; glue iff v2(u_k) = 1).
+Verified 100% at the predicted parity in families 1, 5, 7, 11, 13
+(297/298, sole exception the k=1 boundary). The other parity glues at
+27-48% (family-dependent deeper oracle bits): convoys everywhere.
+(112) At convoy breaks the ladder pair still merges downstream, and the
+path-length differences are QUANTIZED AND UNIVERSAL: detours of exactly
++94 and -30 steps recur across families 1, 5, 7 AND across different
+junctions (22, 40, 58, 88, 184, 364 - including the record-ladder
+junctions 40 and 364 of Obs 75). The tree possesses STANDARD REROUTING
+SEGMENTS with fixed lengths; a break selects one from a small detour
+spectrum. Second-level convoy oracle (which v2/deeper bits select which
+detour): open, promising.
