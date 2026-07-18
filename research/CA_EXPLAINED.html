@@ -47,8 +47,12 @@ At every tick, each cell computes its new symbol by looking only at itself and i
 immediate neighbours &mdash; no cell ever sees the whole row. Stephen Wolfram made these
 famous by showing that even the simplest such rules (like his &ldquo;rule 110&rdquo;) can
 produce endlessly complex, seemingly random behaviour from one tiny local law.</p>
-<p>The discovery here: <b>the Collatz game, written in base six, is exactly such a
-machine.</b> Two local rules, each cell looking one neighbour away. Nothing else.</p>
+<p>The key fact: <b>the Collatz game, written in base six, is exactly such a
+machine.</b> Two local rules, each cell looking one neighbour away. Nothing else.
+(This locality has been noticed by researchers before &mdash; a quasi-automaton by
+Cloney, Goles &amp; Vichniac in 1987, and the base-six version explicitly by Jarkko
+Kari in 2012 &mdash; but it remains far less famous than it deserves, and the story
+told below, of fuel, fair coins and gates, is what our research programme adds.)</p>
 
 <h2>4. The two rules</h2>
 <div class="rule"><b>The TRIPLE rule</b> (used when the number is odd).<br>

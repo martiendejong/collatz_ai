@@ -26,3 +26,10 @@ Shredder invariant: a proof must kill divergence AND all cycles for EVERY n — 
 - Hercher m<=91 supersedes our circuit exclusions (m<=7); our period-12 census is complementary (small-k exact, both signs)
 - Barina's ctz+3^k-table algorithm mirrors our Drop-Promote/ladder-burn mechanics (independent rediscovery in HPC form)
 - Tao's Syracuse random variables on Z/3^n = our roulette measure family (his uniform-stabilization = our homogenization; our tempering law refines: convergence is a POWER law roulette^alpha)
+
+## Collatz as cellular automaton (attribution for our Prop 92 arc)
+- Cloney, Goles & Vichniac 1987, Complex Systems 1: 3x+1 quasi-CA (base 2).
+- Bruschi 2005, arXiv:nlin/0502061: two CAs for the 3x+1 map.
+- Kari 2012, DLT/LNCS: base-6 local CA, Collatz & powers of 3/2, Mahler Z-numbers.
+- Sterin & Woods 2020, arXiv:2007.06979: Collatz embeds base conversion (twin of our
+  Conversion Thesis).

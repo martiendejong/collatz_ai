@@ -1699,3 +1699,20 @@ by exactly TWO radius-1 base-6 rules —
 cellular automaton / transducer; a standard extra signal track makes it
 a single homogeneous CA). The Collatz conjecture = "this two-rule
 automaton always reaches the cell configuration '1'".
+
+## Attribution correction to Prop 92/92b (honest labeling), R2351-2355
+The base-6 locality of the Collatz map is KNOWN mathematics:
+* Cloney, Goles & Vichniac 1987 (Complex Systems 1, 349-360): the 3x+1
+  quasi-cellular automaton (base 2, rule choice by LSB).
+* Bruschi 2005 (arXiv:nlin/0502061): two cellular automata for 3x+1.
+* Kari 2012 (DLT, Springer LNCS): "Cellular Automata, the Collatz
+  Conjecture and Powers of 3/2" - the base-6 local automaton explicitly,
+  connected to Mahler's Z-number problem.
+* Sterin & Woods 2020 (arXiv:2007.06979): the Collatz process embeds a
+  base conversion algorithm - the literature twin of our Conversion
+  Thesis arc.
+OURS in Prop 92/92b: the sharp elementary form (two mirror-transpose
+radius-1 rules; the +1-never-carries observation), NO-GO #10 (the
+systematic local-invariant search), and the integration with the
+fuel/oracle/one-way-seam theory. Labeled accordingly; Prop 92(1) is a
+REDISCOVERY.
