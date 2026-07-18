@@ -2165,3 +2165,29 @@ self-contained polynomial DP for ALL critical windows r = 3..20.
 Combined with the exhaustive census (0 hits through r = 24), the law
 stands unbroken at every window ever tested. Next sizes need ~13-29GB
 (r=22, r=21) - cloud-scale, queued with the k=21 K-L run.
+
+## Theorem 114 (THE BIT-MINING PROGRAM — M. de Jong's approach, executed
+## to completion). R2776-2800
+After the burn of (family m, sequence k), u = 3^k m - 1:
+BIT 0: u is always even (one division guaranteed). Trivial theorem.
+BIT 1 (Martien's target): a SECOND division occurs iff
+      (k even AND m = 1 mod 4)  or  (k odd AND m = 3 mod 4).
+BIT 2: a THIRD division iff the same condition with mod 8
+      (closed forms exist because ord(3 mod 8) = 2).
+BIT j (general): c >= j iff m = 3^(-k) mod 2^j - each further bit of
+      the division count is one more digit of agreement between the
+      head and the oracle 3^(-k) (Thm 87, digit by digit).
+OUTPUT BITS: the trailing bits of the next odd value y = u/2^c are
+      likewise exact functions of the next bits of m (verified).
+All verified 30000/30000 at every level. THREE FACES OF BIT 1: it is
+simultaneously (i) Martien's second-division bit, (ii) the convoy glue
+condition (Thm 111), (iii) oracle digit 1 (Thm 87). And the m=1 row of
+the mining table IS the sterility theorem (78).
+THE LEDGER LIMIT (where the program ends): mining t bits of any phase's
+data costs exactly t fresh bits of the seed (Thm 79/88). The program is
+COMPLETE per phase - every bit of every phase has a precise theorem -
+and terminates exactly when the seed's information is spent: you can
+mine precisely as many future bits as the seed possesses, and not one
+more. Beyond that the bits still exist and are determined, but their
+statement IS the orbit itself (no shorter theorem) - the decompression
+principle (Rem 104) in its final, bit-exact form.
