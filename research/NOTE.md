@@ -1739,3 +1739,30 @@ REDISCOVERY.
     provably finite and provably small; only the ETERNAL RECURRENCE of
     oversized triangles is unprovable today - that is wall 3 in its
     final costume.
+
+## Remark 95 (Turing completeness and wall 3 — the logical map).
+## R2376-2380, answering M. de Jong
+The inference "the CA is Turing complete, hence eternal fuel recurrence
+is possible" fails at two points, and its corrected form is telling:
+(1) WHAT IS PROVEN (Conway 1972): the FAMILY of generalized Collatz maps
+    is Turing complete - for every Turing machine SOME residue-affine
+    map simulates it. Nothing is proven about the specific 3n+1 map;
+    universality of a family never transfers to one member.
+(2) EVEN GIVEN universality, the conclusion would be UNDECIDABILITY of
+    the halting question over all configurations - and undecidable is
+    not "false": specific systems can halt on all inputs while the
+    general question stays undecidable.
+(3) THE VALID KERNEL: if the specific 3n+1 automaton were STRONGLY
+    universal (integer orbits simulating arbitrary machines, halting =
+    reaching 1), then divergent orbits would necessarily exist and the
+    conjecture would be FALSE. So Collatz-is-true is equivalent to:
+    this particular machine is NOT a computer in that sense.
+(4) OUR EVIDENCE bears exactly on that: the machine provably STORES
+    NOTHING - zero cross-base information (Thm 22, I = 0.000000 bits),
+    memoryless refueling (Obs 77), no local conserved quantities
+    (no-go #10), perfect-dice phase statistics (Obs 83). A computer
+    needs memory; the 3n+1 automaton is the FORGETFUL MACHINE - our
+    whole corpus is quantitative anti-universality evidence for the
+    specific map. (Conway 2013 speculated the conjecture might even be
+    "unsettleable" - true but unprovable; that too is compatible with
+    everything known.)
