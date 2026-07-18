@@ -1564,3 +1564,26 @@ iterated per phase. Consequences, all verified:
     refinements. The family framework and the 2-adic conjugacy are THE
     SAME OBJECT read in opposite directions: families = finite-depth
     truncations of Phi.
+
+## Theorem 89 (THE HEAD/TAIL FACTORIZATION of backward convergence —
+## M. de Jong's question). — verified exact, R2176-2195
+For a target n = HEAD|TAIL, the predecessors factorize EXACTLY:
+(1) REAR (2-adic substrate): the predecessor tail is an exact function
+    of the target tail alone (same j): tail_pre = (tail*2^j - 1)*3^-1
+    mod 2^b. Verified: 5000/5000. Because binary carries propagate
+    UPWARD ONLY, the tail is perfectly autonomous - it NEVER feels the
+    head (measured seam downward: 0 bits, always).
+(2) The rear does not pull back to the same pattern: it pulls back
+    through the ORACLE LADDER: depth-i predecessors carry the
+    3^-i-twisted tail. Live on 26623 = 110011111111111:
+    depth 1: 35497 = ...0101010101001 (alternator = 3^-1),
+    depth 2: 47329 = ...011100001    (111000-block = 3^-2),
+    exactly the family oracles of Thm 87 appearing in the flesh.
+(3) FRONT (archimedean substrate): pure value scaling, head_pre =
+    head * 2^j/3 to relative precision 3e-7; the head receives only a
+    <= 2-bit carry trickle from below per step.
+So Martien's factorization is correct with one refinement: the rear
+converges through the 3^-i twist ladder (not to the fixed pattern), the
+front converges as (2^j/3)-scaling, and the interface is ONE-WAY: tail
+drives head, never the reverse. The two-substrate picture is exact at
+string level: 2-adic rear, archimedean front, one-way carry seam.
