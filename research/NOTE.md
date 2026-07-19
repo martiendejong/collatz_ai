@@ -2669,3 +2669,35 @@ CONFIRMED, with precision:
     from window r's. No such induction is known; each window is today
     its own finite battle (hence the value of wholesale DP
     certificates). Finding the induction = proving the cycle half.
+
+## Remark 136 (MARTIEN'S PROGRAMME assembled: gates, handoffs, and the
+## quantification of the reducing quality). R3236-3280
+Four theses from Martien, mapped onto the corpus:
+(1) "Convergence happens at 2^a": exact - pure 2^a landings are the
+    gate passages (Prop 100): once per orbit, terminal, gates =
+    (2^a - 1)/3 = base-4 repunits, basins fully quantified by the
+    L mod 3 trichotomy (Prop 86: 93.9 / 3.8 / 2.3%).
+(2) "Longer conversions land on b*2^a - our families": exact - every
+    odd step lands on b*2^a and hands off to odd b: the transition
+    (m,k) -> (m',k') is the address map (Thm 88); the phase machine IS
+    the family-handoff automaton.
+(3) "The family/sequence combo is the reducing quality, not yet
+    quantifiable": SHARPENED - it IS quantified, in the three senses
+    that are possible, and the fourth is provably impossible:
+    (i) IN MEAN: E[log2 value] drops 0.415 per odd step (proven);
+    (ii) MONOTONE: consumed address depth D_t strictly increases -
+         the unique provably monotone coordinate; termination is
+         "consumption catches size" (D > log2 n0 + S log2 3);
+    (iii) COMPLETELY: the (m,k)-trajectory is a bijective coding of
+         everything (Thm 88); the reducing quality in Martien's full
+         sense is the DYNAMICAL-ORDER INDEX (Prop 93): it decreases by
+         exactly 1 per tick, by construction - perfectly quantified;
+    (iv) WHAT CANNOT EXIST: a local/shallow pointwise-monotone Q
+         computable without running the orbit (no-go ladder: 0.666
+         barrier, #10, decompression principle). Computing the index
+         = running the machine: the quantification barrier IS Thm 115.
+(4) THE PROOF PROGRAMME (free-spread domination) is running: odd
+    n_1 <= ... <= n_S with prod(3n_i+1) = 2^D prod(n_i) dominates all
+    cycles; trivial-only for small S would extend the proof skeleton:
+    gap-1 theorem (133a) + uniformization (134) + free-domination +
+    prime-poisoning. Search in progress.
