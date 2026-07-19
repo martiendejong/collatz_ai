@@ -2824,3 +2824,31 @@ D bits), and "k, l >= 1, both finite" per step is what makes each rung
 finite. Martien's programme statement is the field's actual battle
 plan, independently re-derived - with rung 1 already his own gap-1
 argument in disguise (k=l=1: 2^2 - 3 = 1).
+
+## Remark 144 (HOW FAR PURE CANCELLATION REACHES - the algebra
+## endpoint of the macro-formula). R3406-3415
+Question (Martien): the total macro-formula is pure arithmetic - can
+we finish it with arithmetic tools alone (cancelling in formulas)?
+DEMONSTRATION at p=1: full cancellation of m(2^(k+l) - 3^k) = 2^l - 1
+   positivity  =>  2^l > 3^k / 2^k
+   m >= 1      =>  2^l < 3^k / (2^k - 1)
+so a power of 2 must lie in an interval of RELATIVE width 1/(2^k - 1)
+around (3/2)^k. Scanned k <= 15: only k=1 hits (l=1, the trivial
+cycle). This is the maximal-cancellation form: algebra can push no
+further, because what remains is the statement
+   "the fractional part of k*log2(3) avoids a window of width ~2^-k"
+- one claim about INFINITELY many k at once. No finite sequence of
+cancellations produces it; it is a Diophantine-approximation fact.
+WHY ALGEBRA MUST STOP: the unknowns k, l sit in the EXPONENTS. For
+polynomial equations cancellation terminates (algebra decides). For
+exponential Diophantine equations the cancelled residue is always a
+comma statement about log2(3); settling it needs transcendence theory
+(Baker: |k log2(3) - j| > c/k^kappa, polynomial beats exponential for
+k >= K0) plus a finite head check. That two-part scheme IS Steiner's
+1977 proof of the p=1 rung.
+THE ONE ARITHMETIC DOOR STILL OPEN: our window certificates (bigint
+DP) are pure arithmetic and finish every FINITE window. A cancellation
+identity making window r+1 inherit from window r (the missing
+induction) would complete the whole cycle problem with arithmetic
+alone. Nobody has one; nothing forbids one. That is wall 2 stated as
+an algebra problem.
