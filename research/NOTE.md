@@ -2475,3 +2475,34 @@ Martien brought an independent (ChatGPT) analysis. Verdict per piece:
     the ladder. Only the conjecture itself may live upstairs; even
     Conway's "unsettleable" is a T-relative notion, and the honest
     position is: prove what is finite, map what is not.
+
+## Theorem 127 (THE an+b/c CLASSIFICATION + CERTIFICATE TRANSFER).
+## R3061-3080
+(1) CERTIFICATE TRANSFER (new, free, and strong): the word values W do
+    not depend on b, so the 3n+d cycle equation n*den = d*W with
+    gcd(d, den) = 1 reduces to W = 0 mod den - EXACTLY the reach
+    question our DP certified. Hence every r <= 20 certificate proves
+    "no cycle in that window" simultaneously for ALL d coprime to that
+    window's denominator: e.g. r=13 is cycle-free for d = 1, 5, 7, 11,
+    13, 17, 19, 23 at once; r=17 for all except d = 5 (5 | den - and
+    that is exactly where 3n+5's 44-cycles live); r=15 for all except
+    d = 13 (13 | den - exactly 3n+13's 39-cycle home). The census
+    confirms the transfer table perfectly: cycles occur ONLY in the
+    gcd-boosted windows. One DP, infinitely many maps certified.
+(2) PARITY LAW (one line): b even => an+b odd for odd n => dead
+    coupling => provable divergence. b must be odd for a live map.
+(3) a = 1: provably decidable - all orbits fall below b+1, finite set,
+    all eventually cyclic.
+(4) SECTOR REDUCTION: 3n+3b' on 3Z is conjugate to 3 x (3n+b'):
+    b's 3-part factors out.
+(5) THE /c DIAL: changing the divisor c moves through the (x,p) table:
+    E[v] = c/(c-1), conjecture zone a in (c, c^(c/(c-1))), jamming per
+    Thm 57, comma lattice c^D - a^S. The dial sets tax rate, zone
+    boundaries, jam risk and comma geometry simultaneously.
+(6) THE COIN IN OTHER BASES (question 1, closed by theorems): the
+    increment stream is provably base-invariant noise (Thm 22, Obs 83,
+    MI = 0.000065 for base-7 windows); the one frame where anything is
+    visible is the OSTROWSKI/rotation frame of log2(3), where not the
+    increments but the WALK shows structure (sieve dips at the 8/5
+    convergent, Prop 120). Increments: no base helps. Partial sums:
+    exactly one "base" - the continued fraction of log2(3).
