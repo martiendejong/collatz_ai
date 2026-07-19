@@ -2443,3 +2443,35 @@ cycles need a numerator boost (impossible at c=1), divergence needs
 dead coupling (impossible with live dice). Collatz sits at the unique
 point where both doors are locked - Thm 56's uniqueness, now with the
 lock mechanisms named.
+
+## Remark 126 (ABSORPTION OF THE EXTERNAL ANALYSIS: shift law, ternary
+## signatures, cycle finance, the provability ladder). R3046-3060
+Martien brought an independent (ChatGPT) analysis. Verdict per piece:
+(1) SHIFT LAW c = b/(a-2): verified for all an+b - and it IS our anchor
+    algebra (Thm 59, j=1 anchor y/(2-a); Thm 88's affine centers): an
+    independent reconstruction of the family framework's core. Evidence
+    the framework is canonical, not idiosyncratic.
+(2) TERNARY SIGNATURE of 3n+5 (new, verified): the burn output
+    3^r q - 5 always ends in ...2211 in ternary (5 = 12_3 subtracted
+    from 2^r-block); generalizes our dual-triangle law: each map an+b
+    writes the ternary digits of its own center -c as tail signature.
+    3n+1 writes pure 2s; 3n+5 writes 2...211.
+(3) 44-CYCLE FINANCE (verified exactly): 187*(2^27-3^17) = 5*W with
+    word j-pattern [1,1,1,1,1,2,1,1,2,1,2,3,2,1,1,1,5]; the 3.93%
+    comma is financed by the +5 terms - and Thm 125 supplies the
+    missing WHY: financing is only possible because 5 | 5,077,565.
+    ChatGPT saw the bookkeeping; the cancellation law is the mechanism.
+(4) 5n+1 CRITERION limsup K_m/m < log2(5) => divergence: correct, and
+    identical to our walk formulation (Obs 124 final form): 3n+1 and
+    5n+1 are the SAME dice walk (mean step 2) against finish lines
+    1.585 (below the mean: convergence expected) vs 2.322 (above:
+    divergence expected) - neither pointwise provable: wall 3 mirrored.
+(5) THE PROVABILITY LADDER (meta-level): hierarchies
+    U_{n+1} = not-Prov_T(U_n) exist at every finite depth (provability
+    logic), always RELATIVE to the theory T. For Collatz the meta-
+    status is unknown at every level. Our program is STATUS-AGNOSTIC:
+    every result in this corpus (identities, censuses, DP certificates,
+    finite verifications) is elementary and PA-provable - immune to
+    the ladder. Only the conjecture itself may live upstairs; even
+    Conway's "unsettleable" is a T-relative notion, and the honest
+    position is: prove what is finite, map what is not.
