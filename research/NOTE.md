@@ -3201,3 +3201,21 @@ THE COMPLETE CYCLE-EXCLUSION MAP (post-sweep):
 Milestone queue: (41,65) certificate = first strong convergent slot
 made verification-independent (34 GB / ~hours via partitioned join
 or C port); S = 36..40 reachable in pure Python (0.5-4 h each).
+
+## Result 161 (RECORD r <= 34; ZONE 1 SELF-CONTAINED; the gap-closing
+## programme). R3641-3660
+* Background sweep: S=33 (367s) and S=34 (502s) certified, 0
+  cycle-words, moduli to 3.45e15. RECORD NOW r <= 34; S=35 running.
+* Zone 1 made self-contained: every n < 2^21 directly verified to
+  reach 1 (longest excursion 223 steps, seconds of compute). Combined
+  with Lemma 160 (non-critical n_max < 2^21 for S <= 35) and the MITM
+  certificates, zone 1 no longer relies on ANY external verification.
+* Gap-closing queue launched (79_mitm_sweep2.py, per-shape enumeration
+  bounds memory to one binomial bucket): S = 36..41 sequential,
+  estimated 0.5h/0.7h/1.4h/3h/6h/9h, positive controls passed
+  ((10,20): 2 hits; (21,34): 0). Endpoint: (41,65), the first strong
+  continued-fraction convergent window, made verification-independent.
+* What remains beyond S=41: S=42..120 critical windows need 2^(D/2) >
+  2^33 - C port / numpy mulmod / Schroeppel-Shamir 4-way split
+  (memory 2^(D/4)) are the known routes; beyond that zone 2 is
+  conditional-only and zone 3 is wall 2 (mathematics, not compute).
