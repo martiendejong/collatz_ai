@@ -2723,3 +2723,27 @@ multiples of 6), plus the ladder 6/36/216 at proper scale (2^120 - 1):
     the RG level, that the coin is exactly fair. The visible physics
     of the machine (triangle, wedge, gates) is base-6-ladder-invariant;
     everything else averages away.
+
+## Observation 138 (THE FRACTIONAL-BASE CATALOGUE: one pair of glasses
+## per word). R3323-3340
+Rational-base numeration (d = n mod p, n <- q(n-d)/p) rendered for the
+tank 2^20-1 and for 27 in bases 3/2, 4/3, 9/8, 9/4 (viz/frac_*.png).
+THE CATALOGUE PRINCIPLE: every word ratio 3^r/2^h defines a fractional
+base in which THAT word acts as a pure digit shift - the anchor lattice
+doubles as a catalogue of reading glasses. Confirmed visually:
+* base 3/2 (climb glasses): the burn becomes clean diagonal DRIFT -
+  large solid parallelograms of unchanging digits sliding sideways;
+  climbing costs no computation in this frame.
+* base 4/3 (drift glasses, the typical word): DESCENT stretches become
+  diagonal drift bands - the co-moving frame of the mean; deviations
+  from typical drift are the only texture.
+* base 9/8 (the musical whole tone, 3^2/2^3): near-BALANCED episodes
+  become horizontal, quasi-stationary bands and pale plateaus - the
+  frame in which almost-cycles stand still. The musical interval
+  ladder (9/8 tone, 256/243 limma, 3^12/2^19 comma) is literally a
+  ladder of glasses, each tuned to slower near-cycle motion.
+Each frame renders one episode-type as order and the rest as noise;
+no frame renders everything (the toll conservation, Rem 119/Thm 123).
+The dynamics decomposes SPECTRALLY by glasses: climbs (3/2), typical
+descent (4/3), near-balance (9/8, and deeper commas for deeper
+near-cycles). The fractional bases are the machine's eigenframes.
