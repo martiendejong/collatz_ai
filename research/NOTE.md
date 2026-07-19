@@ -2558,3 +2558,27 @@ seeds' affordable financing S/(3n): almost-cycles select comma ~ budget
 almost-cycles sharing one highway. The trivial cycle (86% budget), the
 near-returns (comma ~ budget), and the frontier (budget < comma
 forever, per Baker) are one single law read at three scales.
+
+## Observation 132 (THE QUASI-ATTRACTOR MECHANISM: almost-cycles are
+## anchor attraction, and Collatz is an IFS). R3151-3200
+(1) SHARP FRONTIER (upgrade of Prop 130): scanning ALL intermediate
+fractions, the minimal non-excluded slot is S = 72,057,431,991: any
+nontrivial 3n+1 cycle has >= 7.2e10 odd steps, >= 1.86e11 total steps -
+REPRODUCING THE LITERATURE BOUND exactly, from the calendar in a page.
+(2) THE CONVOY EXPLAINED: every 46-phase word w acts on its domain as
+the LINEAR map T_w(n) = rate*(n - x*) + x* with rate = 3^46/2^73 =
+0.9384 and anchor x* = W/(2^73 - 3^46). Verified: seed 3075 sits 32.47
+below its word's anchor (3107.468); one revolution moves it by
+(1-rate)*32.47 = 2.00 - exactly the observed +2 return. Seeds 2049,
+2431 likewise (anchors 2081.468, 2398.532 - all sharing fractional
+distance 0.468 to the integers). Almost-cycles ARE single-revolution
+anchor attraction; convoys are neighborhoods whose shared word-prefixes
+give near-equal anchors.
+(3) THE IFS VIEW: the dynamics is an iterated function system with one
+affine contraction/expansion per word, each pulling toward (rate < 1)
+or pushing from (rate > 1) its rational anchor W/(2^D - 3^S). The
+cycle question = "does any IFS map have an integer fixed point"; the
+clearance measurements say every tested map misses by >= ~1/2 in this
+window (fractional distance 0.468 here, +-1 in W-units at critical
+windows). The machine's geometry: a countable field of rational
+attractors, none of them ever exactly on the lattice.
