@@ -2781,3 +2781,24 @@ the value truly returns); in base 2/3/6 it is a repeating block motif.
 The boosted map's cycle makes the geometric contrast visible: closure
 is a property of the VALUE returning, and only the numerator-boosted
 maps (Thm 125) can pay for it.
+
+## Observation 142 (PROVABLE vs PRESUMED DIVERGENCE: order diverges
+## provably, noise diverges unprovably). R3378-3390
+Side-by-side (viz/divergence_pair.png): the jam orbit n -> 2n+1 from 2
+(provably divergent, dead coupling) in bases 2, 3, 6, 3/2, vs the 5n+1
+orbit of 7 (presumed divergent, live coin) in bases 2, 5, 10, 5/2.
+THE PATTERN BETWEEN THEM:
+* PROVABLE divergence is ZERO-ENTROPY GEOMETRY in every base: base 2
+  shows a perfect solid ramp (the eternally growing repunit tank);
+  bases 3, 6, 3/2 show nested SELF-SIMILAR fractal motifs (the digits
+  of 3*2^k - 1 form an automatic sequence - deterministic, compressible,
+  patterned at every scale).
+* PRESUMED divergence is DRIFTING NOISE in every base - including its
+  own marriage base 10 = 2*5 (the decimal system is 5n+1's base-6!):
+  no order appears anywhere, only a widening noise wedge.
+THE LAW THIS EXHIBITS: a divergence proof is a finite description of an
+infinite trajectory. Dead coupling produces an automatic (compressible)
+trajectory - the pattern IS the certificate. A live coin produces an
+incompressible trajectory - there is nothing finite to write down.
+PROVABILITY = COMPRESSIBILITY OF THE ORBIT, rendered as two pictures:
+the one that can be proven is the one you can draw with a ruler.
