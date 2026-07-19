@@ -3141,3 +3141,36 @@ and 5n+1 (unprovably divergent) in proof difficulty?
    from trivial to unreachable. Between the dead map and the wall
    there is no slope - only a cliff, and its location is computable:
    k* = floor(log2 a).
+
+## Result 158 (CERTIFICATE RECORD EXTENDED: r <= 32 and climbing, via
+## mediant-MITM - the cloud budget collapsed to seconds). R3591-3620
+The mediant law (Thm 149) reorganizes the window certificate as
+meet-in-the-middle: one pass over all 2^(D/2) half-words per side,
+join by shape. Cost 2^(D/2) instead of C(D,S) words or M residue-DP
+states. Results (D = ceil(S log2 3), all CYCLE-WORDS = 0):
+  S=21 (0.2s), 22 (0.3s), 23 (0.7s), 24 (1.4s), 25 (1.8s),
+  26 (3.7s), 27 (6.0s), 28 (12.6s), 29 (13.5s), 30 (28.7s),
+  31 (61.3s), 32 (106.1s); moduli up to M = 5.08e14.
+Positive control: (10,20) finds the doubled trivial cycle (2 hits).
+The r=21/22 certificates previously budgeted at 13-29 GB residue-DP
+(cloud scale) completed in 0.2-0.3 s. Previous record r <= 20; now
+r <= 32, S = 33..35 running. Literature intake found no prior MITM
+formulation for window certificates (parity-vector theory is
+standard; the split-by-shape join through the exact mediant identity
+appears to be ours). Novelty candidate - vetting pending.
+
+## Remark 159 (THE CAPPING ASYMMETRY: the cliff has no convergent
+## mirror). R3576-3590 addendum
+The capped family T_k = (5n+1)/2^min(v,k) builds a provable-divergence
+rung because capping REMOVES deep halvings - the only luck that could
+push DOWN. The convergence side has no mirror trick: for 3n+1 the
+dangerous luck is SHALLOW halving (v=1, drift +0.585), and one cannot
+cap a halving from below - v=1 steps exist in every congruence class
+(address theorem) and cannot be legislated away without changing the
+map's support. Hence: divergence-provability can be interpolated
+(cliff with a buildable rung); convergence-provability cannot - there
+is no map "slightly easier than 3n+1" in the capped sense. The two
+walls are NOT symmetric: the divergence wall has a constructible
+staircase outside the family, the convergence wall has none. (The
+only convergent analogue is forcing EXTRA halvings, which changes
+the map into a different, trivially-convergent one - the dead side.)
