@@ -2615,3 +2615,29 @@ gap-1 uniqueness (proved above, elementary), mean-growth (proved, tax),
 never-bridged-at-any-slot (open, = Baker + verification frontier).
 Martien has independently reconstructed the correct architecture of
 the cycle problem; part (a) is now a theorem in this NOTE.
+
+## Proposition 134 (THE UNIFORMIZATION LEMMA — Martien's reduction made
+## rigorous). R3216-3230
+Martien: "a complex loop simplifies to a trivial loop, and trivial
+loops are proven to exist only at n = 1." Formalized:
+(a) LEMMA (Jensen): every cycle of (an+c)/2 satisfies
+    prod(3 + c/n_i) = 2^D, hence its harmonic mean obeys
+    H <= n_eff := c/(2^(D/S) - 3): every complex cycle is MAJORIZED by
+    its uniform model - a trivial-shaped loop at effective size n_eff.
+    Equality iff uniform; the unique INTEGER uniform model is n_eff = 1
+    at D/S = 2 (the gap-1 theorem, Prop 133a) = the trivial cycle.
+(b) VERIFIED SPECTACULARLY: the 3n+5 44-cycle has H = 733.1 vs
+    n_eff = 733.9 - it is 99.9% uniform: a real complex loop IS a
+    near-trivial loop at effective size 734. And n_eff = the calendar
+    budget to 4 decimals (ratios 0.9999-1.0000 at S = 41, 306, 15601):
+    Martien's "simplified trivial loop" and the budget are ONE OBJECT.
+(c) WHERE THE REDUCTION IS LOSSY (the wall, precisely): majorization
+    cannot see the non-uniform escape - a cycle may realize n_eff
+    non-integer through member variance. Ruling that out at every slot
+    = comma lower bounds = Baker.
+(d) OTHER an+b/c (Martien's addendum, confirmed): the SAME reduction
+    applies verbatim; only two constants change the rules: the
+    financing c (n_eff scales by c: richer maps afford integer uniform
+    models at more slots) and the cancellation gcd(c, gap) (Thm 125).
+    One uniformization theory, different budgets - and 3n+1 is the map
+    with the poorest budget in the entire table.
