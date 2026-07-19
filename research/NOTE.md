@@ -2917,3 +2917,53 @@ in the literature consulted. Consistent with our structural findings:
 doors 1-3 are provably/measurably shut; the field's per-window
 practice is not a habit but a necessity. Wall 2 sharpened to: "lift
 Thm 145 from moduli to reach-sets, exactly or not at all."
+
+## Theorem 149 (THE EXACT MEDIANT LAW - door 4 lifted from congruence
+## to identity). R3476-3490
+For ANY window addition (D3,S3) = (D1+D2, S1+S2):
+   M3 = 3^(S2) M1 + 2^(D1) M2          (exact - proof: expand)
+and for ANY word concatenation (word 1 executed first):
+   W3 = 3^(S2) W1 + 2^(D1) W2          (exact - same coefficients)
+Hence anchors n = W/M combine as weighted mediants:
+   n3 = (u M1 n1 + v M2 n2)/(u M1 + v M2),  u = 3^(S2), v = 2^(D1),
+so for M1, M2 > 0 the composite anchor lies STRICTLY BETWEEN its
+parts' anchors (verified 2000/2000 random samples). Thm 145's
+congruence is an immediate corollary. Crucially: EVERY word splits at
+EVERY cut position (no balance requirement) - the door-2 objection
+(vanishing factorable fraction) does not apply to this calculus.
+Verified numerically including (12,20)+(41,65) -> (53,85).
+
+## Theorem 150 (THE CUT LAW) + honest deflation. R3491-3515
+Let (m, word) be a cycle of shape (S,D), primitive (no early return).
+At every cut 0 < c < D with prefix shape (s,c): writing d1 = W_pre -
+m*M_pre, the cycle equation forces 3^(S-s) d1 + 2^c d2 = 0, and
+coprimality gives 2^c | d1, 3^(S-s) | d2; d1 = 0 iff the orbit
+returns to m at step c (excluded by primitivity). Hence
+   |m - n_pre(c)| >= 2^c / M_pre(c)     whenever M_pre(c) > 0
+- at near-balanced cuts the anchor must sit ~1/comma away from m.
+VERIFIED: the 3n+5 long cycle (m=187, shape (17,27)) satisfies the
+law at every applicable cut (0 violations); the 3n+1 margin-1 word at
+(14,23) (n=11, W-nM=1) shows the unit defect propagating through all
+cuts exactly as 3^-(S-s) mod 2^c (5/5 cuts matched).
+HONEST DEFLATION (verified 300/300 exact): |x_c - m| =
+(M_pre/2^c)*|m - n_pre| identically, so the cut law per cut is
+EQUIVALENT to |x_c - m| >= 1, i.e. mere primitivity. It is an exact
+magnifying glass between orbit space and anchor space (magnification
+2^c/M_pre = 1/(1-rate)), not new per-cut information. No overclaim.
+
+## Observation 151 (DOOR 4 AFTER THE ATTACK: what survives). R3476-3515
+The moduli chain lifts ALL THE WAY to an exact calculus (Thm 149/150),
+but logical window induction remains open. What genuinely survives:
+1. JOINT CUT-CONSISTENCY: primitivity costs one unit per cut in orbit
+   space, but in anchor space the D-1 requirements are coupled: the
+   prefix anchors n_pre(c) must simultaneously satisfy huge (~1/comma)
+   avoidance at every near-balanced cut, while W_pre mod M_pre is
+   confined to the CERTIFIED reach-sets of the prefix shapes. Whether
+   the anchor lattice (Thm 88) can meet all requirements at once is
+   the sharpest surviving form of the window-induction question -
+   now a concrete, finite, checkable system per window.
+2. COMPUTATIONAL INHERITANCE (engineering induction): via W3 =
+   3^(S2) W1 + 2^(D1) W2, reach tables computed for window r shapes
+   are directly reusable as prefix tables in the window r+1 DP. The
+   certificates compose computationally even though they do not (yet)
+   compose logically - a real cost reduction for the r=21/22 runs.
