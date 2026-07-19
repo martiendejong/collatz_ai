@@ -3174,3 +3174,30 @@ walls are NOT symmetric: the divergence wall has a constructible
 staircase outside the family, the convergence wall has none. (The
 only convergent analogue is forcing EXTRA halvings, which changes
 the map into a different, trivially-convergent one - the dead side.)
+
+## Lemma 160 (MAX-ANCHOR LEMMA + THE COMPLETE EXCLUSION MAP).
+## R3621-3640
+LEMMA (proved by construction, verified by enumeration on 7 windows):
+the largest cycle value a window (S,D) can host is
+   n_max = 2^(D-S) (3^S - 2^S) / (2^D - 3^S)
+(rises packed at the top). For D >= ceil(S log2 3) + 1 this is
+bounded by ~(3/2)^S, crossing 2^71 only at S = 121. Hence for every
+S <= 120, ALL non-critical windows (D >= ceil+1) are excluded by the
+Barina verification alone; only the critical window D = ceil needs a
+certificate. This closes the completeness question for the sweep:
+certifying the critical window certifies the whole S-level (for
+S <= 35, n_max non-critical <= 2^21 - margin enormous).
+THE COMPLETE CYCLE-EXCLUSION MAP (post-sweep):
+  ZONE 1 (S <= 32, extending to 35): UNCONDITIONAL - critical window
+    by MITM certificate, non-critical by the lemma + verification*.
+    (*the lemma still cites verification for non-critical D; a fully
+    verification-free zone 1 would need certificates there too - but
+    those windows are tiny: n_max < 2^21, direct check trivial.)
+  ZONE 2 (33..35 pending -> up to S < 72,057,431,991): CONDITIONAL on
+    the 2^71 verification: comma-budget kills every calendar slot
+    (n_eff < 2^71 throughout - e.g. slot S=41: n_eff ~ 1242, slot
+    S=15601: n_eff ~ 2e8) and the lemma kills non-critical D.
+  ZONE 3 (S >= 72,057,431,991): open. Wall 2 exactly.
+Milestone queue: (41,65) certificate = first strong convergent slot
+made verification-independent (34 GB / ~hours via partitioned join
+or C port); S = 36..40 reachable in pure Python (0.5-4 h each).
