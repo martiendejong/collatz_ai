@@ -2641,3 +2641,31 @@ loops are proven to exist only at n = 1." Formalized:
     models at more slots) and the cancellation gcd(c, gap) (Thm 125).
     One uniformization theory, different budgets - and 3n+1 is the map
     with the poorest budget in the entire table.
+
+## Remark 135 (THE SAME PROBLEM AT EVERY WINDOW — Martien's
+## identification, with one mechanical correction). R3231-3235
+Martien: every complex loop faces the same problem as the trivial one -
+resolving powers of 3 against powers of 2 over a gap bigger than +1.
+CONFIRMED, with precision:
+(a) Every window (S, D) poses the same Diophantine TYPE of question:
+    does gap = 2^D - 3^S divide some word value W? The trivial loop
+    solves it because gap = 1 divides everything (and (2,1) is the
+    only gap-1 window, Prop 133a). Every other window has gap >= 5
+    (proven spectrum) and the reach law says W = 0 mod gap never
+    happens - PROVEN for r <= 20 (DP), censused to 24, open beyond.
+    The transfer theorem (127) even shows the same reach sets serve
+    all maps: the problem is literally identical across windows and
+    numerators - only the answer must be computed per window.
+(b) THE MECHANICAL CORRECTION: the +1's are NOT worth 1 each - each
+    correction is amplified by all later 3s and earlier 2s: in the
+    3n+5 44-cycle, seventeen raw +5s (sum 85) amplify to
+    W = 189,900,931 - a factor 2.2 million. Corrections CAN bridge
+    astronomically large absolute gaps; what they provably cannot
+    beat (so far, everywhere tested) is DIVISIBILITY: the bridge must
+    land exactly on a lattice point, and the reach law says the
+    lattice point is always missed (clearance >= 1).
+(c) WHAT WOULD CLOSE IT: Martien's "same problem" intuition points at
+    the missing induction - a derivation of window r+1's avoidance
+    from window r's. No such induction is known; each window is today
+    its own finite battle (hence the value of wholesale DP
+    certificates). Finding the induction = proving the cycle half.
