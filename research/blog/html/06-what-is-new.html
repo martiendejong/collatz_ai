@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Collatz Sessions, part 6 — What we may actually have found (and everything we merely rediscovered)</title><style>
+body{font-family:Georgia,serif;max-width:760px;margin:2em auto;padding:0 1em;line-height:1.65;color:#222}
+h1{font-size:1.55em;line-height:1.3} h2{margin-top:1.6em;border-bottom:2px solid #f4632e;padding-bottom:.2em}
+a{color:#b33d10} img{max-width:100%;border:1px solid #eee;display:block;margin:1em auto}
+.cap{font-size:.85em;color:#666;text-align:center;margin-top:-0.6em;margin-bottom:1.4em}
+blockquote{background:#faf6ef;border-left:4px solid #f4632e;padding:.6em 1em;margin:1em 0;font-style:italic}
+.nav{display:flex;justify-content:space-between;margin:2.5em 0 1em;font-size:.95em;border-top:1px solid #ddd;padding-top:1em}
+.series{font-size:.85em;color:#888;margin-bottom:1.5em}
+code{background:#f4f4f4;padding:1px 5px}
+</style></head><body>
+<div class="series">The Collatz Sessions &mdash; part 6 of 6 &middot; <a href="index.html">series index</a></div>
+<h1>The Collatz Sessions, part 6 — What we may actually have found (and everything we merely rediscovered)</h1>
+<p><i>Final part. Series index in <a href="01-the-experiment.html">part 1</a>. Repository: <a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a>.</i></p>
+<h2>The honesty ledger first</h2>
+<p>Most of what an enthusiastic newcomer discovers about Collatz — even working hard, even being right — turns out to exist already. We kept a strict ledger. Our binary↔ternary conversion insight, verified 20,000/20,000 before we knew: <b>Stérin & Woods, 2020</b>. The base-6 cellular automaton: <b>Cloney–Goles–Vichniac 1987, Kari 2012</b>. The fair-coin density theory: <b>Terras 1976, Everett 1977</b>. Our little digit-sum law: <b>Midy, 1836</b>. The 186-billion-step cycle bound: the <b>Eliahou</b> line. The verification architecture we re-derived from first principles: <b>Barina's</b> record software, whose sieves and jump tables our theory explains but did not beat. Every such case is attributed in the repo, usually within a day of our finding the prior art — often <i>after</i> we had found the result ourselves, which was chastening and educational in equal measure.</p>
+<p>A personal note: my own instincts kept landing on things that professionals had judged publication-worthy — just years earlier. I choose to read that as calibration.</p>
+<h2>The three candidates that survived the literature check</h2>
+<img src="img/bases_837799.png" alt="The champion orbit in six bases — the kind of picture this project leaves behind."><div class="cap">The champion orbit in six bases — the kind of picture this project leaves behind.</div>
+
+<p>After targeted searching (July 2026), three items appear to be new. Stated with all due caution — none is peer-reviewed:</p>
+<p><b>1. A computational record on the best known density method.</b> The published record for the "how many numbers provably reach 1" exponent is <b>x^0.84</b> (Krasikov–Lagarias 2003, computed at truncation depth k=11; no improvement found since). Running their own inequality system to depth k=20 — a nine-orders-larger computation with exact integer certification over 1.16 billion constraints — we obtain <b>x^0.9146</b>, with intermediate certified values 0.8624 / 0.8805 / 0.8953 / 0.9069 at k = 13/15/17/19. If this holds up to independent scrutiny it is, to our knowledge, the best density exponent ever computed for the 3x+1 problem.</p>
+<p><b>2. A new analytical lens on that method.</b> The Krasikov–Lagarias system turns out to be a <i>topical map</i> (monotone + homogeneous), which makes Hilbert-metric and tropical (max-plus) machinery available. That lens produced, among other things: a proof that the system's large-amplitude dynamics contracts at exactly ln 4 per sweep (a two-line "top-band dichotomy"), a combinatorial "peeling lemma" with exact 2/3-per-round structure, and a transport lemma identifying <i>switching</i> as the precise separation between the system's upper and lower dynamics. We found no prior work analyzing the Krasikov inequalities this way.</p>
+<p><b>3. A new open question with a decision experiment.</b> Krasikov and Lagarias explicitly hoped their exponents tend to 1. Our entropy accounting suggests an alternative: the method might saturate at the drift-balanced word entropy <b>H(1/log₂3) = 0.94996...</b> — the same "5% tax" constant that governs cycle-window counting and the dimension of potential divergence. Current data (through k=20) cannot distinguish the two; certifications around k = 25–30, a cloud-scale computation, would. Either answer would be interesting: saturation would locate a fundamental ceiling; passage would be strong evidence for the original hope.</p>
+<h2>What we did not do</h2>
+<p>We did not solve the Collatz conjecture, and nothing in this series claims otherwise. The three walls — divergence (can a fair walk beat its average forever?), cycles (the missing window induction), and the density ceiling — stand exactly where the field left them. What we believe we added, beyond the three candidates above, is a completely verified, completely public, unusually <i>unified</i> account of why they stand: one framework (families, anchors, the ledger, the calendar) in which every known phenomenon has its place and every failed shortcut has a theorem explaining its failure.</p>
+<h2>What happens next</h2>
+<p>The k=21 run and an independent check of the 0.9146 certificate; a manuscript on the tropical analysis; and the γ-question posed to people who can weigh it. The repository is open — NOTE.md contains 136 numbered results with proofs and code, REPORT.html tells the long version, and the spacetime galleries are, if nothing else, genuinely beautiful.</p>
+<p>If ninety years of this problem have taught anything, it is modesty. But the machine is smaller, brighter and better-lit than when we started — and somewhere in the noise, on a schedule everyone can read, a fair coin is still being flipped.</p>
+<p><i>— Martien de Jong (with an AI research agent), 2026. Repository: <a href="https://github.com/martiendejong/collatz_ai">github.com/martiendejong/collatz_ai</a>.</i></p>
+<div class="nav"><a href="05-the-comma-calendar.html">&larr; previous</a><a href="index.html">series index &rarr;</a></div>
+</body></html>

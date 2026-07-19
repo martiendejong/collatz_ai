@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Collatz Sessions, part 4 — The fair coin: the strongest impossibility we could prove</title><style>
+body{font-family:Georgia,serif;max-width:760px;margin:2em auto;padding:0 1em;line-height:1.65;color:#222}
+h1{font-size:1.55em;line-height:1.3} h2{margin-top:1.6em;border-bottom:2px solid #f4632e;padding-bottom:.2em}
+a{color:#b33d10} img{max-width:100%;border:1px solid #eee;display:block;margin:1em auto}
+.cap{font-size:.85em;color:#666;text-align:center;margin-top:-0.6em;margin-bottom:1.4em}
+blockquote{background:#faf6ef;border-left:4px solid #f4632e;padding:.6em 1em;margin:1em 0;font-style:italic}
+.nav{display:flex;justify-content:space-between;margin:2.5em 0 1em;font-size:.95em;border-top:1px solid #ddd;padding-top:1em}
+.series{font-size:.85em;color:#888;margin-bottom:1.5em}
+code{background:#f4f4f4;padding:1px 5px}
+</style></head><body>
+<div class="series">The Collatz Sessions &mdash; part 4 of 6 &middot; <a href="index.html">series index</a></div>
+<h1>The Collatz Sessions, part 4 — The fair coin: the strongest impossibility we could prove</h1>
+<p><i>Part 4 of 6. Series index in <a href="01-the-experiment.html">part 1</a>. Repository: <a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a>.</i></p>
+<h2>The decisions</h2>
+<p>Strip away everything deterministic from a Collatz orbit and what remains is a sequence of <i>decisions</i>: after each climb, how many times does the number halve? These decisions look random. The heuristic literature has treated them as coin flips since the 1970s (Terras, Everett — whose classical density theory we happily rediscovered before reading them). What we tried to do is make the coin statement as strong as possible, and then find its limits.</p>
+<p><b>The coin is exactly fair (Thm 115/128).</b> Over uniformly random seeds, the decision stream is <i>exactly</i> an i.i.d. fair process: the probability of any decision prefix consuming D bits is exactly 2^−(D+1), because seeds sharing that prefix form exactly one residue class. Consequently, conditioning on the <i>entire past decision history</i> leaves the next decision at exactly 50/50. There is no pattern in the coin — not approximately, not asymptotically: exactly.</p>
+<p><b>No base helps.</b> We rendered orbits in bases 2, 3, 4, 6, 7, 12 (the gallery is worth your time — order in one base is provable noise in another: 3^1000 − 1 is a thousand 2's in ternary and coin-flips in binary). A local window of base-7 digits carries 0.000065 bits of information about the next decision; three binary digits carry 1.499. Blindness and sight are exactly determined by whether the viewing base shares factors with 2 and 3.</p>
+<p><b>No local quantity helps.</b> We ran systematic searches for local conserved quantities and monotone qualities of the digit strings (the kind of "energy function" that would settle everything): none exists — not for any window size we could test, and provably not for whole shortcut classes (a catalogue of ten no-go theorems in the repo).</p>
+<p><b>And yet the machine is not random at all.</b> Here is the counterweight, and it may be the prettiest thing we found. Two exact structures live <i>alongside</i> the coin without ever touching it:</p>
+<ol>
+<li><b>The state factorizes (Obs 124).</b> The <i>top</i> bits of the current number are a deterministic function of just two integers — how many climbs and how many halvings have happened. We predicted the top 10 bits of numbers after 40 steps with 100.0% accuracy from those two counts alone. The value's head is a thermometer of the walk; all information lives in the walk itself.</li>
+<li><b>The calendar is deterministic (Prop 129).</b> The walk's position on the "circle" that governs near-returns is an exact rotation driven by the climb-count only. The moments when an orbit <i>could</i> nearly close into a cycle are pre-scheduled at the continued-fraction convergents of log₂3 — independent of the orbit. The coin only decides whether you're at the right height when the calendar strikes. Real orbits confirm this in the wild: we found seeds whose orbits return to within 0.0009 bits of their start, exactly at the calendar's slots, exactly as budgeted.</li>
+</ol>
+<h2>The machine, final form</h2>
+<p><b>A fair coin plus a deterministic calendar, and the two never mix.</b> Everything cycle-like lives in the calendar (part 5). Everything unpredictable lives in the coin. The three famous walls of the Collatz problem are, in this language, three one-sentence questions:</p>
+<ul>
+<li>Can the coin's walk stay above its own average forever? (divergence)</li>
+<li>Can the calendar and a lucky streak ever agree exactly? (cycles)</li>
+<li>Does the density machinery reach 100%? (the γ question of part 6)</li>
+</ul>
+<p>We also proved where this framing itself must stop: the coin-fairness is an <i>ensemble</i> statement. For an individual number the "coin" is deterministic, and predicting it without simulation is a computational-lower-bound question (cousin of P vs PSPACE) that current mathematics cannot decide — with the honest note that fair-looking streams <i>can</i> have fast individual formulas (the digits of π do), so the door is not provably closed either. That open door, we think, is the most precise available formulation of why Collatz is hard.</p>
+<p><i>Next: <a href="05-the-comma-calendar.html">Part 5 — The comma calendar: why every cycle keeps missing by one</a>.</i></p>
+<img src="img/bases_repunit20.png" alt="The same orbit in six bases. Structure is visible exactly in the 2-3-smooth bases; base 7 is provably blind."><div class="cap">The same orbit in six bases. Structure is visible exactly in the 2-3-smooth bases; base 7 is provably blind.</div>
+
+<div class="nav"><a href="03-the-fuel-economy.html">&larr; previous</a><a href="05-the-comma-calendar.html">next &rarr;</a></div>
+</body></html>

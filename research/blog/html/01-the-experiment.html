@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Collatz Sessions, part 1 — The experiment: a human, an AI, and the most dangerous problem in mathematics</title><style>
+body{font-family:Georgia,serif;max-width:760px;margin:2em auto;padding:0 1em;line-height:1.65;color:#222}
+h1{font-size:1.55em;line-height:1.3} h2{margin-top:1.6em;border-bottom:2px solid #f4632e;padding-bottom:.2em}
+a{color:#b33d10} img{max-width:100%;border:1px solid #eee;display:block;margin:1em auto}
+.cap{font-size:.85em;color:#666;text-align:center;margin-top:-0.6em;margin-bottom:1.4em}
+blockquote{background:#faf6ef;border-left:4px solid #f4632e;padding:.6em 1em;margin:1em 0;font-style:italic}
+.nav{display:flex;justify-content:space-between;margin:2.5em 0 1em;font-size:.95em;border-top:1px solid #ddd;padding-top:1em}
+.series{font-size:.85em;color:#888;margin-bottom:1.5em}
+code{background:#f4f4f4;padding:1px 5px}
+</style></head><body>
+<div class="series">The Collatz Sessions &mdash; part 1 of 6 &middot; <a href="index.html">series index</a></div>
+<h1>The Collatz Sessions, part 1 — The experiment: a human, an AI, and the most dangerous problem in mathematics</h1>
+<p><i>This is the first post in a six-part series about a months-long research collaboration between me (Martien de Jong) and an AI research agent, attacking the Collatz conjecture. Everything described here is documented, with code, proofs and data, in the public repository <a href="https://github.com/martiendejong/collatz_ai">github.com/martiendejong/collatz_ai</a>.</i></p>
+<h2>The problem</h2>
+<p>Take any whole number. If it is even, halve it. If it is odd, triple it and add one. Repeat.</p>
+<p>7 → 22 → 11 → 34 → 17 → 52 → 26 → 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1.</p>
+<p>Every number ever tried — and computers have tried every number up to 295 quintillion — ends at 1. The <b>Collatz conjecture</b> says every number does. It has been open for ninety years. Paul Erdős said mathematics is not ready for such problems, and famously offered $500 for a solution — a suspiciously low bounty for a problem this famous, which tells you what he thought the hourly rate would work out to.</p>
+<h2>The experiment</h2>
+<p>I wanted to know what happens when you point a modern AI research agent at this problem, full time, with three rules:</p>
+<ol>
+<li><b>Everything gets verified.</b> Every claim is tested numerically before it is believed, ideally against tens of thousands of cases.</li>
+<li><b>Everything gets labeled honestly.</b> Proved, verified, measured, conjectured, or open — and when something we found turns out to already exist in the literature, we say so, by name.</li>
+<li><b>Everything gets published.</b> Every session, every dead end, every same-day correction of our own mistakes is in the repo. About 3,300 numbered research rounds so far.</li>
+</ol>
+<p>I supplied direction and intuition — I have no formal mathematical training beyond an engineering background, but I had a framework of ideas about how the problem is organized (what I called <i>families</i> and <i>sequences</i> of numbers, and a suspicion that the whole problem is really about the conversion between binary and ternary notation). The AI supplied formalization, computation, proof-writing, and — importantly — pushback when my intuitions were wrong, which happened regularly and is documented just as carefully as when they were right.</p>
+<h2>What came out</h2>
+<img src="img/ca_26623.png" alt="A Collatz orbit as a base-6 cellular automaton: the record-holder 26623. Black triangles are fuel burning; the noise is a provably fair coin."><div class="cap">A Collatz orbit as a base-6 cellular automaton: the record-holder 26623. Black triangles are fuel burning; the noise is a provably fair coin.</div>
+
+<p>Over the series you will see the whole arc, but here is the honest headline version:</p>
+<ul>
+<li><b>We independently rebuilt most of ninety years of Collatz understanding</b> — often without knowing it existed, discovering afterwards that our "new" ideas dated from 1976, 1987, 2012 or 2020. That was humbling and, in a strange way, validating: the framework I started from kept turning out to be the one the professionals use.</li>
+<li><b>We produced three things that appear to be genuinely new</b> (after a targeted literature check): a computational record on the best known density-bound method (an exponent of 0.9146 where the published record is 0.84), a new analytical lens on that same method, and a new open question about where that method ultimately leads. Part 6 covers these with all the caveats.</li>
+<li><b>We did not solve the Collatz conjecture.</b> Nobody has. But we can now tell you, with unusual precision, <i>why</i> it is hard — and that story, which unfolds over parts 2 to 5, is the real payoff: a tiny machine, a fuel economy, a fair coin, and a calendar of near-misses, all provable, surrounding three walls that are each one sentence long.</li>
+</ul>
+<h2>Why publish this</h2>
+<p>Partly because the material is beautiful and I want people to see it. Partly as a case study in human-AI research: what such a collaboration can and cannot do, and what intellectual honesty has to look like when an AI can produce plausible-sounding mathematics at industrial speed. Every "theorem" in this series links to a numbered entry in the repository with its proof or its verification code. Where we merely rediscovered, the original authors are named.</p>
+<p><i>Next: <a href="02-the-machine.html">Part 2 — The machine: Collatz is a two-rule automaton, and you can watch it burn</a>.</i></p>
+<div class="nav"><a href="index.html">&larr; series index</a><a href="02-the-machine.html">next &rarr;</a></div>
+</body></html>

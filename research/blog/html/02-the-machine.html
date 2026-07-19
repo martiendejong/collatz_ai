@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Collatz Sessions, part 2 — The machine: Collatz is a two-rule automaton, and you can watch it burn</title><style>
+body{font-family:Georgia,serif;max-width:760px;margin:2em auto;padding:0 1em;line-height:1.65;color:#222}
+h1{font-size:1.55em;line-height:1.3} h2{margin-top:1.6em;border-bottom:2px solid #f4632e;padding-bottom:.2em}
+a{color:#b33d10} img{max-width:100%;border:1px solid #eee;display:block;margin:1em auto}
+.cap{font-size:.85em;color:#666;text-align:center;margin-top:-0.6em;margin-bottom:1.4em}
+blockquote{background:#faf6ef;border-left:4px solid #f4632e;padding:.6em 1em;margin:1em 0;font-style:italic}
+.nav{display:flex;justify-content:space-between;margin:2.5em 0 1em;font-size:.95em;border-top:1px solid #ddd;padding-top:1em}
+.series{font-size:.85em;color:#888;margin-bottom:1.5em}
+code{background:#f4f4f4;padding:1px 5px}
+</style></head><body>
+<div class="series">The Collatz Sessions &mdash; part 2 of 6 &middot; <a href="index.html">series index</a></div>
+<h1>The Collatz Sessions, part 2 — The machine: Collatz is a two-rule automaton, and you can watch it burn</h1>
+<p><i>Part 2 of 6. Series index in <a href="01-the-experiment.html">part 1</a>. Repository: <a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a>.</i></p>
+<h2>Write it in base six</h2>
+<p>The Collatz rule is made of exactly two ingredients: multiplying by 3 and dividing by 2. Neither is "simple" in ordinary decimal, and each is simple in only one base: halving is a digit-shift in binary, tripling is a digit-shift in ternary. But 6 = 2 × 3, and in base six something remarkable happens: <b>both operations become local rules</b>, where each digit's new value depends only on itself and one neighbour:</p>
+<ul>
+<li><b>Triple:</b> new digit = (3 if my digit is odd, else 0) + (my right neighbour's digit ÷ 2, rounded down). No carrying, ever.</li>
+<li><b>Halve:</b> new digit = (my digit ÷ 2, rounded down) + (3 if my left neighbour is odd). No borrowing, ever.</li>
+<li>The "+1" turns out to be a single-cell touch-up: for odd n, 3n always ends in base-6 digit 3, and adding one just turns it into a 4. Nothing propagates.</li>
+</ul>
+<p>So the Collatz process is a <b>cellular automaton</b>: a row of cells, each looking one neighbour away, in the spirit of Stephen Wolfram's famous rule 110. To be scrupulous: this locality was discovered before us — a "quasi cellular automaton" by Cloney, Goles and Vichniac in 1987, and the base-six version explicitly by Jarkko Kari in 2012. We found it independently and then found them. What follows — the physics you can see in the pictures — is where our own work begins.</p>
+<h2>The spacetime pictures</h2>
+<img src="img/ca_repunit20.png" alt="2^20 − 1: a pure fuel tank burning. The giant black triangle is twenty binary ones being converted; the rest is the fair-coin regime."><div class="cap">2^20 − 1: a pure fuel tank burning. The giant black triangle is twenty binary ones being converted; the rest is the fair-coin regime.</div>
+<img src="img/ca_27.png" alt="The famous 27: no big tank, just a long fever of small flare-ups."><div class="cap">The famous 27: no big tank, just a long fever of small flare-ups.</div>
+<img src="img/ca_837799.png" alt="The champion 837799 (524 steps)."><div class="cap">The champion 837799 (524 steps).</div>
+
+<p>Run the automaton and photograph every step: one row per tick, digits coloured white (0) through black (5). The repository's <code>viz/</code> folder has a gallery. Three features leap out, and all three turned into theorems.</p>
+<p><b>The black triangles are fuel burning.</b> When a number ends, in binary, in a block of k ones, the machine is forced to climb for exactly k steps, and the automaton draws a solid black triangle whose sides recede at exactly one cell per tick — a 45° front we later proved rather than observed (the run grammar, NOTE.md Thm 101: a block of ones erodes by two per tripling and exhales one unit of "dust" on each side).</p>
+<p><b>The orange noise is a fair coin.</b> Between climbs the digits look random. This is not an impression: conditional on the entire visible history, the next decision of the machine is <i>exactly</i> 50/50 — a theorem (Thm 115/128), not a measurement, following from a bijection between decision histories and residue classes. There is provably no pattern to find in the noise. Part 4 is about that coin.</p>
+<p><b>The tiny point at the bottom is the exit gate.</b> Astonishingly, 94% of all numbers enter their final descent through the same little number: 5. The others come through 85, 341, 5461... — in base four these are 11, 1111, 11111, 1111111. Every Collatz orbit ends through a <i>quaternary repunit gate</i>, and which gate, with what probability, is exactly computable (the L mod 3 trichotomy, Prop 86/100).</p>
+<h2>One machine, three faces</h2>
+<p>The automaton is one of three exactly equivalent descriptions we ended up proving:</p>
+<ol>
+<li><b>Space</b>: the base-6 cellular automaton above.</li>
+<li><b>Structure</b>: a rewriting system on run-lengths — the entire complexity of Collatz is one carry bit streaming through a list of block-lengths, plus a splice and a drop (Thm 102).</li>
+<li><b>Information</b>: an <i>address code</i>, in which every number's future decisions are literally written in its own bits at computable addresses — the subject of part 3.</li>
+</ol>
+<p>The lesson of the pictures, and the theme of the whole series: this machine has no hidden depths. Everything it does is visible, local, and now proven. What it has instead of depth is a <i>ledger</i> — and that is where the real story starts.</p>
+<p><i>Next: <a href="03-the-fuel-economy.html">Part 3 — The fuel economy: tanks, dust, and a ledger that always balances</a>.</i></p>
+<div class="nav"><a href="01-the-experiment.html">&larr; previous</a><a href="03-the-fuel-economy.html">next &rarr;</a></div>
+</body></html>
