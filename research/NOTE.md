@@ -2747,3 +2747,25 @@ no frame renders everything (the toll conservation, Rem 119/Thm 123).
 The dynamics decomposes SPECTRALLY by glasses: climbs (3/2), typical
 descent (4/3), near-balance (9/8, and deeper commas for deeper
 near-cycles). The fractional bases are the machine's eigenframes.
+
+## Observation 139 (THE TENT LAW) + Observation 140 (THE TIPPING LIMIT
+## — Martien's bend-back question). R3342-3365
+(139) TENT LAW (proved one line, verified 5000/5000): the black-block
+depth in base 2^a 3^c is min(v2/a, v3/c) of n+1: during a burn the two
+triangles (falling k-j, rising j) meet as a TENT with apex at
+j = k*c/(a+c): base 6 apex at k/2 (the symmetric meeting point), base
+12 at k/3, base 18 at 2k/3 - the 2:3 weight of the base is a dial for
+the meeting angle (viz/tent_ladder.png). Base 3/2 is the OTHER meeting
+point: balance instead of minimum - the block becomes a constant-width
+sliding parallelogram.
+(140) THE TIPPING LIMIT: in fractional base beta the burn drifts
+log(3/2)/log(beta) cells per step: 1.0 at 3/2 (45 deg), 3.44 at 9/8,
+7.70 at the limma 256/243, ~305 at the Pythagorean comma - the tent
+tips toward HORIZONTAL as beta -> 1 along the comma ladder
+(viz/tipping_ladder.png), and can NEVER bend past horizontal: a base
+< 1 cannot represent unbounded integers, and a full bend-back to the
+starting point would mean the representation returns = the value
+returns = AN EXACT CYCLE. Martien's geometric question is the cycle
+question: the comma-bases make near-closure as flat as desired, and
+the gap-1 theorem + reach law are precisely the statement that the
+curve never closes. The machine grazes horizontal forever.
