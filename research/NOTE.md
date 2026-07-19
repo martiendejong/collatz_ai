@@ -3107,3 +3107,37 @@ P(Bin(21,1/2) <= 8) = 0.19165 - the fair-coin/address theorem holds
 exactly for the 5-map too (as the ensemble theory predicts). A
 mislabeled asymptotic "prediction" line in the session output is
 corrected here: the exponent H governs the large-D rate, not D=22.
+
+## Observation 157 (THE CLIFF LAW: between 4n+2 and 5n+1 there is no
+## slope - and where the missing rung CAN be built). R3576-3590
+Question (Martien): is there a map between 4n+2 (provably divergent)
+and 5n+1 (unprovably divergent) in proof difficulty?
+1. WITHIN the an+b family (a odd): NO. The coin is all-or-nothing:
+   b even => an+b stays odd => no halvings ever, dead coupling,
+   divergence trivial (e.g. 3n+2, and the a=2 types like 4n+2->2n+1);
+   b odd => halvings exist and are EXACTLY i.i.d. fair (address
+   theorem; verified P(v=k)=2^-k to 4 decimals for 5n+1, 5n+3, 7n+1,
+   9n+1). Fair + unbounded depth => worst-case per-step drift is
+   unboundedly negative in every congruence class => any divergence
+   proof must control luck => the full wall. The family has a
+   PROVABILITY GAP: no intermediate rung exists inside it.
+2. THE RUNG CAN BE BUILT by capping the rule: T_k(n) =
+   (5n+1)/2^min(v,k). Worst-case drift = log2(5) - k:
+     k=2: LIVE fair coin (1.0 bit/step entropy), orbits never
+       decrease (verified 2000 orbits x 60 steps): divergence provable
+       in one line - genuinely "harder than 4n+2" (needs a worst-case
+       inequality, not pure determinism) yet trivially "easier than
+       5n+1". This is the requested intermediate map.
+     k=3: worst case -0.68: direction depends on luck: same wall
+       architecture as 5n+1 itself (a.s. divergent, pointwise open).
+3. THE CLIFF: proof difficulty is a STEP FUNCTION of the cap - one
+   line for k <= 2, full wall for k >= 3, nothing in between. The
+   boundary is exactly where the worst-case drift crosses zero, i.e.
+   where the coin first gains control over the DIRECTION rather than
+   just the rate. This is the sharpest form of the campaign's
+   provability law: proofs exist while luck only modulates speed;
+   the instant luck can flip the sign, the certificate must contain
+   infinite information (Obs 142) and difficulty jumps discretely
+   from trivial to unreachable. Between the dead map and the wall
+   there is no slope - only a cliff, and its location is computable:
+   k* = floor(log2 a).
