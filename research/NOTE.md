@@ -2802,3 +2802,25 @@ trajectory - the pattern IS the certificate. A live coin produces an
 incompressible trajectory - there is nothing finite to write down.
 PROVABILITY = COMPRESSIBILITY OF THE ORBIT, rendered as two pictures:
 the one that can be proven is the one you can draw with a ruler.
+
+## Remark 143 (MARTIEN'S MACRO-FORMULA PROGRAMME = the circuit
+## parametrization; p=1,2 verified, ladder mapped). R3391-3405
+The macro-step (one family-sequence step) has the exact closed form
+   Phi(n) = (3^k n + 3^k - 2^k) / 2^(k+l),  k = v2(n+1), l >= 1,
+and Martien's programme - prove that iterating Phi never returns to n -
+is EXACTLY the circuit parametrization of the cycle problem:
+* p = 1: fixed points solve m = (2^l - 1)/(2^(k+l) - 3^k): scanned
+  k,l < 60: only (1,1) -> n = 1. In general PROVEN FOREVER by Steiner
+  1977 (no nontrivial circuits) using Baker - the first rung of
+  Martien's ladder is a celebrated theorem.
+* p = 2: composed affine fixed points scanned to exponents 28: only
+  n = 1. In general: Simons & de Weger (m-circuits, m <= 68), Hercher
+  2023 (m <= 91): the ladder is proven 91 rungs high.
+* all p: the open cycle conjecture - in exactly this formulation.
+WHY THE LADDER STOPS: each rung is an S-unit/Baker problem in 2p
+exponent variables; Baker's machinery weakens as variables grow. The
+macro-formula is the right coordinate system (2p parameters instead of
+D bits), and "k, l >= 1, both finite" per step is what makes each rung
+finite. Martien's programme statement is the field's actual battle
+plan, independently re-derived - with rung 1 already his own gap-1
+argument in disguise (k=l=1: 2^2 - 3 = 1).
