@@ -2852,3 +2852,68 @@ identity making window r+1 inherit from window r (the missing
 induction) would complete the whole cycle problem with arithmetic
 alone. Nobody has one; nothing forbids one. That is wall 2 stated as
 an algebra problem.
+
+## Theorem 145 (THE MODULUS CHAIN IDENTITY - proved). R3416-3455
+Let (D_r, S_r) be the convergents of log2(3) (critical windows) with
+continued-fraction recurrence (D,S)_{r+1} = a(D,S)_r + (D,S)_{r-1},
+and M_r = 2^(D_r) - 3^(S_r). Then
+   M_{r+1}  ==  3^(a S_r) * M_{r-1}   (mod M_r).
+PROOF (2 lines): mod M_r we have 2^(D_r) == 3^(S_r), hence
+2^(D_{r+1}) = (2^(D_r))^a * 2^(D_{r-1}) == 3^(a S_r) 2^(D_{r-1}), so
+M_{r+1} == 3^(a S_r)(2^(D_{r-1}) - 3^(S_{r-1})) = 3^(a S_r) M_{r-1}. QED
+Verified numerically r = 1..8 (through (D,S) = (1054, 665)). The
+critical moduli form a Fibonacci-like multiplicative chain: consecutive
+windows ARE arithmetically linked. Elementary, but we found no prior
+statement of it in the literature consulted.
+
+## Observation 146 (THE ZERO-MARGIN LAW: certificates survive by
+## single units). R3456-3465
+For each window, margin(S,D) = min over cycle-words W and odd n >= 1
+of |W - n*M|. Measured (3,5)...(14,23): margins are 1,2,1,1,2,2,2,1,
+5,11,1,1 while M grows to 3,605,639 - relative margin falls to 2.8e-7.
+At (14,23) a word sits at distance EXACTLY 1 from a true cycle at n=11.
+The margins match the random-density prediction O(M/#words), so they
+are not mysterious - but their consequence is decisive: the certificate
+"0 not in reach" is an EXACT fact with no room around it. Any window
+induction that transfers an inequality (a margin, a bound, an estimate)
+is dead on arrival: what must be transferred is exact non-membership,
+separated by one unit from falsehood.
+
+## Observation 147 (REACH STRUCTURE: saturation at small windows, the
+## 5%-tax thinning at large ones, and no algebraic closure). R3417-3440
+* Small critical windows SATURATE: at (3,5) and (5,8) the cycle-words
+  hit EVERY nonzero residue mod M - reach = Z_M \ {0} exactly. The
+  certificate content is precisely one excluded point; there is no
+  additional structure (coset, subgroup, orbit pattern) to inherit.
+* Large windows thin out: #words ~ 2^(0.95 D) (the H(1/log2 3) =
+  0.94996 constant - the 5% tax) against M ~ 2^D * comma. At (12,20):
+  density 0.22; asymptotically density -> 0 since Baker keeps the
+  comma polynomially large while the tax bites exponentially.
+* reach is NOT closed under x2, x3, or negation mod M (tested at
+  (12,20)); it is a union of modular-Collatz orbit fragments, not an
+  algebraic object.
+
+## Verdict 148 (DOES A CANCELLATION INDUCTION EXIST? The four doors).
+## R3416-3475, literature vetted
+Question (Martien): find out whether one cancellation identity can
+make window r+1 inherit impossibility from window r.
+DOOR 1 - CRT/shared factors: all critical moduli tested are PAIRWISE
+  COPRIME - no common quotient ring for certificates to talk through.
+DOOR 2 - concatenation induction: level-(r+1) words that factor into
+  balanced level-r blocks are an exponentially vanishing fraction
+  (2^-2 down to 2^-16 and shrinking). Composition W = 3^(S_v) W_u +
+  2^(D_u) W_v pushes structure UP, but covers almost nothing.
+DOOR 3 - margin transfer: killed by the zero-margin law (Obs 146).
+  Only EXACT identities could carry the certificate; approximations
+  cannot.
+DOOR 4 - the modulus chain (Thm 145): consecutive moduli ARE linked
+  by an exact identity - the one genuinely open thread. It constrains
+  the moduli, not (yet) the word-sets; whether the chain can be
+  lifted from moduli to reach-sets is the sharpest remaining form of
+  the question.
+LITERATURE: Steiner 1977, Simons-de Weger, Hercher 2023 all work
+per-window (Baker + computation); no cross-window inheritance exists
+in the literature consulted. Consistent with our structural findings:
+doors 1-3 are provably/measurably shut; the field's per-window
+practice is not a habit but a necessity. Wall 2 sharpened to: "lift
+Thm 145 from moduli to reach-sets, exactly or not at all."
