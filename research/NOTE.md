@@ -2506,3 +2506,34 @@ Martien brought an independent (ChatGPT) analysis. Verdict per piece:
     increments but the WALK shows structure (sieve dips at the 8/5
     convergent, Prop 120). Increments: no base helps. Partial sums:
     exactly one "base" - the continued fraction of log2(3).
+
+## Theorem 128 (THE COIN IS EXACTLY I.I.D. — strongest closure) +
+## Proposition 129 (THE COMMA CALENDAR — where the pattern actually
+## lives). R3081-3100
+(128) Conditional on the ENTIRE past decision history, the next flip is
+exactly fair: P(prefix) = 2^-(D+1) for every prefix (address bijection,
+Thm 88a/115) forces every conditional to 1/2. Verified: 17 full-history
+conditionals, max deviation 2.24 sigma. There is NO pattern in the coin
+stream, in any base, under any conditioning on its own past. Closed.
+(129) BUT THE PHASE IS DETERMINISTIC: the walk's circle position obeys
+    slack mod 1 = { S * log2(3/2) }  (c drops out mod 1!)
+- verified exactly along the champion orbit. Consequences:
+(a) THE CALENDAR: cycle opportunities (near-zero slack) are PRE-
+    SCHEDULED at the continued-fraction convergent denominators of
+    log2(3/2): S = 2, 5, 12, 41, 53, 306, ... - independent of the
+    orbit. The coin only decides whether you are at the right height
+    when the calendar strikes.
+(b) THE FINANCE BUDGET (exact identity + inequality): for any cycle,
+    D ln2 - S ln3 = sum ln(1 + c/(3 n_i))   (verified exactly, 44-cycle)
+    hence comma <= c*S/(3*n_min*ln2), i.e. n_min <= c*S/(3*comma*ln2).
+    ALL census cycles obey it; the trivial 3n+1 cycle uses 86% of its
+    budget (0.415 of 0.481 bits) - it barely affords itself!
+(c) Classical cycle exclusions (Steiner/Lagarias-type) follow in three
+    lines: Baker gives comma >= C/S^kappa, so n_min <= c S^{kappa+1}/C';
+    verification n_min > 2^71 then kills all small S. Known, rederived
+    from the calendar view.
+SYNTHESIS: the machine = a fair coin (proven patternless, 128) plus a
+deterministic calendar (pure rotation of S, 129). Every cycle fact ever
+found lives in the calendar; every unpredictability lives in the coin;
+and the two never mix - which is exactly Thm 115's factorization, now
+in its dynamical form.
