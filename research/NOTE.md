@@ -2701,3 +2701,25 @@ Four theses from Martien, mapped onto the corpus:
     cycles; trivial-only for small S would extend the proof skeleton:
     gap-1 theorem (133a) + uniformization (134) + free-domination +
     prime-poisoning. Search in progress.
+
+## Observation 137 (THE BIG-BASES GALLERY AND THE RENORMALIZATION
+## LADDER — Martien's large-base hunt). R3293-3320
+Champions and tanks rendered in bases 18, 24, 30, 36, 150, 216 (all
+multiples of 6), plus the ladder 6/36/216 at proper scale (2^120 - 1):
+(1) LOCALITY CONFIRMED: the burn triangle survives in every multiple
+    of 6 - sharp in 18/24/36, present in all.
+(2) CRT OVERLAY CONFIRMED (mildly): bases with a coprime factor score
+    dirtier at equal magnitude (150 = 6x25: 0.34 vs 216 = 6^3: 0.38;
+    tank scores) - the blind 5-component overlays provable noise,
+    exactly as Prop 60 predicts.
+(3) THE RENORMALIZATION RESULT (the real finding): across 6 -> 36 ->
+    216 the triangle is EXACTLY INVARIANT (same shape, same relative
+    slope - the fuel structure is scale-free), while the noise
+    coarse-grains to featureless mid-tones. This is a visual
+    renormalization-group test of the fair-coin theorems: hidden
+    block-correlations would be AMPLIFIED by coarse-graining; instead
+    the noise flows to trivial. No new patterns exist at any 6-power
+    scale - and that absence is itself one more confirmation, now at
+    the RG level, that the coin is exactly fair. The visible physics
+    of the machine (triangle, wedge, gates) is base-6-ladder-invariant;
+    everything else averages away.
