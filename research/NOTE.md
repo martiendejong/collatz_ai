@@ -3072,3 +3072,38 @@ the true relation is stronger and stranger.
    visibility" (Obs 142). Prior art: the conjugacy itself is
    Bernstein-Lagarias; the explicit rational images of convergent
    integers and the disjointness observation we have not seen stated.
+
+## Observation 156 (COMPLEMENTARITY IS ALSO IMPOSSIBLE IN PRINCIPLE -
+## with an honest refinement and a new falsification threshold).
+## R3561-3575
+REFINEMENT of Thm 155(1): the counterexamples 1/13/17 refute only the
+EQUALITY reading (convergent_3 = divergent_5). The COMPLEMENT reading
+(convergent_3 = non-divergent_5) is TODAY UNFALSIFIABLE in both
+directions: type-A counterexamples need a 5-divergence proof (the
+unprovable side), type-B need a 3-non-convergent number (none known).
+The hypothesis hides exactly inside the wall. Yet it fails in
+principle, on three layers:
+1. LOGIC: a set identity between two semi-decidable/co-semi-decidable
+   properties of DIFFERENT dynamics has no derivation channel: the
+   conjugacy that identifies the systems moves Z+ off itself
+   (Thm 155: disjoint embeddings), so no structural transport exists.
+2. COUNTING: complementarity forces the 5-bounded set to contain the
+   3-convergent set, hence counting >= x^0.9146 (our record).
+   Terras-type ceiling for 5-bounded: x^H(1/log2 5) = x^0.9861.
+   NEW MILESTONE: certifying gamma_3 > 0.9861 would refute
+   complementarity unconditionally. TWIST: the conjectured K-L
+   ceiling is 0.94996 < 0.9861 - if the gamma fork saturates, the
+   counting route can NEVER close, and the unfalsifiability is
+   permanent on that route. The 5% tax shields even this.
+3. COUPLING: the only shared object is the seed residue; the
+   3-address <-> 5-address translation is a generic bijection.
+   Measured: MI(3-fate; 5-fate) = 0.00044 bits over 30000 odd seeds
+   (marginals 1.78 / 0.21 bits): statistically decoupled - an exact
+   set law would require infinite unpaid correlation through a
+   channel measured empty.
+BONUS VERIFICATION: fraction of odd residues with 22-step rise
+fraction <= 0.4307: measured 0.19095 vs exact conditioned binomial
+P(Bin(21,1/2) <= 8) = 0.19165 - the fair-coin/address theorem holds
+exactly for the 5-map too (as the ensemble theory predicts). A
+mislabeled asymptotic "prediction" line in the session output is
+corrected here: the exponent H governs the large-D rate, not D=22.
