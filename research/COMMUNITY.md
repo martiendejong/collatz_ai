@@ -33,3 +33,28 @@ Shredder invariant: a proof must kill divergence AND all cycles for EVERY n — 
 - Kari 2012, DLT/LNCS: base-6 local CA, Collatz & powers of 3/2, Mahler Z-numbers.
 - Sterin & Woods 2020, arXiv:2007.06979: Collatz embeds base conversion (twin of our
   Conversion Thesis).
+
+## LITERATURE VETTING OF OUR THREE NOVELTY CANDIDATES (2026-07-19)
+1. GAMMA RECORD: published best is x^0.84 (Krasikov-Lagarias 2003, k=11,
+   arXiv:math/0205002; earlier 0.81 Applegate-Lagarias k=9, 0.48
+   Wirsching k=3, 0.43 Krasikov k=2). NO published improvement found
+   since 2003 (searched 2026-07; the only recent counting preprint, Liu
+   arXiv:2512.13760, claims 0.3227 - far below). OUR k=13..20 runs
+   (0.8624/0.8805/0.8953/0.9069/0.9146, exact-integer certified) EXCEED
+   the published record. -> genuine computational-record candidate;
+   needs independent verification + writeup.
+2. HILBERT/TROPICAL ANALYSIS of the K-L system: no literature found
+   applying Hilbert-metric/topical-map/max-plus analysis to the
+   Krasikov inequalities. Our Props 51, 61-70 (topical map, peeling
+   lemma, top-band dichotomy ln4 drift, transport lemma) appear novel.
+   (The "Hilbert hotel proof" preprint arXiv:2008.13643 is an
+   unaccepted claimed proof - unrelated to Hilbert metric.)
+3. GAMMA FORK: K-L 2002 explicitly HOPE gamma -> 1 ("one hopes x^{1-eps}
+   can eventually be proved"). Our entropy-ceiling alternative
+   (gamma_inf = H(1/log2 3) = 0.94996) and the k=25-30 decision test
+   appear nowhere in the literature -> genuinely new open question.
+MASTER SOURCES FOR ONGOING INTAKE: Lagarias' 3x+1 page
+(websites.umich.edu/~lagarias/3x+1.html), his two annotated
+bibliographies (arXiv math/0309224, math/0608208), ccchallenge.org
+(formalization project), Tao 2019 (almost-all log-density), Hercher
+2023 (no m-cycles m<=91), Barina verification, Sterin-Woods 2020.
