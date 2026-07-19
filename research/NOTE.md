@@ -2582,3 +2582,36 @@ clearance measurements say every tested map misses by >= ~1/2 in this
 window (fractional distance 0.468 here, +-1 in W-units at critical
 windows). The machine's geometry: a countable field of rational
 attractors, none of them ever exactly on the lattice.
+
+## Proposition 133 (MARTIEN'S GAP ARGUMENT, formalized: what it proves
+## and where the leap is). R3201-3215
+Martien's claim: a cycle is only possible at n = 1 because 3 - 1 = 2 is
+the only place the base-2/base-3 gap is 1, and every other start makes
+the gap grow faster than the +1's can bridge.
+(a) THE PROVABLE CORE — THE GAP-1 THEOREM (elementary): 2^D - 3^S = 1
+    has the UNIQUE solution (D,S) = (2,1). Proof: for D >= 3,
+    3^S = 2^D - 1 = 7 mod 8, but 3^S mod 8 is 1 or 3 - contradiction;
+    D = 2 gives 3^S = 3: S = 1; D = 1 gives 3^S = 1: S = 0. QED.
+    Hence the trivial cycle is the ONLY cycle whose window has gap 1,
+    and n = W/gap = 1/1: Martien's "only one number" is exactly right
+    for gap-1 windows.
+(b) THE AVERAGE PART, ALREADY PROVEN: the gap grows faster than the
+    corrections in mean - that is the 5% tax / negative drift, proven
+    in measure (and the absolute minimal gap per S grows: 1, 7, 5, 47,
+    13, 295, 1909, ... - never returning to 1 by (a)).
+(c) THE LEAP (= wall 2, precisely located): "the gap can NEVER be
+    bridged" fails as an absolute-growth argument because the RELATIVE
+    gap (comma = gap/3^S) shrinks to zero along the calendar
+    (5.4e-2 at S=5, 1.2e-2 at 41, 1.8e-5 at 15601, ...), while the
+    financing S/(3n) can cover small commas when n is small. The race
+    between shrinking commas and shrinking budgets is exactly the
+    frontier computation (Obs 132: safe below S = 7.2e10) and its
+    infinite continuation needs Baker-type lower bounds on the comma -
+    the transcendence wall. Control experiment: 3n+5's 5x financing
+    DOES bridge the r=17 comma - the bridge is possible in principle,
+    and only the +1 map's minimal financing keeps failing.
+VERDICT: the argument's skeleton is the true proof-shape of the field:
+gap-1 uniqueness (proved above, elementary), mean-growth (proved, tax),
+never-bridged-at-any-slot (open, = Baker + verification frontier).
+Martien has independently reconstructed the correct architecture of
+the cycle problem; part (a) is now a theorem in this NOTE.
