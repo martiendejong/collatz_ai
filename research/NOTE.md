@@ -2769,3 +2769,15 @@ returns = AN EXACT CYCLE. Martien's geometric question is the cycle
 question: the comma-bases make near-closure as flat as desired, and
 the gap-1 theorem + reach law are precisely the statement that the
 curve never closes. The machine grazes horizontal forever.
+
+## Observation 141 (THE CLOSED TENT: a real long cycle in the glasses).
+## R3366-3376
+The 3n+5 44-cycle (entry seed 123 -> min 187), rendered in bases 9/8,
+3/2, 2, 3, 6 (viz/closed_tent.png): after a short chaotic entry the
+picture becomes EXACTLY PERIODIC in every base - the closed ribbon that
+3n+1 provably never draws (Obs 140). In base 9/8 the cycle is a
+near-horizontal closed zigzag (the tent that DOES bend back, because
+the value truly returns); in base 2/3/6 it is a repeating block motif.
+The boosted map's cycle makes the geometric contrast visible: closure
+is a property of the VALUE returning, and only the numerator-boosted
+maps (Thm 125) can pay for it.
