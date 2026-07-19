@@ -2967,3 +2967,43 @@ but logical window induction remains open. What genuinely survives:
    are directly reusable as prefix tables in the window r+1 DP. The
    certificates compose computationally even though they do not (yet)
    compose logically - a real cost reduction for the r=21/22 runs.
+
+## Theorem 152 (THE ORTHOGONALITY NO-GO: the logical channel of door 4
+## is provably empty). R3516-3535
+The joint cut-consistency system for a primitive cycle (m, word) at
+window (S,D) is exactly:
+   [T-CHAIN]  x_c = m + t_c, t_0 = t_D = 0, t_c != 0 (0<c<D)
+   [CUT c]    W_pre(c) = m*M_pre(c) + 2^c*t_c        (exact)
+   [INHERIT]  t_c != 0 mod M_pre(c) for certified prefix shapes
+MEASURED at (12,20): 29,075 applicable inherited constraints over
+20,000 sampled words exclude ZERO words. This is not bad luck but
+necessity: a certificate is a universally quantified statement ("no
+word of shape (s,c) has W == 0 mod M_pre"); every prefix of a bigger
+word IS a word of its shape, so the inherited fact holds automatically
+and discriminates nothing. Ring-theoretically: the new content of
+window r+1 lives mod M_{r+1}, coprime to every earlier modulus (all
+pairwise coprime - R3466); by CRT the components are independent; no
+homomorphic transfer exists. CONCLUSION: for certificates of the form
+"0 not in reach mod M", window facts are LOGICALLY ORTHOGONAL - each
+window's certificate is genuinely new information. The only known
+statement that spans all windows at once is analytic (Baker). Door 4's
+logical version is closed for this certificate form; a transfer would
+require a different KIND of invariant (one not universally quantified
+per shape and not residue-based).
+
+## Demonstration 153 (COMPUTATIONAL INHERITANCE WORKS: mediant-composed
+## certificates, 160x measured). R3516-3535
+Via W3 = 3^(S2) W1 + 2^(D1) W2 (Thm 149), the certificate DP composes
+as meet-in-the-middle from per-shape half-tables:
+* (12,20): direct enumeration 1.30 s vs composed tables 0.01 s -
+  160x speedup; both find 0 cycle-words (certificate agrees).
+* (17,27): certified 0 cycle-words for 3n+1 in 0.13 s via composed
+  tables (direct would enumerate C(27,17) = 8,436,285 words).
+* POSITIVE CONTROLS: same engine FINDS the doubled trivial cycle at
+  (10,20) for 3n+1 (2 hits) and the real long cycle of 3n+5 at
+  (17,27) (54 hits, via the 5-boost W == 0 mod M/5). Sound both ways.
+The half-tables are shape-indexed and REUSABLE across target windows:
+this is the real inheritance the moduli chain buys - certificates
+compose computationally (cost ~ sqrt of word count), even though
+Thm 152 shows they cannot compose logically. Direct consequence: the
+planned r=21/22 certificates can be built from cached r<=20 tables.
