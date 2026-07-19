@@ -3007,3 +3007,33 @@ this is the real inheritance the moduli chain buys - certificates
 compose computationally (cost ~ sqrt of word count), even though
 Thm 152 shows they cannot compose logically. Direct consequence: the
 planned r=21/22 certificates can be built from cached r<=20 tables.
+
+## Observation 154 (SYNTHESIS: the three exclusion sets, everything
+## combined). R3536-3545
+S1 - 3n+1 numbers not proven non-cyclic: contained in {n odd, n >
+2^71 ~ 2.4e21 (verified floor), orbit periodic with S >= 72,057,431,991
+odd steps / ~1.86e11 total (comma budget x floor - matches literature
+frontier), >= 92 mountains (Hercher), word shape confined to
+near-convergent calendar slots, profile pinned to the uniformization
+budget n_eff ~ S/(3 ln2 delta), surviving all r<=20 certificates}.
+A countable union of finite sets; conjectured empty; by Thm 152 every
+new window kills its slice with logically fresh information.
+S2 - 3n+1 numbers not proven non-divergent: n > 2^71; the coin must
+run mean packet >= 3.41 vs fair 2.0 forever (house-edge reversal);
+2-adic dimension <= H(1/log2 3) = 0.94996 (the 5% tax, Prop 91);
+counting: >= x^0.9146 of n <= x provably reach 1 (our K-L record);
+log-density 0 (Tao). Empty or infinite (a divergent orbit carries its
+tail). By Obs 142 its members, if any, are incompressible - no finite
+certificate can ever exhibit one. THE FORK, restated: gamma_inf = 0.95
+would mean the density method proves convergence for exactly the
+complement of the dimension budget that divergence could occupy - the
+same constant rules both sides of the wall.
+S3 - maps not proven divergent: provable divergence <=> dead coupling
+(2n+1-type: zero-entropy automatic orbits - Prop 57/58, Obs 142). All
+live-coin positive-drift maps are unprovable: 5n+1 measured (odd
+seeds to 2e5, cap 1e40): 98.34% escape (presumed divergent, none
+provable), 1.66% in the three known basins (cycle1 0.53%, cycle13
+0.91%, cycle17 0.22%); drift +0.3219 bits/odd step, coin fair. Mirror
+law: 3n+1's unprovable convergence and 5n+1's unprovable divergence
+are the SAME wall seen from both sides - ensemble measure vs pointwise
+certificate, bridged only by compressibility that live coins forbid.
