@@ -3037,3 +3037,38 @@ provable), 1.66% in the three known basins (cycle1 0.53%, cycle13
 law: 3n+1's unprovable convergence and 5n+1's unprovable divergence
 are the SAME wall seen from both sides - ensemble measure vs pointwise
 certificate, bridged only by compressibility that live coins forbid.
+
+## Theorem 155 (NOT COMPLEMENTARY BUT CONJUGATE: the exact relation
+## between 3n+1-convergence and 5n+1-divergence). R3546-3560
+Question (Martien): do they describe exactly opposite sets? NO - and
+the true relation is stronger and stranger.
+1. LITERAL COMPLEMENTARITY IS FALSE: 1, 13, 17 converge under 3n+1
+   AND are non-divergent under 5n+1 (cycle basins, 1.66% of seeds).
+   The provability asymmetry is also the SAME side for both maps:
+   reaching a finite attractor is semi-decidable (run and see);
+   divergence is never certifiable. Both problems are halting
+   problems with the unprovable side identical, not opposite.
+2. THE TRUE RELATION: both maps are conjugate to the 2-adic shift
+   (Bernstein-Lagarias), hence to each other. The conjugacy Psi
+   (= same parity word) is explicitly computable on convergent
+   integers: the tail (10)^inf maps to the 5-world fixed point -1,
+   and backward steps x -> 2x / (2x-1)/5 give exact rationals:
+     Psi(1) = -1,  Psi(5) = -17/5,  Psi(13) = -141/25,
+     Psi(7) = -3231/3125,  Psi(27) = -.../5^41
+   (denominator = 5^(#odd steps), forward-verified 6/6). All images
+   NEGATIVE (checked odd n < 400): Psi(Z+) and Z+ are DISJOINT.
+   Conversely Psi^-1 sends the 5-world cycle of 13 (word 1110000,
+   (S,D)=(3,7)) to the 3-world rational 19/101 (round-trip verified),
+   and the presumed-divergent 5-orbit of 7 to a generic-looking
+   2-adic point (popcount 24/60).
+3. MEANING: the two dynamical systems are THE SAME abstract coin-flip
+   machine; convergence-of-3n+1 and divergence-of-5n+1 are not
+   properties of the dynamics (identical up to isomorphism) but of
+   WHERE each map's copy of Z+ is embedded in the shared 2-adic
+   space. The two integer threads are disjoint measure-zero curves
+   through one universe: not complements - two different windows on
+   one machine. The conjecture-content is entirely in the embedding;
+   this is the conjugacy-form of "provability = embedding
+   visibility" (Obs 142). Prior art: the conjugacy itself is
+   Bernstein-Lagarias; the explicit rational images of convergent
+   integers and the disjointness observation we have not seen stated.
