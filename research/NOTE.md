@@ -2537,3 +2537,24 @@ deterministic calendar (pure rotation of S, 129). Every cycle fact ever
 found lives in the calendar; every unpredictability lives in the coin;
 and the two never mix - which is exactly Thm 115's factorization, now
 in its dynamical form.
+
+## Proposition 130 (THE CALENDAR TABLE AND THE THREE-LINE FRONTIER) +
+## Observation 131 (ALMOST-CYCLES OBEY THE BUDGET). R3101-3150
+(130) Legal calendar slots (convergents of log2 3 with 2^D > 3^S):
+S = 1, 5, 41, 306, 15601, 79335, 190537, 1.08e7, 1.72e8, 3.98e8,
+6.59e9, 1.375e11. Budget law n_min <= S/(3*comma*ln2) + verification
+n_min > 2^71 exclude every slot below S = 137,528,045,312: ANY
+NONTRIVIAL 3n+1 CYCLE NEEDS AT LEAST 1.375 x 10^11 ODD STEPS - derived
+in three lines from the calendar frame, matching the literature scale
+(Eliahou-type bounds, modern verification). The frontier advances with
+verification^1: each new verified power of 2 multiplies the excluded
+budget, stepping down the convergent ladder.
+(131) NEAR-RETURN CENSUS (n <= 30000): the closest returns of real
+orbits (delta down to 0.0009 bits!) sit at S = 46 and S = 29 - NOT at
+the smallest-comma slots, but at the slots whose comma MATCHES the
+seeds' affordable financing S/(3n): almost-cycles select comma ~ budget
+- the finance equation observed in the wild. Five seeds (2049, 2431,
+3075, 3079, 3081) all achieve their near-return at S = 46: a CONVOY of
+almost-cycles sharing one highway. The trivial cycle (86% budget), the
+near-returns (comma ~ budget), and the frontier (budget < comma
+forever, per Baker) are one single law read at three scales.
