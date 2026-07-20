@@ -3555,3 +3555,22 @@ one-way lock (Thm 170). Hence:
 The mod-3 leaf lesson (numbers divisible by 3 have no rise-
 predecessors) cost two buggy runs before the filter was right -
 logged for honesty.
+
+## Remark 173b (THE 10311-DIGIT SHOWPIECE - and why "highest number
+## verified" is not a record category). R3866-3870
+Minted: a 10,311-digit number, provably convergent by construction
+(11,000 backward macro-steps), forward-verified to reach 1 in 59,796
+elementary steps. Stored: research/certified_giant.json.
+WHY THIS IS A DEMONSTRATION AND NOT A RECORD: no meaningful "highest
+number that goes to 1" record exists, for three reasons our own
+corpus makes precise. (1) Trivial families reach any size free: 2^k
+converges for k = a googol, proof instant - unbounded at zero cost.
+(2) Any GIVEN number of 10^6 digits can be checked directly in
+feasible time (orbit length ~ 6.6 log2 n steps) - so "highest tested"
+only measures who bothered last. (3) Minting (this demo) produces
+unlimited certified giants - by the one-way asymmetry the easy
+direction generates, so size alone certifies nothing but effort.
+The MEANINGFUL record categories remain: exhaustive floor (Barina
+2^71), delay/path extremes for small n (Roosendaal's tables - these
+are decoder-direction finds, minting does not give minimality),
+density exponent (ours, 0.9146), window certificates (ours, r <= 41).
