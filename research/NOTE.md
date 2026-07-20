@@ -3360,3 +3360,28 @@ provable ones (dead families, sterile tanks). One sentence: THE
 FORMULA IS FINISHED; THE INPUT IS THE WALL. Everything deterministic
 about Collatz now fits in one sum, and everything unknown fits in
 one question: does G(n) have a formula?
+
+## Remark 168 (THE GEOMETRY IS DERIVABLE BUT DOES NOT COLLAPSE - and
+## question G contains an Erdos-type problem). R3766-3780
+Martien: "k and l are both derivable from n, so the list is
+determinable?" YES - each k_t, l_t is a nested v2-expression in n
+(demonstrated for k_1). The issue is COLLAPSE, not derivability:
+* Powers compose: a^i o a^j = a^(i+j) - that is why k rise-steps
+  collapsed into one 3^k (Formula 165/166b).
+* Valuations do NOT compose: v2(a+b) is not a function of (v2(a),
+  v2(b)): v2(4+4)=3 but v2(4+12)=4 - the carry decides. So the
+  nested expression for k_t has depth t and no known closed form.
+* WHERE the reads point (Thm 87, re-verified 20000/20000): l =
+  agreement length of m's binary tail with the binary expansion of
+  3^(-k). Measured: those expansions are statistically normal (ones
+  fraction 0.5000-0.5055 over 30000 bits). No closed form for binary
+  digits of powers of 3 is known; their structure is an open
+  Erdos-type problem (cousin of Erdos 1979 on ternary digits of 2^n).
+  A collapsing formula for the geometry would give closed-form access
+  to these digits: QUESTION G CONTAINS A FAMOUS OPEN PROBLEM AS A
+  SUBPROBLEM. This calibrates the difficulty honestly: solving
+  Collatz via a G-formula requires, at minimum, breakthrough access
+  to base-2 digits of 3-powers - and conversely explains why the
+  provable islands (repunits etc.) are exactly where that digit
+  question happens to be trivial (m = 1: agreement length = position
+  of first 1-bit of 3^-k - still read, not formula).
