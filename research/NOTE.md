@@ -3233,3 +3233,19 @@ strong continued-fraction convergent window (65,41), the one whose
 comma is 30x tighter than anything below it - is in progress (~5h).
 Zone 1 of the exclusion map now spans S <= 40 self-contained
 (certificates + Lemma 160 + our own n < 2^21 verification).
+
+## Result 163 (THE MILESTONE: window (65,41) CERTIFIED - record
+## r <= 41). R3681-3690
+S=41, D=65, M = 420,491,770,248,316,829 (~4.2e17): CYCLE-WORDS = 0,
+in 19,603 s (5.4 h) on one desktop. This is the first strong
+continued-fraction convergent of log2(3) - the window where 2^65 and
+3^41 agree to 1.15% (30x tighter than anything below it), the first
+calendar slot where a cycle "almost fits", historically the reason
+the S=1..41 range mattered. It is now UNCONDITIONALLY cycle-free:
+no reliance on orbit verification, pure arithmetic certificate.
+Cross-check: M matches the independently computed convergent table
+(R3416) digit for digit. Full record: every critical window S <= 41
+certified, zone 1 of the exclusion map now runs to the first strong
+convergent. Next natural targets: S=42..53 (semiconvergents up to the
+next convergent (84,53); costs double per ~1.5 S in pure Python - a
+C port or Schroeppel-Shamir split extends reach further).
