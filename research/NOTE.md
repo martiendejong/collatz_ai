@@ -3287,3 +3287,26 @@ fn = (3/2)^k (n+1) - 1: family coordinates ARE the fixed-point frame -
 C = prod c_i, B = sum_i b_i (prod a after i)(prod c before i)
 (verified 3000/3000) - B is exactly the W-accumulator (Thm 88/90) and
 B/(C-A) the anchor. Every finite step sequence is ONE affine formula.
+
+## Formula 166 (THE COMPLETE DIRECT MACRO-STEP - Martien's
+## architecture realized: rise sequence + merge + optional divisions,
+## zero iteration). R3721-3735
+The full macro step as three closed-form reads (c = 2 maps):
+  k  = v2((a-2)n + b)            [rise-run length, read from n:
+                                  generalizes v2(n+1); for 5n+1 it is
+                                  v2(3n+1) - verified]
+  x  = fnRiseSequence(n,k,a,b,2) = (a^k n + b(a^k-2^k)/(a-2)) / 2^k
+  l  = v2(x)                     [fnEvaluateMerge: mandatory /2 plus
+                                  every optional further /2 in one read]
+  n' = x / 2^l                   [next odd number]
+Verified identical to honest step-by-step orbits: 4 maps (3,1),(5,1),
+(3,5),(7,1) x 20000 seeds, zero mismatches. The 2-path choice at the
+merge is decidable from n WITHOUT computing x: second division iff
+(k even & m=1 mod 4) or (k odd & m=3 mod 4) - Thm 114's BIT1 law,
+re-verified 50000/50000 - and division j iff m == 3^-k (mod 2^j):
+each "optioneel nog een keer delen" is one modular comparison on n's
+bits. Together with Thm 164 (pair transition) and Formula 165 this
+completes the family-sequence calculus: every quantity in the macro
+step is a direct formula in n; the only irreducible cost is that each
+new decision reads one fresh bit-window of n (Thm 116 pay-per-
+decision) - now visible as the v2/modular reads above.
