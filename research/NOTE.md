@@ -3574,3 +3574,28 @@ The MEANINGFUL record categories remain: exhaustive floor (Barina
 2^71), delay/path extremes for small n (Roosendaal's tables - these
 are decoder-direction finds, minting does not give minimality),
 density exponent (ours, 0.9146), window certificates (ours, r <= 41).
+
+## Observation 174 (THE BACKWARD TARIFF: construction cannot buy step
+## density - the 3-adic mirror of pay-per-decision). R3871-3895
+Martien's idea: with backward minting, always choose the longest
+route -> construct extreme-delay numbers. MEASURED RESULT: it fails,
+quantitatively:
+* forward-search champions: 27 ratio 23.3, 837799 ratio 26.6
+  (delay / log2 n, full-step convention)
+* random backward minting: ratio 1.76 (steep - fast-descending orbits)
+* greedy-flat minting, full branch enumeration l <= 25, 500-5000
+  steps: ratio saturates at 4.11-4.19, peak-to-start only ~2 bits.
+WHY: the branch depths are DEALT, not chosen - k = v3(n*2^l + 1), the
+3-adic mirror of the forward oracle. Flat/shrinking branches (k >= 2
+at the right l) are available at 3-adic-fair rates (~1/9), and myopic
+choice cannot compound them; the walk's class mod 9 scrambles every
+move. Champions are orbits that climb ~8 bits and hover long - luck
+compounded far beyond what dealt branches allow you to select.
+CONSEQUENCE: delay/path records (Roosendaal) are safe from backward
+construction; they are genuinely decoder-direction finds. The one-way
+lock has a quantitative backward form: choosing among dealt branches
+buys ratio ~4, luck delivers 26+. Open engineering question: could
+lookahead/DP over branch choices beat greedy? (Verified delay bounds
+say not at small sizes; at large sizes unknown - a bounded-completeness
+question, itself open.) Sources: ericr.nl/wondrous (delay/completeness
+records; Res(993) = 1.253142 highest below 2^32).
