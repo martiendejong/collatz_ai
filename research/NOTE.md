@@ -3310,3 +3310,23 @@ completes the family-sequence calculus: every quantity in the macro
 step is a direct formula in n; the only irreducible cost is that each
 new decision reads one fresh bit-window of n (Thm 116 pay-per-
 decision) - now visible as the v2/modular reads above.
+
+## Formula 166b (MARTIEN'S ROOT-RECURSION ROUTE - the macro step as
+## one sum). R3736-3745
+Alternative route to Formula 166, proposed by Martien from memory
+(corrected +8 for his +1): count trailing binary ones -> sequence k,
+family root m = (n+1)/2^k; then the climb result follows the root by
+the double-step recursion x -> 9x + 8, floor(k/2) times (start m-1
+for even k, 3m-1 for odd k). Telescopes because x+1 -> 9(x+1):
+   x = 3^k * m - 1,
+i.e. THE ENTIRE RISE SEQUENCE IS "SWAP THE 2-POWER FOR A 3-POWER":
+   n + 1 = m * 2^k   ->   x + 1 = m * 3^k.
+With the merge read, the whole macro step is literally one sum:
+   n' = (m * 3^k - 1) >> v2(m * 3^k - 1).
+Verified: root recursion == swap formula == honest stepping, 100000
+seeds, 0 failures. Example: n = 447 = 7*2^6 - 1: trace 6, 62, 566,
+5102 = 3^6*7 - 1; merge v2=1: n' = 2551. This is the simplest known
+form of the macro step - and it makes the binary->ternary exchange
+(Sterin-Woods; our CA) an ALGEBRAIC identity rather than a digit
+algorithm: the conversion is not something the machine does, it is
+what the formula IS.
