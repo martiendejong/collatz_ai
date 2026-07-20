@@ -3219,3 +3219,17 @@ or C port); S = 36..40 reachable in pure Python (0.5-4 h each).
   2^33 - C port / numpy mulmod / Schroeppel-Shamir 4-way split
   (memory 2^(D/4)) are the known routes; beyond that zone 2 is
   conditional-only and zone 3 is wall 2 (mathematics, not compute).
+
+## Result 162 (RECORD r <= 40 - overnight sweep complete except the
+## milestone). R3661-3680
+Patched sweep (numpy sort + chunked lookups) results, all CYCLE-WORDS
+= 0, unconditional:
+  S=35 (720s), S=36 (1454s), S=37 (2341s), S=38 (4649s),
+  S=39 (5839s), S=40 (11925s = 3.3h), moduli up to
+  M = 6,289,078,614,652,622,815 ~ 6.3e18.
+Certificate record: r <= 20 (bigint residue-DP, cloud-budgeted) ->
+r <= 40 (mediant-MITM, one desktop, one night). S=41 - the first
+strong continued-fraction convergent window (65,41), the one whose
+comma is 30x tighter than anything below it - is in progress (~5h).
+Zone 1 of the exclusion map now spans S <= 40 self-contained
+(certificates + Lemma 160 + our own n < 2^21 verification).
