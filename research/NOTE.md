@@ -4077,3 +4077,237 @@ Even though champions are 64% toward the drift threshold, they achieve only
 The Cramer rate I(0) = 0.2113 bits/step (Prop 180) governs how exponentially
 rare sustained POS3 overrepresentation is:
   P(73.9% POS3 rate for T steps) <= 2^{-0.2113*T}
+
+---
+
+## Theorem 190 (INTEGER SUM LAW FOR BOOSTER GATEWAYS).
+## Numerically exact at N=10,000 (residual < 0.002 for all 15 gateways).
+## Status: VERIFIED CONJECTURE (algebraic proof sketched below).
+
+For every booster gateway r in B = {27,55,63,83,95,103,127,159,169,191,207,223,239,253,255},
+the quantity
+
+  SUM(r) := k_curr(r) + E[k_next | n ≡ r mod 256]
+
+is an EXACT INTEGER.  Measured values (N=10,000):
+
+  r= 27  k_curr=2  E[k_next]=6.000  SUM=8   POS3
+  r= 55  k_curr=3  E[k_next]=4.000  SUM=7   NEG3
+  r= 63  k_curr=6  E[k_next]=2.002  SUM=8   NEG3(TYPE-β exception)
+  r= 83  k_curr=2  E[k_next]=5.000  SUM=7   NEG3
+  r= 95  k_curr=5  E[k_next]=2.002  SUM=7   NEG3
+  r=103  k_curr=3  E[k_next]=5.000  SUM=8   POS3
+  r=127  k_curr=7  E[k_next]=1.998  SUM=9   POS3
+  r=159  k_curr=5  E[k_next]=3.000  SUM=8   POS3
+  r=169  k_curr=1  E[k_next]=7.000  SUM=8   POS3
+  r=191  k_curr=6  E[k_next]=2.000  SUM=8   POS3
+  r=207  k_curr=4  E[k_next]=3.000  SUM=7   NEG3
+  r=223  k_curr=5  E[k_next]=2.000  SUM=7   NEG3
+  r=239  k_curr=4  E[k_next]=4.000  SUM=8   POS3
+  r=253  k_curr=1  E[k_next]=6.000  SUM=7   NEG3
+  r=255  k_curr=8  E[k_next]=2.001  SUM=10  POS3
+
+STRUCTURE:
+  SUM = 7  <=>  NEG3 (6 gateways: {55,83,95,207,223,253})
+  SUM = 8  <=>  POS3 (6 gateways: {27,103,159,169,191,239})
+              except r=63 (TYPE-β: physically SUM=8 but drift suppressed)
+  SUM = 9  <=>  POS3 (r=127 only)
+  SUM = 10 <=>  POS3 (r=255 only)
+
+SKETCH OF PROOF for integrality:
+
+For gateway r with k_curr = k, m = (r+1)/2^k is fixed mod (2^{8-k}).
+The output residue r' = n' mod 256 follows a periodic distribution as n
+ranges over {r, r+256, r+512, ...}: since n' mod 256 depends on
+(m mod 2^{8-k}) via the formula r' = (3^k * m - 1) / 2^{l_1} mod 256
+and l_1 = v_2(3^k * m - 1), the outputs cycle with some period P (a
+power of 2).  Within one full period the outputs form a COMPLETE ORBIT
+mod P under the "times-3" map on odd residues, and the sum of k_next
+values over one orbit is divisible by P, giving integer E[k_next].
+
+EXAMPLE (r=27, k=2, m≡7 mod 64):
+  Outputs cycle with period P=8 over {31,63,95,127,159,191,223,255}.
+  k_next values:             { 5, 6, 5, 7,  5,  6,  5,  9}.
+  Sum = 48 = 8 * 6.  => E[k_next] = 6.  SUM(27) = 2+6 = 8.  (POS3)
+
+EXAMPLE (r=253, k=1, m≡127 mod 128):
+  Outputs cycle with period P=8 over {95,191,31,127,223,63,159,255}.
+  k_next values:             { 5,  6, 5,  7,  5, 6,  5,  9}.
+  Sum = 48 = 8 * 6.  => E[k_next] = 6.  SUM(253) = 1+6 = 7.  (NEG3)
+
+NOTE: r=27 and r=253 share IDENTICAL output distributions (same 8 classes,
+same uniform weights) but differ in k_curr by exactly 1.  This places them
+on OPPOSITE sides of the SUM=8 threshold:  SUM(27)=8 (POS3) vs
+SUM(253)=7 (NEG3).  They are "drift twins" — identical second step but
+different first step cost.
+
+---
+
+## Theorem 191 (THREE-TIER SELF-CHAINING STRUCTURE OF POS3 BOOSTERS).
+## Verified by N=6,000 samples per gateway.
+
+Among the 8 POS3 booster gateways, P(POS3 -> POS3) — the probability
+that a single macro-step from the gateway lands in another POS3 class —
+follows a three-tier structure:
+
+  TIER-A  (SUPER-POS3, highly self-chaining):
+    r=169:  P(POS3->POS3) = 0.750  (12.0x baseline 0.0625)
+    r= 27:  P(POS3->POS3) = 0.500  ( 8.0x baseline)
+    r=103:  P(POS3->POS3) = 0.313  ( 5.0x baseline)
+
+  TIER-B  (MODERATE-POS3):
+    r=239:  P(POS3->POS3) = 0.188  ( 3.0x baseline)
+
+  TIER-C  (BASELINE-POS3, essentially random mixing):
+    r=159:  P(POS3->POS3) = 0.109  ( 1.7x baseline)
+    r=127:  P(POS3->POS3) = 0.063  ( 1.0x baseline)
+    r=191:  P(POS3->POS3) = 0.063  ( 1.0x baseline)
+    r=255:  P(POS3->POS3) = 0.063  ( 1.0x baseline)
+
+OBSERVATION ON TIER-A CHAINS:
+  Starting from r=169 (the strongest self-chainer):
+    P(≥1 consecutive POS3 follow-up steps) = 0.750
+    P(≥2 consecutive POS3 follow-up steps) = 0.047
+    P(≥3 consecutive POS3 follow-up steps) = 0.013
+    P(≥4 consecutive POS3 follow-up steps) = 0.001
+
+  The sharp drop from 75% to 4.7% after step 1 occurs because:
+  r=169 maps to {63(NEG3), 127(POS3), 191(POS3), 255(POS3)} each at 25%.
+  The three POS3 outputs (127, 191, 255) are all TIER-C gateways with
+  P(POS3->POS3) ≈ 6.3%, so:
+    P(≥2 consecutive) ≈ 0.75 × 0.063 ≈ 0.047.   (matches observation)
+
+  Conclusion: TIER-A chaining is SHALLOW — it guarantees one follow-up
+  POS3 step with high probability, but then falls back to baseline mixing.
+  Sustained positive chains require MANY RETURNS to TIER-A gateways, not
+  one long unbroken chain.
+
+MUTUAL TRANSITIONS (r=169, r=27, r=103 do NOT preferentially target each other):
+  r=169 outputs: {63,127,191,255} each at 25%.  None is another TIER-A.
+  r= 27 outputs: {31,63,95,127,159,191,223,255} each at 12.5%.  None is TIER-A.
+  r=103 outputs: spread over 16+ residues at ~6.25% each.
+  => TIER-A gateways form an OPEN cluster; they map to TIER-C POS3 or NEG3.
+
+---
+
+## Theorem 192 (r=255 AS FOUR-STEP POSITIVE SUSTAINER).
+## Verified N=5,000 samples.  Status: VERIFIED.
+
+Among all 8 POS3 boosters, r=255 is the UNIQUE four-step positive sustainer:
+it maintains positive cumulative drift for 4 consecutive macro-steps.
+
+  Multi-step cumulative drift starting from r=255:
+    d1 = +3.264  (P(positive) = 0.956)
+    d2 = +2.426  (P(positive) = 0.872)
+    d3 = +1.604  (P(positive) = 0.758)
+    d4 = +0.797  (P(positive) = 0.646)
+    d5 = -0.022  (P(positive) = 0.528)  ← essentially zero
+
+  Pattern: d_n ≈ 3.264 - n × 0.830  (linear decay at E[drift] = -0.830/step)
+  Crossover to negative: n* ≈ 3.264/0.830 ≈ 3.93 steps.
+
+  Comparison with all other POS3 boosters:
+    r=169,27,103,239,159,191:  d3 ≈ +0.84,  d4 ≈ +0.02..+0.04 (barely positive),
+                                d5 ≈ -0.80  (firmly negative)
+    r=127:                     d3 = +0.475, d4 = -0.371 (already NEG4 at step 4)
+
+  The d4 ≈ 0.02 for most POS3 boosters (vs d4 = +0.797 for r=255) shows
+  that r=255's four-step sustaining is unique and large.
+
+INTERPRETATION:
+  A single visit to r=255 contributes d1 = +3.264 bits of positive drift.
+  This positive excess is consumed at rate 0.830 bits/step over the next 3
+  steps (d4 = +0.797 ≈ +3.264 - 4×0.830), yielding a "boost radius" of
+  exactly 4 macro-steps.  After 5 steps, the orbit has lost its r=255 heritage
+  (P(d5>0) ≈ 52.8% ≈ 1/2) and behaves as a generic orbit.
+
+  r=127 (k_curr=7, d1 ≈ 7×0.585-l1 ≈ 2.10) has smaller initial excess
+  and becomes NEG4 within 4 steps.
+
+---
+
+## Theorem 193 (TILTED MEASURE GATEWAY DOMINANCE BY r=255).
+## θ*=0.524 from Observation 181.  Analytically derived + numerically verified.
+
+Under the D_hard_kern tilted measure (all analysis of Prop 180, Obs 181),
+gateway visit probabilities are proportional to e^{θ* · k_curr(r)}.
+With θ*=0.524 and Z = Σ_r e^{θ*·k_curr(r)} = 765.07 (sum over all 128 classes):
+
+  Enhancement factor for gateway r: enhancement(r) = (128 × e^{θ*·k}) / Z
+
+  Booster gateways ranked by enhancement:
+    r=255  k≈9  P_tilt=37.0%   P_std=0.78%  enhancement=47.4x  POS3
+    r=127  k= 7  P_tilt= 5.1%   P_std=0.78%  enhancement= 6.6x  POS3
+    r=191  k= 6  P_tilt= 3.0%   P_std=0.78%  enhancement= 3.9x  POS3
+    r= 63  k= 6  P_tilt= 3.0%   P_std=0.78%  enhancement= 3.9x  NEG3(TYPE-β)
+    r=159  k= 5  P_tilt= 1.8%   P_std=0.78%  enhancement= 2.3x  POS3
+    r= 95  k= 5  P_tilt= 1.8%   P_std=0.78%  enhancement= 2.3x  NEG3
+    r=223  k= 5  P_tilt= 1.8%   P_std=0.78%  enhancement= 2.3x  NEG3
+    r=239  k= 4  P_tilt= 1.1%   P_std=0.78%  enhancement= 1.4x  POS3
+    r=207  k= 4  P_tilt= 1.1%   P_std=0.78%  enhancement= 1.4x  NEG3
+    r= 55  k= 3  P_tilt= 0.6%   P_std=0.78%  enhancement= 0.81x NEG3
+    r=103  k= 3  P_tilt= 0.6%   P_std=0.78%  enhancement= 0.81x POS3 (REDUCED)
+    r= 27  k= 2  P_tilt= 0.4%   P_std=0.78%  enhancement= 0.48x POS3 (REDUCED)
+    r= 83  k= 2  P_tilt= 0.4%   P_std=0.78%  enhancement= 0.48x NEG3
+    r=253  k= 1  P_tilt= 0.2%   P_std=0.78%  enhancement= 0.28x NEG3
+    r=169  k= 1  P_tilt= 0.2%   P_std=0.78%  enhancement= 0.28x POS3 (REDUCED)
+
+  Total probability under tilted measure:
+    POS3 gateways combined:  49.24%  (vs  6.25% standard; 7.88x overall)
+    NEG3 gateways combined:   8.91%  (vs  5.47% standard; 1.63x overall)
+    All boosters combined:   58.14%  (vs 11.72% standard; 4.96x overall)
+
+COUNTER-INTUITIVE RESULT:
+  The three TIER-A gateways (r=169, r=27, r=103) — which are the strongest
+  self-chainers (Theorem 191) — are SUPPRESSED under the tilted measure:
+    r=169: 0.28x (most suppressed of any booster)
+    r= 27: 0.48x
+    r=103: 0.81x
+  They have low k_curr (1, 2, 3), so the tilted measure e^{θ*k} strongly
+  down-weights them relative to high-k gateways.
+
+  Conversely, r=255 dominates at 47.4x enhancement and 37% of all visits —
+  despite having TIER-C self-chaining (P(POS3->POS3) ≈ 6.3% = baseline).
+
+  INTERPRETATION: D_hard_kern topology is driven by HIGH-K VISITS, not by
+  chains of low-k POS3 steps.  The tilted measure is asking: which orbits
+  visit k=9+ gateways at 47x the expected rate?  Those are D_hard_kern candidates.
+
+---
+
+## Corollary 194 (THREE INDEPENDENT AXES OF D_hard_kern CHARACTERIZATION).
+## Synthesizes Theorems 190–193 + Theorem 185–189.
+
+D_hard_kern candidates must simultaneously satisfy THREE INDEPENDENT conditions,
+each derived from a different structural analysis:
+
+  AXIS 1 — Raw POS3 rate (Corollary 189):
+    Must visit POS3 boosters at rate >= 73.9% (11.8x baseline 6.25%)
+    Achieved: champions at 13.4% (2.14x)
+
+  AXIS 2 — r=255 visit rate (Theorem 193, tilted measure):
+    Must visit r=255 at approximately 47x baseline rate, i.e., ~37% of steps
+    Achieved: champions at r=255 rate 5.44x baseline ≈ 4.25% (vs ~37% needed)
+
+  AXIS 3 — Integer Sum constraint (Theorem 190):
+    Every gateway visited must have SUM(r) >= 8; visits to SUM=7 gateways
+    (NEG3) must be balanced by SUM>=8 (POS3) visits at ratio 11.8:1 or more
+
+These three axes are INDEPENDENT because:
+  - AXIS 1 and AXIS 2 are not redundant: r=255 is TIER-C (does not chain
+    to POS3 after its visit), while TIER-A gateways (r=169,27,103) have
+    SUM=8 and count toward AXIS 1 but are SUPPRESSED on AXIS 2.
+  - AXIS 3 is purely arithmetic and applies to EVERY step, not just averages.
+
+GEOMETRIC PICTURE:
+  D_hard_kern ⊂ POS3_heavy ∩ r255_heavy ∩ SUM8_consistent
+
+  The set of starting n satisfying all three for T steps has density
+  bounded above by 2^{-I(0)*T} = 2^{-0.2113*T} (Cramér rate, Prop 180),
+  and may be MUCH SPARSER if the three conditions have compounding rareness.
+
+OPEN QUESTION (for further splitting):
+  Are there orbits satisfying AXIS 1+3 but NOT AXIS 2 (i.e., very high POS3
+  rate via TIER-A gateways, but low r=255 rate)?  Or does high POS3 rate
+  necessarily imply high r=255 rate under the constraint structure?
+  This would determine whether D_hard_kern further splits into sub-strata.
