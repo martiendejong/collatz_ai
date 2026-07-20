@@ -3456,3 +3456,31 @@ fork (5%-tax ceiling threat); and even density 1 is weaker than
 relocates the difficulty, it does not reduce it - but it is the
 formulation in which our flat encoder, the density record, and the
 fork all become the same object.
+
+## Remark 172 (THE SET FORM: recursion eliminated from the statement).
+## R3821-3835
+Martien asked for a SET containing all positive integers, rather than
+a recursion. It exists, explicitly:
+  T = { (2^D - sum_{i<S} 3^(S-1-i) 2^(a_i)) / 3^S :
+        0 <= a_0 < a_1 < ... < a_{S-1} < D, value integer, odd, > 0 }
+COLLATZ <=> T contains every positive odd integer. No recursion
+anywhere in the statement: T is the value set of one explicit
+two-base numeration form (this is the Bohm-Sontacchi representation,
+1978 - attributed; our verification below adds the purity check).
+PURITY (measured): all 868 integer positive odd solutions with
+D <= 22 genuinely follow their word to 1 - ZERO spurious solutions.
+The representation IS the orbit written as a numeral: depth D of the
+representation = orbit length (27 needs D = 111; the numbers missing
+at D <= 22 are exactly the longer-orbit ones, not gaps).
+STATUS OF THE REMAINING QUESTION: Collatz is now a pure
+representation theorem waiting for its proof - the shape of Lagrange
+four-squares ("every n is a sum of four squares"), but for the 2-3
+numeration form above. What our corpus contributes to it: (1) at
+least x^0.9146 of numbers below x provably have representations (the
+certified K-L record = density of T); (2) the gamma fork = whether
+this route can approach density 1, with the 5%-tax ceiling looming;
+(3) the one-way asymmetry (Thm 170) = why exhibiting a representation
+for GIVEN n is hard (decoding direction) while verifying one is
+trivial (one evaluation); (4) four-squares had quaternions as its
+structural engine - the analogous engine for T is exactly what the
+field lacks.
