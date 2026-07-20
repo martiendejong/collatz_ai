@@ -3385,3 +3385,26 @@ determinable?" YES - each k_t, l_t is a nested v2-expression in n
   provable islands (repunits etc.) are exactly where that digit
   question happens to be trivial (m = 1: agreement length = position
   of first 1-bit of 3^-k - still read, not formula).
+
+## Theorem 169 (THE UNIVERSAL READ LAW - one digit problem under the
+## whole family) + honest direction of implication. R3781-3790
+For EVERY variant (an+b)/2 (a odd, b odd), with y = (a-2)n + b,
+k = v2(y), family head m~ = y/2^k: the merge depth is
+   l = agreement length of m~ with the binary expansion of b*a^(-k).
+Verified 120000/120000 across (3,1),(5,1),(3,5),(7,3),(5,3),(7,1).
+Thm 87 is the (3,1) case. CONSEQUENCE: the geometry question of the
+ENTIRE map family points at ONE object: binary digits of powers of
+odd numbers - a single digit-technology would address every variant
+at once (and the dead-coupling variants, which need no reads, are
+exactly the already-solved ones: the cliff law in digit form).
+HONEST DIRECTION (correcting the tempting converse): what is PROVED
+is G-collapse => closed-form digit access (necessity). The converse -
+digits solved => Collatz solved - is NOT established: even with
+perfect digit knowledge of a^(-k), composing steps still multiplies
+m~ by a-powers with CARRIES, a second non-collapsing layer. The
+correct statement: solving the digit problem removes the KNOWN
+obstruction and would make question G attackable for the whole
+family simultaneously; it is the gate, not automatically the key.
+Both layers (digit access + carry composition) are what a full
+G-formula must conquer - for all variants at once, since the
+architecture is uniform (verified).
