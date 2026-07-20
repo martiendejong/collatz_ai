@@ -3431,3 +3431,28 @@ to exist; conversely no inverter is known); the provable islands are
 the geometries where the decoder happens to be flat (dead families).
 This subsumes the decompression principle (blog part 3) as exact
 arithmetic rather than analogy.
+
+## Remark 171 (THE BACKWARD TREE FORMULATION - exact equivalence, two
+## honest caveats, and a measured coverage curve). R3806-3820
+Martien: inverting the formula = proving every positive integer is
+reachable backwards from 1. The equivalence is EXACT and classical
+(the inverse-tree formulation): Collatz <=> the backward tree rooted
+at 1 covers Z+. Our flat encoder (Thm 170) is its walking engine: the
+predecessors of odd n' are n = m*2^k - 1, m = (n'*2^l + 1)/3^k, over
+all (k,l) with 3^k | n'*2^l + 1 and m odd - one formula per branch,
+zero reads. Measured: from 1, depth 34, value band 4N: 83.5% of odd
+numbers <= 2,000,000 reached (0.25% at depth 5 -> 84% at 34, steady);
+the remainder is band/depth truncation (high-flyers like 27 overshoot
+the band), consistent with conjectured full coverage.
+CAVEAT 1: a decoder formula alone would NOT prove it - every n has a
+geometry stream, including divergent ones; the formula must
+additionally be shown to always reach the 1-loop. Inversion buys
+analyzability, not automatically the theorem.
+CAVEAT 2: the coverage version of this programme IS the Krasikov-
+Lagarias density programme: backward-tree density >= x^0.9146 is our
+certified record; whether the route can reach exponent 1 is the gamma
+fork (5%-tax ceiling threat); and even density 1 is weaker than
+"every n" (Tao's almost-all sits exactly there). The tree formulation
+relocates the difficulty, it does not reduce it - but it is the
+formulation in which our flat encoder, the density record, and the
+fork all become the same object.
