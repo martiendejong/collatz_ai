@@ -3534,3 +3534,24 @@ STATUS OF THE FULL CHAIN, per link:
      zero empirical links remaining.
   6. NOT proven: that the set actually IS Z+ - that is the conjecture
      itself; the certified x^0.9146 density record is the proven part.
+
+## Remark 173 (WHAT THE SET FORM BUYS FOR HUGE NUMBERS - and which
+## records it can and cannot touch). R3856-3865
+CAN: mint arbitrarily huge numbers WITH proof of convergence - demo:
+a 685-digit number built in 500 backward macro-steps (one formula
+each, avoiding the mod-3 leaves), forward-checked to reach 1. Its
+geometry list IS its certificate; verification is one evaluation.
+CANNOT: certify a GIVEN huge number without walking its orbit - the
+one-way lock (Thm 170). Hence:
+* Barina's verification record (all n < 2^71): NOT beatable this way;
+  his sieves already exploit exactly this structure (established
+  R~2400s); bulk verification cost is orbit-walk-bound.
+* The Lagarias record properly = the K-L density exponent (published
+  0.84; ours 0.9146 certified). Pushing it further needs the K-L
+  inequality system at depth k = 21+ (queued) - a different
+  computation entirely; huge-number checking does not touch it.
+* Records we CAN push now: window certificates r = 42..53 (C port /
+  Schroeppel-Shamir), and gamma via k=21.
+The mod-3 leaf lesson (numbers divisible by 3 have no rise-
+predecessors) cost two buggy runs before the filter was right -
+logged for honesty.
