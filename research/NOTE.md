@@ -3249,3 +3249,41 @@ certified, zone 1 of the exclusion map now runs to the first strong
 convergent. Next natural targets: S=42..53 (semiconvergents up to the
 next convergent (84,53); costs double per ~1.5 S in pure Python - a
 C port or Schroeppel-Shamir split extends reach further).
+
+## Theorem 164 (FAMILY-SEQUENCE TRANSITION EQUATION + ternary
+## pre-writing in family coordinates). R3691-3710
+For n = m*2^k - 1 (family m, sequence k), one macro step (burn k,
+divide l) lands on n' = m'*2^k' - 1 with the exact LINEAR law
+   3^k * m + 2^l - 1 = m' * 2^(l+k')          (verified 100000/100000)
+Consequences:
+* m' = (3^k m + 2^l - 1)/2^(l+k') - next family from current, no base
+  conversion anywhere.
+* TERNARY PRE-WRITING: for every j <= k:
+     m' == (2^l - 1) * 2^-(l+k') (mod 3^j)    (verified, 0 failures)
+  The low ternary digits of the NEXT family are functions of the step
+  geometry (l, k') ALONE - independent of m. Table mod 3: l even =>
+  3 | m'; l odd, k' even => m' == 2; l odd, k' odd => m' == 1 (mod 3).
+  The current sequence length k sets HOW MANY ternary digits come free.
+* TWO-SIDED LEDGER: the step reads l+k' binary digits of m (the
+  oracle, Thm 87/114; measured mean 4.005, theory 4) and writes k
+  ternary digits of m' (above). Binary in, ternary out, every step.
+* NO FREE LUNCH: MI(forced ternary digits of m'; next step's l') =
+  0.000166 bits (marginals 2.8/1.9) - the written ternary digits are
+  blind to the next binary decision (coprime blindness), exactly as
+  the incompressibility theory requires. This is Thm 90's pre-writing
+  restated in family coordinates - the cleanest one-step law we have.
+
+## Formula 165 (THE DIRECT FORMULA fn(n,k,a,b,c) - closed form for k
+## steps, no recursion). R3711-3720
+For T(n) = (an+b)/c iterated k times:
+   fn(n,k,a,b,c) = (a^k n + b (a^k - c^k)/(a - c)) / c^k
+                 = (a/c)^k (n - p) + p,   p = b/(c-a) the fixed point
+((a^k - c^k)/(a-c) = sum_{j<k} a^j c^(k-1-j), always an integer).
+Verified 10000/10000 against step iteration for (3,1,2), (5,1,2),
+(3,5,2), (7,3,4), (3,-1,2). For Collatz rises (3,1,2): p = -1 and
+fn = (3/2)^k (n+1) - 1: family coordinates ARE the fixed-point frame -
+"n+1" measures distance to p, and a rise-run is pure scaling by
+(3/2)^k. General mixed words: T_w(n) = (A n + B)/C with A = prod a_i,
+C = prod c_i, B = sum_i b_i (prod a after i)(prod c before i)
+(verified 3000/3000) - B is exactly the W-accumulator (Thm 88/90) and
+B/(C-A) the anchor. Every finite step sequence is ONE affine formula.
