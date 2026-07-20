@@ -3484,3 +3484,23 @@ for GIVEN n is hard (decoding direction) while verifying one is
 trivial (one evaluation); (4) four-squares had quaternions as its
 structural engine - the analogous engine for T is exactly what the
 field lacks.
+
+## Remark 172b (reversecollatzset(n0,a,b,c) - Martien's notation,
+## generic and verified). R3836-3845
+Definition (c = 2):
+  reversecollatzset(n0,a,b,2) =
+    { (n0*2^D - b*sum_{i<S} a^(S-1-i) 2^(e_i)) / a^S :
+      0 <= e_0 < ... < e_{S-1} < D, value integer > 0 }
+Purity verified (zero spurious among all solutions, D <= 16) for
+(1,3,1), (1,5,1), (13,5,1), (19,3,5) - every member's true orbit
+reaches the root. Leading falls include the evens automatically.
+THE FAMILY'S OPEN QUESTIONS IN ONE NOTATION:
+  COLLATZ:            reversecollatzset(1,3,1,2) = Z+
+  5n+1 divergence:    Z+ \ [revset(1,5,1,2) u revset(13,5,1,2) u
+                      revset(17,5,1,2) u possible unknown roots]
+                      has density 1 (measured 98.34%)
+  cycle questions:    which roots exist = which n0 give cycles
+No recursion in any statement; each is a representation question
+about one explicit two-base numeration form. The visible density
+difference (Collatz set: solid initial segment; 5n+1 basins: sparse
+lattices) is the drift, written as set density.
