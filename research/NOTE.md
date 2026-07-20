@@ -3504,3 +3504,33 @@ No recursion in any statement; each is a representation question
 about one explicit two-base numeration form. The visible density
 difference (Collatz set: solid initial segment; 5n+1 basins: sparse
 lattices) is the drift, written as set density.
+
+## Theorem 172c (PURITY IS PROVEN - the set chain is now rigorous end
+## to end). R3846-3855
+Martien asked whether every step up to the set was proven. Audit
+found one link that was only measured (purity, Rem 172); it is now
+PROVEN:
+THEOREM. Let a, b be odd, n, n_end > 0, and suppose
+   a^S n + W = n_end 2^D,  W = b sum_{i<S} a^(S-1-i) 2^(e_i),
+   0 <= e_0 < ... < e_{S-1} < D.
+Then the orbit of n under (an+b)/2, n/2 follows exactly the word given
+by the pattern and lands on n_end.
+PROOF (4 lines). For any t, split W = a^(S-s_t) W_t + W_(>=t) where
+W_(>=t) collects terms with e_i >= t - all divisible by 2^t. Reducing
+the hypothesis mod 2^t: a^(S-s_t)(a^(s_t) n + W_t) == 0, and a is
+odd, so 2^t | a^(s_t) n + W_t: every intermediate x_t = (a^(s_t) n +
+W_t)/2^t is an INTEGER. Parity: x_(t+1) integer forces x_t odd at
+rise steps ((ax+b)/2, b odd) and x_t even at fall steps (x/2). QED
+Stress-tested 1256 random instances, 4 maps, arbitrary endpoints: 0
+violations. (Simple enough that it is surely classical in substance -
+Bohm-Sontacchi's equivalence needs exactly this; we attribute the
+statement family to them and claim only the self-contained record.)
+STATUS OF THE FULL CHAIN, per link:
+  1. macro-formula, p-step sum (Thm 164-167): PROVEN algebra.
+  2. orbit => representation: PROVEN (unroll, Thm 167).
+  3. representation => orbit (purity): NOW PROVEN (above).
+  4. hence reversecollatzset(n0,a,b,2) = Tree(n0) EXACTLY: proven.
+  5. Collatz <=> revset(1,3,1,2) = Z+: a fully rigorous equivalence,
+     zero empirical links remaining.
+  6. NOT proven: that the set actually IS Z+ - that is the conjecture
+     itself; the certified x^0.9146 density record is the proven part.
