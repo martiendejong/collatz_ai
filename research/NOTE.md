@@ -4226,52 +4226,74 @@ INTERPRETATION:
 
 ---
 
-## Theorem 193 (TILTED MEASURE GATEWAY DOMINANCE BY r=255).
-## θ*=0.524 from Observation 181.  Analytically derived + numerically verified.
+## Theorem 193 (TILTED MEASURE GATEWAY VISIT PROBABILITIES).
+## θ*=0.524 (bits parameterization) from Observation 181.
+## Analytically derived; I_bits(0)=0.2113 verified to match Prop 180.
 
-Under the D_hard_kern tilted measure (all analysis of Prop 180, Obs 181),
-gateway visit probabilities are proportional to e^{θ* · k_curr(r)}.
-With θ*=0.524 and Z = Σ_r e^{θ*·k_curr(r)} = 765.07 (sum over all 128 classes):
+FORMULA: In the bits-parameterized tilted measure, the weight for a macro-step
+starting at class r with k_curr = j is:
 
-  Enhancement factor for gateway r: enhancement(r) = (128 × e^{θ*·k}) / Z
+  w(r) = (3/2)^{θ*·j} × E[(1/2)^{θ*·l}]  =  1.237^j × 0.533
 
-  Booster gateways ranked by enhancement:
-    r=255  k≈9  P_tilt=37.0%   P_std=0.78%  enhancement=47.4x  POS3
-    r=127  k= 7  P_tilt= 5.1%   P_std=0.78%  enhancement= 6.6x  POS3
-    r=191  k= 6  P_tilt= 3.0%   P_std=0.78%  enhancement= 3.9x  POS3
-    r= 63  k= 6  P_tilt= 3.0%   P_std=0.78%  enhancement= 3.9x  NEG3(TYPE-β)
-    r=159  k= 5  P_tilt= 1.8%   P_std=0.78%  enhancement= 2.3x  POS3
-    r= 95  k= 5  P_tilt= 1.8%   P_std=0.78%  enhancement= 2.3x  NEG3
-    r=223  k= 5  P_tilt= 1.8%   P_std=0.78%  enhancement= 2.3x  NEG3
-    r=239  k= 4  P_tilt= 1.1%   P_std=0.78%  enhancement= 1.4x  POS3
-    r=207  k= 4  P_tilt= 1.1%   P_std=0.78%  enhancement= 1.4x  NEG3
-    r= 55  k= 3  P_tilt= 0.6%   P_std=0.78%  enhancement= 0.81x NEG3
-    r=103  k= 3  P_tilt= 0.6%   P_std=0.78%  enhancement= 0.81x POS3 (REDUCED)
-    r= 27  k= 2  P_tilt= 0.4%   P_std=0.78%  enhancement= 0.48x POS3 (REDUCED)
-    r= 83  k= 2  P_tilt= 0.4%   P_std=0.78%  enhancement= 0.48x NEG3
-    r=253  k= 1  P_tilt= 0.2%   P_std=0.78%  enhancement= 0.28x NEG3
-    r=169  k= 1  P_tilt= 0.2%   P_std=0.78%  enhancement= 0.28x POS3 (REDUCED)
+where (3/2)^{θ*} = (3/2)^{0.524} = 1.2367 and E[(1/2)^{θ*l}] = 0.533
+(from l~Geometric(1/2) with tilt β=(1/2)^{1+θ*}=0.348).
+
+The per-class visit probability is:
+  π_θ*(r) = w(r) / (128 × M_bits(θ*))
+
+where M_bits(θ*) = 0.8637 (verified; gives I_bits(0) = -log₂(0.8637) = 0.2113).
+Enhancement factor = w(r)/M_bits(θ*).
+
+ENHANCEMENT TABLE (all 15 booster gateways, N=exact analytic formula):
+
+  r=255  k≥8   P_tilt=3.46%  P_std=0.78%  enhancement=4.43x  POS3  DOMINANT
+  r=127  k= 7  P_tilt=2.13%  P_std=0.78%  enhancement=2.73x  POS3
+  r=191  k= 6  P_tilt=1.72%  P_std=0.78%  enhancement=2.21x  POS3
+  r= 63  k= 6  P_tilt=1.72%  P_std=0.78%  enhancement=2.21x  NEG3(TYPE-β)
+  r=159  k= 5  P_tilt=1.39%  P_std=0.78%  enhancement=1.79x  POS3
+  r= 95  k= 5  P_tilt=1.39%  P_std=0.78%  enhancement=1.79x  NEG3
+  r=223  k= 5  P_tilt=1.39%  P_std=0.78%  enhancement=1.79x  NEG3
+  r=239  k= 4  P_tilt=1.13%  P_std=0.78%  enhancement=1.44x  POS3
+  r=207  k= 4  P_tilt=1.13%  P_std=0.78%  enhancement=1.44x  NEG3
+  r= 55  k= 3  P_tilt=0.91%  P_std=0.78%  enhancement=1.17x  NEG3
+  r=103  k= 3  P_tilt=0.91%  P_std=0.78%  enhancement=1.17x  POS3
+  r= 27  k= 2  P_tilt=0.74%  P_std=0.78%  enhancement=0.94x  POS3  (REDUCED)
+  r= 83  k= 2  P_tilt=0.74%  P_std=0.78%  enhancement=0.94x  NEG3
+  r=253  k= 1  P_tilt=0.60%  P_std=0.78%  enhancement=0.76x  NEG3
+  r=169  k= 1  P_tilt=0.60%  P_std=0.78%  enhancement=0.76x  POS3  (REDUCED)
 
   Total probability under tilted measure:
-    POS3 gateways combined:  49.24%  (vs  6.25% standard; 7.88x overall)
-    NEG3 gateways combined:   8.91%  (vs  5.47% standard; 1.63x overall)
-    All boosters combined:   58.14%  (vs 11.72% standard; 4.96x overall)
+    POS3 gateways combined:  12.08%  (vs  6.25% standard;  1.93x overall)
+    NEG3 gateways combined:   7.89%  (vs  5.47% standard;  1.44x overall)
+    All boosters combined:   19.97%  (vs 11.72% standard;  1.70x overall)
+
+ENHANCEMENT FORMULA per k level:  enhancement(k=j) = 0.617 × 1.237^j
+  k=1: 0.763x  k=2: 0.944x  k=3: 1.167x  k=4: 1.444x
+  k=5: 1.786x  k=6: 2.208x  k=7: 2.731x  k≥8: 4.43x
+
+The enhancement grows by factor 1.237 = (3/2)^{θ*} per unit increase in k.
 
 COUNTER-INTUITIVE RESULT:
-  The three TIER-A gateways (r=169, r=27, r=103) — which are the strongest
-  self-chainers (Theorem 191) — are SUPPRESSED under the tilted measure:
-    r=169: 0.28x (most suppressed of any booster)
-    r= 27: 0.48x
-    r=103: 0.81x
-  They have low k_curr (1, 2, 3), so the tilted measure e^{θ*k} strongly
-  down-weights them relative to high-k gateways.
+  The TIER-A gateways (r=169, r=27) are REDUCED under the tilted measure
+  (0.76x and 0.94x respectively) despite being the strongest self-chainers.
+  They have low k_curr (1, 2), making them sub-dominant in the tilted measure.
 
-  Conversely, r=255 dominates at 47.4x enhancement and 37% of all visits —
-  despite having TIER-C self-chaining (P(POS3->POS3) ≈ 6.3% = baseline).
+  r=255 is the most enhanced gateway (4.43x) despite having TIER-C chaining
+  (P(POS3→POS3) ≈ 6.3% = baseline).  This is because the tilted measure
+  weights by (3/2)^{θ*k}, exponentially favoring large k_curr.
 
-  INTERPRETATION: D_hard_kern topology is driven by HIGH-K VISITS, not by
-  chains of low-k POS3 steps.  The tilted measure is asking: which orbits
-  visit k=9+ gateways at 47x the expected rate?  Those are D_hard_kern candidates.
+CHAMPION COMPARISON (from Theorem 188 enhanced visit rates):
+  r=255: champion 5.44x vs tilted 4.43x  → champions ABOVE tilt (123%)
+  r=127: champion 1.95x vs tilted 2.73x  → champions BELOW (71%)
+  r=191: champion 1.02x vs tilted 2.21x  → champions BELOW (46%)
+  r=169: champion 0.90x vs tilted 0.76x  → champions ABOVE tilt (118%)
+  r= 27: champion 0.62x vs tilted 0.94x  → champions BELOW (66%)
+  r=159: champion 1.45x vs tilted 1.79x  → champions BELOW (81%)
+
+  Champions exceed the D_hard_kern tilted measure for r=255 and r=169,
+  but fall short for r=127, r=191, r=27 — a HETEROGENEOUS profile.
+  They over-invest in r=255 (high single-step drift) and TIER-A chaining
+  (r=169, k=1 starter) at the expense of medium-k gateways (r=127, r=191).
 
 ---
 
@@ -4286,8 +4308,8 @@ each derived from a different structural analysis:
     Achieved: champions at 13.4% (2.14x)
 
   AXIS 2 — r=255 visit rate (Theorem 193, tilted measure):
-    Must visit r=255 at approximately 47x baseline rate, i.e., ~37% of steps
-    Achieved: champions at r=255 rate 5.44x baseline ≈ 4.25% (vs ~37% needed)
+    Must visit r=255 at approximately 4.43x baseline rate, i.e., ~3.5% of steps
+    Achieved: champions at r=255 rate 5.44x baseline ≈ 4.25% (ABOVE tilted need)
 
   AXIS 3 — Integer Sum constraint (Theorem 190):
     Every gateway visited must have SUM(r) >= 8; visits to SUM=7 gateways
@@ -4296,7 +4318,7 @@ each derived from a different structural analysis:
 These three axes are INDEPENDENT because:
   - AXIS 1 and AXIS 2 are not redundant: r=255 is TIER-C (does not chain
     to POS3 after its visit), while TIER-A gateways (r=169,27,103) have
-    SUM=8 and count toward AXIS 1 but are SUPPRESSED on AXIS 2.
+    SUM=8 and count toward AXIS 1 but are REDUCED on AXIS 2 (0.76-0.94x).
   - AXIS 3 is purely arithmetic and applies to EVERY step, not just averages.
 
 GEOMETRIC PICTURE:
