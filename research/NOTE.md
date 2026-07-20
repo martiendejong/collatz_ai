@@ -3408,3 +3408,26 @@ family simultaneously; it is the gate, not automatically the key.
 Both layers (digit access + carry composition) are what a full
 G-formula must conquer - for all variants at once, since the
 architecture is uniform (verified).
+
+## Theorem 170 (THE ONE-WAY ASYMMETRY: the encoder is flat, only the
+## decoder is locked). R3791-3805
+Martien's demand: write k_t and l_t each with their own complete,
+self-contained calculation, independent of the others. Finding:
+* BACKWARD this already exists: given the geometry list and final
+  head m_p, every earlier head follows by one flat modular formula
+     m_t = 3^(-k_t) (m_{t+1} 2^(l_t+k_{t+1}) - 2^(l_t) + 1)
+  with NO v2-reads anywhere - exact reconstruction verified
+  50000/50000. The encoder (geometry -> number) is per-symbol
+  independent and fully parallel.
+* FORWARD (number -> geometry) each symbol needs the previous one's
+  outcome: the decoder is sequentially locked (Rem 168).
+So the Collatz map is arithmetically a DECOMPRESSOR with an explicit,
+verified, flat encoder and a nested decoder - the shape of a one-way
+function. The conjecture's remaining question (G) is exactly: "invert
+this explicit bijection symbol-by-symbol in closed form". Martien's
+per-symbol demand IS the demand that the one-way-ness fails. What is
+honestly known: no proof either way (one-way functions are not proven
+to exist; conversely no inverter is known); the provable islands are
+the geometries where the decoder happens to be flat (dead families).
+This subsumes the decompression principle (blog part 3) as exact
+arithmetic rather than analogy.
