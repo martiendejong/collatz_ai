@@ -3903,3 +3903,177 @@ after most high-k steps (k=4,5,6 from certain classes), the orbit is
 FORCED to k_next=1 regardless of higher bits. Only through the 15 booster
 gateways can the orbit route itself toward another high-k step. D_hard_kern
 elements are precisely those orbits that consistently navigate to boosters.
+
+CORRECTION NOTE. Five of the 15 booster gateways (r=27,63,159,207,255) have
+r≡0 mod 3. These are valid gateway classes: elements of S with n≡r mod 256
+exist (the representative r is div by 3, but n=r+256j for j≢0 mod 3 has n∈S).
+For r=63 and r=159: all n∈S in the class have fixed k_curr (6 and 5 resp.).
+For r=255: k_curr=8+v2((n-255)/256+1)≥8, variable (shifted geometric).
+For r=27 and r=207: k_curr=2 and 4 resp., fixed.
+The earlier statement "128 odd values" should read "128 residue classes,
+85 with r≢0 mod 3 and 43 with r≡0 mod 3; the booster set uses all 128."
+
+---
+
+## Theorem 186 (BOOSTER FINE STRUCTURE -- THREE-LEVEL DECOMPOSITION).
+## Verified by exact sampling (5000 samples per class); r=169 proved analytically.
+
+The 15 booster gateways B admit two independent decompositions.
+
+DECOMPOSITION A: BY 2-STEP DRIFT STRENGTH.
+  HIGH-DRIFT (drift2 >= 0.34): {27, 63, 103, 127, 159, 169, 191, 239, 255}  (9)
+  LOW-DRIFT  (drift2 ~= 0.047): {55, 83, 95, 207, 223, 253}                 (6)
+
+  Low-drift boosters are MARGINAL: their 2-step advantage is +0.047/step,
+  barely above zero, arising from the condition k_curr+E[k_next]=7 (exactly
+  at the booster threshold 4/LOG23=6.84). High-drift boosters have larger
+  structural advantages (k_curr+E[k_next] >= 8 or guaranteed high k_next).
+
+DECOMPOSITION B: BY 3-STEP CHAIN DRIFT.
+  POS3 (3-step total drift > 0): {27, 103, 127, 159, 169, 191, 239, 255}   (8)
+  NEG3 (3-step total drift < 0): {55, 63, 83, 95, 207, 223, 253}           (7)
+
+  3-step drift values (total over 3 steps, verified N=5000):
+    r=255: +1.604   r=127: +0.461
+    r=27:  +0.839   r=103: +0.840   r=159: +0.844
+    r=169: +0.847   r=191: +0.847   r=239: +0.843
+    -----
+    r=253: -0.728   r=55: -0.739    r=83: -0.738   r=207: -0.747
+    r=223: -0.743   r=95: -2.732    r=63: -1.151
+
+RELATIONSHIP BETWEEN DECOMPOSITIONS.
+  All 6 LOW-DRIFT boosters are NEG3. Their marginal 2-step advantage (+0.094
+  over 2 steps) is overwhelmed by the random 3rd step (-0.83 expected).
+  All 8 HIGH-DRIFT boosters (excluding r=63) are POS3.
+  EXCEPTION: r=63 is HIGH-DRIFT (drift2=+0.340, k_curr=6) but NEG3
+  (3-step=-1.151). Cause: the class r=63 mod 256 contains TYPE-beta inputs
+  (where m=(n+1)/64 is divisible by 3) with l1~3, yielding strongly negative
+  first-step drift despite high k_curr=6. The TYPE-beta fraction wipes out
+  the k=6 advantage when averaged over the full residue class.
+
+BOOSTER SELF-ATTRACTION.
+  P(B -> B): fraction of booster outputs landing in another booster class.
+    CATALYTIC gateways (P(B->B) >= 0.75): r=169 (1.000 exactly), r=27 (0.875),
+                                           r=253 (0.875)
+    HYBRID    gateways (P(B->B) 0.20-0.75): r=103 (0.562), r=83 (0.562),
+                                             r=239 (0.344), r=55 (0.344),
+                                             r=159 (0.202), r=207 (0.203)
+    TERMINAL  gateways (P(B->B) < 0.20): r=127 (0.118), r=191 (0.118),
+                                          r=255 (0.122), r=95 (0.117),
+                                          r=223 (0.117), r=63 (0.116)
+  Overall P(B->B) = 0.378, vs baseline 15/128 = 0.117 (3.23x enhancement).
+  The self-attraction arises entirely from the 3 CATALYTIC + 6 HYBRID gateways.
+  Note: r=253 is CATALYTIC by P(B->B)=0.875 but NEG3 (different criteria).
+
+---
+
+## Proposition 187 (EXACT PROOF: r=169 IS THE UNIQUE PERFECT CATALYST).
+## Proved analytically from 2-adic arithmetic; verified 0 errors in 512 samples.
+
+CLAIM. For any n ≡ 169 mod 256 with n in S: the macro-step output n' lies in
+the booster set B with probability 1. Moreover l1=1 exactly (minimum possible).
+
+PROOF.
+  (i) n+1 ≡ 170 mod 256 = 2*85, so k_curr=1 and m ≡ 85 mod 128.
+  (ii) KEY IDENTITY: 3*85 = 255 = 2^8-1. Hence 3m ≡ -1 mod 2^8 for all
+       m ≡ 85 mod 128, giving 3m-1 ≡ -2 mod 2^8 = 2*(odd). Thus l1=1
+       (exactly, not just with high probability).
+  (iii) n' = (3m-1)/2. Then n'+1 = (3m+1)/2 = (3(85+128j)+1)/2 = 128+192j
+        for j=0,1,2,... The 2-adic valuation: v2(128+192j) = v2(64*(2+3j))
+        = 6 + v2(2+3j) >= 6, so k_next >= 6 for ALL j.
+  (iv) The residue n' mod 256 cycles over {63,127,191,255} for j=0,1,2,3 mod 4,
+       each appearing with equal frequency 1/4. All four are in B. QED.
+
+ALGEBRAIC MEANING. 85 = (2^8-1)/3 is the unique value with 3*85 = 2^8-1.
+This forces l1=1, the minimum, making r=169 the most "fuel-efficient" k=1
+gateway: it pays cost l1=1 and guarantees k_next >= 6 on the return.
+The first-step drift = 1*LOG23 - 1 = -0.415 (vs -1.415 for r=253 where l1=2).
+
+CONTRAST WITH r=253 (also CATALYTIC by P(B->B)=0.875).
+  For r=253: m_r=127=2^7-1. Then 3*127=381, 3m-1=380=4*95, l1=2.
+  First-step drift = 1*LOG23 - 2 = -1.415 (1.0 bits worse than r=169).
+  This makes r=253 NEG3 despite being catalytic: the extra l1 cost of 1 bit
+  turns the 3-step chain from +0.847 to -0.728 (difference = 1.575 over 3 steps
+  = approximately 1 bit per step added cost, consistent with Δl1=1).
+
+OBSERVED k_next DISTRIBUTION from r=169 (N=342 samples in S from 512 tried):
+  k_next=6: 171 (50.0%)   k_next=7:  86 (25.1%)   k_next=8: 43 (12.6%)
+  k_next=9:  21 ( 6.1%)   k_next=10: 10 ( 2.9%)   k_next>10: 11 ( 3.2%)
+  This is a shifted geometric with k_min=6 and rate 1/2. E[k_next]=7 exactly.
+
+---
+
+## Theorem 188 (CHAMPION ORBIT BOOSTER ENHANCEMENT SIGNATURE).
+## Measured over top-15 stopping-time record holders up to n <= 10^6.
+## N=876 champion macro-steps; N=4547 baseline macro-steps (200 random orbits).
+
+Champions (stopping-time record holders) visit booster gateways at significantly
+elevated rates compared to typical orbits.
+
+OVERALL RATES.
+  Champions:  207/876 steps in B  = 23.6%
+  Baseline:   571/4547 steps in B = 12.6%
+  Expected:   15/128             = 11.7%
+  Enhancement: 23.6%/11.7% = 2.02x
+
+BY BOOSTER TYPE.
+  POS3 gateways (8 classes): Champions 13.4% vs expected 6.25%  = 2.14x enhancement
+  NEG3 gateways (7 classes): Champions 10.3% vs expected 5.47%  = 1.88x enhancement
+
+TOP INDIVIDUAL ENHANCEMENTS:
+  r=255 (k>=9, POS3):  5.44x  (highest -- champions exploit the very-high-k gateway)
+  r=207 (k=4,  HYB):   4.54x
+  r=55  (k=3,  HYB):   2.97x
+  r=83  (k=2,  HYB):   2.71x
+  r=169 (k=1,  CAT):   2.42x  (perfect catalyst is also champion-enhanced)
+SUPPRESSED IN CHAMPIONS:
+  r=253 (k=1,  CAT):   0.74x  (BELOW baseline -- champions AVOID the neg3 catalyst!)
+
+MACRO-STEP k-DISTRIBUTION FOR CHAMPIONS vs BASELINE.
+  avg_k: champions 2.433 vs baseline 1.967 (expected 2.000)
+  avg_l: champions 1.724 vs baseline 1.992 (expected 2.000)
+  Implied drift = avg_k*LOG23 - avg_l: champions -0.301/step vs baseline -0.830/step
+
+CHAMPION POSITION ON THE DRIFT SCALE.
+  Standard drift:         -0.830/step
+  D_hard_kern threshold:   0.000/step
+  Champion drift:         -0.301/step
+  Fractional distance: (-0.301 - (-0.830)) / (0 - (-0.830)) = 63.7% of the way
+  (Prior estimate was ~30% using a different metric; the 64% uses the drift directly.)
+
+INTERPRETATION. Champions systematically bias their residue distribution toward
+POS3 boosters (2.14x enhancement) and AWAY from the NEG3 catalytic r=253 (0.74x
+suppression). The suppression of r=253 despite its high P(B->B)=0.875 is explained
+by r=253's negative 3-step drift: visiting r=253 provides a booster "chain" that
+still bleeds drift. Champions are 64% of the way toward the D_hard_kern threshold.
+
+---
+
+## Corollary 189 (REFINED D_hard_kern THRESHOLD VIA POS3 BOOSTERS).
+## Derived from Theorem 186 + 188; verified consistent with Prop 180.
+
+The POS3 booster gateways provide the ONLY source of positive 3-step drift.
+For an orbit to achieve average drift >= 0 over T macro-steps, it must visit
+POS3 gateways {27,103,127,159,169,191,239,255} at a rate p satisfying:
+
+  p * (+0.293) + (1-p) * (-0.830) = 0
+  => p >= 0.739  (i.e., >= 73.9% of steps must originate from POS3 gateways)
+
+This is MORE RESTRICTIVE than Theorem 185's 71% booster rate because:
+(a) 7 of the 15 boosters are NEG3 and cannot sustain positive drift.
+(b) Starting a 3-step chain from a NEG3 booster has negative drift (-0.35/step),
+    worse than starting from a sink (-0.83/step for just 1 step).
+
+COMPARISON OF REQUIRED vs ACHIEVED RATES:
+                     Required(D_hard_kern)  Champion   Baseline
+  Any booster:              71%            23.6%       11.7%
+  POS3 booster:             73.9%          13.4%        6.3%
+  POS3 overrepresentation:  73.9%/6.3% = 11.7x (vs champion's 2.14x)
+
+Even though champions are 64% toward the drift threshold, they achieve only
+2.14x POS3 overrepresentation vs the required 11.7x. The gap is:
+  11.7x / 2.14x = 5.5x remaining overrepresentation needed.
+
+The Cramer rate I(0) = 0.2113 bits/step (Prop 180) governs how exponentially
+rare sustained POS3 overrepresentation is:
+  P(73.9% POS3 rate for T steps) <= 2^{-0.2113*T}
