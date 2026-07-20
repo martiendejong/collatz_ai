@@ -3330,3 +3330,33 @@ form of the macro step - and it makes the binary->ternary exchange
 (Sterin-Woods; our CA) an ALGEBRAIC identity rather than a digit
 algorithm: the conversion is not something the machine does, it is
 what the formula IS.
+
+## Theorem 167 (THE p-STEP DIRECT FORMULA + THE FINAL REDUCTION).
+## R3746-3765
+Unrolling the transition equation over p macro steps:
+   2^(E_p) m_p = 3^S m_0 + sum_{t<p} 3^(S_{>t}) (2^(l_t) - 1) 2^(E_t)
+   S = sum k_t,  S_{>t} = sum_{u>t} k_u,  E_t = sum_{u<t} (l_u + k_{u+1})
+- linear in m_0, coefficients pure 2-3 monomials, geometry
+(k_0..k_p, l_0..l_{p-1}) as parameters. Verified 100000/100000.
+Demo: 27's entire descent (17 macro steps, 41 rises, 111 steps) is
+ONE evaluation of this sum given its geometry vector; the repunit
+2^20-1 needs NO reads for its first block (sterility: geometry known
+a priori) - provable blocks are exactly known-geometry blocks.
+THE REDUCTION (Martien's programme completed): every part of Collatz
+computation is now a direct formula EXCEPT the geometry vector
+G(n) = (k_0, l_0, k_1, l_1, ...). Hence:
+   THE COLLATZ CONJECTURE IS EQUIVALENT TO A STATEMENT ABOUT G ALONE
+(does every G-trajectory reach the 1-loop geometry). What we know
+about G: (i) it is a bijective re-encoding of n's bits (the address);
+(ii) over the ensemble its digits are i.i.d. fair even given the full
+past (Thm 115/128) - no statistical shortcut exists; (iii) any
+evaluator of G must consume fresh bit-windows at the stated tariff
+(Thm 116 pay-per-decision) - the t-th window's ADDRESS depends on all
+earlier geometry (the nesting), which is where incompressibility
+bites; (iv) a direct formula for G for all n is not provably
+impossible (the pi-digit caveat) - it is the exact content of the
+open door; (v) the numbers with compressible G are exactly the
+provable ones (dead families, sterile tanks). One sentence: THE
+FORMULA IS FINISHED; THE INPUT IS THE WALL. Everything deterministic
+about Collatz now fits in one sum, and everything unknown fits in
+one question: does G(n) have a formula?
