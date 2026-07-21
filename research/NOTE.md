@@ -8385,6 +8385,79 @@ Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbi
 
 ---
 
+## Obs 284 — Phantom Fixed Point Spectrum: Verified Predictions via Multiplicative Order Theory (Script 140)
+
+**Script:** 140_phantom_spectrum.py  
+**Context:** Follows Obs 283. Derives the general formula for phantom fixed points and verifies it at N=20, 24, 41.
+
+### Fundamental condition for phantom fixed points of type (K, l0)
+
+A **phantom fixed point** at modulus N is an odd n < 2^N such that macro_step(n) = n + c×2^N (c≥1). This differs from a genuine fixed point (c=0, only n=1 is genuine). Setting c=1 and using n = m×2^K−1:
+
+    m × (3^K − 2^{K+l0}) = 2^{l0}(2^N − 1) + 1
+
+Let D3 = 3^K − 2^{K+l0}. For D3 > 0 (required for expanding phantoms):
+
+    m = (2^{l0}(2^N − 1) + 1) / D3
+
+This gives an integer m iff D3 | 2^{l0}(2^N−1)+1. The periodic condition reduces to D3 | 2^{l0}×2^N, i.e., the order of 2 modulo D3 divides specific values of N.
+
+**Key inequality:** For n < 2^N, we need m < 2^{N−K}, i.e.:
+
+    (2^{l0} × 2^N) / D3 < 2^{N−K}  →  2^{l0+K} < D3
+
+So only pairs (K, l0) with 3^K − 2^{K+l0} > 2^{K+l0} yield valid phantom fixed points. This simplifies to: 3^K > 2 × 2^{K+l0} = 2^{K+l0+1}, i.e., K × log₂(3/2) > l0 + 1, i.e., **K × 0.585 > l0 + 1**.
+
+### Phantom fixed point spectrum (valid types with small D3)
+
+| Type (K, l0) | D3 | ord_{D3}(2) | First N | n |
+|---|---|---|---|---|
+| (4, 1) | 49 | 21 | **20** | 684783 |
+| (6, 1) | 601 | 25 | **24** | 3573183 |
+
+Invalid types (D3 > 0 but 2^{K+l0} ≥ D3): K=3, l0=1 (D3=11, 2^4=16>11); K=4, l0=2 (D3=17, 2^6=64>17).
+
+### Verified predictions
+
+| N | Type | n | macro_step(n) | n_out − n | = 2^N? |
+|---|---|---|---|---|---|
+| 20 | (K=4, l0=1) | 684783 | 1733359 | 1048576 | **True** ✓ |
+| 24 | (K=6, l0=1) | 3573183 | 20350399 | 16777216 | **True** ✓ |
+| 41 | (K=4, l0=1) | 1436096819951 | 3635120075503 | 2199023255552 | **True** ✓ |
+
+The N=41 prediction was verified by direct computation without enumeration.
+
+### The phantom at N=41
+
+From ord_{49}(2) = 21, the second occurrence of the (K=4, l0=1) type is at N = 42−1 = 41:
+- m = (2^{42}−1)/49 = 4398046511103/49 = 89756051247 ✓ (integer, odd)
+- n = m × 16 − 1 = **1,436,096,819,951** (41-bit number)
+- macro_step(n) = n + 2^{41} = **3,635,120,075,503** ✓
+
+This phantom will dissolve at N=42 because macro_step(n) = n + 2^{41}, so at mod 2^{42}: macro_step(n) mod 2^{42} = n + 2^{41} ≠ n.
+
+### Phantom density → 0
+
+| N | Phantom elements | Total states | Density |
+|---|---|---|---|
+| 7 | 4 | 64 | 6.25×10⁻² |
+| 8 | 6 | 128 | 4.69×10⁻² |
+| 9 | 10 | 256 | 3.91×10⁻² |
+| 10 | 2 | 512 | 3.91×10⁻³ |
+| 20 | 1 | 524288 | 1.91×10⁻⁶ |
+
+Phantom density decreases by ~5 orders of magnitude from N=7 to N=20. For a genuine non-trivial cycle element at bit-length b, the density would remain ~k/2^b (one phantom per 2^{b}/k states where k is cycle length). The observed phantom density → 0 is strong heuristic evidence that no genuine cycle elements persist at large scales.
+
+### Summary
+
+The phantom fixed point spectrum is fully classified by the multiplicative order theory:
+- Type (K, l0) gives phantoms iff D3 = 3^K − 2^{K+l0} > 2^{K+l0} (ensures n < 2^N)
+- Phantom moduli for type (K, l0): N = ord_{D3}(2) × j − 1 for j=1,2,3,...
+- All predictions verified by direct computation at N=20, 24, 41
+- The theory makes infinitely many verifiable predictions without enumeration
+
+---
+
 ## Obs 283 — Algebraic Origin of Phantom Cycles: Modular Order Theory (Scripts 138, 139)
 
 **Scripts:** 138_phantom_analysis.py, 139_n20_phantom.py  
