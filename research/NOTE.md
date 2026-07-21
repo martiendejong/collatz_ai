@@ -8222,3 +8222,61 @@ The Collatz chain thus has a SELF-SIMILAR hierarchical structure across moduli, 
 
 
 
+---
+
+## Obs 267 — Universal CCT Theorem: Every Odd Residue Eventually Enters CCT
+
+**Scripts:** inline computation from `scripts/123_cct_lifting.py` analysis
+
+### Correction to Obs 266
+
+Obs 266 stated that scattering elements (j≤0 at current modulus) are "permanent non-CCT states." This is **WRONG**. All scattering states are PRE-CCT states that enter CCT at their birth generation.
+
+### The Four Mod-256 Scattering States
+
+| r | K | l₀ | j at N=8 | Birth N₀ | j at N₀ |
+|---|---|-----|----------|----------|---------|
+| 95 | 5 | 3 | 0 | 9 | 1 |
+| 127 | 7 | 1 | 0 | 9 | 1 |
+| 63 | 6 | 3 | −1 | 10 | 1 |
+| 255 | 8 | 5 | −5 | 14 | 1 |
+
+Verification (all r_cct values at N₀ equal r): r=95 appears in CCT at mod-512, r=127 at mod-512, r=63 at mod-1024, r=255 at mod-16384 — all with j=1 at their birth generation, lower bits preserved (r mod 256 = original r). ✓
+
+### Universal CCT Theorem
+
+**Theorem**: Every odd integer n has a well-defined birth generation N₀(n) = v₂(n+1) + v₂(m(n)·3^{v₂(n+1)}−1) + 1, where m(n) = (n+1)/2^{v₂(n+1)}. For all moduli 2^N with N ≥ N₀(n), n is a CCT element with j(n,N) = N − N₀(n) + 1.
+
+**Proof**: K = v₂(n+1) and l₀ = v₂(m·3^K − 1) are both finite for any odd n (since m·3^K > 1, so m·3^K−1 ≥ 2). Thus N₀ = K+l₀+1 < ∞. At modulus 2^{N₀}, j = N₀−K−l₀ = 1 ≥ 1, so n ∈ CCT_{N₀}. By the Perfect Lifting Theorem, n remains in CCT_N for all N ≥ N₀ with j increasing by 1 per step. □
+
+### Complete Classification of Odd Residues
+
+Every odd residue at any modulus 2^N falls into exactly one category:
+
+| Category | Condition | Dynamic role |
+|----------|-----------|-------------|
+| **Active CCT** | j(n,N) ≥ 1 (i.e., N ≥ N₀) | In CCT structure, j = age |
+| **Pre-CCT** | j(n,N) ≤ 0 (i.e., N < N₀) | Not yet in CCT; will join at N = N₀ |
+
+There are NO permanently excluded residues. Every odd number is eventually in CCT.
+
+The j-value at any modulus is:
+- j > 0: CCT member of age j (born j−1 generations ago)
+- j = 0 or j < 0: Pre-CCT, will join at N₀ = K+l₀+1 generations of modulus
+
+### Density of Pre-CCT States at Modulus 2^N
+
+The number of PRE-CCT states (j≤0) at modulus 2^N:
+- Total odd residues: 2^{N-1}
+- CCT states (j≥1): (N-2)(N-1)/2
+- Pre-CCT states (j≤0): 2^{N-1} − (N-2)(N-1)/2 ≈ 2^{N-1} (for large N)
+
+The pre-CCT states form the VAST MAJORITY of residues. The CCT structure is arithmetically sparse but dynamically central.
+
+### Implication: The CCT hierarchy spans all scales
+
+Since every odd number eventually enters CCT, the CCT 2-adic integers {r_{∞}^{(K,l₀)} : K≥1, l₀≥1} form a DENSE set in Z₂ in the following sense: for any odd number n, there exists a 2-adic integer r_{∞}^{(K₀,l₀,₀)} with n ≡ r_{∞} mod 2^{N₀}. Thus the Collatz dynamics at every finite scale are governed by the same CCT 2-adic skeleton, just at different truncation depths.
+
+The Collatz orbit of any large odd n eventually "discovers" its CCT structure as it passes through residue classes at increasing moduli.
+
+
