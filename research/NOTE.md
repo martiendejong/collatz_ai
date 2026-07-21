@@ -8385,6 +8385,86 @@ Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbi
 
 ---
 
+## Obs 285 — Orbit Disjointness and Information Decay: Collatz Orbits Are Near-Disjoint Trees (Script 141)
+
+**Script:** 141_phantom_k5.py  
+**Context:** Extension of phantom spectrum + new investigation of orbit collision times.
+
+### Finding 1: K=5, l0=1 phantom type (D3=179, ord=178)
+
+For type K=5, l0=1: D3 = 3^5 − 2^6 = 243 − 64 = **179**. Since 179 is prime and ord_{179}(2) = **178** (179 is a primitive root 2), phantom fixed points of this type occur at N = 178j − 1:
+- j=1: N=177, n = 177-bit phantom fixed point. Confirmed: macro_step(n) = n + 2^{177} ✓
+- j=2: N=355, n = 355-bit phantom fixed point. Confirmed ✓
+- j=3: N=533. Confirmed ✓
+- j=4: N=711. Confirmed ✓
+
+First phantom N=177 is far outside the practical search range (and far beyond Collatz verification bounds).
+
+### Finding 2: Complete phantom fixed point spectrum (first N ≤ 100)
+
+Only 2 types have phantom fixed points at N ≤ 100:
+
+| Type (K, l0) | D3 | ord | First 3 phantom N values |
+|---|---|---|---|
+| (4, 1) | 49 | 21 | 20, 41, 62 |
+| (6, 1) | 601 | 25 | 24, 49, 74 |
+
+All other valid types (K=5 with ord=178, higher K) have first phantoms at N > 100. This confirms the sparseness of phantom fixed points in the practically accessible range.
+
+### Finding 3: Orbit collision time ≈ orbit length (tree disjointness)
+
+**Setup:** Take a b-bit number n₀. Flip bit k to get n₀' = n₀ ⊕ 2^k. Measure T_coll = first time step t where macro_step^t(n₀) = macro_step^t(n₀').
+
+**Results for b=200-bit starting numbers (200 trials each):**
+
+| k (bit flipped) | |diff| = 2^k | Mean T_coll | T_coll / b |
+|---|---|---|---|
+| 1 | 2 | 222.9 | 1.11 |
+| 5 | 32 | 235.6 | 1.18 |
+| 10 | 1024 | 245.9 | 1.23 |
+| 20 | 10^6 | 244.8 | 1.22 |
+| 50 | 10^15 | 254.5 | 1.27 |
+| 100 | 10^30 | 254.0 | 1.27 |
+| 150 | 10^45 | 254.3 | 1.27 |
+| 190 | 10^57 | 255.9 | 1.28 |
+
+Expected orbit length for b=200: T_orbit ≈ 1.2 × 200 = 240 steps.
+
+**Key observation:** T_coll ≈ T_orbit ≈ 1.2b for ALL values of k from 1 to 190. The collision time is essentially independent of the perturbation size.
+
+### Finding 4: Structural implication — near-disjoint orbit trees
+
+In the Collatz tree (rooted at n=1), the path from any n to 1 is unique. The "collision time" T_coll(n₀, n₀') equals the depth of the Lowest Common Ancestor (LCA) of n₀ and n₀' in the tree (measured from the root n=1):
+
+    T_coll = T_orbit − depth(LCA from n=1)
+
+Since T_coll ≈ T_orbit ≈ 1.2b: **depth(LCA) ≈ 0**, i.e., the LCA is near n=1.
+
+This means: two b-bit numbers follow **nearly disjoint paths** in the Collatz tree. They merge only in the final few steps near n=1, not at any intermediate value.
+
+Consequence: the Collatz tree at depth ~1.2b has **~2^b nodes** (one per b-bit starting number), and they almost never share ancestors except near the root. The tree is "bushy" at the leaves and "thin" near the root.
+
+This is consistent with the BFS branching factor ~10 (Obs 277): at depth d the tree has ~10^d nodes. For d = 1.2b, the tree has 10^{1.2b} ≈ 2^{4b} nodes, but only 2^{b-1} ≈ 2^b distinct b-bit starting values. So the BFS tree at depth 1.2b contains ~2^b leaf-level starting values among ~2^{4b} total tree nodes. The paths are nearly disjoint because the tree is ~4× "wider" than the number of starting values.
+
+### Finding 5: Information decay interpretation
+
+The collision time T_coll ≈ 1.2b means: **the orbit of a b-bit number "remembers" its origin for approximately the entire orbit duration**. There is no short mixing time — the orbit does not forget its starting value after a few steps. Instead, the information about the starting value persists until n drops to a small threshold (< M), at which point all orbits follow the same predetermined path to 1.
+
+This is consistent with the 2-adic expansion (Obs 274): the macro-step is 2-adically expanding, so two initially similar orbits diverge in the 2-adic metric and follow different paths. They converge only when they're both small enough to follow the fixed convergence path to 1.
+
+**Implication for the conjecture:** The orbit of any b-bit number follows a "unique path" that is essentially independent of other orbits until it reaches the verified zone n < M. The conjecture amounts to showing that every such unique path eventually reaches the verified zone.
+
+### Summary
+
+The Collatz orbit structure at large scales is:
+1. **Phantom fixed points**: sparse, predictable by multiplicative order theory; only 2 types with first phantom N ≤ 100
+2. **Near-disjoint trees**: collision time T_coll ≈ 1.2b ≈ T_orbit for ALL perturbation sizes; orbits merge only near n=1
+3. **No intermediate merging**: two b-bit orbits almost surely follow entirely disjoint paths until both reach small values (n < M)
+
+The Collatz map creates a MAXIMALLY SPREADING tree: each bit of the starting number generates an independent branch, and the branches only reconverge at the root.
+
+---
+
 ## Obs 284 — Phantom Fixed Point Spectrum: Verified Predictions via Multiplicative Order Theory (Script 140)
 
 **Script:** 140_phantom_spectrum.py  
