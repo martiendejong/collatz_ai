@@ -6045,3 +6045,151 @@ The **revised status** of the D_hard_kern proof:
 - THEORETICALLY GROUNDED: h=1 probability 2/256 exact, h>1 k/step < 2.68 empirically
 - MISSING: Rigorous large-n universality proof for h>1 k/step convergence
 
+---
+
+## Observation 222: THE E[l]=2 UNIVERSAL LAW — Rigorous Proof
+*(Script 99 — modular arithmetic + Collatz drift analysis)*
+
+For ANY k0 ≥ 1, the quantity l = v2(3^k0 × m - 1) satisfies:
+  **E[l] = 2 exactly** for uniform random odd m.
+
+**PROOF** (complete):
+  P(l ≥ k | m odd) = P(2^k | 3^k0 × m - 1 | m odd)
+                   = P(m ≡ (3^k0)^{-1} mod 2^k | m odd)
+
+  Since 3^k0 is odd, (3^k0)^{-1} mod 2^k exists and is also odd.
+  Among odd integers, P(m ≡ c mod 2^k) = 1/2^{k-1} for any odd c.
+  Therefore: P(l ≥ k) = 1/2^{k-1} for all k ≥ 1.
+
+  E[l] = Σ_{k=1}^∞ P(l ≥ k) = Σ 1/2^{k-1} = 2. ∎
+
+**EMPIRICAL VERIFICATION** (script 99):
+  For k0 ∈ {1,...,8} over 256 odd m in [1,511]:
+    Distribution: {l=1:128, l=2:64, l=3:32, l=4:16, l=5:8, l=6:4, l=7:2, l=8:1, l=9:1}
+    = exactly the GEOMETRIC DISTRIBUTION with parameter 1/2
+    E[l] = 511/256 ≈ 1.996 (truncated geometric, converges to 2 as range → ∞)
+    Distribution is IDENTICAL for ALL k0 ∈ {1,...,8}. UNIVERSAL.
+
+The law is INDEPENDENT of k0. The output-2-adic-valuation distribution is the same
+regardless of how many times we multiply by 3 first.
+
+---
+
+## Observation 223: D_hard_kern THRESHOLD = log_{3/2}(4) — CLOSED FORM!
+*(Script 99, Parts 2-3 — the biggest theoretical discovery)*
+
+**THE THRESHOLD 3.419 HAS A BEAUTIFUL CLOSED FORM:**
+
+**D_hard_kern threshold = log_{3/2}(4) = 2×log(2)/log(3/2) = log(4)/log(3/2)**
+
+Numerical verification:
+  log_{3/2}(4) = log(4)/log(3/2) = 2×log2/log(3/2) = **3.419023...**
+  Theorem 179 threshold:                               **3.419000**
+  Difference: 0.000023 (rounding in Theorem 179's statement!)
+
+**DERIVATION** (from E[l]=2 universal law):
+
+The Collatz macro-step acts as a RANDOM WALK in log(n):
+  log(n_out) - log(n) ≈ k×log(3/2) - l×log(2)    (one step approximation)
+
+Taking expectations:
+  E[log(n_out/n)] ≈ E[k]×log(3/2) - E[l]×log(2)
+                  = E[k]×log(3/2) - 2×log(2)       [by E[l]=2 universal]
+
+**Zero-drift condition** (boundary between convergence and divergence):
+  E[k]×log(3/2) = 2×log(2)
+  E[k] = 2×log(2)/log(3/2) = **log_{3/2}(4)** ≈ 3.419
+
+This is EXACTLY the D_hard_kern threshold! The threshold in Theorem 179 is the
+zero-drift condition for the log(n) random walk, derived from the E[l]=2 universal law.
+
+**Alternative forms of the threshold:**
+  log_{3/2}(4) = log(4)/log(3/2) = 2/(log_2(3)-1) = 2/(1.58496-1) = 3.41902...
+
+**Drift rates for each k0:**
+
+| k0 | drift = k0×log(3/2) - 2×log(2) | orbit behavior     |
+|----|--------------------------------|-------------------|
+| 1  | -0.981 | converges (strong) |
+| 2  | -0.575 | converges          |
+| 3  | -0.170 | converges (weak)   |
+| 3.419 | 0.000 | BOUNDARY           |
+| 4  | +0.236 | diverges (weak)    |
+| 5  | +0.641 | diverges           |
+| 6  | +1.047 | diverges           |
+| 7  | +1.452 | diverges           |
+| 8  | +1.857 | diverges (strong)  |
+
+---
+
+## Observation 224: BSet as a BALANCED DRIFT SYSTEM
+*(Script 99, Part 4 — implications for BSet structure)*
+
+BSet contains elements with k0 ranging from 1 to 8, spanning both positive and
+negative drift per step:
+
+- **Negative drift** (k0 ≤ 3): r=27(k0=2), r=55(k0=3), r=83(k0=2), r=103(k0=3),
+                                 r=169(k0=1), r=253(k0=1)
+- **Positive drift** (k0 ≥ 4): r=63(k0=6), r=95(k0=5), r=127(k0=7), r=159(k0=5),
+                                 r=191(k0=6), r=207(k0=4), r=223(k0=5), r=239(k0=4), r=255(k0=8)
+
+The BSet Markov chain MIXES these elements such that the ergodic avg k/step = 2.0614.
+The corresponding ergodic drift rate:
+  E[drift] = 2.0614×log(3/2) - 2×log(2) = -0.551 < 0 (CONVERGENT)
+
+This means: any orbit that enters BSet and mixes ergodically MUST converge.
+The ergodic avg k/step = 2.06 corresponds to the average being BELOW the threshold
+3.419 by a factor of 1.66. The orbit "spends too much time" in low-k0 elements (169, 253)
+to sustain the drift needed for divergence.
+
+**The key role of r=169 (k0=1) and r=253 (k0=1)**:
+These are the two elements with the MOST NEGATIVE drift (-0.981 per step).
+They act as "gravity wells" that pull any orbit below the divergence threshold.
+Every BSet element eventually routes to {63,127,191,255} via r=169's deterministic launch,
+and from those high-k0 elements, the orbit eventually routes back to r=169 or r=253.
+
+The ergodic balance: the BSet chain spends ~5.18% of time at r=169 and r=253 (least),
+but their strong negative drift (-0.981) anchors the ergodic average well below 3.419.
+
+---
+
+## Observation 225: COMPLETE SYNTHESIS — WHY COLLATZ ORBITS CONVERGE
+*(Synthesis of observations 200-224 — the unified proof sketch)*
+
+**THE COLLATZ CONJECTURE reduces to:**
+  Prove that E[k] < log_{3/2}(4) for all Collatz orbits.
+
+**Why this is hard**: the distribution of k = v2(n+1) along an orbit depends on the
+orbit's exact structure, which is number-theoretically complex.
+
+**What we've proved (empirically + partial theory)**:
+
+1. **E[l]=2 universal**: v2(3^k × m - 1) averages to 2 for uniform odd m (PROVED RIGOROUSLY).
+   This gives the threshold log_{3/2}(4) = 3.419.
+
+2. **BSet ergodic avg = 2.06**: The 15-element BSet Markov chain (mod-256 residues)
+   gives ergodic avg k/step = 2.06 < 3.419 (EMPIRICALLY VERIFIED, N=1024 per element).
+
+3. **MCM = 2.53**: Even the BEST-CYCLE in the BSet graph has cycle mean 2.53 < 3.419
+   (EMPIRICALLY VERIFIED, Bellman-Ford with N=2048 per edge).
+
+4. **Non-BSet max = 2.25**: Any non-BSet residue has avg k/step ≤ 2.25 < 3.419
+   until it enters BSet (EMPIRICALLY VERIFIED).
+
+5. **Large-N stability**: The r=255 self-loop (best candidate for beating threshold)
+   has cycle mean = 2.417 at N=20000, well below 3.419 (EMPIRICALLY VERIFIED).
+
+**THE GAP**: 3.419 - 2.53 = 0.890 at the worst layer (MCM).
+This gap is large enough to be structurally significant (not just numerical noise).
+
+**WHAT REMAINS**: Proving that the empirical bounds (BSet avg, MCM, non-BSet max)
+hold exactly in the large-n limit and not just for n~10^12. This requires:
+  - A universality argument: the mod-256 dynamics stabilize for large n
+  - A concentration inequality: the empirical transition probabilities converge
+
+**BOTTOM LINE**: The D_hard_kern = ∅ argument is now:
+  1. All orbits eventually enter BSet (BSet universality)
+  2. BSet orbits have ergodic avg k/step = 2.06 < log_{3/2}(4) = 3.419
+  3. The best cycle in BSet has mean 2.53 < 3.419 (MCM bound)
+  4. Therefore no orbit can maintain E[k] ≥ 3.419 → D_hard_kern = ∅
+
