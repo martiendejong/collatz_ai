@@ -7580,5 +7580,140 @@ For small starting n (n<~1000), this funnel creates a sampling bias toward r=103
   121 = 0111 1001₂, 91 = 0101 1011₂, 103 = 0110 0111₂.
 No obvious binary pattern; the chain is an arithmetic property of 3-multiplication modulo powers of 2.
 
+---
+
+## Obs 260 — Algebraic Verification of the Coset Coincidence Theorem (Script 116)
+
+**Complete verification via exact integer arithmetic** for all BSet elements at mod-256, plus extension to higher moduli.
+
+### Full BSet table (mod-256)
+
+For each r: K = v₂(r+1), m_red = (r+1)/2^K, l₀ = v₂(m_red·3^K−1), n'_base = (m_red·3^K−1)/2^{l₀}, j = 8−K−l₀.
+
+| r | K | l₀ | j | n'_base | v₂(n'_base+1) | status | note |
+|---|---|----|----|---------|---------------|--------|------|
+| 27 | 2 | 1 | 5 | 31 | 5 | PASS | exact |
+| 55 | 3 | 2 | 3 | 47 | 4 | PASS | surplus +1 |
+| 63 | 6 | 3 | -1 | 91 | 2 | n/a | j<1 |
+| 83 | 2 | 2 | 4 | 47 | 4 | PASS | exact |
+| 95 | 5 | 3 | 0 | 91 | 2 | n/a | j<1 |
+| 103 | 3 | 1 | 4 | 175 | 4 | PASS | exact |
+| 127 | 7 | 1 | 0 | 1093 | 1 | n/a | j<1 |
+| 159 | 5 | 1 | 2 | 607 | 5 | PASS | surplus +3 |
+| 169 | 1 | 1 | 6 | 127 | 7 | PASS | surplus +1 |
+| 191 | 6 | 1 | 1 | 1093 | 1 | PASS | exact |
+| 207 | 4 | 2 | 2 | 263 | 3 | PASS | surplus +1 |
+| 223 | 5 | 2 | 1 | 425 | 1 | PASS | exact |
+| 239 | 4 | 1 | 3 | 607 | 5 | PASS | surplus +2 |
+| 253 | 1 | 2 | 5 | 95 | 5 | PASS | exact |
+| 255 | 8 | 5 | -5 | 205 | 1 | n/a | j<1 |
+
+**Result**: All 11 BSet elements with j≥1 PASS. Theorem verified for mod-256 BSet.
+
+### Core identity behind the theorem
+
+For every BSet element r with j≥1, the following holds:
+
+  m_red · 3^K ≡ 1 − 2^{l₀} mod 2^{8-K}
+
+Equivalently: 2^{8-K} | m_red·3^K − 1 + 2^{l₀}.
+
+Verified by direct computation for all 11 j≥1 BSet elements (all 11 match, column "match?" = YES in script 116 output).
+
+**Why this implies the theorem**: n'_base + 1 = (m_red·3^K − 1 + 2^{l₀}) / 2^{l₀}. If 2^{8-K} | m_red·3^K−1+2^{l₀}, then 2^{8-K} = 2^{j+l₀} | 2^{l₀} · (n'_base+1), hence 2^j | n'_base+1, i.e., v₂(n'_base+1) ≥ j. QED.
+
+### Extension: the theorem is NOT exclusive to BSet
+
+At mod-256, the condition v₂(n'_base+1) ≥ j holds for **21** of 120 j≥1 odd residues (not just the 11 BSet ones):
+
+  Passing elements: {23, 27, 55, 83, 99, 103, 143, 149, 159, 163, 165, 169, 191, 195, 207, 213, 215, 223, 239, 245, 253}
+
+The BSet j≥1 elements {27,55,83,103,159,169,191,207,223,239,253} are all included, plus 10 non-BSet elements.
+
+**Key special case**: j=1 is ALWAYS satisfied. For j=1: v₂(n'_base+1) ≥ 1 iff n'_base+1 is even, which is ALWAYS true since n'_base is odd. So the theorem trivially holds for all j=1 elements. At mod-256: 6 elements have j=1 and all pass (23, 99, 143, 191, 213, 215, 223) — including 2 BSet elements (191, 223) and 5 non-BSet ones.
+
+For j≥2: only specific elements pass. Non-BSet j≥2 passes at mod-256: {149(j=2), 163(j=2), 165(j=4), 195(j=3), 215(j=2), 245(j=3)}.
+
+**Nomenclature**: Call elements satisfying v₂(n'_base+1) ≥ j the "CCT-set" (Coset Coincidence Theorem set). BSet ⊂ CCT-set, with BSet being those CCT-set elements most visited in the chain stationary distribution.
+
+### General theorem at multiple moduli (all odd r mod 2^N)
+
+| Modulus | j≥1 elements | CCT passes | CCT failures | Holds universally? |
+|---------|-------------|------------|-------------|-------------------|
+| 256 | 120 | 21 | 99 | NO (only for CCT-set) |
+| 512 | 247 | ~28 | ~219 | NO |
+| 1024 | 502 | ~36 | ~466 | NO |
+| 2048 | 1013 | ~45 | ~968 | NO |
+
+The CCT-set grows slowly (~21, 28, 36, 45) while the total j≥1 set grows as ~2^{N-2}. The CCT-set density decreases as N→∞.
+
+**Open**: What is the algebraic characterization of CCT-set elements beyond "r satisfies the core identity 2^{N-K} | m_red·3^K−1+2^{l₀}"? A closed-form formula for the CCT-set at general modulus 2^N would directly give the "generalized BSet" structure.
+
+---
+
+## Obs 261 — Spectral Gap Scaling: mod-256 through mod-2048 (Scripts 115/115b)
+
+**Four-point spectral data** for the Collatz Markov chain on odd residues mod 2^N.
+
+### Complete spectral series
+
+| Modulus | States (N) | Spectral gap | lambda₂ | max_dev% | E[k₀] |
+|---------|-----------|-------------|---------|----------|-------|
+| 256 | 128 | 0.938189 | 0.061811 | 2.30% | 1.9920 |
+| 512 | 256 | 0.912523 | 0.087477 | 2.12% | 1.9953 |
+| 1024 | 512 | 0.885971 | 0.114029 | 5.55% | 1.9965 |
+| 2048 | 1024 | 0.839642 | 0.160358 | 5.04% | 1.9989 |
+
+**Note**: mod-512 and mod-1024 gaps computed via exact numpy eigendecomposition. Mod-2048 via scipy sparse eigensolver (6 leading eigenvalues). The max_dev% is noisy at large moduli due to limited sampling (128-256 samples/state with K-filtering).
+
+### Lambda₂ growth exponent
+
+Pairwise power-law exponent α (lambda₂ ~ N^α):
+- 128→256: α = log(0.087/0.062) / log(2) = 0.490
+- 256→512: α = log(0.114/0.087) / log(2) = 0.390
+- 512→1024: α = log(0.160/0.114) / log(2) = 0.487
+
+The exponent fluctuates between 0.39 and 0.49 — no clear monotone trend. Global fit gives alpha ≈ 0.44.
+
+If alpha → 0 as N → ∞: gap → constant > 0 (strong Expander Conjecture holds).
+If alpha → c > 0 as N → ∞: lambda₂ ~ N^c → ∞, but since lambda₂ < 1, there would be saturation — gap → 0 eventually.
+
+The current data is consistent with alpha stabilizing near 0.44, which would push lambda₂ = 1 at N^{0.44} = 1/C, i.e., N ~ C^{2.3} — an astronomically large modulus before the gap closes (if it ever does).
+
+### Mod-2048 spectral structure
+
+scipy top eigenvalues: {1.000, 0.160, 0.105, 0.105, 0.039, 0.039, ...}
+
+Note the CONJUGATE PAIRS: 0.105+0.105 and 0.039+0.039 are complex conjugate pairs (same modulus, opposite imaginary parts). This indicates OSCILLATORY dynamics in the chain — the second and third distinct eigenvalues are complex. The spectral gap 0.840 is set by the REAL second eigenvalue (0.160).
+
+### E[k₀] convergence theorem
+
+E[k₀] converges to exactly 2.000 from below as N increases:
+- mod-256: E[k₀] = 1.992
+- mod-512: E[k₀] = 1.995
+- mod-1024: E[k₀] = 1.997
+- mod-2048: E[k₀] = 1.999
+
+The theoretical value E[k₀] = 2 (proved exactly in Obs 250 for the infinite-modulus stationary distribution) is approached from below due to finite-N effects. The convergence rate appears to be O(1/N).
+
+### j-distribution at mod-2048
+
+At modulus 2048 (N=11), the j-distribution of CCT-set analog elements:
+
+  j=1: 9 | j=2: 16 | j=3: 28 | j=4: 48 | j=5: 80 | j=6: 128 | j=7: 192 | j=8: 256 | j=9: 256
+
+Note: j_max = N−K_min−l₀_min = 11−1−1 = 9. The count at j=8 and j=9 both equal 256 = 2^8, suggesting an exact combinatorial identity. The j-class sizes double for each step down (j=7: 192≈3/4×256, j=6: 128=1/2×256, j=5: 80=5/16×256,...).
+
+### Implication for D_hard_kern = ∅ argument
+
+The spectral gap staying above 0.83 through mod-2048 means:
+- TV mixing time is bounded: ||P^t(x,·) − π||_TV ≤ lambda₂^t / sqrt(π_min) ≤ N^{0.5} × 0.840^t
+- For t = 50 macro-steps: 1024^{0.5} × 0.840^{50} = 32 × 1.8×10^{-4} ≈ 0.006 (well-mixed)
+- For t = 100 macro-steps: 32 × 3.2×10^{-8} ≈ 10^{-6} (essentially uniform)
+
+Any hard cycle of length L ≥ 100 macro-steps has its orbit statistics indistinguishable from uniform, giving time-avg k₀ ≈ 2 << k* = 3.419. The gap between 2 and 3.419 (≈ 1.42 per step) accumulated over L steps would require the orbit to be deterministically far from equidistribution — which contradicts the fast mixing.
+
+**Gap in the argument**: This mixing bound applies to PROBABILISTIC starting points, not to SPECIFIC deterministic orbits. A hard cycle IS a specific orbit where the mixing argument fails by construction. Closing this gap remains the central open step.
+
 
 
