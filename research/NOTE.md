@@ -7888,5 +7888,147 @@ This explains the BSet/CCT split: BSet is the dynamically favored subset of the 
 
 
 
+---
+
+## Obs 264 — j-Class Aggregate Chain, Oscillatory Mode, and Corrected BSet Spectral Radius
+
+**Script:** `scripts/119_jclass_chain.py`
+
+### j-Class aggregate chain Q (9×9)
+
+By the Exchangeability Theorem (all BSet elements with the same j-class have identical transition rows), the 15×15 P_BSet collapses to a 9×9 j-class chain Q. Q[j, j'] = Σ_{r' ∈ j'-class} P_BSet(r, r') for any r in j-class j.
+
+j-class structure at mod-256:
+- j=6: {169} (1 element)
+- j=5: {27, 253} (2 elements)
+- j=4: {83, 103} (2 elements)
+- j=3: {55, 239} (2 elements)
+- j=2: {159, 207} (2 elements)
+- j=1: {191, 223} (2 elements)
+- j=0: {95, 127} (2 elements)
+- j=−1: {63} (1 element)
+- j=−5: {255} (1 element)
+
+Dominant Q transitions (>5%):
+
+| from j | to j' | prob | direction |
+|--------|--------|------|-----------|
+| 6 | 1, 0, −1, −5 | 25% each | ↓ equal scatter |
+| 5 | 0 | 26% | ↓ |
+| 5 | 1 | 26% | ↓ |
+| 5 | 2 | 14% | ↓ |
+| 4 | 2, 1, 0 | 18–19% | ↓ |
+| 3 | spread across 6,5,4,2,1 | 12–22% | mixed |
+| 2,1 | 6 | 10% | ↑ |
+| 2,1 | 5 | 19% | ↑ |
+| 2,1 | 4 | 18% | ↑ |
+| 0,−1,−5 | 6 | 10% | ↑ |
+| 0,−1,−5 | 5 | 19% | ↑ |
+| 0,−1,−5 | identical rows (within noise) | | |
+
+Key observation: **j≤0 elements (j=0,−1,−5) have nearly identical transition rows** — they all scatter broadly upward, with equal probability distributions across destinations. This is expected: j≤0 means the output coset is all odd residues, so the distribution of K' follows the marginal stationary distribution of K.
+
+**j=6 is the unique top-scatter state**: from r=169 (j=6), output always has K'≥1. At mod-256, the output distributes EQUALLY among the four lowest j-classes: 25% each to j=1, 0, −1, −5. This perfect downward scatter makes j=6 the "peak of the cascade" — it always resets the chain to low j-values.
+
+### Flow balance (weighted by stationary distribution)
+
+- Upward transitions (j' > j): 49.4%
+- Downward transitions (j' < j): 42.5%
+- Same j-class: 8.2%
+
+The chain spends slightly more time going up than down, balanced by the fact that j=6 always goes all the way down.
+
+### MFPT to j=6 (top class)
+
+Mean first-passage time from each j-class to j=6:
+
+| j | MFPT |
+|---|------|
+| 5 | 14.86 j-class steps |
+| 4 | 14.78 |
+| 3 | 14.41 |
+| 2 | 13.97 |
+| 1 | 13.97 |
+| 0 | 13.97 |
+| −1 | 13.97 |
+| −5 | 13.97 |
+
+All j-classes reach j=6 in approximately 14 j-class steps. The chain is well-mixed in j-class space — no j-class is "far" from the top.
+
+### Corrected spectral radius of P_BSet
+
+**CRITICAL CORRECTION**: Earlier computations reported "spectral gap of P_BSet = 0.929" (measuring 1 − lambda_2^+, the second POSITIVE eigenvalue = +0.071). The complete eigenvalue spectrum reveals the true spectral radius is much larger:
+
+All 15 P_BSet eigenvalues sorted by |λ|:
+
+| rank | λ | |λ| |
+|------|---|-----|
+| 1 | +1.000 | 1.000 |
+| **2** | **−0.394** | **0.394** |
+| 3 | +0.071 | 0.071 |
+| 4 | −0.044 | 0.044 |
+| 5 | +0.024 | 0.024 |
+| 6 | −0.013 | 0.013 |
+| 7 | −0.001 | 0.001 |
+| 8,9 | −0.000123 ± 0.000693i | 0.000704 |
+| 10 | +0.0005 | 0.0005 |
+| 11–15 | 0 | 0 |
+
+**True mixing gap of P_BSet = 1 − 0.394 = 0.606**
+
+The 6 exact zero eigenvalues (λ_{11}–λ_{15}) confirm the exchangeability theorem: each 2-element j-class contributes one zero mode (the within-class difference vector (1,−1)/√2 has eigenvalue 0 since all rows within a j-class are identical).
+
+The remaining 9 non-trivial eigenvalues match the Q (9×9) eigenvalues exactly:
+{1.000, −0.395, +0.071, −0.044, +0.024, −0.014, −0.001, complex pair, +0.0005}
+
+**Exact lumpability confirmed**: Q is the lumpable quotient of P_BSet by j-classes, and Q's eigenvalues ARE eigenvalues of P_BSet (as guaranteed by exact lumpability theory).
+
+### The oscillatory mode (λ = −0.394)
+
+The dominant non-trivial mode corresponds to the **j-class oscillation**:
+- j=6 always sends to j≤1 (downward)
+- j≤1 always send back upward toward j≥4
+- This creates a strong alternating pattern: HIGH j → LOW j → HIGH j → ...
+
+The eigenvalue −0.394 means: after 2 macro-steps, the oscillatory component decays by (−0.394)² = 0.155. After 5 steps, it decays to (0.394)^5 ≈ 0.009. So the oscillation is essentially gone in 5 BSet macro-steps.
+
+The TV mixing bound for P_BSet (using spectral radius 0.394):
+  t_mix(ε) ≤ log(15/ε) / log(1/0.394) ≈ log(15/ε) / 0.934 ≈ 5–8 BSet steps for ε ∈ [0.01, 0.001]
+
+(Compare: the "gap = 0.929" estimate gave 2–3 steps — that was wrong because it used the POSITIVE spectral gap, not the true spectral radius.)
+
+### Full 128-state chain is NOT affected
+
+The full 128-state macro-step chain (mod-256, all odd residues) does NOT have the −0.394 oscillatory mode:
+
+Full chain top eigenvalues by |λ|:
+- λ_1 = 1.000 (stationary)
+- λ_2 = 0.011 ± 0.065i → |λ| = 0.066 (complex conjugate pair)
+- λ_3 = −0.065 → |λ| = 0.065
+- Further eigenvalues: |λ| ≤ 0.059
+
+**Full chain spectral radius = 0.066**, mixing gap = 0.934.
+
+The dominant non-trivial modes of the FULL chain are complex conjugate pairs — weak oscillations at a very different frequency than the BSet embedded chain's −0.394 mode. The non-BSet states act as **damping buffers**: they absorb and redistribute the oscillatory energy of the j-class bounce, so the full chain doesn't exhibit the BSet's slow oscillatory mode.
+
+### Interpretation: two-timescale dynamics
+
+The full chain has two timescales:
+1. **Fast timescale (non-BSet transients)**: after any BSet visit, the chain returns to BSet in 1–3 macro-steps (non-BSet states are transient-like under the BSet funnel structure)
+2. **Slow oscillatory timescale (BSet j-class bounce)**: the j-class of BSet visits alternates between high and low with half-period ~1 step, decaying in ~5 BSet visits (spectral radius 0.394)
+
+These are BOTH fast compared to any "cycles" or divergence — the chain mixes in O(1) macro-steps. The Collatz dynamics are ergodic and fast-mixing at all moduli, consistent with the Expander Conjecture.
+
+### Note on "spectral gap = 0.929" in earlier observations
+
+Observations 261–263 reported "spectral gap = 0.929" for P_BSet. This was measuring 1 − λ_3 (the second POSITIVE eigenvalue), not 1 − spectral_radius. The correct figure is:
+
+- Positive spectral gap of P_BSet = 1 − 0.071 = 0.929 (second positive eigenvalue)
+- True mixing gap of P_BSet = 1 − 0.394 = 0.606 (spectral radius = |λ_{min}| = 0.394)
+- Full chain mixing gap = 1 − 0.066 = 0.934 (unchanged; relevant for Expander Conjecture)
+
+The Expander Conjecture refers to the FULL chain gap (> 0 for all 2^N moduli), which is 0.934 at mod-256. This is unaffected by the BSet correction.
+
+
 
 
