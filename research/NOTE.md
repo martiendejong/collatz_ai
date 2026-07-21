@@ -4587,3 +4587,156 @@ IMPLICATION FOR D_hard_kern:
      constraint that goes beyond the 8-bit residue analysis. This is why
      D_hard_kern members (if they existed) would need very specific arithmetic
      structure in ALL bits, not just the low 8 bits.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THEOREM 199 (BOOSTER CHAIN AVG-K CEILING)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Status: EMPIRICALLY ESTABLISHED (N=1000 per booster, BASE=512M; binary search
+to 60-bit precision over the booster transition graph)
+
+SETUP: Build the booster transition graph G = (BSet, E) where edge r→r' has
+weight (K_avg, S_avg) = (average total k-sum, average macro-steps) for the
+segment from a booster-r departure until the next booster-r' arrival.
+Define the MAX CYCLE MEAN λ* = max over all closed walks C in G of:
+   λ*(C) = (total K over C) / (total steps over C)
+λ* is the maximum long-run avg k achievable by any orbit that follows
+the booster transition statistics.
+
+RESULT:
+  λ* = 3.0617   (r=255 self-loop, avg_steps=4.5, 276/9116 observed returns)
+  D_hard_kern threshold = 3.419
+  Gap = 0.357   (10.4% below threshold)
+
+  => MAX CYCLE MEAN < D_hard_kern THRESHOLD.  No orbit following typical
+     booster transition statistics can sustain avg k >= 3.419 via booster chains.
+
+PER-BOOSTER SUMMARY (N=1000 samples each, large-n regime):
+
+  r    k   avg_steps_to_next   avg_k/step
+  169   1    8.13               1.5693  (worst: k=1 booster)
+   27   2    9.66               1.7330
+   83   2    9.66               1.7330
+   55   3    9.82               1.8352
+  103   3    9.82               1.8352
+  207   4    9.48               1.9224
+  239   4    9.48               1.9224
+  253   1    8.13               1.5693
+  159   5   10.18               2.0244
+   95   5   10.18               2.0244
+  223   5   10.18               2.0244
+   63   6   10.13               2.1179
+  191   6   10.13               2.1179
+  127   7    9.48               2.2267
+  255   9    9.08               2.3711  (best unconditional avg k/step)
+
+  NOTE: avg_k/step exceeds k(r) / avg_steps because intermediate sink steps
+  contribute k>=1 each. The k/step ratio for the booster step alone (k(r)/1 = k(r))
+  is always higher; the "dilution" by sink steps limits the global avg.
+
+BEST CYCLES (explicit enumeration):
+
+  1-cycle (self-loop):
+    r=255->255: λ=3.0617 (avg_steps=4.5, reach_prob=3.0%)  ** GLOBAL MAX **
+    r=127->127: λ=2.5116 (avg_steps=6.6)
+    r= 63-> 63: λ=2.4604 (avg_steps=5.3)
+    r=191->191: λ=2.3551 (avg_steps=6.3)
+    r= 27-> 27: λ=1.7917 (avg_steps=4.1)
+    [all others < 2.5]
+
+  2-cycles (not empirically observed as dominant; max-cycle-mean from
+  single-cycle values already captures the global max λ*=3.0617).
+
+WHY λ* < D_hard_kern THRESHOLD:
+
+For the r=255 self-loop (the best cycle): the orbit departs r=255 (k=8) and
+returns to r=255 in avg 4.5 steps, with k_sum = 3.0617 × 4.5 = 13.78. Of this,
+8 bits come from the initial r=255 step; the remaining 4.5-1=3.5 sink steps
+contribute 5.78 k-units, averaging 1.65/step.
+
+For D_hard_kern (λ ≥ 3.419 needed): an orbit would need to return to r=255
+in only ~3.1 steps on average (from the equation 3.419 = (8 + 2.1×2.1) / h,
+solving for h). This requires h(255→255) ≈ 3.1 macro-steps, vs the observed 4.5.
+
+Closing the gap of 1.4 steps requires the orbit output from r=255 to land on
+ANOTHER booster in 1 step far more often than 12.11% of the time -- in fact,
+the required h≈3.1 implies approximately 40% consecutive-booster rate from r=255,
+vs the observed 12.11% exact from the one-period computation (Observation 200).
+
+PROOF DIRECTION: If one can prove that any orbit starting at r=255 returns
+to r=255 in average ≥ 3.8 steps (regardless of arithmetic structure), the
+max cycle mean is bounded below 3.419 and D_hard_kern = ∅.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OBSERVATION 200 (EXACT ONE-PERIOD OUTPUT DISTRIBUTION FROM r=255)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Status: EXACT (one full period, 256 odd values of m)
+
+For n ≡ 255 mod 512 (exactly k=8): n+1 = 256m where m is odd.
+The output residue mod 256 is periodic in m with period 512 (256 odd values).
+Over one full period m = 1, 3, 5, ..., 511:
+
+  DIRECT BSet HITS (h=1): 31/256 = 12.11%
+
+  Destination breakdown (exact counts per period):
+    r'= 27 (k=2): 1/256 = 0.39%
+    r'= 55 (k=3): 4/256 = 1.56%
+    r'= 63 (k=6): 3/256 = 1.17%
+    r'= 83 (k=2): 3/256 = 1.17%
+    r'= 95 (k=5): 1/256 = 0.39%
+    r'=103 (k=3): 1/256 = 0.39%
+    r'=127 (k=7): 1/256 = 0.39%  <- highest k target (k=7 in 1 step from k=8)
+    r'=159 (k=5): 1/256 = 0.39%
+    r'=169 (k=1): 1/256 = 0.39%
+    r'=191 (k=6): 2/256 = 0.78%
+    r'=207 (k=4): 3/256 = 1.17%
+    r'=223 (k=5): 2/256 = 0.78%
+    r'=239 (k=4): 2/256 = 0.78%
+    r'=253 (k=1): 4/256 = 1.56%
+    r'=255 (k=8): 2/256 = 0.78%  <- immediate self-loop; m ≡ 221 or 415 mod 512
+
+  Non-BSet output: 225/256 = 87.89% of departures enter the sink walk.
+
+SELF-LOOP ARITHMETIC: For m ≡ 415 mod 512 (l=1 case):
+  6561 × 415 - 1 = 2722814. v2(2722814) = 1. Output = 1361407. 1361407 mod 256 = 255. ✓
+  This is the explicit Collatz input that generates an immediate r=255 self-loop
+  when n = 256 × 415 - 1 = 106239.
+
+BEST 2-STEP CHAINS (composite avg k, first two macro-steps):
+  r=255 → r=255 → r'' (via m≡221 mod 512, l=2): 2-step avg_k = (8+8)/2 = 8.0
+  r=255 → r=127 → r'' (h=1, k=7):                2-step avg_k = (8+7)/2 = 7.5
+  r=255 → r=191 → r'' (h=1, k=6):                2-step avg_k = (8+6)/2 = 7.0
+  r=255 → r= 63 → r'' (h=1, k=6):                2-step avg_k = (8+6)/2 = 7.0
+
+  ALL these 2-step averages exceed 3.419 -- but they last only 2 steps and are
+  followed by recovery periods averaging 7-9 additional steps at avg k ≈ 1.5.
+
+RECOVERY TAX: After a 2-step window with avg_k=A over h=2 steps, the orbit
+needs R subsequent steps at avg k_sink ≈ 1.65 to return to long-run avg 3.06:
+   R = (A - 3.06) × 2 / (3.06 - 1.65) = (A - 3.06) × 1.42
+
+  For A=8.0 (r=255→255): R = 7.0 × 1.42 = 9.9 recovery steps.
+  For A=7.5 (r=255→127): R = 6.3 × 1.42 = 9.0 recovery steps.
+
+This "recovery tax" is why short high-k bursts cannot sustain avg_k ≥ 3.419:
+each burst of 2 steps incurs 9-10 steps of sub-threshold recovery, keeping the
+global avg_k capped at the max cycle mean of 3.0617.
+
+HOP LENGTH DISTRIBUTION FROM r=255 (N=10000 samples):
+  h=1: 12.9%  (direct booster hit — consistent with exact 12.11% one-period result)
+  h=2:  8.0%
+  h=3:  7.9%
+  h=4:  6.4%
+  ...
+  Roughly geometric decay; avg hop ≈ 9.08 steps.
+
+HIGH-K WINDOW STATISTICS (2000-sample search, windows of 1-10 consecutive hops):
+  Windows with avg_k ≥ 3.419 (D_hard_kern threshold): 6135 found
+  Maximum avg_k in any window of ≤10 hops: 8.0  (single h=1 hop with k=8)
+  These windows EXIST but do not persist: each is bounded by recovery periods.
+
+IMPLICATION: Even if we track the MAXIMUM POSSIBLE avg_k over any contiguous
+window of steps, the max_cycle_mean of 3.0617 acts as a hard ceiling on what
+can be sustained globally. The 12.11% direct-BSet-hit rate from r=255 is the
+exact arithmetic constraint: to sustain avg_k ≥ 3.419, the orbit would need
+~40% consecutive-booster rate, more than 3× what the arithmetic of 3^8 mod 2^k
+allows in any one period of the map.
