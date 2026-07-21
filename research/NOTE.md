@@ -8336,6 +8336,70 @@ The spectral oscillation of P_BSet at period 2 arises from a bipartite-like stru
 
 ---
 
+## Obs 272 — The v₂(3^K−1) Identity and Base CCT Asymmetry (Script 128)
+
+**Script:** 128_vadic_3K.py
+
+### Theorem: v₂(3^K − 1) = 1 if K odd; v₂(K) + 2 if K even
+
+Verified numerically for K=1..24. Proof sketch: for K odd, 3^K ≡ 3 mod 4, so 3^K−1 ≡ 2 mod 4, giving v₂=1. For K even: write K=2^a×b with b odd. The order of 3 mod 2^n is 2^{n−2} for n≥3. So 3^K ≡ 1 mod 2^{a+2} and 3^K ≢ 1 mod 2^{a+3}, giving v₂(3^K−1)=a+2=v₂(K)+2.
+
+This identity determines the **base case l₀** for the CCT element with m_red=1, K=K (i.e., n=2^K−1):
+
+    l₀_base(K) = 1                if K odd
+    l₀_base(K) = v₂(K) + 2       if K even
+
+### Base CCT birth generation
+
+N₀ = K + l₀_base + 1:
+
+| K (odd) | l₀_base | N₀ | K (even) | l₀_base | N₀ |
+|---|---|---|---|---|---|
+| 1 | 1 | 3 | 2 | 3 | 6 |
+| 3 | 1 | 5 | 4 | 4 | 9 |
+| 5 | 1 | 7 | 6 | 3 | 10 |
+| 7 | 1 | 9 | 8 | 5 | 14 |
+| 9 | 1 | 11 | 10 | 3 | 14 |
+
+**Odd K: linear birth schedule** N₀ = K+2 (arithmetic sequence).  
+**Even K: logarithmically delayed birth** N₀ = K+v₂(K)+3 (grows faster with K; K=8 is born at N₀=14, same as K=10).
+
+This explains the ASYMMETRY between K odd and K even in the CCT hierarchy: odd-K elements are born earlier (small N₀) and have been part of CCT longer (higher j-class); even-K base elements are born later, especially K=8 (N₀=14) and K=16 (N₀=21).
+
+### The all-1s orbit merging
+
+The Collatz orbits of n=2^7−1=127 and n=2^8−1=255 merge at n=205 after 1-2 steps:
+- 127 →[K=7,l₀=1]→ 1093 →[K=1,l₀=3]→ 205 → (common path) → 1
+- 255 →[K=8,l₀=5]→ 205 → (common path) → 1
+
+More generally, after one macro-step from n=2^K−1: K_next=1 for almost all K (the output n_out has n_out+1=2×(odd)). Exceptions: K=6 gives K_next=2; K=12 gives K_next=6; K=14 gives K_next=4. These exceptions occur when (3^K−1)/2^{l₀}+1 is divisible by a higher power of 2.
+
+### Lyapunov signs of base CCT elements
+
+The Lyapunov λ = K×log3 − (K+l₀_base)×log2 for base CCT elements:
+- K=1,2,4,8: λ<0 (contracting base elements)
+- K=3,5,6,7,9,10,11,...: λ>0 (expanding base elements)
+
+The BSet l₀ values do NOT match l₀_base for most elements (4/15 match). BSet elements are specific residue classes with their own l₀ structure, not necessarily the base (m=1) case.
+
+---
+
+## Obs 271 — BSet Does Not Scale: Uniformity at All Moduli (Script 127)
+
+**Script:** 127_bset_scaling.py
+
+Three findings:
+
+1. **K distribution at each modulus is exactly geometric**: at mod-2^N, each residue class with K=k has exactly 2^{N-1-k} elements, and there are 1 element with K=N (just r=2^N-1). The count matches P(K=k)=1/2^k perfectly.
+
+2. **Stationary distribution is UNIFORM at all moduli**: no residue has anomalously high stationary weight at mod-512 or mod-1024. The BSet at mod-256 is NOT defined by a high-stationary-weight criterion — the stationary measure is flat across all residues. (BSet was presumably defined by a different criterion in scripts 106-112, not stationary weight.)
+
+3. **K distribution under stationary is IDENTICAL across all moduli**: the K distribution sampled along actual Collatz orbits gives P(K=k) ≈ 1/2^k for ALL k, regardless of whether we track residues mod 256, 512, or 1024. This is because K is determined by the actual n value (its v₂(n+1)), not by the residue class.
+
+**Implication**: The "spectral structure" seen at mod-256 (BSet, A/B partition, -0.394 eigenvalue) is specific to the 256-periodic level. At larger moduli, the chain still converges to uniform, but the fine structure of the mixing is more complex. The BSet at mod-256 seems to be an artifact of the specific numbers that "look like" n≡-1 mod 2^K for K up to 8.
+
+---
+
 ## Obs 270 — A/B Transition Structure: Why K≥5 → K≤4 (Script 126)
 
 **Script:** 126_ab_transitions.py  
