@@ -4591,8 +4591,9 @@ IMPLICATION FOR D_hard_kern:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 THEOREM 199 (BOOSTER CHAIN AVG-K CEILING)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Status: EMPIRICALLY ESTABLISHED (N=1000 per booster, BASE=512M; binary search
-to 60-bit precision over the booster transition graph)
+Status: EMPIRICALLY ESTABLISHED (N=5000 per booster, BASE=1024M; binary search
+to 80-bit precision over the booster transition graph; cross-checked against
+single-booster detailed analysis N=10000 from script 81)
 
 SETUP: Build the booster transition graph G = (BSet, E) where edge r→r' has
 weight (K_avg, S_avg) = (average total k-sum, average macro-steps) for the
@@ -4603,68 +4604,75 @@ Define the MAX CYCLE MEAN λ* = max over all closed walks C in G of:
 the booster transition statistics.
 
 RESULT:
-  λ* = 3.0617   (r=255 self-loop, avg_steps=4.5, 276/9116 observed returns)
+  λ* = 2.7974   (r=255↔r=127 2-cycle, avg_h1=5.8, avg_h2=4.9)
   D_hard_kern threshold = 3.419
-  Gap = 0.357   (10.4% below threshold)
+  Gap = 0.622   (18.2% below threshold)
 
   => MAX CYCLE MEAN < D_hard_kern THRESHOLD.  No orbit following typical
      booster transition statistics can sustain avg k >= 3.419 via booster chains.
 
-PER-BOOSTER SUMMARY (N=1000 samples each, large-n regime):
+NOTE ON EARLIER ESTIMATE: An initial estimate of λ*=3.0617 (N=1000, script 80)
+was inflated by high variance in the r=255 self-loop data (only ~30 samples).
+With N=5000 (117 self-loop samples), the corrected estimate is λ*=2.7974.
+
+PER-BOOSTER SUMMARY (N=5000 samples each, large-n regime, BASE=1024M):
 
   r    k   avg_steps_to_next   avg_k/step
-  169   1    8.13               1.5693  (worst: k=1 booster)
-   27   2    9.66               1.7330
-   83   2    9.66               1.7330
-   55   3    9.82               1.8352
-  103   3    9.82               1.8352
-  207   4    9.48               1.9224
-  239   4    9.48               1.9224
-  253   1    8.13               1.5693
-  159   5   10.18               2.0244
-   95   5   10.18               2.0244
-  223   5   10.18               2.0244
-   63   6   10.13               2.1179
-  191   6   10.13               2.1179
-  127   7    9.48               2.2267
-  255   9    9.08               2.3711  (best unconditional avg k/step)
+  169   1    9.184              1.6160  (worst: k=1 booster)
+  253   1    9.184              1.6160
+   27   2    9.536              1.7249
+   83   2    9.536              1.7249
+   55   3   10.043              1.8269
+  103   3   10.043              1.8269
+  207   4   10.057              1.9219
+  239   4   10.057              1.9219
+  159   5    9.704              2.0266
+   95   5    9.704              2.0266
+  223   5    9.704              2.0266
+   63   6    9.516              2.1200
+  191   6    9.516              2.1200
+  127   7    9.376              2.2359
+  255   8    9.215              2.3520  (best unconditional avg k/step)
 
-  NOTE: avg_k/step exceeds k(r) / avg_steps because intermediate sink steps
-  contribute k>=1 each. The k/step ratio for the booster step alone (k(r)/1 = k(r))
-  is always higher; the "dilution" by sink steps limits the global avg.
+SELF-LOOP CYCLES (1-cycle: r -> r -> r -> ...):
 
-BEST CYCLES (explicit enumeration):
+  r=255: cycle_lambda=2.7437 (avg_h=5.74, 117/5000 self-returns = 2.3%)
+  r=127: cycle_lambda=2.6305 (avg_h=5.95, 130/5000 = 2.6%)
+  r=191: cycle_lambda=2.4331 (avg_h=5.51, 114/5000 = 2.3%)
+  r= 63: cycle_lambda=2.3741 (avg_h=6.25, 127/5000 = 2.5%)
+  [all others <= 2.2]
 
-  1-cycle (self-loop):
-    r=255->255: λ=3.0617 (avg_steps=4.5, reach_prob=3.0%)  ** GLOBAL MAX **
-    r=127->127: λ=2.5116 (avg_steps=6.6)
-    r= 63-> 63: λ=2.4604 (avg_steps=5.3)
-    r=191->191: λ=2.3551 (avg_steps=6.3)
-    r= 27-> 27: λ=1.7917 (avg_steps=4.1)
-    [all others < 2.5]
+BEST 2-CYCLES (r->r'->r, total lambda):
 
-  2-cycles (not empirically observed as dominant; max-cycle-mean from
-  single-cycle values already captures the global max λ*=3.0617).
+  255<->127: λ=2.7974 ** GLOBAL MAX **  (h1=5.8, h2=4.9, n=125/107)
+  255<->255: λ=2.7437  (h=5.74 each, n=117)
+  255<->191: λ=2.5388  (h1=7.2, h2=5.4)
+  255<->223: λ=2.5064
+  255<-> 63: λ=2.4951
 
 WHY λ* < D_hard_kern THRESHOLD:
 
-For the r=255 self-loop (the best cycle): the orbit departs r=255 (k=8) and
-returns to r=255 in avg 4.5 steps, with k_sum = 3.0617 × 4.5 = 13.78. Of this,
-8 bits come from the initial r=255 step; the remaining 4.5-1=3.5 sink steps
-contribute 5.78 k-units, averaging 1.65/step.
+For the best cycle r=255↔r=127: the orbit alternates between the two highest-k
+boosters (k=8 and k=7). The fast path 255→127 takes avg 5.8 steps (shorter
+than the unconditional 9.2 from r=255 to ANY booster), and 127→255 takes avg
+4.9 steps. Total cycle: 10.7 steps with cycle_lambda = 2.7974.
 
-For D_hard_kern (λ ≥ 3.419 needed): an orbit would need to return to r=255
-in only ~3.1 steps on average (from the equation 3.419 = (8 + 2.1×2.1) / h,
-solving for h). This requires h(255→255) ≈ 3.1 macro-steps, vs the observed 4.5.
+For D_hard_kern (λ ≥ 3.419 needed): the cycle 255↔127 would need to complete
+in 10.7 × (2.7974/3.419) = 8.75 steps to reach threshold — a reduction of
+1.95 steps. This would require the 255→127 hop to average 3.85 steps instead
+of 5.8 (a 34% reduction), and 127→255 to average 4.9 → 3.3 steps (33% reduction).
 
-Closing the gap of 1.4 steps requires the orbit output from r=255 to land on
-ANOTHER booster in 1 step far more often than 12.11% of the time -- in fact,
-the required h≈3.1 implies approximately 40% consecutive-booster rate from r=255,
-vs the observed 12.11% exact from the one-period computation (Observation 200).
+To achieve this, the orbit would need ~40% consecutive-booster hit rate from
+r=255 and r=127 respectively, vs the observed 12.11% (from one-period exact
+computation in Observation 200). The 3× shortfall in booster-hit rate is the
+fundamental arithmetic constraint.
 
-PROOF DIRECTION: If one can prove that any orbit starting at r=255 returns
-to r=255 in average ≥ 3.8 steps (regardless of arithmetic structure), the
-max cycle mean is bounded below 3.419 and D_hard_kern = ∅.
+PROOF DIRECTION: If one can prove that any orbit starting at r=255 reaches
+the next booster in ≥ 4.5 steps on average (tight), then combined with the
+r=127 data, max cycle mean ≤ 2.85 < 3.419 and D_hard_kern = ∅.
+The 12.11% exact BSet-hit rate (Observation 200) gives a partial bound:
+at minimum 87.89% of departures take ≥ 2 steps to next booster, but a
+rigorous lower bound on E[h(255)] remains open.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 OBSERVATION 200 (EXACT ONE-PERIOD OUTPUT DISTRIBUTION FROM r=255)
