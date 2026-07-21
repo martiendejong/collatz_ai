@@ -8385,6 +8385,102 @@ Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbi
 
 ---
 
+## Obs 290 — Dissolution Cascade: The Phantom Staircase is a Chain of Modular Overflows (Script 146)
+
+**Script:** 146_dissolution_cascade.py  
+**Context:** The phantom staircase (Obs 287) is algebraically explained by a dissolution cascade: each phantom cycle has exactly one "dissolution point" where the real macro-step output exceeds the modular bound 2^N, causing the orbit to "escape" into the next phantom cycle level.
+
+### Theorem: Each phantom cycle has exactly one dissolution point
+
+For each phantom cycle at level N, define the **dissolution point** as the unique element p_d where macro_step(p_d) ≥ 2^N (the real output exceeds the modulus). All other cycle elements are **transit nodes** where macro_step stays within [0, 2^N).
+
+| N | Phantom cycle | Dissolution point | Real output | Phantom next | Carry c |
+|---|---|---|---|---|---|
+| 7 | {47, 91, 103, 121} | **103** | 175 | 47 | **1** |
+| 8 | {71, 91, 103, 121, 175, 189} | **175** | 445 | 189 | **1** |
+| 9 | {91, 95, 103, 167, 175, 253, 283, 319, 399, 445} | **319** | 911 | 399 | **1** |
+| 10 | {703, 937} | **703** | 4009 | 937 | **3** |
+
+**Carry formula**: real_output = phantom_next + c × 2^N, where c ≥ 1 is the carry.
+For N=7,8,9: c=1 (dissolution adds exactly one modulus). For N=10: c=3 (dissolution adds 3 moduli).
+
+### The dissolution cascade explains the phantom staircase
+
+Each dissolution exit leads into the next phantom cycle level (or exits the phantom zone entirely):
+
+| Level | Dissolution | Real output | Destination | Channel |
+|---|---|---|---|---|
+| N=7 | 103 → **175** | 175 = 47 + 2^7 | 175 is in N=8/9 phantom cycle! | → continues into N=8/9 |
+| N=8 | 175 → **445** | 445 = 189 + 2^8 | 445 is in N=9 phantom cycle! | → continues into N=9 |
+| N=9 | 319 → **911** | 911 = 399 + 2^9 | 911 is NOT in any phantom | → **23-channel** exit ramp |
+| N=10 | 703 → **4009** | 4009 = 937 + 3×2^10 | 4009 is NOT in any phantom | → **13-channel** long path |
+
+The N=7,8 dissolutions DON'T exit the phantom zone -- they re-enter at a higher level (N=8/9). Only the N=9 dissolution exits into the non-phantom exit ramp, beginning the 23-channel. The N=10 dissolution exits into the 13-channel long path.
+
+### The canonical terminal path is the dissolution cascade in action
+
+Step-by-step classification of each element:
+
+```
+  47 [phantom N=7]:       TRANSIT    -> 121 [phantom N=7,8]
+ 121 [phantom N=7,8]:     TRANSIT    -> 91  [phantom N=7,8,9]
+  91 [phantom N=7,8,9]:   TRANSIT    -> 103 [phantom N=7,8,9]
+ 103 [phantom N=7,8,9]:   DISSOLVES at N=7  -> 175 [enters N=8,9 cycle]
+ 175 [phantom N=8,9]:     DISSOLVES at N=8  -> 445 [enters N=9 cycle]
+ 445 [phantom N=9]:       TRANSIT    -> 167 [phantom N=9]
+ 167 [phantom N=9]:       TRANSIT    -> 283 [phantom N=9]
+ 283 [phantom N=9]:       TRANSIT    -> 319 [phantom N=9]
+ 319 [phantom N=9]:       DISSOLVES at N=9  -> 911 [exits phantom zone]
+ 911 [exit ramp]:         EXIT RAMP  -> 577
+ 577 [exit ramp]:         EXIT RAMP  -> 433
+ 433 [exit ramp]:         EXIT RAMP  -> 325
+ 325 [exit ramp]:         EXIT RAMP  -> 61
+  61 [exit ramp]:         EXIT RAMP  -> 23
+  23 [exit ramp]:         EXIT RAMP  -> 5
+   5 [exit ramp]:         EXIT RAMP  -> 1
+```
+
+The staircase is a cascade of three dissolutions: N=7 at n=103 (enters N=8/9), N=8 at n=175 (enters N=9), N=9 at n=319 (exits → 23-channel). The cascade amplifies the depth of the staircase (T-16 to T-8 = 9 steps) because three separate phantom levels contribute transit nodes.
+
+### The channel assignment is determined by which dissolution the orbit uses
+
+Orbits that enter the phantom staircase at any level (N=7, N=8, or N=9) ALL eventually reach the N=9 dissolution point (n=319 → 911 → ... → 23 → 5 → 1). They all become 23-channel orbits. This is why the 23-channel = phantom staircase channel.
+
+Orbits that enter the N=10 phantom cycle (n=703 or 937) exit via the N=10 dissolution (703 → 4009 → ... → 13 → 5 → 1) and become 13-channel orbits.
+
+The two channels are **phantom-disjoint** because they use **different dissolution points**: the N=9 dissolution (23-channel) is physically unreachable by orbits that enter via N=10 (they exit earlier via the N=10 dissolution), and vice versa.
+
+### Algebraic characterization of all dissolutions
+
+All dissolutions satisfy: macro_step(p_d) = phantom_next + c × 2^N where:
+- phantom_next = macro_step(p_d) mod 2^N = the "expected" successor in the phantom cycle
+- c = (macro_step(p_d) - phantom_next) / 2^N ≥ 1 = the "modular carry"
+
+For N=7: macro_step(103) = 175 = 47 + 128 (c=1)
+For N=8: macro_step(175) = 445 = 189 + 256 (c=1)
+For N=9: macro_step(319) = 911 = 399 + 512 (c=1)
+For N=10: macro_step(703) = 4009 = 937 + 3×1024 (c=3)
+
+The three "simple" dissolutions (c=1) form the dominant staircase. The N=10 "heavy" dissolution (c=3) gives the weaker secondary structure.
+
+### Summary
+
+The phantom staircase is a dissolution cascade:
+1. Orbit enters phantom zone at some level N ∈ {7, 8, 9}
+2. Orbit traverses transit nodes within that level's phantom cycle
+3. Orbit hits the dissolution point → output exceeds 2^N → "jumps" to a higher bit-count value
+4. If that value is in a higher phantom cycle (N=8 or N=9): repeat from step 2 at the new level
+5. When orbit hits N=9 dissolution (n=319 → 911): exits phantom zone → 23-channel exit ramp → n=1
+
+This is the complete, algebraically exact explanation of:
+- The phantom staircase structure (Obs 287)
+- The two-channel split (Obs 289)  
+- The phantom-disjointness of the 23-channel and 13-channel
+- Why N=7/8/9 phantoms all lead to the 23-channel (all cascade to N=9 dissolution)
+- Why the N=10 phantom leads to the 13-channel (different dissolution, different exit)
+
+---
+
 ## Obs 289 — Two-Channel Structure: 23-Channel Uses N=7/8/9 Phantom Staircase; 13-Channel Has No Phantom Content (Script 145)
 
 **Script:** 145_two_channels.py  
