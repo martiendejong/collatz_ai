@@ -7388,3 +7388,64 @@ equals the long-run fraction of macro-steps that land in BSet = pi_BSet ≈ 15/1
 The CONDITIONAL average (given start at BSet) is much higher (ergodic avg Phi ≈ 1.96 steps
 per BSet visit). These are consistent because P(h=1) measures only IMMEDIATE BSet landing.
 
+
+---
+
+## Observation 257: CORRECTION AND COMPLETION OF P(h=1) FORMULA
+*(Script 112 Part 5 + verification)*
+
+**CORRECTION TO OBS 256**: The exact formula applies to 11 (not 13) BSet elements.
+The boundary condition for the exact formula is K+l0 ≤ 7 (equivalently j = 8−K−l0 ≥ 1).
+
+**EXACT FORMULA CRITERION** (algebraic characterization):
+The constant-v2 property holds for BSet element r iff l0 < 8−K, i.e., K+l0 < 8, i.e., **j ≥ 1**.
+
+  Proof: The output step is Δn' = 3^K × 2^{8-K} / 2^l0 = 3^K × 2^{j}. The "perturbation"
+  term in 3^K×m-1 is 3^K × step_m × t = 3^K × 2^{8-K} × t, which has v2 = 8-K.
+  The base term has v2 = l0. If l0 < 8-K: the v2 of the sum = min(l0, 8-K) = l0. CONSTANT.
+  If l0 ≥ 8-K (i.e., l0 ≥ j+K ≥ K, i.e., K+l0 ≥ 8): v2 of sum varies. NOT constant.
+
+**COMPLETE P(h=1) TABLE — FINAL VERSION**:
+
+  | r   | K | l0 | j  | P(h=1)     | Status       | Empirical (2048 n) |
+  |-----|---|----|----|------------|--------------|---------------------|
+  | 169 | 1 | 1  | 6  | 4/4=1      | EXACT PROVED | 1.00000 ✓          |
+  | 253 | 1 | 2  | 5  | 7/8        | EXACT PROVED | 0.87500 ✓          |
+  |  27 | 2 | 1  | 5  | 7/8        | EXACT PROVED | 0.87500 ✓          |
+  |  83 | 2 | 2  | 4  | 9/16       | EXACT PROVED | 0.56250 ✓          |
+  | 103 | 3 | 1  | 4  | 9/16       | EXACT PROVED | 0.56250 ✓          |
+  |  55 | 3 | 2  | 3  | 11/32      | EXACT PROVED | 0.34375 ✓          |
+  | 239 | 4 | 1  | 3  | 11/32      | EXACT PROVED | 0.34375 ✓          |
+  | 159 | 5 | 1  | 2  | 13/64      | EXACT PROVED | 0.20312 ✓          |
+  | 207 | 4 | 2  | 2  | 13/64      | EXACT PROVED | 0.20312 ✓          |
+  | 191 | 6 | 1  | 1  | 15/128     | EXACT PROVED | 0.11719 ✓          |
+  | 223 | 5 | 2  | 1  | 15/128     | EXACT PROVED | 0.11719 ✓          |
+  |  95 | 5 | 3  | 0  | ≈15/128    | empirical    | 0.11670 ≈           |
+  | 127 | 7 | 1  | 0  | ≈15/128    | empirical    | 0.11768 ≈           |
+  |  63 | 6 | 3  | −1 | ≈15/128    | empirical    | 0.11572 ≈           |
+  | 255 | 8 | 5  | −5 | ≈15/128    | empirical    | 0.11719 ≈           |
+
+**PATTERN IN j≤0 ELEMENTS**: All 4 elements with j≤0 give P(h=1)≈15/128 empirically.
+  This is consistent with: as j→0 from above, #{K'≥j}/2^{8-j} → 15/128.
+  For j=1: #{K'≥1}=15, 2^7=128. P=15/128.
+  For j=0: same formula gives 15/128 (if outputs cover all 128 residues, each with freq 2^{K+l0-8}).
+  The pattern suggests P(h=1)=15/128 is the UNIVERSAL FLOOR for j≤1.
+
+**THREE DISTINCT REGIMES BY j**:
+  j≥2 (r=169,...,207): P(h=1) DECREASES from 1 to 13/64 as j decreases (more "excursions").
+  j=1 (r=191,223): P(h=1)=15/128 — outputs cover all odd residues uniformly, period=128.
+  j≤0 (r=63,95,127,255): P(h=1)≈15/128 — high-K equidistribution regime.
+  
+  The j=1,j≤0 cases all give ≈15/128, suggesting the formula SATURATES at 15/128 for low j.
+  This is because once j≤1, the coset covers all 128 odd residues — BSet probability = 15/128.
+
+**PROOF COMPLETION NEEDED**:
+  The 4 j≤0 elements (r=63,95,127,255) need a proof that P(h=1)=15/128 exactly.
+  This would follow from showing the outputs are perfectly uniform mod 256, which is the
+  content of the "near-bijection" result from Obs 244 (3^K is bijection on odd residues).
+  For r=255 (K=8): PROVED exactly (bijection, Obs 244 + 108). P(h=1)=15/128 proved.
+  For r=63,95,127: requires showing the same 2-to-1 or bijective structure at mod 256.
+
+**SUMMARY**: 12 out of 15 BSet elements have exact proved P(h=1) values.
+  Only r=63 and r=95 and r=127 remain with approximate (unproved) P(h=1)≈15/128.
+
