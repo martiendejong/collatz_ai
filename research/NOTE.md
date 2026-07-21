@@ -7715,5 +7715,69 @@ Any hard cycle of length L ≥ 100 macro-steps has its orbit statistics indistin
 
 **Gap in the argument**: This mixing bound applies to PROBABILISTIC starting points, not to SPECIFIC deterministic orbits. A hard cycle IS a specific orbit where the mixing argument fails by construction. Closing this gap remains the central open step.
 
+---
+
+## Obs 262 — Expander Conjecture: 5-Point Spectral Series (Script 117)
+
+**Five-point series** for the second eigenvalue of the Collatz Markov chain on odd residues mod 2^N.
+
+### Complete data
+
+| States (N) | Modulus | Gap | Lambda₂ | Alpha (step) | E[k₀] |
+|-----------|---------|-----|---------|-------------|-------|
+| 128 | 256 | 0.938189 | 0.061811 | — | 1.992 |
+| 256 | 512 | 0.912523 | 0.087477 | 0.501 | 1.995 |
+| 512 | 1024 | 0.885971 | 0.114029 | 0.382 | 1.997 |
+| 1024 | 2048 | 0.839642 | 0.160358 | 0.492 | 1.999 |
+| 2048 | 4096 | 0.808859 | 0.191141 | 0.253 | 1.999 |
+
+**Alpha** = log(lambda₂[N] / lambda₂[N/2]) / log(2) — the power-law exponent per doubling.
+
+### Key observations
+
+1. **Spectral gap strictly positive at all 5 computed scales**: 0.939 → 0.809. No sign of reaching 0.
+2. **Alpha is DECREASING**: 0.501, 0.382, 0.492, 0.253. The last step (0.253) is notably smaller. The fitted global alpha (4-point log-log fit) = 0.39.
+3. **Possible saturation signal**: If the true alpha → 0 as N → ∞, the gap stabilizes at a positive constant (strong Expander Conjecture). The decreasing alpha sequence is consistent with this.
+4. **Near-degenerate eigenvalue cluster at mod-4096**: top eigenvalues 2–8 all lie in [0.182, 0.191]. This is the j-class degeneracy: the N j-classes each contribute one eigenvalue of similar magnitude.
+5. **E[k₀] = 1.999 at mod-4096**: converges to 2 from below at rate ~O(1/N).
+
+### Spectral structure: real vs complex eigenvalues
+
+- mod-256: top eigenvalues 0.062 (REAL), 0.022 (REAL)
+- mod-512: 0.087 (REAL), ...
+- mod-2048: 0.160 (REAL), 0.105 (conj pair), 0.039 (conj pair)
+- mod-4096: 0.191 (conj pair), 0.186 (conj pair), 0.184 (conj pair), 0.182 (unclear)
+
+The transition from real to complex dominant eigenvalue indicates a PHASE CHANGE in the spectral structure as N increases. At large N, the dominant subdominant eigenvalues are complex conjugate pairs — indicating oscillatory (but damped) return to equilibrium. The spectral GAP is determined by the MAGNITUDE of the dominant non-trivial eigenvalue (real or complex).
+
+### Power law extrapolation
+
+With lambda₂ ~ N^{0.39} (fitted):
+- N=4096 (mod-8192): lambda₂ ≈ 0.191 × 2^{0.39} ≈ 0.239, gap ≈ 0.761
+- N=8192: lambda₂ ≈ 0.284, gap ≈ 0.716
+- N=2^{20}: lambda₂ ≈ 0.191 × (2^{10})^{0.39} ≈ 0.191 × 7.7 ≈ 1.47 (EXCEEDS 1!)
+
+The power law cannot hold beyond the point where lambda₂ = 1 (gap = 0). Under power law alpha = 0.39:
+lambda₂ = 1 when N = (1/(0.191 × 2048^{-0.39}))^{1/0.39} = (0.191 × 2048^{0.39})^{-1/0.39}...
+
+Alternatively: lambda₂ = 1 when 0.191 × (N/2048)^{0.39} = 1 → (N/2048)^{0.39} = 5.24 → N/2048 = 5.24^{2.56} ≈ 55 → N ≈ 113,000 states → mod-226,000.
+
+This is far out of any computational reach, and the power law likely does NOT hold that far (alpha is already decreasing). The Expander Conjecture remains open but the data is consistent with it.
+
+### Implications for mixing and D_hard_kern
+
+With gap ≥ 0.80 at all computed moduli:
+- TV mixing time: t_mix(0.001) ≤ log(1000) / 0.80 ≈ 8.6 macro-steps.
+- After 50 macro-steps from ANY starting state: TV distance ≤ N^{0.5} × 0.80^{50} ≈ 45 × 10^{-5} ≈ 0.0004.
+- After 100 steps: TV distance ≤ N^{0.5} × 0.80^{100} ≈ 45 × 2×10^{-10} ≈ 10^{-8}.
+
+The equidistribution PRACTICALLY HOLDS for any orbit of length ≥ 100 macro-steps. Any hard cycle with ≥ 100 distinct members would need avg k₀ = 3.419 while the chain is 10^{-8}-close to uniform (avg k₀ = 2). This requires the orbit to be in the ~10^{-8} tail of the distribution — which is the "specific deterministic orbit" gap still unresolved.
+
+**Critical remaining step**: Show that hard cycle orbits (if they existed) cannot be in the exponentially rare "slow mixing" tail. This requires either:
+(a) Pointwise mixing bounds (not just distributional ones),
+(b) Diophantine analysis showing no long-period Collatz orbits can sustain avg k₀ ≫ 2, or
+(c) Recursive structure of the chain showing the "slow mixing" orbits don't form closed cycles.
+
+
 
 
