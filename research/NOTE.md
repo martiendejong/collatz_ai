@@ -8385,6 +8385,93 @@ Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbi
 
 ---
 
+## Obs 282 — Phantom Cycles in the Collatz Functional Graph mod 2^N (Scripts 136, 137)
+
+**Scripts:** 136_spectral_gap.py, 137_phantom_cycles.py  
+**Context:** Investigation of the Markov chain induced by macro_step on odd residues mod 2^N. Script 136 computed transition-matrix eigenvalues; script 137 found cycles directly via functional graph analysis.
+
+### Setup: The modular functional graph
+
+For each N, define f_N: (odd mod 2^N) → (odd mod 2^N) by f_N(r) = macro_step(r) mod 2^N. The **functional graph** of f_N is a directed graph where each node has out-degree 1 (deterministic map). Its structure decomposes into "rho-shapes": tails leading into cycles.
+
+Key property (from Obs 276): f_N is NEARLY deterministic — the exact value of macro_step(r) for r < 2^N depends only on r when l₀ < N−K (probability ~1−1/2^{N−K}), meaning modular errors are exponentially rare.
+
+### Finding 1: Phantom cycle window N = 7–10
+
+The cycle count of f_N as a function of N:
+
+| N | #cycles | Cycle lengths | Phantom representative |
+|---|---|---|---|
+| 3 | 1 | [1] | — |
+| 4 | 1 | [1] | — |
+| 5 | 1 | [1] | — |
+| 6 | 1 | [1] | — |
+| **7** | **2** | **[1, 4]** | **{47, 91, 103, 121}** |
+| **8** | **2** | **[1, 6]** | **{71, 91, 103, 121, 175, 189}** |
+| **9** | **2** | **[1, 10]** | **{91, 95, 103, 167, 175, 253, 283, 319, 399, 445}** |
+| **10** | **2** | **[1, 2]** | **{703, 937}** |
+| 11 | 1 | [1] | — |
+| 12–19 | 1 | [1] | — |
+
+**For N=3–6**: Only the trivial fixed point n=1 is a cycle. Every odd number mod 2^N eventually reaches 1 under iteration of f_N.  
+**For N=7–10**: A PHANTOM cycle appears alongside the trivial one.  
+**For N=11–19**: Phantoms disappear; only n=1 again. (Tested up to N=19.)
+
+### Finding 2: Explicit phantom cycles
+
+**N=7** (phantom 4-cycle):  
+f₇(47) = 121, f₇(121) = 91, f₇(91) = 103, f₇(103) = 47. ✓
+
+**N=8** (phantom 6-cycle):  
+f₈(71) = 121, f₈(121) = 91, f₈(91) = 103, f₈(103) = 175, f₈(175) = 189, f₈(189) = 71. ✓
+
+**N=9** (phantom 10-cycle):  
+91→103→175→445→167→283→319→(911 mod 512=399)→253→95→91. ✓  
+Note: in the REAL map, 319 → 911 (not 399). 911 mod 512 = 399 is the modular coincidence creating the phantom.
+
+**N=10** (phantom 2-cycle {703, 937}):  
+macro_step(937) = 703 (exactly, no modular reduction needed).  
+macro_step(703) = 4009 ≡ **937 mod 1024**. But 4009 ≠ 937 in reality.  
+At N=11: 4009 mod 2048 = **1961** ≠ 937 → phantom dissolves at N=11.
+
+### Finding 3: Persistent core elements
+
+Elements 91 and 103 appear in phantoms at N=7, 8, AND 9 — three consecutive modular levels. Yet they are absent from the N=10 phantom. The real orbit: macro_step(91) = 103, macro_step(103) = 175, macro_step(175) = 445, ..., macro_step(319) = 911 ≢ 399 mod 1024. The chain visits 91→103 as genuine sub-orbit fragments, but fails to close a loop at higher moduli.
+
+### Finding 4: The 703 connection and modular coincidence
+
+703 = 19 × 37. The phantom 2-cycle {703, 937} at N=10 arises from:
+- macro_step(937) = (469×3−1)/2 = 1406/2 = 703. *Exact* integer result.
+- macro_step(703) = (11×3^6−1)/2 = 8018/2 = 4009. And 4009 = 3×1024 + **937**. Modular coincidence!
+
+So 703 → 4009 → (next step) → ... in the real orbit. The "cycle" is a consequence of 3×1024 = 3072, i.e., 4009 ≡ 937 mod 1024. At 2^11 = 2048, we have 4009 = 2048+1961, and 1961 ≠ 937: the coincidence evaporates.
+
+### Finding 5: Spectral-gap interpretation
+
+From Script 136: the transition matrix P_N (P_N[i,j] = 1 if f_N(i)=j) has eigenvalues:
+- All |λ| = 0 EXCEPT those corresponding to cycles (|λ| = 1, λ = e^{2πi/period})
+- N=4–6: eigenvalue 1 only (1 cycle). Second-largest magnitude = 0. "Gap" = 1.
+- N=7–10: eigenvalue 1 (twice or more) + eigenvalue −1 (from 2-cycle at N=10). Gap = 0 (multiple unit eigenvalues).
+- N=11+: eigenvalue 1 only. Gap returns to 1.
+
+Standard T_mix ~ 1/gap is not meaningful for a deterministic functional graph (gap is 0 or 1); mixing time depends on tail length (steps to reach the cycle).
+
+### Finding 6: Implications for the Collatz conjecture
+
+A TRUE Collatz cycle (other than {1}) would correspond to an element r that satisfies f_N(r) ≡ r mod 2^N for ALL N simultaneously. Equivalently, r defines a **2-adic integer** that is periodic under the 2-adic extension of the Collatz map.
+
+Our data: phantom cycles exist at N=7–10 but dissolve at N≥11. No phantom survives to N=11–19. This means:
+- No 2-adic periodic element (other than r=1) is consistent with the functional graph for N=11 through 19.
+- The phantom window N=7–10 reflects a specific algebraic resonance in 3^K − 2^{K+l₀} mod 2^N that happens to align for those moduli, but breaks for larger N.
+
+This is heuristic (not a proof) — but consistent with the conjecture. Any true Collatz cycle element must satisfy modular constraints at ALL levels simultaneously; the phantom-cycle window shows that modular agreement at small N provides no guarantee of true periodicity.
+
+### Summary
+
+The Collatz macro-step functional graph mod 2^N has exactly one cycle (the trivial fixed point n≡1) for N=3–6 and N=11–19, but two cycles (trivial + one phantom) for N=7–10. The phantom cycle at N=10 involves the number 703, whose orbit in the real map immediately leaves the phantom via 703→4009≠937. The phantom window reveals that modular arithmetic can create false cycles even when the true map is globally convergent. All phantoms vanish by N=11, consistent with the Collatz conjecture.
+
+---
+
 ## Obs 276 — Odd Multiples of 3 Are Permanent Leaves in the Macro-Step Tree (Script 132)
 
 **Script:** 132_collatz_tree.py  
