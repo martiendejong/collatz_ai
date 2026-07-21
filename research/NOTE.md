@@ -8385,6 +8385,109 @@ Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbi
 
 ---
 
+## Obs 289 — Two-Channel Structure: 23-Channel Uses N=7/8/9 Phantom Staircase; 13-Channel Has No Phantom Content (Script 145)
+
+**Script:** 145_two_channels.py  
+**Context:** Separation of Collatz orbits into two major terminal channels reveals that the phantom staircase belongs EXCLUSIVELY to the 23-channel.
+
+### Finding 1: Two-channel split
+
+10,000 random 500-bit orbits classified by T-2 value:
+- **23-channel** (T-2 = n=23): 43.2% of all orbits
+- **13-channel** (T-2 = n=13): 47.6% of all orbits
+- other-channel (T-2 = other): 9.2%
+
+Both channels converge to n=5→1 in the final step (T-1=5 is 100% for both channels).
+
+### Finding 2: 23-channel IS the phantom staircase channel
+
+Within the 23-channel only (the 43.2% of orbits with T-2=23), the phantom staircase concentrations are extreme:
+
+| T-k | Dominant n | 23-ch freq% | Phantom N |
+|-----|-----------|------------|----------|
+| T-8 | 319 | **82.5%** | N=9 |
+| T-9 | 283 | 78.0% | N=9 |
+| T-10 | 167 | 76.7% | N=9 |
+| T-11 | 445 | 75.1% | N=9 |
+| T-12 | 175 | 72.3% | N=8,9 |
+| T-13 | 103 | 69.6% | N=7,8,9 |
+| T-14 | 91 | 64.4% | N=7,8,9 |
+| T-15 | 121 | 46.8% | N=7,8 |
+| T-16 | 47 | 21.4% | N=7 |
+
+82.5% of 23-channel orbits pass through n=319 (N=9 phantom) at exactly T-8. This confirms the phantom staircase is the dominant organizing structure for the 23-channel. The staircase is not a 36% phenomenon (the aggregate rate); it is an 82% phenomenon WITHIN the 23-channel.
+
+### Finding 3: 13-channel has ZERO phantom staircase content
+
+Within the 13-channel (the 48% of orbits with T-2=13):
+
+| Phantom element | 13-channel passage rate |
+|---|---|
+| n=47 (N=7) | **0%** |
+| n=91 (N=7,8,9) | **0%** |
+| n=103 (N=7,8,9) | **0%** |
+| n=121 (N=7,8) | **0%** |
+| n=167 (N=9) | **0%** |
+| n=175 (N=8,9) | **0%** |
+| n=283 (N=9) | **0%** |
+| n=319 (N=9) | **0%** |
+| n=445 (N=9) | **0%** |
+
+The 13-channel has ZERO overlap with the N=7, N=8, and N=9 phantom staircase elements. The two channels are completely disjoint in their phantom content.
+
+### Finding 4: 13-channel secondary structure (N=10 phantom path)
+
+The 13-channel does have a weaker secondary staircase corresponding to the N=10 phantom orbit (703→4009→3007→...→157→59→67→19→11→13→5→1):
+
+| T-k | 13-ch dominant n | 13-ch freq% | N=10 phantom orbit? |
+|-----|----------------|------------|---------------------|
+| T-7 | 157 | 13.6% | yes (T-7 in 703's orbit) |
+| T-13 | 23485 | 3.3% | yes (T-13 in 703's orbit) |
+| T-14 | 31313 | 3.2% | yes |
+| T-15 | 37111 | 3.2% | yes |
+| T-16 | 21991 | 3.1% | yes |
+| T-17 | 5791 | 2.9% | yes |
+| T-18 | 2287 | 2.8% | yes |
+| T-19 | 12197 | 2.6% | yes |
+| T-25 | **703** | **1.2%** | yes (N=10 phantom!) |
+
+The N=10 phantom orbit serves as the "secondary staircase" for the 13-channel — analogous to the N=9/8/7 staircase for the 23-channel, but much weaker (~3% vs ~82%).
+
+N=10 phantom passage rates by channel: 23-ch = 0%, 13-ch = 0.7%.
+
+The two channels even use DIFFERENT phantom levels:
+- 23-channel → N=7/8/9 phantom staircase
+- 13-channel → N=10 phantom orbit (minor, ~1% of 13-channel orbits)
+
+### Finding 5: 13-channel is diffuse, not staircase-like
+
+The 13-channel dominant T-k values drop rapidly in concentration:
+
+| T-k | 13-ch dominant | 13-ch freq% |
+|-----|----------------|------------|
+| T-3 | 11 | 52.4% |
+| T-4 | 19 | 37.3% |
+| T-5 | 49 | 29.8% |
+| T-6 | 59 | 16.2% |
+| T-7 | 157 | 13.6% |
+| T-8 | 361 | 7.7% |
+| T-9 | 481 | 7.1% |
+| T-10 | 427 | 5.9% |
+
+By T-8 the maximum concentration is 7.7% -- far below the 82.5% in the 23-channel at T-8. None of the 13-channel dominant values (361, 481, 427, 379, 505) are phantom elements at any known level N. The 13-channel is structurally diffuse.
+
+### Summary: Hierarchical attractor structure
+
+The Collatz tree near n=1 has a layered attractor structure:
+1. **Global split**: 23-channel (43%) vs 13-channel (48%) vs other (9%) [by T-2 value]
+2. **23-channel**: organized by N=7/8/9 phantom staircase — 82% of its orbits follow the staircase
+3. **13-channel**: weakly organized by N=10 phantom orbit — only ~1% follow it; rest are diffuse
+4. **The two channels are phantom-disjoint**: 0% overlap of N=7/8/9 phantom content in 13-channel, 0% of N=10 phantom in 23-channel
+
+The phantom staircase is not a feature of "all Collatz orbits" — it is specifically the organizing structure of the 23-channel. The Collatz tree has two major trunks: one organized (phantom staircase), one diffuse.
+
+---
+
 ## Obs 288 — Unreachable Nodes in the Collatz Tree: Odd Multiples of 3 Have No Predecessors (Script 144)
 
 **Script:** 144_staircase_predecessors.py  
