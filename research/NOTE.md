@@ -9776,4 +9776,86 @@ The Collatz macro-step process along actual orbits is well modeled by:
 - **Lyapunov exponent**: −0.575 per step (proved exactly under i.i.d. model; confirmed empirically)
 - **Implication**: The chain is a random walk in log-space with drift −0.575 and variance ≈ Var[K·log3 − (K+l₀)·log2]. The CLT applies: orbit lengths (in macro-steps) are approximately normal with mean 1.74·b and standard deviation ≈ 11.1·√b (where b = bit-length of starting number, and σ per step ≈ 11.1 from the script output).
 
+---
+
+## Obs 291 — Complete T-1 Exit Channel Structure (script 147)
+
+**Context:** script 147_other_channel.py investigates the 9% "other-channel" (T-2 ≠ 13 or 23) to determine if it has its own phantom organization and to characterize all T-1 exit channels algebraically.
+
+**Key finding 1 — T-1 channels classified by (K, l0):**
+
+All "T-1 values" (predecessors of 1 under macro_step) satisfy m×3^K = 2^{l0}+1 with m odd positive and l0 **odd** (required by 2^{l0}+1 ≡ 0 mod 3). For each odd l0, the power of 3 dividing 2^{l0}+1 determines how many T-1 values exist at that l0 level:
+
+| l0 | 2^{l0}+1 | Factored | T-1 values (n) | n mod 3 | Active? |
+|----|-----------|----------|-----------------|---------|---------|
+| 3  | 9 = 3²    | K=1: n=5, K=2: n=3 | 5 (active), 3 (trivial) | 2, 0 | n=5 yes, n=3 no |
+| 5  | 33 = 3×11 | K=1: n=21 | 21 | 0 | **BLOCKED** (≡0 mod 3) |
+| 7  | 129 = 3×43 | K=1: n=85 | 85 | 1 | yes |
+| 9  | 513 = 3³×19 | K=1: n=341, K=2: n=227, K=3: n=151 | 341, 227, 151 | 2, 2, 1 | all yes |
+| 11 | 2049 = 3×683 | K=1: n=1365 | 1365 | 0 | **BLOCKED** (≡0 mod 3) |
+| 13 | 8193 = 3×2731 | K=1: n=5461 | 5461 | 1 | yes (rare) |
+| 15 | 32769 = 3×10923 = 3×3×3×17×… | K=1: n=21845, K=2: n=14563 | 21845, 14563 | 2, 1 | yes (very rare) |
+| 17 | 131073 = 3×43691 | K=1: n=87381 | 87381 | 0 | **BLOCKED** |
+
+**Blocking rule for K=1:** n = (2^{l0+1}−1)/3 and this is ≡0 mod 3 exactly when l0 ≡ 5 (mod 6). Blocked l0 values: 5, 11, 17, 23, … The passage rate for these T-1 channels is exactly 0 by the unreachability theorem (Obs 288).
+
+**Key finding 2 — Empirical passage rates (20,000 orbits of 500-bit numbers):**
+
+- T-1=5 (l0=3): ~94% of all orbits reach 1 via n=5
+- T-1=85 (l0=7): ~2%
+- T-1=151 (l0=9, K=3): ~1.6%
+- T-1=227 (l0=9, K=2): ~1.4%
+- T-1=341 (l0=9, K=1): ~0.2%
+- T-1=21 (l0=5, BLOCKED): 0%
+- T-1=1365 (l0=11, BLOCKED): 0%
+
+The dominance of T-1=5 (94%) follows from n=5 having the most predecessors (11 up to 100K vs 8 for n=85, and n=5 is a 3-bit number reached by many random-walk paths). The "missing" l0=5 channel (T-1=21) is absent precisely because 21≡0 mod 3.
+
+**Key finding 3 — T-2 sub-channels within T-1=5:**
+
+Multiple T-2 values all lead to T-1=5 (since 13→5, 23→5, 35→5, 53→5, 853→5):
+- T-2=13: 47.7% (the "13-channel")
+- T-2=23: 43.3% (the "23-channel")
+- T-2=35: 1.73% (K=2, l0=4 path, via n=373→35→5→1)
+- T-2=53: 0.62% (K=1, l0=4 path)
+- T-2=853: 0.54% (K=1, l0=8 path)
+
+The 13-channel and 23-channel together account for ~96.7% of all T-1=5 orbits. Their dominance over T-2=35/53/853 is driven by the phantom staircase: 23-channel is organized by the N=9 phantom dissolution cascade (82% concentration at T-8), while 13-channel has many direct-descent predecessors (7→13, 11→13, 17→13, etc.). The T-2=35/53/853 sub-channels have far fewer predecessors and no phantom-organized "funnel."
+
+**Key finding 4 — Other-channel is completely phantom-free:**
+
+Other-channel orbits (T-2 ≠ 13 or 23) were tested for passage through any N=7-10 phantom element. Out of 475 other-channel orbits (500-bit starting values), **zero visited any phantom element**. The T-k dominant values at T-2 through T-25 all show Phantom? = "---". The other-channel is organized by a distinct set of small values (113, 373, 847, 1129, 2011, 1337, ...) with no phantom overlap.
+
+This confirms the complete tripartite phantom organization:
+- 23-channel (43%): organized by N=7/8/9 phantom staircase → dissolution cascade
+- 13-channel (48%): completely phantom-free at N=7-10 level
+- Other-channel (9%): completely phantom-free at N=7-10 level
+
+---
+
+## Obs 292 — The "85-channel" dominant path and its chain structure
+
+From script 147 Part 3, the other-channel's dominant T-k path (when T-2=113→85→1) follows a clean chain:
+
+T-2=113 → T-3=? → ... → T-k
+
+Predecessors of 113 with small K: the simplest is K=1,l0=2: n=301 (301→113→85→1). The T-3 value of the 85-sub-channel is 301 (from 301→113→85→1).
+
+The dominant T-k values shown in Part 3 are a MIXTURE from multiple sub-channels:
+- T-3=373 (16.1% of other-channel): from 373→35→5→1 (the T-2=35 sub-channel)
+- T-4=847 (13.3%): from 847→1073→805→151→1 (the 151-sub-channel: 151,227,341 paths)
+- T-5=1129 (10.5%): from 1129→847→1073→805→151→1
+
+The **151-channel** (T-1=151) has a clear dominant short path: ...→1129→847→1073→805→151→1. This is a 5-step deterministic chain. The passage rate is 1.6%, entirely driven by the number of predecessors that can reach n=1129 at the large-orbit stage.
+
+The "other-channel" has no phantom staircase but does have **deterministic short chains** near the end:
+- 35-sub-channel: ...→373→35→5→1 (2-step short chain)
+- 151-sub-channel: ...→1129→847→1073→805→151→1 (5-step short chain)
+- 85-sub-channel: ...→301→113→85→1 (3-step short chain)
+- 227-sub-channel: ...→1613→605→227→1 (3-step short chain)
+
+These are the "non-phantom exit ramps" — compact deterministic tails that drain into the small T-1 values other than n=5.
+
+**Connection to dissolution cascade:** The 23-channel has its exit ramp organized by the N=9 phantom dissolution (911→577→433→325→61→23→5→1, 7 steps). The other-channel exit ramps are SHORTER (2-5 steps) and have no phantom ancestry. This quantitative difference (7-step vs 2-5-step exit ramp) explains why the other-channel has lower passage rates: shorter exit ramps mean fewer predecessors feeding into them, and no phantom "attractor basin" to amplify entry probability.
+
 
