@@ -8385,6 +8385,113 @@ Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbi
 
 ---
 
+## Obs 287 — The Phantom Staircase: Phantom Cycle Elements Form the Complete Dominant Terminal Path (Script 143)
+
+**Script:** 143_phantom_funnel.py  
+**Context:** Rigorous verification that the phantom cycle elements (Obs 282-283) at N=7, 8, 9 form a consecutive staircase in the dominant terminal path of large Collatz orbits. Reveals the full structure of the canonical terminal path and the N=10 phantom divergence.
+
+### Finding 1: The Phantom Staircase (T-8 to T-16)
+
+Tracking the dominant T-k value for k=1..25 across 10,000 random 500-bit orbits:
+
+| T-k | Dominant n | Freq% | Phantom level N |
+|-----|-----------|-------|-----------------|
+| T-1 | 5 | 93.6% | --- |
+| T-2 | 13 | 46.4% | --- |
+| T-3 | 61 | 41.8% | --- |
+| T-4 | 325 | 41.4% | --- |
+| T-5 | 433 | 41.4% | --- |
+| T-6 | 577 | 41.2% | --- |
+| T-7 | 911 | 37.1% | --- |
+| T-8 | 319 | 36.6% | N=9 |
+| T-9 | 283 | 34.8% | N=9 |
+| T-10 | 167 | 34.3% | N=9 |
+| T-11 | 445 | 33.5% | N=9 |
+| T-12 | 175 | 32.3% | N=8,9 |
+| T-13 | 103 | 31.0% | N=7,8,9 |
+| T-14 | 91 | 28.9% | N=7,8,9 |
+| T-15 | 121 | 21.0% | N=7,8 |
+| T-16 | 47 | 9.9% | N=7 |
+| T-17 | 55 | 5.8% | --- |
+
+T-8 through T-16 are ENTIRELY phantom elements -- a 9-step consecutive band dominated by phantom cycle values. The phantom staircase is not a statistical artifact: it is the defining structural feature of the dominant Collatz terminal path.
+
+### Finding 2: The Canonical Terminal Path
+
+The complete canonical terminal path (traced by ~10% of orbits end-to-end, ~36% entering at some point):
+
+47 -> 121 -> 91 -> 103 -> 175 -> 445 -> 167 -> 283 -> 319 -> 911 -> 577 -> 433 -> 325 -> 61 -> 23 -> 5 -> 1
+
+Structure:
+- Steps T-16 to T-8 = phantom staircase (9 values, all phantom elements from N=7/8/9)
+- Steps T-7 to T-1 = non-phantom exit ramp (911, 577, 433, 325, 61, 23, 5)
+
+The path passes through elements of the N=7 phantom (47, 121, 91, 103), N=8 phantom (121, 91, 103, 175), and N=9 phantom (91, 103, 175, 445, 167, 283, 319) in a seamless sequence.
+
+Verification:
+- 47->121: K=4, m=3, x=3x3^4-1=242, l0=1, n_out=121
+- 121->91: K=1, m=61, x=61x3-1=182, l0=1, n_out=91
+- 91->103: K=2, m=23, x=23x9-1=206, l0=1, n_out=103
+- 103->175: K=3, m=13, x=13x27-1=350, l0=1, n_out=175
+- 175->445: K=4, m=11, x=11x81-1=890, l0=1, n_out=445
+- 445->167: K=1, m=223, x=223x3-1=668, l0=2, n_out=167
+- 167->283: K=3, m=21, x=21x27-1=566, l0=1, n_out=283
+- 283->319: K=2, m=71, x=71x9-1=638, l0=1, n_out=319
+- 319->911: K=6, m=5, x=5x729-1=3644, l0=2, n_out=911
+
+The staircase region (T-16 to T-9) consists almost entirely of K-small, l0=1 steps, so each step multiplies by ~3 then divides by 2 (slow compression). The exit ramp then accelerates collapse.
+
+### Finding 3: N=20 Phantom Traces the Canonical Path Exactly
+
+The N=20 phantom fixed point (n=684783, from Obs 284) has a 35-step orbit. Its final 16 steps follow the canonical path exactly:
+
+T-16: 47 (N=7 phantom), T-15: 121 (N=7,8), T-14: 91 (N=7,8,9), T-13: 103 (N=7,8,9),
+T-12: 175 (N=8,9), T-11: 445 (N=9), T-10: 167 (N=9), T-9: 283 (N=9),
+T-8: 319 (N=9), T-7: 911, T-6: 577, T-5: 433, T-4: 325, T-3: 61, T-2: 23, T-1: 5, T-0: 1.
+
+The N=20 phantom's orbit enters the canonical path at n=47 and traces it exactly to n=1. The phantom fixed point's modular looping behavior at level N=20 is a consequence of its real orbit landing on this specific canonical path.
+
+### Finding 4: N=10 Phantom Takes a Different Path
+
+The N=10 phantom elements {703, 937} do NOT pass through the phantom staircase:
+
+703: 703->4009->3007->...->157->59->67->19->11->13->5->1 (25 steps)
+937: 937->703->4009->...->157->59->67->19->11->13->5->1 (26 steps)
+
+No phantom staircase elements appear. The N=10 phantom uses a secondary exit channel (157->59->67->19->11->13->5->1), visited by ~0.5% of orbits. This is structurally disconnected from the main phantom staircase.
+
+### Finding 5: Zero-Variance Funnel Depth
+
+The mean T-k funnel depth by phantom level:
+- N=7 elements: mean T-14.1
+- N=8 elements: mean T-13.4
+- N=9 elements: mean T-11.0
+- N=10 elements: mean T-25.5
+
+Standard deviation of funnel depth = 0 for ALL staircase elements. Every orbit that visits n=47 visits it at EXACTLY T-16; every orbit that visits n=319 visits it at EXACTLY T-8. The staircase has a rigid structure: orbits either traverse it exactly at fixed depth, or skip it entirely.
+
+### Finding 6: Expansion Nodes n=2^K-1
+
+n=2^K-1 has m=1 (maximum K for a given n). For K odd: l0=v2(3^K-1)=1, giving:
+
+  ratio = (3^K - 1) / (2(2^K - 1)) ~ (3/2)^K / 2
+
+This grows exponentially (rate log(3/2) = 0.585 per K): K=7 gives ratio 8.61, K=9 gives 19.26, K=11 gives 43.27. The parity of K determines the behavior: K odd -> l0=1 -> exponential expansion (ratio grows as (1.5)^K); K even -> l0>=3 -> moderate expansion or contraction.
+
+These expansion nodes (n=127->1093, n=31->121, etc.) are NOT in the phantom staircase. They jump to larger values before eventually finding their own path to 1. n=31->121 is notable: 31 is not in any phantom cycle, but its output (121) IS in the N=7/8 phantom staircase.
+
+### Summary
+
+The Collatz terminal structure is rigid and hierarchical:
+1. Non-phantom exit ramp (T-1 to T-7): 5, 23/13, 61, 325, 433, 577, 911 -- visited by 37-94% of orbits
+2. Phantom staircase (T-8 to T-16): 9 consecutive phantom elements from N=7/8/9, visited by 10-36% of orbits with ZERO variance in T-k depth
+3. Staircase entry zone (T-17+): passage drops from 10% to 5.8%, marking the phantom attractor boundary
+4. Secondary channels (N=10 phantom, expansion node paths): minor paths for <1% of orbits
+
+The phantom cycles are the attractor channels of the Collatz map. The "spurious" cycles at N=7-9 are not accidents -- they are the fingerprint of the dominant terminal path structure.
+
+---
+
 ## Obs 286 — Terminal Path Concentration and the Phantom-Funnel Connection (Script 142)
 
 **Script:** 142_last_mile.py  
