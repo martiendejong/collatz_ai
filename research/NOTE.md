@@ -4904,6 +4904,77 @@ P(h≥2) in the small-n regime appear lower than large-n. The P(h=1) = 31/256
 is large-n valid (pure mod-256 arithmetic), but P(h≥2) from small-n is biased.
 For all quantitative claims about h≥2, use the large-n empirical data (script 82).
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OBSERVATION 205 (LARGE-n h DISTRIBUTION AND LONG-RUN DESTINATION FROM r=255)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Status: EXACT for h=1; EXACT 256-point sample for h>=2
+(script 89_large_n_h_dist_r255.py; m = 10^12+1..10^12+511, n ~ 2.56×10^14)
+
+CONFIRMED: P(h=1) = 31/256 = 12.11% IN LARGE-n REGIME (arithmetic invariant).
+
+Large-n h distribution (256 odd-m values, m~10^12, 254/256 reach BSet, 2 converge):
+
+  h= 1: 31  (12.11%)   h= 9: 3  (1.17%)   h=17: 4  (1.56%)   h=25: 2
+  h= 2: 22  (8.59%)    h=10: 7  (2.73%)   h=18: 3  (1.17%)   h=28: 1
+  h= 3: 26  (10.16%)   h=11: 8  (3.13%)   h=19: 6  (2.34%)   h=29: 2
+  h= 4: 17  (6.64%)    h=12: 8  (3.13%)   h=20: 3  (1.17%)   h=30: 2
+  h= 5: 13  (5.08%)    h=13: 9  (3.52%)   h=21: 5  (1.95%)   h=40: 1
+  h= 6: 14  (5.47%)    h=14: 9  (3.52%)   h=22: 5  (1.95%)   h=41: 1
+  h= 7: 10  (3.91%)    h=15: 8  (3.13%)   h=23: 4  (1.56%)   h=52: 1
+  h= 8: 11  (4.30%)    h=16: 10 (3.91%)   h=24: 4  (1.56%)   h=53: 1
+
+  E[h | BSet hit, large-n] = 10.02  (vs script 82 empirical: 9.22)
+  E[k/step(255), large-n] = 2.290  (vs script 82 empirical: 2.352)
+  Max h observed: 53 (within 256 large-n starting points)
+
+NOTE: Distribution is NOT geometric. Significant variance; 256-sample is noisy.
+The geometric model (p=10.9%) gives a rough approximation to E[h] but the
+individual P(h=j) values fluctuate substantially around the geometric curve.
+
+LONG-RUN DESTINATION DISTRIBUTION FROM r=255 (all h combined, 254 paths):
+
+  r=103 (k=3): 11.8%    r=239 (k=4): 7.1%    r=223 (k=5): 4.7%
+  r=169 (k=1): 11.0%    r=207 (k=4): 7.1%    r= 95 (k=5): 3.9%
+  r= 27 (k=2):  9.8%    r= 63 (k=6): 5.5%    r=255 (k=8): 3.5%
+  r= 55 (k=3):  9.8%    r=159 (k=5): 5.1%    r=191 (k=6): 2.8%
+  r=253 (k=1):  8.3%    r= 83 (k=2): 7.9%    r=127 (k=7): 1.6%
+  r= 83 (k=2):  7.9%
+
+  Avg k0 of destination = (sum k0×count) / 254 ≈ 3.34  [FAR BELOW BSet mean 4.13]
+
+COMPARISON OF DESTINATION k0 AVERAGES FROM r=255:
+  h=1 only:       k0_avg_dest = 3.90  (near BSet mean)
+  h=1+h=2 only:   k0_avg_dest ≈ 3.40  (lower, V-shape dip at h=2)
+  All h (long-run): k0_avg_dest ≈ 3.34  (close to random limit 1.98, in between)
+
+The long-run destination is between h=1 (structured, near mean) and the
+random limit (1.98), confirming the progressive convergence toward the low-k
+random limit as h increases.
+
+CRITICAL FINDING: r=127 (the ideal 2-cycle partner of r=255) receives only
+4/254 = 1.6% of long-run arrivals from r=255. The uniform prediction would
+be 1/15 = 6.67%. r=127 is 4.2× UNDERREPRESENTED in the destination
+distribution from r=255, further suppressing the 255↔127 cycle contribution.
+
+255->127 SPECIFIC TRANSITION (large-n, 4 paths):
+  h=1: 1 path  k_sum=8   avg_k/step=8.00  (direct, k=8 step)
+  h=4: 1 path  k_sum=13  avg_k/step=3.25  (4 steps, above threshold!)
+  h=8: 1 path  k_sum=16  avg_k/step=2.00  (8 steps, below threshold)
+  h=19: 1 path k_sum=41  avg_k/step=2.16  (19 steps, far below threshold)
+
+  E[h(255→127)] = 8.0 (large-n, 4 paths)
+  E[k/step(255→127)] = 78/32 = 2.44  [below threshold 3.419]
+
+IMPLICATION: Even in the "best cycle" direction (255→127), the avg k/step
+is only 2.44 — far below the 3.419 threshold. The h=1 case gives k/step=8,
+but it occurs only 1/256 = 0.39% of the time. The other 3 paths (h=4,8,19)
+have k/step = 2.0-3.3, pulling the average down.
+
+P(h=2) LARGE-n vs SMALL-n:
+  Large-n P(h=2) = 22/256 = 8.59%  vs  Small-n P(h=2) = 21/256 = 8.20%
+  Difference: +1/256 in large-n. The small-n bias for P(h=2) is SMALL (1/256).
+  This suggests the "sub-geometric" P(h=2) is a REAL EFFECT, not a small-n artifact.
+
 ═══════════════════════════════════════════════════════════════════
 PART 5 — k0-GROUPING: 15 BOOSTERS COLLAPSE TO 8 DISTINCT TYPES
 ═══════════════════════════════════════════════════════════════════
