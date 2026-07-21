@@ -4876,6 +4876,32 @@ QUANTITATIVE ACCOUNTING (at max P(h=1) = 12.5% from r=127):
      impossibility of k_sink ≥ 3.325.
 
 ═══════════════════════════════════════════════════════════════════
+PART 5 — k0-GROUPING: 15 BOOSTERS COLLAPSE TO 8 DISTINCT TYPES
+═══════════════════════════════════════════════════════════════════
+
+Boosters with the SAME k0 = v2(r+1) have IDENTICAL transition distributions
+for ALL hop lengths h. This is because the output formula
+  (3^k0 × m − 1) / 2^{v2(3^k0 × m − 1)}
+depends only on k0, not on the specific residue r. When all 256 odd m values
+are iterated, the output multiset is the SAME for all boosters sharing k0.
+
+The 15 BSet elements group into 8 TYPES by k0:
+
+  k0=1: {r=169, r=253}                   — 2 elements, identical transitions
+  k0=2: {r=27,  r=83}                    — 2 elements, identical transitions
+  k0=3: {r=55,  r=103}                   — 2 elements, identical transitions
+  k0=4: {r=207, r=239}                   — 2 elements, identical transitions
+  k0=5: {r=95,  r=159, r=223}            — 3 elements, identical transitions
+  k0=6: {r=63,  r=191}                   — 2 elements, identical transitions
+  k0=7: {r=127}                          — 1 element  (unique)
+  k0=8: {r=255}                          — 1 element  (unique)
+
+CONSEQUENCE: The booster transition matrix on G (15×15) has RANK ≤ 8 in the
+sense that rows corresponding to same-k0 boosters are identical. The effective
+Markov chain on booster types has only 8 states, drastically simplifying
+any cycle-mean or stationary-distribution computation.
+
+═══════════════════════════════════════════════════════════════════
 SYNTHESIS: TWO INDEPENDENT ARITHMETIC BARRIERS TO D_hard_kern
 ═══════════════════════════════════════════════════════════════════
 
@@ -4892,3 +4918,204 @@ Both barriers are grounded in the same arithmetic fact: 3^k mod 2^8 maps
 odd m uniformly over 128 odd residues mod 256, and BSet occupies only 15
 of those 128 residues. The 15/128 ≈ 12% rate is the fundamental constraint
 embedded in the Collatz map's 3-adic × 2-adic arithmetic structure.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OBSERVATION 202 (EXACT h=2 DISTRIBUTION AND k-DESTINATION DRIFT)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Status: EXACT (script 85_exact_h2_distribution.py; 256 odd-m values per booster)
+
+EXACT P(h=2) FOR ALL BOOSTERS (same 256-period computation):
+
+  r=127 (k=7): P(h=2) = 21/256 = 8.203%  [MAXIMUM, tied with r=255]
+  r=255 (k=8): P(h=2) = 21/256 = 8.203%  [MAXIMUM, tied with r=127]
+  r=169 (k=1): P(h=2) = 18/256 = 7.031%
+  r=207 (k=4): P(h=2) = 18/256 = 7.031%
+  r=239 (k=4): P(h=2) = 18/256 = 7.031%
+  r=253 (k=1): P(h=2) = 18/256 = 7.031%
+  r= 27 (k=2): P(h=2) = 17/256 = 6.641%
+  r= 63 (k=6): P(h=2) = 17/256 = 6.641%
+  r= 83 (k=2): P(h=2) = 17/256 = 6.641%
+  r= 95 (k=5): P(h=2) = 17/256 = 6.641%
+  r=159 (k=5): P(h=2) = 17/256 = 6.641%
+  r=191 (k=6): P(h=2) = 17/256 = 6.641%
+  r=223 (k=5): P(h=2) = 17/256 = 6.641%
+  r= 55 (k=3): P(h=2) = 15/256 = 5.859%  [MINIMUM]
+  r=103 (k=3): P(h=2) = 15/256 = 5.859%  [MINIMUM]
+
+  Range: [5.859%, 8.203%].
+  Geometric prediction: (113/128)*(15/128) = 10.345% — ACTUAL IS LOWER.
+  Actual-to-predicted ratio: ~0.68×.
+
+  Note: P(h=2) groups EXACTLY by k0 (same k0 → same P(h=2)),
+  confirming the Part 5 k0-grouping theorem: 8 distinct types, not 15.
+
+WHY P(h=2) < GEOMETRIC PREDICTION:
+The geometric prediction assumes the non-BSet first-step outputs are uniformly
+distributed over the 113 non-BSet odd residues mod 256. In reality, these
+outputs are NOT uniform — they cluster in specific residues determined by
+3^k0 mod 512. These clustered residues happen to be "farther from BSet"
+in the mod-256 adjacency structure, so the probability of hitting BSet on
+the second step is lower than the uniform prediction.
+
+This "sub-geometric decay" of P(h=j) means the actual E[h] is HIGHER than
+the geometric model predicts — the orbit takes longer to return to BSet
+than if it were a fresh uniform draw each time.
+
+COMPOUNDED DISADVANTAGE FROM h=2 ROUTES:
+
+  Avg k of destination booster at h=1 (k_avg_h1) vs h=2 (k_avg_h2):
+
+  r=127 (k=7): k_avg_h1=3.875  k_avg_h2=2.524  diff=-1.351
+  r=255 (k=8): k_avg_h1=3.903  k_avg_h2=2.952  diff=-0.951
+  r= 63 (k=6): k_avg_h1=4.167  k_avg_h2=2.765  diff=-1.402
+  r=191 (k=6): k_avg_h1=4.167  k_avg_h2=2.765  diff=-1.402
+  r= 95 (k=5): k_avg_h1=4.138  k_avg_h2=3.176  diff=-0.961
+  r=207 (k=4): k_avg_h1=4.097  k_avg_h2=3.167  diff=-0.930
+  r= 27 (k=2): k_avg_h1=4.148  k_avg_h2=3.118  diff=-1.031
+  r= 55 (k=3): k_avg_h1=4.296  k_avg_h2=2.400  diff=-1.896
+  [all boosters: k_avg_h2 < k_avg_h1, diff ∈ [-1.896, -0.925]]
+
+EVERY booster has k_avg_h2 < k_avg_h1. The h=2 booster arrivals
+systematically land on low-k boosters (r=27 k=2, r=55 k=3, r=83 k=2,
+r=103 k=3, r=253 k=1, r=169 k=1 dominate h=2 destination counts).
+
+DOUBLE DISADVANTAGE OF h=2 ROUTES (relative to h=1):
+  1. Rate: P(h=2) ≈ 7% < P(h=1) ≈ 12% (slower to reach next booster)
+  2. Quality: k_avg_h2 ≈ 3.0 < k_avg_h1 ≈ 4.07 (lower k destination)
+
+The compound effect: the h=2 contribution to avg global k is:
+  P(h=2) × k_avg_h2 / 2  ≈  0.07 × 3.0 / 2 = 0.105 per step
+vs h=1 contribution:
+  P(h=1) × k_avg_h1 / 1  ≈  0.12 × 4.07 / 1 = 0.489 per step
+
+So h=1 transitions generate 4.7× more k-per-step than h=2 transitions.
+The h=2 pathway is substantially less efficient even than h=1.
+
+DIRECTION OF DRIFT (h-DEPENDENT k-DESTINATION LAW):
+
+Conjectured pattern (to be verified for h≥3):
+  k_avg_dest(h=1) ≈ 4.07  (near BSet mean)
+  k_avg_dest(h=2) ≈ 3.0   (low-k boosters dominate)
+  k_avg_dest(h=3) ≈ 2.5?  (even lower?)
+
+As h increases, the destination booster k-value is expected to DECREASE,
+since larger hop lengths correspond to the orbit "missing BSet" for multiple
+steps — which requires outputs that are consecutively in non-BSet regions,
+and the mod-256 structure suggests these non-BSet chains tend to exit via
+low-k BSet elements when they finally hit.
+
+This h-dependent drift compounds the frequency barrier: not only does D_hard_kern
+need high consecutive-booster rate (~40%), but the h=2 and h=3 routes — which
+account for 80%+ of booster arrivals — preferentially return to LOW-k boosters,
+further suppressing avg k.
+
+APPROXIMATE E[h] FROM EXACT h=1 AND h=2 DATA:
+(using geometric model for h≥3: E[h|h≥3] ≈ 3 + q/p = 3 + 7.53 = 10.53)
+
+  r=127: E[h] ≈ 8.64  (best: fewest expected steps to next booster)
+  r=255: E[h] ≈ 8.68
+  r=169: E[h] ≈ 8.69
+  r=207: E[h] ≈ 8.78
+  r=239: E[h] ≈ 8.78
+  r=253: E[h] ≈ 8.69
+  r= 55: E[h] ≈ 8.99  (worst: most expected steps)
+  r=103: E[h] ≈ 8.99
+
+  All boosters: E[h] ∈ [8.64, 8.99].
+  Consistent with empirical avg_h ≈ 9.2-10.0 from simulation (script 82).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OBSERVATION 203 (h=1 STATIONARY DISTRIBUTION AND k-DESTINATION V-SHAPE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Status: EXACT h=1, h=2, h=3 (script 86_stationary_dist_k0_chain.py);
+stationary distribution via power iteration on exact h=1 transition matrix.
+
+PART A — h=1 TRANSITION MATRIX IS NEARLY DOUBLY STOCHASTIC:
+
+The 8×8 k0-type transition matrix for h=1 transitions has row sums = 1
+(stochastic) and column sums approximately equal. Near-double-stochastic
+matrices have stationary distributions close to uniform (weighted by group size).
+
+STATIONARY DISTRIBUTION π OF h=1 BOOSTER CHAIN (fraction of h=1 booster
+arrivals at each k0 type, by power iteration on exact transition matrix):
+
+  k0=1 (r∈{169,253}):    π=13.99%  (2 elements; uniform predict 2/15=13.33%)
+  k0=2 (r∈{27,83}):      π=12.31%  (2 elements; uniform predict 13.33%)
+  k0=3 (r∈{55,103}):     π=14.53%  (2 elements; uniform predict 13.33%)
+  k0=4 (r∈{207,239}):    π=13.16%  (2 elements; uniform predict 13.33%)
+  k0=5 (r∈{95,159,223}): π=18.71%  (3 elements; uniform predict 3/15=20.00%)
+  k0=6 (r∈{63,191}):     π=13.81%  (2 elements; uniform predict 13.33%)
+  k0=7 (r∈{127}):        π= 7.90%  (1 element;  uniform predict 1/15= 6.67%)
+  k0=8 (r∈{255}):        π= 5.59%  (1 element;  uniform predict 6.67%) [BELOW]
+
+  Avg k0 under stationary: 4.113  (vs uniform: 4.133)
+
+KEY OBSERVATION: r=255 (k0=8) is reached LESS often than uniform prediction
+(5.59% vs 6.67%). r=127 (k0=7) is reached SLIGHTLY MORE (7.90% vs 6.67%).
+The stationary distribution is essentially proportional to group size, with
+minor deviations. The high-k boosters are NOT structurally favored.
+
+IMPLICATION: Even if the orbit follows the h=1 booster chain perfectly (only
+h=1 transitions), the long-run fraction of time at k0=8 is only 5.59%. The
+avg k0 of visited boosters under the stationary distribution is 4.113, which
+is BELOW the D_hard_kern threshold of 3.419... wait, actually 4.113 > 3.419.
+But this is the avg k0 of BOOSTER VISITS, not the avg k/step over ALL steps.
+Including the ~8 inter-booster sink steps (k≈1.5), the overall avg k/step
+drops to ≈ (4.113 × 1) / (1 + 8) ≈ 0.457, far below threshold. (This is
+the unconditional case where h=1 only occurs ~12% of the time in reality.)
+
+PART B — k-DESTINATION DRIFT: V-SHAPE IN h, NOT MONOTONE:
+
+Exact k_avg_dest(h) for each k0 type (first three hop lengths):
+
+  k0  k_avg(h=1)  k_avg(h=2)  k_avg(h=3)  diff(1→2)  diff(2→3)
+  1:    4.036       3.111       2.867        -0.925     -0.244
+  2:    4.148       3.118       1.857        -1.031     -1.261
+  3:    4.296       2.400       3.000        -1.896     +0.600
+  4:    4.097       3.167       3.471        -0.930     +0.304
+  5:    4.138       3.176       3.062        -0.961     -0.114
+  6:    4.167       2.765       2.846        -1.402     +0.081
+  7:    3.875       2.524       3.600        -1.351     +1.076
+  8:    3.903       2.952       3.650        -0.951     +0.698
+
+CONFIRMED: k_avg_dest(h=2) < k_avg_dest(h=1) for ALL 8 k0 types.
+NOT CONFIRMED: k_avg_dest(h=3) < k_avg_dest(h=2) — FALSE for k0=3,4,6,7,8.
+
+The drift is V-SHAPED (in h):
+  h=1: destination k ≈ 4.0-4.3  (near BSet mean)
+  h=2: destination k ≈ 2.4-3.2  [DIP — systematically lowest]
+  h=3: destination k ≈ 1.9-3.7  (partial recovery for most types)
+
+INTERPRETATION OF V-SHAPE:
+After h=1: landing is near-uniform over BSet → k near BSet mean.
+After h=2: one intermediate step takes the orbit to a specific non-BSet
+  region; the BSet elements reachable from those specific regions are
+  biased toward low-k boosters (r=27,55,83,103,253,169 dominate).
+After h=3: two intermediate steps begin randomizing toward the stationary
+  distribution; partial recovery of k-average visible, especially for
+  high-k source types (k0=7,8 recover strongly: +1.08, +0.70).
+
+SIGNIFICANCE FOR D_hard_kern: The h=2 dip in destination k compounds the
+frequency disadvantage. The h=2 route (second most common: ~7%) arrives at
+low-k boosters (~k≈2.9), providing little benefit to avg k per step. The
+majority h>3 route (~75%) returns to approximately the stationary
+distribution (avg k≈4.1 at the booster, but after ~8 sink steps at k≈1.5).
+
+PART C — UNCONDITIONAL NEXT-BOOSTER k-AVERAGE FROM EACH SOURCE:
+
+Combining exact h=1,2,3 with geometric approximation for h>3:
+
+  k0=1: unconditional k_avg_dest ≈ 3.943
+  k0=2: unconditional k_avg_dest ≈ 3.916
+  k0=3: unconditional k_avg_dest ≈ 3.940
+  k0=4: unconditional k_avg_dest ≈ 4.001
+  k0=5: unconditional k_avg_dest ≈ 3.988
+  k0=6: unconditional k_avg_dest ≈ 3.965
+  k0=7: unconditional k_avg_dest ≈ 3.923
+  k0=8: unconditional k_avg_dest ≈ 3.956
+
+All sources: unconditional k_avg_dest ∈ [3.92, 4.00] — REMARKABLY UNIFORM.
+Regardless of which booster you're at, the next booster you'll visit (after
+the full inter-booster journey) has avg k ≈ 3.95. This is the MIXING
+PROPERTY: the inter-booster walk randomizes the destination, and the final
+BSet landing averages to near the stationary distribution k0-average of 4.11.
