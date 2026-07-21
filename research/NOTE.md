@@ -7778,6 +7778,115 @@ The equidistribution PRACTICALLY HOLDS for any orbit of length ≥ 100 macro-ste
 (b) Diophantine analysis showing no long-period Collatz orbits can sustain avg k₀ ≫ 2, or
 (c) Recursive structure of the chain showing the "slow mixing" orbits don't form closed cycles.
 
+---
+
+## Obs 263 — THE CCT-SET FORMULA: Exact Algebraic Characterization (Script 118)
+
+**This is the central algebraic theorem of this research program.** It gives an explicit formula for every residue satisfying the Coset Coincidence Theorem, and an exact count.
+
+### Main Theorem (CCT-Set Formula)
+
+**Theorem**: Let N ≥ 4. For each pair (K, l₀) with K ∈ {1,...,N−2} and l₀ ∈ {1,...,N−K−1}, there exists a UNIQUE odd residue r mod 2^N satisfying v₂(macro_step_base(r) + 1) ≥ j(r), given explicitly by:
+
+  m_red = (1 − 2^{l₀}) × (3^K)^{−1}  mod 2^{N−K}
+  r = 2^K × m_red − 1  mod 2^N
+
+where j(r) = N − K − l₀ ≥ 1.
+
+**Proof**:
+1. **Existence**: (1 − 2^{l₀}) is odd for l₀ ≥ 1 (since 2^{l₀} is even). (3^K)^{−1} mod 2^{N−K} exists since gcd(3^K, 2^{N−K}) = 1. The product m_red of two odd numbers is odd. So r = 2^K × m_red − 1 is a valid odd residue.
+2. **CCT satisfied**: By construction, m_red × 3^K ≡ 1 − 2^{l₀} mod 2^{N−K}, so m_red × 3^K − 1 ≡ −2^{l₀} mod 2^{N−K}. Writing m_red × 3^K − 1 = 2^{l₀} × c: c ≡ −1 mod 2^j (with j = N−K−l₀), so 2^j | c + 1, giving v₂(n'_base + 1) = v₂(c+1) ≥ j. □
+3. **Uniqueness**: The congruence m × 3^K ≡ 1 − 2^{l₀} mod 2^{N−K} has exactly one solution for odd m mod 2^{N−K} (since the residue class uniquely extends to odd m). □
+4. **l₀ exactly l₀** (not higher): m_red × 3^K − 1 = −2^{l₀} + A × 2^{N−K} = 2^{l₀}(−1 + A × 2^j). Since j ≥ 2 (or j = 1): −1 + A × 2^j ≡ −1 mod 2 (odd). So v₂(m × 3^K − 1) = l₀ exactly. □
+
+**Size Theorem**: |CCT_N(j ≥ 1)| = (N−2)(N−1)/2.
+
+**Proof**: Summing over all valid (K, l₀) pairs:
+  Σ_{K=1}^{N−2} Σ_{l₀=1}^{N−K−1} 1 = Σ_{K=1}^{N−2} (N−K−1) = (N−3)(N−2)/2 for j ≥ 2,
+  plus N−2 trivial j=1 elements (one per K ∈ {1,...,N−2}).
+  Total = (N−3)(N−2)/2 + (N−2) = (N−2)[(N−3)/2 + 1] = (N−2)(N−1)/2. □
+
+**Verification**: Exact match for N = 4, 5, ..., 13 (mod-16 through mod-8192).
+
+| N | 2^N | Predicted | Empirical |
+|---|-----|-----------|-----------|
+| 4 | 16 | 3 | 3 ✓ |
+| 5 | 32 | 6 | 6 ✓ |
+| 6 | 64 | 10 | 10 ✓ |
+| 7 | 128 | 15 | 15 ✓ |
+| 8 | 256 | 21 | 21 ✓ |
+| 9 | 512 | 28 | 28 ✓ |
+| 10 | 1024 | 36 | 36 ✓ |
+| 11 | 2048 | 45 | 45 ✓ |
+| 12 | 4096 | 55 | 55 ✓ |
+| 13 | 8192 | 66 | 66 ✓ |
+
+### Complete CCT-Set at mod-256 (from the formula)
+
+Sorted by (K, l₀):
+
+| K | l₀ | j | m_red | r | BSet? | Surplus |
+|---|-----|---|-------|---|-------|---------|
+| 1 | 1 | 6 | 85 | 169 | YES | +1 |
+| 1 | 2 | 5 | 127 | 253 | YES | 0 |
+| 1 | 3 | 4 | 83 | 165 | — | +1 |
+| 1 | 4 | 3 | 123 | 245 | — | 0 |
+| 1 | 5 | 2 | 75 | 149 | — | +1 |
+| 1 | 6 | 1 | 107 | 213 | — | 0 |
+| 2 | 1 | 5 | 7 | 27 | YES | 0 |
+| 2 | 2 | 4 | 21 | 83 | YES | 0 |
+| 2 | 3 | 3 | 49 | 195 | — | 0 |
+| 2 | 4 | 2 | 41 | 163 | — | +1 |
+| 2 | 5 | 1 | 25 | 99 | — | +2 |
+| 3 | 1 | 4 | 13 | 103 | YES | 0 |
+| 3 | 2 | 3 | 7 | 55 | YES | +1 |
+| 3 | 3 | 2 | 27 | 215 | — | 0 |
+| 3 | 4 | 1 | 3 | 23 | — | 0 |
+| 4 | 1 | 3 | 15 | 239 | YES | +2 |
+| 4 | 2 | 2 | 13 | 207 | YES | +1 |
+| 4 | 3 | 1 | 9 | 143 | — | +1 |
+| 5 | 1 | 2 | 5 | 159 | YES | +3 |
+| 5 | 2 | 1 | 7 | 223 | YES | 0 |
+| 6 | 1 | 1 | 3 | 191 | YES | 0 |
+
+Shadow CCT elements (non-BSet): {23, 99, 143, 149, 163, 165, 195, 213, 215, 245}
+
+### Density growth and consequences
+
+CCT-set density: (N−2)(N−1) / 2^N → 0 exponentially. The Collatz macro-step chain **concentrates on an exponentially sparse set** of residues mod 2^N.
+
+This is NOT a paradox with the nearly-uniform stationary distribution: the STATIONARY weight is ≈ 1/2^{N−1} for ALL odd residues (uniform). But the DYNAMICAL STRUCTURE (which states have the coset property, which form gateway states) is concentrated in the sparse CCT-set. Most residues are "throughput" states that pass through quickly; the CCT-set elements are the "hubs."
+
+### Structure of BSet vs CCT-set
+
+At mod-256:
+- BSet = CCT(j≥1) ∪ {63(j=−1), 95(j=0), 127(j=0), 255(j=−5)}
+- BSet(j≥1) = CCT(j≥1) \ {shadow CCT} = the 11 elements with highest stationary weight among CCT
+- Shadow CCT = {23,99,143,149,163,165,195,213,215,245} — arithmetically like BSet(j≥1) but with lower chain visitation
+
+The j≤0 BSet elements (63, 95, 127, 255) are NOT in CCT — they play a DIFFERENT role: **scattering states** that distribute mass broadly (their output coset covers all odd residues) and regenerate the ergodic mixing.
+
+### Self-referential structure of CCT
+
+Among the 21 CCT elements at mod-256: only 4 have their base output n'_base in the CCT-set:
+- r=163 (j=2) → n'_base=23 (CCT, j=1)
+- r=195 (j=3) → n'_base=55 (CCT+BSet, j=3)
+- r=223 (j=1) → n'_base=169 (CCT+BSet, j=6)
+- r=245 (j=3) → n'_base=23 (CCT, j=1)
+
+This means CCT is NOT closed under macro-step (base version). The CCT-to-BSet flow (6/21) and CCT-to-non-CCT flow (11/21) mix the chain into the non-CCT states, from which paths eventually return to CCT via non-BSet excursions.
+
+### Refined BSet structure
+
+The BSet(j≥1) elements are exactly those CCT(j≥1) elements that:
+1. Satisfy the CCT property (output in coset {K'≥j}).
+2. Have HIGH STATIONARY WEIGHT because non-BSet states predominantly funnel to them.
+
+The shadow CCT elements (in CCT but not BSet) satisfy property 1 but NOT property 2. They lack the non-BSet funnel structure. In particular: the large funnel 121→91→103 (16/113 non-BSet states routing to r=103) doesn't route to shadow CCT elements as efficiently.
+
+This explains the BSet/CCT split: BSet is the dynamically favored subset of the algebraically defined CCT-set.
+
+
 
 
 
