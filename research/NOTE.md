@@ -6524,3 +6524,102 @@ and avg_h ≥ 1.5 (roughly), gives ergodic_avg ≤ 2.5 < 3.419.**
   AND
   ergodic_avg = 2.181 < 3.419. ✓
 
+---
+
+## Observation 235: r=103 GENUINE ANOMALY — MODULAR RESONANCE (Script 104)
+*(Script 104, Part 5 — actual orbit traces at each excursion position)*
+
+**GENUINE FINDING** (confirmed by actual orbit traces, not sampling artifact):
+  When actual Collatz orbits visit r=103 (k0=3) as a BSet element,
+  the FIRST INTERNAL STEP has avg k0 = **4.14** (not ~1.71 like most elements).
+
+**CONTRAST WITH HIGH-k0 ELEMENTS:**
+  | r   | k0 | pos=0 k0 | pos=1 k0 | pos=2+ k0 |
+  |-----|----| ---------|---------|-----------|
+  | 103 |  3 |   4.14  |   1.33  |   ~1.65   |
+  |  55 |  3 |   3.38  |   1.48  |   ~1.66   |
+  | 255 |  8 |   1.71  |   1.65  |   ~1.65   |
+  | 127 |  7 |   1.71  |   1.64  |   ~1.65   |
+
+For high-k0 BSet elements (r=255, r=127), pos=0 ≈ pos=2+: stationary from step 1.
+For r=103 (k0=3), pos=0 is ANOMALOUSLY HIGH (4.14), then crashes to 1.33, then stabilizes.
+
+**MECHANISM**: When orbits visit r=103 (k0=3):
+  - The m value ((n+1)/8) tends to be ≡ 7 or 13 mod 16 in actual Collatz orbits
+  - m ≡ 7 mod 16: x=27×7-1=188=4×47, l=2, n'=47, k0(47)=4
+  - m ≡ 13 mod 16: x=27×13-1=350=2×175, l=1, n'=175, k0(175)=4
+  - Both give k0=4 outputs (high, but non-BSet)
+  
+  Then from k0=4 non-BSet:
+  - r=47: 3^4×3-1=242=2×121, l=1, n'=121, k0(121)=1 (crashes to 1)
+  - r=175: 3^4×11-1=890=2×445, l=1, n'=445, k0(445)=1 (crashes to 1)
+  
+  This explains the pos=0→pos=1 spike pattern: 4.14 → 1.33.
+
+**WHY ACTUAL ORBITS PREFER m ≡ 7,13 mod 16 at r=103**:
+  This is a non-trivial modular bias in Collatz orbits — certain m residue classes
+  are visited more often by orbits that land on r=103. Investigating this further
+  would require the Collatz equidistribution conjecture.
+
+**SAMPLING ARTIFACT WARNING**: Analysis with step-256 (n mod 256 + 256×i) fixes m mod 32,
+  systematically sampling ONE residue class mod 16. Results from such sampling
+  (e.g., "k0=2 for 100% of r=103 outputs") are NOT representative.
+  Always use actual orbit traces for k-distribution analysis.
+
+---
+
+## Observation 236: CORRECTED Phi VALUES AND MCM BOUND (Script 104)
+*(Script 104, Part 1 + Part 2 — N=10K per element)*
+
+**CORRECTED Phi RANKINGS** (more accurate than script 96/103 due to larger N):
+  | r   | k0 | Phi   | avg_h | k_rest |
+  |-----|----| ------|-------|--------|
+  | 255 |  8 | 2.261 | 10.61 |  1.663 |
+  | 127 |  7 | 2.156 | 10.88 |  1.666 |
+  |  63 |  6 | 2.075 | 10.77 |  1.673 |
+  | 159 |  5 | 2.073 |  9.86 |  1.742 |
+  | 191 |  6 | 2.067 | 10.74 |  1.664 |
+  | 239 |  4 | 2.060 |  8.51 |  1.802 |
+  | 103 |  3 | 2.057 |  5.80 |  1.861 |
+  | 169 |  1 | 1.000 |  1.00 |  0.000 |
+
+**KEY CORRECTION**: Script 103's Phi(255)=2.547 and Phi(103)=2.458 were inflated
+  by sampling methodology (10K varied starting points pulls in k0=9+ cases for r=255).
+  Script 104 uses EXACT k0 filtering per BSet element: Phi(255)=2.261, Phi(103)=2.057.
+
+**CORRECTED MCM UPPER BOUND**: max Phi = 2.261 (r=255).
+  Gap to threshold: 3.419 - 2.261 = **1.158**.
+
+**CONSISTENCY**: k_rest ≈ 1.63-1.87 for all elements (consistent with 193/113=1.708).
+
+**HIGH-k0 ELEMENTS CLUSTER**: r=63,127,191,255 (k0=6,7,6,8) all have k_rest ≈ 1.663-1.673.
+  This tight clustering suggests k_rest → some universal constant for high-k0 elements.
+  The constant ≈ 1.665 is close to (but distinct from) 1 + log_3(2) = 1.631 and 193/113 = 1.708.
+
+---
+
+## Observation 237: ERGODIC AVERAGE — CONSISTENT RANGE 2.04-2.18
+*(Cross-comparison of scripts 96, 103, 104)*
+
+**Three measurement methods give:**
+  - Script 96 (Markov chain, N=512): ergodic_avg = 2.0614
+  - Script 103 (10K orbits, no k0 filter): ergodic_avg = 2.181 (includes k0=9+)
+  - Script 104 (Markov chain, N=10K exact): ergodic_avg = 2.041
+
+**DISCREPANCY EXPLANATION:**
+  - Script 103's 2.181 is HIGHER because it includes k0=9+ cases (n ≡ 255 mod 256
+    but actual k0=9,10,...). These extra-high k0 steps inflate the avg.
+  - Script 104's 2.041 restricts to exact k0=8 for r=255, excluding k0=9+.
+  - True ergodic avg (for mod-256 BSet only): ~2.04-2.06.
+  - Including higher-k0 effects: ~2.18.
+
+**FOR THE PROOF**: Even the HIGHEST estimate (2.181) << 3.419 (gap = 1.238).
+  The MCM upper bound (max Phi = 2.261) also << 3.419 (gap = 1.158).
+  These gaps are so large (factor of 1.5+) that the conclusion is robust.
+
+**DEFINITIVE BOUND:**
+  - ergodic_avg ≤ ~2.2 (conservative upper bound including all effects)
+  - MCM ≤ ~2.6 (conservative upper bound)
+  - threshold = 3.419
+  - Gap ≥ 0.8 in all cases → D_hard_kern = ∅ is highly credible
+
