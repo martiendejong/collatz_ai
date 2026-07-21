@@ -8336,6 +8336,69 @@ The spectral oscillation of P_BSet at period 2 arises from a bipartite-like stru
 
 ---
 
+## Obs 270 — A/B Transition Structure: Why K≥5 → K≤4 (Script 126)
+
+**Script:** 126_ab_transitions.py  
+**Context:** Script 125 (Obs 269) identified the oscillation partition: Group A = BSet elements with K≥5, Group B = BSet elements with K≤4. This observation quantifies the transition structure and identifies the arithmetic mechanism.
+
+### Part 1: Transition probabilities
+
+| Source | P(→A) | P(→B) |
+|---|---|---|
+| All Group A (K≥5) | **0.25–0.29 ≈ 0.26** | **0.71–0.75 ≈ 0.74** |
+| r=27 (K=2) | 0.93 | 0.07 |
+| r=83 (K=2) | 0.57 | 0.43 |
+| r=55 (K=3) | 0.38 | 0.62 |
+| r=103 (K=3) | 0.57 | 0.43 |
+| r=169 (K=1) | **1.00** | 0.00 |
+| r=253 (K=1) | 0.93 | 0.07 |
+| r=207 (K=4) | 0.29 | 0.71 |
+| r=239 (K=4) | 0.39 | 0.61 |
+
+**Pattern**: from Group A (K≥5) the P(→B) is remarkably uniform at ≈0.74, regardless of which specific A element. From Group B, P(→A) decreases as K increases: K=1 → P(→A)≈0.97, K=2 → P(→A)≈0.75, K=3 → P(→A)≈0.47, K=4 → P(→A)≈0.34.
+
+The 2×2 aggregate transition matrix (π-weighted):
+
+```
+        → A     → B
+  A:   0.259   0.741
+  B:   0.618   0.382
+```
+
+Second eigenvalue = **−0.359** (pure bipartite oscillation at this aggregate level).
+
+### Part 2: Direct 1-step BSet→BSet mappings
+
+Five BSet elements map directly to another BSet element in exactly 1 macro-step (without intermediate non-BSet steps):
+
+| Source r | K | Target r | K | Group direction |
+|---|---|---|---|---|
+| 169 | 1 | 127 (base) | 7 | B → A |
+| 253 | 1 | 95 (base) | 5 | B → A |
+| 239 | 4 | 95 (base) | 5 | B → A |
+| 223 | 5 | 169 (base) | 1 | A → B |
+| 159 | 5 | 95 (base) | 5 | A → A |
+
+**Critical: r=169 always hits Group A.** For all n≡169 mod 256: K=1, m=(n+1)/2 ≡ 85 mod 128. Then x=3m−1, and v₂(3×85−1)=v₂(254)=1 for all m≡85 mod 128 (since 3m≡−1 mod 128 ⟹ 3m−1≡−2 mod 128 ⟹ v₂=1). The output n_out=(3m−1)/2 mod 256 cycles through {127,63,255,191} — all Group A elements with K≥6. So r=169 is a "forcing sink" for Group A.
+
+**A→B→A micro-cycle:** r=223 (A) → r=169 (B) → {127,63,255,191} (A). This 2-step A→B→A cycle is one of the main contributors to the alternating dynamics.
+
+### Part 3: Inter-BSet gap distribution
+
+P(gap=1) = 0.37: 37% of BSet visits are immediately followed by another BSet visit. Mean gap = 8.46 ≈ theory 8.53 (1/π_BSet). The gap distribution has a heavy spike at 1 (from direct 1-step BSet→BSet transitions) then falls roughly geometrically.
+
+### Summary: The mechanism
+
+The period-2 oscillation in P_BSet arises from:
+
+1. **From A (K≥5):** These large-K steps expand n by factor ≈3^K/2^2 (positive Lyapunov). The output, after l₀ halvings, tends to produce small-K residues. Specifically, after K macro-steps of ×3 and then ÷2^{l₀}, the resulting n_out+1 = m×3^K/2^{l₀} has 2-adic valuation determined by v₂(m×3^K+something) — empirically this tends to be K≤4. The P(→B)≈0.74 uniformly across all A elements.
+
+2. **From B (K≤4 especially K=1,2):** Low-K steps multiply n by 3^K/2^{l₀} with small K. The output n_out is a small multiple of the input. After this contracting step, the next orbit segment tends to grow (since the starting value is small relative to its context), eventually hitting a high-K BSet element. K=1 BSet elements (169,253) force this directly: they map to Group A in 1 step.
+
+3. **Net effect:** A→B→A→B→... with decorrelation rate 0.36 per step. The −0.394 eigenvalue of P_BSet captures this oscillation (the 2×2 approximation gives −0.359, close but not exact due to within-group variance).
+
+---
+
 ## Obs 268 — K-Value Independence and Lyapunov Exponent (Script 124)
 
 **Script:** 124_k_autocorrelation.py  
