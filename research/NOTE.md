@@ -6623,3 +6623,126 @@ For r=103 (k0=3), pos=0 is ANOMALOUSLY HIGH (4.14), then crashes to 1.33, then s
   - threshold = 3.419
   - Gap ≥ 0.8 in all cases → D_hard_kern = ∅ is highly credible
 
+---
+
+## Observation 238: TWO-REGIME STRUCTURE OF FIRST INTERNAL STEP k0
+*(Script 105, corrected n=r+256k sampling with k0 filter)*
+
+For each BSet element r (k0=K), the k0 of the first non-BSet step (k0_pos0) falls into one of two regimes:
+
+**LOW-K REGIME (K ≤ 4): DETERMINISTIC**
+  n ≡ r mod 256 forces m ≡ r_red mod 2^{8-K} EXACTLY for ALL n in the residue class.
+  (Proof: n+1 = 2^K × m, so m = (n+1)/2^K ≡ (r+1)/2^K mod (256/2^K) = r_red mod 2^{8-K}.)
+  The set of outputs n' mod 256 is FINITE and periodic. k0_pos0 is an EXACT rational number.
+  These elements have k0_pos0 >> 1.708 (often 3-5), but immediately crash to stationary ~1.65.
+
+  Exact k0_pos0 values (all PROVED by mod-256 arithmetic):
+  | r   | K | k0_pos0     | exact fraction |
+  |-----|---|-------------|----------------|
+  | 169 | 1 | (all exit)  | P(h=1)=1.000   |
+  | 253 | 1 | 5.000       | 320/64         |
+  |  27 | 2 | 5.000       | 320/64         |
+  |  83 | 2 | 4.143       | 928/224 = 116/28 |
+  |  55 | 3 | 3.381       | 1136/336 = 71/21 |
+  | 103 | 3 | 4.143       | 928/224 = 116/28 |
+  | 207 | 4 | 2.569       | 1048/408 = 131/51 |
+  | 239 | 4 | 3.381       | 1136/336 = 71/21 |
+
+**HIGH-K REGIME (K ≥ 5): APPROXIMATELY UNIFORM**
+  m ranges over all odd values in the residue class, and 3^K (for large K) scrambles mod-256.
+  k0_pos0 ≈ 193/113 = 1.708 (uniform non-BSet average).
+  Note: K=5 is mixed — r=95 and r=223 give ~1.708, but r=159 gives 2.569 (m_0=5 mod 8
+  generates a non-uniform orbit over 64 m-values, not fully scrambled by 3^5=243).
+
+**EMPIRICAL VERIFICATION** (all match within 0.02):
+  | r   | Exact (mod-512) | Empirical (script 104 pt5) |
+  |-----|-----------------|----------------------------|
+  | 103 | 4.142857        | 4.1431  ✓ |
+  |  55 | 3.380952        | 3.3810  ✓ |
+  | 255 | 1.729           | 1.710   ✓ |
+  | 127 | 1.715           | 1.709   ✓ |
+
+---
+
+## Observation 239: STAIRCASE SYMMETRY — PAIRED OUTPUT DISTRIBUTIONS
+*(Script 105, Part 1)*
+
+Remarkable: several PAIRS of BSet elements (with DIFFERENT k0=K) share IDENTICAL first-step output distributions:
+
+| Pair          | k0_pos0 | Output k0 distribution              |
+|---------------|---------|-------------------------------------|
+| r=27, r=253   | 5.000   | k0=5 (100%)                         |
+| r=83, r=103   | 4.143   | k0=4 (85.7%), k0=5 (14.3%)         |
+| r=55, r=239   | 3.381   | k0=3 (66.7%), k0=4 (28.6%), k0=5 (4.8%) |
+| r=159, r=207  | 2.569   | k0=2 (58.8%), k0=3 (27.5%), k0=4 (11.8%), k0=5 (2.0%) |
+
+**STAIRCASE PATTERN**: k0_pos0 takes values 5, 4.143, 3.381, 2.569, 1.708.
+  Each step down adds one lower k0 to the output distribution.
+
+**WHY PAIRS?** Elements with the same "effective output structure" (same orbit under 3^K mod 2^8).
+  r=55 (K=3, m≡7 mod 32) and r=239 (K=4, m≡15 mod 16) both generate the same set of
+  non-BSet output residues over their respective periods. The 3^K × m arithmetic happens to
+  produce the same statistical distribution of k0 values.
+
+**NOTE ON r=169**: Always exits to BSet (P(h=1)=1). Breaks the staircase; it is the
+  unique element where ALL m values lead back to BSet in one step.
+
+---
+
+## Observation 240: QSD MECHANISM — WHY k_rest ≈ 1.652 < 1.708
+*(Script 105, Part 4)*
+
+The quasi-stationary distribution (QSD) of the Collatz map restricted to non-BSet territory
+has avg k0 ≈ 1.652, which is LESS than the uniform-distribution prediction 1.708. Mechanism:
+
+**Exit rates from non-BSet by k0** (measured empirically):
+  | k0 | # residues | avg exit rate to BSet |
+  |----|------------|----------------------|
+  |  1 |         62 |         0.090        |
+  |  2 |         30 |         0.076        |
+  |  3 |         14 |         0.069        |
+  |  4 |          6 |         0.068        |
+  |  5 |          1 |         0.031        |
+
+HIGH-k0 non-BSet elements exit FASTER to BSet than low-k0 elements.
+QSD is therefore biased toward LOW-k0 residues (especially k0=1).
+Result: QSD avg k0 < 1.708 (uniform avg).
+
+**BEST CLOSED-FORM CANDIDATE for k_rest:**
+  - Measured value: ≈ 1.652 (from script 104 Part 5, positions 2-9)
+  - 188/113 = 1.6637 (diff 0.011) — subtract k0=5 residue from uniform avg
+  - 5/3 = 1.6667 (diff 0.014)
+  - 1 + log_3(2) = 1.6309 (diff 0.021)
+  - 193/113 = 1.7080 (diff 0.056) — uniform, too high
+
+Nearest candidate: **188/113** (removes r=31 the unique k0=5 non-BSet element from the
+uniform average, reflecting its under-representation in the QSD due to fastest exit rate 0.031).
+
+---
+
+## Observation 241: SIGMA-STRUCTURE OF BSet EXCURSIONS — COMPLETE PICTURE
+*(Synthesizing scripts 102-105)*
+
+Each BSet excursion from element r has the following k0 profile:
+
+  Step 0 (BSet element): k0 = K (large for r=255, small for r=169)
+  Step 1 (first internal): k0_pos0 (see Observation 238 — regime-dependent)
+  Steps 2+ (stationary):   k0 ≈ 1.652 (quasi-stationary distribution)
+
+**Key: the Phi value (avg k per step) is controlled by:**
+  1. K (first step, large for r=255)
+  2. avg_h (excursion length, controls dilution of K)
+  3. k0_pos0 (first internal step — exactly known)
+  4. k_rest ≈ 1.652 (stationary — nearly universal)
+
+**The r=255 advantage**: K=8 is the largest first-step k0 in BSet. Despite long excursions
+  (avg_h ≈ 10.6), the K=8 contribution persists: Phi(255) = 8/10.6 + 1.652×(1-1/10.6) ≈ 2.26.
+  
+**Why low-K elements with high k0_pos0 don't exceed r=255 in Phi:**
+  The high k0_pos0 at pos=0 is an INTERNAL step (not the BSet step K). It gets diluted
+  by the full excursion length avg_h. And k0_pos0 immediately crashes at pos=1.
+  Example: r=103 (K=3, k0_pos0=4.143): Phi = 2.057 << Phi(255)=2.261.
+
+**FINAL BOUND**: max Phi = 2.261 << threshold 3.419. Gap = 1.158.
+  Subject to Collatz equidistribution mod 2^k, D_hard_kern = ∅.
+
