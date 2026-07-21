@@ -9858,4 +9858,67 @@ These are the "non-phantom exit ramps" — compact deterministic tails that drai
 
 **Connection to dissolution cascade:** The 23-channel has its exit ramp organized by the N=9 phantom dissolution (911→577→433→325→61→23→5→1, 7 steps). The other-channel exit ramps are SHORTER (2-5 steps) and have no phantom ancestry. This quantitative difference (7-step vs 2-5-step exit ramp) explains why the other-channel has lower passage rates: shorter exit ramps mean fewer predecessors feeding into them, and no phantom "attractor basin" to amplify entry probability.
 
+---
+
+## Obs 293 — Base-4 Geometric Series Formula for T-1 Values; Blocked Channels
+
+**Algebraic structure of K=1 T-1 values:**
+
+For K=1 (the dominant T-1 class), the T-1 value is:
+
+    n = (2^{l0+1} − 1) / 3
+
+For l0 odd, this is well-defined. Writing l0+1 = 2k (even), we get:
+
+    n = (4^k − 1) / 3 = 1 + 4 + 4² + … + 4^{k-1}
+
+This is the k-term geometric series in base 4. Each term is a legitimate integer since 4 ≡ 1 (mod 3), so 4^k − 1 ≡ 0 (mod 3):
+
+| k | l0 | n = (4^k−1)/3 | n mod 3 | Active? |
+|---|-----|----------------|---------|---------|
+| 1 | 1   | 1              | 1       | trivial fixed point |
+| 2 | 3   | 5              | 2       | YES (94%) |
+| 3 | 5   | 21 = 3×7       | 0       | **BLOCKED** |
+| 4 | 7   | 85 = 5×17      | 1       | YES (2%) |
+| 5 | 9   | 341 = 11×31    | 2       | YES (0.22%) |
+| 6 | 11  | 1365 = 3×5×7×13 | 0      | **BLOCKED** |
+| 7 | 13  | 5461 = 43×127  | 1       | YES (very rare) |
+| 8 | 15  | 21845 = 5×4369 | 2      | YES (very rare) |
+| 9 | 17  | 87381 = 3×29127 | 0      | **BLOCKED** |
+
+**Blocking rule:** n = (4^k−1)/3 ≡ 0 (mod 3) if and only if 4^k ≡ 1 (mod 9), i.e., k ≡ 0 (mod 3) (since ord_9(4) = 3). Blocked for k = 3, 6, 9, 12, … i.e., l0 = 5, 11, 17, 23, … (l0 ≡ 5 mod 6). The unreachability theorem (Obs 288) guarantees 0% passage rate for all these T-1 channels.
+
+**Passage rate sequence** (K=1 only):
+k=2 (n=5): 94% >> k=4 (n=85): 2% >> k=5 (n=341): 0.22% >> k=7 (n=5461): tiny.
+Skipping k=3,6,9,… (blocked). The rates decrease rapidly because larger k means a rarer step sequence (the orbit must hit exactly n=5461 on its last descent step).
+
+**For K≥2:** At l0=9, the additional T-1 values are n=227 (K=2) and n=151 (K=3), from 2^9+1=513=3³×19. Higher K values are algebraically rarer (require K ≥ 2 consecutive halvings in a specific pattern) and thus less common.
+
+---
+
+## Obs 294 — Unreachability Blocking Shapes Channel Passage Rates
+
+**The unreachability theorem controls more than isolated elements — it carves channels in the Collatz tree by blocking predecessor paths.**
+
+For each T-2 value q (one step before T-1=5), the most "economical" predecessor is typically the one with smallest (K,l0). Specifically, the predecessor via K=1, l0=2 gives n = (4q+1)/3 × 2 - 1. This n is ≡0 (mod 3) if and only if 4q+1 ≡ 0 (mod 9), i.e., q ≡ 2 (mod 9):
+
+- q=2: 0 mod 9? No: 2 mod 9 = 2. ✓ (9|4×2+1=9, so n=(9/3)×2-1=5, which maps to 2, not here)
+- q=13: 13 mod 9 = 4. 4×13+1=53. 53/3 not int. K=1,l0=2 not available. No blocking issue.
+- q=23: 23 mod 9 = 5. 4×23+1=93=3×31. n=31×2-1=61. 61 mod 3 = 1. NOT blocked. ✓
+- q=35: 35 mod 9 = 8. 4×35+1=141=3×47. n=47×2-1=93. 93=3×31≡0 mod 3. **BLOCKED!**
+- q=53: 53 mod 9 = 8. 4×53+1=213=3×71. n=71×2-1=141. 141=3×47≡0 mod 3. **BLOCKED!**
+
+So T-2=35 and T-2=53 both have their "easiest" predecessor (K=1,l0=2) blocked by the unreachability theorem. This forces orbits to enter these channels via more distant predecessors (n=373 for T-2=35, n=565 for T-2=53), reducing passage rates.
+
+**Cascade effect:** n=93 (blocked, predecessor of 35) has predecessor n=373 (K=1,l0=4), which is active. n=373→35→5→1. Similarly n=141 (blocked, predecessor of 53) has predecessor n=565 (K=1,l0=4). Each "blocking" forces one extra step, reducing the effective funnel width.
+
+**Why T-2=13 and T-2=23 escape blocking:**
+
+- T-2=13: predecessors via K=1,l0=1 give n=(2×13+1)/3=9, and 9→13. 9=3²≡0 mod 3 BLOCKED. But K=2,l0=1 gives n=11→13 (not blocked, 11≡2 mod 3). And K=3,l0=1 gives n=7→13 (not blocked, 7≡1 mod 3). The 13-channel has multiple non-blocked entry paths at K=2,3.
+
+- T-2=23: the primary predecessor via K=1,l0=2 gives n=61→23 (61≡1 mod 3, not blocked). Plus the phantom staircase provides a massive amplification via the N=9 dissolution cascade.
+
+**Summary:** The interplay between the unreachability theorem (which elements ≡0 mod 3 have no predecessors) and the short-K predecessor paths creates a "selective permeability" in the Collatz tree. T-2 values whose simplest predecessors are blocked attract fewer orbits; those with unblocked small predecessors or phantom staircase amplification become dominant channels. This explains the passage rate ordering:
+T-2=13 (47.7%) ≈ T-2=23 (43.3%) >> T-2=35 (1.73%) > T-2=53 (0.62%) >> T-2=853 (0.54%).
+
 
