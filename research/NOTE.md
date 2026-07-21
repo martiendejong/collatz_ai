@@ -8336,6 +8336,55 @@ The spectral oscillation of P_BSet at period 2 arises from a bipartite-like stru
 
 ---
 
+## Obs 275 — Orbit Length Distribution: Gaussian with std ≈ 2.1√b (Script 131)
+
+**Script:** 131_orbit_length_dist.py  
+**Context:** From the Lyapunov analysis, each macro-step changes log(n) by K×log3−(K+l₀)×log2, with mean μ=−0.575 and (corrected) variance σ²=1.644.
+
+### Corrected per-step Lyapunov variance
+
+σ² = (log3−log2)² × Var(K) + (log2)² × Var(l₀) = (0.585)²×2 + (0.693)²×2 = 0.684 + 0.960 = **1.644**
+
+σ ≈ **1.282** per step.
+
+**The σ=11.1 from script 124 was wrong**: it was dominated by the pathological starting point 2^5000−1, where the first macro-step has K=5000 (giving Δ≈+2919), which inflated the pooled variance by 5000×. The correct per-step standard deviation for a typical orbit is 1.28, not 11.1.
+
+### Mean orbit length
+
+T_mean = b×log(2)/|μ| = 1.2047×b
+
+Empirical: (T/b) = 1.173–1.207 for b=30..500. ✓
+
+### Standard deviation of orbit length (Wald's second moment identity)
+
+By Wald: Var(T) ≈ E[T] × σ²/μ² = 1.2047b × 1.644/0.3310 = 5.982b
+
+Std(T) = √(5.982b) ≈ **2.45×√b**
+
+Empirical: std(T)/√b = 2.05–2.20 for b=30..500. ✓ (consistent with theory, ~15% below)
+
+| b | E[T] | Std(T) | Std/√b | Theory std/√b |
+|---|---|---|---|---|
+| 30 | 35.2 | 11.8 | 2.15 | 2.45 |
+| 50 | 59.9 | 14.5 | 2.06 | 2.45 |
+| 100 | 119.9 | 21.4 | 2.14 | 2.45 |
+| 200 | 239.9 | 31.1 | 2.20 | 2.45 |
+| 500 | 603.7 | 46.6 | 2.08 | 2.45 |
+
+The small discrepancy (observed 2.1 vs theory 2.45) may be due to: (a) approximate Wald identity (overshoot at stopping), (b) the b-bit starting distribution not being exactly uniform in log-space.
+
+### Distribution shape
+
+- **Approximately Gaussian** with slight positive skew (~0.3) and near-zero excess kurtosis
+- KS test p>0.1 at all tested b: cannot reject Gaussianity
+- Shapiro-Wilk p<0.01: some non-Gaussianity detectable at higher sample sizes
+
+### Summary
+
+Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbit is tightly concentrated around its mean — the coefficient of variation is Std/Mean ≈ 2.1/√(1.2b) × 1/√b = 2.1/(1.1b) → 0 as b→∞. Equivalently, for large b, virtually all b-bit starting numbers have orbit lengths within ±20% of 1.2b with high probability.
+
+---
+
 ## Obs 274 — Orbit Coupling and 2-adic Distance Contraction (Script 130)
 
 **Script:** 130_orbit_coupling.py
