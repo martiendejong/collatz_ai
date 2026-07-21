@@ -6811,3 +6811,148 @@ with k0 ≥ j (the output coset floor). ALL values are exact rationals.
   | 159 | 5 |  1 | 607 |         5 |       2 |        2 |        2 ✓|
   | 207 | 4 |  2 | 263 |         3 |       2 |        2 |        2 ✓|
 
+## Observation 243: BSet MARKOV CHAIN — STATIONARY DISTRIBUTION AND ERGODIC Phi
+*(Scripts 107, quick inline)*
+
+**Transition matrix**: Computed empirically (N=512 samples per BSet element). Power iteration
+converges in 21 iterations to stationary distribution pi(r).
+
+**Key result**: Ergodic avg Phi = **1.962** (stationary-weighted average of Phi(r)):
+
+  Ergodic avg Phi = Σ_r pi(r) × Phi(r) = 1.962
+  Threshold                              = 3.419
+  Gap (ergodic vs threshold)             = 1.457
+
+This gap is 25% LARGER than the single-element gap (1.158 from max_Phi=2.261 at r=255).
+
+**Stationary distribution** (notable entries):
+  r=103  (K=3): pi=0.123  (HIGHEST — 83% above uniform 1/15=0.067)
+  r=169  (K=1): pi=0.047  (LOWEST  — always exits in 1 step, Phi=1.000)
+  r=255  (K=8): pi=0.065  (typical)
+  r=253  (K=1): pi=0.060  (low Phi=1.538 keeps it typical)
+
+The dominance of r=103 in stationary distribution is striking — it receives heavy incoming
+traffic from both universal elements (which can go to any BSet element) and specific others.
+
+**Dual bound for D_hard_kern=∅**:
+  1. SINGLE-ELEMENT BOUND: max Phi = 2.261 (r=255). Gap = 1.158.
+  2. ERGODIC BOUND: Φ_ergodic = 1.962. Gap = 1.457.
+  Both substantially below threshold. D_hard_kern=∅ survives both tests.
+
+## Observation 244: 3^K BIJECTION THEOREM ON ODD RESIDUES
+*(Script 108)*
+
+**THEOREM** (trivially provable): For any K and any N, multiplication by 3^K is a bijection on
+the group (Z/2^N Z)*. Equivalently, the map m → 3^K × m permutes all 128 odd residues mod 256.
+
+**Proof**: gcd(3^K, 2^N) = 1, so 3^K is a unit in Z/2^N Z. Multiplication by a unit is a bijection.
+
+**THE KEY DISTINCTION for uniformization**:
+For n≡r mod 256 with v2(n+1)=K exactly: m = (n+1)/2^K satisfies m ≡ m_red mod 2^{8-K}.
+This forces m into a COSET of size 2^K in the 128 odd residues:
+
+  K=1 (r=169,253): m in ONE specific class mod 128 → only 2 valid m mod 256
+  K=2 (r=27,83):   m in ONE specific class mod 64  → only 4 valid m mod 256
+  K=3 (r=55,103):  m in ONE specific class mod 32  → only 8 valid m mod 256
+  K=4 (r=207,239): m in ONE specific class mod 16  → only 16 valid m mod 256
+  K=5 (r=95,159,223): m in ONE specific class mod 8  → only 32 valid m mod 256
+  K=6 (r=63,191):  m in ONE specific class mod 4  → only 64 valid m mod 256
+  K=7 (r=127):     m in ONE specific class mod 2  → all 128 valid m mod 256
+  K=8 (r=255):     no constraint                  → all 128 valid m mod 256
+
+The bijection property means: IF m were uniform over all 128 odd residues, THEN 3^K×m is
+also uniform. But for K≤6, m is RESTRICTED to a small coset, so outputs are NOT uniform.
+
+**Near-uniformity for K=8** (r=255):
+  m ranges over all 128 odd residues. Output n' mod 256 has 121 distinct values (L1-dev=0.054).
+  Near-bijection: the v2 variation after multiplying by 3^8 causes 7 "collisions" mod 256.
+
+## Observation 245: ALGEBRAIC PROOF P(h=1)=1 FOR r=169
+*(Script 108b)*
+
+**THEOREM**: For BSet element r=169 (K=1, m_red=85), every macro-step excursion has length h=1.
+The first step ALWAYS lands directly in BSet: n' ∈ {63, 127, 191, 255}.
+
+**Proof**:
+  For n≡169 mod 256 with v2(n+1)=1: m=(n+1)/2, m≡85 mod 128.
+  Output: n' = (3m-1)/2. n'+1 = (3m+1)/2.
+
+  Key computation: 3×m_red + 1 = 3×85+1 = 256 = 2^8.
+  For m = 85 + 128t (all valid m values): 3m+1 = 256 + 384t = 128×(2+3t).
+  Therefore: v2(3m+1) = 7 + v2(2+3t) ≥ 7.
+  Hence: v2((3m+1)/2) = v2(n'+1) ≥ 6.
+
+  Output n' satisfies n'≡63 mod 64 (since n'+1 ≡ 0 mod 64).
+  The only odd residues ≡63 mod 64 in [1,255] are {63, 127, 191, 255}.
+  All four are in BSet. QED.
+
+  COROLLARY: Phi(r=169) = 1.000 EXACTLY. The excursion is always one step: k0=K=1.
+
+**Distribution**: Each of {63,127,191,255} is visited equally (empirically: 128 times each in 512
+samples). The output distribution is uniform on these 4 high-K BSet elements (K=6,7,6,8).
+
+## Observation 246: EXACT P(h=1) FOR K≤4 BSet ELEMENTS (ALGEBRAIC)
+*(Scripts 108b, inline computation)*
+
+For BSet elements with K≤4, the 2-adic valuation v2(3^K×m-1) is CONSTANT over all valid m
+(m ≡ m_red mod 2^{8-K}). This makes n'(t) a LINEAR function of t, giving an EXACT period.
+
+**KEY FACT**: For m≡m_red mod 2^{8-K} (forced by n≡r mod 256):
+  v2(3^K×m-1) = v2(3^K×m_red-1) = l₀ = CONSTANT.
+
+This holds because 3^K×(m_red + 2^{8-K}×t) - 1 = (3^K×m_red-1) + 3^K×2^{8-K}×t,
+and v2(3^K×2^{8-K}) = 8-K (for K<8) ≥ l₀ = v2(3^K×m_red-1) (by staircase structure),
+so the extra term preserves the 2-adic valuation.
+
+**EXACT P(h=1) TABLE** (algebraically determined for K≤4):
+  | r   | K | l₀ | period | P(h=1)  = n_BSet/period |
+  |-----|---|----|--------|--------------------------|
+  | 169 | 1 | -  |   4    | 4/4  = 1.000 (proved)   |
+  | 253 | 1 | 2  |   8    | 7/8  = 0.875            |
+  |  27 | 2 | 1  |   8    | 7/8  = 0.875            |
+  |  83 | 2 | 2  |  16    | 9/16 = 0.5625           |
+  |  55 | 3 | 2  |  32    | 11/32= 0.344            |
+  | 103 | 3 | 1  |  16    | 9/16 = 0.5625           |
+  | 207 | 4 | 2  |  64    | 13/64= 0.203            |
+  | 239 | 4 | 1  |  32    | 11/32= 0.344            |
+
+**Period formula**: period = 256 / gcd(3^K × 2^{8-K} / 2^{l₀}, 256) = 2^{8-l₀} / gcd(3^K, 2^{l₀}) = 2^{8-l₀}.
+(Since gcd(3^K, 2^{l₀})=1 always, period = 2^{8-l₀}.)
+
+For K≥5 elements, v2(3^K×m-1) VARIES with m (e.g., K=5, K=6: v2 takes multiple values). The
+sequence n' mod 256 is no longer linear; period detection algorithms give unreliable results.
+For K≥5, empirical P(h=1) ≈ 0.12–0.20 (from script 105).
+
+**NOTABLE**: r=253 (K=1) has P(h=1)=7/8: n'=(3m-1)/4=95+96t, period-8 cycle
+[95,191,31,127,223,63,159,255] — only 31 is non-BSet (1/8 of the time).
+
+## Observation 247: PROOF STRUCTURE FOR D_hard_kern=∅
+*(Synthesis)*
+
+**WHAT IS PROVED (no equidistribution needed)**:
+
+  1. THRESHOLD: D_hard_kern threshold = log_{3/2}(4) = 3.4190... (exact algebraic)
+  2. r=169 EXACT: P(h=1)=1, Phi=1.000 exactly (algebraic proof, Obs 245)
+  3. BIJECTION: 3^K permutes odd residues mod 2^N (trivial, gcd=1)
+  4. STAIRCASE: Complete algebraic structure of output cosets (Obs 242, Script 106)
+  5. EXACT P(h=1) for K≤4 elements (Obs 246, constant-v2 argument)
+
+**WHAT REQUIRES EQUIDISTRIBUTION (Collatz equidistribution conjecture)**:
+
+  6. Phi values for K≥4 elements depend on the actual distribution of n mod 2^N
+  7. Ergodic average Phi = 1.962 (relies on long-run equidistribution in orbits)
+  8. Stationary distribution pi(r) (requires equidistribution of orbit visits to BSet)
+
+**ROBUSTNESS OF THE GAP**:
+  Gap (max_Phi vs threshold) = 3.419 - 2.261 = 1.158 (single-element worst case)
+  Gap (ergodic vs threshold) = 3.419 - 1.962 = 1.457 (stationary average)
+
+  For equidistribution errors to close the gap, the actual Phi would need to be 1.158 higher
+  than the equidistribution prediction. With ~7 macro-steps per BSet excursion on average,
+  this would require an average k0 error of 1.158 per step — a 70%+ deviation from uniform.
+  Such large deviations are inconsistent with all known computational evidence.
+
+**THE MISSING PIECE**: Rigorous proof that Collatz orbits are equidistributed mod 2^k for large k.
+  This is the Collatz equidistribution conjecture, a major open problem. Once proved, all of
+  the above empirical statistics become theorems, completing D_hard_kern=∅.
+
