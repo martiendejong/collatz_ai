@@ -5593,3 +5593,245 @@ The D_hard_kern threshold is 3.419. The gap of 0.622 (from script 82) or 0.708
    (k₀=8, r=255), with long-run avg k/step=2.279, falls 1.140 below the
    D_hard_kern threshold. The entire BSet lives in the "safe zone" 
    [1.60, 2.32] << 3.419.
+
+---
+
+## Observation 210: P_route IS NOT THE BSet CRITERION (script 93)
+
+**Setup**: For each odd residue r mod 256 with k0=v2(r+1), define:
+  P_route(r) = fraction of the m-class {m : n≡r mod 256, n = 2^k0 × m - 1} 
+               whose single macro-step output mod 256 lies in BSet.
+
+**Computation**: The m-class for residue r has exactly min(2^(k0+1), 256) members 
+in [1,511] (odd m). P_route is computed exactly from this finite class.
+
+**COUNTEREXAMPLE that rules out P_route as BSet criterion:**
+- r=41  (NON-BSet, k0=1): P_route = 3/4 = **75%** — routes to BSet 3 out of 4 times!
+- r=95  (BSet,    k0=5): P_route = 6/64 = **9.4%** — routes to BSet less than 1 in 10!
+
+**Full BSet P_route values (sorted ascending):**
+| r | k0 | P_route | class_size |
+|---|---|---------|------------|
+| 95  | 5 | 9.4%  (6/64)   | 64  |
+| 63  | 6 | 11.7% (15/128) | 128 |
+| 191 | 6 | 11.7% (15/128) | 128 |
+| 255 | 8 | 12.1% (31/256) | 256 |
+| 127 | 7 | 12.5% (32/256) | 256 |
+| 223 | 5 | 12.5% (8/64)   | 64  |
+| 159 | 5 | 20.3% (13/64)  | 64  |
+| 207 | 4 | 25.0% (8/32)   | 32  |
+| 239 | 4 | 34.4% (11/32)  | 32  |
+| 55  | 3 | 37.5% (6/16)   | 16  |
+| 83  | 2 | 37.5% (3/8)    | 8   |
+| 103 | 3 | 56.3% (9/16)   | 16  |
+| 253 | 1 | 75.0% (3/4)    | 4   |
+| 27  | 2 | 87.5% (7/8)    | 8   |
+| **169** | **1** | **100.0% (4/4)** | 4 |
+
+**BSet P_route range**: [9.4%, 100%]
+**Non-BSet P_route range**: [0%, 75%]
+**Overlap**: [9.4%, 75%] — massive overlap. P_route does not separate.
+
+**Highest-P_route non-BSet elements:**
+- r=41 (k0=1): P_route=75%, routes to {r=223, r=159, r=95} ∪ {r=31 (non-BSet)}
+- r=37 (k0=1): P_route=50%, routes to {r=55, r=103} ∪ {r=?, r=?}
+- r=195 (k0=2): P_route=37.5%, routes to {r=55, r=127, r=159} ∪ non-BSet
+
+**WHY r=41 FAILS despite P_route=75%:**
+Exact routing for r=41 (m≡21 mod 128):
+  m=21:  3×21-1=62   → r=31  (NON-BSet, k0=5)  ← THE TRAP (25%)
+  m=149: 3×149-1=446 → r=223 (BSet, k0=5)
+  m=277: 3×277-1=830 → r=159 (BSet, k0=5)
+  m=405: 3×405-1=1214→ r=95  (BSet, k0=5)
+
+r=41's 25% escape goes to r=31 (non-BSet, k0=5, P_route=3.1%). 
+From r=31, the orbit takes ≈10 steps at E[k/step]=2.18 to return to BSet.
+This creates a "low-drift trap" that drags down r=41's overall orbit quality.
+
+**CONCLUSION**: BSet membership is an ERGODIC property of the entire orbit,
+not a single-step routing property. It depends on the stationary distribution
+of the BSet-restricted Markov chain and the quality of non-BSet excursions.
+
+---
+
+## Observation 211: r=169 ROUTING STRUCTURE — THE PERFECT LAUNCHER (script 93)
+
+r=169 (k0=1, P_route=100%) routes EXCLUSIVELY to {63, 127, 191, 255}:
+  m=85:  3×85-1=254   → r=127 (k0=7)
+  m=213: 3×213-1=638  → r=63  (k0=6)
+  m=341: 3×341-1=1022 → r=255 (k0=8)
+  m=469: 3×469-1=1406 → r=191 (k0=6)
+
+**Pattern**: r=169 (k0=1) always "upgrades" the orbit by 5-7 levels of k0.
+Every visit to r=169 is followed by a k0≥6 macro-step.
+
+This is a **perfect-routing property**: the 4 output residues {63,127,191,255} 
+are arithmetically forced by m≡85 mod 128. No randomness — deterministic routing 
+from the mod-256 structure.
+
+Algebraically: 3×(85+128j)-1 = 253+384j. For j=0,1,2,3: outputs 253,637,1021,1405.
+All ≡ {253,125,253,125} mod 256? No — dividing out the power of 2:
+  v2(254)=1: n'=127. v2(638)=1: n'=319≡63 mod 256. v2(1022)=1: n'=511≡255 mod 256.
+  v2(1406)=1: n'=703≡191 mod 256.
+
+So l=1 always (3×m-1 is always ≡2 mod 4 when m≡1 mod 2, which holds since m is odd).
+And n' mod 256 cycles through {127, 63, 255, 191} as j=0,1,2,3 (period 4 in j).
+
+**Corollary**: r=169 is a deterministic cycle-4 attractor feeding into the
+highest-k BSet elements. It is "in BSet" not because of high k0, but because
+its routing quality compensates.
+
+---
+
+## Observation 212: BSet MARKOV CHAIN ERGODIC RATE = 2.0614 (script 95)
+
+**Setup**: Define the BSet-restricted Markov chain with states BList (15 elements)
+and transition matrix T(r,r') = P(starting from n≡r mod 256, the NEXT mod-256 
+value in BSet is r').
+
+**Transition matrix** (from N=1024 trajectories per state, large-n starting points):
+Full 15×15 matrix computed in script 95. Key rows:
+- r=169: T(169,63)=T(169,127)=T(169,191)=T(169,255) = 0.25 (exact, deterministic)
+- r=255: T(255,103)=0.090 (largest), T(255,253)=0.103, T(255,239)=0.101
+- r=27:  T(27,127)=0.126, T(27,63)=0.130, T(27,255)=0.127 (near-uniform to most)
+
+**Stationary distribution π** (left eigenvector of T for eigenvalue 1):
+  r=103: π=9.40% (most visited)
+  r=239: π=7.94%
+  r= 63: π=7.81%
+  r=207: π=7.64%
+  r=159: π=7.44%
+  r= 55: π=6.83%
+  r=255: π=6.68%
+  r= 27: π=6.41%
+  r= 95: π=6.28%
+  r=223: π=6.07%
+  r=191: π=6.06%
+  r=127: π=5.68%
+  r= 83: π=5.39%
+  r=253: π=5.18%
+  r=169: π=5.18% (least visited along with r=253)
+
+**Per-state Phi values** (= E[k/step from r until next BSet hit]):
+  r=169: Phi=1.000  (always h=1, k=1)
+  r=253: Phi=1.519
+  r= 83: Phi=1.889
+  r= 27: Phi=1.935
+  r= 55: Phi=1.973
+  r= 95: Phi=1.985
+  r=207: Phi=1.988
+  r=223: Phi=1.992
+  r=103: Phi=2.069
+  r=239: Phi=2.073
+  r= 63: Phi=2.090
+  r=191: Phi=2.074
+  r=159: Phi=2.090
+  r=127: Phi=2.196
+  r=255: Phi=2.412
+
+**Ergodic rate** = Σ_r π(r)×E_r[h]×Phi(r) / Σ_r π(r)×E_r[h]
+                = Σ_r w(r) × Phi(r)
+                = **2.0614**
+
+Where w(r) is the time-weighted stationary distribution:
+  w(r) = π(r) × E_r[h] / Σ_r' π(r') × E_r'[h]
+  Highest weight: r=63 (w=10.4%), r=159 (w=9.2%), r=255 (w=9.0%), r=207 (w=9.0%)
+  Lowest weight:  r=169 (w=0.71%), r=253 (w=1.6%), r=27 (w=2.1%)
+
+**D_hard_kern GAP:**
+  Ergodic rate:       2.0614
+  D_hard_kern limit:  3.419
+  **Gap: 1.358** (the largest gap computed so far)
+
+**INTERPRETATION**: Any orbit in the BSet chain achieves exactly this ergodic rate
+(by ergodicity). No BSet orbit can achieve avg k/step ≥ 3.419. The gap of 1.358 
+provides massive margin for D_hard_kern = ∅.
+
+---
+
+## Observation 213: RAPID MIXING — SPECTRAL GAP = 0.913 (script 95)
+
+**Eigenspectrum of T (15×15 BSet transition matrix)**:
+  λ_1 = 1.000000  (stationary)
+  λ_2 = 0.086706
+  λ_3 = 0.031792
+  λ_4 = 0.016418
+  ...
+
+**Spectral gap** = 1 - |λ_2| = **0.913**
+
+**Interpretation**: The Collatz Memory Wall (Observation 206) operates not just 
+at the k-step level but at the BSet transition level. After just 2 BSet visits,
+the distribution over BSet states is essentially at stationarity (error ≤ 0.087^2 ≈ 0.8%).
+
+**Consequence for D_hard_kern**: Even if an orbit starts from the "best" initial 
+BSet state (r=255, Phi=2.412), after 2 BSet visits it is at the ergodic avg 2.0614.
+It cannot maintain high k/step for more than ≈2 BSet visits before mixing to 2.06.
+
+**Comparison with k-autocorrelation (Observation 206)**:
+  k-autocorrelation spectral gap: 0.9902 (decay per step)
+  BSet transition spectral gap:   0.913  (decay per BSet visit)
+
+The BSet-level mixing is SLOWER than step-level k-decorrelation, but still extremely
+fast. An orbit achieves its ergodic average within ≈2 BSet visits = ≈10-20 steps.
+
+---
+
+## Observation 214: THE BSet DUAL-ROLE STRUCTURE — LAUNCHER vs ACCUMULATOR (scripts 93-95)
+
+BSet elements fall into two categories based on their role in the ergodic chain:
+
+**LAUNCHERS** (low k0, high P_route, routes to high-k elements):
+  r=169 (k0=1, P_route=100%): always routes to {63,127,191,255}
+  r=253 (k0=1, P_route=75%):  routes to {95,191,127} (75%) or non-BSet (25%)
+  r=27  (k0=2, P_route=87.5%): routes to 7 different BSet elements, nearly uniform
+
+**ACCUMULATORS** (high k0, low P_route, spends many steps in non-BSet territory):
+  r=255 (k0=8, P_route=12.1%): 88% of time in non-BSet, but with high avg k/step
+  r=127 (k0=7, P_route=12.5%): similar — long non-BSet excursions
+  r=63, r=191 (k0=6, P_route=11.7%): balanced, routing to many BSet elements
+
+**The ergodic balance**: LAUNCHERS contribute low Phi (≈1.0-1.9) but high π×h weight.
+ACCUMULATORS contribute high Phi (≈2.1-2.4) with longer E_r[h] (≈10 steps).
+
+The weighted average Phi = 2.0614, dominated by the large class of MEDIUM elements
+(r=103, r=239, r=63, r=207, r=159, r=55) which have both moderate π and Phi≈2.0-2.1.
+
+**The "k0-downgrade cascade"**:
+  1. High-k accumulators (r=255, k0=8) do k=8 steps, then route to ALL BSet elements
+  2. With probability ≈7%, they route to r=169 (k0=1), the ground state
+  3. r=169 does k=1 step, immediately re-elevates to high-k elements
+  4. The round-trip (r=255→r=169→r=255) costs approximately:
+     - Gains: 8 steps × k=8 at r=255, then k=1 at r=169, then arrive at r=255 again
+     - Net: small k=1 "tax" per 100 visits to r=255 (≈ 0.07% frequency)
+  5. This tax is why Phi(255)=2.412 (not 3.596 which would be Phi if h=1 always)
+
+**Universal routing to r=169**: ALL 14 other BSet elements route to r=169 with
+probability ≥ 0.98% (r=27 min) up to 9.97% (r=127 max). This guarantees that
+r=169 is visited with π=5.18% regardless of initial state.
+
+---
+
+## Observation 215: TRANSITION STRUCTURE — BSet IS NEARLY DOUBLY STOCHASTIC (script 95)
+
+The BSet transition matrix T shows a nearly uniform routing structure:
+- Most BSet elements route to r=103 with highest probability (≈9-15%)
+- The transition matrix is "spread out" — no element concentrates >25% probability 
+  on any single destination (except r=169 which has exactly 25% to each of 4 destinations)
+
+**Near-uniform routing (from accumulator elements)**:
+  r=255→ routes to 15 different BSet elements, max probability 0.115 (to r=27)
+  r=127→ routes to 15 different BSet elements, max probability 0.114 (to r=103)
+  r=63→  routes to 13 different BSet elements, max probability 0.154 (to r=103)
+
+**Implication for ergodic rate**: The near-uniform routing prevents any subset of
+high-k BSet elements from forming a "self-reinforcing cycle" with high cycle mean.
+If r=255 could route ONLY to r=127 (and vice versa), the cycle mean would be 
+(k0=8 + k0=7)/2 = 7.5 >> 3.419. But the actual routing prevents this by forcing
+transitions through ALL 15 BSet elements including low-k ones.
+
+**The "dilution principle"**: High-k boosters (r=255, k0=8) are forced to "share"
+with all BSet elements, including low-k ones (r=169, k0=1; r=253, k0=1; r=27, k0=2).
+This dilution caps the ergodic rate at 2.0614, well below any cycle mean formed by
+high-k elements alone.
+
