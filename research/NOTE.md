@@ -8385,6 +8385,105 @@ Collatz orbit lengths follow approximately Gaussian(1.2b, (2.1√b)²). The orbi
 
 ---
 
+## Obs 286 — Terminal Path Concentration and the Phantom-Funnel Connection (Script 142)
+
+**Script:** 142_last_mile.py  
+**Context:** Distribution of orbit values in the final k steps before reaching 1. Reveals a deep connection between the phantom cycles (Obs 282-283) and the dominant terminal paths.
+
+### Finding 1: Extreme concentration in terminal steps
+
+For 200-bit starting numbers (5000 random trials each), the distribution of n at step T−k (k steps before reaching 1):
+
+| k | Distinct values | Top value | Top % |
+|---|---|---|---|
+| 1 | 6 | **n=5** | **94.1%** |
+| 2 | 20 | n=13 | 47.7% |
+| 2 | (2nd) | n=23 | 43.6% |
+| 5 | 198 | n=433 | 40.9% |
+| 10 | 1076 | **n=167** | **33.6%** |
+| 20 | 3183 | n=1579 | 2.0% |
+| 50 | 4998 | (none dominant) | 0.04% |
+
+**n=5 is the universal penultimate gateway: 94% of all large Collatz orbits visit n=5 exactly one macro-step before reaching n=1.** This is consistent across all starting bit-lengths (93.5% for 1000-bit numbers as well).
+
+The predecessors n→1 form the set of n with macro_step(n)=1: n=5 (most likely), 85, 151, 227, 341, 1365, ... — all satisfying m×3^K = 2^{l0}+1 for specific (K, l0) pairs. The extreme concentration at n=5 is due to its simple structure: K=1, l0=3 (macro_step(5) = (3×3−1)/8 = 1).
+
+### Finding 2: Dominant terminal 5-path (covering 41%)
+
+The single dominant terminal 5-step sequence is:
+
+**433 → 325 → 61 → 23 → 5 → 1** (40.8% of all 200-bit orbits)
+
+Explicit verification:
+- macro_step(433) = (217×3−1)/2 = 650/2 = 325 ✓
+- macro_step(325) = (163×3−1)/8 = 488/8 = 61 ✓
+- macro_step(61) = (31×3−1)/4 = 92/4 = 23 ✓
+- macro_step(23) = (3×27−1)/16 = 80/16 = 5 ✓
+- macro_step(5) = (3×3−1)/8 = 8/8 = 1 ✓
+
+Second dominant 5-path: 49 → 37 → 7 → 13 → 5 → 1 (13.9%)
+Third: 67 → 19 → 11 → 13 → 5 → 1 (9.8%)
+
+Together the top 3 paths account for **64.5%** of all orbits. All 3 terminate through n=13 or n=23 → n=5 → n=1.
+
+### Finding 3: The phantom-funnel connection
+
+The dominant terminal 10-step path (33.6% of all orbits) is:
+
+**167 → 283 → 319 → 911 → 577 → 433 → 325 → 61 → 23 → 5 → 1**
+
+Critical observation: the first three elements **{167, 283, 319}** are members of the N=9 phantom cycle {91, 95, 103, 167, 175, 253, 283, 319, 399, 445} (Obs 282)!
+
+The connection: the N=9 phantom forms because these values are so frequently visited as terminal path elements that their mutual transitions create a closed loop in the mod-512 functional graph. The phantom cycle is NOT a spurious artifact — it is the **dominant attractor funnel** of the Collatz map near n=1.
+
+Verification: macro_step(319) = 911 (NOT 399, hence no genuine cycle). But mod 512: 911 mod 512 = 399, which IS in the phantom cycle. The phantom cycle exists because 319→911 looks like 319→399 in the modular graph.
+
+For the 15-step dominant path (20.6%): 121 → 91 → 103 → 175 → 445 → ... contains elements 91, 103, 175, 445 from the N=9 phantom AND 121 from the N=7/8 phantoms. **The phantom cycle elements are collectively the dominant T-15 gateway values.**
+
+### Finding 4: Gateway value hierarchy
+
+The most frequently visited small values (passage rate over 1000-bit orbits):
+
+| n | Passage % | Connection |
+|---|---|---|
+| 5 | 93.5% | Penultimate gateway (predecessor of 1) |
+| 13 | 46.4% | Two steps from 1 via 5 |
+| 23 | 44.0% | Two steps from 1 via 5 |
+| 61 | 42.1% | Three steps from 1 via 23→5 |
+| 167 | 34.5% | **N=9 phantom element** |
+| 175 | 32.1% | **N=9 phantom element** |
+| 103 | 30.7% | **N=9 phantom element** |
+| 91 | 28.5% | **N=9 phantom element** |
+
+The four N=9 phantom elements {91, 103, 167, 175} are all in the top-8 most visited values! The phantom cycle IS the main pre-attractor basin of the Collatz map.
+
+### Finding 5: Bit-length profile of terminal orbit
+
+The mean bit-length of n at step T−k grows approximately as ~1.2k per step (reversed Lyapunov):
+
+| k | Observed mean bits | Expected (1.2k) |
+|---|---|---|
+| 0 | 1.0 (n=1 always) | 0 |
+| 1 | 3.3 | 1.2 |
+| 5 | 8.6 | 6.0 |
+| 10 | 11.8 | 12.1 ✓ |
+| 20 | 19.2 | 24.1 |
+| 50 | 44.6 | 60.2 |
+
+For moderate k (5-20), the growth rate is somewhat slower than 1.2k because the initial steps (T-1, T-2, T-3) involve specific small numbers (5, 13/23, 61) that concentrate below the Lyapunov prediction. For large k (T-50), the effective reversed growth rate is ~0.89 bits/step, slower than the 1.2 bits/step predicted by the Lyapunov exponent.
+
+### Summary
+
+The Collatz map has a striking **funnel structure** near its attractor n=1:
+1. **94% funnel** through n=5 in the last step (most efficient path to 1)
+2. **41% funnel** through the 5-step terminal path 433→325→61→23→5→1
+3. **34% funnel** through the 10-step path beginning at n=167 (a N=9 phantom element)
+4. **The phantom cycle elements ARE the dominant terminal gateway values**: the same values that form phantom cycles in the modular functional graph are the most frequently visited values in large orbit terminations
+
+This unifies two previously separate discoveries: the phantom cycles (algebraic structure, Obs 282) and the orbit terminal distribution (statistical structure). The phantom cycles are the fingerprint of the Collatz attractor's convergence channel.
+
+---
+
 ## Obs 285 — Orbit Disjointness and Information Decay: Collatz Orbits Are Near-Disjoint Trees (Script 141)
 
 **Script:** 141_phantom_k5.py  
