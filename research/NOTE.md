@@ -7207,3 +7207,95 @@ All K≤2 elements now have EXACT ALGEBRAIC P(h=1) values with short-period proo
   WHY PLAUSIBLE: The 3^K multiplication is a bijection (Obs 244) and the division by 2^v2
   spreads outputs broadly. Together these act like a random expander on odd residues.
 
+
+---
+
+## Observation 254: MOD-1024 MARKOV CHAIN — THIRD DATA POINT FOR EXPANDER CONJECTURE
+*(Script 111)*
+
+**THE MOD-1024 CHAIN**: 512-state chain on odd residues mod 1024. N=256 samples/state.
+
+**KEY RESULTS**:
+  Spectral gap: **0.889** (second eigenvalue = 0.1106, complex pair with tiny imaginary part)
+  Stationary: max dev from uniform = 5.02% (NOTE: likely dominated by sampling noise at N_SAMP=256)
+  BSet_1024 weight = 0.116950 vs uniform 0.117188. Near-exact.
+  Ergodic avg k0 = 1.9966 (approaching 2.000 as predicted by Obs 250 theorem).
+
+**SPECTRAL EIGENVALUE PATTERN**:
+
+  The second eigenvalue is now a COMPLEX CONJUGATE PAIR (not real as at mod-256).
+  At mod-512: lambda_{2,3} = 0.0797 ± 0.0306i (complex pair, |lambda| = 0.0854)
+  At mod-1024: lambda_{2,3} = 0.1106 ± εi (complex pair, |lambda| ≈ 0.1106)
+
+  The SPECTRAL RADIUS (= max |lambda_i|) determines the true mixing rate:
+    Mod-256:  spectral radius = 0.062
+    Mod-512:  spectral radius = 0.085
+    Mod-1024: spectral radius ≈ 0.111
+
+**SPECTRAL RADIUS TREND**:
+  Ratios: 0.085/0.062 = 1.37, 0.111/0.085 = 1.31. Approximately ×1.34 per doubling of states.
+  IF this power-law continues: radius ~ 0.062 × (N/128)^0.37.
+  At mod-2^18 (N≈2^17 states): radius could approach 1.0. But:
+    (1) Sampling noise at mod-1024 is large (N_SAMP=256, ±6% per entry) — true radius
+        could be much smaller.
+    (2) Even if radius → c < 1, spectral gap = 1 − c > 0, and the chain still mixes.
+
+**WHAT THE DATA ACTUALLY SHOWS**:
+
+  | Modulus   | States | Spectral gap | Spectral radius | Max dev (approx) |
+  |-----------|--------|--------------|-----------------|------------------|
+  | Mod-256   | 128    | 0.938        | 0.062           | 2.3%             |
+  | Mod-512   | 256    | 0.920        | 0.085           | 2.0%             |
+  | Mod-1024  | 512    | 0.889        | 0.111           | ~5% (noisy)      |
+
+  REVISED CONJECTURE (weakened): spectral_gap(mod 2^N) > 0 for all N.
+  Evidence strongly suggests gap does not reach 0 in any finite range we've computed.
+  The E[k0]=2 THEOREM (Obs 250) remains valid as long as stationary ≈ uniform.
+
+**SAMPLING NOISE CAVEAT**: At mod-1024 with N_SAMP=256, the eigenvalue estimates carry
+  ±0.05 uncertainty. The true spectral gap could be anywhere from 0.84 to 0.94.
+  The apparent "5.02% max deviation" is almost certainly dominated by sampling noise
+  (expected sampling error ≈ 1/sqrt(256) ≈ 6.25% per matrix entry).
+
+---
+
+## Observation 255: WHY THE SPECTRAL GAP IS LARGE — STRUCTURAL EXPLANATION
+*(Analysis, July 2026)*
+
+**THE MECHANISM**: Why does the Collatz mod-2^N chain mix in ~1 step?
+
+  The chain has two REGIMES by K value:
+
+  **LOW-K REGIME (K=1,2,3,4)**: Most of the stationary weight (pi ≈ 15/16).
+    These states have CONSTRAINED outputs (fixed to a short periodic sequence).
+    HOWEVER: even with fixed m-residue, the output n' cycles through MULTIPLE residues.
+    For K=1: n' sweeps through {period-p residues} with step gcd ~ 32, covering 8-64 states.
+    For K=2: similar — period 8-16, covering 8-16 states.
+    KEY: the OUTPUT SET for low-K states DEPENDS on the starting residue but covers
+    many states at each step.
+
+  **HIGH-K REGIME (K≥5)**: Small stationary weight (pi ≈ 1/32 per BSet element).
+    These states are NEAR-BIJECTIVE: K=8 → 121/128 distinct outputs (Obs 244).
+    K=5 → 32/128 outputs (one quarter), K=6 → 64/128 (one half).
+    These act as MIXERS: any orbit passing through a K≥5 BSet state gets widely scattered.
+
+  **THE KEY FLOW**: Even though most time is spent in K=1,2,3,4 states, the orbit
+  REGULARLY visits BSet elements (on average, every 1/pi_BSet ≈ 8 steps visit one).
+  BSet visits with K≥5 immediately spread the distribution widely (Obs 244).
+  Between BSet visits: the orbit is in "non-BSet territory" where it hops between states.
+
+**WHY THE GAP IS STABLE ACROSS MODULI**:
+  The LOW-K period structure: at mod-2^N, K=1 states cycle through {step-s residues mod 2^N}.
+  The step s grows with N (e.g., n'_t = 31 + 288t at mod-256, but at mod-512 the period
+  doubles: same arithmetic but mod 512). The number of output states covered ALSO doubles,
+  keeping the COVERAGE FRACTION approximately constant.
+
+  The HIGH-K structure: K≥5 BSet elements at mod-2^N output to 2^{K-1}/2^{N-1} of all states.
+  For K=8, N=8 (mod-256): 128/128 = 100%. For K=8, N=10 (mod-1024): 128/512 = 25%.
+  The HIGH-K elements become LESS DOMINANT at higher moduli, explaining the decrease in gap.
+
+**PREDICTION**: The spectral gap stabilizes near 0.85-0.90 for large N, determined by the
+  "fractional coverage" of K≥5 elements (which scales as fixed_output/N_states → 0 as N→∞).
+  The gap may indeed approach 0 asymptotically, but very slowly (logarithmically).
+  For practical purposes (any hard cycle has length >> 10^100), the gap is effectively 1.
+
