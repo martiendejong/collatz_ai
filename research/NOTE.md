@@ -8281,6 +8281,61 @@ The Collatz orbit of any large odd n eventually "discovers" its CCT structure as
 
 ---
 
+## Obs 269 — BSet Oscillation Partition: K≥5 vs K≤4 (Script 125)
+
+**Script:** 125_bset_kstruct.py  
+**Context:** The 15×15 BSet transition matrix P_BSet has spectral radius 0.394 with dominant eigenvalue −0.394 (negative, oscillatory). This observation identifies what causes the oscillation.
+
+### Finding 1: BSet spans all K values 1–8 (corrects prior hypothesis)
+
+BSet = {27,55,63,83,95,103,127,159,169,191,207,223,239,253,255}. K = v₂(n+1) for each residue:
+
+| r | K | E[l₀] | Var[l₀] | Lyapunov |
+|---|---|---|---|---|
+| 169, 253 | 1 | 1, 2 | 0 | −0.288, −0.981 |
+| 27, 83 | 2 | 1, 2 | 0 | +0.118, −0.575 |
+| 55, 103 | 3 | 2, 1 | 0 | −0.170, +0.523 |
+| 207, 239 | 4 | 2, 1 | 0 | +0.236, +0.929 |
+| 95, 159, 223 | 5 | 4, 1, 2 | 2, 0, 0 | −0.746, +1.334, +0.641 |
+| 63, 191 | 6 | 3, 1 | 2, 0 | +0.354, +1.740 |
+| 127 | 7 | 2 | 2 | +1.452 |
+| 255 | 8 | 2 | 2 | +1.858 |
+
+Key patterns:
+- **11/15 elements have FIXED l₀** (Var=0): l₀ is determined entirely by the residue mod 256 — the relevant bits of m are below the modulus. The 4 variable-l₀ elements are {63,95,127,255} where K is large enough that l₀ depends on bits above mod 256.
+- **Lyapunov signs mixed**: 10 positive (expanding single-step), 5 negative (r=55,83,95,169,253).
+- The threshold K×log(3)/log(2) − K = K×0.585 determines the cross-over: Lyapunov>0 iff E[l₀] < 0.585K.
+
+### Finding 2: The oscillation partition is K≥5 vs K≤4
+
+Eigenvector analysis of the hitting-time BSet matrix (P_BSet[i,j] = probability of next BSet hit being j, starting from i) yields dominant negative eigenvalue ≈ −0.430 with eigenvector:
+
+| Group | Residues | K values |
+|---|---|---|
+| A (positive eigenvector) | 63, 95, 127, 159, 191, 223, 255 | 6, 5, 7, 5, 6, 5, 8 — all K≥5 |
+| B (negative eigenvector) | 27, 55, 83, 103, 169, 207, 239, 253 | 2, 3, 2, 3, 1, 4, 4, 1 — all K≤4 |
+
+**The partition is exact**: Group A = {BSet elements with K≥5}, Group B = {BSet elements with K≤4}.
+
+**Interpretation**: In the BSet chain, consecutive BSet visits tend to alternate between K≥5 and K≤4 elements. From a high-K BSet hit, the next BSet element tends to have low K, and vice versa. The −0.394 eigenvalue (here measured as −0.430 in hitting-time form) is the spectral signature of this bipartite-like alternation.
+
+**Why does K≥5 tend to be followed by K≤4?** A K=5,6,7,8 macro-step applies a large power of 3 (multiplying by 3^5 to 3^8 ≈ 243 to 6561) then divides by a moderate power of 2. The output n_out tends to be in a residue class with small v₂(n_out+1), i.e., small K. Conversely, a K≤4 macro-step is a smaller expansion, producing outputs that more often land near 2^K boundaries (large K in the next visit).
+
+### Finding 3: BSet occupancy and contribution to Lyapunov
+
+- **BSet occupancy**: 11.49% of macro-steps land in BSet (theoretical: 15/128 = 11.72%) ✓
+- **BSet lag-1 ACF = +0.267**: BSet membership is positively autocorrelated at lag 1 — from BSet, probability of NEXT step being BSet is P(B→B)=0.35 vs stationary 0.117.
+- **2×2 transition eigenvalue = +0.267** (not −0.394): The oscillation is between BSet sub-groups A and B, NOT between BSet and non-BSet.
+- **Mean BSet Lyapunov = +0.428**: BSet elements are on average EXPANDING (positive single-step Lyapunov). This makes sense: BSet = residues with high K or favorable l₀ ratios.
+- **L_nonBSet ≈ −0.708**, more negative than theoretical −0.575. Non-BSet elements have excess K=1 frequency (0.5625 vs 0.5000 theory) because BSet "absorbs" the high-K residues, leaving non-BSet with more K=1 residues.
+- **Overall balance**: 0.117 × (+0.428) + 0.883 × (−0.708) = −0.575 ✓ Lyapunov budget balances.
+
+### Summary
+
+The spectral oscillation of P_BSet at period 2 arises from a bipartite-like structure within the 15 BSet elements: those with K≥5 (Group A, 7 elements) tend to transition to those with K≤4 (Group B, 8 elements) and vice versa. This A↔B alternation in BSet visits produces the −0.394 dominant oscillatory eigenvalue. BSet elements are net EXPANDING (mean Lyapunov +0.43) and non-BSet elements are net contracting (L≈−0.71), with the 11.7% BSet weight balancing to the global Lyapunov of −0.575.
+
+---
+
 ## Obs 268 — K-Value Independence and Lyapunov Exponent (Script 124)
 
 **Script:** 124_k_autocorrelation.py  
