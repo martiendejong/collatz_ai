@@ -6746,3 +6746,68 @@ Each BSet excursion from element r has the following k0 profile:
 **FINAL BOUND**: max Phi = 2.261 << threshold 3.419. Gap = 1.158.
   Subject to Collatz equidistribution mod 2^k, D_hard_kern = ∅.
 
+---
+
+## Observation 242: THE STAIRCASE SYMMETRY — COMPLETE ALGEBRAIC THEOREM
+*(Script 106)*
+
+**GRAND THEOREM**: BSet elements partition into groups by OUTPUT COSET FLOOR j,
+determined by the exact formula:
+
+  j = min(v2(n'₀ + 1), 8-K-l₀)
+
+where:
+  K   = k0 of BSet element r (= v2(r+1))
+  m_red = (r+1) / 2^K  (the reduced m value, always ODD)
+  l₀  = v2(3^K × m_red - 1)  (2-adic valuation of first output numerator)
+  n'₀ = (3^K × m_red - 1) / 2^{l₀}  (first output value)
+
+The group G_j consists of BSet elements that map outputs into the coset
+n'≡(2^j - 1) mod 2^j, i.e., ALL outputs satisfy k0(n') ≥ j.
+
+**COMPLETE GROUP TABLE** (all verified numerically):
+  | Group | BSet elements      | Output coset         | k0_pos0 = Exact frac |
+  |-------|-------------------|----------------------|----------------------|
+  | j=5   | r=27, r=253       | n'≡31 mod 32 (k0≥5) | 5/1 = 5.000          |
+  | j=4   | r=83, r=103       | n'≡15 mod 16 (k0≥4) | 29/7 ≈ 4.143         |
+  | j=3   | r=55, r=239       | n'≡7 mod 8 (k0≥3)   | 71/21 ≈ 3.381        |
+  | j=2   | r=159, r=207      | n'≡3 mod 4 (k0≥2)   | 131/51 ≈ 2.569       |
+  | j=1   | r=63,95,127,191,  | n'≡1 mod 2 (k0≥1)   | 193/113 ≈ 1.708      |
+  |       |   r=223, r=255    |                      |                      |
+  | exit  | r=169             | (all BSet outputs)   | P(h=1)=1.000         |
+
+**PAIRING SYMMETRY**: Elements in the same group visit IDENTICAL output residue sets.
+  Verified: {27,253} share {31,63,95,127,159,191,223,255} exactly.
+  Verified: {83,103} share {15,31,47,79,111,143,175,63,95,...,255} exactly.
+  Verified: {55,239} share 32 residues exactly. {159,207} share 64 residues exactly.
+
+**STAIRCASE FORMULA**: k0_pos0(G_j) = Σ_{k0=j}^{5} k0×N_nonBSet(k0) / Σ_{k0=j}^{5} N_nonBSet(k0)
+where N_nonBSet(k0) is the count of non-BSet residues with that k0 value:
+  N_nonBSet(1)=62, N_nonBSet(2)=30, N_nonBSet(3)=14, N_nonBSet(4)=6, N_nonBSet(5)=1.
+
+The formula gives each k0_pos0 as the conditional average of k0 among non-BSet elements
+with k0 ≥ j (the output coset floor). ALL values are exact rationals.
+
+**HIGH-K ELEMENTS** (K≥5, variable l): 3^K scrambles outputs to cover all 128 odd residues.
+  j=1 effectively (all non-BSet residues are reachable). k0_pos0 ≈ 193/113.
+
+**PROOF OF j = min(v2(n'₀+1), 8-K-l₀)**:
+  For constant l (which holds when l₀ < 8-K):
+  n'(t) = n'₀ + delta×t, where delta = 3^K × 2^{8-K-l₀}.
+  v2(n'(t)+1) = v2(n'₀+1 + delta×t).
+  min_t v2(a+bt) = v2(gcd(v2(a), v2(b))) → more precisely:
+  min_t v2(n'₀+1+delta×t) = min(v2(n'₀+1), v2(delta)) = min(v2(n'₀+1), 8-K-l₀).
+  (Achieved because the arithmetic sequence hits an odd value when v2(n'₀+1)>v2(delta).)
+
+**VERIFICATION OF j FORMULA FOR ALL LOW-K ELEMENTS**:
+  | r   | K | l₀ | n'₀ | v2(n'₀+1) | 8-K-l₀ | j=min(.) | actual_j |
+  |-----|---|----|-----|-----------|---------|----------|----------|
+  |  27 | 2 |  1 |  31 |         5 |       5 |        5 |        5 ✓|
+  | 253 | 1 |  2 |  95 |         5 |       5 |        5 |        5 ✓|
+  |  83 | 2 |  2 |  47 |         4 |       4 |        4 |        4 ✓|
+  | 103 | 3 |  1 | 175 |         4 |       4 |        4 |        4 ✓|
+  |  55 | 3 |  2 |  47 |         4 |       3 |        3 |        3 ✓|
+  | 239 | 4 |  1 | 607 |         5 |       3 |        3 |        3 ✓|
+  | 159 | 5 |  1 | 607 |         5 |       2 |        2 |        2 ✓|
+  | 207 | 4 |  2 | 263 |         3 |       2 |        2 |        2 ✓|
+
