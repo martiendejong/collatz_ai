@@ -10269,3 +10269,7 @@ Participatie-ratio van de elasticiteits-flow per feed-generatie (k=11, 40 wortel
 k=15: ratio's j=4–9 gemiddeld 0.834 vs √φ̄ = √(1−λ⁻²) = 0.8395; k=17: 0.848 vs 0.8431. Match < 1%, en de λ-afhankelijkheid beweegt de juiste kant op (grotere λ ⟹ groter plateau: 0.834→0.848 gemeten, 0.8395→0.8431 voorspeld). **Variantie per schaal dempt geometrisch met exact φ̄ = 1−λ⁻²/ρ** — de dempingswet is nu in het schaaldomein bevestigd; mechanismeketen (Obs 330) rond.
 Bonus-identificatie: top-schaal-σ daalt per k met (0.0519/0.0630)^{1/2} = 0.9077 ≈ de L(k)-ratio 0.909 — het drietal-verlies ís de top-schaal-fluctuatie; zijn geometrische daling volgt uit het profiel + randeffect. Randafwijkingen (j≤3 torens; j≥k−4 truncatie) verklaard en gemarkeerd.
 **Status dempingsprogramma: alle constanten geïdentificeerd** — demping/cijfer φ̄ (exact), amplitude/schaal √φ̄ (gemeten 2×), deficit 1−γ ≈ c·√k·L(k) met L = top-schaalverlies. Resterende formalisering: de onafhankelijkheidsstap (variantie ∝ PR) rigoureus.
+
+### Obs 332 — k=19: machinegrens gedocumenteerd
+
+Twee pogingen gestrand op geheugen: (1) int64-tussenstappen in make_maps (gefixt met chunked build, script 166b); (2) daarna alsnog OOM bij 493MB — oorzaak: Windows commit-limiet bereikt (46.9/48.7GB toegezegd door andere processen; fysiek RAM wel vrij). k=19 (N=387M, ~7GB nodig) vereist vrijgemaakt geheugen of een grotere machine. Script 166b staat klaar (steady-state ~7GB, rigor identiek aan 166). Record blijft π₁(x) > x^0.902 (k=18); voorspelling k=19: γ ≈ 0.908.
