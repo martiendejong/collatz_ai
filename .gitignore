@@ -9,3 +9,6 @@ The_Proof_of_the_Collatz_Conjecture.pdf
 __pycache__/
 research/certificates/k20_eig.npy
 research/certificates/k20_polished.npy
+research/scripts/certificate_k16.npy
+research/scripts/certificate_k17.npy
+research/scripts/certificate_k18.npy
