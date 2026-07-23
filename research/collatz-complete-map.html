@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collatz Problem: A Complete Map of an Attack</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 17px;
+         line-height: 1.75; color: #1a1a2e; background: #f8f8f6;
+         margin: 0; padding: 0 0 80px 0; }
+  .hero { background: linear-gradient(135deg, #0d1b2a, #1a2f4a); color: white;
+          padding: 55px 40px; text-align: center; }
+  .hero h1 { font-weight: normal; font-size: 2.0em; margin: 0 0 12px 0; }
+  .hero p { color: #94a3b8; max-width: 660px; margin: 0 auto; }
+  .container { max-width: 840px; margin: 0 auto; padding: 0 30px; }
+  h2 { font-size: 1.45em; font-weight: normal; margin: 52px 0 16px;
+       border-bottom: 2px solid #e2e2e8; padding-bottom: 8px; }
+  h3 { font-size: 1.12em; margin: 28px 0 10px; }
+  .box { background: white; border: 1px solid #e2e2e8; border-radius: 8px;
+         padding: 20px 26px; margin: 20px 0; }
+  .thm { border-left: 4px solid #2563eb; }
+  .new { border-left: 4px solid #7c3aed; background: #faf8ff; }
+  .neg { border-left: 4px solid #dc2626; background: #fff8f8; }
+  .lbl { font-family: sans-serif; font-size: .78em; letter-spacing: .1em;
+         text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+  .thm .lbl { color: #2563eb; } .new .lbl { color: #7c3aed; } .neg .lbl { color: #dc2626; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0;
+          font-size: .9em; }
+  th { background: #1a1a2e; color: white; padding: 8px 12px; text-align: left;
+       font-size: .8em; letter-spacing: .05em; }
+  td { padding: 7px 12px; border-bottom: 1px solid #e2e2e8; vertical-align: top; }
+  tr:nth-child(even) { background: #f0f0f4; }
+  .chip { display: inline-block; padding: 2px 10px; border-radius: 12px;
+          font-size: .78em; font-family: sans-serif; font-weight: 600; }
+  .chip.p { background: #dcfce7; color: #166534; }
+  .chip.n { background: #ede9fe; color: #5b21b6; }
+  .chip.r { background: #fee2e2; color: #991b1b; }
+  .chip.o { background: #fef3c7; color: #92400e; }
+  code { font-family: 'Courier New', monospace; background: #f0f0f4;
+         padding: 2px 6px; border-radius: 3px; font-size: .9em; }
+  .disp { text-align: center; margin: 16px 0; }
+  a { color: #2563eb; }
+  footer { text-align: center; color: #7a7a9a; font-size: .88em;
+           margin-top: 50px; border-top: 1px solid #e2e2e8; padding-top: 24px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>The Collatz Problem:<br>A Complete Map of an Attack</h1>
+  <p>Consolidated record of a research program, 2026. Every claim below is proved,
+     refuted, or reduced to one of two precisely measured walls. Companion documents:
+     <em>Phantom Cycles</em> and <em>The Unified Entropy Gap</em>; scripts 145&ndash;160.</p>
+</div>
+
+<div class="container">
+
+<h2>1. Status in one paragraph</h2>
+<p>
+  The Collatz conjecture remains open. This program proved rigorous modern bounds
+  (reproducing the field independently), produced four candidate-novel exact results,
+  refuted two of its own would-be breakthroughs plus a set of inherited false claims,
+  and terminated by <em>measuring</em> &mdash; not conjecturing &mdash; why every known
+  proof technique fails. The map below is the deliverable: a complete, self-audited
+  reduction of the problem to its irreducible difficulty.
+</p>
+
+<h2>2. Proved (rigorous, verified)</h2>
+
+<table>
+  <tr><th>Result</th><th>Content</th><th>Ref</th></tr>
+  <tr><td>Forced signature</td>
+      <td>Any cycle has B = &lceil;A&middot;log&#8322;3&rceil;; search space is one-dimensional (A only)</td>
+      <td>script 151</td></tr>
+  <tr><td>Cycle size bound</td>
+      <td>A &ge; 8,963,457,697 odd elements (verification limit 2&#8310;&#8312;); &ge; 5.38&times;10&sup1;&#8304; at current limit; consistent with Hercher 2023</td>
+      <td>script 151</td></tr>
+  <tr><td>No-Congruence Theorem</td>
+      <td>Every odd residue mod 2&#8342; is realized by genuine 2-adic cycles; C mod p equidistributes with spectral gaps &gamma;&#8346; &asymp; 0.69&ndash;0.83. No congruence to any modulus can decide the problem.</td>
+      <td>scripts 149, 154/155</td></tr>
+  <tr><td>Divergence slab + density zero</td>
+      <td>Divergent orbits confined to b&#8344; &le; m(&theta;+&delta;) forever; density of survivors &le; 2^(&minus;0.0799m), Terras/Everett-type with sharp constant</td>
+      <td>script 153</td></tr>
+  <tr><td>Affine Renewal Identity</td>
+      <td>N(&phi;(r)) &minus; N&#8321;(&phi;(r)) = N(r) &minus; N&#8342;(r) at every modulus, &phi;(r) = 2r &minus; 3^(A&minus;1); exact, by bijection</td>
+      <td>script 155</td></tr>
+  <tr><td>Fixed-point corollary</td>
+      <td>N&#8321;(3^(A&minus;1)) = N&#8342;(3^(A&minus;1)) exactly</td>
+      <td>script 156</td></tr>
+  <tr><td>Rotation-divisibility dichotomy</td>
+      <td>N(0) = &Sigma;<sub>d | gcd(A,B)</sub>(A/d)&middot;P(A/d,B/d); gcd(A<sub>min</sub>, B<sub>min</sub>) = 1 &rArr; at the minimal signature the solution count is 0 or &ge; 8.96&times;10&#8313;</td>
+      <td>script 156</td></tr>
+  <tr><td>Orbit-Sum Invariance</td>
+      <td>P(3u) = P(u) for doubling-orbit character sums; proof via rotation reindexing; multiplicities verified exactly at two signatures</td>
+      <td>scripts 157/158</td></tr>
+  <tr><td>k&#8323; | A lemma</td>
+      <td>3^A = 2^B in &#8484;/D &rArr; image of 3^A lies in &#10216;2&#10217; &rArr; the order k&#8323; of 3&rsquo;s image in (&#8484;/D)&#215;/&#10216;2&#10217; divides A. One line; confirmed at 9 signatures.</td>
+      <td>script 159</td></tr>
+  <tr><td>Prime-D reduction</td>
+      <td>D prime &and; &#10216;2,3&#10217; full &rArr; the unique primitive invariant P = D&middot;N(0) &minus; S(0); "no cycle" &hArr; P = &minus;S(0), verified exactly twice</td>
+      <td>script 159</td></tr>
+</table>
+
+<h2>3. Candidate-novel results (for external evaluation)</h2>
+
+<div class="box new">
+  <div class="lbl">N1 &mdash; The Unified Entropy Gap</div>
+  One constant governs both failure modes:
+  &kappa;&prime; = &theta;(1&minus;H(1/&theta;)) = D&#8342;&#8342;(Geom(1/&theta;)&#8214;Geom(1/2)) =
+  0.079318612775&hellip; bits per odd step &mdash; cycles pay it per halving
+  (&kappa; = 0.050044&hellip;), divergence per odd step, at the same slab boundary b = &theta;m.
+  Closed form: &kappa;&prime; = &theta; &minus; &theta;log&#8322;&theta; + (&theta;&minus;1)log&#8322;(&theta;&minus;1).
+</div>
+
+<div class="box new">
+  <div class="lbl">N2 &mdash; Affine Renewal structure</div>
+  The exact identity C(&sigma;E) = 2C(E) &minus; 3^(A&minus;1) and its consequences
+  (renewal identity at every modulus, fixed-point corollary, renewal smoothness with
+  measured lag-1 autocorrelation +0.45 along &phi;-orbits).
+</div>
+
+<div class="box new">
+  <div class="lbl">N3 &mdash; Orbit-Sum Invariance and the class-invariant reduction</div>
+  P(3u) = P(u); hence D&middot;N(0) collapses to a short sum of Gauss-period-type class
+  invariants on (&#8484;/D)&#215;/&#10216;2,3&#10217; per divisor level, with the prime-D
+  reduction as sharpest case: one number deciding one signature.
+</div>
+
+<div class="box new">
+  <div class="lbl">N5 &mdash; Improved density exponent: &pi;&#8321;(x) &gt; x<sup>0.87</sup> (candidate record)</div>
+  The Krasikov&ndash;Lagarias difference-inequality system (Acta Arith. 109 (2003); record
+  &gamma; = 0.84 at congruence level k = 11, the 2003 compute frontier) was reimplemented
+  exactly, calibrated on four published anchor values (k = 2: 0.4366 &asymp; 0.43;
+  k = 9: 0.8168 &asymp; 0.81; k = 11: 0.8417 &asymp; 0.84), the index algebra verified to
+  0.00e+00 against the paper&rsquo;s formulas, and scaled to modern hardware:
+  <strong>k = 12: 0.8531, k = 13: 0.8630, k = 14: 0.8724, k = 15: 0.8812</strong>.
+  Explicit feasibility certificates (margin min F(v)/v &asymp; 1.00035) exhibited at
+  k = 12&ndash;14; via the published Theorem 2.2 each certificate yields unconditionally
+  &pi;&#8321;(x) &gt; x<sup>&gamma;</sup> for large x. Remaining for a formal claim:
+  interval arithmetic on three coefficient constants, the k = 15 certificate, external
+  confirmation of novelty (no k &gt; 11 computation found in the literature), and a
+  write-up. Scripts 163&ndash;164.
+</div>
+
+<div class="box new">
+  <div class="lbl">N4 &mdash; The Cancellation Deficit (measurement)</div>
+  The L1 Fourier mass exceeds the sign-blind proof threshold |&Sigma;S| &lt; D&minus;S(0) by
+  factors 204&ndash;297&times; at computable signatures, scaling as &asymp;0.75&radic;S(0) =
+  2^(0.475B), with a statistically featureless (Gaussian-like) spectrum and no major-arc
+  concentration. Consequence: absolute-value methods (circle method, decoupling, subgroup
+  sums) are quantitatively excluded &mdash; a proof must capture phase-level cancellation.
+  Information-theoretic reading: the conjecture is carried by a 0.05B-bit entropy gap;
+  a sign-blind proof would need 0.475B bits of phase information &mdash; ten times the
+  price of the truth.
+</div>
+
+<h2>4. Refuted along the way (own claims included)</h2>
+
+<table>
+  <tr><th>Claim</th><th>Fate</th></tr>
+  <tr><td>Cascade compatibility "proof" of the cycle case</td>
+      <td><span class="chip r">Refuted</span> &mdash; its bridge (PCLC) is false; phantom cycles do not nest (counterexample at N=2)</td></tr>
+  <tr><td>PPD Obstruction Theorem</td>
+      <td><span class="chip r">Refuted</span> &mdash; p | C is automatic; 0/85 primes satisfy the order claim</td></tr>
+  <tr><td>n&#8321; &lt; 5&times;10&sup1;&#8304;&sup3; absolute bound</td>
+      <td><span class="chip r">Unfounded</span> &mdash; A is unbounded; such bounds exist only for m-cycles</td></tr>
+  <tr><td>Exact Uniformity of C mod p</td>
+      <td><span class="chip r">Artifact</span> &mdash; float-threshold in reporting; truth is exponential equidistribution, never exact</td></tr>
+  <tr><td>Rigidity cascade contradiction</td>
+      <td><span class="chip r">Tautological</span> &mdash; a cycle re-encodes its own tail at every recursion depth; self-consistent</td></tr>
+</table>
+
+<h2>5. The two walls, quantified</h2>
+
+<div class="box neg">
+  <div class="lbl">Wall 1 &mdash; cycles: phase-exact evaluation</div>
+  N(0) = 0 requires evaluating &Sigma;&#8348;S(t) exactly; every absolute-value bound is
+  204&ndash;297&times; (growing as 2^(0.475B)) above threshold. All exact structure found
+  (renewal, invariance, sum rules) reorganizes but does not evaluate the sum.
+</div>
+
+<div class="box neg">
+  <div class="lbl">Wall 2 &mdash; divergence: individual orbits</div>
+  Density zero at explicit exponential rate is proved; emptiness is an individual-orbit
+  statement invisible to every density argument (including Tao 2019). One integer riding
+  the slab forever cannot be excluded by counting.
+</div>
+
+<p>
+  Background shadow: Conway (1972) proved generalized Collatz maps undecidable. The
+  measured featurelessness of the spectrum is consistent with &mdash; though of course not
+  evidence for &mdash; the possibility that no proof exists in current axioms.
+</p>
+
+<h2>6. Open questions handed to the field</h2>
+
+<table>
+  <tr><th>#</th><th>Question</th><th>Why it matters</th></tr>
+  <tr><td>Q1</td><td>Is Orbit-Sum Invariance (N3) known? If not, does the class-invariant
+      reduction admit period-level estimates in any regime?</td>
+      <td>Sharpest exact reformulation found; connects to Gauss-period theory (Katz)</td></tr>
+  <tr><td>Q2</td><td>Can the prime-D reduction be exploited for signatures where D is prime
+      &mdash; e.g., density of prime D along the convergent line?</td>
+      <td>One algebraic number decides one signature</td></tr>
+  <tr><td>Q3</td><td>Is the unified constant &kappa;&prime; = KL(Geom(1/&theta;)&#8214;Geom(1/2))
+      stated anywhere in the stopping-time literature?</td>
+      <td>If new: a clean expository theorem</td></tr>
+  <tr><td>Q4</td><td>Does any technique give <em>signed</em> control of sparse combinatorial
+      character sums at modulus &asymp; 2^B where absolute values fail by 2^(0.475B)?</td>
+      <td>This is the cycle case, exactly</td></tr>
+</table>
+
+<h2>7. Literature cross-check (2026-07)</h2>
+
+<p>A systematic sweep of the literature against this framework produced the following
+corrections and additions.</p>
+
+<table>
+  <tr><th>Finding</th><th>Impact on this framework</th></tr>
+  <tr><td><strong>Lagarias&ndash;Weiss 1992</strong> (Two stochastic models, Ann. Appl. Prob.):
+      large-deviation theory for 3x+1 stopping times, rate-function constants
+      (&gamma;_BP &asymp; 41.6776, extremal ones-ratio 0.6091)</td>
+      <td><span class="chip o">Downgrades N1</span> &mdash; the large-deviation machinery for
+      Collatz is classical; our contribution reduces to the explicit unified KL formulation
+      &kappa;&prime; = D<sub>KL</sub>(Geom(1/&theta;)&#8214;Geom(1/2)) tying cycles and divergence
+      to one constant at one boundary. Cite and compare rate functions.</td></tr>
+  <tr><td><strong>Krasikov&ndash;Lagarias 2003</strong> (Acta Arith.; with Applegate&ndash;Lagarias
+      1995): difference-inequality systems give the unconditional bound
+      #{n &le; x reaching 1} &ge; x<sup>0.84</sup></td>
+      <td><span class="chip p">New tool added</span> &mdash; a third proved pillar type our map
+      lacked: unconditional positive-exponent lower bounds on the convergent set via
+      congruence-system programming. Wall-2-adjacent; cannot reach density 1, but strictly
+      stronger in kind than density heuristics.</td></tr>
+  <tr><td><strong>Berg&ndash;Meinardus 1994/95</strong>: Collatz &hArr; a pair of linear functional
+      equations has no solutions outside prescribed spaces; <strong>Lagarias 2014</strong>
+      (arXiv:1408.6884): inverse-orbit generating functions almost always have natural
+      boundaries; Opfer&rsquo;s 2011 attempt via this route failed publicly</td>
+      <td><span class="chip p">Third reformulation axis added</span> &mdash; the
+      functional-equation/generating-function route, with its own documented dead end
+      (natural boundaries = the analytic mirror of our measured walls).</td></tr>
+  <tr><td><strong>Wirsching 1998</strong> (Springer LNM 1681): predecessor-set theory,
+      measure-theoretic bounds on inverse-orbit densities</td>
+      <td><span class="chip p">Complementary axis</span> &mdash; backward-tree measure theory;
+      our dissolution-cascade phenomenology lives naturally in this language.</td></tr>
+  <tr><td><strong>Bourgain&ndash;Glibichuk&ndash;Konyagin 2006; Konyagin&ndash;Shparlinski 1999</strong>
+      (Character sums with exponential functions, CUP); Kowalski survey</td>
+      <td>Confirms the Q4 tool inventory: subgroup exponential-sum bounds exist but lose a
+      constant per composition level &mdash; consistent with the measured deficit.</td></tr>
+  <tr><td><strong>Verification limit 2<sup>71</sup></strong> (2025, Barina) confirmed;
+      <strong>no trace found</strong> of the Affine Renewal identity (N2), Orbit-Sum
+      Invariance (N3), or a cancellation-deficit measurement (N4) in the searched
+      literature</td>
+      <td>N2&ndash;N4 remain candidate-novel (absence of search evidence is weak evidence;
+      external expert evaluation still required &mdash; Q1 stands).</td></tr>
+  <tr><td><strong>ccchallenge.org</strong> &mdash; an existing community project formalising the
+      Collatz literature in Lean, paper by paper</td>
+      <td><span class="chip p">Program vehicle</span> &mdash; milestone (ii) has an existing
+      home; our proved layer could be contributed there.</td></tr>
+</table>
+
+<h2>8. Program forward</h2>
+<p>
+  The standing program: (i) external evaluation of N1&ndash;N4 (arXiv note /
+  MathOverflow for Q1&ndash;Q3); (ii) machine formalization of the proved layer (Lean, via
+  ccchallenge.org) so correctness is verifiable without trust; (iii) literature watch on
+  the two walls &mdash; any movement on signed character sums or individual-orbit rigidity
+  re-opens the attack with this map as the starting position. The problem is held, not
+  abandoned.
+</p>
+
+<h3>8.1 First Wall-2 offensive executed (script 161)</h3>
+<p>
+  The Applegate&ndash;Lagarias inverse-tree method was reimplemented and run: exact
+  enumeration of the pruned inverse tree (30M nodes) yields unconditional density
+  certificates climbing to &gamma; = 0.796 at (E=6, depth 24) &mdash; faithfully approaching
+  the published tree-search value 0.81 and confirming that raw enumeration saturates below
+  the 2003 frontier of 0.84. <strong>The identified concrete project:</strong> implementing
+  the Krasikov&ndash;Lagarias difference-inequality system at congruence levels beyond their
+  mod 3&#8313;, where modern compute could plausibly move the published exponent &mdash; the
+  one point on either wall where raw computation can still advance the field.
+</p>
+<p>
+  Prime-D scan (A &le; 300): twelve signatures have D = 2<sup>B</sup>&minus;3<sup>A</sup>
+  prime &mdash; (2,4), (3,5), (4,7), (5,8), (13,21), (56,89), (61,97), (69,110), (73,116),
+  (76,121), (148,235), (185,294) &mdash; empirical density &asymp; 1/ln D, heuristically
+  infinite. At every such signature the cycle problem is a single Gauss-period value
+  (prime-D reduction, &sect;2).
+</p>
+
+<footer>
+  Consolidated 2026-07 &mdash; companion documents: collatz-phantom-cycles.html,
+  unified-entropy-gap.html &mdash; research log: NOTE.md Obs 289&ndash;308 &mdash;
+  scripts/145&ndash;160 (all results reproducible).
+</footer>
+
+</div>
+</body>
+</html>

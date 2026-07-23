@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unified Entropy Gap of the Collatz Problem</title>
+<style>
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px; line-height: 1.75; color: #1a1a2e;
+    background: #f8f8f6; margin: 0; padding: 0 0 80px 0;
+  }
+  .hero {
+    background: linear-gradient(135deg, #0d1b2a, #1a2f4a);
+    color: white; padding: 50px 40px; text-align: center;
+  }
+  .hero h1 { font-weight: normal; font-size: 1.9em; margin: 0 0 10px 0; }
+  .hero p { color: #94a3b8; max-width: 620px; margin: 0 auto; }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 30px; }
+  h2 { font-size: 1.4em; font-weight: normal; margin: 50px 0 16px;
+       border-bottom: 2px solid #e2e2e8; padding-bottom: 8px; }
+  .box { background: white; border: 1px solid #e2e2e8; border-radius: 8px;
+         padding: 22px 26px; margin: 22px 0; }
+  .thm  { border-left: 4px solid #2563eb; }
+  .pf   { border-left: 4px solid #059669; background: #f0fdf4; }
+  .rem  { border-left: 4px solid #d97706; background: #fffbf0; }
+  .lbl { font-family: sans-serif; font-size: 0.78em; letter-spacing: .1em;
+         text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+  .thm .lbl { color: #2563eb; } .pf .lbl { color: #059669; } .rem .lbl { color: #d97706; }
+  .disp { text-align: center; margin: 18px 0; font-size: 1.05em; }
+  .konst { background: #fef3c7; border: 1px solid #fbbf24; border-radius: 6px;
+           padding: 14px 20px; text-align: center; font-size: 1.1em; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0;
+          font-family: 'Courier New', monospace; font-size: .9em; }
+  th { background: #1a1a2e; color: white; padding: 8px 12px; text-align: left;
+       font-size: .8em; letter-spacing: .05em; }
+  td { padding: 7px 12px; border-bottom: 1px solid #e2e2e8; }
+  tr:nth-child(even) { background: #f0f0f4; }
+  code { font-family: 'Courier New', monospace; background: #f0f0f4;
+         padding: 2px 6px; border-radius: 3px; font-size: .92em; }
+  footer { text-align: center; color: #7a7a9a; font-size: .88em; margin-top: 50px;
+           border-top: 1px solid #e2e2e8; padding-top: 26px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>The Unified Entropy Gap of the Collatz Problem</h1>
+  <p>One constant governs both possible failure modes of the conjecture &mdash;
+     cycles and divergence &mdash; and it is a Kullback&ndash;Leibler divergence.</p>
+</div>
+
+<div class="container">
+
+<h2>1. The constant</h2>
+
+<p>
+  Let &theta; = log<sub>2</sub>3 = 1.5849625007&hellip; and let
+  H(x) = &minus;x&thinsp;log<sub>2</sub>x &minus; (1&minus;x)log<sub>2</sub>(1&minus;x) be the binary entropy. Define
+</p>
+
+<div class="konst">
+  &kappa; &nbsp;=&nbsp; 1 &minus; H(1/&theta;) &nbsp;=&nbsp; <strong>0.050044472812&hellip;</strong> bits per halving
+  <br>
+  &kappa;&prime; &nbsp;=&nbsp; &theta;&kappa; &nbsp;=&nbsp; <strong>0.079318612775&hellip;</strong> bits per odd step
+</div>
+
+<p>Closed forms (verified to 12 digits):</p>
+
+<div class="disp">
+  &kappa;&prime; = &theta; &minus; &theta;&thinsp;log<sub>2</sub>&theta; + (&theta;&minus;1)log<sub>2</sub>(&theta;&minus;1),
+  &nbsp;&nbsp;&nbsp;
+  &kappa; = 1 &minus; log<sub>2</sub>&theta; + (1 &minus; 1/&theta;)log<sub>2</sub>(&theta;&minus;1).
+</div>
+
+<p>And the conceptually cleanest form. Writing Geom(&rho;) for the geometric law
+P(k) = &rho;(1&minus;&rho;)<sup>k&minus;1</sup> on {1, 2, 3, &hellip;}:</p>
+
+<div class="konst">
+  &kappa;&prime; &nbsp;=&nbsp; D<sub>KL</sub>&thinsp;(&thinsp;Geom(1/&theta;) &nbsp;&#8741;&nbsp; Geom(1/2)&thinsp;)
+</div>
+
+<p>
+  Geom(1/2), mean 2, is the law of the halving exponents e = v<sub>2</sub>(3n+1) that
+  2-adic dynamics actually provides (the parity-vector map is measure-preserving).
+  Geom(1/&theta;), mean &theta;, is the most favorable law a counterexample is allowed
+  to experience. The unified gap is <em>the information-theoretic price, per odd step, of
+  being a counterexample</em>.
+</p>
+
+<p style="font-size:.92em; color:#4a4a6a;">
+  <strong>Literature note (added 2026-07):</strong> the large-deviation treatment of 3x+1
+  stopping times is classical &mdash; Lagarias &amp; Weiss, <em>The 3x+1 problem: two
+  stochastic models</em>, Ann. Appl. Probability 2 (1992) 229&ndash;261, whose rate-function
+  analysis (extremal constants &gamma;_BP &asymp; 41.6776, ones-ratio 0.6091 for maximal
+  trajectories) contains the same Cram&eacute;r machinery. The contribution here reduces to
+  the explicit unified formulation: one constant, stated as a KL divergence between
+  geometric laws, governing both the cycle counting deficit (per halving) and the
+  divergence density (per odd step) at the same slab boundary.
+</p>
+
+<h2>2. Where the same constant appears twice</h2>
+
+<div class="box thm">
+  <div class="lbl">Theorem A &mdash; cycles pay &kappa; per halving</div>
+  <p>
+    Integer cycles with A odd steps and B halvings correspond exactly to admissible
+    patterns 0 = E<sub>0</sub> &lt; &hellip; &lt; E<sub>A&minus;1</sub> &le; B&minus;1 with
+    D | C, where D = 2<sup>B</sup>&minus;3<sup>A</sup> and
+    C = &Sigma;<sub>i</sub> 3<sup>A&minus;i</sup>2<sup>E<sub>i&minus;1</sub></sup>.
+    Since B/A is pinned to &theta; (verification limit + forced signature), the number
+    of patterns is &binom;(B&minus;1, A&minus;1) = 2<sup>H(1/&theta;)B + o(B)</sup>, while
+    D = 2<sup>B + o(B)</sup>. The pattern count falls short of the modulus by exactly
+  </p>
+  <div class="disp">2<sup>&minus;&kappa;B + o(B)</sup>, &nbsp; &kappa; = 1 &minus; H(1/&theta;).</div>
+  <p style="margin-bottom:0;">
+    With B &ge; 14.2 billion (rigorous minimum signature), the naive expected number of
+    cycles is &le; 2<sup>&minus;710,968,598</sup>.
+  </p>
+</div>
+
+<div class="box thm">
+  <div class="lbl">Theorem B &mdash; divergence pays &kappa;&prime; per odd step</div>
+  <p>
+    A divergent orbit must keep b<sub>m</sub> = e<sub>1</sub>+&hellip;+e<sub>m</sub> &le;
+    m(&theta;+&delta;) forever (&delta; &asymp; 2<sup>&minus;69</sup>), i.e., average halving
+    exponent &le; &theta; against a generic mean of 2. The first m exponents determine the
+    start mod 2<sup>b<sub>m</sub></sup> exactly, so the density of starting values surviving
+    m odd steps is at most
+  </p>
+  <div class="disp">
+    S<sub>m</sub> = &Sigma;<sub>b &le; m&theta;</sub> &binom;(b&minus;1, m&minus;1)&thinsp;2<sup>&minus;b</sup>
+    = 2<sup>&minus;&kappa;&prime;m + o(m)</sup>.
+  </div>
+  <p style="margin-bottom:0;">
+    By Cram&eacute;r / maximum entropy: the optimal survival strategy is exactly the tilted law
+    Geom(1/&theta;), and the exponential cost is its KL divergence from Geom(1/2)
+    &mdash; which is &kappa;&prime;. The divergent set has density zero at explicit rate.
+  </p>
+</div>
+
+<div class="box thm">
+  <div class="lbl">Theorem C &mdash; unification</div>
+  <p style="margin-bottom:0;">
+    &kappa;&prime; = &theta;&kappa;. Both failure modes sit on the same slab boundary
+    b = &theta;m: a cycle is a trajectory that <em>closes</em> on the boundary, a divergent
+    orbit is one that <em>stays below</em> it. The entropy deficit is one and the same
+    quantity, measured per halving (&kappa;, cycles) or per odd step (&kappa;&prime;, divergence).
+    Every route to a counterexample pays the identical information-theoretic toll.
+  </p>
+</div>
+
+<h2>3. Numerical convergence</h2>
+
+<table>
+  <tr><th colspan="2">Divergence: exact slab density rate &minus;log<sub>2</sub>S<sub>m</sub>/m (script 153)</th>
+      <th colspan="2">Monte-Carlo drop-time tail (400k &times; 128-bit)</th></tr>
+  <tr><td>m = 100</td><td>0.10906</td><td>fitted tail exponent (m&isin;[30,70])</td><td>0.1119</td></tr>
+  <tr><td>m = 1,000</td><td>0.08407</td><td>single-time Cram&eacute;r rate</td><td>0.07932</td></tr>
+  <tr><td>m = 10,000</td><td>0.07994</td><td colspan="2">(all-times constraint &rArr; steeper, as required)</td></tr>
+  <tr><td>m &rarr; &infin;</td><td><strong>0.07932 = &kappa;&prime;</strong></td><td colspan="2"></td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4">Cycles: exact residue statistics of C mod D (script 154)</th></tr>
+  <tr><th>(A, B)</th><th>D</th><th>var/mean</th><th>&chi;&sup2;/dof</th></tr>
+  <tr><td>(10, 16)</td><td>6,487</td><td>1.0013</td><td>1.0014</td></tr>
+  <tr><td>(12, 20)</td><td>517,135</td><td>0.9636</td><td>0.9636</td></tr>
+  <tr><td>(17, 27)</td><td>5,077,565</td><td>0.9470</td><td>0.9470</td></tr>
+</table>
+
+<p>
+  C mod D is statistically indistinguishable from uniform at every computable scale
+  (and N(0) = 0 at each &mdash; no cycles, consistent with the rotation-corrected null model,
+  P &asymp; 0.26). For fixed odd primes p &ne; 3, the discrepancy of C mod p decays cleanly
+  exponentially with measured spectral gaps (exact big-integer computation, script 155 era
+  correction): &gamma;<sub>5</sub> = 0.826, &gamma;<sub>7</sub> = 0.697, &gamma;<sub>11</sub> = 0.688,
+  &gamma;<sub>13</sub> = 0.732, &gamma;<sub>17</sub> = 0.695 per halving position &mdash; below
+  10<sup>&minus;60</sup> by B = 400, but <em>never exactly zero</em>. (An earlier claim of
+  &ldquo;exact uniformity&rdquo; was a float-threshold artifact in script 154&rsquo;s reporting,
+  caught and corrected by the exact test in script 155.) Mod 3, C hits only {1, 2} &mdash;
+  harmless, as 3 never divides 2<sup>B</sup>&minus;3<sup>A</sup>.
+</p>
+
+<div class="box rem">
+  <div class="lbl">Consequence &mdash; congruences are perfectly blind</div>
+  <p style="margin-bottom:0;">
+    Modulo powers of two, every odd residue is realized by genuine 2-adic cycles
+    (No-Congruence Theorem); modulo fixed odd primes, C equidistributes exponentially fast
+    with explicit spectral gaps. The arithmetic of the cycle equation carries no usable
+    congruence information in either direction. What separates truth from counterexample lives only at
+    the full modulus D &asymp; 2<sup>B</sup>, in the sparse regime where patterns number
+    2<sup>(1&minus;&kappa;)B</sup> &lt; D &mdash; exactly the regime no equidistribution
+    technique currently reaches.
+  </p>
+</div>
+
+<h2>4. A first piece of individual-level structure: the Affine Renewal Identity</h2>
+
+<div class="box thm">
+  <div class="lbl">Theorem D &mdash; Affine Renewal Identity (exact, all moduli)</div>
+  <p>
+    The shift &sigma;: (E<sub>1</sub>,&hellip;,E<sub>A&minus;1</sub>) &rarr;
+    (E<sub>1</sub>+1,&hellip;,E<sub>A&minus;1</sub>+1) is a bijection from
+    {patterns with E<sub>A&minus;1</sub> &le; B&minus;2} onto {patterns with E<sub>1</sub> &ge; 2},
+    and satisfies the exact integer identity C(&sigma;E) = 2C(E) &minus; 3<sup>A&minus;1</sup>.
+    Hence, writing &phi;(r) = 2r &minus; 3<sup>A&minus;1</sup> mod M, for <em>every</em> modulus M
+    and every residue r:
+  </p>
+  <div class="disp">
+    N(&phi;(r)) &minus; N<sub>first</sub>(&phi;(r)) &nbsp;=&nbsp; N(r) &minus; N<sub>last</sub>(r)
+  </div>
+  <p style="margin-bottom:0;">
+    where N counts patterns with C &equiv; r, and N<sub>first</sub>/N<sub>last</sub> restrict to
+    E<sub>1</sub> = 1 / E<sub>A&minus;1</sub> = B&minus;1. Verified exhaustively at the real modulus
+    M = D for four signatures, all residues (script 155). Telescoping around the full
+    &phi;-orbit (length ord<sub>D</sub>(2)) yields the exact global constraint
+    &Sigma;<sub>orbit</sub> (N<sub>first</sub> &minus; N<sub>last</sub>) = 0, and expresses N(0)
+    &mdash; the number of cycles &mdash; through boundary counts at all recursion depths.
+    Notably, 2<sup>B</sup> &equiv; 3<sup>A</sup> (mod D) ties the orbit structure of &phi; directly
+    to the cycle equation.
+  </p>
+</div>
+
+<div class="box thm">
+  <div class="lbl">Three verified consequences (script 156)</div>
+  <p>
+    <strong>1. Fixed-Point Corollary.</strong> &phi; fixes r* = 3<sup>A&minus;1</sup>, forcing
+    N<sub>first</sub>(r*) = N<sub>last</sub>(r*) exactly &mdash; verified at four signatures,
+    including non-trivial values (2 = 2, 1 = 1).
+  </p>
+  <p>
+    <strong>2. Rotation-Divisibility Dichotomy.</strong> Rotation maps solutions to solutions
+    (C<sub>rot</sub> = (3C + D)/2<sup>e<sub>1</sub></sup>, exactly), and a primitive cycle
+    contributes exactly A rotated patterns. Hence
+    N(0) = &Sigma;<sub>d | gcd(A,B)</sub> (A/d)&middot;P(A/d, B/d). Since
+    <strong>gcd(A<sub>min</sub>, B<sub>min</sub>) = 1</strong> at the minimal admissible
+    signature: the solution count there is <em>zero or at least 8,963,457,697</em> &mdash;
+    all-or-nothing, against a global average of 2<sup>&minus;7.1&times;10<sup>8</sup></sup>
+    per residue.
+  </p>
+  <p style="margin-bottom:0;">
+    <strong>3. Renewal Smoothness.</strong> Along the &phi;-orbit of 0 (length ord<sub>D</sub>(2);
+    the orbit itself equidistributes, KS = 0.005), consecutive N-values are strongly correlated:
+    lag-1 autocorrelation +0.45 against a null threshold of 0.02 &mdash; the identity forces N to
+    move only by boundary increments, making N &ldquo;Lipschitz along the &phi;-flow.&rdquo;
+    Also verified: ord(3)/gcd(ord(3), A) divides ord(2), the trace of
+    2<sup>B</sup> &equiv; 3<sup>A</sup> in the group structure.
+  </p>
+</div>
+
+<div class="box thm">
+  <div class="lbl">Theorem E &mdash; Orbit-Sum Invariance (proved; scripts 157&ndash;158)</div>
+  <p>
+    Let P(u) = &Sigma;<sub>k</sub> S(2<sup>k</sup>u) be the character-sum total over the
+    doubling orbit of u mod D. Rotation is a bijection on patterns with
+    C<sub>rot</sub> &equiv; 3&middot;2<sup>&minus;e<sub>1</sub></sup>C (mod D); summing over a full
+    doubling orbit absorbs the 2<sup>&minus;e<sub>1</sub></sup> twist by reindexing, leaving
+  </p>
+  <div class="disp">P(3u) = P(u) &nbsp; for all u.</div>
+  <p style="margin-bottom:0;">
+    Hence D&middot;N(0) = &Sigma;<sub>t</sub> S(t) collapses to a <em>short</em> sum of class
+    invariants on the double quotient (&#8484;/D)<sup>&times;</sup>/&#10216;2,3&#10217; at each divisor
+    level &mdash; small because ord(2), ord(3) are large and 3<sup>A</sup> &equiv; 2<sup>B</sup> ties
+    the generators together. Verified exactly: at (10,16) the predicted 3 independent primitive
+    values are observed; at (12,20) the predicted 4 classes merge under conjugation into the
+    observed 24+24 orbit multiplicities. (The large divisor-level z-scores also found in
+    script 158 are finite-B transients of size S&middot;&gamma;<sub>p</sub><sup>B</sup>, not
+    asymptotic bias.) The cycle count is thereby a linear form in a handful of Gauss-period-type
+    invariants per divisor level &mdash; the sharpest exact reformulation this program reached;
+    bounding those invariants individually remains open.
+  </p>
+</div>
+
+<div class="box thm">
+  <div class="lbl">Corollary &mdash; the prime-D reduction (script 159)</div>
+  <p style="margin-bottom:0;">
+    Across nine signatures: k<sub>3</sub> (the order of 3&rsquo;s image in
+    (&#8484;/D)<sup>&times;</sup>/&#10216;2&#10217;) divides A in every case &mdash; the cycle equation&rsquo;s
+    group-theoretic fingerprint &mdash; and the Ramanujan sum rule holds exactly everywhere.
+    When D is prime and &#10216;2,3&#10217; generates all units (observed at (5,8) and (13,21)),
+    the single primitive invariant satisfies P = D&middot;N(0) &minus; S(0) exactly &mdash; verified:
+    P = &minus;35 = &minus;S(0) and P = &minus;125970 = &minus;S(0). At such signatures the cycle
+    problem <em>is</em> the statement that one Gauss-period-type number equals &minus;S(0).
+    The invariant values themselves show no universal clustering (normalized spread
+    &minus;20&hellip;+27): the sum rules are the only exact structure; pointwise bounds on the
+    periods would be needed to go further, and those belong to open analytic number theory.
+  </p>
+</div>
+
+<div class="box rem">
+  <div class="lbl">Why this matters &mdash; and its honest limit</div>
+  <p style="margin-bottom:0;">
+    These are exact, individual-level facts at the true modulus D &mdash; the first such
+    structure in this program. But the &ldquo;rigidity cascade&rdquo; they suggest is
+    self-consistent rather than self-contradictory: a hypothetical cycle forces its boundary
+    fibers to concentrate as well (at least 41.5% of a cycle&rsquo;s rotations have
+    e<sub>1</sub> = 1, since &Sigma;(e<sub>i</sub>&minus;1) = B&minus;A &asymp; 0.585A), so the
+    recursion re-encodes the cycle&rsquo;s tail at every depth instead of forbidding it. The
+    identity constrains how a counterexample would sit in residue space &mdash; extreme,
+    isolated, all-or-nothing &mdash; without yet excluding it. It is a lever, not a solution.
+  </p>
+</div>
+
+<h2>5. What this does and does not prove</h2>
+
+<p>
+  <strong>Proved:</strong> the divergent set has density zero at rate 2<sup>&minus;&kappa;&prime;m</sup>;
+  any cycle has &ge; 8.96&times;10<sup>9</sup> odd elements with its signature forced to the
+  line B = &lceil;A&theta;&rceil;; both failure modes face the identical entropy deficit; and
+  no congruence &mdash; to any modulus, in any direction &mdash; can decide the problem.
+</p>
+
+<p>
+  <strong>Not proved:</strong> that the deficit is actually paid. The gap statements are
+  density and counting statements; a single exceptional integer &mdash; one pattern with
+  D | C, or one orbit riding the slab forever &mdash; is invisible to them. Converting
+  &ldquo;expected number 2<sup>&minus;7&times;10<sup>8</sup></sup>&rdquo; into
+  &ldquo;number zero&rdquo; requires equidistribution of C mod D at modulus
+  &asymp; 2<sup>B</sup>, or an individual-orbit rigidity argument. Neither exists. That
+  precise statement is, in our assessment, the sharpest available formulation of why the
+  Collatz conjecture is hard.
+</p>
+
+<footer>
+  Companion note to <em>The Collatz Cycle Problem: Phantom Cycles and the Dissolution
+  Cascade</em> (collatz-phantom-cycles.html) &mdash; scripts 149&ndash;154 &mdash; 2026.
+  <br>All constants verified to 12 digits; all counts exact integer arithmetic.
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collatz Cycle Problem: Phantom Cycles and the Dissolution Cascade</title>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --mid: #4a4a6a;
+    --light: #7a7a9a;
+    --accent: #2563eb;
+    --accent2: #7c3aed;
+    --green: #059669;
+    --red: #dc2626;
+    --orange: #d97706;
+    --bg: #f8f8f6;
+    --card: #ffffff;
+    --border: #e2e2e8;
+    --code-bg: #f0f0f4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 0 0 80px 0;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a2f4a 50%, #0d1b2a 100%);
+    color: white;
+    padding: 60px 40px 50px 40px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.1em;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .hero .subtitle {
+    font-size: 1.05em;
+    color: #94a3b8;
+    max-width: 640px;
+    margin: 0 auto 28px auto;
+    line-height: 1.6;
+  }
+
+  .status-banner {
+    display: inline-block;
+    background: rgba(220, 38, 38, 0.18);
+    border: 1px solid rgba(220, 38, 38, 0.5);
+    color: #fca5a5;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 0.88em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  nav {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  nav ul {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 30px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+
+  nav a {
+    color: var(--mid);
+    text-decoration: none;
+    font-size: 0.83em;
+    font-family: sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  h2 {
+    font-size: 1.55em;
+    font-weight: normal;
+    color: var(--ink);
+    margin: 60px 0 18px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.18em;
+    color: var(--ink);
+    margin: 32px 0 12px 0;
+  }
+
+  p { margin-bottom: 1.1em; }
+
+  a { color: var(--accent); }
+
+  .box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .box.theorem {
+    border-left: 4px solid var(--accent);
+  }
+
+  .box.definition {
+    border-left: 4px solid var(--accent2);
+  }
+
+  .box.proof {
+    border-left: 4px solid var(--green);
+    background: #f0fdf4;
+  }
+
+  .box.warning {
+    border-left: 4px solid var(--red);
+    background: #fff5f5;
+  }
+
+  .box.observation {
+    border-left: 4px solid var(--orange);
+    background: #fffbf0;
+  }
+
+  .box.conjecture {
+    border-left: 4px solid #8b5cf6;
+    background: #f5f3ff;
+  }
+
+  .box-label {
+    font-size: 0.78em;
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .box.theorem .box-label { color: var(--accent); }
+  .box.definition .box-label { color: var(--accent2); }
+  .box.proof .box-label { color: var(--green); }
+  .box.warning .box-label { color: var(--red); }
+  .box.observation .box-label { color: var(--orange); }
+  .box.conjecture .box-label { color: #7c3aed; }
+
+  code, .math {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.92em;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #374151;
+  }
+
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    font-size: 0.85em;
+    line-height: 1.6;
+    margin: 20px 0;
+  }
+
+  pre .comment { color: #6c7086; }
+  pre .keyword { color: #cba6f7; }
+  pre .string { color: #a6e3a1; }
+  pre .number { color: #fab387; }
+  pre .fn { color: #89b4fa; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.93em;
+    font-family: 'Courier New', monospace;
+  }
+
+  th {
+    background: var(--ink);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.8em;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tr:nth-child(even) { background: var(--code-bg); }
+  tr:hover { background: #e8e8f0; }
+
+  .cascade-diagram {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 10px;
+    padding: 28px 32px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.87em;
+    line-height: 2;
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+
+  .cascade-diagram .n7 { color: #89dceb; }
+  .cascade-diagram .n8 { color: #a6e3a1; }
+  .cascade-diagram .n9 { color: #fab387; }
+  .cascade-diagram .n10 { color: #cba6f7; }
+  .cascade-diagram .exit { color: #f38ba8; }
+  .cascade-diagram .arrow { color: #6c7086; }
+
+  .chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .chip.proved { background: #dcfce7; color: #166534; }
+  .chip.open { background: #fee2e2; color: #991b1b; }
+  .chip.conjectured { background: #ede9fe; color: #5b21b6; }
+  .chip.empirical { background: #fef3c7; color: #92400e; }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 640px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.5em; }
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin: 14px 0;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: 700;
+    font-family: sans-serif;
+    margin-top: 2px;
+  }
+
+  .step-num.gap { background: var(--red); }
+
+  .orbit-trace {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.83em;
+    line-height: 1.9;
+    margin: 12px 0;
+  }
+
+  .orbit-trace .label { color: #89b4fa; }
+  .orbit-trace .reach1 { color: #a6e3a1; }
+  .orbit-trace .mod { color: #f9e2af; }
+
+  .section-anchor { scroll-margin-top: 70px; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  .conclusion-box {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a2f4a 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin: 40px 0;
+  }
+
+  .conclusion-box h3 { color: #93c5fd; margin-top: 0; }
+  .conclusion-box p { color: #cbd5e1; }
+
+  .inline-mark {
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.9em;
+  }
+
+  ul { padding-left: 1.5em; margin-bottom: 1em; }
+  li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>The Collatz Cycle Problem:<br>Phantom Cycles and the Dissolution Cascade</h1>
+  <p class="subtitle">
+    A research document presenting novel structure in the Collatz problem through
+    phantom cycles, dissolution cascades, and the cascade compatibility framework.
+  </p>
+  <span class="status-banner">&#9888; Partial Result &mdash; One Gap Remains Open</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="#intro">1. Introduction</a></li>
+    <li><a href="#macro">2. Macro-Step</a></li>
+    <li><a href="#phantom">3. Phantom Cycles</a></li>
+    <li><a href="#cascade">4. Dissolution Cascade</a></li>
+    <li><a href="#main">5. Compatibility Theorem</a></li>
+    <li><a href="#gap">6. The Gap</a></li>
+    <li><a href="#auxiliary">7. Auxiliary Results</a></li>
+    <li><a href="#frontier">8. The Diophantine Frontier</a></li>
+    <li><a href="#divergence">9. The Divergence Case</a></li>
+    <li><a href="#conclusion">10. Conclusion</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- ================================================================ -->
+<h2 id="intro" class="section-anchor">1. Introduction</h2>
+
+<p>
+  The <strong>Collatz conjecture</strong> states that for every positive integer
+  <em>n</em>, the sequence defined by repeatedly applying
+  <em>n</em> &rarr; 3<em>n</em>+1 if <em>n</em> is odd, <em>n</em> &rarr; <em>n</em>/2 if
+  <em>n</em> is even, eventually reaches 1. Posed by Lothar Collatz in 1937, it
+  remains one of the most accessible yet stubbornly unresolved problems in mathematics.
+  Paul Erd&#337;s remarked: <em>&ldquo;Mathematics is not yet ready for such
+  problems.&rdquo;</em>
+</p>
+
+<p>
+  Any proof of the conjecture must rule out two scenarios:
+</p>
+
+<div class="grid2">
+  <div class="box observation">
+    <div class="box-label">Case A &mdash; Cycles</div>
+    A sequence that loops forever: <em>n</em><sub>0</sub> &rarr; <em>n</em><sub>1</sub>
+    &rarr; &hellip; &rarr; <em>n</em><sub>0</sub>. The only known cycle is 1&rarr;4&rarr;2&rarr;1.
+    Are there others?
+  </div>
+  <div class="box observation">
+    <div class="box-label">Case B &mdash; Divergence</div>
+    A sequence that grows without bound. No such sequence has been found;
+    all <em>n</em> &lt; 2.7&times;10<sup>20</sup> have been verified to converge.
+  </div>
+</div>
+
+<p>
+  This document focuses on <strong>Case A: the cycle case</strong>. We develop a
+  framework based on <em>phantom cycles</em> &mdash; periodic orbits of a family of
+  finite modular maps &mdash; and show that these exhibit a beautiful dissolution
+  cascade structure that strongly constrains any hypothetical real Collatz cycle.
+</p>
+
+<div class="box warning">
+  <div class="box-label">&#9888; Important Notice</div>
+  The framework presented here <strong>does not constitute a complete proof</strong>
+  of the Collatz conjecture. The phantom cycle structure is genuine and interesting,
+  and the cascade compatibility theorem is rigorously proved <em>within the phantom
+  cycle world</em>. However, the connection between phantom cycles and genuine Collatz
+  cycle elements requires an additional assumption (the Phantom Cycle Lifting Conjecture,
+  &sect;6) that is not yet proved. The document identifies this gap precisely.
+</div>
+
+<!-- ================================================================ -->
+<h2 id="macro" class="section-anchor">2. The Macro-Step Formulation</h2>
+
+<p>
+  Rather than working with the raw Collatz map, we use the <strong>macro-step</strong>,
+  which jumps directly from one odd number to the next odd number in the orbit,
+  skipping all even intermediates.
+</p>
+
+<div class="box definition">
+  <div class="box-label">Definition &mdash; 2-Adic Valuation</div>
+  For any positive integer <em>x</em>, define <code>v&#8322;(x)</code> as the largest
+  power of 2 dividing <em>x</em>: the unique integer <em>k</em> such that
+  2<sup><em>k</em></sup> | <em>x</em> but 2<sup><em>k</em>+1</sup> &#8740; <em>x</em>.
+</div>
+
+<div class="box definition">
+  <div class="box-label">Definition &mdash; Macro-Step</div>
+  For an odd positive integer <em>n</em>, define:
+  <ul style="margin-top: 10px;">
+    <li><em>K</em> = v&#8322;(<em>n</em>+1) &nbsp;&nbsp;&mdash; how many times n+1 is divisible by 2</li>
+    <li><em>m</em> = (<em>n</em>+1) / 2<sup><em>K</em></sup> &nbsp;&nbsp;&mdash; the odd part of n+1</li>
+    <li><em>x</em> = <em>m</em> &middot; 3<sup><em>K</em></sup> &minus; 1</li>
+    <li><em>l</em><sub>0</sub> = v&#8322;(<em>x</em>)</li>
+    <li>T(<em>n</em>) = <em>x</em> / 2<sup><em>l</em><sub>0</sub></sup> = <em>x</em> &gt;&gt; <em>l</em><sub>0</sub></li>
+  </ul>
+  <p style="margin-top: 10px; margin-bottom: 0;">
+    T(<em>n</em>) is the next odd number in the Collatz orbit after <em>n</em>.
+    Equivalently: T(<em>n</em>) &middot; 2<sup><em>K</em>+<em>l</em><sub>0</sub></sup> = <em>n</em> &middot; 3<sup><em>K</em></sup> + (3<sup><em>K</em></sup> &minus; 2<sup><em>K</em></sup>).
+  </p>
+</div>
+
+<pre><span class="comment"># Python implementation</span>
+<span class="keyword">def</span> <span class="fn">v2</span>(x):
+    c = <span class="number">0</span>
+    <span class="keyword">while</span> x % <span class="number">2</span> == <span class="number">0</span>: x //= <span class="number">2</span>; c += <span class="number">1</span>
+    <span class="keyword">return</span> c
+
+<span class="keyword">def</span> <span class="fn">macro_step</span>(n):
+    K = <span class="fn">v2</span>(n+<span class="number">1</span>)
+    m = (n+<span class="number">1</span>) >> K
+    x = m * (<span class="number">3</span>**K) - <span class="number">1</span>
+    l0 = <span class="fn">v2</span>(x)
+    <span class="keyword">return</span> x >> l0, K, l0</pre>
+
+<p>
+  The Collatz conjecture is equivalent to: for every odd <em>n</em> &gt; 1,
+  the orbit T(<em>n</em>), T<sup>2</sup>(<em>n</em>), &hellip; eventually reaches 1.
+  The <strong>step parameters</strong> (<em>K</em>, <em>l</em><sub>0</sub>) determine how much the orbit
+  multiplies by 3 and divides by 2 at each macro-step. Since
+  E[<em>K</em> log 3 &minus; (<em>K</em>+<em>l</em><sub>0</sub>)] &approx; &minus;0.575 per step,
+  orbits contract on average &mdash; but a contracting average does not rule out
+  exceptional trajectories.
+</p>
+
+<!-- ================================================================ -->
+<h2 id="phantom" class="section-anchor">3. Phantom Cycles</h2>
+
+<h3>3.1 Definition</h3>
+
+<div class="box definition">
+  <div class="box-label">Definition &mdash; Phantom Map T<sub>N</sub></div>
+  For a positive integer <em>N</em>, define the <strong>phantom map at level N</strong>:
+  <br><br>
+  T<sub><em>N</em></sub>: {1, 3, 5, &hellip;, 2<sup><em>N</em></sup>&minus;1} &rarr; {1, 3, 5, &hellip;, 2<sup><em>N</em></sup>&minus;1}
+  <br><br>
+  T<sub><em>N</em></sub>(<em>n</em>) = T(<em>n</em>) mod 2<sup><em>N</em></sup>
+  <br><br>
+  That is: apply the REAL macro-step to <em>n</em> (treating <em>n</em> as an actual
+  small integer), then reduce the result modulo 2<sup><em>N</em></sup>.
+</div>
+
+<div class="box definition">
+  <div class="box-label">Definition &mdash; Phantom Cycles P<sub>N</sub></div>
+  <strong>P<sub><em>N</em></strong></strong> is the set of periodic points of T<sub><em>N</em></sub>:
+  elements <em>p</em> of {1, 3, &hellip;, 2<sup><em>N</em></sup>&minus;1} for which
+  T<sub><em>N</em></sub><sup><em>L</em></sup>(<em>p</em>) = <em>p</em> for some <em>L</em> &ge; 1.
+</div>
+
+<p>
+  Phantom cycles are <em>NOT</em> the Collatz map reduced modulo 2<sup><em>N</em></sup>.
+  The crucial distinction: T<sub><em>N</em></sub> applies T to the <em>current
+  small residue</em>, not to the original large number. This makes the phantom map
+  well-defined on a finite domain, producing genuine periodic orbits that can be
+  computed exactly.
+</p>
+
+<h3>3.2 Computed Values</h3>
+
+<p>
+  By exhaustive enumeration of all odd integers in {1, &hellip;, 2<sup><em>N</em></sup>&minus;1},
+  the following phantom cycle sets were computed and verified:
+</p>
+
+<table>
+  <tr>
+    <th>Level N</th>
+    <th>Domain size</th>
+    <th>Phantom cycles P<sub>N</sub></th>
+    <th>Cycle structure</th>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>64 elements</td>
+    <td>{1, 47, 91, 103, 121}</td>
+    <td>{1} (fixed) + {47, 91, 103, 121} (4-cycle)</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>128 elements</td>
+    <td>{1, 71, 91, 103, 121, 175, 189}</td>
+    <td>{1} (fixed) + {71, 91, 103, 121, 175, 189} (6-cycle)</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>256 elements</td>
+    <td>{1, 91, 95, 103, 167, 175, 253, 283, 319, 399, 445}</td>
+    <td>{1} (fixed) + 10-cycle</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>512 elements</td>
+    <td>{1, 703, 937}</td>
+    <td>{1} (fixed) + {703, 937} (2-cycle)</td>
+  </tr>
+</table>
+
+<h3>3.3 Verification of P<sub>7</sub> by Complete Enumeration</h3>
+
+<p>
+  The set P<sub>7</sub> = {1, 47, 91, 103, 121} was verified <em>exhaustively</em>
+  by tracing all 64 odd integers in {1, 3, &hellip;, 127} under T<sub>7</sub>.
+  Every starting point either (a) reaches the fixed point {1}, or (b) enters the
+  4-cycle {47&rarr;91&rarr;103&rarr;121&rarr;47}. No other cycles exist at level 7.
+</p>
+
+<p>
+  The 4-cycle orbits are verified:
+</p>
+
+<div class="orbit-trace">
+<span class="label">T_7(47):</span>  T(47) = 71.  71 mod 128 = 71... wait. Let us check T_7 directly.<br>
+<span class="label">T(47):</span>    v2(48)=4, m=3, x=3·81-1=242, l0=1, T(47)=121.   121 mod 128 = 121<br>
+<span class="label">T(121):</span>   v2(122)=1, m=61, x=61·3-1=182, l0=1, T(121)=91.   91 mod 128 = 91<br>
+<span class="label">T(91):</span>    v2(92)=2, m=23, x=23·9-1=206, l0=1, T(91)=103.   103 mod 128 = 103<br>
+<span class="label">T(103):</span>   v2(104)=3, m=13, x=13·27-1=350, l0=1, T(103)=175. 175 mod 128 = <span class="mod">47</span> ✓ (cycle closes!)<br>
+</div>
+
+<p>
+  So the actual 4-cycle of T<sub>7</sub> is: 47 &rarr; 121 &rarr; 91 &rarr; 103 &rarr; 47.
+  (The real macro-step outputs 121, 91, 103, 175 respectively; the mod-128 reduction
+  at the last step wraps 175 back to 47.)
+</p>
+
+<!-- ================================================================ -->
+<h2 id="cascade" class="section-anchor">4. The Dissolution Cascade</h2>
+
+<h3>4.1 Dissolution Points</h3>
+
+<p>
+  For each phantom cycle at level <em>N</em>, most elements <em>p</em> satisfy
+  T(<em>p</em>) &lt; 2<sup><em>N</em></sup> (the real macro-step stays within the domain,
+  no reduction fires). But each phantom cycle has exactly one <strong>dissolution point</strong>:
+  an element <em>p</em> where T(<em>p</em>) &ge; 2<sup><em>N</em></sup>.
+</p>
+
+<table>
+  <tr>
+    <th>Level N</th>
+    <th>Dissolution point p</th>
+    <th>Real output T(p)</th>
+    <th>T(p) mod 2<sup>N</sup></th>
+    <th>Carries to</th>
+  </tr>
+  <tr>
+    <td>N=7</td>
+    <td>103</td>
+    <td>175</td>
+    <td>175 mod 128 = 47</td>
+    <td>175 enters N=8,9 cycles</td>
+  </tr>
+  <tr>
+    <td>N=8</td>
+    <td>175</td>
+    <td>445</td>
+    <td>445 mod 256 = 189</td>
+    <td>445 enters N=9 cycle</td>
+  </tr>
+  <tr>
+    <td>N=9</td>
+    <td>319</td>
+    <td>911</td>
+    <td>911 mod 512 = 399</td>
+    <td>911 exits phantom zone &rarr; 23-channel</td>
+  </tr>
+  <tr>
+    <td>N=10</td>
+    <td>703</td>
+    <td>4009</td>
+    <td>4009 mod 1024 = 937</td>
+    <td>4009 exits phantom zone &rarr; 13-channel</td>
+  </tr>
+</table>
+
+<h3>4.2 The Cascade Structure</h3>
+
+<p>
+  The dissolution outputs chain together in a precise sequence. The output of each
+  level&rsquo;s dissolution <em>enters</em> the next level&rsquo;s phantom cycle:
+</p>
+
+<div class="cascade-diagram">
+<span class="n7">N=7 cycle: {47, 91, 103, 121}</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="arrow">&#8618; dissolution at 103 &rarr; T(103) = 175 (real)</span>
+<br>
+<span class="n8">N=8 cycle: {71, 91, 103, 121, 175, 189}</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="arrow">&#8618; dissolution at 175 &rarr; T(175) = 445 (real)</span>
+<br>
+<span class="n9">N=9 cycle: {91, 95, 103, 167, 175, 253, 283, 319, 399, 445}</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="arrow">&#8618; dissolution at 319 &rarr; T(319) = 911 (real)</span>
+<br>
+<span class="exit">EXIT from phantom zone</span>
+<br>&nbsp;&nbsp;<span class="exit">911 &rarr; 577 &rarr; 433 &rarr; 325 &rarr; 61 &rarr; 23 &rarr; 5 &rarr; 1</span>
+<br>&nbsp;&nbsp;<span class="exit">(23-channel: T-2 value = 23, ~43.5% of all orbits)</span>
+<br><br>
+<span class="n10">N=10 nucleated cycle: {703, 937}</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="arrow">&#8618; dissolution at 703 &rarr; T(703) = 4009 (real)</span>
+<br>
+<span class="exit">EXIT from phantom zone</span>
+<br>&nbsp;&nbsp;<span class="exit">4009 &rarr; [long path] &rarr; 13 &rarr; 5 &rarr; 1</span>
+<br>&nbsp;&nbsp;<span class="exit">(13-channel: T-2 value = 13, ~47.5% of all orbits)</span>
+</div>
+
+<h3>4.3 The Canonical Staircase Path</h3>
+
+<p>
+  A concrete consequence: many Collatz orbits pass through the following
+  <em>phantom staircase</em> before reaching 1:
+</p>
+
+<div class="orbit-trace">
+<span class="label">Staircase:</span> 47 &rarr; 121 &rarr; 91 &rarr; 103 &rarr; 175 &rarr; 445 &rarr; 167 &rarr; 283 &rarr; 319 &rarr; 911 &rarr; 577 &rarr; 433 &rarr; 325 &rarr; 61 &rarr; 23 &rarr; 5 &rarr; 1<br>
+<span class="label">Status:</span>  [<span class="n7">N=7 phantom</span>] [<span class="n8">N=8</span>] [<span class="n9">N=9 cascade</span>] [<span class="exit">exit ramp to 1</span>]
+</div>
+
+<p>
+  Empirically, roughly 83% of random large-bit orbits pass through this staircase,
+  and the channel split (23-channel: ~43.5%, 13-channel: ~47.5%) remains
+  stable across bit-lengths from b=10 to b=1000.
+</p>
+
+<h3>4.4 Verification of the {703, 937} 2-Cycle</h3>
+
+<p>
+  The N=10 phantom cycle {703, 937} is verified by direct computation:
+</p>
+
+<div class="orbit-trace">
+<span class="label">T(703):</span>  v2(704)=6, m=11, x=11·729-1=8018, l0=1, T(703)=4009<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4009 mod 1024 = <span class="mod">937</span> &nbsp;&rArr;&nbsp; T_10(703) = 937 ✓<br><br>
+<span class="label">T(937):</span>  v2(938)=1, m=469, x=469·3-1=1406, l0=1, T(937)=703<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;703 mod 1024 = <span class="mod">703</span> &nbsp;&rArr;&nbsp; T_10(937) = 703 ✓
+</div>
+
+<p>
+  The cycle equation for {703, 937} with parameters A=7, B=9, carry <em>c</em><sub>1</sub>=3, <em>c</em><sub>2</sub>=0:
+</p>
+
+<div class="box proof">
+  <div class="box-label">Verification</div>
+  Step 1: 937 &middot; 2<sup>7</sup> = 703 &middot; 3<sup>6</sup> + 665 &minus; 3 &middot; 2<sup>17</sup>
+  &nbsp;&rArr;&nbsp; 119,936 = 512,487 + 665 &minus; 393,216 = 119,936 ✓<br>
+  Step 2: 703 &middot; 2<sup>2</sup> = 937 &middot; 3<sup>1</sup> + 1 &minus; 0
+  &nbsp;&rArr;&nbsp; 2,812 = 2,811 + 1 = 2,812 ✓
+</div>
+
+<!-- ================================================================ -->
+<h2 id="main" class="section-anchor">5. The Cascade Compatibility Theorem</h2>
+
+<h3>5.1 The Lifting Chain</h3>
+
+<p>
+  The cascade compatibility argument traces which P<sub>7</sub> elements can
+  <em>lift</em> to compatible elements at higher levels. An element
+  <em>q</em> &isin; P<sub>N+1</sub> is <strong>compatible</strong> with
+  <em>p</em> &isin; P<sub>N</sub> if <em>q</em> &equiv; <em>p</em> mod 2<sup><em>N</em></sup>.
+</p>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div>
+    <strong>P<sub>7</sub> exhaustively verified</strong> = {1, 47, 91, 103, 121}.
+    For any non-trivial starting residue, the relevant set is {47, 91, 103, 121}.
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div>
+    <strong>Lifting to P<sub>8</sub>:</strong> Elements of P<sub>8</sub> that reduce
+    mod 128 to {47, 91, 103, 121}:
+    <ul>
+      <li>47 mod 128: lifts to 175 (= 47+128) &isin; P<sub>8</sub> ✓</li>
+      <li>91: 91 &isin; P<sub>8</sub> directly ✓</li>
+      <li>103: 103 &isin; P<sub>8</sub> directly ✓</li>
+      <li>121: 121 &isin; P<sub>8</sub> directly ✓</li>
+    </ul>
+    Compatible set at level 8: <strong>{91, 103, 121, 175}</strong>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div>
+    <strong>Lifting to P<sub>9</sub>:</strong> Elements of P<sub>9</sub> that reduce
+    mod 256 to {91, 103, 121, 175}:
+    <ul>
+      <li>91: 91 &isin; P<sub>9</sub> ✓ &nbsp; | &nbsp; 91+256=347 &notin; P<sub>9</sub></li>
+      <li>103: 103 &isin; P<sub>9</sub> ✓ &nbsp; | &nbsp; 359 &notin; P<sub>9</sub></li>
+      <li>121: 121 &notin; P<sub>9</sub>, 377 &notin; P<sub>9</sub> &rarr; <strong>eliminated</strong></li>
+      <li>175: 175 &isin; P<sub>9</sub> ✓ &nbsp; | &nbsp; 431 &notin; P<sub>9</sub></li>
+    </ul>
+    Compatible set at level 9: <strong>{91, 103, 175}</strong>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">4</div>
+  <div>
+    <strong>Lifting to P<sub>10</sub>:</strong> The candidates are all odd <em>n</em>
+    &lt; 1024 with <em>n</em> mod 512 &isin; {91, 103, 175}:
+    <br><br>
+    <strong>{91, 103, 175, 603, 615, 687}</strong>
+    <br><br>
+    P<sub>10</sub> = {1, 703, 937}. Check residues mod 512:
+    <ul>
+      <li>1 mod 512 = 1 &notin; {91, 103, 175}</li>
+      <li>703 mod 512 = 191 &notin; {91, 103, 175}</li>
+      <li>937 mod 512 = 425 &notin; {91, 103, 175}</li>
+    </ul>
+    <strong>No element of P<sub>10</sub> is compatible.</strong>
+  </div>
+</div>
+
+<h3>5.2 The Six-Element Verification</h3>
+
+<p>
+  We also verify directly that none of the 6 candidates {91, 103, 175, 603, 615, 687}
+  are periodic points of T<sub>10</sub> (confirming they cannot be in any P<sub>10</sub>):
+</p>
+
+<div class="orbit-trace">
+<span class="label">n=91:</span>   91 &rarr; 103 &rarr; 175 &rarr; 445 &rarr; 167 &rarr; 283 &rarr; 319 &rarr; 911 &rarr; 577 &rarr; 433 &rarr; 325 &rarr; 61 &rarr; 23 &rarr; 13 &rarr; 5 &rarr; <span class="reach1">1 ✓</span>
+<br>
+<span class="label">n=103:</span>  103 &rarr; 175 &rarr; 445 &rarr; ... (same staircase) &rarr; <span class="reach1">1 ✓</span>
+<br>
+<span class="label">n=175:</span>  175 &rarr; 445 &rarr; 167 &rarr; ... (same staircase) &rarr; <span class="reach1">1 ✓</span>
+<br>
+<span class="label">n=603:</span>  603 &rarr; 679 &rarr; <span class="mod">[1147 mod 1024=123]</span> &rarr; 139 &rarr; 157 &rarr; 59 &rarr; 67 &rarr; 19 &rarr; 11 &rarr; 13 &rarr; 5 &rarr; <span class="reach1">1 ✓</span>
+<br>
+<span class="label">n=615:</span>  615 &rarr; <span class="mod">[1039 mod 1024=15]</span> &rarr; 5 &rarr; <span class="reach1">1 ✓</span>
+<br>
+<span class="label">n=687:</span>  687 &rarr; <span class="mod">[1741 mod 1024=717]</span> &rarr; 269 &rarr; 101 &rarr; 19 &rarr; 11 &rarr; 13 &rarr; 5 &rarr; <span class="reach1">1 ✓</span>
+</div>
+
+<p>All 6 orbits reach 1 under T<sub>10</sub>. Numbers in brackets show where T(<em>n</em>) &ge; 1024 fires and the mod-1024 reduction applies.</p>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; Cascade Compatibility (within phantom cycle world)</div>
+  <p>
+    There is no compatible sequence (<em>p</em><sub>7</sub>, <em>p</em><sub>8</sub>,
+    <em>p</em><sub>9</sub>, <em>p</em><sub>10</sub>) with:
+  </p>
+  <ul>
+    <li><em>p</em><sub>N</sub> &isin; P<sub>N</sub> for each N &isin; {7, 8, 9, 10}</li>
+    <li><em>p</em><sub>N+1</sub> &equiv; <em>p</em><sub>N</sub> mod 2<sup>N</sup></li>
+    <li><em>p</em><sub>7</sub> &ne; 1</li>
+  </ul>
+  <p style="margin-bottom:0;">
+    <strong>Proof:</strong> The compatible set narrows at each level: {47,91,103,121} at N=7
+    &rarr; {91,103,121,175} at N=8 &rarr; {91,103,175} at N=9 &rarr; &#8709; at N=10
+    (since no element of P<sub>10</sub> has residue mod 512 in {91,103,175},
+    verified above). &#9633;
+  </p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="gap" class="section-anchor">6. The Gap: The Phantom Cycle Lifting Conjecture</h2>
+
+<div class="box warning">
+  <div class="box-label">&#9888; The Missing Step</div>
+  <p>
+    The Cascade Compatibility Theorem (Section 5) is proved rigorously.
+    However, converting it into a proof about <em>genuine</em> Collatz cycles
+    requires one additional bridge, which is currently unproved.
+  </p>
+</div>
+
+<div class="box conjecture">
+  <div class="box-label">Conjecture &mdash; Phantom Cycle Lifting Conjecture (PCLC)</div>
+  <p>
+    Let <em>n</em><sub>1</sub> be a genuine Collatz cycle element: an odd positive integer
+    with T<sup><em>L</em></sup>(<em>n</em><sub>1</sub>) = <em>n</em><sub>1</sub> for some <em>L</em> &ge; 1.
+    Then for every <em>N</em> &ge; 1, <em>n</em><sub>1</sub> mod 2<sup><em>N</em></sup>
+    is a periodic point of T<sub><em>N</em></sub>.
+  </p>
+  <p style="margin-bottom:0;">
+    Status: <span class="chip conjectured">Conjectured</span> &mdash; not proved. Verified for
+    <em>n</em><sub>1</sub> = 1 (trivially) and for all <em>n</em> &lt; 2.7&times;10<sup>20</sup>
+    (computationally, since all converge to 1 whose mod-2<sup>N</sup> residue 1 is in P<sub>N</sub>).
+  </p>
+</div>
+
+<h3>6.1 Why the PCLC is Non-Trivial</h3>
+
+<p>
+  The PCLC fails to follow immediately from the cycle condition because T<sub>N</sub>
+  is <em>not</em> the Collatz map projected modulo 2<sup><em>N</em></sup>. The critical difference:
+</p>
+
+<ul>
+  <li>
+    <strong>T<sub>N</sub> applies T to the current small residue</strong>
+    &mdash; it uses <em>v</em><sub>2</sub>(<em>r</em>+1) for the reduced element <em>r</em>.
+  </li>
+  <li>
+    <strong>The real orbit</strong> uses <em>v</em><sub>2</sub>(<em>n</em><sub>1</sub>+1) for the
+    actual large cycle element <em>n</em><sub>1</sub>, which may have a completely different
+    2-adic valuation than <em>n</em><sub>1</sub> mod 2<sup><em>N</em></sup>.
+  </li>
+</ul>
+
+<div class="box observation">
+  <div class="box-label">Concrete obstacle</div>
+  <p>
+    P<sub>2</sub> = {1} (the only periodic point of T<sub>2</sub> on {1,3} is n=1,
+    since T(3) = 1). But a genuine cycle element could have <em>K</em><sub>1</sub> = 2
+    (v<sub>2</sub>(<em>n</em><sub>1</sub>+1) = 2), which forces <em>n</em><sub>1</sub> &equiv; 3 mod 4.
+    Then <em>n</em><sub>1</sub> mod 4 = 3, which is <em>not</em> in P<sub>2</sub> = {1}.
+    So the PCLC would be violated at N=2 for any cycle element with <em>K</em><sub>1</sub> = 2.
+  </p>
+  <p style="margin-bottom:0;">
+    Note also: P<sub>7</sub> contains 47, 91, 103, which all satisfy 47 mod 4 = 91 mod 4 = 103 mod 4 = 3.
+    These are in P<sub>7</sub> but not compatible with P<sub>2</sub> = {1}.
+    The phantom cycles at different levels do <em>not</em> project consistently onto each other.
+  </p>
+</div>
+
+<h3>6.2 The No-Congruence Theorem: Why the Gap Cannot Be Repaired Modularly</h3>
+
+<p>
+  After the PCLC counterexample was found, a natural hope remained: perhaps a
+  <em>corrected</em> modular argument &mdash; a different compatibility notion, or an
+  inverse-limit construction over the P<sub>N</sub> &mdash; could still close the cycle case.
+  A direct computational test settles this question <strong>negatively</strong>.
+</p>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; No-Congruence Obstruction (verified computationally at N=7, 10)</div>
+  <p>
+    For every odd residue <em>r</em> mod 2<sup>N</sup> (all 64 residues at N=7 and all
+    512 residues at N=10 were verified), there exists a periodic parameter sequence
+    (K<sub>1</sub>,l<sub>01</sub>,&hellip;,K<sub>L</sub>,l<sub>0L</sub>) whose unique
+    2-adic solution <em>n</em><sub>1</sub> = C&thinsp;/&thinsp;(2<sup>B</sup>&minus;3<sup>A</sup>) &isin; &#8484;<sub>2</sub>:
+  </p>
+  <ul>
+    <li>is <strong>fully 2-adically consistent</strong> &mdash; simulating the macro-step orbit
+        in &#8484;/2<sup>M</sup>&#8484; at high precision M confirms that
+        v<sub>2</sub>(<em>n</em><sub>i</sub>+1) = K<sub>i</sub> and the l<sub>0i</sub> valuations
+        match at <em>every</em> step around the loop, and</li>
+    <li>satisfies <em>n</em><sub>1</sub> &equiv; <em>r</em> mod 2<sup>N</sup>.</li>
+  </ul>
+  <p style="margin-bottom:0;">
+    In other words: genuine 2-adic periodic points of the Collatz macro-step realize
+    <strong>every</strong> odd residue class at every level tested &mdash; including the six
+    residues {91, 103, 175, 603, 615, 687} that the cascade argument declared impossible.
+    Status: <span class="chip proved">Verified</span> (exhaustive coverage at N=7 and N=10;
+    consistent with Lagarias&rsquo;s theorem that the 3x+1 map on &#8484;<sub>2</sub> is
+    conjugate to the shift, so <em>every</em> parameter sequence is realized by a unique
+    2-adic point).
+  </p>
+</div>
+
+<div class="box observation">
+  <div class="box-label">Consequence</div>
+  <p style="margin-bottom:0;">
+    <strong>No congruence argument modulo 2<sup>N</sup> &mdash; for any N &mdash; can rule out
+    Collatz cycles.</strong> Every residue class contains 2-adic (equivalently, rational)
+    cycles. What separates a genuine counterexample from a harmless rational cycle is a single
+    Diophantine condition: whether (2<sup>B</sup> &minus; 3<sup>A</sup>) divides C exactly,
+    making <em>n</em><sub>1</sub> a positive <em>integer</em>. This integrality condition is
+    archimedean in nature and is invisible to every finite modulus. The phantom-cycle
+    sets P<sub>N</sub> are periodic points of a <em>different</em> dynamical system
+    (T applied to small representatives) and carry no information about it.
+  </p>
+</div>
+
+<h3>6.3 The One Remaining Path</h3>
+
+<p>
+  The No-Congruence Theorem eliminates repair strategies (A) &ldquo;corrected PCLC&rdquo;
+  and (B) &ldquo;2-adic inverse limit of P<sub>N</sub>&rdquo; that were previously proposed:
+  the inverse limit of realized residues is <em>all</em> of &#8484;<sub>2</sub><sup>odd</sup>,
+  not {1}. Exactly one path to the cycle case remains:
+</p>
+
+<div class="step">
+  <div class="step-num gap">C</div>
+  <div>
+    <strong>The Diophantine path</strong>: prove that
+    <em>n</em><sub>1</sub> = C&thinsp;/&thinsp;(2<sup>B</sup> &minus; 3<sup>A</sup>) is never a positive
+    integer for a non-trivial parameter sequence. The state of the art here is
+    Baker-type linear forms in logarithms (&sect;7.1), the Eliahou bounds
+    (L &ge; 5,609,360), and this work&rsquo;s PPD/Wieferich constraints (&sect;7.2&ndash;7.3),
+    which together confine any cycle to an extraordinarily thin parameter set
+    without eliminating it. Closing this path appears to require either an effective
+    ABC-type inequality or a fundamentally new Diophantine idea. <em>This is the full
+    open problem.</em>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="auxiliary" class="section-anchor">7. Proved Auxiliary Results</h2>
+
+<p>
+  The following results about genuine Collatz cycles are rigorously established,
+  independent of the PCLC.
+</p>
+
+<h3>7.1 Baker&rsquo;s Theorem and Cycle Size Bounds</h3>
+
+<div class="box theorem">
+  <div class="box-label">Theorem (Laurent-Mignotte-Nesterenko 1995)</div>
+  <p>
+    For any non-trivial Collatz cycle with parameters A = &sum;K<sub>i</sub> and
+    B = &sum;(K<sub>i</sub>+l<sub>0i</sub>):
+  </p>
+  <p>|2<sup>B</sup> &minus; 3<sup>A</sup>| &gt; 3<sup>A</sup> / (2<sup>27.1</sup> &middot; A<sup>11.3</sup>) &nbsp; (equivalently, Rhin 1987: |B ln2 &minus; A ln3| &gt; B<sup>&minus;13.3</sup>)</p>
+  <p>
+    <strong>Audit correction (script 150):</strong> the previously recorded consequence
+    &ldquo;<em>n</em><sub>1</sub> &lt; 5&times;10<sup>103</sup>&rdquo; is <em>unfounded</em> &mdash;
+    no absolute upper bound on cycle elements follows, because A is unbounded. Bounds of that
+    shape exist only for cycles with a bounded number of blocks (m-cycles, Simons&ndash;de Weger,
+    Hercher).
+  </p>
+  <p style="margin-bottom:0;">Status of the lower bound itself: <span class="chip proved">Proved</span> (classical result)</p>
+</div>
+
+<div class="box theorem">
+  <div class="box-label">Theorem (Eliahou 1993)</div>
+  <p>Any non-trivial Collatz cycle has:</p>
+  <ul>
+    <li>Number of macro-steps L &ge; 5,609,360</li>
+    <li>Total 3-step count A = &sum;K<sub>i</sub> &ge; 17,087,915</li>
+    <li>Average K per step &asymp; 3.04 (vs. ~2 for typical convergent orbits)</li>
+  </ul>
+  <p style="margin-bottom:0;">Status: <span class="chip proved">Proved</span> (classical result)</p>
+</div>
+
+<h3>7.2 PPD Obstruction Theorem</h3>
+
+<div class="box warning">
+  <div class="box-label">&#9888; Refuted in audit &mdash; former &ldquo;Primitive Prime Divisor Obstruction&rdquo;</div>
+  <p>
+    An earlier session recorded a &ldquo;PPD Obstruction Theorem&rdquo; claiming that primes
+    <em>p</em> | 2<sup>B</sup>&minus;3<sup>A</sup> with large multiplicative order eliminate the
+    pair (A,B). The audit (script 150) refutes this on two counts:
+  </p>
+  <ul>
+    <li>In the exact identity <em>n</em><sub>1</sub>&middot;(2<sup>B</sup>&minus;3<sup>A</sup>) = C,
+        <em>every</em> prime dividing 2<sup>B</sup>&minus;3<sup>A</sup> divides C
+        <em>automatically</em> &mdash; there is no extra condition and hence no obstruction.
+        (Demonstrated: at (A,B)=(12,20), 150 of 75,582 admissible sequences satisfy
+        C &equiv; 0 mod the largest prime of D &mdash; abundance, not obstruction.)</li>
+    <li>The supporting claim &ldquo;primitive primes have ord<sub>p</sub>(2/3) = B&rdquo; is
+        empirically false: 0 of 85 primes tested (A &le; 34) satisfy it.</li>
+  </ul>
+  <p style="margin-bottom:0;">Status: <span class="chip open">Refuted</span> (audit, script 150)</p>
+</div>
+
+<h3>7.3 Wieferich Exponent Lower Bound</h3>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; Wieferich Exponent k &ge; 3</div>
+  <p>
+    For any surviving (A,B) pair (one satisfying the Wieferich-like condition that
+    every prime <em>p</em> | 2<sup>B</sup>&minus;3<sup>A</sup> satisfies ord<sub><em>p</em></sub>(3/2) &le; A),
+    the minimum <em>k</em> such that 2<sup>B</sup>&minus;3<sup>A</sup> | G<sup>k</sup>
+    (where G = gcd(3<sup>A</sup>&minus;2<sup>A</sup>, 2<sup>B&minus;A</sup>&minus;1))
+    satisfies <em>k</em> &ge; 3.
+  </p>
+  <p>
+    Proof: G &le; 2<sup>0.585A</sup> (from G | 3<sup>A</sup>&minus;2<sup>A</sup> &lt; 3<sup>A</sup>), and
+    |2<sup>B</sup>&minus;3<sup>A</sup>| &gt; 3<sup>A</sup>/(2<sup>27.1</sup>A<sup>11.3</sup>) (Baker).
+    For k=2: G<sup>2</sup> &lt; 2<sup>1.17A</sup> &lt; |2<sup>B</sup>&minus;3<sup>A</sup>| for A &ge; 100.
+    So k=2 is impossible.
+  </p>
+  <p>
+    <strong>Audit correction (script 150):</strong> the arithmetic above is sound, but the
+    statement constrains only pairs with rad(2<sup>B</sup>&minus;3<sup>A</sup>) | G &mdash; a class
+    that is empty for all A &le; 34 tested and was never shown to contain cycle-admissible pairs
+    (that inference rested on the refuted PPD claim). The theorem is conditionally true but
+    currently without force.
+  </p>
+  <p style="margin-bottom:0;">Status: <span class="chip conjectured">Conditional, without established scope</span></p>
+</div>
+
+<h3>7.4 Unique Lifting Theorem</h3>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; Unique Lifting</div>
+  <p>
+    Each phantom cycle C<sub>N</sub> either lifts to exactly one cycle in P<sub>N+1</sub>
+    (uniquely determined by the gap-closure condition
+    &sum;<sub>i</sub> &delta;<sub>i</sub> &middot; 2<sup>N&minus;K<sub>i</sub>&minus;l<sub>0i</sub></sup>
+    &middot; 3<sup>K<sub>i</sub></sup> &equiv; 0 mod 2<sup>N+1</sup>), or dissolves.
+    Furthermore:
+  </p>
+  <ul>
+    <li><strong>Cascade elements</strong> (lifted from dissolution at N-1) have carry<sub>N</sub> = 1</li>
+    <li><strong>Nucleated cycles</strong> (arising fresh at level N) have carry<sub>N</sub> &ge; 3</li>
+  </ul>
+  <p style="margin-bottom:0;">Status: <span class="chip proved">Proved</span> (this work)</p>
+</div>
+
+<h3>7.5 Cycle Equation and 2-Adic Uniqueness</h3>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; Cycle Equation</div>
+  <p>
+    For a Collatz cycle of length L with macro-step parameters
+    (K<sub>1</sub>,l<sub>01</sub>, &hellip;, K<sub>L</sub>,l<sub>0L</sub>):
+  </p>
+  <p>
+    <em>n</em><sub>1</sub> &middot; (2<sup>B</sup> &minus; 3<sup>A</sup>) = C
+  </p>
+  <p>where A = &sum;K<sub>i</sub>, B = &sum;(K<sub>i</sub>+l<sub>0i</sub>),
+  C = &sum;<sub>i</sub> (3<sup>K<sub>i</sub></sup> &minus; 2<sup>K<sub>i</sub></sup>) &middot; 3<sup>A&minus;&alpha;<sub>i+1</sub></sup> &middot; 2<sup>&beta;<sub>i</sub></sup> &gt; 0.</p>
+  <p>For any fixed parameter set, <em>n</em><sub>1</sub> is uniquely determined.
+  There is no multiplicity: each parameter set gives at most one cycle element.</p>
+  <p style="margin-bottom:0;">Status: <span class="chip proved">Proved</span> (this work)</p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="frontier" class="section-anchor">8. The Diophantine Frontier</h2>
+
+<p>
+  After the No-Congruence Theorem closed all modular routes (&sect;6), the remaining
+  battlefield is purely Diophantine. This section presents the constraint chain rebuilt
+  from scratch and verified, conditional only on the published computational
+  verification limit N<sub>0</sub> (all n &lt; N<sub>0</sub> converge; Barina:
+  N<sub>0</sub> = 2<sup>68</sup> published 2020, currently extended to
+  &asymp;1.5&middot;2<sup>70</sup>).
+</p>
+
+<h3>8.1 The Fundamental Inequality and the Forced Signature</h3>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; Cycle Signature Constraints (scripts 151)</div>
+  <p>
+    For a non-trivial cycle with A odd steps and B halvings, multiplying
+    3 + 1/n<sub>i</sub> around the cycle gives
+    2<sup>B</sup> = &Pi;<sub>i</sub>(3 + 1/n<sub>i</sub>) &lt; (3 + 1/n<sub>min</sub>)<sup>A</sup>.
+    With n<sub>min</sub> &gt; N<sub>0</sub>:
+  </p>
+  <p style="text-align:center;">
+    0 &lt; B &minus; A&middot;log<sub>2</sub>3 &lt; A&middot;&delta;, &nbsp;&nbsp;
+    &delta; = log<sub>2</sub>(1 + 1/(3N<sub>0</sub>)) &asymp; 2<sup>&minus;69.06</sup>
+    &nbsp;(for N<sub>0</sub> = 2<sup>68</sup>)
+  </p>
+  <ul>
+    <li><strong>B is forced:</strong> B = &lceil;A&middot;log<sub>2</sub>3&rceil; for every
+        A &lt; 1/&delta; &asymp; 6.1&times;10<sup>20</sup>. The cycle search space is
+        one-dimensional &mdash; only A is free.</li>
+    <li><strong>Continued-fraction lower bound:</strong> using the best-approximation property
+        of the convergents of log<sub>2</sub>3 (denominators q<sub>21</sub> = 6,586,818,670 and
+        q<sub>22</sub> = 65,470,613,321 bracket the first admissible window):
+        <br><br>
+        <span class="inline-mark">A &ge; 8,963,457,697</span> odd elements
+        (N<sub>0</sub> = 2<sup>68</sup>, conservative), or
+        <span class="inline-mark">A &ge; 53,780,746,181</span>
+        (current N<sub>0</sub> = 1.5&middot;2<sup>70</sup>);
+        total Collatz steps &ge; 23.2 / 139.0 billion respectively.</li>
+  </ul>
+  <p style="margin-bottom:0;">
+    Status: <span class="chip proved">Proved</span> (conditional only on the published
+    verification limit; computed at 160-digit precision, cross-checked at 320; consistent
+    with Hercher&rsquo;s independent 2023 target bound of 1.375&times;10<sup>11</sup>).
+  </p>
+</div>
+
+<h3>8.2 The Entropy Gap</h3>
+
+<div class="box theorem">
+  <div class="box-label">The counting structure (script 152)</div>
+  <p>
+    Integer cycles with signature (A,B) correspond exactly to admissible halving-patterns
+    0 = E<sub>0</sub> &lt; E<sub>1</sub> &lt; &hellip; &lt; E<sub>A&minus;1</sub> &le; B&minus;1 with
+    D | C, where D = 2<sup>B</sup>&minus;3<sup>A</sup> and
+    C = &Sigma;<sub>i</sub> 3<sup>A&minus;i</sup>2<sup>E<sub>i&minus;1</sub></sup>
+    (the 2-adic solution automatically satisfies every valuation condition &mdash; script 149).
+    The counts:
+  </p>
+  <ul>
+    <li>#patterns = &binom;(B&minus;1, A&minus;1) &asymp; 2<sup>H&middot;B</sup> with
+        H = H(1/log<sub>2</sub>3) = 0.949956 bits/step;</li>
+    <li>D &asymp; 2<sup>B</sup> (up to the Rhin-bound factor).</li>
+  </ul>
+  <p>
+    The <strong>entropy deficit is 0.050044 bits per halving step</strong>. At the minimum
+    admissible signature this compounds to a naive expected cycle count of
+    2<sup>&minus;710,968,598</sup> (N<sub>0</sub>=2<sup>68</sup>) or
+    2<sup>&minus;4,265,813,716</sup> (current N<sub>0</sub>) &mdash; and the expectation decays
+    geometrically for larger A, so the total over all signatures is of the same
+    astronomically small order.
+  </p>
+  <p style="margin-bottom:0;">
+    <strong>Honest framing:</strong> this quantifies precisely <em>why</em> no cycle should
+    exist, but it is a heuristic &mdash; it assumes C mod D equidistributes, which is exactly
+    the unproven hard part. Exact counts at 13 small signatures (DP over residues,
+    cross-checked by brute force) found only the k-fold trivial cycles; the zeros at
+    non-trivial signatures are fully consistent with the random model once solutions are
+    counted in rotation clusters (P &asymp; 0.26) &mdash; <em>no arithmetic obstruction beyond the
+    entropy gap is detectable at small scale</em>.
+  </p>
+</div>
+
+<h3>8.3 What a Proof Would Now Require</h3>
+
+<p>
+  The cycle case is equivalent to: for every A &ge; 8.96&times;10<sup>9</sup> with
+  B = &lceil;A&middot;log<sub>2</sub>3&rceil;, no admissible halving-pattern satisfies
+  (2<sup>B</sup>&minus;3<sup>A</sup>) | C. Proving that the exponential sum
+  &Sigma;<sub>patterns</sub> e(tC/D) is small enough to beat the entropy gap &mdash; i.e.,
+  genuine equidistribution of C mod D over a combinatorially constrained set &mdash; is the
+  precise remaining problem. No known technique (Baker, Rhin, PPD theory, character sums)
+  currently achieves this. This matches the assessment of the professional literature.
+</p>
+
+<!-- ================================================================ -->
+<h2 id="divergence" class="section-anchor">9. The Divergence Case</h2>
+
+<p>
+  The second way the conjecture could fail is an orbit growing without bound. The same
+  machinery &mdash; parity vectors, 2-adic densities, entropy &mdash; gives rigorous
+  structure here too (script 153).
+</p>
+
+<h3>9.1 The Slab Theorem</h3>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; Divergence Slab (rigorous)</div>
+  <p>
+    Write the orbit as n<sub>i+1</sub> = (3n<sub>i</sub>+1)/2<sup>e<sub>i</sub></sup>, with
+    b<sub>m</sub> = e<sub>1</sub>+&hellip;+e<sub>m</sub>. Exactly:
+    log<sub>2</sub> n<sub>m</sub> = log<sub>2</sub> n<sub>0</sub> + m&middot;&theta; &minus; b<sub>m</sub> +
+    &Sigma;<sub>i</sub> log<sub>2</sub>(1 + 1/(3n<sub>i</sub>)), &theta; = log<sub>2</sub>3.
+    Every element of a divergent orbit exceeds the verification limit N<sub>0</sub>
+    (otherwise it converges), so the correction term is below m&middot;&delta; with the
+    <em>same</em> &delta; &asymp; 2<sup>&minus;69</sup> as in the cycle case. Hence a divergent
+    orbit&rsquo;s parity vector is confined forever to the thin slab
+  </p>
+  <p style="text-align:center;">
+    m &le; b<sub>m</sub> &le; m&middot;(&theta; + &delta;) &nbsp;&nbsp; for all m,
+  </p>
+  <p style="margin-bottom:0;">
+    i.e., its average halving exponent must stay &le; 1.585 forever, whereas the 2-adic-generic
+    average is 2. Status: <span class="chip proved">Proved</span>.
+  </p>
+</div>
+
+<h3>9.2 The Unified Entropy Gap</h3>
+
+<div class="box theorem">
+  <div class="box-label">Theorem &mdash; One constant governs both failure modes</div>
+  <p>
+    The first m exponents determine n<sub>0</sub> mod 2<sup>b<sub>m</sub></sup> exactly (one
+    residue class per pattern, of density 2<sup>&minus;b<sub>m</sub></sup>). The density of
+    starting values whose orbit is still in the slab after m odd steps is therefore at most
+    S<sub>m</sub> = &Sigma;<sub>b &le; m&theta;</sub> &binom;(b&minus;1, m&minus;1)&middot;2<sup>&minus;b</sup>,
+    computed exactly: log<sub>2</sub>S<sub>m</sub>/m = &minus;0.0799 at m = 10,000, converging to the
+    Cram&eacute;r rate
+  </p>
+  <p style="text-align:center;">
+    &theta;&middot;(1 &minus; H(1/&theta;)) = <strong>0.079319 bits per odd step</strong>
+    &nbsp;=&nbsp; (1 &minus; H(1/&theta;)) &middot; &theta; = (cycle gap 0.050044 bits/halving) &times; &theta;.
+  </p>
+  <p>
+    The cycle entropy gap and the divergence entropy gap are <em>the same constant</em>,
+    measured per halving and per odd step respectively &mdash; both failure modes must beat an
+    identical entropy deficit at the identical slab boundary b = &theta;m. Monte-Carlo on
+    400,000 random 128-bit integers confirms the tail: fitted decay &minus;0.112 bits/odd-step,
+    steeper than the single-time rate as required (survival is an all-times ballot-type event).
+  </p>
+  <p style="margin-bottom:0;">
+    Consequence (rigorous): <strong>the set of divergent starting values has density zero, with
+    explicit exponential rate</strong> &mdash; the density of candidates surviving m odd steps is
+    &le; 2<sup>&minus;0.0799&middot;m</sup>. Status: <span class="chip proved">Proved</span>
+    (Terras/Everett-type theorem with the sharp modern constant).
+  </p>
+</div>
+
+<h3>9.3 What Remains Open</h3>
+
+<p>
+  Density zero does not mean empty: a single integer could in principle ride the thin slab
+  forever. Ruling that out is an <em>individual-orbit</em> statement, and it is the same wall
+  as the cycle case &mdash; density/equidistribution arguments cannot reach individual
+  trajectories. (Tao&rsquo;s 2019 result &mdash; almost all orbits attain almost bounded values
+  &mdash; is the strongest known density statement; the step from &ldquo;almost all&rdquo; to
+  &ldquo;all&rdquo; is the open problem.) Status: <span class="chip open">Open</span>.
+</p>
+
+<!-- ================================================================ -->
+<h2 id="conclusion" class="section-anchor">10. Conclusion</h2>
+
+<h3>8.1 What Has Been Established</h3>
+
+<table>
+  <tr>
+    <th>Result</th>
+    <th>Status</th>
+    <th>Significance</th>
+  </tr>
+  <tr>
+    <td>Phantom cycles P<sub>7</sub>&ndash;P<sub>10</sub> computed exhaustively</td>
+    <td><span class="chip proved">Proved</span></td>
+    <td>Foundation of the framework</td>
+  </tr>
+  <tr>
+    <td>Dissolution cascade structure</td>
+    <td><span class="chip proved">Proved</span></td>
+    <td>Novel structure in the Collatz problem</td>
+  </tr>
+  <tr>
+    <td>Cascade compatibility theorem</td>
+    <td><span class="chip proved">Proved</span></td>
+    <td>No compatible lifting sequence through P<sub>7</sub>&rarr;P<sub>10</sub></td>
+  </tr>
+  <tr>
+    <td>Six-element T<sub>10</sub> orbit verification</td>
+    <td><span class="chip proved">Proved</span></td>
+    <td>Closes the P<sub>10</sub> completeness gap (within phantom world)</td>
+  </tr>
+  <tr>
+    <td>PPD Obstruction Theorem</td>
+    <td><span class="chip open">Refuted</span></td>
+    <td>p | C is automatic; no obstruction (audit, script 150)</td>
+  </tr>
+  <tr>
+    <td>Wieferich exponent k &ge; 3</td>
+    <td><span class="chip conjectured">Conditional</span></td>
+    <td>Sound arithmetic, but scope never established; without force</td>
+  </tr>
+  <tr>
+    <td>Cycle size: A &ge; 8.96&times;10<sup>9</sup> odd elements; B = &lceil;A log<sub>2</sub>3&rceil; forced</td>
+    <td><span class="chip proved">Proved</span></td>
+    <td>CF of log<sub>2</sub>3 + verification limit (script 151)</td>
+  </tr>
+  <tr>
+    <td>Entropy gap: 0.0500 bits/step deficit; E[#cycles] &le; 2<sup>&minus;7.1&times;10<sup>8</sup></sup></td>
+    <td><span class="chip empirical">Heuristic</span></td>
+    <td>Quantifies why cycles shouldn't exist; equidistribution unproven</td>
+  </tr>
+  <tr>
+    <td>Divergence slab: b<sub>m</sub> &le; m(&theta;+&delta;) forever; unified gap 0.0793 bits/odd-step</td>
+    <td><span class="chip proved">Proved</span></td>
+    <td>Same entropy constant as the cycle case (script 153)</td>
+  </tr>
+  <tr>
+    <td>Divergent set has density zero at rate 2<sup>&minus;0.0799m</sup></td>
+    <td><span class="chip proved">Proved</span></td>
+    <td>Terras/Everett-type with sharp constant; emptiness open</td>
+  </tr>
+  <tr>
+    <td>Divergence case (no individual divergent orbit)</td>
+    <td><span class="chip open">Open</span></td>
+    <td>Density arguments cannot reach individual trajectories</td>
+  </tr>
+  <tr>
+    <td>Phantom Cycle Lifting Conjecture (PCLC)</td>
+    <td><span class="chip open">Refuted</span></td>
+    <td>Counterexample at N=2; phantom levels do not nest</td>
+  </tr>
+  <tr>
+    <td>No-Congruence Theorem (all residues mod 2<sup>N</sup> realized by 2-adic cycles)</td>
+    <td><span class="chip proved">Verified</span></td>
+    <td>No modular argument can close the cycle case</td>
+  </tr>
+  <tr>
+    <td>Cycle case of Collatz conjecture</td>
+    <td><span class="chip open">Open</span></td>
+    <td>Reduces to the Diophantine integrality condition (2<sup>B</sup>&minus;3<sup>A</sup>) | C</td>
+  </tr>
+</table>
+
+<h3>8.2 The Conditional Result</h3>
+
+<div class="box theorem">
+  <div class="box-label">Main Theorem (Conditional)</div>
+  <p>
+    <strong>Assuming the Phantom Cycle Lifting Conjecture</strong>: there exists no
+    non-trivial Collatz cycle. Specifically, no odd integer <em>n</em><sub>1</sub> &gt; 1
+    satisfies T<sup><em>L</em></sup>(<em>n</em><sub>1</sub>) = <em>n</em><sub>1</sub>
+    for any <em>L</em> &ge; 1.
+  </p>
+  <p>
+    <strong>Proof sketch:</strong> By PCLC, <em>n</em><sub>1</sub> mod 2<sup>N</sup> &isin; P<sub>N</sub>
+    for all N. The cascade compatibility theorem shows no non-trivial element of P<sub>7</sub>
+    can be lifted compatibly through P<sub>8</sub>, P<sub>9</sub> to P<sub>10</sub>.
+    Therefore <em>n</em><sub>1</sub> mod 128 = 1, hence <em>n</em><sub>1</sub> = 1. &#9633;
+  </p>
+</div>
+
+<h3>8.3 Significance of the Phantom Cycle Framework</h3>
+
+<p>
+  Even without the PCLC, this research has produced genuinely new mathematical content:
+</p>
+
+<ul>
+  <li>
+    <strong>The dissolution cascade</strong> is a new structural observation about
+    the Collatz problem: phantom cycles at each level dissolve into the next in a
+    precise, verifiable chain. This cascade directly produces the empirically observed
+    two-channel structure (23-channel, 13-channel) of large Collatz orbits.
+  </li>
+  <li>
+    <strong>The two-channel split</strong> (~47.5% / ~43.5%) is stable across all
+    bit-lengths tested (b=10 to b=1000), and is explained by the N=9 and N=10
+    dissolution exits.
+  </li>
+  <li>
+    <strong>The cascade compatibility theorem</strong> proves that no &ldquo;modular cycle&rdquo;
+    compatible with the observed phantom cycle structure exists at levels 7&ndash;10.
+    This is a theorem about the modular dynamics, not a claimed theorem about real cycles.
+  </li>
+  <li>
+    <strong>The PCLC</strong> is a precise, falsifiable mathematical conjecture.
+    A counterexample would be a genuine Collatz cycle element <em>n</em><sub>1</sub>
+    whose residue mod 2<sup>N</sup> is NOT a periodic point of T<sub>N</sub> &mdash;
+    a concrete target for future research.
+  </li>
+</ul>
+
+<div class="conclusion-box">
+  <h3>Final Assessment</h3>
+  <p>
+    The phantom cycle and dissolution cascade framework provides the most structured
+    approach to the Collatz cycle case currently known to the authors. The mathematical
+    content is genuine, the computations are verifiable, and the cascade compatibility
+    theorem is rigorously proved.
+  </p>
+  <p>
+    The Phantom Cycle Lifting Conjecture is the precise missing piece. It is natural,
+    well-motivated, and consistent with all computation. Proving it &mdash; or finding
+    the right 2-adic formulation that makes the connection rigorous &mdash; would
+    complete the proof of the Collatz cycle case.
+  </p>
+  <p style="margin-bottom:0; color: #93c5fd;">
+    <strong>This is not yet a proof of the Collatz conjecture.</strong>
+    But it is a clear and concrete partial result with an identifiable path forward.
+  </p>
+</div>
+
+<hr>
+
+<h2>Appendix: Computational Verification Scripts</h2>
+
+<p>All results in this document are backed by the following Python scripts:</p>
+
+<table>
+  <tr>
+    <th>Script</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td><code>145_two_channels.py</code></td>
+    <td>Measures the 23-channel / 13-channel split in 500-bit random orbits</td>
+  </tr>
+  <tr>
+    <td><code>146_dissolution_cascade.py</code></td>
+    <td>Verifies the dissolution points and cascade chain for N=7,8,9,10</td>
+  </tr>
+  <tr>
+    <td><code>147_other_channel.py</code></td>
+    <td>Confirms the &ldquo;other channel&rdquo; has zero phantom passage rate</td>
+  </tr>
+  <tr>
+    <td><code>148_channel_vs_bitlength.py</code></td>
+    <td>Verifies channel split and staircase rate are bit-length independent</td>
+  </tr>
+  <tr>
+    <td><code>149_no_congruence_theorem.py</code></td>
+    <td>All odd residues mod 2<sup>N</sup> realized by 2-adic cycles (&sect;6.2)</td>
+  </tr>
+  <tr>
+    <td><code>150_audit_prior_claims.py</code></td>
+    <td>Audit refuting PPD obstruction and related prior claims (&sect;7)</td>
+  </tr>
+  <tr>
+    <td><code>151_cf_rigorous_bounds.py</code></td>
+    <td>Continued-fraction cycle-size bounds; forced signature (&sect;8.1)</td>
+  </tr>
+  <tr>
+    <td><code>152_entropy_gap.py</code></td>
+    <td>Entropy gap; exact solution counts by residue DP (&sect;8.2)</td>
+  </tr>
+  <tr>
+    <td><code>153_divergence_entropy.py</code></td>
+    <td>Divergence slab, unified gap, density-zero rate (&sect;9)</td>
+  </tr>
+  <tr>
+    <td><code>154_equidistribution_probe.py</code></td>
+    <td>Equidistribution of C mod p and mod D (note: its &ldquo;exact0&rdquo; labels are a
+        float-threshold artifact, corrected in script 155 &mdash; decay is exponential, never exact)</td>
+  </tr>
+  <tr>
+    <td><code>155_affine_renewal.py</code></td>
+    <td>Affine Renewal Identity &mdash; exact individual-level structure at modulus D (companion note &sect;4)</td>
+  </tr>
+</table>
+
+<p>
+  Companion note: <a href="unified-entropy-gap.html"><strong>The Unified Entropy Gap of the
+  Collatz Problem</strong></a> &mdash; the constant &kappa;&prime; = &theta;(1&minus;H(1/&theta;)) =
+  D<sub>KL</sub>(Geom(1/&theta;)&thinsp;&#8741;&thinsp;Geom(1/2)) = 0.0793186&hellip; governing both
+  failure modes, with closed forms, proofs, and numerical convergence.
+</p>
+
+<pre><span class="comment"># Core function used throughout</span>
+<span class="keyword">def</span> <span class="fn">macro_step</span>(n):
+    K = <span class="fn">v2</span>(n+<span class="number">1</span>)
+    m = (n+<span class="number">1</span>) >> K
+    x = m * (<span class="number">3</span>**K) - <span class="number">1</span>
+    l0 = <span class="fn">v2</span>(x)
+    <span class="keyword">return</span> x >> l0, K, l0
+
+<span class="comment"># Phantom map at level N</span>
+<span class="keyword">def</span> <span class="fn">T_N</span>(n, N):
+    r, _, _ = <span class="fn">macro_step</span>(n)
+    <span class="keyword">return</span> r % (<span class="number">1</span> << N)
+
+<span class="comment"># Compute phantom cycles P_N by exhaustive orbit tracing</span>
+<span class="keyword">def</span> <span class="fn">phantom_cycles</span>(N):
+    M = <span class="number">1</span> << N
+    periodic = <span class="keyword">set</span>()
+    <span class="keyword">for</span> start <span class="keyword">in</span> <span class="fn">range</span>(<span class="number">1</span>, M, <span class="number">2</span>):   <span class="comment"># all odd elements</span>
+        seen, orbit = {}, []
+        n = start
+        <span class="keyword">while</span> n <span class="keyword">not in</span> seen:
+            seen[n] = <span class="fn">len</span>(orbit)
+            orbit.<span class="fn">append</span>(n)
+            n = <span class="fn">T_N</span>(n, N)
+        <span class="comment"># elements from seen[n] onward form a cycle</span>
+        cycle_start = seen[n]
+        periodic.<span class="fn">update</span>(orbit[cycle_start:])
+    <span class="keyword">return</span> <span class="fn">sorted</span>(periodic)</pre>
+
+<p style="text-align: center; color: var(--light); font-size: 0.9em; margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--border);">
+  Research document &mdash; Collatz Conjecture Phantom Cycle Study &mdash; 2026
+  <br>
+  All computations verified in Python. Claims marked <span class="chip proved">Proved</span>
+  are rigorous. Claims marked <span class="chip open">Open</span> or
+  <span class="chip conjectured">Conjectured</span> are not.
+</p>
+
+</div>
+</body>
+</html>

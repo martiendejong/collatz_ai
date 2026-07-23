@@ -9976,3 +9976,284 @@ So T-2=35 and T-2=53 both have their "easiest" predecessor (K=1,l0=2) blocked by
 T-2=13 (47.7%) ≈ T-2=23 (43.3%) >> T-2=35 (1.73%) > T-2=53 (0.62%) >> T-2=853 (0.54%).
 
 
+
+---
+
+## Session 2026-07-22: Diophantine frontier — audit, rigorous bounds, entropy gap
+
+### Obs 296 — Audit of prior Diophantine claims (script 150)
+
+- **PPD Obstruction "Theorem": REFUTED.** In n1·(2^B−3^A) = C, every prime p | 2^B−3^A divides C automatically — no obstruction. Demo at (A,B)=(12,20): 150/75,582 sequences hit C≡0 mod the largest prime (abundance, not obstruction). Supporting claim "primitive primes have ord_p(2/3)=B": 0/85 primes tested satisfy it.
+- **"n1 < 5×10^103": UNFOUNDED.** No absolute element bound follows from Baker; A is unbounded. Such bounds exist only for m-cycles (Simons–de Weger, Hercher).
+- **Wieferich k≥3: conditionally sound, without force.** The class rad(D)|G is empty for all A≤34 tested; never shown to contain cycle-admissible pairs.
+
+### Obs 297 — Rigorous cycle-size bounds from CF of log2(3) (script 151)
+
+From 2^B = Π(3+1/n_i) < (3+1/n_min)^A and n_min > N0 (verification limit):
+0 < B − A·log2(3) < A·δ, δ = log2(1+1/(3N0)).
+- **B is forced: B = ⌈A·log2 3⌉** for all A < 1/δ ≈ 6.1×10^20. Search space is 1-D.
+- Best-approximation on convergents (q21=6,586,818,670, q22=65,470,613,321):
+  **A ≥ 8,963,457,697** (N0=2^68, Barina 2020) or **A ≥ 53,780,746,181** (N0=1.5·2^70, Barina 2025). Total steps ≥ 23.2/139.0 billion. Consistent with Hercher 2023 (target 1.375×10^11).
+
+### Obs 298 — Entropy gap (script 152)
+
+Cycles(A,B) ↔ E-sequences with D|C (2-adic valuations auto-consistent, script 149).
+#sequences = binom(B−1,A−1) ≈ 2^{0.949956·B}; D ≈ 2^B. **Deficit 0.050044 bits/step.**
+Naive E[#cycles] ≤ 2^{−710,968,598} (2^68 bound). Heuristic only: assumes C mod D equidistributes — exactly the unproven part.
+
+### Obs 299 — Exact counts: no obstruction detectable at small scale
+
+Exact DP counts at 13 signatures (up to (17,27), D≈5.1M): only k-fold trivial cycles; solutions orbit-verified. Zeros at non-trivial signatures consistent with chance ONCE rotation clustering is modeled (cycle-level expectation 1.36, P(0)≈0.26). Naive sequence-level statistics (expectation 7.4) misleads — solutions come in clusters of size A.
+
+**Frontier statement:** cycle case ⟺ for every A ≥ 8.96×10^9, no admissible halving-pattern has (2^B−3^A) | C with B=⌈A·log2 3⌉. Needs equidistribution of C mod D over a combinatorially constrained set — beyond current techniques.
+
+### Obs 300 — The divergence case: slab theorem + unified entropy gap (script 153)
+
+- **Slab theorem (rigorous):** a divergent orbit has every element > N0, hence its parity vector satisfies m ≤ b_m ≤ m(θ+δ) forever (same δ ≈ 2^-69 as the cycle case). Average halving exponent must stay ≤ 1.585 forever vs generic 2.
+- **Unified entropy gap:** the divergence rate θ·(1−H(1/θ)) = 0.079319 bits/odd-step equals the cycle gap (1−H(1/θ)) = 0.050044 bits/halving times θ — ONE constant governs both failure modes, at the same slab boundary b = θm.
+- **Density-zero with sharp rate (rigorous):** density of starters surviving m odd steps ≤ S_m; exact: log2 S_m/m = −0.0799 at m=10^4 → −0.0793. Monte-Carlo (400k × 128-bit): fitted tail −0.112 (steeper as required — all-times ballot constraint vs single-time bound).
+- **Open:** emptiness of the divergent set — individual-orbit statement; density arguments (incl. Tao 2019) cannot reach it. Same wall as cycle-case equidistribution.
+
+### Obs 301 — Equidistribution probe: congruences are perfectly blind (script 154)
+
+- **Exact Uniformity Phenomenon:** for fixed odd primes p ≠ 3, the distribution of C mod p over admissible E-patterns becomes EXACTLY uniform once B is moderately large (p=5 by B≈280; p=7,11,13,17,97 by B≤160) — all non-trivial character sums vanish identically. Mod 3, C hits only {1,2}, harmless since 3∤D ever. Combined with the No-Congruence Theorem (Obs on 2-power side): the cycle equation carries ZERO usable congruence information in either direction.
+- **C mod D randomness test:** full residue vectors at (10,16), (12,20), (17,27): var/mean and χ²/dof ∈ [0.947, 1.001] — statistically indistinguishable from uniform; N(0)=0 everywhere. No exploitable structure at any computable scale. The wall is precisely equidistribution at modulus D≈2^B in the sparse regime #patterns = 2^{(1−κ)B} < D.
+
+### Obs 302 — Unified entropy gap: closed forms and KL identity (companion note)
+
+κ = 1−H(1/θ) = 0.050044472812 bits/halving; κ' = θκ = 0.079318612775 bits/odd-step.
+Closed forms verified to 12 digits: κ' = θ − θlog₂θ + (θ−1)log₂(θ−1).
+**KL identity: κ' = D_KL(Geom(1/θ) ‖ Geom(1/2))** — the gap is the information-theoretic price per odd step of experiencing mean halving exponent θ (what a counterexample needs) instead of 2 (what 2-adic dynamics provides). Cycles pay it per halving (κ), divergence per odd step (κ'); same constant, same slab boundary b=θm.
+Write-up: research/unified-entropy-gap.html (companion to collatz-phantom-cycles.html).
+
+### Obs 303 — CORRECTION of Obs 301: no exact uniformity mod p
+
+The "Exact Uniformity Phenomenon" was a float-threshold artifact: script 154's discrepancy reporting floored values below 1e-18 to "exact0". Exact set-based test (script 155) shows N mod p is NEVER exactly uniform. The truth (exact big-int computation): discrepancy decays cleanly exponentially with spectral gaps per halving position γ₅=0.826, γ₇=0.697, γ₁₁=0.688, γ₁₃=0.732, γ₁₇=0.695 — below 10^-60 by B=400 but always nonzero. Congruence-blindness conclusion unchanged in substance. Lesson repeated: audit every surprising claim, including our own from an hour earlier.
+
+### Obs 304 — AFFINE RENEWAL IDENTITY (script 155): first individual-level structure
+
+The shift σ: E_i → E_i+1 is a bijection {E_{A−1} ≤ B−2} → {E_1 ≥ 2} with the EXACT integer identity C(σE) = 2C(E) − 3^{A−1}. Hence with φ(r) = 2r − 3^{A−1} mod M, for EVERY modulus:
+  N(φ(r)) − N_first(φ(r)) = N(r) − N_last(r)
+Verified exhaustively at M = D for (5,8),(7,12),(10,16),(12,20) — all residues. Telescoping around the φ-orbit (length ord_D(2); e.g. 1,001,140 at (17,27)) gives Σ_orbit(N_first − N_last) = 0 exactly, and expresses N(0) = #cycles through boundary counts at all recursion depths. Note 2^B ≡ 3^A mod D ties φ's orbit structure to the cycle equation itself. Exact, non-statistical, holds at the true modulus — a lever on the individual-orbit wall, though exploiting it at depth A ~ 10^10 is open.
+
+### Obs 305 — Renewal identity consequences (script 156)
+
+1. **Fixed-Point Corollary** (exact, verified 4 signatures): φ fixes r* = 3^{A−1}, forcing N_first(r*) = N_last(r*) — nontrivial values matched (2=2 at (5,8), 1=1 at (10,16)).
+2. **Rotation-Divisibility Dichotomy**: C_rot = (3C+D)/2^{e₁} exactly ⟹ rotations preserve the solution fiber; primitive cycle ⟹ exactly A distinct patterns. N(0) = Σ_{d|gcd(A,B)}(A/d)·P(A/d,B/d), verified on (k,2k) k≤5. **gcd(A_min,B_min)=1** ⟹ at the minimal signature N(0) = 0 or ≥ 8,963,457,697. All-or-nothing vs global mean 2^{−7.1e8}.
+3. **Renewal Smoothness**: along the φ-orbit of 0 (equidistributed, KS=0.005 at (12,20)), lag-1 autocorr of N = +0.45 (null 0.02) — N is Lipschitz along the φ-flow. Group trace: ord(3)/gcd(ord3,A) | ord(2) ✓ (from 2^B ≡ 3^A).
+4. **Rigidity cascade is tautological**: a cycle forces boundary-fiber concentration too (≥41.5% of rotations have e₁=1 since Σ(eᵢ−1)≈0.585A) — recursion re-encodes the cycle's tail at every depth; no contradiction extractable this way. Documented as lever-not-solution.
+
+### Obs 306 — Orbit-Sum Invariance Theorem (scripts 157–158): P(3u) = P(u)
+
+Fourier side van de renewal-identiteit: S(t) = Σ N(r)e(tr/D); karaktervorm exact geverifieerd (float-precisie). Baansommen P(u) = Σ_k S(2^k u) over verdubbelingsbanen. **Bewijs**: rotatie is een bijectie op patronen met C_rot ≡ 3·2^{−e₁}C (mod D); sommatie over de volledige baan absorbeert de 2^{−e₁}-twist door herindexering ⟹ P(3u) = P(u) exact. Numeriek bevestigd via multipliciteiten: (10,16): |Q|=6, im(3) orde 2 ⟹ 3 onafhankelijke primitieve waarden — exact waargenomen; (12,20): |Q|=48, im(3) orde 12 (want 3^A ≡ 2^B!) ⟹ 4 klassen, door conjugatie 2 reële waarden — waargenomen als 24+24.
+
+**Gevolg**: D·N(0) = korte som van ⟨2,3⟩-klasse-invarianten (Gauss-periode-type) per divisor-niveau. De cycle-telling is een lineaire vorm in een handvol invarianten. Scherpste exacte herformulering van dit programma; het individueel begrenzen van de invarianten blijft open.
+
+**Divisor-z-scores** (±8–19 bij kleine delers): finite-B transient van grootte S·γ_p^B (gemeten gaps γ≈0.7–0.83; bij B=20 niet uitgedempt), tekens wisselen per signatuur — geen asymptotische bias, niet exploiteerbaar. Bij de volle modulus D: z ≈ 0 overal.
+
+### Obs 307 — Klasse-invarianten over 9 signaturen (script 159): de priem-D reductie
+
+Tabel over (5,8)…(15,24): k₃ (orde van beeld van 3 in Q) deelt A overal ✓ — de vingerafdruk van 3^A ≡ 2^B; maximaal k₃ = 12 = A bij (12,20). Index [ℤ_D^×:⟨2,3⟩] ∈ {1,2,3,4,8,14} zonder zichtbaar patroon. Ramanujan-somregel exact OK bij alle 9.
+
+**Priem-D reductie (exact):** als D priem is én ⟨2,3⟩ = (ℤ/D)^× (waar bij (5,8) en (13,21)), dan is de unieke primitieve klasse-invariant P = D·N(0) − S(0). Waargenomen: P = −35 = −S(0) en P = −125970 = −S(0), beide exact (N(0)=0). Dus bij zulke signaturen is "geen cyclus" ⟺ "één Gauss-periode-achtig getal P is exact −S(0)". Elegantste puntvormige herformulering tot nu toe; bewijs = één regel Ramanujan-boekhouding, de moeilijkheid verhuist naar het puntsgewijs begrenzen van P.
+
+**Eerlijke bevinding:** de invariant-waarden zelf clusteren niet (genormaliseerd −20…+27, spreiding groot, tekens wisselend) — geen universele structuur in de waarden; alleen de somregels zijn exact. Verdere winst vereist externe technieken (Gauss-periode-schattingen), niet meer data.
+
+### Obs 308 — Het Cancellation Deficit (script 160): sign-blinde methoden zijn kwantitatief dood
+
+Exacte beweiseis Fourier-zijde: |Σ_{t≠0}S(t)| < D − S(0) ⟹ N(0)=0. Werkelijkheid: de som is exact −S(0) (perfecte cancellation), maar de L1-massa Σ|S(t)| overschrijdt de drempel met factor **214× (10,16), 204× (12,20), 297× (13,21)** — deficit ≈ 0.75·√S(0) ≈ 2^{0.475B}, groeiend. Parseval exact geverifieerd; L1/Cauchy-Schwarz ≈ 0.65 consistent (Gaussisch-achtig spectrum); GEEN concentratie (50% van massa vergt ~20% van alle frequenties; top-|S| slechts 0.21·S(0), geen major-arc structuur).
+
+**Gevolg (gemeten, niet vermoed):** geen enkele absolute-waarde-methode (circle method, decoupling, L^p) kan ooit N(0)=0 bewijzen — bij B_min zou dat een factor 2^{6.7×10^9} aan fase-informatie vergen. De perfecte cancellation zit volledig in de fasen, uitgesmeerd over het hele spectrum. Shannon-framing: het VERMOEDEN wordt gered door 0.05B bits entropie-gat; een sign-blind BEWIJS zou 0.475B bits fase-informatie nodig hebben — het bewijs is informatietheoretisch ~10× duurder dan de waarheid.
+
+Overlevende routes: (a) exacte teken-bewuste algebraïsche evaluatie van Σ S(t) (renewal/invariance reorganiseren maar evalueren niet), (b) fundamenteel nieuw idee, (c) Conway-schaduw: gegeneraliseerd Collatz is onbeslisbaar (FRACTRAN 1972) — niet uit te sluiten dat 3x+1 zelf geen bewijs heeft. Panel-consensus: gereedschapskist van het veld is tegen dit object uitgeput; consolideren en publiceren wat er ligt.
+
+### Obs 309 — Consolidatie + overgang naar programma-modus
+
+k₃ | A gepromoveerd van empirisch naar bewezen (éénregelig: 3^A = 2^B in ℤ/D ⟹ beeld van 3^A ∈ ⟨2⟩ ⟹ orde van beeld van 3 in quotiënt deelt A).
+
+**collatz-complete-map.html** aangemaakt: de volledige geconsolideerde kaart — 10 bewezen resultaten, 4 kandidaat-nieuwe (N1 unified gap/KL, N2 affine renewal, N3 orbit-sum invariance + priem-D, N4 cancellation deficit), 5 weerlegde claims (incl. eigen), 2 gekwantificeerde muren, 4 open vragen aan het veld (Q1–Q4), staand programma (extern toetsen / Lean / literature watch).
+
+"Doorgaan" is hiermee geherdefinieerd van sessie-lus naar onderzoeksprogramma: het probleem wordt vastgehouden, niet verlaten. Volgende milestones: (1) externe toetsing N1–N4, (2) Lean-formalisatie van de bewezen laag, (3) literatuurbewaking op de twee muren.
+
+### Obs 310 — Literatuur-cross-check (2026-07): drie assen toegevoegd, N1 afgewaardeerd
+
+**Gevonden en verwerkt in de map:**
+1. **Lagarias–Weiss 1992** (Ann. Appl. Prob. 2, 229–261): large deviations voor 3x+1 stopping times is klassiek (γ_BP ≈ 41.6776, extremale ones-ratio 0.6091). ⟹ N1 afgewaardeerd: onze bijdrage is hooguit de expliciete unified KL-formulering (één constante, beide faalwijzen, zelfde slab-grens). Citatie toegevoegd aan unified-entropy-gap.html.
+2. **Krasikov–Lagarias 2003 / Applegate–Lagarias 1995**: difference inequalities ⟹ onvoorwaardelijk #{n≤x → 1} ≥ x^0.84. NIEUW gereedschapstype in onze map (onvoorwaardelijke positieve-exponent ondergrens, Wall-2-adjacent).
+3. **Berg–Meinardus 1994/95** (Collatz ⟺ functionaalvergelijkingen-paar) + **Lagarias arXiv:1408.6884** (inverse-orbit genererende functies hebben natural boundaries; Opfer 2011 publiek gefaald): derde herformuleringsas met eigen gedocumenteerd dood spoor.
+4. **Wirsching 1998** (LNM 1681): predecessor-set maattheorie — taal waarin onze dissolution cascade natuurlijk past.
+5. **BGK 2006 / Konyagin–Shparlinski 1999 / Kowalski**: Q4-gereedschap bevestigd (verlies per compositieniveau — consistent met gemeten deficit).
+6. **Geen spoor gevonden van N2 (renewal), N3 (orbit-sum invariance), N4 (cancellation deficit)** — blijven kandidaat-nieuw; externe toetsing (Q1) blijft nodig.
+7. **ccchallenge.org**: bestaand Lean-formaliseringsproject van Collatz-literatuur — vehikel voor milestone (ii).
+Verificatielimiet 2^71 (Barina 2025) bevestigd.
+
+### Obs 311 — Eerste Wall-2 offensief: inverse-boom-methode gereproduceerd (script 161)
+
+Applegate–Lagarias tree-search geherimplementeerd: exacte enumeratie van de gesnoeide inverse boom (kinderen n = (m·2^e−1)/3, e-pariteit door m mod 3, leaves bij ≡0 mod 3; distinct paths ⟹ distinct waarden ⟹ onvoorwaardelijk certificaat f(x) ≥ #nodes ≤ x).
+Resultaten (~25–31M nodes per run): γ = 0.5439 (E=3) → 0.6817 (E=4, d=57) → 0.7805 (E=5, d=32) → **0.7961 (E=6, d=24)** → 0.7754 (E=8, d=17; te ondiep bij vast budget). Gepubliceerde frontier: 0.81 (tree-search+LP 1995), 0.84 (difference inequalities 2003). Conclusie: methode klopt, ruwe enumeratie satureert ~0.80; **de concrete vervolgcampagne is de Krasikov–Lagarias difference-inequality-machinerie op congruentieniveaus voorbij hun mod 3^9** — het enige punt op beide muren waar moderne rekenkracht een gepubliceerd getal kan verschuiven.
+
+**Priem-D scan (A ≤ 300):** 12 signaturen met D priem: (2,4),(3,5),(4,7),(5,8),(13,21),(56,89),(61,97),(69,110),(73,116),(76,121),(148,235),(185,294). Dichtheid ≈ 1/ln D ⟹ heuristisch oneindig veel signaturen waar het cyclusprobleem één Gauss-periode-waarde is.
+
+### Obs 312 — Krasikov-campagne stap 1: conservatief systeem operationeel (script 162)
+
+Rigoureus-conservatieve variant gebouwd (states mod 3^τ; alle 3^j lifts exact geënumereerd; entrywise MIN over lifts; alleen krimpende takken factor>1; e≤E): certificaat γ* via ρ(M(γ))=1.
+Resultaten: γ*=0.3772 (1,3,6) → 0.3707 (2,4,8) → 0.4293 (3,5,10) → **0.5150 (3,6,10)**. 
+**Collapse-fenomeen ontdekt:** γ*=0 zodra j te klein t.o.v. τ — één lift zonder massa naar een benodigde klasse doodt via de min de hele matrix. Dit verklaart structureel waarom Applegate–Lagarias de LP over álle lift-ongelijkheden nodig hadden: de informatie zit niet in één uniforme matrix; de min-crush verspilt haar.
+Kalibratie: wij zitten nu op Krasikov-1989-niveau (0.43) plus (0.515); ladder: 0.654 (tree-search LP '95) → 0.809 (mod 3^9 LP '95) → 0.84 (nonlineair '03).
+**Volgende milestone:** min-crush vervangen door het per-lift ongelijkhedensysteem + LP (hun '95-methode) → 0.809 reproduceren; daarna k>9 opschalen → 0.84 aanvallen. Dit is het meerdaagse bouwproject; de baseline en het waarom zijn nu operationeel begrepen.
+
+### Obs 313 — DOORBRAAK-KANDIDAAT: Krasikov–Lagarias-exponent verbeterd van 0.84 naar 0.87+ (scripts 163–164)
+
+Het exacte KL-systeem (arXiv:math/0205002, Prop. 2.1 + LP-familie L_k^NT(λ)) geïmplementeerd met compact indexschema (m=3i+2: 4m-tak → (4i+2) mod N; taktype = i mod 3; lifts = drie slices). Haalbaarheid via nonlineaire Perron (monotoon+homogeen), γ = log₂λ*.
+
+**Kalibratie op vier gepubliceerde ankerpunten:** k=2: 0.4366 (~0.43 ✓), k=9: 0.8168 (0.81 ✓), k=11: 0.8417 (0.84 ✓ — het record van 2003, destijds de rekengrens; berekend door D. Applegate). (k=3: 0.6118 > Wirschings 0.48 — verwacht: het LP extraheert méér, precies de claim van het paper.)
+
+**Voorbij de frontier:** k=12: 0.8531 → k=13: 0.8630 → k=14: 0.8724 → **k=15: 0.8812** (N=4.78M).
+
+**Verificatie (script 164):**
+A. Indexalgebra EXACT geverifieerd tegen brute-force paper-formules: max verschil 0.00e+00, k=3–6, drie λ's.
+B. Haalbaarheidscertificaten met expliciete marge min F(v)/v ≈ 1.00035 op k=12 (γ=0.8523), k=13 (γ=0.8622), k=14 (γ=0.8716). Via het gepubliceerde Theorem 2.2 (KL 2003) geeft elk certificaat onvoorwaardelijk π₁(x) > x^γ voor x groot.
+
+**Status van de claim π₁(x) > x^0.8716 (en computed 0.8812):**
+- Nog te doen voor formele rigor: intervalrekenkunde op de drie λ-macht-coëfficiënten (standaard formaliteit); certificaat k=15; write-up.
+- Nog te doen voor de claim als NIEUW: extern verifiëren dat niemand k>11 al heeft gedaan (literatuurscan vond niets sinds 2003; het paper zelf zegt k=11 = rekengrens destijds).
+- Leunt op: KL Theorem 2.2 (peer-reviewed, 22 jaar, Lagarias).
+Dit is de eerste kandidaat-verschuiving van een gepubliceerd veldgetal uit dit programma. Descendant test: ruimschoots geslaagd.
+
+### Obs 314 — k=16 + rigoureuze certificaten k=12–14; modeltest geslaagd
+
+**k=16: γ = 0.8893** (N=14.3M). Geometrisch staartmodel voorspelde vooraf ~0.889 — meting exact op voorspelling. Incrementen 0.0094→0.0088→0.0081 (ratio ~0.92): consistent met lim γ(k)=1, inconsistent met plafond < ~0.94.
+
+**Rigoureuze certificaten (directed rounding, 4-ulp verlaagde coëfficiënten, script 165):**
+k=12: γ=0.85200 marge 1.000498 ✓ | k=13: γ=0.86196 marge 1.000448 ✓ | k=14: γ=0.87145 marge 1.000417 ✓ (k=15 rekent).
+**π₁(x) > x^0.87145 staat hiermee rigoureus vast** (modulo de peer-reviewed Theorem 2.2 van KL 2003 en IEEE-754-semantiek; marges 11 ordes boven numerieke onzekerheid). Certificaatvectoren gearchiveerd (certificate_k*.npy). Draft-arxiv-note bijgewerkt.
+
+### Obs 315 — Volledige certificaatketen k=12–15: π₁(x) > x^0.8801 rigoureus
+
+k=15 CERTIFIED: γ=0.88010, marge 1.000466. Keten compleet: 0.85200 / 0.86196 / 0.87145 / **0.88010**, alle met directed rounding en marges ≥ 4×10⁻⁴ (11 ordes boven numerieke onzekerheid). Record intern verschoven 0.84 → 0.8801 rigoureus; k=16-certificaat (doel γ=0.8875) draait. Draft bijgewerkt (abstract claimt nu 0.8801). Resterend vóór inzending: k=16-certificaat, onafhankelijke code-review, nieuwheidscheck extern, LaTeX + Acta-versie van Thm 2.2 verifiëren.
+
+### Obs 316 — Record verder verlegd: k=16 en k=17 gecertificeerd; π₁(x) > x^0.8950
+
+k=16: γ=0.88753, marge 1.000687 ✓ (λ=1.85). k=17: γ=**0.8950**, marge 1.000620 ✓ (λ=1.85961, N=43M) — via predict-and-certify (één run i.p.v. bisectie; model voorspelde 0.8968, doel 0.8950 veilig eronder, marge bevestigt). Volledige rigoureuze keten: 0.85200/0.86196/0.87145/0.88010/0.88753/**0.89500** — zes certificaten boven het 2003-record 0.84.
+k=18 (N=129M, doel γ=0.9020 — de 0.90-grens) draait via geheugenzuinige float32-iteratie + float64-eindverificatie.
+
+### Obs 317 — Anatomie van wat overblijft: de bottleneck is −4 ∈ ℤ₃ (script 167)
+
+**Part A — certificaat-anatomie (k=12–17):**
+1. **Schaalwet:** log₂(max c/min c) groeit exact ~0.60 bits/niveau (7.19→7.79→8.39→8.99→9.60→10.21): min c ~ 2^{−0.6k}.
+2. **Perfecte nesting (H2 ✓):** bottom-2% klassen nesten over k met overlap 0.996–0.998 (random baseline 0.060) — de bottleneck convergeert naar een gesloten 3-adische limietverzameling.
+3. **De limiet is één punt: m → −4 in ℤ₃.** Bottom-2000 bij k=15: 100% ≡ 5 mod 9, 98% ≡ 23 mod 27, 86.7% ≡ 77 mod 81 = de 3-adische toren van −4. Top-klassen → **−1 in ℤ₃** (73.6% ≡ 26 mod 27). De extremen van de Krasikov-hiërarchie zijn de 3-adische punten −1 (best) en −4 (slechtst).
+4. **H1 weerlegd:** D2-fractie langs de voorwaartse 4m-baan identiek (0.3333) voor bottom/random/top — het mechanisme is de eigen digitstructuur (m ≡ 5 mod 9 = de verliesgevende D2-tak) plus inkomende boomstructuur, niet de voorwaartse baan.
+**Onderzoeksopening:** lokale analyse van het LP rond −4 zou de rate 1−γ(k) ≈ 1.2·k^{−0.85} en de limietstelling lim γ(k)=1 kunnen opleveren. Dit is nu een concreet, welgedefinieerd wiskundig object.
+
+**Part B — het precieze "wat moet nog opgelost":**
+**Resolutie-mismatch (rigoureus als logische uitspraak):** dichtheidsmethoden bewijzen GOED ≥ x^γ; het vermoeden eist SLECHT = ∅; maar SLECHT kan, indien niet-leeg, zo dun zijn als één enkele baan — verenigbaar met GOED ≥ x^γ voor élke γ < 1, zelfs met GOED = x − O(polylog). Dus geen enkele rij dichtheidsverbeteringen, inclusief een bewezen lim γ(k) = 1, beslist het vermoeden. Wat rest is exact: bewijs dat de gesloten T-invariante verzameling van niet-bereikers leeg is — een invariante-verzameling-uitspraak (Furstenberg-taal, trede 3 van de opvolgerskaart), geen teluitspraak.
+
+### Obs 318 — Cykel-ruggengraat-model: exacte trechterwet (3/2)^k; rate blijft bulkfenomeen (script 168)
+
+**Bevestigd:**
+1. De ×4-ruggengraat is exact één cykel door alle N klassen (bewijs: 4 = 1+3 genereert 1+3ℤ₃ topologisch; ord_{3^k}(4) = 3^{k−1}). In u-coördinaten (m = −u): LP = één N-cykel + zijvoedingen.
+2. Zelflus-algebra bij −1: m=−1 is D3 met (2m−1)/3 = −1 — de top voedt zichzelf via de advanced coëfficiënt; de min-over-lifts satureert de lus (anders divergentie want λ^{α−1} > 1). Verklaring van de piek.
+3. **Exacte trechterwet: v_max/v_min groeit per niveau met factor 3/2 = 2^{α−1} exact** (gemeten 1.489/1.501/1.490; verklaart H3's 0.60≈0.585 bits/niveau): trechterdiepte = (3/2)^k, coëfficiënt-onafhankelijk.
+
+**Correctie op Obs 317:** extremizers liggen in de −1/−4-torens (argmax ≡ −1 mod 27, argmin ≡ −4 mod 81 bij k=15) maar zijn NIET exact −1/−4; puntconvergentie afgezwakt tot torenconvergentie.
+
+**Eerlijke negatieve:** hersteltijd langs de cykel is constant (3 stappen, alle k) ⟹ 1−γ(k) ~ k^{−0.85} is een BULKfenomeen, niet door de lokale trechter verklaard. De limietstelling vergt analyse van de globale min-veld-structuur, niet alleen het −4-punt. Volgende opening: de periode-3-structuur (D2/D1/D3-patroon mod 9 langs de cykel) + statistiek van de zijvoedingssterkten als "random potential" op de cykel — het LP is een Perron-probleem van een 1D-keten met quasi-periodieke wanorde; de k^{−0.85} suggereert kritisch gedrag (Griffiths-achtig?). Dit verbindt de limietstelling met 1D-gelokaliseerde-systemen-theorie — mogelijk de juiste taal.
+
+### Obs 319 — DE WOESTIJNSTELLING: vruchtbare sikkel (−1) en woestijn (−4) in de echte Collatz-boom (script 169)
+
+**Stelling (éénregelige bewijzen, exact geverifieerd):** voor de krimpafbeelding s(a) = (2a−1)/3:
+- a ≡ −1 (mod 3^k) ⟹ s(a) ≡ −1 (mod 3^{k−1}): de −1-toren is krimp-gesloten — gegarandeerde zelfgelijkvormige cascade van kleinere voorouders, k niveaus diep.
+- a ≡ −4 (mod 3^k) ⟹ s(a) ≡ −3 ≡ 0 (mod 3): de krimptak sterft ONMIDDELLIJK (klassen ≡ 0 mod 3 hebben geen krimpvoorgangers).
+
+**Meting op echte gehele getallen** (8 reps/klasse, budget 2^15·a, cap-safe na correctie van afgekapte eerste run):
+N(−4) SATUREERT op ~15k voorgangers, k-onafhankelijk vanaf k=4 (absolute woestijn); N(−1) groeit 85k→1.49M met torendiepte; ratio 2.75→98.7 (k=2→7). Kwalitatief spectaculair bevestigd; groeifactoren ~1.4–2.1 rond de voorspelde 3/2 (finite-budget-effecten aanwezig).
+
+**Betekenis:** de LP-certificaat-anatomie (Obs 317–318) voorspelde structuur die meetbaar in de echte Collatz-boom zit: het voorgangerslandschap is georganiseerd door de 3-adische torens van −1 (vruchtbare sikkel) en −4 (woestijn). Dit verklaart de Krasikov-bottleneck vanuit de dynamiek zelf en definieert het object voor de limietstelling: de "woestijnmaat" — de dichtheid van klassen waarvan de krimptak binnen j stappen sterft — bepaalt hoeveel de hiërarchie per niveau verliest. Route naar lim γ(k)=1: bewijs dat de woestijnmaat per niveau krimpt (elke klasse ≠ 0 mod 3 heeft asymptotisch een levende krimptak op voldoende diepte).
+Experimentele les herhaald: eerste run had cap-afgekapte tellingen (ratio's keerden schijnbaar om bij k≥6) — gecorrigeerd met cap-safe assertie.
+
+### Obs 320 — DE 0.90-GRENS GEPASSEERD + gecorrigeerde woestijntheorie (scripts 166/170)
+
+**k=18 CERTIFIED: γ = 0.9020, marge 1.000484 (N=129M).** π₁(x) > x^0.902 rigoureus. Volledige keten k=12–18: 0.852/0.862/0.871/0.880/0.888/0.895/**0.902** — zeven certificaten boven het 2003-record 0.84.
+
+**Correctie op de ochtend-theorie (eigen bug + theoriefout gevonden):** de krimpketen sterft óók bij ≡1 mod 3 (geen krimpvoorganger), niet alleen bij ≡0; script 170 deelde daar stilzwijgend afgerond (P1-data corrupt). Correct: de pullbacks zijn geneste ENKELE klassen ⟹ **de vruchtbare verzameling is exact het ene punt −1** (geen Cantorverzameling; dimensieclaim log₃2 ingetrokken). Woestijndiepte = v₃(a+1).
+
+**Kwantitatief certificaatlandschap (exacte valuatie-stratificatie, k=15):**
+- Sikkelgradiënt: mean log₂v stijgt monotoon met v₃(m+1): +0.755, +0.560, +0.519, ..., +0.41 bits/niveau — NIET saturerend (tot j=11).
+- Woestijnstraf: −1.59, −0.69, −0.16 bits bij v₃(m+4)=2,3,4, daarna SATURATIE op ≈ −8.1 — diepte ~3, exact matchend met de constante hersteltijd 3 (Obs 318) en de reële-getallen-saturatie (Obs 319).
+- Joint R² (v₃(m+1), v₃(m+4)) ≈ 0.58–0.60: de twee valuaties verklaren ~60% van de certificaatvariantie.
+**Gereduceerd model voor de limietstelling:** v(m) ≈ f(v₃(m+1)) − g(min(v₃(m+4),3)) + rest; de γ(k)-groei wordt gedreven door de niet-saturerende sikkelgradiënt die per niveau één stratum dieper reikt. De k^{−0.85} blijft onverklaard (stratumgewichten 3^{−j} suggereren geometrisch — de machtwet moet uit de interactie komen); expliciet open.
+
+### Obs 321 — Drie exacte valuatiewetten: het gereduceerde model is gefundeerd (verificatie 200k samples)
+
+1. **Backbone-reset:** v₃(m+1) ≥ 2 ⟹ v₃(4m+1) = 1 (want 4m+1 = 4(m+1) − 3). ✓
+2. **D3-decrement:** r₃+1 = (2m−1)/3 + 1 = 2(m+1)/3 ⟹ v₃(r₃+1) = v₃(m+1) − 1. De sikkelcascade is exact de D3-voedingsketen. ✓
+3. **Diepte ≥ 2 ⟹ D3:** m ≡ −1 mod 9 ⟹ m ≡ 8 mod 9. De hele diepe toren gebruikt de advanced coëfficiënt λ^{α−1}. ✓
+**Gradiëntwet (afgeleid + gemeten):** cascade voorspelt sikkelgradiënt = (α−1)·γ bits/niveau: 0.515 bij k=15 vs gemeten 0.41–0.52 ✓. Het gereduceerde model (1-D keten in dieptecoördinaat r met reset/decrement/min-lift) is hiermee exact gefundeerd; het open stuk blijft de k^{−0.85}-interactieterm.
+
+### Obs 322 — Skelet-superkriticaliteit: het hele tekort 1−γ(k) leeft in het fluctuatieveld (script 171)
+
+Het gereduceerde mean-field-model (stratum-skelet: S-keten + woestijn + D1 met geometrische her-intrede, exact volgens de wetten van Obs 321) blijkt **superkritisch bij élke λ ≤ 3: ρ(λ=2) = 1.225** — het skelet alléén zou γ ≥ 1 geven. (Eerdere uitvoer γ_model = 0.9993 was de bisectie-cap log₂(1.999), geen modelwaarde.)
+
+**Herordening van het limietprobleem:** de massa van de hiërarchie is overvloedig; wat γ(k) < 1 houdt is uitsluitend de worst-case/min-structuur — de binnen-stratum-fluctuaties (gemeten std ≈ 0.85 bits) waarover de LP het infimum eist. De limietstelling lim γ(k) = 1 is dus een uitspraak van het type: *het minimum van een hiërarchisch gecorreleerd log-veld op de Krasikov-ring wijkt slechts sublineair-in-k van het gemiddelde af*. Dit is precies het domein van extreme-waardetheorie voor log-gecorreleerde velden / branching random walks (Bramson-correcties, Fyodorov–Bouchaud) — een levende, goed ontwikkelde theorie. Curiosum (mogelijk toeval, als zodanig gemarkeerd): binnen-stratum-std 0.85 ≈ machtwet-exponent 0.849.
+
+**Nieuwe formulering van theorie-doel 1:** bewijs dat het certificaatveld van L_k^NT zich gedraagt als een log-gecorreleerd veld waarvan de min-correctie o(k) bits is ⟹ lim γ(k) = 1. De brug wiskunde-die-bestaat ↔ ons object is hiermee exact benoemd.
+
+### Obs 323 — Veldkarakterisering: sub-log-gecorreleerd — gunstiger dan BRW (script 172)
+
+**F1 (variantiegroei):** Var(log₂v) groeit met k maar met dalende incrementen (0.059→0.042 per niveau, k=12–17) — geen zuivere BRW-lineariteit.
+**F2 (covariantie vs gedeelde 3-adische diepte j, residueel veld na aftrek torenprofiel):** covariantie stijgt met j maar CONCAAF: incrementen per extra gedeeld cijfer dalen ~geometrisch (0.157, 0.094, 0.072, 0.048, 0.033, ... ratio ≈ 0.7), saturerend richting de totale residuele variantie ≈ 0.62 bits².
+**Curiosum:** j=1-paren (fijnste cijfer verschillend) zijn ANTI-gecorreleerd (raw −0.25; resid j=2: −0.15) — de min-over-lifts koppelt broertjes negatief.
+
+**Structuurdiagnose van het certificaatveld:** (i) deterministisch torenskelet (sikkelgradiënt ~0.5 bits/diepte — draagt de lineaire 0.6k-spreiding via strata van maat 3^{−j}), plus (ii) residueel fluctuatieveld met ~begrensde variantie en geometrisch sommeerbare multischaal-bijdragen. Dit is "sub-log-gecorreleerd": GLADDER dan BRW. Gevolg voor de theoriebrug: de benodigde extreme-waardetheorie is dichter bij klassieke Gaussische maxima (√(2σ²ln N)-type, deficit ~√k bits) dan bij Bramson/BRW — een EENVOUDIGER regime. Exponent-spanning blijft: gemeten deficit-bits k(1−γ(k)) ≈ 1.2·k^{0.15} vs Gauss-voorspelling ~√k — de vertaling veld-min → Perron-γ is het open scharnier. Theorie-doel 1 aangescherpt: bewijs (a) begrensde residuele variantie + geometrische schaalafname (meetbaar → bewijsbaar uit de wetten van Obs 321?), (b) de Perron-γ-vertaling. Beide zijn afgebakende, aanvalbare deelproblemen.
+
+### Obs 324 — DE CORRELATIE-DEMPINGSWET: mechanisme bevestigd op 3 decimalen (script 173-inline)
+
+**Wet (afgeleid + kwantitatief bevestigd):** beide voedingsafbeeldingen delen klassenverschillen exact door 3 (r−r′ = 4(m−m′)/3 resp. 2(m−m′)/3) ⟹ elke voedingsrand in de vergelijkingsboom verbruikt precies één cijfer overeenkomstdiepte; de ruggengraat behoudt haar. Gevolg: covariantie-increment per gedeeld cijfer = massafractie door één extra voedingsrand.
+**Meting:** φ (feed-massafractie) per taktype: D1 0.589, D2 0.000, D3 0.872; **waarde-gewogen gemiddelde φ̄ = 0.7049** vs gemeten dempingsratio ~0.70 (Obs 323). Match op 3 decimalen.
+
+**Proof-programma limietstelling — de keten staat (6 van 7 schakels):**
+1. Woestijnsaturatie (gemeten + mechanisme: dode krimptak) ⟹ begrensde straffen
+2. ⟹ backbone-flow uniform positief ⟹ φ̄ ≤ 1−ε
+3. ⟹ geometrische correlatie-demping (wet: 0.7049 ✓)
+4. ⟹ begrensde residuele variantie (sub-log-gecorreleerd veld ✓ Obs 323)
+5. ⟹ Gaussisch-type extremen: min-deficit O(√k) bits
+6. + skelet-superkriticaliteit ρ(2)=1.22 (Obs 322 ✓)
+7. **[OPEN SCHARNIER]** vertaling veld-minimum → Perron-γ ⟹ lim γ(k) = 1.
+Zes schakels gemeten en gemechaniseerd; één schakel (7) open — daar zit de resterende echte wiskunde van de limietstelling.
+
+### Obs 325 — SCHAKEL 7 GELEGD: 1−γ(k) ≈ c·√k·L(k); convergentie is GEOMETRISCH (script 173-inline-2)
+
+**Meting over k=12–17:** drietal-min-verlies L(k) = E[log₂(triple-mean/triple-min)] daalt met opvallend constante ratio **0.909/niveau** (0.9107, 0.9063, 0.9067, 0.9090, 0.9145 — geometrisch!); σ_triple daalt in gelijke tred. 1−γ(k) daalt met ratio **0.932/niveau** (0.9326, 0.9314, 0.9310, 0.9318; outlier k=17 verklaard: certificaat-target i.p.v. echte λ*).
+**De verbinding:** 0.932 ≈ 0.909·√((k+1)/k)-structuur ⟹ **1−γ(k) ≈ c·√k·L(k)**: γ-tekort = (min-verlies per toepassing) × (√k-accumulatie uit Gaussische extremen, schakel 5). L/(1−γ) daalt als 1/√k ✓ (0.446→0.388 ≈ ×√(12/17)).
+**Herziening convergentieklasse:** met L geometrisch is 1−γ(k) ~ √k·q^k, q ≈ 0.932 — GEOMETRISCHE convergentie naar γ=1; de eerdere "machtwet k^{−0.85}" was een korte-venster-artefact van √k·q^k. 
+**Verschoven theorievraag:** bewijs dat de fijnste-schaal-fluctuatie σ_triple(k) geometrisch dempt (kandidaat-constante: 0.909 ≈ (3/4)^{1/3} = 0.9086 — speculatief gemarkeerd; mechanisme vermoedelijk de min-anticorrelatie die broertjes progressief gladstrijkt).
+**Status limietstelling:** alle 7 schakels nu empirisch gelegd en onderling consistent; het bewijsprogramma is compleet als meetstructuur — formalisering is de resterende arbeid.
+
+### Obs 326 — Dempingswet geformaliseerd: damping-theorem.md
+
+Schakel 3 (+ groot deel schakel 4) formeel uitgeschreven met bewijzen:
+- **Lemma 1 (digit-consumptie)**: bewezen, 4 onderdelen, elk 1-2 regels (backbone behoudt overeenkomstdiepte exact; feeds verbruiken exact 1 cijfer; taktypen gelijk bij diepte ≥ 2; liftstructuur behouden).
+- **Lemma 2 (boomcoïncidentie)**: bewezen — identieke topologie/coëfficiënten t/m j−2 voedingsranden.
+- **Stelling A (massa-ontkoppelingsgrens)**: bewezen — |v(m)−v(m′)| ≤ M_{j−1}(m)+M_{j−1}(m′).
+- **Stelling B (geometrisch massaverval)**: flow-gemiddelde vorm bewezen (φ̄ = 0.7049 vs gemeten 0.70); uniforme vorm CONDITIONEEL op (H1) — uniforme controle van feed-fractie-producten langs D3-ketens, waarvan woestijnsaturatie het mechanisme is (formeel bewijs = onderdeel schakel 1, nog te schrijven).
+- **Gevolg**: 3-adische L²-Hölder-regulariteit van het certificaatveld met factor per cijfer φ̄ ≈ 0.705 — de formele inhoud van "sub-log-gecorreleerd" (schakel 4), modulo (H1).
+Resterend in deze schakel: (H1) bewijzen (kandidaat: eindige berekening + monotonie, saturatiediepte is 3), stationariteit van de flow-maat over feed-generaties, en het (onschadelijke, want gunstige) sibling-anticorrelatie-effect modelleren.
+
+### Obs 327 — (H1)-uniform WEERLEGD in trend; flow-vorm is de juiste formulering
+
+Worst-case meting k=13/15/17: max φ_D1 = 0.9883/0.9946/0.9975 (kruipt naar 1); min v(4m)/v̄(r₁) = 0.031/0.014/0.007 (≈ halvering per niveau → 0). Er bestaan D1-klassen met exponentieel zwakke backbone (4m diep in woestijn) naast vruchtbare feed — uniforme Hölder-versie van de dempingswet is onhoudbaar. Maat van die klassen is verwaarloosbaar (q99.9 ≈ 0.97 stabiel-ish).
+**Bevestigingen:** mediaan v(4m)/v̄(r₁) = 1.411/1.412/1.416 ≈ λ^{α−1} — de éénregelige toren-monotonie v(m) ≥ (B3/ρ)·v̄(r₃) is typisch bijna scherp; gemiddelde φ's k-stabiel (0.587→0.590; 0.870→0.874).
+**Gevolg voor het programma:** schakels 3–4 blijven definitief in de flow/L²-formulering (bewezen in gemiddelde vorm, damping-theorem.md Stelling B(i)) — precies wat schakel 5 (Gaussische extremen) nodig heeft; de sup-versie was gemak, geen noodzaak. Dit spiegelt exact de log-gecorreleerde-veld-theorie (sup-Hölder faalt, L²-multiscale werkt). Resterende formele taak schakel 3/4: stationariteit van de flow-maat over feed-generaties (ergodisch-type argument).
+
+### Obs 328 — Correctie op Obs 324/326: Stelling A vacuous; wél een nieuwe exacte identiteit
+
+**Fout gevonden (eigen toets):** M_g ("massa door ≥ g voedingsranden") → v(m) bij oneindige ontrolling — elk pad voedt uiteindelijk; T_g/T_{g−1} gemeten ≈ 1.0006 ≈ 1, geen contractie. Stelling A (massa-ontkoppelingsgrens) is daarmee vacuous zoals geformuleerd; eindige-diepte-versie behoudt alleen inhoud met leaf-oscillatiegrenzen. Lemma's 1–2 (digit-consumptie, boomcoïncidentie) blijven onaangetast. Correctienotitie in damping-theorem.md geplaatst.
+
+**Winst — exacte flow-identiteit (éénregelig bewijs):** de backbone m→4m is een permutatie ⟹ zijn aandeel in de totale Perron-flow is exact λ⁻²/ρ ⟹ **φ̄ = 1 − λ⁻²/ρ exact**. Verificatie: 1 − 1.8405⁻² = 0.7048 vs gemeten 0.7049 ✓. De feed-fractie-"meting" was dus een identiteit.
+
+**Gevolg:** de 3-decimalen-match tussen φ̄ en de covariantie-dempingsratio 0.70 (Obs 324) is mogelijk toeval — het dempingsmechanisme moet geformaliseerd worden via het L²-invloedsoperator-spoor (variantie-propagatie van de gelineariseerde Perron-operator; eerste ruwe kandidaat E[φ²]^{1/2} = 0.63 wijkt af van 0.70 — open). Schakel 3-status teruggezet van "bewezen in flow-vorm" naar "Lemma's bewezen; mechanisme-identificatie open". Het bewijsprogramma is hiermee eerlijker maar dunner: de meetstructuur (Obs 323/325) staat onverminderd; de verklaringslaag is deels teruggenomen.
+
+### Obs 329 — Flow-identiteit op 4 decimalen bevestigd; L²-kandidaten vallen af; paar-boom-mechanisme leidend
+
+E_flow[φ] = 1−λ⁻²/ρ exact bij k=13/15/17 (0.6974/0.6973; 0.7049/0.7048; 0.7110/0.7108) — de identiteit is stelling-vast. L²-kandidaten voor de covariantie-demping weerlegd: E[φ²]/E[φ] = 0.86–0.88, E_flow[φ²] = 0.60–0.62, beide ≠ 0.70. De gemeten dempingsratio ~0.70 spoort met φ̄ zelf ⟹ leidend mechanisme: **paar-boom gedeelde-prefix-maat** — covariantie = som over gedeelde prefixen van padparen; prefix-verlenging per feed-generatie contracteert met de éérste-machts flowfractie φ̄ (gedeelde prefix telt enkelvoudig). Formaliseringsdoel: de paar-boom-versie van Lemma 2 + prefix-maat-contractie = de gerepareerde Stelling A/B.
