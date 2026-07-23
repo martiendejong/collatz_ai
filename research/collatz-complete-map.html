@@ -287,10 +287,81 @@ corrections and additions.</p>
   (prime-D reduction, &sect;2).
 </p>
 
+<h2>9. The mechanics layer (Obs 334&ndash;345, scripts 174&ndash;181): every climb decoded</h2>
+<p>
+  The rigidity-bridge program (rungs t1&ndash;t13) closed the <em>mechanical</em> understanding
+  of Collatz: every observable feature of orbits is now derived, and the residual open core is
+  isolated with precision. Proved and machine-verified results:
+</p>
+<table>
+  <tr><th>Result</th><th>Content</th></tr>
+  <tr><td><strong>Livšic obstruction</strong></td>
+      <td>No H&ouml;lder-continuous 2-adic Lyapunov function exists (every 2-adic periodic
+      orbit has sum B&minus;A&middot;log&#8322;3 &ne; 0). Any monotone functional must be
+      2-adically discontinuous, like log&#8322;n itself.</td></tr>
+  <tr><td><strong>Atom lemma</strong></td>
+      <td>Any T-invariant measure charging &#8484;&#8314; has an atom on a finite orbit &mdash;
+      an integer cycle. The measure formulation splits exactly into Wall 1 (atoms = cycles)
+      and Wall 2 (empirical measures of divergent orbits escaping to &#8484;&#8322;&#8726;&#8484;&#8314;).</td></tr>
+  <tr><td><strong>Divergence fractal D</strong></td>
+      <td>dim<sub>H</sub>(D) &le; H<sub>b</sub>(1/log&#8322;3) = 0.9507; the deficit 0.049
+      &asymp; &kappa; &asymp; the large-deviation rate: one constant, three Legendre-dual
+      windows. <em>D is inhabited</em>: the negative integers (cycles &minus;1, &minus;5,
+      &minus;17 with mean e = 1, 1.5, 1.571 &lt; log&#8322;3) live in it &mdash; so pure
+      statistics can never finish the problem; every proof must use the tail sign
+      (positives = zero-tails, negatives = ones-tails; sign(n) = sign(2<sup>B</sup>&minus;3<sup>A</sup>)).</td></tr>
+  <tr><td><strong>Binomial normal form</strong> (the climb engine)</td>
+      <td>T(u&middot;2<sup>s</sup>&minus;v) = 3u&middot;2<sup>s&minus;e</sup>&minus;v&prime;
+      with v&prime; = (3v&minus;1)/2<sup>e</sup>: the subtrahend follows the 3x&minus;1 map
+      &mdash; climbs are exact algebra, shadowing negative orbits. Mersenne climbs = fixed
+      point v=1. The famous orbit of 27 fully decoded (three mod-8 selection-rule hits,
+      then predicted rule failure); LTE exit laws; Mersenne dead-stop theorem
+      (a=1, K odd &rArr; next run K&prime;=1).</td></tr>
+  <tr><td><strong>Shadow decomposition</strong></td>
+      <td>Record orbits track the negative cycles <em>in cycle order</em> (depth loss exactly
+      e per step, |T&prime;|&#8322; = 2<sup>e</sup>); shadow depth &ge; 7 flips local 3-step
+      growth from &minus;2.1 to +0.3 bits. Per-episode deficit is universal:
+      entry depth d yields &le; 0.585d bits of climb &mdash; deficit &ge; 0.415d always.</td></tr>
+  <tr><td><strong>Statistical camouflage</strong></td>
+      <td>The macro symbol pair (l, K&prime;) is <em>exactly</em> i.i.d.
+      Geom(1/2)&sup2; under Haar (one-line proof + 500k-sample check); re-entry depth is
+      <em>exactly</em> geometric (9 octaves, &le;3.4% deviation). All arithmetic lives in the
+      hidden residue thread; no symbol-level or entry-statistics argument can beat &kappa;.</td></tr>
+  <tr><td><strong>The n&sup2; record law, derived</strong></td>
+      <td>Exact identity I(4/3) = log&#8322;3 &minus; 4/3 with I&prime;(m) =
+      log&#8322;(2(m&minus;1)/m): cheapest climb has mean e = 4/3, cost exactly 1 bit per
+      climbed bit &rArr; P(excursion &ge; E) &asymp; 2<sup>&minus;E</sup> &rArr; path-record
+      peaks ~ n&sup2; (the decades-old empirical law, now first-principles) and P(e=1) = 3/4
+      in long climbs (measured 0.714/0.725 in the two longest record climbs).</td></tr>
+  <tr><td><strong>Aperiodicity dichotomy</strong></td>
+      <td>Eventually-periodic itinerary &rArr; the orbit lands exactly on an integer cycle
+      (coding injectivity + 2-adic repulsion of all cycles). Divergence requires an aperiodic
+      itinerary; the countable periodic backbone of D contains no integers.</td></tr>
+  <tr><td><strong>3-adic history coding</strong></td>
+      <td>n<sub>m</sub> &equiv; 2<sup>&minus;s<sub>m</sub></sup>c<sub>m</sub> (mod 3<sup>m</sup>):
+      the 3-adic residue of the m-th iterate is a function of the halving history alone.
+      Divergence &hArr; the mod-3<sup>m</sup> representative stays exponentially small for all
+      m &mdash; the bridge to effective transcendence (Baker/S-unit territory).</td></tr>
+</table>
+<p>
+  <strong>Wall 2, final form.</strong> &#8484;&#8314; is the +1-odometer orbit of 0 (zero
+  entropy); D is T-invariant with positive entropy. The conjecture&rsquo;s divergence half is
+  the Furstenberg-disjointness-shaped statement <em>&ldquo;the odometer orbit avoids D&rdquo;</em>.
+  Ergodic tools give candidate counts ~N<sup>0.95</sup> per scale &mdash; polynomially many,
+  never zero; emptiness needs a cross-scale bootstrap no ergodic theorem provides.
+  <strong>The forward program is the complexity ladder</strong>: kill divergence itineraries
+  class by definable class &mdash; periodic (proved), automatic (target: Mahler&rsquo;s method /
+  Adamczewski&ndash;Bugeaud p-adic transcendence applied to the thin series
+  n&#8320; = &minus;&Sigma; 2<sup>s&#7522;</sup>/3<sup>i+1</sup>), then morphic, linear-recurrent, &hellip;
+  &mdash; the first axis along which unconditional per-orbit exclusions beyond the periodic
+  case look reachable.
+</p>
+
 <footer>
-  Consolidated 2026-07 &mdash; companion documents: collatz-phantom-cycles.html,
-  unified-entropy-gap.html &mdash; research log: NOTE.md Obs 289&ndash;308 &mdash;
-  scripts/145&ndash;160 (all results reproducible).
+  Consolidated 2026-07, extended 2026-07-24 &mdash; companion documents:
+  collatz-phantom-cycles.html, unified-entropy-gap.html, damping-theorem.md,
+  draft-arxiv-note.md &mdash; research log: NOTE.md Obs 289&ndash;345 &mdash;
+  scripts/145&ndash;181 (all results reproducible).
 </footer>
 
 </div>
