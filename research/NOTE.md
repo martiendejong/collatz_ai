@@ -10257,3 +10257,15 @@ Worst-case meting k=13/15/17: max φ_D1 = 0.9883/0.9946/0.9975 (kruipt naar 1); 
 ### Obs 329 — Flow-identiteit op 4 decimalen bevestigd; L²-kandidaten vallen af; paar-boom-mechanisme leidend
 
 E_flow[φ] = 1−λ⁻²/ρ exact bij k=13/15/17 (0.6974/0.6973; 0.7049/0.7048; 0.7110/0.7108) — de identiteit is stelling-vast. L²-kandidaten voor de covariantie-demping weerlegd: E[φ²]/E[φ] = 0.86–0.88, E_flow[φ²] = 0.60–0.62, beide ≠ 0.70. De gemeten dempingsratio ~0.70 spoort met φ̄ zelf ⟹ leidend mechanisme: **paar-boom gedeelde-prefix-maat** — covariantie = som over gedeelde prefixen van padparen; prefix-verlenging per feed-generatie contracteert met de éérste-machts flowfractie φ̄ (gedeelde prefix telt enkelvoudig). Formaliseringsdoel: de paar-boom-versie van Lemma 2 + prefix-maat-contractie = de gerepareerde Stelling A/B.
+
+### Obs 330 — MECHANISME HERSTELD: dempingsconstante = 1−λ⁻² via elasticiteits-collisie (PR-experiment)
+
+Participatie-ratio van de elasticiteits-flow per feed-generatie (k=11, 40 wortels, exacte propagatie): ratio's 0.691/0.701/0.707/0.708/0.688/0.735 — gemiddeld ≈ 0.70 = gemeten covariantie-demping = 1−λ⁻² (0.689 bij k=11). 
+**Gerepareerde mechanismeketen:** (1) invloeden op log v propageren met eerste-machts flow-aandelen (elasticiteit = flow-share, exact); (2) digit-g-variantie ∝ participatie-ratio van de generatie-g-flow (onafhankelijkheidsbenadering); (3) PR vervalt per generatie met φ̄ (gemeten ✓); (4) φ̄ = 1−λ⁻²/ρ (permutatie-identiteit, exact). ⟹ **covariantie-demping per 3-adisch cijfer = 1−λ*⁻², gesloten formule.** Obs 328's "mogelijk toeval" ongedaan; formaliseringsdoel nu scherp: stap (2) rigoureus maken (paar-boom prefix-maat). Boog compleet: geclaimd (324) → betwijfeld (328) → hersteld met juist functionaal (330).
+
+### Obs 331 — Schaalprofiel bevestigt mechanisme: bulk-amplitudedemping = √φ̄ (2 k's, juiste λ-afhankelijkheid)
+
+σ_j (fluctuatie-amplitude per 3-adische cijferschaal j) toont een bulk-plateau:
+k=15: ratio's j=4–9 gemiddeld 0.834 vs √φ̄ = √(1−λ⁻²) = 0.8395; k=17: 0.848 vs 0.8431. Match < 1%, en de λ-afhankelijkheid beweegt de juiste kant op (grotere λ ⟹ groter plateau: 0.834→0.848 gemeten, 0.8395→0.8431 voorspeld). **Variantie per schaal dempt geometrisch met exact φ̄ = 1−λ⁻²/ρ** — de dempingswet is nu in het schaaldomein bevestigd; mechanismeketen (Obs 330) rond.
+Bonus-identificatie: top-schaal-σ daalt per k met (0.0519/0.0630)^{1/2} = 0.9077 ≈ de L(k)-ratio 0.909 — het drietal-verlies ís de top-schaal-fluctuatie; zijn geometrische daling volgt uit het profiel + randeffect. Randafwijkingen (j≤3 torens; j≥k−4 truncatie) verklaard en gemarkeerd.
+**Status dempingsprogramma: alle constanten geïdentificeerd** — demping/cijfer φ̄ (exact), amplitude/schaal √φ̄ (gemeten 2×), deficit 1−γ ≈ c·√k·L(k) met L = top-schaalverlies. Resterende formalisering: de onafhankelijkheidsstap (variantie ∝ PR) rigoureus.
