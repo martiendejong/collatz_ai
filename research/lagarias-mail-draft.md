@@ -36,31 +36,21 @@ implementations were calibrated against the published values at
 k = 2, 9, 11, and the index algebra verified against Proposition 2.1
 directly.
 
-Two questions, if I may:
+One question only: are you aware of any computation of this family beyond
+k = 11 in the intervening years? I have found none in the literature
+(a December 2025 preprint, arXiv:2512.13760, still cites x^0.84 as the
+record), but you would know best.
 
-1. Are you aware of any computation of this family beyond k = 11 in the
-   intervening years? I have found none in the literature, but you would
-   know best.
+Everything needed to check the claim without trusting me is public at
+https://github.com/martiendejong/collatz_ai : the deposited certificate
+vectors, a standalone numpy-only exact-integer verifier
+(research/certificates/verify_certificates.py), the Lean 4 project
+(research/lean/CollatzCert), and a three-page write-up
+(research/NOTE_DENSITY.tex).
 
-2. The sequence gamma(k) fits 1 - gamma(k) ~ C q^k with q about 0.93,
-   consistent with gamma(k) -> 1 (the hope stated at the end of your
-   paper). In the course of this work I also found what appears to be
-   exact structure in the certificate vectors: the backbone m -> 4m is a
-   single N-cycle, the feed maps contract 3-adic agreement by exactly one
-   digit, and the total feed share of the Perron flow equals 1 - lambda^-2
-   identically (the backbone being a permutation). Might this be of
-   interest, or is it known?
-
-All code, certificate vectors, and a full research log are public at:
-https://github.com/martiendejong/collatz_ai
-(directory research/, scripts 163-166; certificates as .npy files;
-draft write-up in research/draft-arxiv-note.md).
-
-I am an independent researcher (no institutional affiliation); the
-computations were carried out with AI assistance and every step is
-reproducible from the repository. If the result is new, I would be
-grateful for your advice on an appropriate venue — and, should you be
-willing, an arXiv endorsement for math.NT.
+I am an independent researcher; the computations were carried out with AI
+assistance and every step is reproducible from the repository. Should you
+be willing, I would be grateful for an arXiv endorsement for math.NT.
 
 With admiration for your work on this problem,
 

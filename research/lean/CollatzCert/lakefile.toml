@@ -3,3 +3,6 @@ defaultTargets = ["CollatzCert"]
 
 [[lean_lib]]
 name = "CollatzCert"
+
+[[lean_lib]]
+name = "CollatzCert13"
