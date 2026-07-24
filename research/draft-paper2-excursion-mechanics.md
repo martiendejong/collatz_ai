@@ -48,21 +48,33 @@ en klim-"geluk" heeft geen statistische structuur.
 9. **Outlook** — complexiteitsladder (automatisch/Mahler als volgende trap),
    3-adische geschiedeniscodering, relatie tot Tao 2019 (aggregaat vs per-baan).
 
-## Novelty-check TODO (vóór indiening)
-- [ ] Renewal-wet u·2^s − v: de v=1-vorm (2^k a −1 → 3^k a −1) is folklore;
-      is de algemene vorm mét 3x−1-subtrahend-interpretatie ergens gepubliceerd?
-      (zoek: "Collatz" + "3x−1 dual", Böhm–Sontacchi-parametrisaties)
-- [ ] Mod-8-selectieregels / LTE-dood-stop: zoek in Wirsching, Lagarias-
-      annotated-bibliography (2 delen), Applegate–Lagarias inverse tree.
-- [ ] n²-recordwet-afleiding: Kontorovich–Lagarias (2009) "stochastic models"
-      geven Brownian/LD-heuristieken voor stopping times — hebben zij de
-      excursie-exponent c=1 / m*=4/3 expliciet? (vermoedelijk κ-niveau wel,
-      de exacte identiteit + compositiewet vermoedelijk niet)
-- [ ] Schaduw-decompositie langs negatieve cycli: geen referentie bekend;
-      meest waarschijnlijk-nieuwe onderdeel samen met de camouflage-stelling.
-- [ ] Aperiodiciteits-dichotomie: p-adische repulsie is klassiek; is deze
-      toepassing (eventueel-periodieke itinerary ⟹ integer-cyclus) al ergens
-      genoteerd? (zoek: Bernstein–Lagarias 2-adische conjugatie)
+## Novelty-check — UITGEVOERD 2026-07-24 (Obs 347)
+- [x] **n²-recordwet: GEDEGRADEERD.** Lagarias–Weiss 1992 (Ann. Appl. Prob. 2,
+      229–261) voorspelden lim log t(n)/log n = 2 al via RRW-model + large
+      deviations. §7 hergeformuleerd: "herafleiding binnen het episode-
+      raamwerk"; ónze bijdragen: de gesloten identiteit I(4/3) = log₂3 − 4/3
+      met I′(m) = log₂(2(m−1)/m), de compositiewet Geom(3/4), en de eerste
+      empirische compositieverificatie op records (0.7775/0.1854).
+      RESTCHECK: L–W integraal lezen — staat de 4/3-tilt er expliciet in?
+- [x] **Aperiodiciteits-dichotomie: BEKEND** (Terras/Everett-codering;
+      Bernstein–Lagarias 1996, Canad. J. Math. 48, 1154–1169). §8 wordt
+      expositie mét attributie; ons 2-adische-repulsie-bewijs als alternatief
+      bewijs presenteren, niet als nieuwe stelling.
+- [x] **Normaalvorm/schaduw/selectieregels/camouflage: GEEN treffers** —
+      dit is de kandidaat-nieuwe kern. v=1-klim (2^k−1 → 3^k−1) is folklore:
+      als zodanig attribueren. Te citeren ankers: Kontorovich–Sinai 2003
+      (2-adische equidistributie, bij §6), Kontorovich–Lagarias
+      arXiv:0910.1944, 3x+d-cyclusliteratuur (Cox arXiv:2101.04067,
+      arXiv:2101.08060) bij de negatieve-cyclusfamilie.
+- [ ] RESTCHECK vóór indiening: Wirsching (LNM 1681) + Lagarias' annotated
+      bibliography (2 delen) scannen op (u,s,v)-vorm en selectieregels;
+      Lagarias–Weiss 1992 integraal.
+
+## Bonus voor Paper 1 (uit dezelfde check)
+Chunlei Liu, "Counting the Collatz numbers" (arXiv:2512.13760, dec 2025)
+bewijst x^0.3227 en noemt expliciet "The historical record is 0.84" —
+onafhankelijke bevestiging (dec 2025!) dat ons x^0.902 een record is.
+Citeren in draft-arxiv-note.md.
 
 ## Positionering
 - Paper 1 (dichtheidsrecord x^0.902, draft-arxiv-note.md) = het harde

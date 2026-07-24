@@ -6,7 +6,7 @@
 
 We extend the difference-inequality method of Krasikov and Lagarias (Acta Arith. 109
 (2003), 237–258) to congruence levels beyond their computational frontier. Solving the
-linear program family L_k^NT(λ) of loc. cit. for 12 ≤ k ≤ 16 — their record was k = 11,
+linear program family L_k^NT(λ) of loc. cit. for 12 ≤ k ≤ 18 — their record was k = 11,
 yielding π₁(x) > x^0.84 — we exhibit explicit feasible solutions establishing
 
 **π₁(x) > x^0.902 for all sufficiently large x**
@@ -16,10 +16,12 @@ k = 12..18), where π₁(x) counts integers below x whose 3x+1 orbit reaches 1. 
 correctness reduces to the published Theorem 2.2 of Krasikov–Lagarias; our contribution
 is computational: a compact exact indexing of their system, calibration against all four
 published anchor values, and rigorous directed-rounding feasibility certificates. We
-further present the first empirical analysis of the hierarchy's limit: the eleven-point
-sequence γ(k) fits 1 − γ(k) ≈ 1.20·k^−0.85 (residual 6×10⁻⁴), consistent with
-lim γ(k) = 1 — supporting the conjecture of Krasikov–Lagarias that their hierarchy
-proves π₁(x) > x^(1−ε) for every ε > 0.
+further present the first empirical analysis of the hierarchy's limit: the sequence
+γ(k) is consistent with geometric convergence 1 − γ(k) ≈ c·√k·q^k, q ≈ 0.932,
+supporting lim γ(k) = 1 — the hope expressed by Krasikov–Lagarias that their hierarchy
+proves π₁(x) > x^(1−ε) for every ε > 0. (The exponent x^0.84 remains the published
+record as of December 2025: the recent arXiv:2512.13760 proves x^0.3227 by an
+independent method and cites 0.84 as the standing record.)
 
 ## 1. The method (summary of Krasikov–Lagarias)
 
