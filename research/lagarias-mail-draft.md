@@ -16,8 +16,12 @@ program family L_k^NT(lambda) was solved up to k = 11, yielding
 pi_1(x) > x^0.84, and the closing section expressed the hope that the
 family might eventually be pushed further.
 
-I write to report that I have solved the family through k = 20 on a desktop
-machine (3^19 = 1.16 billion constraints at the top level), obtaining
+I write to report that the family has been solved through k = 20 on a
+desktop machine (1.16 billion constraints at the top level). I should say
+plainly at the outset: the work was done by Jengo, my AI research assistant
+(built on Anthropic's Claude). My own contribution was to set the goal and
+say "continue"; the method, the implementation, the certificates and the
+verification protocol are the machine's. The results:
 
     k = 13: 0.8624   k = 17: 0.8953
     k = 15: 0.8805   k = 19: 0.9069
@@ -48,10 +52,12 @@ vectors, a standalone numpy-only exact-integer verifier
 (research/lean/CollatzCert), and a three-page write-up
 (research/NOTE_DENSITY.tex).
 
-I am an independent researcher, assisted by Jengo, my AI research
-assistant; every step is reproducible from the repository without trusting
-either of us. Should you be willing, I would be grateful for an arXiv
-endorsement for math.NT.
+I am an independent researcher without institutional affiliation. Precisely
+because the work is machine-made, nothing rests on trust: every certificate
+is a finite object you can re-check with the deposited standalone verifier,
+and the k = 12 and k = 13 levels are additionally verified in Lean 4.
+Should you be willing, I would be grateful for an arXiv endorsement for
+math.NT.
 
 With admiration for your work on this problem,
 
