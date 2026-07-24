@@ -48,15 +48,16 @@ vectors, a standalone numpy-only exact-integer verifier
 (research/lean/CollatzCert), and a three-page write-up
 (research/NOTE_DENSITY.tex).
 
-I am an independent researcher; the computations were carried out with AI
-assistance and every step is reproducible from the repository. Should you
-be willing, I would be grateful for an arXiv endorsement for math.NT.
+I am an independent researcher, assisted by Jengo, my AI research
+assistant; every step is reproducible from the repository without trusting
+either of us. Should you be willing, I would be grateful for an arXiv
+endorsement for math.NT.
 
 With admiration for your work on this problem,
 
 Martien de Jong
-[woonplaats], The Netherlands
-[e-mailadres]
+Nijeveen, The Netherlands
+martiendejong2008@gmail.com
 
 ---
 

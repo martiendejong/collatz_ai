@@ -6,6 +6,12 @@ family/pair framework of Martien de Jong, executed by Jengo (Claude).
 ## Headline results
 
 - **Density record:** π₁(x) ≥ x^0.9146 via the Krasikov–Lagarias inequalities at
+  depths 3^13–3^20 (1.16 billion constraints at k=20, exact-integer verified; all
+  certificates re-verified 2026-07-24; k=12 and k=13 additionally **machine-verified
+  in Lean 4** — the first formally verified improvement of the 2003 record x^0.84).
+  Papers: `research/NOTE_DENSITY.tex` (record), `research/papers/excursion_mechanics.tex`
+  (climb mechanics: binomial normal form, orbit-27 decoded, Geom(3/4) composition law).
+  k=21 computation in progress (γ ≈ 0.918 predicted, pre-registered).
   depths 3^13–3^20 (1.16 billion constraints at k=20, exact-integer verified), with exact-integer verified certificates (previous published
   record: 0.84, since 2003). Paper draft: `research/NOTE_DENSITY.tex`.
 - **16 theorems** on the family/pair structure: Rewriting Theorem (binary
