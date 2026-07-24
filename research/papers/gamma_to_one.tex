@@ -661,15 +661,62 @@ could in principle vanish faster than measured without contradicting any proved
 statement. Closing Creep~C is exactly the content of proving the bookkeeping
 alongside the Open Lemma.
 
+\paragraph{The ceiling identified, and a fourth test.}
+It is worth asking what value $\gam_\infty$ would take \emph{if} some creep
+scenario occurred: a failed program should fail \emph{somewhere specific}. The
+operator structure singles out one non-trivial candidate. Unrolling the
+min-recursion along $3$-adic directions, the LP value is a min-type (quenched)
+polymer functional on the $3$-adic tree; if the intra-triple disorder survived
+renormalization, the value would lock onto the \emph{worst local direction},
+whose exponent is the multifractal minimum
+\[
+\gam_{\mathrm{ceil}} \;=\; H\!\left(1/\log_2 3\right)\;=\;0.95067\ldots,
+\]
+the binary entropy of the halving-frequency at the drift threshold ---
+precisely the Hausdorff dimension of the divergence-capable subset of
+$\Z_2$. The candidate ceiling is thus the shadow of the thin backward
+directions. Whether it binds is then a concrete question: \emph{does the
+minimum couple to a positive-flow set of directions with persistent spread, or
+does the spread flee to directions of vanishing flow?}
+
+This yields a fourth falsification test, independent of Creeps A--C, measured
+at the feasibility edge for $k = 10..15$ (script 187 of \cite{NOTE}): the
+min-loss $(1-q_k)$ decays geometrically at ratio $0.912$--$0.920$ per level
+($0.0628 \to 0.0407$); the flow-weighted triple loss decays at ratio
+$\approx 0.915$; the \emph{flow mass} carried by triples with loss $> 0.2$
+collapses from $0.056$ to $0.009$ (a factor $6.4$ over five levels); and the
+loss--desert correlation ($\mathrm{corr}$ of triple loss with the $3$-adic
+desert depth $v_3(m+1)$) is positive and declining ($+0.14 \to +0.10$): the
+surviving spread concentrates on desert classes whose flow weight itself
+vanishes. A binding ceiling requires a stabilizing positive-flow spread
+fraction; every measured fraction decays. The min couples to typical
+directions, and the thin directions --- which do exist, and do have exponent
+$0.9507$ --- carry no flow.
+
+\begin{remark}[No marginal point on the approach]
+The contraction constant available to the damping mechanism is explicit: the
+feed share of the Perron flow is $1 - \lam^{-2}/\rho$ exactly (the backbone
+$m \mapsto 4m$ is a permutation), so the per-digit amplitude factor is
+$\sqrt{1-\lam^{-2}} \le \sqrt{3/4} = 0.8660$ \emph{uniformly for}
+$\lam \le 2$ --- including at the endpoint $\gam = 1$ itself. In
+annealed-versus-quenched language: the disorder strength has no marginal point
+anywhere on the approach, so there is no scale at which the polymer could
+depin from the annealed (density) branch. This is the structural reason the
+ceiling candidate, though canonically identified, is expected not to bind.
+\end{remark}
+
 \paragraph{Summary of falsifiability.}
 The framework makes a sharp $k = 21$ prediction \cite{Temp26,Drift26}:
 $\gam \approx 0.918$, $\theta \approx 0.850$, $\kap_{\mathrm{deep}} = 0.839 \pm
 0.002$, fine-end saturation rate $0.910$, and a tempering fit
 $R^2 > 0.9977$. Any material deviation --- $\kap_{\mathrm{deep}}$ rising,
-$\CV_1$ turning down, $\theta$ overshooting $0.86$ --- falsifies the program at
-its stated form. The data at five depths disfavor Creeps~A and B decisively and
-Creep~C indirectly; none is excluded with the force of a proof, which is exactly
-what the Open Lemma would supply.
+$\CV_1$ turning down, $\theta$ overshooting $0.86$, or any of the four
+flow-fraction series of the fourth test stabilizing rather than decaying ---
+falsifies the program at its stated form. The data at five depths disfavor
+Creeps~A and B decisively and Creep~C indirectly; the fourth test adds that
+the only canonically identifiable ceiling ($0.9507$, the thin-direction
+exponent) demonstrably fails to attract the flow. None of this carries the
+force of a proof, which is exactly what the Open Lemma would supply.
 
 \section{Relation to Tao (2019)}
 \label{sec:tao}
