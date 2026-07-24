@@ -1,5 +1,7 @@
 # An Improved Lower Bound for the Density of Integers Satisfying the 3x+1 Conjecture
 
+**SUPERSEDED (Obs 351): het sterkere en oudere resultaat x^0.9146 (k=20) staat in NOTE_DENSITY.tex — dat is Paper 1. Dit document blijft als log van de tweede, onafhankelijke implementatie (kruisvalidatie).**
+
 **Draft — internal version 0.1 (2026-07). Not for distribution before novelty check and final interval verification.**
 
 ## Abstract

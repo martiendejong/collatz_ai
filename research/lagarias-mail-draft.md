@@ -6,7 +6,7 @@ zijn homepage vóór verzending). Krasikov: Brunel University London.
 
 ---
 
-**Subject: Your L_k^NT linear programs solved for k = 12..18: pi_1(x) > x^0.902**
+**Subject: Your L_k^NT linear programs solved through k = 20: pi_1(x) > x^0.9146**
 
 Dear Professor Lagarias,
 
@@ -16,20 +16,25 @@ program family L_k^NT(lambda) was solved up to k = 11, yielding
 pi_1(x) > x^0.84, and the closing section expressed the hope that the
 family might eventually be pushed further.
 
-I write to report that I have solved the family for k = 12 through 18 on
-modern hardware. The resulting exponents are:
+I write to report that I have solved the family through k = 20 on a desktop
+machine (3^19 = 1.16 billion constraints at the top level), obtaining
 
-    k = 12: 0.8520   k = 15: 0.8801
-    k = 13: 0.8620   k = 16: 0.8875
-    k = 14: 0.8715   k = 17: 0.8950
-                     k = 18: 0.9020
+    k = 13: 0.8624   k = 17: 0.8953
+    k = 15: 0.8805   k = 19: 0.9069
+                     k = 20: 0.9146
 
-each backed by an explicit feasible solution of L_k^NT(lambda) (certificate
-vector with verified margin min F(v)/v >= 1.0004, coefficients computed at
-60 digits and rounded downward), so that by your Theorem 2.2 each yields
-pi_1(x) > x^{log2 lambda} unconditionally. The implementation was calibrated
-against the published values at k = 2, 9, 11, and the index algebra verified
-against the formulas of Proposition 2.1 directly.
+each backed by a deposited explicit feasible solution of L_k^NT(lambda_0)
+at rational lambda_0, re-verified in exact integer arithmetic with all
+weights replaced by strict rational lower bounds (so the check errs
+strictly against the claim), so that by your Theorem 2.2 each yields
+pi_1(x) > x^{log2 lambda_0} unconditionally. Two independently written
+implementations (different indexing and lambda parametrizations) agree on
+the overlapping levels to 3-4 decimals, and the k = 12 certificate
+(gamma = 213/250 = 0.852, already above 0.84) has additionally been
+machine-verified in Lean 4 via exact integer power inequalities. The
+implementations were calibrated against the published values at
+k = 2, 9, 11, and the index algebra verified against Proposition 2.1
+directly.
 
 Two questions, if I may:
 
