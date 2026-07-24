@@ -12,8 +12,6 @@ family/pair framework of Martien de Jong, executed by Jengo (Claude).
   Papers: `research/NOTE_DENSITY.tex` (record), `research/papers/excursion_mechanics.tex`
   (climb mechanics: binomial normal form, orbit-27 decoded, Geom(3/4) composition law).
   k=21 computation in progress (γ ≈ 0.918 predicted, pre-registered).
-  depths 3^13–3^20 (1.16 billion constraints at k=20, exact-integer verified), with exact-integer verified certificates (previous published
-  record: 0.84, since 2003). Paper draft: `research/NOTE_DENSITY.tex`.
 - **16 theorems** on the family/pair structure: Rewriting Theorem (binary
   ⟨a⟩1^k → ternary ⟨a−1⟩2^k), Pair-Merge Law, Sign Theorem + Catalan cycle
   census (complete through period 10), Shadowing Theorems, Residue-Blind
