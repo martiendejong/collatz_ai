@@ -1,0 +1,300 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% Honest evidence labels
+\newcommand{\PROVED}{\textup{[\textsc{proved}]}}
+\newcommand{\PROVEDVER}{\textup{[\textsc{proved + verified}]}}
+\newcommand{\MEASURED}{\textup{[\textsc{measured}]}}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\vv}{v_2}
+
+\title{The arithmetic mechanics of Collatz excursions:\\
+binomial normal form, negative-cycle shadowing,\\ and the composition of record climbs}
+\author{Martien de Jong\thanks{With extensive machine assistance (Claude/Jengo);
+every numbered claim carries an evidence label, and all computations are
+reproducible from the public repository
+\href{https://github.com/martiendejong/collatz_ai}{github.com/martiendejong/collatz\_ai}
+(scripts 177--182).}}
+\date{July 2026 (draft)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $T(n)=(3n+1)/2^{e(n)}$, $e(n)=\vv(3n+1)$, on odd integers. We show that the
+\emph{climbing phases} of Collatz trajectories are exact algebra rather than
+statistical accident. (1) \emph{Binomial normal form}: writing $n=u\cdot 2^{s}-v$
+with $v$ odd, the map acts by $T(n)=3u\cdot 2^{s-e}-v'$ with $v'=(3v-1)/2^{e}$,
+$e=\vv(3v-1)$ --- the subtrahend runs through the $3x{-}1$ dynamics, i.e.\ the
+2-adic shadow target $-v$ runs through its own (negative) Collatz orbit. Climbs
+are episodes of this renewal, and the classical Mersenne climb is its unique
+fixed point $v=1$. (2) \emph{Exit laws}: for $l=1$ exits the next run length is
+$K'=\vv(3^{K}a+1)-1$; lifting-the-exponent gives a one-line \emph{dead-stop
+theorem} (pure Mersenne climbs never chain) and mod-8 \emph{selection rules}
+for chaining. These decode the famous orbit of $27$ move by move, and explain
+the classical list $\{27,31,41,47,55,63\}$ of all $n<10^{6}$ with excursion
+ratio above $2$. (3) \emph{Statistical camouflage}: under the Haar measure on
+$\Z_2$ the macro-symbol pair (exit valuation, next run length) is
+\emph{exactly} i.i.d.\ $\mathrm{Geom}(1/2)^{2}$, and measured re-entry depths
+along orbits are exactly geometric --- all arithmetic structure is invisible at
+the symbol level. (4) \emph{Composition of record climbs}: the tilted-measure
+analysis of the Lagarias--Weiss repeated random walk model yields a closed-form
+identity $I(4/3)=\log_2 3-\tfrac43$ for the Kullback--Leibler cost, from which
+the cheapest sustained climb has halving-exponent mean exactly $4/3$, i.e.\
+$e=1$ on \emph{three quarters} of climb steps; the longest record climbs
+measure $0.714$ and $0.725$. The same identity re-derives the
+Lagarias--Weiss prediction $t(n)\approx n^{2}$ for path records and matches the
+record envelope with fitted slope $0.971$.
+\end{abstract}
+
+\section{Setup and coding}
+Throughout, $T(n)=(3n+1)/2^{e(n)}$ on odd $n$, $e(n)=\vv(3n+1)\ge 1$;
+$\alpha=\log_2 3$. The \emph{itinerary} of $n$ is $(e(T^{t}n))_{t\ge 0}$, with
+partial sums $s_m=\sum_{t<m} e(T^{t}n)$. On the odd 2-adic integers $T$ is
+continuous and the itinerary determines the point:
+
+\begin{lemma}[Coding injectivity]\label{lem:inj} \PROVED\;
+Distinct $x\neq y\in\Z_2^{\times}$ have itineraries that eventually differ.
+\end{lemma}
+\begin{proof}
+If the itineraries agree for $m$ steps then
+$|T^{m}x-T^{m}y|_2=2^{s_m}|x-y|_2$, which exceeds $1$ for large $m$ unless
+$x=y$, contradicting $T^m x, T^m y \in \Z_2$.
+\end{proof}
+
+The itinerary coding of $\Z_2^\times$ (Terras~\cite{Terras}, Everett~\cite{Everett};
+the conjugacy of Bernstein--Lagarias~\cite{BL}) transports Haar measure to the
+law in which the $e_t$ are i.i.d.\ with $\Pr(e=j)=2^{-j}$.
+
+\section{The binomial normal form}
+
+\begin{theorem}[Renewal law]\label{thm:renewal} \PROVEDVER\;
+Let $n=u\cdot 2^{s}-v$ with $v$ odd, $0<v$, and $e:=\vv(3v-1)<s$. Then
+\[
+T(n)\;=\;3u\cdot 2^{\,s-e}\;-\;v', \qquad v'=\frac{3v-1}{2^{e}},\quad
+e(n)=e .
+\]
+\end{theorem}
+\begin{proof}
+$3n+1=3u\cdot 2^{s}-(3v-1)$; since $\vv(3v-1)=e<s$, the valuation of the sum
+is $e$; divide. (Machine-verified on $10^{5}$ random $(u,s,v)$; script 180.)
+\end{proof}
+
+\begin{remark}
+The subtrahend evolves by $v\mapsto (3v-1)/2^{\vv(3v-1)}$: the $3x{-}1$ map,
+i.e.\ the ordinary Collatz map on the \emph{negative} integer $-v$. Thus a
+number within 2-adic distance $2^{-s}$ of $-v$ \emph{tracks the negative orbit
+of $-v$} while the power-of-two budget $s$ is spent at rate $e$ per step. The
+episode ends when the parts collide ($e\ge s$): finite fuel is exact algebra.
+The case $v=1$ is the fixed point $v'=(3-1)/2=1$: the classical folklore climb
+$2^{K}a-1 \to 3^{K}a-1$ through a ones-run.
+\end{remark}
+
+\begin{corollary}[Climb rate while shadowing a cycle]\label{cor:rate} \PROVED\;
+If $-v$ lies on a negative cycle with $A$ odd steps and $B$ halvings
+(necessarily $B/A<\alpha$, see \S\ref{sec:sign}), an episode entered at depth
+$d$ lasts $\sim d$ halvings and gains $d\,(A\alpha-B)/B$ bits: $0.585$ per
+halving for the cycle $\{-1\}$, $0.0566$ for $\{-5,-7\}$, $0.0082$ for the
+$-17$ cycle. Since $(A\alpha-B)/B\le \alpha-1$ always, \emph{no episode repays
+its own entry depth}: the deficit is at least $(2-\alpha)d=0.415\,d$ bits.
+\end{corollary}
+
+\section{Exit laws, dead stop, selection rules}\label{sec:exit}
+Write an odd $n$ as $n=2^{K}a-1$, $K=\vv(n+1)$, $a$ odd (the maximal
+normal-form window). After the $K$-step run, $3^{K}a-1=2^{l}u$ with $u$ odd.
+
+\begin{theorem}[Exit law for $l=1$]\label{thm:exit} \PROVEDVER\;
+If $l=1$ then the next run length and multiplier are
+\[
+K' \;=\; \vv\!\left(3^{K}a+1\right)-1,\qquad a'=\frac{3^{K}a+1}{2^{K'+1}} .
+\]
+\end{theorem}
+\begin{proof}
+$u=(3^Ka-1)/2$, so $u+1=(3^Ka+1)/2$. (Verified on $10^{5}$ cases.)
+\end{proof}
+
+\begin{theorem}[Mersenne dead stop]\label{thm:deadstop} \PROVEDVER\;
+For $a=1$ and $K$ odd: $l=1$ and $K'=1$. A pure Mersenne climb never chains.
+\end{theorem}
+\begin{proof}
+Lifting the exponent: $\vv(3^{K}+1)=\vv(3+1)=2$ for odd $K$; apply
+Theorem~\ref{thm:exit}. (Verified $K\le 199$.)
+\end{proof}
+
+\begin{proposition}[Mod-8 selection rules]\label{prop:sel} \PROVEDVER\;
+A deep restart ($K'\ge 2$) after an $l=1$ exit occurs iff $3^{K}a\equiv 7
+\pmod 8$, i.e.
+\[
+K \text{ even}:\; a\equiv 7 \pmod 8,\qquad
+K \text{ odd}:\; a\equiv 5 \pmod 8 .
+\]
+More generally the channel $c=3^{K}a \bmod 8$ determines the exit:
+$c=3$: $l=1$, $K'=1$ forced; $c=7$: $l=1$, $K'\ge2$; $c=5$: $l=2$; $c=1$:
+$l\ge3$. (Asserted at every macro step of the five record orbits below.)
+\end{proposition}
+
+\subsection{The orbit of 27, decoded}
+The rules read the most famous Collatz excursion as deterministic arithmetic
+(all steps machine-checked; script 177):
+\[
+\underbrace{27=(K{=}2,a{=}7)}_{a\equiv 7\ \checkmark}
+\xrightarrow{K'=\vv(64)-1=5} \underbrace{31=2^5-1}_{\text{Mersenne}}
+\xrightarrow{\text{dead stop}} 121
+\to \underbrace{91=(2,23)}_{a\equiv 7\ \checkmark}
+\xrightarrow{K'=3} 103=(3,13)
+\]
+\[
+\underbrace{(3,13)}_{a\equiv 5\ \checkmark}
+\xrightarrow{K'=4} 175=(4,11)
+\xrightarrow{a\equiv 3:\ \text{rule fails}} \text{dead stop, descent begins.}
+\]
+Three rule-conforming hits, then predicted failure. Moreover the classical
+list of all $n<10^{6}$ with excursion ratio $\rho(n)=\log t(n)/\log n>2$,
+namely $\{27,31,41,47,55,63\}$ (cf.~\cite{KL-survey}), consists of the orbit
+of $27$ and its Mersenne neighbours: the outlier list \emph{is} the decoded
+chain.
+
+\subsection{Shadowing measurements} \MEASURED\;
+Along the record orbits $27,703,26623,626331,837799$: the 2-adically closest
+negative-cycle point advances \emph{in cycle order} during climbs with depth
+loss exactly $e$ per step (as $|T'|_2=2^{e}$ dictates); mean shadow depth is
+$5.3$--$6.8$ during climbs vs $4.3$--$5.1$ during descents; over $\sim
+8.5\times 10^{4}$ pooled steps, shadow depth $\ge 7$ flips the mean 3-step
+growth from $-2.1$ bits to $+0.3$ bits (Haar reference $-1.245$). Deep
+re-entries crystallize as binomials: on the $703$ orbit,
+$32525=2^{15}-3^{5}$ and $12197=3\cdot 2^{12}-91$ launch a 13-step climb wave
+whose subtrahend chain $243\to 91\to 17$ is the negative orbit of $-3^{5}$,
+exactly as Theorem~\ref{thm:renewal} prescribes.
+
+\section{The sign dichotomy}\label{sec:sign}
+For any $T$-cycle with $A$ odd steps, $B$ halvings, the cycle value is
+$n_1=C/D$ with $C>0$ and $D=2^{B}-3^{A}$, so
+\[
+\operatorname{sign}(n_1)=\operatorname{sign}\!\left(2^{B}-3^{A}\right):
+\]
+cycles \emph{above} the entropy threshold ($B/A>\alpha$) are positive
+(zero 2-adic tails), cycles \emph{below} it are negative (ones tails). The
+negative cycles $\{-1\}$, $\{-5,-7\}$, $\{-17,\dots,-91\}$ have mean halving
+exponents $1$, $\tfrac32$, $\tfrac{11}{7}$, all $<\alpha$: \emph{the
+divergence-capable statistics are realized by actual integers} --- negative
+ones. Any proof of non-divergence for positive integers must therefore use the
+tail sign; no purely distributional argument can suffice. \PROVED
+
+\section{Statistical camouflage}\label{sec:camo}
+
+\begin{theorem}[Symbol independence]\label{thm:camo} \PROVEDVER\;
+Under Haar measure on $\Z_2^{\times}$, the macro-symbol pair $(l,K')$ is
+exactly independent with $l,K'\sim \mathrm{Geom}(1/2)$; consequently the entire
+macro-symbol process $(K_t,l_t)_{t}$ is i.i.d.\ product-geometric.
+\end{theorem}
+\begin{proof}
+Let $x=3^{K}a$, Haar-uniform odd. If $x\equiv 3\ (4)$ then $l=1$ and
+$K'=\vv(x+1)-1$ is geometric from the higher bits; if $x\equiv 1\ (4)$ then
+$l=\vv(x-1)\ge2$ is geometric and $K'=\vv(u+1)$ draws on fresh bits of $u$.
+Both branches give independent geometrics; $K_{t+1}=K'_t$ closes the process.
+(500{,}000-sample check: all $25$ ratios
+$\Pr(l,K')/[\Pr(l)\Pr(K')]=1.00\pm0.02$.)
+\end{proof}
+
+\begin{remark}
+All arithmetic of \S\ref{sec:exit} (LTE laws, dead stops, selection rules)
+lives in the deterministic residue thread and is \emph{invisible} in the
+symbols: a hidden-variable decomposition of an exactly-product law. This
+explains why symbol-level or entropy arguments invariably rediscover the same
+gap constant and cannot by themselves decide the conjecture.
+Re-entry structure is likewise pure luck: along random orbits with
+$n\ge 2^{16}$ (96k steps), the shadow-quality tail is exactly geometric,
+$P(Q\ge q)\propto 2^{-q}$ over nine octaves (successive ratios
+$0.49$--$0.52$). \MEASURED
+\end{remark}
+
+\section{Composition of record climbs and the $n^{2}$ envelope}\label{sec:n2}
+Lagarias and Weiss~\cite{LW} introduced the repeated random walk model and
+proved, within it, that the maximum excursion satisfies $\limsup \log
+t(n)/\log n=2$. We add the explicit tilt. Let
+$I(m)=D_{\mathrm{KL}}(\mathrm{Geom}(1/m)\,\|\,\mathrm{Geom}(1/2))$ in bits, the
+large-deviation cost of tilting the halving mean to $m$.
+
+\begin{theorem}[Climb-cost identity]\label{thm:tilt} \PROVEDVER\;
+$I'(m)=\log_2\frac{2(m-1)}{m}$, and
+\[
+I(\tfrac43)=\log_2 3-\tfrac43,\qquad\text{hence}\qquad
+\min_{1<m<\alpha}\ \frac{I(m)}{\alpha-m}\;=\;1,\ \text{ attained at } m^{*}=\tfrac43 .
+\]
+\end{theorem}
+\begin{proof}
+Differentiate $I(m)=\log_2\frac{2}{m}+(m-1)\log_2\frac{2(m-1)}{m}$; the cross
+terms cancel, leaving $I'(m)=\log_2\frac{2(m-1)}{m}$. At $m=4/3$ this is
+$-1$, making $h(m)=I(m)-\alpha+m$ critical there; $h(4/3)=0$ by direct
+computation, and convexity of $I$ gives the global minimum.
+\end{proof}
+
+\begin{corollary} \PROVED\;
+(i) The cheapest sustained climb has halving mean $4/3$: by Gibbs
+conditioning on the exact i.i.d.\ symbols (Theorem~\ref{thm:camo}), the
+empirical $e$-law of a conditioned optimal climb converges to
+$\mathrm{Geom}(3/4)$ --- in particular $e{=}1$ on $3/4$ of climb steps.
+(ii) The cost of $E$ bits of climb is exactly $E$ bits of measure:
+$P(\text{excursion}\ge E)\asymp 2^{-E}$, whence record peaks scale as $n^{2}$
+(the Lagarias--Weiss law) with Gumbel correction
+$E^{*}(K)=K-\Theta(\log K)$ at seed size $K$.
+\end{corollary}
+
+\noindent\textbf{Measurements.} \MEASURED\;
+Pooling the climbs of all excursion records with $E\ge 8$ below $2^{23}$
+($728$ steps): $\Pr(e{=}1)=0.7775$ vs $0.75$; $\Pr(e{=}2)=0.1854$ vs
+$0.1875$; mean $e=1.273$ vs $4/3$, with the two \emph{longest} climbs (49 and
+51 steps) at $0.714$ and $0.725$ --- short bursts run hot, long climbs sit on
+the tilt, as the conditional limit demands. The record envelope below
+$2^{23}$ fits $E^{*}(K)=0.971\,K-1.51\log_2 K+2.7$; at the largest published
+scales the ratios $\rho(n)$ are $2.004$--$2.099$ for $n\sim
+10^{9}$--$10^{18}$ \cite{OeS,KL-survey}. Notably the records draw
+$\sim\!75$--$80\%$ of their halving budget from \emph{beyond} the free bit
+window of the seed, yet still meet the Haar envelope: the deterministic
+zero-tail continuation is statistically typical even at the extremes.
+
+\section{Aperiodicity, and what remains}
+For completeness: an eventually periodic itinerary forces the orbit onto an
+integer cycle (classical via the rational-periodicity correspondence
+\cite{Terras,Everett,BL}; a one-line 2-adic proof: shared shrinking cylinders
+force $|T^{t}n-x_t|_2\to0$ toward the periodic point, and every cycle is
+2-adically repelling since $|(T^{A})'|_2=2^{B}>1$). Hence divergent orbits
+have aperiodic itineraries. Combining \S\ref{sec:sign} and
+\S\ref{sec:camo}: every climb \emph{mechanism} is classified and none can
+sustain divergence; what a divergent orbit would require is an aperiodic,
+unstructured supply of re-entry luck of linearly growing total depth, against
+an exactly geometric tail --- a measure-zero, Hausdorff-dimension
+$H(1/\alpha)=0.9507$ event with, by Theorem~\ref{thm:camo}, no arithmetic
+mechanism available to produce it.
+
+\begin{thebibliography}{9}
+\bibitem{Terras} R.~Terras, \emph{A stopping time problem on the positive
+integers}, Acta Arith.\ 30 (1976), 241--252.
+\bibitem{Everett} C.~J.~Everett, \emph{Iteration of the number-theoretic
+function $f(2n)=n$, $f(2n+1)=3n+2$}, Adv.\ Math.\ 25 (1977), 42--45.
+\bibitem{BL} D.~J.~Bernstein, J.~C.~Lagarias, \emph{The 3x+1 conjugacy map},
+Canad.\ J.\ Math.\ 48 (1996), 1154--1169.
+\bibitem{LW} J.~C.~Lagarias, A.~Weiss, \emph{The 3x+1 problem: two stochastic
+models}, Ann.\ Appl.\ Probab.\ 2 (1992), 229--261.
+\bibitem{KL-survey} A.~V.~Kontorovich, J.~C.~Lagarias, \emph{Stochastic models
+for the 3x+1 and 5x+1 problems}, in: The Ultimate Challenge: The 3x+1 Problem,
+AMS, 2010; arXiv:0910.1944.
+\bibitem{OeS} T.~Oliveira e Silva, \emph{Maximum excursion and stopping time
+record-holders for the 3x+1 problem}, Math.\ Comp.\ 68 (1999), 371--384.
+\end{thebibliography}
+\end{document}
