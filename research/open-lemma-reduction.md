@@ -59,14 +59,52 @@ Var_k ≤ Σ_g F_k(g) · (amplification along a g-chain, ≤ 1 per feed edge by
 uniformly in k and yields the flow-L² attenuation κ ≤ κ_max < 1 — the Open
 Lemma in the form the γ→1 chain (links 1–6 of gamma_to_one.tex) consumes.
 
+## Proof sketch for Lemma D (the desert-pair mechanism) [SKETCH; identities PROVED]
+
+Three exact backbone identities (machine-verified at k=9, all classes):
+
+- **Branch period 3:** along the backbone the types cycle D1 → D3 → D2
+  (m ≡ 2 → 4m ≡ 8 → 16m ≡ 5 mod 9). Every third backbone class is
+  structurally feedless.
+- **Adjacent feed targets are affinely locked:**
+  r₃(4m) = 2·r₁(m) + 1 (mod 3^{k−1}), and the next D1 target is
+  r₁(64m) = 64·r₁(m) + 42 (mod 3^{k−1}).
+
+Now follow the chain requirement. φ(m) > 1−ε at a D1 class m demands
+v(4m) < ε′·v(m), ε′ = ερλ² (Lemma B). Expanding v(4m)'s own equation, this
+requires BOTH v(16m) small AND feed(4m) = B₃·v̄(r₃(4m)) small — i.e., by the
+affine lock, **v̄(2·r₁(m)+1) must be desert while v̄(r₁(m)) is fertile**: the
+chain forces (fertile, desert) pairs (r, 2r+1) at every level. Desert
+suppression by factor δ requires desert depth j(δ) ≈ log(1/δ)/log(ρ/λ⁻²)
+(Lemma A), and depth-j deserts live in specific residue classes mod 3^j
+(desert theorem, v₃-cascade) of density 3^{−j}. Per chain level the density
+cost is therefore
+
+    3^{−j(ε′)} = (ε′)^{log 3 / log(ρ/λ⁻²)} ≈ (3.5·ε)^{0.886}   (at the edge),
+
+and a g-chain costs the g-th power: **F(g) ≲ (C·ε^{0.886})^g — geometric in g
+for ε < c₀**, which is Lemma D with an explicit exponent.
+
+*Numerical check:* ε = 0.1 predicts ratio ≈ (0.35)^{0.886} = 0.395; measured
+0.438 (k=12) — right order, leading-term agreement. Honest gaps: (a) the
+measured k-creep of the ratio (0.438 → 0.539 by k=17) is not captured by this
+k-independent skeleton — it must come from the λ(k)-dependence of ε′ = ερλ²
+and of the suppression rate log(ρ/λ⁻²), both of which weaken as λ → 2; the
+endpoint argument (φ ≡ 3/4 at the flat limit, so domination dies for
+ε < 1/4) bounds the creep away from 1 for small ε, but the two effects must
+be joined quantitatively. (b) "v(16m) small too" makes the desert requirement
+recursive (a desert *stack*, not a single desert) — this only shrinks density
+further, so the sketch errs on the safe side. (c) Suppression from general
+desert subtrees (not just pure D2-runs) needs the recursive version of
+Lemma A.
+
 ## What a full proof still needs
 
-(i) Replace measured Lemma D by a proof. Candidate route: feed domination
-needs v(4m) small (Lemma B); v(4m) small needs its OWN equation to be
-feed-poor AND backbone-suppressed (Lemma A prototype) — a recursive
-desert-structure whose 3-adic density cost per chain level is a computable
-constant < 1. The desert theorem (v₃(m+1)-cascade, Obs 319–320) is the
-combinatorial engine; what must be shown is that suppression-depth requirements
-accumulate additively along the chain while density decays 3-adically.
-(ii) The routine-but-unwritten variance bookkeeping of the summation step
+(i) Promote the sketch: join the desert-pair density cost with the
+λ(k)-dependence to a bound F_k(g) ≤ (θ(ε))^g with sup_k θ(ε) < 1 for some
+fixed ε < 1/4 — this is now a *finite* estimation problem in two explicit
+exponents, not an open-ended search.
+(ii) The recursive Lemma A (desert-stack suppression) — induction on subtree
+depth, engine = the v₃-cascade.
+(iii) The routine-but-unwritten variance bookkeeping of the summation step
 (pair-tree prefix measure, cf. damping-theorem.md Lemma 2).
