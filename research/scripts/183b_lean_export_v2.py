@@ -59,7 +59,7 @@ CHUNK = 20000
 nchunks = (N + CHUNK - 1) // CHUNK
 for c in range(nchunks):
     lo, hi = c * CHUNK, min((c + 1) * CHUNK, N)
-    payload = ",".join(str(V[j]) for j in range(lo, hi))
+    payload = ",".join(str(V[j]) for j in range(lo, hi)) + ","
     with open(os.path.join(ddir, f"Data{c}.lean"), "w", newline="\n") as f:
         f.write(f'namespace CollatzCert\n\ndef s{c} : String := "{payload}"\n\nend CollatzCert\n')
 

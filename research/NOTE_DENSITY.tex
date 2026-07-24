@@ -15,13 +15,14 @@ independently verifiable from the deposited certificates.}}
 Let $\pi_1(x)$ denote the number of integers $n\le x$ whose forward orbit under the $3x+1$ map
 contains $1$. Krasikov and Lagarias (2003) proved $\pi_1(x)\ge x^{0.84}$ for sufficiently large
 $x$ by exhibiting feasible solutions of a linear-program family $L_k^{NT}(\lambda)$ at depth
-$k=11$; this has remained the strongest unconditional lower bound. We solve $L_k^{NT}(\lambda)$
-at depths $k=13,15,17,19$ (up to $387{,}420{,}489$ constraints) and verify explicit rational
-certificates in exact integer arithmetic, obtaining
+$k=11$; this has remained the strongest unconditional lower bound (a December 2025 preprint,
+arXiv:2512.13760, still cites $x^{0.84}$ as the record). We solve $L_k^{NT}(\lambda)$
+at depths $k=13,15,17,19,20$ (up to $1{,}162{,}261{,}467$ constraints) and verify explicit
+rational certificates in exact integer arithmetic, obtaining
 \[
 \pi_1(x)\;\ge\; x^{0.9146}\qquad\text{for all sufficiently large }x,
 \]
-with intermediate verified exponents $0.8624$, $0.8805$, $0.8953$. No new mathematics is
+with intermediate verified exponents $0.8624$, $0.8805$, $0.8953$, $0.9069$. No new mathematics is
 required beyond \cite{KL}: Theorem~2.2 there converts any feasible solution into the density
 bound with exponent $\log_2\lambda$. Our contribution is computational: a monotone (nonlinear
 Perron) iteration replaces the interior-point solver, making depths $3^{19}$--$3^{20}$ feasible on a
@@ -61,7 +62,7 @@ $k$ & classes & $\lambda_0$ (rational) & min.\ slack & verified exponent\\
 13 & 531{,}441 & $1818/1000$ & $1.000279$ & $0.8624$\\
 15 & 4{,}782{,}969 & $1841/1000$ & $1.000307$ & $0.8805$\\
 17 & 43{,}046{,}721 & $93/50$ & $1.000504$ & $0.8953$\\
-19 & 387{,}420{,}489 & $15/8$ & $1.000939$ & $0.9069$\
+19 & 387{,}420{,}489 & $15/8$ & $1.000939$ & $0.9069$\\
 20 & 1{,}162{,}261{,}467 & $1885/1000$ & $1.000194$ & $\mathbf{0.9146}$\\
 \bottomrule
 \end{tabular}
@@ -74,9 +75,18 @@ $\pi_1(x)\ \ge\ x^{0.9146}$ for all sufficiently large $x$.
 \emph{Verification.} For each depth the deposited integer vector $C$ (scaled Perron vector)
 is checked against all constraints with $\lambda_0$ rational and every weight replaced by a
 strict rational lower bound (80-digit decimal floors minus one ulp, common denominator
-$10^{18}$); comparisons are exact integer arithmetic. Zero violations at all four depths
-($435{,}781{,}620$ constraints in total). Certificates and a standalone {\tt numpy}-only
-verifier are deposited with this note; total verification time is minutes on a laptop.
+$10^{18}$); comparisons are exact integer arithmetic. Zero violations at all five depths
+($1.6\times 10^9$ constraints in total). Certificates and a standalone {\tt numpy}-only
+verifier are deposited with this note. Three independent cross-checks strengthen the claim:
+(i) a second, independently written implementation (different indexing and $\lambda$
+parametrization) reproduces the feasibility edges at overlapping depths to $3$--$4$ decimals
+($k{=}13$: $0.8620$; $k{=}15$: $0.8801$; $k{=}17$: $0.8950$);
+(ii) the $k=12$ certificate ($\gamma = 213/250 = 0.852$, already above the previous record)
+has been machine-verified in \emph{Lean~4}: the coefficient lower bounds reduce to integer
+power inequalities (e.g.\ $p_a^{250}\le 2^{250Q-426}$) and all $177{,}147$ class inequalities
+are checked by compiled kernel evaluation, with no floating point anywhere;
+(iii) both implementations were calibrated against all published anchor values
+($k=2,9,11$).
 
 \section{The min-loss identity and the ceiling}
 Summing the edge equalities over all classes (the maps $m\mapsto 4m$ and the two branch maps
