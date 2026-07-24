@@ -1,6 +1,6 @@
 # Concept-mail aan Jeffrey C. Lagarias (en cc Ilia Krasikov)
 
-**Status: CONCEPT — versturen alleen door Martien, na eigen review.**
+**Status: VERZONDEN 2026-07-24 19:23 CEST** — van info@martiendejong.nl naar lagarias@umich.edu (bcc info@), via mail.martiendejong.nl (SMTP SSL). Verzendscript: scripts/send_lagarias_mail.py.
 **Adres:** lagarias@umich.edu (University of Michigan; verifieer actueel adres op
 zijn homepage vóór verzending). Krasikov: Brunel University London.
 
@@ -33,9 +33,10 @@ weights replaced by strict rational lower bounds (so the check errs
 strictly against the claim), so that by your Theorem 2.2 each yields
 pi_1(x) > x^{log2 lambda_0} unconditionally. Two independently written
 implementations (different indexing and lambda parametrizations) agree on
-the overlapping levels to 3-4 decimals, and the k = 12 certificate
-(gamma = 213/250 = 0.852, already above 0.84) has additionally been
-machine-verified in Lean 4 via exact integer power inequalities. The
+the overlapping levels to 3-4 decimals, and the k = 12 and k = 13
+certificates (gamma = 0.852 and 0.8619, both already above 0.84) have
+additionally been machine-verified in Lean 4 via exact integer power
+inequalities. The
 implementations were calibrated against the published values at
 k = 2, 9, 11, and the index algebra verified against Proposition 2.1
 directly.
@@ -63,7 +64,7 @@ With admiration for your work on this problem,
 
 Martien de Jong
 Nijeveen, The Netherlands
-martiendejong2008@gmail.com
+info@martiendejong.nl
 
 ---
 
