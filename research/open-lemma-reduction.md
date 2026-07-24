@@ -3,6 +3,19 @@
 **Companion to papers/gamma_to_one.tex §Open Lemma and damping-theorem.md.
 Status per component marked. 2026-07-24.**
 
+> **CORRECTION (same evening, Obs 360).** The branch-period-3 identity proved
+> below (D1 → D3 → D2 along the backbone) makes **Lemma A vacuous for j ≥ 2**:
+> feedless backbone runs have length exactly 1, always. Horizontal
+> (backbone-run) desert suppression does not exist; all suppression is
+> **vertical** — through feed targets whose own subtrees are thin (the
+> v₃(m+1)-cascade of Obs 319–320). Consequently the proof sketch's engine
+> must be replaced by a vertical desert-stack estimate, and the numerical
+> agreement of the 0.886-exponent is downgraded to suggestive until the
+> vertical version is derived. The chain-flow REDUCTION itself (structure
+> lemma, Lemma B, Lemma D-as-measurement, summation step) is unaffected.
+> Caught by our own identity — the file is kept with this notice per the
+> log's correction convention.
+
 Setting: the K–L Perron system at the feasibility edge,
 v(m) = ρ⁻¹[λ⁻² v(4m) + feed(m)], feed(m) = B·v̄(r(m)) for D1/D3, 0 for D2;
 v̄ = min over the three lifts. φ(m) := feed(m)/(ρ v(m)) ∈ [0,1].
