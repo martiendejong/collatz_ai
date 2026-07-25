@@ -242,7 +242,24 @@ with explicit constants; total penalty P_max < ∞ uniformly. ∎
 This makes the tower part of the field uniformly bounded — the
 guard-rail under the Chebyshev step of item 3.
 
-## The bootstrap fixed point (assembly capstone, 2026-07-25 night)
+## The assembly chain, LINEAR form (supersedes the fixed point; Obs 380)
+
+> **Correction (Obs 380).** The fixed-point scheme below closed only with
+> measured (circular) constants: with the computable injection
+> C_inj = 1.44 bits², F(V) = 5.3·e^{0.24V} has no root. It is retained for
+> the record; the LINEAR chain replacing it is stronger and simpler:
+> (1) counting-measure Laws A/B (freshness shells are unconditional) give
+> V_count ≤ K_orth·C_inj·env/(1−env) = 5.3 bits² — no exp-moment, no
+> feedback; measured V_count = 1.38: 3.8× headroom.
+> (2) The flow measure is the exponential tilt of counting by the field F
+> itself; for sub-Gaussian fields variance is TILT-STABLE (exactly
+> invariant in the Gaussian case; measured kurtosis is negative), so
+> V_flow ≤ C_tilt·V_count with C_tilt from one-sided tail control —
+> which is precisely what the Saturation Lemma (towers bounded) plus
+> freshness provide. The single remaining analytic piece is this
+> one-sided sub-Gaussian tail bound.
+
+## The bootstrap fixed point (superseded; kept for the record)
 
 The counting-to-flow conversion closes as a fixed-point inequality.
 Structure (each step with its status):
