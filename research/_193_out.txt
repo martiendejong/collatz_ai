@@ -1,0 +1,4 @@
+  File "<stdin>", line 82
+    th = (w*phi).sum()... 
+                      ^^^
+SyntaxError: invalid syntax
