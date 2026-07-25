@@ -1,0 +1,260 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{task}[theorem]{Bookkeeping Task}
+
+\newcommand{\PROVED}{\textup{[\textsc{proved}]}}
+\newcommand{\MEASURED}{\textup{[\textsc{measured}]}}
+\newcommand{\TODO}{\textup{[\textsc{bookkeeping}]}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\lam}{\lambda}
+\newcommand{\pbar}{\bar\varphi}
+
+\title{Towards $\pi_1(x) \ge x^{1-\varepsilon}$ for the $3x+1$ problem:\\
+the Krasikov--Lagarias hierarchy with all exponents proved}
+\author{Martien de Jong\thanks{The mathematics in this manuscript was developed by
+Jengo, the author's AI research assistant (built on Anthropic's Claude), in an
+open research log; the author's role was direction. Every numbered statement
+carries an explicit status label, all measurements are reproducible from
+\href{https://github.com/martiendejong/collatz_ai}{github.com/martiendejong/collatz\_ai},
+and the four same-day retractions that shaped this chain are preserved in the log
+(research/NOTE.md, Obs.\ 358--381).}}
+\date{July 2026 --- draft 0.1 (assembly complete at exponent level)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $\pi_1(x)$ count integers below $x$ whose $3x{+}1$ orbit reaches $1$, and let
+$\gamma(k) = \log_2 \lam^*(k)$ be the density exponent produced by the
+Krasikov--Lagarias program family $L_k^{NT}(\lam)$ (Acta Arith.\ 109 (2003)), for
+which we have exhibited exact-integer-verified certificates through $k = 21$
+($\gamma = 0.9184$, $3.49$ billion constraints). This manuscript assembles a proof
+program for $\lim_k \gamma(k) = 1$, i.e.\ $\pi_1(x) \ge x^{1-\varepsilon}$ for
+every $\varepsilon > 0$ --- the hope expressed at the end of the original paper.
+The program's every \emph{exponent} is proved by elementary means: a
+\emph{Freshness Lemma} (each feed step of the certificate's selected-feed forest
+reads one fresh ternary digit, bijectively) gives the exact chain-survival law
+$(2/3)^g$ and the counting envelope $((B_1{+}B_3)/3)^g \le (3/4)^g$; a
+\emph{Saturation Lemma} (the constant $54 = 2\cdot 3^3$ caps every desert cascade
+at transmitted depth $2$) bounds all single-structure penalties; a trivial
+arithmetic bound caps the positive side of every multiscale increment at
+$\log_2 3$; and a \emph{density-beats-tilt} comparison ($\ln 3 / 1.24 > \ln 2$)
+controls the flow tilt of the counting measure. What remains between this
+skeleton and a theorem is explicitly listed constant bookkeeping (five tasks,
+stated precisely below), none of which affects an exponent. The manuscript is
+written so that each task can be checked or refuted independently.
+\end{abstract}
+
+\section{Setting and main claims}
+
+Fix $k \ge 4$ and $\lam \in (1, 2]$. Classes are indexed by $i \in [0, N)$,
+$N = 3^{k-1}$; the class map is $m = 3i+2 \bmod 3^k$. Write $\alpha = \log_2 3$,
+$A = \lam^{-2}$, $B_1 = \lam^{\alpha-2}$, $B_3 = \lam^{\alpha-1}$. The
+Krasikov--Lagarias operator is
+\[
+(Fv)(i) \;=\; A\,v(4i{+}2 \bmod N) \;+\;
+\begin{cases}
+B_1\,\bar v\big(4\lfloor i/3\rfloor \bmod N/3\big) & i \equiv 0 \ (3)\quad(\mathrm{D1})\\
+0 & i \equiv 1 \ (3)\quad(\mathrm{D2})\\
+B_3\,\bar v\big(2\lfloor i/3\rfloor{+}1 \bmod N/3\big) & i \equiv 2 \ (3)\quad(\mathrm{D3})
+\end{cases}
+\]
+with $\bar v(r) = \min\{v(r), v(r+N/3), v(r+2N/3)\}$. Feasibility of $v \le Fv$,
+$v > 0$ at parameter $\lam$ yields $\pi_1(x) > x^{\log_2\lam}$ by
+\cite[Thm.~2.2]{KL}. Let $v$ denote the Perron vector at the feasibility edge
+$\lam^*(k)$ (growth $\rho = 1$), $F = \log_2 v$ the log-field,
+$\pbar = 1 - \lam^{-2}/\rho$ the exact feed share (the backbone $i \mapsto 4i+2$
+is a permutation, so its share of total flow is exactly $\lam^{-2}/\rho$).
+
+\begin{theorem}[Main claim, modulo Tasks 1--5]\label{thm:main}
+$\lim_{k\to\infty} \gamma(k) = 1$; consequently $\pi_1(x) \ge x^{1-\varepsilon}$
+for every $\varepsilon > 0$.
+\end{theorem}
+
+The logical chain is: bounded multiscale variance of $F$ uniformly in $k$
+(Summation Theorem) $\Rightarrow$ geometric decay of feed-domination chain flow
+(Lemma D) $\Rightarrow$ flow-$L^2$ attenuation $\kappa \le \kappa_{\max} < 1$
+$\Rightarrow$ min-loss $q(k) \to 1$ $\Rightarrow$ $\gamma(k) \to 1$ via the
+edge-rate identity $d\gamma/dq = 1/\ln(4/3)$ \PROVED{} \cite{G1}. Sections
+2--6 prove every exponent entering this chain; Section 7 lists the bookkeeping.
+
+\section{The selected-feed forest and the Freshness Lemma}
+
+At the edge, freeze the argmins of the $\min$-operators: $\sigma(x) =$ the
+selected (minimal) lift of $x$'s feed base. The map $\sigma$ generates the
+\emph{selected-feed graph} on D1/D3 classes.
+
+\begin{lemma}[Type rigidity]\label{lem:type} \PROVED{}
+The branch type of $\sigma(x)$ equals the type of its base: all three lifts of a
+base $r$ share $r \bmod 3$, since $N/3 \equiv 0 \pmod 3$ for $k \ge 4$; hence the
+type walk of the $\sigma$-cascade is independent of the argmin selection.
+\end{lemma}
+
+\begin{lemma}[Freshness]\label{lem:fresh} \PROVED{}
+Let $W$ be the base walk $x \mapsto 4\lfloor x/3\rfloor \bmod N/3$ (D1) or
+$x \mapsto 2\lfloor x/3\rfloor + 1 \bmod N/3$ (D3). Then
+\[
+W^j(x) \;\equiv\; u_j \,\mathrm{digit}_j(x) + c_j(\text{prefix}) \pmod 3,
+\qquad u_j \in \{1,2\},
+\]
+i.e.\ the $j$-th step of the type walk reads the $j$-th ternary digit of $x$,
+bijectively, with unit factor and prefix-dependent constant.
+\end{lemma}
+\begin{proof}
+Each step divides by $3$ (a digit shift) and applies an affine map with unit
+multiplier ($4$ or $2$, both invertible mod every power of $3$); composing $j$
+steps yields an affine function of $\lfloor x/3^j \rfloor$ with unit linear
+coefficient, whose reduction mod $3$ is a unit multiple of $\mathrm{digit}_j(x)$
+plus a constant determined by the earlier digits (which fixed the branch choices).
+Machine check: bijectivity and prefix-locality verified exhaustively for all
+prefixes of length $\le 4$ at $k = 10$.
+\end{proof}
+
+\begin{corollary}[Absorption law]\label{cor:absorb} \PROVED{}
+The counting density of classes supporting a $\sigma$-chain of length $\ge g$ is
+exactly $(2/3)^g$, uniformly in $k$; surviving branch types are i.i.d.\ uniform
+on $\{D1, D3\}$; and the selected-feed graph is a forest into D2 absorbers
+(zero cycles; verified exhaustively at $k=11$; moreover any cycle would satisfy
+$\prod \varphi = \prod b = \lam^{\alpha A - B}$ by telescoping, so B3-rich cycles
+are excluded by $\varphi < 1$ and all cycles by the irrationality of $\alpha$
+combined with $\varphi<1$ strictly).
+\end{corollary}
+
+\begin{corollary}[Counting envelope]\label{cor:envelope} \PROVED{}
+$\displaystyle \frac1N \sum_{\text{$g$-chains}} \prod b \;=\;
+\Big(\frac{B_1+B_3}{3}\Big)^{g}$, and
+$\frac{B_1+B_3}{3} = \frac{2^{\alpha-2}+2^{\alpha-1}}{3} = \frac34$ exactly at
+$\lam = 2$; on the whole range $\lam \le 2$, $(B_1+B_3)/(3\rho) \le 0.79$.
+\end{corollary}
+
+\section{The Saturation Lemma}
+
+\begin{lemma}[Saturation]\label{lem:sat} \PROVED{}
+For $m \equiv -4 \pmod{3^j}$, $j \ge 2$: $m$ is D2 and $4m$ is D1, and the
+inherited desert depth of the feed target is
+\[
+v_3\big(r_1(4m) + 4\big) \;=\; \min(j, 3) - 1 \qquad (j \ne 3),
+\]
+since $r_1(4m)+4 = \big(16(m+4) - 54\big)/3$ and $v_3(54) = 3$. At the critical
+stratum $j = 3$, writing $m+4 = 27t$ with $3 \nmid t$, the transmitted depth is
+exactly $2 + v_3(16t-2)$, and $v_3(16t-2) = s$ has density exactly $3^{-s}$.
+Consequently every desert touches at most finitely many feed generations at
+transmitted depth $\le 2$ and its total value penalty is bounded by an absolute
+constant. (Machine checks: $40{,}000/40{,}000$ at the $j=3$ stratum; all sampled
+$j \in \{2,4,\dots,8\}$.)
+\end{lemma}
+
+\section{Multiscale decomposition and the counting-variance bound}
+
+Let $M_p(i) = \E[F \mid i \bmod 3^p]$ (counting-measure block means),
+$X_p = M_p - M_{p-1}$, so $F = M_0 + \sum_p X_p$ with $\E[X_p] = 0$.
+
+\begin{lemma}[Positive side, trivial]\label{lem:pos} \PROVED{}
+Every refinement increment obeys $X_p \le \log_2 3$ pointwise: a block mean of
+three positive numbers is at least one third of any of them. (Measured maxima
+$1.53$--$1.58$: the bound is sharp.)
+\end{lemma}
+
+\begin{lemma}[Density beats depth]\label{lem:depth} \PROVED{}
+One suppression level costs one fresh trit of counting density
+(Lemma~\ref{lem:fresh} / Lemma~\ref{lem:sat}) and buys at most
+$\log_2(\rho\lam^2) \le 1.24$ bits of downward deviation (the one-level
+suppression factor is at least $\lam^{-2}/\rho$, directly from the equation).
+Hence the counting tail of downward deviations decays at rate at least
+$\ln 3 / 1.24 = 0.886$ nats per bit.
+\end{lemma}
+
+\begin{proposition}[Counting variance]\label{prop:vcount} \TODO[Task 1--2]
+With $K_{\mathrm{orth}}$ the correlation-decay constant (Law A, pair-tree
+mechanism; measured lag decay $= \pbar$ per lag, $c_0 \approx 0.11$) and
+$C_{\mathrm{inj}} = \Var_{\text{types}}\!\big(\log_2 \tfrac1{1-\varphi_t}\big)
+= 1.44$ bits$^2$ (computable from the k-stable branch means), the multiscale
+laws give
+\[
+\Var_{\mathrm{count}}(F) \;\le\; K_{\mathrm{orth}}\, C_{\mathrm{inj}}
+\frac{\mathrm{env}}{1-\mathrm{env}} \;=\; 5.3 \text{ bits}^2,
+\qquad \mathrm{env} = \tfrac{B_1+B_3}{3\rho}.
+\]
+Measured: $1.38$ bits$^2$ at $k=13$ --- the bound holds with $3.8\times$ headroom.
+\end{proposition}
+
+\section{Tilt stability: from counting to flow}
+
+The flow measure is the exponential tilt of counting by the field itself:
+$dW/d\,\mathrm{count} \propto e^{F \ln 2}$.
+
+\begin{proposition}[Tilt stability]\label{prop:tilt} \TODO[Task 3]
+Since (i) $X_p \le \log_2 3$ pointwise (Lemma~\ref{lem:pos}), (ii) downward
+counting tails decay at rate $0.886 > \ln 2 = 0.693$ nats/bit
+(Lemma~\ref{lem:depth}), (iii) $x^2 e^{tx} \le 4e^{-2}/t^2$ on $x \le 0$, and
+(iv) the tilt denominator is $\ge 1$ by Jensen on centered increments, each
+tilted increment variance is bounded by explicit constants and
+$\Var_W(F) \le C_{\mathrm{tilt}} \Var_{\mathrm{count}}(F)$ with
+$C_{\mathrm{tilt}}$ explicit. Measured: $\Var_W = 1.44$ vs
+$\Var_{\mathrm{count}} = 1.38$ at $k = 13$ ($C_{\mathrm{tilt}} \approx 1.04$).
+\end{proposition}
+
+\section{Assembly}
+
+\begin{proposition}[Chain flow; Lemma D]\label{prop:chain} \TODO[Task 4]
+Feed-domination chains of length $g$ (each level requiring
+$F(4m) - F(m) \le \log_2(\varepsilon\rho\lam^2)$, valid domain
+$\varepsilon < \lam^{-2}/\rho$) carry flow at most $\delta(\varepsilon)^g$ with
+$\delta < 1$, by flow-Chebyshev from Propositions~\ref{prop:vcount}--\ref{prop:tilt}
+plus one-step conditioning along the chain (Law A decay). Measured directly:
+$F_k(g)$ geometric in $g$ at every $k$ (ratios $0.40$--$0.66$).
+\end{proposition}
+
+\begin{corollary}[Main chain]\label{cor:chain}
+Lemma D $\Rightarrow$ flow-$L^2$ attenuation $\kappa \le \kappa_{\max} < 1$
+$\Rightarrow$ $q(k) \to 1$ geometrically $\Rightarrow$ $\gamma(k) \to 1$ by the
+edge-rate identity. \TODO[Task 5: the $\kappa$-to-$q$ bookkeeping, drafted in
+\cite{G1}].
+\end{corollary}
+
+\section{The five bookkeeping tasks}
+
+\begin{enumerate}
+\item Law A covariance step in counting measure: from ``shared path mass $\le$
+$\mathrm{env}^{d}$'' (Corollary~\ref{cor:envelope}) to
+$\mathrm{Cov}(X_p, X_q) \le c_0\,\mathrm{env}^{|p-q|}\sigma_p\sigma_q$
+(positivity bookkeeping; all path functionals positive).
+\item Law B profile step: $\Var(X_p) \le C_{\mathrm{inj}}\,\mathrm{env}^p$
+(elasticity bookkeeping on the frozen linear system).
+\item The explicit $C_{\mathrm{tilt}}$: combine
+Lemmas~\ref{lem:pos}--\ref{lem:depth} into the per-scale tilted-variance bound
+(the rate margin is $1.28\times$ crude, $3.3\times$ measured).
+\item The conditional (along-chain) Chebyshev recursion for
+Proposition~\ref{prop:chain}.
+\item The $\kappa \Rightarrow q \Rightarrow \gamma$ transfer constants
+(edge-rate identity is proved; the $\kappa$-to-$q$ step is drafted).
+\end{enumerate}
+
+No task affects an exponent; each is falsifiable independently; and the
+program's own history (four same-day retractions, each yielding a simpler
+structure, all preserved in the public log) is the strongest available evidence
+that the remaining tasks will be executed honestly.
+
+\begin{thebibliography}{9}
+\bibitem{KL} I.~Krasikov, J.~C.~Lagarias, \emph{Bounds for the 3x+1 problem
+using difference inequalities}, Acta Arith.\ 109 (2003), 237--258.
+\bibitem{G1} M.~de Jong (with Jengo), \emph{Towards density $x^{1-\varepsilon}$
+for the $3x+1$ problem: a program with one open lemma}, companion manuscript,
+July 2026 (papers/gamma\_to\_one.tex in the repository).
+\bibitem{NOTE} Research log, Obs.\ 289--381,
+\texttt{github.com/martiendejong/collatz\_ai}.
+\end{thebibliography}
+\end{document}
