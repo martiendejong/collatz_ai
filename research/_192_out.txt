@@ -1,0 +1,21 @@
+k=13 lam=1.8188: scale-increment correlation matrix (flow-weighted)
+p:  var(X_p)   and correlations with q=p+1..p+4
+p=1   var=0.34534  r1,2=+0.064  r1,3=+0.049  r1,4=+0.032  r1,5=+0.022
+p=2   var=0.21918  r2,3=+0.114  r2,4=+0.079  r2,5=+0.049  r2,6=+0.032
+p=3   var=0.14971  r3,4=+0.111  r3,5=+0.078  r3,6=+0.051  r3,7=+0.033
+p=4   var=0.10439  r4,5=+0.098  r4,6=+0.073  r4,7=+0.048  r4,8=+0.033
+p=5   var=0.07558  r5,6=+0.086  r5,7=+0.066  r5,8=+0.045  r5,9=+0.031
+p=6   var=0.05490  r6,7=+0.076  r6,8=+0.059  r6,9=+0.041  r6,10=+0.027
+p=7   var=0.04040  r7,8=+0.067  r7,9=+0.052  r7,10=+0.036  r7,11=+0.021
+p=8   var=0.02976  r8,9=+0.059  r8,10=+0.046  r8,11=+0.028  r8,12=+0.017
+p=9   var=0.02205  r9,10=+0.048  r9,11=+0.038  r9,12=+0.024
+p=10  var=0.01508  r10,11=+0.038  r10,12=+0.029
+p=11  var=0.00927  r11,12=+0.027
+p=12  var=0.00595  
+
+max |off-diagonal corr| = 0.114
+mean |corr| at lag 1: 0.072
+mean |corr| at lag>=3: 0.022
+
+Var(log2 v) flow-weighted: direct=1.4396  sum-diag=1.0716  sum-all=1.4396
+(orthogonality quality = how close sum-diag is to sum-all/direct)
