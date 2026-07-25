@@ -162,6 +162,45 @@ $j \in \{2,4,\dots,8\}$.)
 Let $M_p(i) = \E[F \mid i \bmod 3^p]$ (counting-measure block means),
 $X_p = M_p - M_{p-1}$, so $F = M_0 + \sum_p X_p$ with $\E[X_p] = 0$.
 
+\begin{lemma}[Block-equation self-similarity]\label{lem:block} \PROVED{}
+Let $V_p(c) = \E[v \mid i \equiv c \bmod 3^p]$ and
+$\bar V_{p-1}(r) = \E[\bar v \mid \cdot \equiv r \bmod 3^{p-1}]$. Then for
+every $2 \le p \le k-1$, exactly,
+\[
+V_p(c) \;=\; A\,V_p\big(4c{+}2 \bmod 3^p\big) \;+\;
+b(c)\,\bar V_{p-1}\big(R(c) \bmod 3^{p-1}\big),
+\]
+i.e.\ \emph{the block-mean field satisfies the Krasikov--Lagarias equation
+with the feed input one aggregation level down.}
+\end{lemma}
+\begin{proof}
+Take conditional expectations of the fixed-point equation over the block
+$\{i \equiv c\}$. The backbone map $i \mapsto 4i+2$ is affine with unit
+multiplier, so it sends the block bijectively onto the block of
+$4c+2 \bmod 3^p$. The branch type $i \bmod 3$ and hence $b$ is constant on
+the block (and $c \bmod 9$ determines D1/D2/D3 for $p \ge 2$). The feed map
+$R$ is affine and divides the index by $3$ once, so it sends the mod-$3^p$
+block onto a \emph{single} mod-$3^{p-1}$ block, hitting each member once
+(unit multiplier again). Linearity of $\E$ finishes.
+(Machine check at $k=13$, $p \in \{3,5,7\}$: maximal relative error
+$2\times 10^{-12}$.)
+\end{proof}
+
+\begin{remark}[The tower]\label{rem:tower}
+Lemma~\ref{lem:block} is the precise form of the generation-versus-level
+identification: the multiscale structure of the depth-$k$ field is a
+\emph{tower of lower-depth K--L systems} (exact at the level of equations;
+measured $\mathrm{corr}(\log V_p, \log v^{(p+1)}) = 0.989/0.995$ at
+$p = 5/7$ against the independent depth-$(p{+}1)$ Perron vectors, the
+residual deviation reflecting the $\lam$ mismatch between edges). The
+increments $X_p$ are log-ratios of consecutive tower fields; their decay
+(Law B) is the tower's convergence, and the min/mean gap between
+$\bar V_{p-1}$ and the minimum of block means is precisely the $q$-quantity
+whose approach to $1$ the whole program tracks. Together with the
+constant-lift embedding (companion log, Lemma S1: $\lam^*$ monotone in
+depth), this grounds the hierarchical reading used throughout.
+\end{remark}
+
 \begin{lemma}[Positive side, trivial]\label{lem:pos} \PROVED{}
 Every refinement increment obeys $X_p \le \log_2 3$ pointwise: a block mean of
 three positive numbers is at least one third of any of them. (Measured maxima
