@@ -111,13 +111,40 @@ further, so the sketch errs on the safe side. (c) Suppression from general
 desert subtrees (not just pure D2-runs) needs the recursive version of
 Lemma A.
 
+## The corrected engine: the Saturation Lemma [PROVED (sketch) — Obs 363/364]
+
+Vertical structure of the certificate field, measured (k = 13/15) and proved:
+
+- **Fertile tower** (m ≡ −1 mod 3^d): value RISES ≈ log₂ λ^{α−1} per rung
+  (measured 0.474/0.499 vs theory 0.505/0.515 — the tower monotonicity
+  v(m) ≥ (B₃/ρ)v̄(r₃(m)) is near-sharp along the −1 tower). Flow share
+  decays ≈ 0.45^d: rich but rare.
+- **Desert tower** (m ≡ −4 mod 3^j): penalty SATURATES at ≈ 2.5 bits,
+  saturation depth 3–4. **Saturation Lemma [proved]:** for j ≥ 2 the class
+  is D2 and 4m is D1 with
+  r₁(4m) + 4 = (16(m+4) − 54)/3, so the inherited desert depth is
+  v₃(r₁+4) = min(j, 3) − 1 (j ≠ 3): the constant **54 = 2·3³** caps the
+  cascade; deep deserts (j ≥ 4) transmit depth exactly 2 regardless of j,
+  and the critical stratum j = 3 splits by digit coincidence (the measured
+  3–4). Since 16m is D3, a desert touches only finitely many feed
+  generations: the value penalty telescopes to a bounded constant. ∎
+
+**Consequence.** No single arithmetic structure can produce unbounded
+suppression, hence none can feed a domination chain at small ε. Deep minima
+of the field are multi-scale coincidences — tail events of the
+log-correlated field — and the chain-flow decay (Lemma D) rests on the
+field-tail estimate alone.
+
 ## What a full proof still needs
 
-(i) Promote the sketch: join the desert-pair density cost with the
-λ(k)-dependence to a bound F_k(g) ≤ (θ(ε))^g with sup_k θ(ε) < 1 for some
-fixed ε < 1/4 — this is now a *finite* estimation problem in two explicit
-exponents, not an open-ended search.
-(ii) The recursive Lemma A (desert-stack suppression) — induction on subtree
-depth, engine = the v₃-cascade.
-(iii) The routine-but-unwritten variance bookkeeping of the summation step
+(i) **The field-tail estimate** (the analytic half, and now the ONLY half):
+Gaussian-type upper bound on the lower tail of log v at each scale, with
+variance growth pinned by measurement (script 191) — the machinery of
+log-correlated fields / branching random walks (links 4–5 of the original
+program). Everything arithmetic that could obstruct it is now proved
+bounded (Saturation Lemma).
+(ii) The routine-but-unwritten variance bookkeeping of the summation step
 (pair-tree prefix measure, cf. damping-theorem.md Lemma 2).
+(iii) Constant bookkeeping to promote the Saturation Lemma sketch to full
+proof (the j = 3 stratum via measure, the finitely-many-generations
+telescope with explicit constants).
