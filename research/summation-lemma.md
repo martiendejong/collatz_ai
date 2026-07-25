@@ -131,7 +131,14 @@ one statement:
 > transported through g feed edges (the g-th feed image of the Perron
 > flow μ). Then θ_g := E_{ν_g}[φ] satisfies sup_g θ_g ≤ θ < 1.
 
-**S: PROVED AT SKELETON LEVEL (Obs 372–373) — the hierarchy ladder.**
+**S: status corrected (Obs 374) — MEASURED monotone, two candidate
+mechanisms, neither closed.** The ladder derivation below is retained for
+the record but its premise (autonomous per-level dynamics) is NOT
+established in the true K–L system (lower-level values are minima of
+level-k lifts; dynamics stay at level k). The local alternative ("the min
+is feed-poor": argmin lift has lowest φ in 65.7% of triples, flow-weighted
+φ-gap −0.24%) is measured but weak; whether compounding closes it is open.
+Lemma S1 below is unaffected and fully proved.
 
 *Lemma S1 (constant-lift embedding) [PROVED + machine-checked].* For
 j ≤ k, a feasible solution of L_j^NT(λ) lifts to a feasible solution of
