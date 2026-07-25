@@ -17,16 +17,19 @@ contains $1$. Krasikov and Lagarias (2003) proved $\pi_1(x)\ge x^{0.84}$ for suf
 $x$ by exhibiting feasible solutions of a linear-program family $L_k^{NT}(\lambda)$ at depth
 $k=11$; this has remained the strongest unconditional lower bound (a December 2025 preprint,
 arXiv:2512.13760, still cites $x^{0.84}$ as the record). We solve $L_k^{NT}(\lambda)$
-at depths $k=13,15,17,19,20$ (up to $1{,}162{,}261{,}467$ constraints) and verify explicit
+at depths $k=13,15,17,19,20,21$ (up to $3{,}486{,}784{,}401$ constraints) and verify explicit
 rational certificates in exact integer arithmetic, obtaining
 \[
-\pi_1(x)\;\ge\; x^{0.9146}\qquad\text{for all sufficiently large }x,
+\pi_1(x)\;\ge\; x^{0.9184}\qquad\text{for all sufficiently large }x,
 \]
-with intermediate verified exponents $0.8624$, $0.8805$, $0.8953$, $0.9069$. No new mathematics is
+with intermediate verified exponents $0.8624$, $0.8805$, $0.8953$, $0.9069$, $0.9146$; the
+$k=21$ exponent was pre-registered as a prediction ($\gamma\approx0.918$, frozen 2026-07-16)
+before the computation. No new mathematics is
 required beyond \cite{KL}: Theorem~2.2 there converts any feasible solution into the density
 bound with exponent $\log_2\lambda$. Our contribution is computational: a monotone (nonlinear
-Perron) iteration replaces the interior-point solver, making depths $3^{19}$--$3^{20}$ feasible on a
-desktop machine, and every certificate is re-verified with all weights replaced by strict
+Perron) iteration replaces the interior-point solver, making depths $3^{19}$--$3^{20}$ feasible
+on a desktop machine (and $3^{20}$ classes at $k=21$ via memmapped strictly-sequential sweeps
+on an external drive), and every certificate is re-verified with all weights replaced by strict
 rational lower bounds. We further observe an exact scalar identity governing the family
 (the ``min-loss identity''), which predicts the feasibility edges to three decimals and
 suggests the method attains $x^{1-\varepsilon}$ for every $\varepsilon>0$.
@@ -63,20 +66,21 @@ $k$ & classes & $\lambda_0$ (rational) & min.\ slack & verified exponent\\
 15 & 4{,}782{,}969 & $1841/1000$ & $1.000307$ & $0.8805$\\
 17 & 43{,}046{,}721 & $93/50$ & $1.000504$ & $0.8953$\\
 19 & 387{,}420{,}489 & $15/8$ & $1.000939$ & $0.9069$\\
-20 & 1{,}162{,}261{,}467 & $1885/1000$ & $1.000194$ & $\mathbf{0.9146}$\\
+20 & 1{,}162{,}261{,}467 & $1885/1000$ & $1.000194$ & $0.9146$\\
+21 & 3{,}486{,}784{,}401 & $1890/1000$ & $1.000187$ & $\mathbf{0.9184}$\\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \begin{theorem}
-$\pi_1(x)\ \ge\ x^{0.9146}$ for all sufficiently large $x$.
+$\pi_1(x)\ \ge\ x^{0.9184}$ for all sufficiently large $x$.
 \end{theorem}
 
 \emph{Verification.} For each depth the deposited integer vector $C$ (scaled Perron vector)
 is checked against all constraints with $\lambda_0$ rational and every weight replaced by a
 strict rational lower bound (80-digit decimal floors minus one ulp, common denominator
-$10^{18}$); comparisons are exact integer arithmetic. Zero violations at all five depths
-($1.6\times 10^9$ constraints in total). Certificates and a standalone {\tt numpy}-only
+$10^{18}$); comparisons are exact integer arithmetic. Zero violations at all six depths
+($5.1\times 10^9$ constraints in total, of which $3.49\times 10^9$ at $k=21$ alone). Certificates and a standalone {\tt numpy}-only
 verifier are deposited with this note. Three independent cross-checks strengthen the claim:
 (i) a second, independently written implementation (different indexing and $\lambda$
 parametrization) reproduces the feasibility edges at overlapping depths to $3$--$4$ decimals
@@ -105,9 +109,12 @@ of the edge-linearized operator. If this contraction admits a uniform bound belo
 attains $\pi_1(x)\ge x^{1-\varepsilon}$ for every $\varepsilon>0$, as hoped in \cite{KL}.
 
 \begin{remark}
-Depth $k=21$ ($3.5\times 10^9$ classes) is the natural next computation and decides between
-the extrapolations $\gamma_\infty\approx 0.976$ (endpoint Shanks) and $\gamma_\infty=1$
-(profile/contraction model); it requires roughly $64$\,GB of memory.
+Depth $k=21$ was completed after the first draft of this note: the pre-registered
+prediction $\gamma\approx0.918$ (frozen before the computation) was confirmed at
+$\gamma=0.9184$, on a desktop by memmapped strictly-sequential sweeps. Depths
+$k=25$--$30$ (cloud scale) would discriminate between the extrapolations
+$\gamma_\infty\approx0.95$ (ceiling) and $\gamma_\infty=1$ (density); all
+flow-fraction measurements to date favor the latter.
 \end{remark}
 
 \begin{thebibliography}{9}
