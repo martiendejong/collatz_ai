@@ -6,3 +6,6 @@ name = "CollatzCert"
 
 [[lean_lib]]
 name = "CollatzCert13"
+
+[[lean_lib]]
+name = "CollatzCert14"
