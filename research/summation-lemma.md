@@ -131,14 +131,40 @@ one statement:
 > transported through g feed edges (the g-th feed image of the Perron
 > flow μ). Then θ_g := E_{ν_g}[φ] satisfies sup_g θ_g ≤ θ < 1.
 
-**S: status corrected (Obs 374) — MEASURED monotone, two candidate
-mechanisms, neither closed.** The ladder derivation below is retained for
-the record but its premise (autonomous per-level dynamics) is NOT
-established in the true K–L system (lower-level values are minima of
-level-k lifts; dynamics stay at level k). The local alternative ("the min
-is feed-poor": argmin lift has lowest φ in 65.7% of triples, flow-weighted
-φ-gap −0.24%) is measured but weak; whether compounding closes it is open.
-Lemma S1 below is unaffected and fully proved.
+**S: THE ABSORPTION ROUTE (Obs 375–376) — exponent UNCONDITIONAL.**
+(Historical note: an earlier "hierarchy ladder" derivation was retracted
+same-day, Obs 374; the retraction led to the discovery below, which is
+strictly stronger and needs no stationarity, no ergodicity, no measure
+theory on the critical path.)
+
+*Structure.* The selected-feed graph σ (x → argmin lift of its feed base)
+is a FOREST into D2 absorbers: zero cycles (k=11, all 39,366 feed
+classes checked); moreover the target's branch type is lift-independent
+(σ(x) ≡ rf(x) mod 9, since 3^{k−2} ≡ 0 mod 9), so the type walk is pure
+3-adic arithmetic. Any hypothetical σ-cycle would telescope
+Πφ = Πb = λ^{αA−B} — the internal feed cycles obey the same 2^B-vs-3^A
+obstruction as Collatz cycles themselves, and B3-rich cycles are
+forbidden outright by φ < 1.
+
+*Freshness Lemma [PROVED — two lines + machine check].* The type walk
+satisfies W^j(x) ≡ u_j·digit_j(x) + c_j(prefix) (mod 3), u_j ∈ {1,2}:
+each feed step reads one fresh trit, bijectively (each step divides by 3
+— a digit shift — and multiplies by a unit). Consequences, all exact:
+P(chain ≥ g) = (2/3)^g (measured identical to 4 decimals at
+k = 9,11,13,15); surviving types i.i.d. uniform on {D1, D3};
+counting-average E[Πb] = ((B1+B3)/3)^g, whose endpoint value at λ = 2 is
+(2^{α−2}+2^{α−1})/3 = **(3/4)^g exactly**. ∎
+
+*Remaining (the single technical item):* the counting-to-flow conversion
+— flow-shell_g = Σ_paths Πb·v(end)/Σv versus the unconditional counting
+bound. Two candidate routes: (i) bootstrap (counting-measure Summation
+Theorem first — shells there need no flow weighting — then relative-L²
+control of v, then flow correction; converges since corrections are
+multiplicative constants, not exponents); (ii) cascade telescope
+(flow-shell_g = Π θ_i exactly; measured θ_i ≤ φ̄ monotone decreasing;
+needs the min-selection bias made quantitative). Measured flow values
+sit comfortably under the counting envelope (θ_g = 0.64–0.70 vs 0.733).
+Lemma S1 below is independent and fully proved.
 
 *Lemma S1 (constant-lift embedding) [PROVED + machine-checked].* For
 j ≤ k, a feasible solution of L_j^NT(λ) lifts to a feasible solution of
