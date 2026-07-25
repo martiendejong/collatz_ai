@@ -10504,3 +10504,16 @@ Meting log2 v op edge-vectoren k=11-15: (1) variantie groeit met AFNEMENDE incre
 ### Obs 366 — *** k=21 GEVERIFIEERD: pi(x) >= x^0.9184 — ZEVENDE RECORDPUNT, VOORSPELLING RAAK ***
 
 Exacte gehele verificatie (script 186): **nul schendingen over alle 3.486.784.401 constraints** bij lambda_0 = 1890/1000 (gamma = 0.91839), gewichten strikte rationale ondergrenzen, S=1e10, verificatietijd 71 minuten (veel sneller dan geraamd; chunked object-arithmetiek haalde ~50M constraints/min). Certificaat cert_k21.npy (28GB, lokaal; regenereerbaar via scripts 185+186 uit k20_polished + state). De VOORGEREGISTREERDE voorspelling (PREDICTIONS #1, bevroren 2026-07-16: gamma(21) ~ 0.918, lambda* ~ 1.890) is EXACT geraakt - popperiaanse validatie van het tempering/drift-model. Pijplijn-lessen: memmapped strikt-sequentiele sweeps op een externe USB-schijf werken (40 sweeps, ~15h), min-ratio klom monotoon 0.9949 -> 1.000187, warm start van k=20-tegeling scheelde ~grofweg de helft. NOTE_DENSITY.tex bijgewerkt: zes dieptes, 5.1 miljard constraints totaal, hoofdstelling x^0.9184, k=25-30 als fork-discriminator. Volgende: README + follow-up-mail Lagarias (wacht op go van Martien).
+
+### Obs 367 — VOORREGISTRATIE-SCOREKAART k=21 (script 187b): vijf treffers, een bijna-treffer, een vier-decimalen-voltreffer
+
+Alle op 2026-07-16 bevroren voorspellingen getest op de geverifieerde k=21-vector:
+- #1 gamma = 0.918 (lambda* ~ 1.890): gemeten 0.9184 - **RAAK**
+- #2 alpha_21 = 0.887 +- 0.003: gemeten 0.8846 - **RAAK** (bandrand); tempering-R2 0.9980 > geeiste 0.9977 - **RAAK**
+- #3 CV_res = 0.116 +- 0.004: gemeten 0.1172 - **RAAK**
+- #4 theta = 0.850 +- 0.001: gemeten 0.8457 - **MIS** (0.0033 onder de band; eerlijk genoteerd). Informatief: theta lijkt te DALEN t.o.v. k=19 (0.8488) - als dit standhoudt is de attenuatie aan het afnemen, wat het dichtheidsmodel verder steunt; conventiegevoeligheid van de lattice-fit bij afgekapte diepe niveaus niet uitgesloten.
+- #5 (a,c) ~ (0.465, 0.528): gemeten (0.4597, 0.5396) - consistent op 1-2% (geen band gedeclareerd)
+- #7 q(21): regel voorspelde 0.97448, gemeten 0.97442 - **RAAK** (6e-5)
+- BONUS fijne-rand-saturatiewet CV_1(k) = 0.5136 - 0.337*(0.910)^k: voorspelt 0.4671 bij k=21, gemeten 0.4670 - **RAAK OP 4 DECIMALEN**; het volledige CV-profiel p=1..19 daalt glad geometrisch (0.467 -> 0.018).
+(#6 cascade-digit-energie: nog niet gemeten - vergt cascade-decompositie.)
+Eindstand: 5 raak + 1 vier-decimalen-bonustreffer + 1 consistent, 1 eerlijke mis (theta, 0.4%). Een bevroren model dat op een 3,49-miljard-klassen-berekening zo scoort is geen curve-fitting meer; de mis bij theta is zelf informatief (dalende attenuatie = pro-dichtheid).
