@@ -143,8 +143,19 @@ variance growth pinned by measurement (script 191) — the machinery of
 log-correlated fields / branching random walks (links 4–5 of the original
 program). Everything arithmetic that could obstruct it is now proved
 bounded (Saturation Lemma).
-(ii) The routine-but-unwritten variance bookkeeping of the summation step
-(pair-tree prefix measure, cf. damping-theorem.md Lemma 2).
+(ii) The variance bookkeeping of the summation step. Formal target:
+
+    Var_flow(digit depth d) ≤ E_flow[φ²] · Var_flow(d−1) + C_inj,
+
+with E_flow[φ²] measured 0.60–0.62 (Obs 329) < 1, giving bounded limit
+variance C_inj/(1−E[φ²]) — the mechanism behind the measured variance
+saturation (Obs 365, limit ≈ 2.2 bits²). **Care — two distinct axes:** the
+per-DIGIT contraction (amplitude √φ̄ ≈ 0.84, variance φ̄ ≈ 0.70, Obs 331)
+and the per-k variance increments (ratio ≈ 0.93, Obs 365) are different
+axes; the naive identification E[φ²] ↔ per-k increment ratio fails
+(0.61 ≠ 0.93). The k-axis increments presumably mix injection growth with
+digit-axis contraction; resolving this bookkeeping tension is the first
+task of the formal write-up, BEFORE any lemma is claimed.
 (iii) Constant bookkeeping to promote the Saturation Lemma sketch to full
 proof (the j = 3 stratum via measure, the finitely-many-generations
 telescope with explicit constants).
