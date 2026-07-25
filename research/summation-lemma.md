@@ -242,6 +242,39 @@ with explicit constants; total penalty P_max < ∞ uniformly. ∎
 This makes the tower part of the field uniformly bounded — the
 guard-rail under the Chebyshev step of item 3.
 
+## The bootstrap fixed point (assembly capstone, 2026-07-25 night)
+
+The counting-to-flow conversion closes as a fixed-point inequality.
+Structure (each step with its status):
+
+1. **Counting envelope [PROVED, Freshness Lemma]:**
+   Σ_paths(g) Πb = N·((B1+B3)/3)^g exactly; env := (B1+B3)/(3ρ) ≤ 0.79
+   on the whole range (0.733 at the k=13 edge; 3/(4ρ) at λ = 2).
+2. **Support coding [PROVED, same lemma]:** the g-th shell's support is a
+   union of residue classes mod 3^{g+O(1)} — so the flow weighting enters
+   ONLY through block means of v at scale g, i.e. through the multiscale
+   field M_g itself.
+3. **Exp-moment conversion [sub-Gaussian input]:** flow-shell_g ≤
+   env^g · E[exp-block-field] ≤ env^g · e^{c·V}, V = Var(log v),
+   c = ½(ln 2)² under the (measured, Obs 365: kurtosis negative, min at
+   2.3σ; tower part PROVED bounded by the Saturation Lemma) sub-Gaussian
+   tail control.
+4. **Summation feedback [Laws A/B]:** V ≤ K_orth · Σ_g (injection²)·
+   flow-shell_g ≤ K_orth·C_inj·e^{cV}·env/(1−env) =: F(V).
+5. **Fixed point:** V ≤ smallest root of V = F(V), which exists iff
+   F′ < 1 there. Numerical instantiation with measured constants
+   (V = 2.2 bits², env = 0.733, e^{cV} = 1.70, K_orth = 1.34):
+   the loop is consistent with ~2× margin; the remaining bookkeeping is
+   the injection constant C_inj (the per-scale variance injected by the
+   coefficient inhomogeneity B1 ≠ B3 ≠ 0 — finite, explicit, to be
+   computed rather than measured).
+
+This scheme needs NO sharp FGH: the envelope env < 1 is unconditional,
+and all corrections are multiplicative constants inside a contracting
+fixed-point map. The two genuinely remaining write-ups: (a) the
+sub-Gaussian exp-moment from Saturation + freshness (one-sided bounds
+suffice); (b) the injection constant C_inj.
+
 ## Final risk register
 
 Single analytic input **(S)**; measured over six generations at ≤ 0.05
