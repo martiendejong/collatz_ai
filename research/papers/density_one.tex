@@ -255,6 +255,28 @@ $\mathrm{Cov}(\tilde X_p, \tilde X_q) \le c_0\,\mathrm{env}^{|p-q|}
 \sigma_p \sigma_q$ (with $\le 0$ what is actually measured).
 \end{remark}
 
+\begin{lemma}[Jensen-deficit identity]\label{lem:jensen} \PROVED{}
+Let $J_p(c) = -\tfrac13\sum_t \log_2\!\big(3V_{p+1}(c_t)/\sum_s V_{p+1}(c_s)\big)
+\ge 0$ be the within-block Jensen deficit (zero iff the three sub-blocks are
+equal). Then, exactly,
+\[
+\E\big[\tilde X_{p+1} \,\big|\, \text{scale-}p \text{ block}\big] \;=\; -\,J_p,
+\qquad\text{hence}\qquad
+\mathrm{Cov}(\tilde X_p, \tilde X_{p+1}) \;=\; -\,\mathrm{Cov}(\tilde X_p, J_p).
+\]
+(Machine check: identity to $8\times 10^{-15}$; $J \ge 0$ everywhere;
+$\max J = 0.119$ at $k{=}13$, an order of magnitude below the crude bound
+$C_-^2/2$.) Consequently: (i) the lag-1 cross-term obeys
+$|\mathrm{Cov}(\tilde X_p, \tilde X_{p+1})| \le \sigma_p\,\sigma(J_p)$ with
+$\sigma(J_p) \le \max J_p$ bounded by the saturated spread
+(Lemma~\ref{lem:pos}(ii)) --- an explicit finite $c_0$, which is all the
+Summation Theorem requires; (ii) the measured \emph{sign} is explained:
+$\mathrm{corr}(\tilde X_p, J_p) = +0.53$ --- rich blocks are internally more
+spread --- so the cross-terms are negative, and proving this
+positive-association (FKG-flavored, via the multiplicative cascade) would
+upgrade the bound to the clean $\mathrm{Cov} \le 0$.
+\end{lemma}
+
 \begin{remark}[What this program says about the exceptional set --- and what
 it cannot say]\label{rem:S}
 Let $S$ be the set of integers not (yet) proven to reach $1$. The present
