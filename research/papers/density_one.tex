@@ -228,11 +228,37 @@ Three measured facts (k=13) make the tower decomposition strictly more
 convenient than the martingale one: (a) $\Var(\tilde X_p)$ decays with
 mid-profile ratio $0.66$--$0.71 \approx \pbar$ (Law B holds verbatim);
 (b) increments are pointwise bounded (Lemma~\ref{lem:pos}), which makes
-tilt stability elementary --- no tail analysis; (c) the cross-terms are
-\emph{negative} in aggregate ($\sum_p \Var(\tilde X_p) = 1.57$ vs
-$\Var(F) = 1.38$), so the summation upper bound
-$\Var(F) \le \sum_p \Var(\tilde X_p)$ holds \emph{as measured} and only a
-one-sided cross-term bound is needed rather than full orthogonality.
+tilt stability elementary --- no tail analysis; (c) the cross-correlations
+are \emph{universally negative}: all $55$ of $55$ pairs
+$(\tilde X_p, \tilde X_q)$, $p < q$, have negative correlation, decaying
+smoothly in the lag ($-0.06$ at lag $1$ to $-0.006$ at lag $5$), so that
+$\sum_{p,q} \mathrm{Cov} = 1.3796 \approx \Var(F) = 1.3821$ while
+$\sum_p \Var(\tilde X_p) = 1.573$: the summation upper bound
+$\Var(F) \le \sum_p \Var(\tilde X_p)$ holds with every cross-term helping.
+Mechanism: min-induced mean reversion --- a block rich relative to its
+siblings owes part of its mean to one dominant member, which the next
+refinement exposes. The bookkeeping task is thus the ONE-SIDED bound
+$\mathrm{Cov}(\tilde X_p, \tilde X_q) \le c_0\,\mathrm{env}^{|p-q|}
+\sigma_p \sigma_q$ (with $\le 0$ what is actually measured).
+\end{remark}
+
+\begin{remark}[What this program says about the exceptional set --- and what
+it cannot say]\label{rem:S}
+Let $S$ be the set of integers not (yet) proven to reach $1$. The present
+program makes the \emph{proven-convergent} set as thick as the method
+allows ($x^{1-\varepsilon}$); it does not bound $|S|$ from above --- the
+strongest upper bound remains logarithmic density zero (Tao 2019 plus
+verification to $2^{71}$). Moreover the K--L machinery is
+\emph{attractor-agnostic}: Theorem 2.2 bounds $\pi_a(x)$ for every
+$a \not\equiv 0 \bmod 3$, so if a second cycle existed, \emph{its} basin
+would enjoy the same $x^{\gamma}$ lower bounds. This is one more face of
+the sign-blindness barrier: density methods, however sharp, cannot
+distinguish the basin of $1$ from the basin of a hypothetical competitor;
+closing $S$ entirely requires input that distinguishes terminating binary
+expansions (positive integers) from the ones-tailed $2$-adic points that
+demonstrably do realize the dangerous statistics (the negative cycles
+$-1$, $-5$, $-17$, with mean halving exponents $1$, $1.5$, $1.571$, all
+below $\log_2 3$).
 \end{remark}
 
 \begin{lemma}[Density beats depth]\label{lem:depth} \PROVED{}
