@@ -211,12 +211,25 @@ block-mean fields). Then $F = \log_2 V_0 + \sum_{p} \tilde X_p$ \emph{exactly}
 \begin{lemma}[Bounded tower increments]\label{lem:pos}
 (i) \PROVED{} $\tilde X_p \le \log_2 3$ pointwise: $V_{p-1}$ is the mean of
 three positive sub-block means, hence $\ge V_p/3$.
-(ii) \TODO[part of Task 3]{} $\tilde X_p \ge -C_-$ with $C_-$ absolute:
-the block-mean fields satisfy the same period-3 branch cycle
-(D1$\to$D3$\to$D2 along the block backbone, same arithmetic as
-Lemma~\ref{lem:type}), so a block-level desert lasts exactly one step and
-suppresses by at most $\lam^{-2}/\rho$; block means average away
-individual deep-class tails.
+(ii) $\tilde X_p \ge -C_-$ with $C_-$ absolute. \emph{Proof outline
+(two proved ingredients + one damping recursion):}
+$\tilde X_p(c) = \log_2 \frac{3 V_p(c)}{V_p(c_0)+V_p(c_1)+V_p(c_2)}$ over
+the sibling triple at digit $p{-}1$, so it suffices to bound the sibling
+spread of the block field. First, \emph{no injection at the top digit}:
+siblings share their branch type and hence their coefficients exactly
+(adding $t\cdot 3^{p-1}$ does not change $c \bmod 9$ for $p \ge 3$), so by
+the Block-Equation Lemma their equations differ only through downstream
+values --- backbone images (again a sibling triple) and feed images (a
+sibling triple one level down, by digit consumption). Second, the
+resulting spread recursion has total weight $< 1$
+($\lam^{-2}/\rho + \pbar = 1$ split over strictly deeper spreads with
+factor $\le \pbar$ per feed descent), so sibling spread is a damped sum of
+injection at lower digits and \emph{saturates}: spread
+$\le C_{\mathrm{inj}}^{1/2}\,\pbar/(1-\pbar)$-type bounds, uniformly in
+$k$. (Measured: the top-scale lift spread is $0.88$ bits, flat in $k$ from
+$11$ to $15$; block-level deserts last one step by the period-3 cycle and
+cost at most $\log_2(\rho\lam^2) = 1.73$, with the measured worst
+increment $1.48$.) Hence $C_- \le \log_2 3 + \text{saturated spread}$.
 \emph{Measured:} $\max_p \sup |\tilde X_p| = 1.48$ at $k=13$, decreasing
 in $p$ (from $1.48$ at $p{=}1$ to $0.63$ at $p{=}11$) --- both sides
 bounded, in sharp contrast to the martingale increments $X_p$ whose
