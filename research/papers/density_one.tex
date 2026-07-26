@@ -201,11 +201,39 @@ constant-lift embedding (companion log, Lemma S1: $\lam^*$ monotone in
 depth), this grounds the hierarchical reading used throughout.
 \end{remark}
 
-\begin{lemma}[Positive side, trivial]\label{lem:pos} \PROVED{}
-Every refinement increment obeys $X_p \le \log_2 3$ pointwise: a block mean of
-three positive numbers is at least one third of any of them. (Measured maxima
-$1.53$--$1.58$: the bound is sharp.)
+\begin{definition}[Tower decomposition]\label{def:tower}
+Set $\tilde X_p = \log_2 V_p - \log_2 V_{p-1}$ (log-ratios of consecutive
+block-mean fields). Then $F = \log_2 V_0 + \sum_{p} \tilde X_p$ \emph{exactly}
+(telescoping; $V_{k-1} = v$), and each level obeys its own exact equation
+(Lemma~\ref{lem:block}).
+\end{definition}
+
+\begin{lemma}[Bounded tower increments]\label{lem:pos}
+(i) \PROVED{} $\tilde X_p \le \log_2 3$ pointwise: $V_{p-1}$ is the mean of
+three positive sub-block means, hence $\ge V_p/3$.
+(ii) \TODO[part of Task 3]{} $\tilde X_p \ge -C_-$ with $C_-$ absolute:
+the block-mean fields satisfy the same period-3 branch cycle
+(D1$\to$D3$\to$D2 along the block backbone, same arithmetic as
+Lemma~\ref{lem:type}), so a block-level desert lasts exactly one step and
+suppresses by at most $\lam^{-2}/\rho$; block means average away
+individual deep-class tails.
+\emph{Measured:} $\max_p \sup |\tilde X_p| = 1.48$ at $k=13$, decreasing
+in $p$ (from $1.48$ at $p{=}1$ to $0.63$ at $p{=}11$) --- both sides
+bounded, in sharp contrast to the martingale increments $X_p$ whose
+negative side grows with $k$.
 \end{lemma}
+
+\begin{remark}[Why the tower route wins]\label{rem:towerwins}
+Three measured facts (k=13) make the tower decomposition strictly more
+convenient than the martingale one: (a) $\Var(\tilde X_p)$ decays with
+mid-profile ratio $0.66$--$0.71 \approx \pbar$ (Law B holds verbatim);
+(b) increments are pointwise bounded (Lemma~\ref{lem:pos}), which makes
+tilt stability elementary --- no tail analysis; (c) the cross-terms are
+\emph{negative} in aggregate ($\sum_p \Var(\tilde X_p) = 1.57$ vs
+$\Var(F) = 1.38$), so the summation upper bound
+$\Var(F) \le \sum_p \Var(\tilde X_p)$ holds \emph{as measured} and only a
+one-sided cross-term bound is needed rather than full orthogonality.
+\end{remark}
 
 \begin{lemma}[Density beats depth]\label{lem:depth} \PROVED{}
 One suppression level costs one fresh trit of counting density
