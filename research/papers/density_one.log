@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  26 JUL 2026 13:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  31 JUL 2026 01:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -396,7 +396,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/HP/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3]
-Overfull \hbox (0.12808pt too wide) in paragraph at lines 258--262
+Overfull \hbox (0.12808pt too wide) in paragraph at lines 259--263
 [][]\OT1/cmr/bx/n/10.95 Lemma 4.6 \OT1/cmr/m/n/10.95 (Jensen-d-eficit iden-tity
 )\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 proved\OT1/cmr
 /m/n/10.95 ] \OT1/cmr/m/it/10.95 Let $\OML/cmm/m/it/10.95 J[]\OT1/cmr/m/n/10.95
@@ -407,7 +407,15 @@ Overfull \hbox (0.12808pt too wide) in paragraph at lines 258--262
  []
 
 [4]
-Overfull \hbox (18.94524pt too wide) in paragraph at lines 327--336
+Overfull \hbox (29.23114pt too wide) in paragraph at lines 346--352
+[][]\OT1/cmr/bx/n/10.95 Proposition 4.10 \OT1/cmr/m/n/10.95 (Count-ing vari-anc
+e)\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/it/10.95 Com-bin-ing the tower pieces: the
+ sum-ma-tion bound $[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 F\OT1/cmr/m/n/1
+0.95 ) \OMS/cmsy/m/n/10.95 ^^T
+ []
+
+
+Overfull \hbox (18.94524pt too wide) in paragraph at lines 371--380
 [][]\OT1/cmr/bx/n/10.95 Proposition 5.1 \OT1/cmr/m/n/10.95 (Tilt sta-bil-ity)\O
 T1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 bookkeeping\OT1/c
 mr/m/n/10.95 ]\OT1/cmr/m/it/10.95 [Task 3] Since (i) $\OML/cmm/m/it/10.95 X[] \
@@ -415,23 +423,19 @@ OMS/cmsy/m/n/10.95 ^^T [][] \OT1/cmr/m/n/10.95 3$ \OT1/cmr/m/it/10.95 point-wis
 e (Lemma [][]4.4[][]),
  []
 
-[5] (density_one.aux)
+[5] [6] (density_one.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `density_one.out' has not changed.
 (rerunfilecheck)             Checksum: D2F0BBB116AF9DE60222FF16ADC3DA6D;1463.
  ) 
 Here is how much of TeX's memory you used:
- 10163 strings out of 467871
- 154001 string characters out of 5419828
- 584295 words of memory out of 5000000
- 38888 multiletter control sequences out of 15000+600000
+ 10166 strings out of 467871
+ 154032 string characters out of 5419828
+ 584400 words of memory out of 5000000
+ 38889 multiletter control sequences out of 15000+600000
  642464 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,79p,550b,592s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -463,9 +467,9 @@ ts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/HP/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on density_one.pdf (5 pages, 349897 bytes).
+Output written on density_one.pdf (6 pages, 356229 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
+ 250 PDF objects out of 1000 (max. 8388607)
+ 42 named destinations out of 1000 (max. 500000)
  57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

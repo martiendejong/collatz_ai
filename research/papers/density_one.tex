@@ -182,8 +182,9 @@ the block (and $c \bmod 9$ determines D1/D2/D3 for $p \ge 2$). The feed map
 $R$ is affine and divides the index by $3$ once, so it sends the mod-$3^p$
 block onto a \emph{single} mod-$3^{p-1}$ block, hitting each member once
 (unit multiplier again). Linearity of $\E$ finishes.
-(Machine check at $k=13$, $p \in \{3,5,7\}$: maximal relative error
-$2\times 10^{-12}$.)
+(Machine check at $k=13$, now for \emph{all} $2 \le p \le 12$: maximal
+relative error $2.2\times 10^{-12}$ at every level; script
+194\_tower\_task2.py.)
 \end{proof}
 
 \begin{remark}[The tower]\label{rem:tower}
@@ -277,6 +278,42 @@ positive-association (FKG-flavored, via the multiplicative cascade) would
 upgrade the bound to the clean $\mathrm{Cov} \le 0$.
 \end{lemma}
 
+\begin{proposition}[Tower profile bound; Law B]\label{prop:towerB}
+For every $1 \le p \le k-1$,
+\[
+\Var_{\mathrm{count}}(\tilde X_p) \;\le\; C_{\mathrm{inj}}\,
+\mathrm{env}^{\,p-1},
+\qquad
+C_{\mathrm{inj}} = \Var_{\text{types}}\Big(\log_2 \tfrac1{1-\pbar_t}\Big),
+\quad \mathrm{env} = \tfrac{B_1+B_3}{3\rho}.
+\]
+\emph{Proof outline (three proved ingredients + elasticity bookkeeping):}
+(a) \emph{No injection at the top digit} (Lemma~\ref{lem:pos}(ii)): the
+sibling triple at digit $p{-}1$ shares its coefficients exactly, so
+$\tilde X_p$ is driven only through downstream differences. (b) By the
+Block-Equation Lemma the difference field satisfies the \emph{same} linear
+recursion as $V_p$ itself: backbone images are again digit-$(p{-}1)$
+sibling triples, feed images are digit-$(p{-}2)$ sibling triples one level
+down --- each feed descent lowers the differing digit by exactly one, so
+the injection (differing branch coefficients) is reached only after
+$p{-}1$ descents. (c) The counting mass of $g$-fold feed descents is the
+proved envelope $\mathrm{env}^{g}$ (Corollary~\ref{cor:envelope}), and the
+injected log-lift second moment is $C_{\mathrm{inj}}$ by definition. The
+remaining bookkeeping is the antichain-elasticity step (positive
+elasticities summing to $\le 1$ per level, companion log Law B), which
+converts (a)--(c) into the displayed inequality.
+\MEASURED{} (script 194\_tower\_task2.py, $k = 11,\dots,15$, every level):
+the bound holds at \emph{every} $(k,p)$ with margin $\ge 1.76$ (attained
+at $p=1$), growing to $7$--$15\times$ deep in the tower; the measured
+per-level ratio plateaus at $0.65$--$0.73 \approx \pbar = 1 - \lam^{-2}$,
+strictly below $\mathrm{env} = 0.731$--$0.735$ --- the observed decay rate
+is the flow feed-share, the proved envelope sits above it. The $p=1$
+margin decreases slowly in $k$ ($1.88 \to 1.76$ over $k=11..15$) with
+shrinking increments (saturation shape), consistent with a limit well
+above $1$; this creep is the same fine-end saturation already quantified
+by $CV_1(k) = 0.5136 - 0.337\cdot 0.910^k$ (companion log, Prop.\ 23).
+\end{proposition}
+
 \begin{remark}[What this program says about the exceptional set --- and what
 it cannot say]\label{rem:S}
 Let $S$ be the set of integers not (yet) proven to reach $1$. The present
@@ -305,18 +342,25 @@ Hence the counting tail of downward deviations decays at rate at least
 $\ln 3 / 1.24 = 0.886$ nats per bit.
 \end{lemma}
 
-\begin{proposition}[Counting variance]\label{prop:vcount} \TODO[Task 1--2]
-With $K_{\mathrm{orth}}$ the correlation-decay constant (Law A, pair-tree
-mechanism; measured lag decay $= \pbar$ per lag, $c_0 \approx 0.11$) and
-$C_{\mathrm{inj}} = \Var_{\text{types}}\!\big(\log_2 \tfrac1{1-\varphi_t}\big)
-= 1.44$ bits$^2$ (computable from the k-stable branch means), the multiscale
-laws give
+\begin{proposition}[Counting variance]\label{prop:vcount}
+Combining the tower pieces: the summation bound
+$\Var_{\mathrm{count}}(F) \le \sum_p \Var(\tilde X_p)$ (cross-terms
+one-sidedly bounded via the Jensen-deficit identity,
+Lemma~\ref{lem:jensen}, and measured $\le 0$ without exception) together
+with the profile bound (Proposition~\ref{prop:towerB}) gives the fully
+explicit
 \[
-\Var_{\mathrm{count}}(F) \;\le\; K_{\mathrm{orth}}\, C_{\mathrm{inj}}
-\frac{\mathrm{env}}{1-\mathrm{env}} \;=\; 5.3 \text{ bits}^2,
-\qquad \mathrm{env} = \tfrac{B_1+B_3}{3\rho}.
+\Var_{\mathrm{count}}(F) \;\le\; \sum_{p\ge 1} C_{\mathrm{inj}}\,
+\mathrm{env}^{\,p-1} \;=\; \frac{C_{\mathrm{inj}}}{1-\mathrm{env}}
+\;=\; 5.4 \text{ bits}^2 \quad (k=13),
 \]
-Measured: $1.38$ bits$^2$ at $k=13$ --- the bound holds with $3.8\times$ headroom.
+uniformly in $k$ (the constant drifts only through $\lam^*(k) \le 2$:
+at the endpoint $C_{\mathrm{inj}}/(1-\mathrm{env}) \to 6.1$).
+Measured: $\sum_p \Var(\tilde X_p) = 1.58$ and
+$\Var_{\mathrm{count}}(F) = 1.38$ bits$^2$ at $k=13$ --- the bound holds
+with $3.4\times$ headroom on the sum and $3.9\times$ on the variance
+itself, and no longer requires the separate correlation-decay constant
+$K_{\mathrm{orth}}$.
 \end{proposition}
 
 \section{Tilt stability: from counting to flow}
@@ -356,12 +400,19 @@ edge-rate identity. \TODO[Task 5: the $\kappa$-to-$q$ bookkeeping, drafted in
 \section{The five bookkeeping tasks}
 
 \begin{enumerate}
-\item Law A covariance step in counting measure: from ``shared path mass $\le$
-$\mathrm{env}^{d}$'' (Corollary~\ref{cor:envelope}) to
-$\mathrm{Cov}(X_p, X_q) \le c_0\,\mathrm{env}^{|p-q|}\sigma_p\sigma_q$
-(positivity bookkeeping; all path functionals positive).
-\item Law B profile step: $\Var(X_p) \le C_{\mathrm{inj}}\,\mathrm{env}^p$
-(elasticity bookkeeping on the frozen linear system).
+\item Law A covariance step: \emph{closed at explicit-$c_0$ level}
+(Jensen-deficit identity, Lemma~\ref{lem:jensen}: the lag-1 cross-term is
+$-\mathrm{Cov}(\tilde X_p, J_p)$ exactly, with $\sigma(J_p) \le \max J_p$
+bounded by the saturated spread; all cross-terms measured $\le 0$,
+$55/55$). Optional upgrade: prove the positive association
+$\mathrm{corr}(\tilde X_p, J_p) > 0$ (FKG-flavored) for the clean
+$\mathrm{Cov} \le 0$.
+\item Law B profile step: \emph{narrowed} (Proposition~\ref{prop:towerB};
+ingredients (a)--(c) proved, bound machine-checked at every $(k,p)$,
+$k \le 15$, margin $\ge 1.76$). Remaining: the antichain-elasticity
+sentence --- positive elasticities summing to $\le 1$ per level on the
+frozen linear system --- converting the envelope count into the variance
+inequality.
 \item The explicit $C_{\mathrm{tilt}}$: combine
 Lemmas~\ref{lem:pos}--\ref{lem:depth} into the per-scale tilted-variance bound
 (the rate margin is $1.28\times$ crude, $3.3\times$ measured).
@@ -382,7 +433,7 @@ using difference inequalities}, Acta Arith.\ 109 (2003), 237--258.
 \bibitem{G1} M.~de Jong (with Jengo), \emph{Towards density $x^{1-\varepsilon}$
 for the $3x+1$ problem: a program with one open lemma}, companion manuscript,
 July 2026 (papers/gamma\_to\_one.tex in the repository).
-\bibitem{NOTE} Research log, Obs.\ 289--381,
+\bibitem{NOTE} Research log, Obs.\ 289--390,
 \texttt{github.com/martiendejong/collatz\_ai}.
 \end{thebibliography}
 \end{document}
