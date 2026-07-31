@@ -26,6 +26,7 @@ Two structural upgrades, both checkable here:
     1.414: the measured c1 was Samuelson all along. Verified below at
     k = 11..15 (per-triple check exhaustively + aggregate margin).
 """
+import sys
 import numpy as np
 from math import log2, log
 
@@ -91,13 +92,23 @@ ratio = (1.0 - np.log2(grid)) / (RATE * (1.0 - q))
 print(f"    ratio (1-gamma)/(RATE*(1-q)): monotone increasing = "
       f"{bool(np.all(np.diff(ratio) > 0))}, "
       f"range {ratio[0]:.4f} -> {ratio[-2]:.4f} (lam->2 limit 1)")
-for lam_k, k in ((1.8188, 13), (1.8420, 15), (1.8585, 17), (1.8704, 19),
-                 (1.885, 20), (1.88664, 21)):
+# edge lambdas: k=13..18 measured at the bisection edge (scripts 194,
+# 198b, 198c), k=17 exact-certified, k=19/20/21 from certified edge
+# gammas (lam = 2^gamma: 0.90934, 0.9146, 0.9184). NB: an earlier
+# version of this table had k=19 as 1.8704 and k=21 as 1.88664 -- both
+# wrong (stale draft values); the illustrative ratio row printed from
+# them was skewed. The grid check (h >= 0) and the certificate-q
+# agreement in part (2) never depended on this table.
+for lam_k, k in ((1.81882, 13), (1.84197, 15), (1.852192, 16),
+                 (1.86168, 17), (1.870749, 18), (1.87823, 19),
+                 (1.885, 20), (1.89015, 21)):
     qq = q_of_lam(lam_k)
     rr = (1.0 - log2(lam_k)) / (RATE * (1.0 - qq))
     print(f"    k={k:2d} lam={lam_k:.5f}: q={qq:.5f}  ratio={rr:.4f}")
 
-# ---- (2) Samuelson leg ---------------------------------------------------
+# ---- (2) Samuelson leg (heavy: eigenvectors; run with --full) ------------
+if "--full" not in sys.argv:
+    sys.exit(0)
 print("\n(2) Samuelson: per-triple mean-min <= sqrt(2)*sigma;"
       " aggregate 1-q <= sqrt(2)*CV_w")
 for k in (11, 12, 13, 14, 15):
