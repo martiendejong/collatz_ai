@@ -89,7 +89,11 @@ The logical chain is: bounded multiscale variance of $F$ uniformly in $k$
 (Lemma D) $\Rightarrow$ flow-$L^2$ attenuation $\kappa \le \kappa_{\max} < 1$
 $\Rightarrow$ min-loss $q(k) \to 1$ $\Rightarrow$ $\gamma(k) \to 1$ via the
 edge-rate identity $d\gamma/dq = 1/\ln(4/3)$ \PROVED{} \cite{G1}. Sections
-2--6 prove every exponent entering this chain; Section 7 lists the bookkeeping.
+2--6 prove every exponent entering this chain; Section 7 records a shorter
+conditional route found during assembly (the \emph{endpoint route}:
+geometric decay of a single scalar sequence already implies
+$\gamma \to 1$ through the proved transfer legs, bypassing the Summation
+Theorem and the chain recursion); Section 8 lists the bookkeeping.
 
 \section{The selected-feed forest and the Freshness Lemma}
 
@@ -500,6 +504,62 @@ $\Rightarrow$ $\mathrm{CV}_{\mathrm{top}}(k) \to 0$ geometrically
 $\Rightarrow$ $q(k) \to 1$ $\Rightarrow$ $\gamma(k) \to 1$, the last two
 implications now carrying proved constants (Lemma~\ref{lem:transfer}).
 \end{corollary}
+
+\section{The endpoint route}
+
+Assembling the transfer constants exposed a shorter conditional route,
+which we record because it changes what the open core \emph{is}.
+
+\begin{theorem}[Endpoint route]\label{thm:endpoint}
+Suppose \emph{Endpoint Decay} holds: there are $C$ and $r < 1$ with
+\[
+\Var_{\mathrm{count}}\big(\tilde X_{k-1}\big) \;\le\; C\,r^{\,k}
+\qquad\text{for all } k,
+\]
+i.e.\ the \emph{single scalar sequence} of top-scale tower variances
+decays geometrically in depth. Then $\gamma_k \to 1$, with explicit
+constants:
+\[
+1 - \gamma_k \;\le\; \frac{\sqrt2}{\ln(4/3)}\,
+\sqrt{C^{\mathrm{e}}_{\mathrm{tilt}}\, C}\;r^{k/2}\,(1 + O(\text{spread})).
+\]
+\emph{Proof.} The endpoint tower variance controls the linear top-triple
+CVs up to the bounded Jensen gap (Lemma~\ref{lem:pos}); passing from
+counting to flow weighting costs the endpoint tilt factor
+$C^{\mathrm{e}}_{\mathrm{tilt}}$ (Proposition~\ref{prop:tilt}; measured
+$\le 1.5$, and the flow-weighted CV is in fact \emph{smaller} than the
+counting CV at $k \le 15$); Samuelson (Lemma~\ref{lem:transfer}(i))
+converts $\mathrm{CV}_{w,\mathrm{top}}$ into $1 - q_k$; the explicit
+min-loss curve (Lemma~\ref{lem:transfer}(ii)) converts $1-q_k$ into
+$1-\gamma_k$. \qed
+
+\emph{No Summation Theorem, no chain recursion, and no multi-scale
+uniformity enter this implication.} The critical path of the whole
+program reduces to one scalar sequence.
+\end{theorem}
+
+\begin{remark}[Measured status, and the two-constants audit]
+\label{rem:twoconstants}
+\MEASURED{} (script 194): $\Var(\tilde X_{k-1}) =
+0.00557/0.00462/0.00385/0.00323/0.00270$ at $k = 11..15$; ratios
+$0.829/0.833/0.839/0.836$, flat at $\approx 0.835$ --- numerically the
+attenuation constant $\kappa_{\mathrm{deep}} = 0.839 \pm 0.002$ of the
+independent linearized instrument \cite{G1}. The two attenuation
+measurements are the same number seen through two instruments.
+\emph{Honest audit:} Proposition~\ref{prop:towerB}'s bound
+$C_{\mathrm{inj}}\mathrm{env}^{k-2}$ covers the measured endpoint values
+with $15\times$ (at $k{=}11$) shrinking to $10\times$ (at $k{=}15$)
+margin, but it decays at $\mathrm{env} \approx 0.74$ per depth while the
+measured sequence decays at $\approx 0.835$ per depth: extrapolated, the
+bound is exhausted near $k \approx 35$. So either the deep rate bends
+down toward $\mathrm{env}$, or the envelope-to-elasticity residual of
+Task~2 fails asymptotically at the last scale. The structurally
+consistent reading is the second: the true deep rate is $\kappa$, not
+$\mathrm{env}$, and the gap between these two constants is exactly the
+quantitative content of the Open Lemma --- which the endpoint route now
+requires \emph{only at the last scale}, as the geometric decay of one
+scalar sequence, rather than as multi-scale uniform attenuation.
+\end{remark}
 
 \section{The five bookkeeping tasks}
 
