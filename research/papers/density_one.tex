@@ -565,6 +565,27 @@ $k \ge 19$ (chunked/memmap), the linearized attenuation operator at
 endpoint scales, or an analytic bound on the ratio sequence itself.
 Meanwhile the Samuelson margin is flat at $1.30$--$1.31$ across all
 eight depths: the proved transfer legs are insensitive to the fork.
+\end{remark}
+
+\begin{remark}[Decomposition of the creep]\label{rem:decomp}
+Exactly,
+$r_k = d_k \cdot l_k$ with
+$d_k = \Var(k{+}1, \lam_k)/\Var(k, \lam_k)$ (pure depth, parameter
+frozen; the cross terms are subcritical Perron profiles) and
+$l_k = \Var(k{+}1, \lam_{k+1})/\Var(k{+}1, \lam_k)$ (one parameter step
+along the $\lam^*$-ladder). \MEASURED{} (script 199, $k = 13..16$):
+$d = 0.788/0.787/0.797/0.805$ and $l = 1.065/1.060/1.059/1.056$. The
+ladder factor \emph{decreases toward $1$}: if its excess keeps decaying,
+its infinite product converges and it cannot carry the fork. The fork
+lives in the depth factor, which sits exactly in the known mid-cascade
+local-ratio band $0.80$--$0.86$ (companion log, R577--585) and creeps
+like it. This is the sharpest form of the open core to date:
+\[
+\textsc{Endpoint Decay} \iff \limsup_k d_k < 1,
+\]
+one contraction ratio at frozen parameter, connected to the charted
+local reduction (mid-cascade ratio uniformly below $1$, plus $CV_1$
+bounded --- companion log Prop.~23).
 \emph{Two-constants audit:} Proposition~\ref{prop:towerB}'s bound
 $C_{\mathrm{inj}}\mathrm{env}^{k-2}$ covers the measured endpoint values
 with margin shrinking from $15\times$ ($k{=}11$) to $\approx 8\times$
