@@ -298,10 +298,28 @@ down --- each feed descent lowers the differing digit by exactly one, so
 the injection (differing branch coefficients) is reached only after
 $p{-}1$ descents. (c) The counting mass of $g$-fold feed descents is the
 proved envelope $\mathrm{env}^{g}$ (Corollary~\ref{cor:envelope}), and the
-injected log-lift second moment is $C_{\mathrm{inj}}$ by definition. The
-remaining bookkeeping is the antichain-elasticity step (positive
-elasticities summing to $\le 1$ per level, companion log Law B), which
-converts (a)--(c) into the displayed inequality.
+injected log-lift second moment is $C_{\mathrm{inj}}$ by definition.
+(d) \emph{Antichain elasticity, explicit:} in the frozen linear system
+$V_p(c)$ is \emph{linear} in the injected endpoint values jointly, so
+$V_p(c) = \sum_j \tilde w_j I_j$ with positive path weights, and the
+elasticities $e_j = \tilde w_j I_j / V_p(c)$ are positive and sum to
+exactly $1$. By (a)--(b), siblings share every coefficient on paths
+with fewer than $p{-}1$ feed descents: $V_p(c_t) = S + D_t$ with $S$
+shared, so
+$\tilde X_p = \log_2\big(1 + (D_t - \bar D)/(S + \bar D)\big)$ is
+controlled by the \emph{deep elasticity}
+$e_{\ge p-1}(c) = \bar D/V \in [0,1]$ times the relative spread of the
+deep injections (whose log-variance is $C_{\mathrm{inj}}$; the Jensen
+gap between log and linear spread is bounded by
+Lemma~\ref{lem:pos}). Then
+$\Var(\tilde X_p) \lesssim \E[e_{\ge p-1}^2]\,C_{\mathrm{inj}}
+\le \E[e_{\ge p-1}]\,C_{\mathrm{inj}}$ using $e \le 1$. The one
+residual link is the \emph{envelope-to-elasticity comparison}
+$\E_{\mathrm{count}}[e_{\ge p-1}] \le \mathrm{env}^{p-1}$: per descent
+the elasticity is the class feed share $\varphi$, whose counting mean
+is $0.48 \ll \mathrm{env}$, and the product bookkeeping is
+Corollary~\ref{cor:envelope}'s proved statement for the $b$-weights ---
+converting $b$-products to $\varphi$-products is the last sentence.
 \MEASURED{} (script 194\_tower\_task2.py, $k = 11,\dots,15$, every level):
 the bound holds at \emph{every} $(k,p)$ with margin $\ge 1.76$ (attained
 at $p=1$), growing to $7$--$15\times$ deep in the tower; the measured
@@ -411,9 +429,24 @@ paid for by the counting mass decaying at $\approx 0.30$ per level ---
 much thinner than the structural $(2/3)^g$, because domination is a
 strictly stronger event than chain existence. Per level:
 counting surplus $2^{-1.30}$ versus tilt growth $2^{+0.38}$, the
-shell-level face of density-beats-tilt (Lemma~\ref{lem:depth}). The
-remaining write-out is exactly this comparison: bound the tilt growth by
-the counting surplus, both sides carried by proved lemmas.
+shell-level face of density-beats-tilt (Lemma~\ref{lem:depth}).
+\emph{What the proved constants give and what remains:} domination
+chains are $\sigma$-chains, so the per-level \emph{counting} ratio is
+$\le 2/3$ outright (Lemma~\ref{lem:fresh}); the measured counting ratio
+$\approx 0.30$ shows the extra factor $\approx 0.45$ is the cost of
+\emph{maintaining} the deviation across the feed step --- note the
+factors do \emph{not} multiply as independent events (deviations are
+persistent: a naive fresh-deviation cost per level would give $0.067$,
+below the measured $0.30$ --- overclaiming refuted before it was made).
+The chain therefore closes iff the \emph{tilted maintenance factor}
+(flow-weighted one-step persistence of $\{G \le -t_0\}$ along the
+selected feed edge) is $< \mathrm{env}/(2/3) = 1.10$. Measured:
+$0.60$--$0.78$ ($= r(g)/(2/3)$), margin $\ge 1.4\times$, uniform in
+$(k, \varepsilon, g)$. Bounding it is a per-level application of the
+Task-3 tilt machinery to the one-step increment of $G$ --- whose
+conditional variance the measurements already show \emph{contracts}
+($\le 0.90$). This single inequality is the remaining content of
+Task~4.
 The Markov step is directly supported: conditioning on domination at the
 current chain level \emph{contracts} the next level's variance (measured
 conditional variance ratios $\le 0.90$, all $(k,\varepsilon,g)$) and
@@ -478,23 +511,27 @@ bounded by the saturated spread; all cross-terms measured $\le 0$,
 $55/55$). Optional upgrade: prove the positive association
 $\mathrm{corr}(\tilde X_p, J_p) > 0$ (FKG-flavored) for the clean
 $\mathrm{Cov} \le 0$.
-\item Law B profile step: \emph{narrowed} (Proposition~\ref{prop:towerB};
-ingredients (a)--(c) proved, bound machine-checked at every $(k,p)$,
-$k \le 15$, margin $\ge 1.76$). Remaining: the antichain-elasticity
-sentence --- positive elasticities summing to $\le 1$ per level on the
-frozen linear system --- converting the envelope count into the variance
-inequality.
+\item Law B profile step: \emph{narrowed further} ---
+Proposition~\ref{prop:towerB} now carries the explicit elasticity step
+(d): linearity gives positive sum-$1$ elasticities, sibling coefficient
+sharing localizes $\tilde X_p$ to the deep elasticity, and
+$\Var \lesssim \E[e]\,C_{\mathrm{inj}}$. Remaining: the
+envelope-to-elasticity comparison
+$\E_{\mathrm{count}}[e_{\ge p-1}] \le \mathrm{env}^{p-1}$
+($b$-products to $\varphi$-products; per-descent counting mean $0.48
+\ll \mathrm{env}$).
 \item The explicit $C_{\mathrm{tilt}}$: combine
 Lemmas~\ref{lem:pos}--\ref{lem:depth} into the per-scale tilted-variance bound
 (the rate margin is $1.28\times$ crude, $3.3\times$ measured).
 \item The chain step for Proposition~\ref{prop:chain}, \emph{route
-corrected}: the second-moment (Chebyshev) version is refuted by
-measurement ($\E_W[G] < 0$ hurts; $\delta_0 > 1$); the remaining
-write-out is the envelope-times-tilt inequality
-$W\{\text{chain} \ge g\} \le C'_{\mathrm{tilt}}\,\mathrm{env}^g$ from
-Corollaries~\ref{cor:absorb}--\ref{cor:envelope} and
-Proposition~\ref{prop:tilt}, with the Markov step supported by the
-measured conditional contraction (variance ratios $\le 0.90$).
+corrected and localized}: the second-moment (Chebyshev) version is
+refuted by measurement ($\E_W[G] < 0$ hurts; $\delta_0 > 1$); the
+per-level counting factor $2/3$ is proved (chains are $\sigma$-chains);
+what remains is ONE inequality --- the tilted maintenance factor
+(flow-weighted one-step persistence of domination) $< \mathrm{env}/(2/3)
+= 1.10$, measured $0.60$--$0.78$ with $\ge 1.4\times$ margin, to be
+bounded by the per-level tilt machinery of Task 3 (conditional
+contraction measured $\le 0.90$).
 \item The $\kappa \Rightarrow q \Rightarrow \gamma$ transfer constants:
 \emph{closed} (Lemma~\ref{lem:transfer}: Samuelson leg proved outright,
 edge-rate leg one-sided on the whole explicit min-loss curve,

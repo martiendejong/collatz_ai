@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  31 JUL 2026 09:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  31 JUL 2026 14:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -407,7 +407,7 @@ Overfull \hbox (0.12808pt too wide) in paragraph at lines 259--263
  []
 
 [4]
-Overfull \hbox (29.23114pt too wide) in paragraph at lines 346--352
+Overfull \hbox (29.23114pt too wide) in paragraph at lines 364--370
 [][]\OT1/cmr/bx/n/10.95 Proposition 4.10 \OT1/cmr/m/n/10.95 (Count-ing vari-anc
 e)\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/it/10.95 Com-bin-ing the tower pieces: the
  sum-ma-tion bound $[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 F\OT1/cmr/m/n/1
@@ -415,7 +415,7 @@ e)\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/it/10.95 Com-bin-ing the tower pieces: the
  []
 
 
-Overfull \hbox (18.94524pt too wide) in paragraph at lines 371--380
+Overfull \hbox (18.94524pt too wide) in paragraph at lines 389--398
 [][]\OT1/cmr/bx/n/10.95 Proposition 5.1 \OT1/cmr/m/n/10.95 (Tilt sta-bil-ity)\O
 T1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 bookkeeping\OT1/c
 mr/m/n/10.95 ]\OT1/cmr/m/it/10.95 [Task 3] Since (i) $\OML/cmm/m/it/10.95 X[] \
@@ -424,7 +424,7 @@ e (Lemma [][]4.4[][]),
  []
 
 
-Overfull \hbox (3.93062pt too wide) in paragraph at lines 384--426
+Overfull \hbox (3.93062pt too wide) in paragraph at lines 402--459
 [][]\OT1/cmr/bx/n/10.95 Proposition 6.1 \OT1/cmr/m/n/10.95 (Chain flow; Lemma D
 )\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 bookkeeping\OT
 1/cmr/m/n/10.95 ]\OT1/cmr/m/it/10.95 [Task 4, cor-rected route] Feed-domination
@@ -474,10 +474,11 @@ pe1/public/amsfonts/cm/cmsy8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/HP/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on density_one.pdf (7 pages, 366185 bytes).
+ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/HP/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on density_one.pdf (7 pages, 378210 bytes).
 PDF statistics:
- 265 PDF objects out of 1000 (max. 8388607)
+ 270 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)
  57 words of extra memory for PDF output out of 10000 (max. 10000000)
 
