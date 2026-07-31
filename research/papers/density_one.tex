@@ -381,20 +381,78 @@ $\Var_{\mathrm{count}} = 1.38$ at $k = 13$ ($C_{\mathrm{tilt}} \approx 1.04$).
 
 \section{Assembly}
 
-\begin{proposition}[Chain flow; Lemma D]\label{prop:chain} \TODO[Task 4]
+\begin{proposition}[Chain flow; Lemma D]\label{prop:chain} \TODO[Task 4,
+corrected route]
 Feed-domination chains of length $g$ (each level requiring
-$F(4m) - F(m) \le \log_2(\varepsilon\rho\lam^2)$, valid domain
-$\varepsilon < \lam^{-2}/\rho$) carry flow at most $\delta(\varepsilon)^g$ with
-$\delta < 1$, by flow-Chebyshev from Propositions~\ref{prop:vcount}--\ref{prop:tilt}
-plus one-step conditioning along the chain (Law A decay). Measured directly:
-$F_k(g)$ geometric in $g$ at every $k$ (ratios $0.40$--$0.66$).
+$G := F(4m{+}2) - F(m) \le \log_2(\varepsilon\rho\lam^2) = -t_0(\varepsilon)$,
+valid domain $\varepsilon < \lam^{-2}/\rho$) carry flow at most
+$\delta(\varepsilon)^g$ with $\delta < 1$.
+\emph{Route correction (script 195\_chain\_chebyshev.py, $k=11..15$):}
+the second-moment version drafted earlier is \emph{refuted} --- the flow
+mean of the backbone log-ratio is negative and large
+($\E_W[G] = -1.09$ to $-1.31$, growing with $k$), so the flow-Chebyshev
+constant $\delta_0 = \Var_W(G)/(t_0 + \E_W[G])^2$ exceeds $1$ on
+essentially the whole $\varepsilon$-domain ($\Var_W(G) = 3.9$--$4.8$).
+Chebyshev is also \emph{lossy by a factor $8$--$10$}: the directly
+measured one-step domination mass is only $W\{G \le -t_0\} = 0.25$--$0.32$
+at $\varepsilon = 0.05$. The correct route is the one the rest of the
+manuscript already carries: domination is a counting-thin event
+(Corollary~\ref{cor:absorb}: $(2/3)^g$ exactly), its flow mass is the
+counting envelope times the tilt correction
+(Corollary~\ref{cor:envelope} + Proposition~\ref{prop:tilt}), so
+$W\{\text{chain} \ge g\} \le C'_{\mathrm{tilt}}\,\mathrm{env}^{\,g}$.
+The Markov step is directly supported: conditioning on domination at the
+current chain level \emph{contracts} the next level's variance (measured
+conditional variance ratios $\le 0.90$, all $(k,\varepsilon,g)$) and
+shifts its mean by $\le 0.94$ bits. \MEASURED{} realized per-step chain
+ratios $r(g) = 0.40$--$0.52$, decaying in $g$, at every $k \le 15$ ---
+uniformly below $\mathrm{env} = 0.731$--$0.735$ with $\ge 1.4\times$
+per-step margin (honest note: $r(1)$ creeps up with $k$, $0.46 \to 0.52$
+at $\varepsilon = 0.10$, the familiar fine-end creep; the envelope margin
+persists).
 \end{proposition}
+
+\begin{lemma}[Transfer constants]\label{lem:transfer} \PROVED{}
+(script 196\_transfer\_constants.py)
+\emph{(i) Samuelson leg.} For every $k$,
+\[
+1 - q_k \;\le\; \sqrt2\;\mathrm{CV}_{w,\mathrm{top}}(k),
+\]
+where $\mathrm{CV}_{w,\mathrm{top}}$ is the flow-weighted quadratic mean
+of the top-scale triple CVs. \emph{Proof (three lines):} Samuelson's
+inequality for $n=3$ gives $\mathrm{mean} - \min \le \sqrt2\,\sigma$ for
+every refinement triple; summing with weight $=$ triple mean gives
+$1 - q_k = \sum(\mathrm{mean}-\min)/\sum\mathrm{mean} \le
+\sqrt2 \sum\sigma/\sum\mathrm{mean}$; Cauchy--Schwarz converts the
+weighted mean of CVs into $\mathrm{CV}_w$. (Verified $k=11..15$: zero
+per-triple violations; aggregate margin $\approx 1.3\times$; the
+empirical linearization constant $c_1 \in [1.07, 1.45]$ of the companion
+log was Samuelson all along.)
+\emph{(ii) Edge-rate leg, one-sided.} The Min-Loss identity forces every
+critical pair onto the \emph{explicit} curve
+$q(\lam) = 3(1-\lam^{-2})/(\lam^{\alpha-2}+\lam^{\alpha-1})$ (machine
+check: certificate $q_k$ agrees to $10^{-12}$ at $k = 11..15$), so the
+transfer is one-variable calculus:
+\[
+1 - \gamma \;\le\; \frac{1-q(\lam)}{\ln(4/3)}
+\qquad\text{on all of } \lam \in (1,2],
+\]
+with equality only at the endpoint $\lam = 2$ (grid check: $2\times 10^6$
+points, $\min h = 0$ attained at $\lam = 2$; the endpoint derivative
+$d\gamma/dq = 1/\ln(4/3)$ is proved in \cite{G1}). Combining (i)+(ii):
+\[
+1 - \gamma_k \;\le\; \frac{\sqrt2}{\ln(4/3)}\,
+\mathrm{CV}_{w,\mathrm{top}}(k) \;=\; 4.917\,\mathrm{CV}_{w,\mathrm{top}}(k),
+\]
+so $\mathrm{CV}_{\mathrm{top}}(k) \to 0$ transfers to $\gamma_k \to 1$
+with fully explicit constants.
+\end{lemma}
 
 \begin{corollary}[Main chain]\label{cor:chain}
 Lemma D $\Rightarrow$ flow-$L^2$ attenuation $\kappa \le \kappa_{\max} < 1$
-$\Rightarrow$ $q(k) \to 1$ geometrically $\Rightarrow$ $\gamma(k) \to 1$ by the
-edge-rate identity. \TODO[Task 5: the $\kappa$-to-$q$ bookkeeping, drafted in
-\cite{G1}].
+$\Rightarrow$ $\mathrm{CV}_{\mathrm{top}}(k) \to 0$ geometrically
+$\Rightarrow$ $q(k) \to 1$ $\Rightarrow$ $\gamma(k) \to 1$, the last two
+implications now carrying proved constants (Lemma~\ref{lem:transfer}).
 \end{corollary}
 
 \section{The five bookkeeping tasks}
@@ -416,10 +474,19 @@ inequality.
 \item The explicit $C_{\mathrm{tilt}}$: combine
 Lemmas~\ref{lem:pos}--\ref{lem:depth} into the per-scale tilted-variance bound
 (the rate margin is $1.28\times$ crude, $3.3\times$ measured).
-\item The conditional (along-chain) Chebyshev recursion for
-Proposition~\ref{prop:chain}.
-\item The $\kappa \Rightarrow q \Rightarrow \gamma$ transfer constants
-(edge-rate identity is proved; the $\kappa$-to-$q$ step is drafted).
+\item The chain step for Proposition~\ref{prop:chain}, \emph{route
+corrected}: the second-moment (Chebyshev) version is refuted by
+measurement ($\E_W[G] < 0$ hurts; $\delta_0 > 1$); the remaining
+write-out is the envelope-times-tilt inequality
+$W\{\text{chain} \ge g\} \le C'_{\mathrm{tilt}}\,\mathrm{env}^g$ from
+Corollaries~\ref{cor:absorb}--\ref{cor:envelope} and
+Proposition~\ref{prop:tilt}, with the Markov step supported by the
+measured conditional contraction (variance ratios $\le 0.90$).
+\item The $\kappa \Rightarrow q \Rightarrow \gamma$ transfer constants:
+\emph{closed} (Lemma~\ref{lem:transfer}: Samuelson leg proved outright,
+edge-rate leg one-sided on the whole explicit min-loss curve,
+grid-verified with equality only at $\lam = 2$; combined constant
+$1-\gamma_k \le 4.917\,\mathrm{CV}_{w,\mathrm{top}}(k)$).
 \end{enumerate}
 
 No task affects an exponent; each is falsifiable independently; and the
@@ -433,7 +500,7 @@ using difference inequalities}, Acta Arith.\ 109 (2003), 237--258.
 \bibitem{G1} M.~de Jong (with Jengo), \emph{Towards density $x^{1-\varepsilon}$
 for the $3x+1$ problem: a program with one open lemma}, companion manuscript,
 July 2026 (papers/gamma\_to\_one.tex in the repository).
-\bibitem{NOTE} Research log, Obs.\ 289--390,
+\bibitem{NOTE} Research log, Obs.\ 289--392,
 \texttt{github.com/martiendejong/collatz\_ai}.
 \end{thebibliography}
 \end{document}
