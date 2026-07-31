@@ -540,25 +540,37 @@ program reduces to one scalar sequence.
 
 \begin{remark}[Measured status, and the two-constants audit]
 \label{rem:twoconstants}
-\MEASURED{} (script 194): $\Var(\tilde X_{k-1}) =
-0.00557/0.00462/0.00385/0.00323/0.00270$ at $k = 11..15$; ratios
-$0.829/0.833/0.839/0.836$, flat at $\approx 0.835$ --- numerically the
-attenuation constant $\kappa_{\mathrm{deep}} = 0.839 \pm 0.002$ of the
-independent linearized instrument \cite{G1}. The two attenuation
-measurements are the same number seen through two instruments.
-\emph{Honest audit:} Proposition~\ref{prop:towerB}'s bound
+\MEASURED{} (scripts 194, 198, 198b): $\Var(\tilde X_{k-1}) =
+0.00557/0.00462/0.00385/0.00323/0.00270/0.00227/0.00193$ at
+$k = 11..17$ ($k{=}16$ at the cold-start bisection edge
+$\lam^* = 1.852192$; $k{=}17$ at the exact-certified edge $1.86168$,
+power growth $1.0000003$). Ratios: $0.829/0.833/0.839/0.836/0.843/0.850$
+--- consistent with the attenuation constant
+$\kappa_{\mathrm{deep}} = 0.839 \pm 0.002$ of the independent linearized
+instrument \cite{G1} to $\approx 1\%$ at overlapping depths, \emph{but
+with an upward creep of $\approx +0.005$ per depth across the six
+ratios}. Saturation below $1$ (the reading consistent with every other
+series of this program: $CV_1$, $\theta$, $\kappa_{\mathrm{deep}}$
+itself) versus slow drift toward $1$ is \emph{not decidable from six
+points}; if the creep is genuine drift, Endpoint Decay fails and this
+route with it --- the statement is falsifiable by extending the series
+($k = 18, 19$) or by running the linearized attenuation instrument at
+the same endpoint scales. Meanwhile the Samuelson margin is flat at
+$1.30$--$1.31$ across all seven depths: the proved transfer legs are
+insensitive to the creep question.
+\emph{Two-constants audit:} Proposition~\ref{prop:towerB}'s bound
 $C_{\mathrm{inj}}\mathrm{env}^{k-2}$ covers the measured endpoint values
-with $15\times$ (at $k{=}11$) shrinking to $10\times$ (at $k{=}15$)
-margin, but it decays at $\mathrm{env} \approx 0.74$ per depth while the
-measured sequence decays at $\approx 0.835$ per depth: extrapolated, the
-bound is exhausted near $k \approx 35$. So either the deep rate bends
-down toward $\mathrm{env}$, or the envelope-to-elasticity residual of
-Task~2 fails asymptotically at the last scale. The structurally
-consistent reading is the second: the true deep rate is $\kappa$, not
-$\mathrm{env}$, and the gap between these two constants is exactly the
-quantitative content of the Open Lemma --- which the endpoint route now
-requires \emph{only at the last scale}, as the geometric decay of one
-scalar sequence, rather than as multi-scale uniform attenuation.
+with margin shrinking from $15\times$ ($k{=}11$) to $\approx 8\times$
+($k{=}17$); it decays at $\mathrm{env} \approx 0.74$ per depth against
+the measured $0.84$--$0.85$: extrapolated, the bound is exhausted near
+$k \approx 31$--$35$. So either the deep rate bends down toward
+$\mathrm{env}$, or the envelope-to-elasticity residual of Task~2 fails
+asymptotically at the last scale. The structurally consistent reading is
+the second: the true deep rate is $\kappa$, not $\mathrm{env}$, and the
+gap between these two constants is exactly the quantitative content of
+the Open Lemma --- which the endpoint route now requires \emph{only at
+the last scale}, as the geometric decay of one scalar sequence, rather
+than as multi-scale uniform attenuation.
 \end{remark}
 
 \section{The five bookkeeping tasks}
