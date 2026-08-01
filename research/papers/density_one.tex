@@ -675,11 +675,42 @@ d_\infty(2.0) \;=\; f(2) + \lim_k g(k) \;\approx\; 0.841
 --- \emph{two entirely different pipelines (frozen-$\lam$ endpoint
 extrapolation; linearized attenuation operator) converging on one
 endpoint contraction, comfortably below $1$.} Honest residue: a flat
-$+0.003$ tail cannot be excluded on six points (it would reach $1$
-only after $\sim 75$ further depths --- slow, but a fork nonetheless);
-the final $\lam$-free form of the open core remains formally open,
-now twice-predicted, twice-scored, and cross-instrument-consistent.
+$+0.003$ tail cannot be excluded on six points; the final $\lam$-free
+form of the open core remains formally open, now twice-predicted,
+twice-scored, and cross-instrument-consistent.
+\emph{Seventh point, scored against the shrinking-increment reading:}
+$d_{19}(1.70) = 0.7753$ (script 200c) --- increment $+0.0034$ after
+$+0.0028/+0.0029$: three consecutive steps flat at $\approx +0.003$.
+The $g$-increments have \emph{plateaued}, not decayed; the
+endpoint-equivalent now sits exactly at $\kappa_{\mathrm{deep}}$ and
+would pass it under a persistent $+0.003$. Verdict: the numeric
+instruments on this machine have reached their discriminating limit
+--- a constant $+0.003$ with $\pm 0.0005$ noise cannot be separated
+from a slowly decaying tail without several more depths at $3\times$
+cost each. The deciding input must be analytic (or cloud-scale).
 \end{remark}
+
+\begin{definition}[Conjecture G --- the residual open core, stated
+precisely]\label{conj:G}
+For fixed $\lam \in (1, 2]$ let $v^{(k)}_\lam$ be the Perron profile of
+the depth-$k$ operator (well-defined for every $k$; subcritical or
+supercritical as $\lam$ falls right or left of $\lam^*(k)$), and let
+$V_k(\lam) = \Var_{\mathrm{count}}\big(\log_2 v^{(k)}_\lam -
+\log_2(\text{top-triple mean})\big)$ be its endpoint tower variance.
+\emph{Conjecture G:} $\limsup_k V_{k+1}(\lam)/V_k(\lam) < 1$ for some
+(equivalently, under the measured separability, every) $\lam \in
+(1,2]$. By Theorem~\ref{thm:endpoint} and
+Remarks~\ref{rem:decomp}--\ref{rem:frozen}, Conjecture G implies
+$\gamma_k \to 1$, i.e.\ $\pi_1(x) \ge x^{1-\varepsilon}$ for every
+$\varepsilon$. Status: measured $d$-column at $\lam = 1.70$ through
+$k = 19$: $0.756/0.754/0.759/0.766/0.769/0.772/0.775$; two independent
+instruments put the limit at $\approx 0.84$; a persistent linear
+$+0.003$ tail (the failure mode) is not excluded. The natural analytic
+setting is the S1-nested frozen-$\lam$ hierarchy: the depth-$k$ systems
+embed by constant lifting, the deep-subcritical operator has a clean
+spectral gap, and $g$'s convergence is the existence of the endpoint
+contraction of the limit object.
+\end{definition}
 
 \section{The five bookkeeping tasks}
 
