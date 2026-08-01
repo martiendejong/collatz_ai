@@ -552,15 +552,22 @@ with an upward creep of $\approx +0.005$ per depth}. The extensions to $k = 18$ 
 classes at the certified edge $1.878186$) and $k = 20$ (computed from
 the \emph{saved} eigenvector of the certified record run;
 cross-validated: it reproduces the recorded $1 - q = 0.02768$ to
-$4\times 10^{-5}$) give $\Var = 0.001651/0.001406/0.001205$, ratios
-$0.855/0.852/0.857$. Full series
-$0.829/0.833/0.839/0.836/0.843/0.850/0.855/0.852/0.857$: the apparent
-bend at $k=19$ is within noise ($\pm 0.003$) --- \emph{the raw ratio
-keeps creeping}. The decomposition of Remark~\ref{rem:decomp} is the
-sharper instrument: $r = d \cdot l$ can creep while both factors trend
-benign, and the current $r = 0.857$ exceeds the extrapolated
-$d_\infty \approx 0.826$ by exactly the still-decaying ladder excess.
-The $1-q$ ratios: $0.914 \to 0.928 \to 0.927 \to 0.928$ ($k=11..20$). \emph{This identifies the endpoint sequence as the
+$4\times 10^{-5}$) give $\Var = 0.001651/0.001406/0.001205$, ratios $0.855/0.852/0.857$;
+and a tenth point comes free from the $k{=}21$ \emph{record
+certificate} itself ($3.49$G classes, int64, values $\sim 10^7$ so
+rounding is a $10^{-7}$ perturbation): $\Var = 0.001027$,
+$r_{20} = 0.852$. Full series
+$0.829/0.833/0.839/0.836/0.843/0.850/0.855/0.852/0.857/0.852$:
+\emph{the last four ratios plateau at $0.854 \pm 0.003$} --- over the
+deepest four points the net creep stops. (Caveat: the $k{=}21$ point is
+a feasible certificate rather than an edge Perron vector; its measured
+$1-q = 0.02558$ sits $0.0009$ below the critical-curve value $0.02647$,
+consistent with a slightly flatter feasible solution --- a bias that
+would make $r_{20}$ slightly low; the plateau reading is robust within
+the $\pm 0.003$ noise.) The decomposition of Remark~\ref{rem:decomp}
+remains the sharper instrument: the plateau value matches
+$d \approx 0.82$ times the dying ladder excess. The $1-q$ ratios:
+$0.914 \to 0.928 \to 0.927 \to 0.928 \to 0.925$ ($k=11..21$). \emph{This identifies the endpoint sequence as the
 program's old $\gamma$-fork in new clothes:} ratio saturation below $1$
 $\Leftrightarrow$ $\gamma \to 1$; ratio $\to 1$ $\Leftrightarrow$ the
 ceiling scenario ($\gamma_\infty < 1$, the Shanks reading
@@ -569,9 +576,9 @@ central open question to the limit behavior of one scalar sequence, but
 cannot decide it at directly computable depths; deciding instruments:
 $k \ge 19$ (chunked/memmap), the linearized attenuation operator at
 endpoint scales, or an analytic bound on the ratio sequence itself.
-Meanwhile the Samuelson margin is flat at $1.30$--$1.31$ across all
-nine depths ($1.296$ at $k{=}19$): the proved transfer legs are
-insensitive to the fork.
+Meanwhile the Samuelson margin is flat at $1.29$--$1.31$ across all ten
+depths ($1.288$ at $k{=}21$): the proved transfer legs are insensitive
+to the fork.
 \end{remark}
 
 \begin{remark}[Decomposition of the creep]\label{rem:decomp}
@@ -580,20 +587,24 @@ $r_k = d_k \cdot l_k$ with
 $d_k = \Var(k{+}1, \lam_k)/\Var(k, \lam_k)$ (pure depth, parameter
 frozen; the cross terms are subcritical Perron profiles) and
 $l_k = \Var(k{+}1, \lam_{k+1})/\Var(k{+}1, \lam_k)$ (one parameter step
-along the $\lam^*$-ladder). \MEASURED{} (scripts 199, 199b,
-$k = 13..18$): $d = 0.788/0.787/0.797/0.805/0.811/0.815$ and
-$l = 1.065/1.060/1.059/1.056/1.054/1.046$. \emph{Both components trend
-benign:} the $d$-increments decay geometrically
-($0.0094/0.0082/0.0056/0.0041$, ratio $\approx 0.74$), extrapolating to
-$d_\infty \approx 0.826$ --- well below $1$; the ladder excess decays
-($0.065 \to 0.046$), so its infinite product converges and $l$ cannot
-carry the fork. Under both trends $r_k \to d_\infty \approx 0.83$
-\emph{from above} --- the raw-ratio creep is the transient of the ladder
-excess. Falsifiable prediction: $d_{19} = 0.818 \pm 0.004$ (one $k{=}20$
-Perron run at the frozen $k{=}19$ edge, in progress); a value above
-$\approx 0.825$ weakens the saturation fit. The depth factor sits
-exactly in the known mid-cascade local-ratio band $0.80$--$0.86$
-(companion log, R577--585). This is the sharpest form of the open core
+along the $\lam^*$-ladder). \MEASURED{} (scripts 199, 199b, 199d,
+$k = 13..19$): $d = 0.788/0.787/0.797/0.805/0.811/0.815/0.822$ and
+$l = 1.065/1.060/1.059/1.056/1.054/1.046/1.043$. The ladder leg is
+robust: the excess decays monotonically ($0.065 \to 0.043$), so its
+infinite product converges and $l$ cannot carry the fork. On the depth
+leg we registered a falsifiable prediction before measuring: the
+$d$-increments $0.0094/0.0082/0.0056/0.0041$ decayed near-geometrically
+(ratio $\approx 0.74$), extrapolating to $d_\infty \approx 0.826$ and
+predicting $d_{19} = 0.818 \pm 0.004$. \emph{Scored:} measured
+$d_{19} = 0.8217$ --- inside the band by $0.0003$, at its upper edge,
+and the increment \emph{rebounds} ($+0.0071$ after $+0.0041$), breaking
+the clean geometric-decay pattern. Honest verdict: the saturation fit
+is weakened, not refuted; saturation versus drift on $d$ is now as
+undecidable at directly computable depths as it was on $r$. The depth
+factor sits exactly in the known mid-cascade local-ratio band
+$0.80$--$0.86$ (companion log, R577--585); deciding input must come
+from the analytic side (the S1-nested frozen-$\lam$ limit object) or
+from cloud-scale depth. This is the sharpest form of the open core
 to date:
 \[
 \textsc{Endpoint Decay} \iff \limsup_k d_k < 1,
