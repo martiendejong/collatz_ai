@@ -627,6 +627,45 @@ the last scale}, as the geometric decay of one scalar sequence, rather
 than as multi-scale uniform attenuation.
 \end{remark}
 
+\begin{remark}[The frozen-$\lam$ grid: the endpoint measured, the
+uniformity clause dissolved]\label{rem:frozen}
+The own-edge series can never decouple $\lam_k \to 2$ from
+$k \to \infty$. The frozen grid can: at \emph{fixed} $\lam$ --- including
+$\lam = 2$ exactly --- the depth-$k$ system is merely subcritical and
+its Perron profile is well-defined. \MEASURED{} (script 200,
+$k = 13..17$, $300$ iterations each):
+\[
+\begin{array}{lcccc}
+\lam & d_{13} & d_{14} & d_{15} & d_{16} \\
+1.70 & 0.7560 & 0.7535 & 0.7590 & 0.7662 \\
+1.80 & 0.7825 & 0.7803 & 0.7857 & 0.7934 \\
+1.85 & 0.7940 & 0.7918 & 0.7967 & 0.8046 \\
+1.90 & 0.8045 & 0.8019 & 0.8064 & 0.8141 \\
+1.95 & 0.8137 & 0.8107 & 0.8151 & 0.8225 \\
+2.00 & 0.8217 & 0.8184 & 0.8228 & 0.8300 \\
+\end{array}
+\]
+Three readings. (i) \emph{The endpoint column exists and sits far below
+$1$}: $d_k(2.0) = 0.82$--$0.83$, no drift toward $1$ at the endpoint
+itself. (ii) \emph{The two directions decouple}: the matrix is
+approximately additively separable, $d_k(\lam) \approx f(\lam) + g(k)$
+--- the $\lam$-span per depth is constant to $3\%$
+($0.0657/0.0649/0.0638/0.0638$) and the $k$-drift per $\lam$ is
+constant to $\sim 20\%$ ($0.0102$--$0.0083$); $f$ is smooth and
+decelerating toward $\lam = 2$. (iii) Consequently \emph{the hard
+clause of the Open Lemma --- uniformity as $\lam \to 2$ --- dissolves
+empirically}: the $k$-drift has the same shape at deep-subcritical
+$\lam = 1.70$ as at the endpoint, so under the measured separability
+$\sup_\lam d_\infty(\lam) = f(2) + \lim_k g(k)$, and the open core
+reduces to the convergence of \emph{one $\lam$-free sequence} $g(k)$,
+measurable at any $\lam$ --- in particular at cheap deep-subcritical
+parameters with clean spectral gaps. Registered prediction (script
+200b, running): $d_{17}(1.70) = 0.771 \pm 0.004$,
+$d_{18}(1.70) = 0.775 \pm 0.006$, increments shrinking if $g$
+saturates; persistent non-shrinking increments keep the fork open in
+this final $\lam$-free form.
+\end{remark}
+
 \section{The five bookkeeping tasks}
 
 \begin{enumerate}
