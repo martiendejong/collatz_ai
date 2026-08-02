@@ -710,7 +710,45 @@ setting is the S1-nested frozen-$\lam$ hierarchy: the depth-$k$ systems
 embed by constant lifting, the deep-subcritical operator has a clean
 spectral gap, and $g$'s convergence is the existence of the endpoint
 contraction of the limit object.
+(Convergence audit, script 200d: $V_k(1.70)$ is identical to all eight
+printed digits at $150/300/600/1200$ power iterations for
+$k = 15,16,17$ --- the plateau is a property of the systems, not of the
+solver.)
 \end{definition}
+
+\begin{remark}[The analytic frame for Conjecture G, and the quantified
+obstruction]\label{rem:Gframe}
+At fixed $\lam$ the classes at depth $k$ are residues mod $3^{k-1}$;
+in the $k \to \infty$ limit the profile lives on the $3$-adic integers
+$\Z_3$. The backbone $x \mapsto 4x+2$ is an \emph{isometry} of $\Z_3$
+($4$ is a unit); the feed maps compose with the digit shift
+$x \mapsto \lfloor x/3 \rfloor$, which is \emph{$3$-expansive}. In this
+language Conjecture G is a regularity statement:
+$V_{k+1}/V_k \to d_\infty < 1$ says the fine-scale increments of the
+limit log-profile decay geometrically, i.e.\ $\log_2 v_\lam$ is
+$3$-adically H\"older with exponent
+$\alpha_H = -\log_3 \sqrt{d_\infty}$ (measured $\alpha_H \approx 0.11$
+at $\lam = 1.70$); the failure mode is exactly $\alpha_H = 0$.
+\emph{Why classical transfer-operator regularity does not apply
+off-the-shelf:} the normalized weights satisfy
+$A/\rho + \bar\varphi = 1$, and pulling a H\"older seminorm through the
+$3$-expansive feed costs a factor $3^{\alpha_H} > 1$, so the naive
+bootstrap gives $H(Fv/\rho) \le (A/\rho + \bar\varphi\, 3^{\alpha_H})
+H(v) > H(v)$ --- useless for every $\alpha_H > 0$. The measured
+contraction $d \approx 0.78$ must therefore come entirely from what
+this bound discards, and the campaign has measured all three sources:
+(i) sibling coefficient sharing (no injection at the top digit ---
+exact algebra, proved at every finite $k$); (ii) min/mean cancellation
+(the min of three lifts is smoother than its members; the $q$-machinery);
+(iii) sign cancellation (tower cross-terms universally negative,
+$55/55$). The candidate program: recast $d$ as an \emph{operator}
+quantity --- the $L^2$ spectral radius of the linearized difference
+operator on the zero-top-mean subspace at frozen $\lam$ --- and seek an
+S1-style nesting/monotonicity argument for it, mirroring the proved
+constant-lift monotonicity of $\lam^*$. That would convert Conjecture G
+from a statement about one measured sequence into a statement about one
+computable operator norm.
+\end{remark}
 
 \section{The five bookkeeping tasks}
 

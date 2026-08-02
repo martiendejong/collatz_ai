@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  1 AUG 2026 22:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  2 AUG 2026 09:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -440,7 +440,7 @@ r/m/n/10.95 )\OML/cmm/m/it/10.95 =[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 k[]
 \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; ^^U[]\OT1/cmr/m/n/10.95 )$
  []
 
-[8] [9] [10] (density_one.aux)
+[8] [9] [10] [11] (density_one.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -449,10 +449,10 @@ Package rerunfilecheck Info: File `density_one.out' has not changed.
 (rerunfilecheck)             Checksum: 6430DCFFF325D1EDF7AC7E1ABA58CB41;1602.
  ) 
 Here is how much of TeX's memory you used:
- 10188 strings out of 467871
- 154303 string characters out of 5419828
- 585798 words of memory out of 5000000
- 38900 multiletter control sequences out of 15000+600000
+ 10192 strings out of 467871
+ 154341 string characters out of 5419828
+ 585893 words of memory out of 5000000
+ 38902 multiletter control sequences out of 15000+600000
  643066 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,79p,550b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -485,9 +485,9 @@ eX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/HP/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/HP/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on density_one.pdf (10 pages, 399316 bytes).
+Output written on density_one.pdf (11 pages, 404769 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 53 named destinations out of 1000 (max. 500000)
+ 308 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
