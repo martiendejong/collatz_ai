@@ -840,8 +840,22 @@ there listed as an \emph{optional} upgrade is in fact \emph{the
 load-bearing coupling of Conjecture G}. Sharpest form to date:
 \emph{G follows from a persistent rich--rough positive association on
 the multiplicative cascade} --- a recognized genre
-(FKG/positive-association inequalities) rather than a bespoke
-asymptotic.
+(FKG/positive-association inequalities \cite{EPW,FKG}) rather than a
+bespoke asymptotic. Direct measurement of the coupling (script 206):
+$\mathrm{corr}(\log \mathrm{level}, \log \mathrm{spread}) \approx
+0.79$ across triples, eroding only at $-0.002$ per depth with the
+variance increments decaying geometrically (saturation signature,
+$\mathrm{corr}_\infty \approx 0.78$ on-trend); and the na\"ive
+shared-prefix model (log-log slope $1$) is \emph{refuted in the
+favorable direction}: the slope is $1.2450$, converged to four decimals
+--- a new dead-flat constant. The coupling is \emph{super}-multiplicative
+(rich triples are disproportionately rough, rich--rough elasticity
+$0.245$), which is Lemma~\ref{lem:jensen}'s
+$\mathrm{corr}(\tilde X_p, J_p) = +0.53$ in elasticity form. Analytic
+subtlety, flagged honestly: EPW association applies directly to the
+min (a nondecreasing function of the lifts), but \emph{spread} is not
+monotone --- the proof route must pass through monotone moment
+functionals, and that step is the genuine open craft.
 \end{remark}
 
 \section{The five bookkeeping tasks}
@@ -893,7 +907,13 @@ using difference inequalities}, Acta Arith.\ 109 (2003), 237--258.
 \bibitem{G1} M.~de Jong (with Jengo), \emph{Towards density $x^{1-\varepsilon}$
 for the $3x+1$ problem: a program with one open lemma}, companion manuscript,
 July 2026 (papers/gamma\_to\_one.tex in the repository).
-\bibitem{NOTE} Research log, Obs.\ 289--392,
+\bibitem{NOTE} Research log, Obs.\ 289--410,
 \texttt{github.com/martiendejong/collatz\_ai}.
+\bibitem{EPW} J.~D.~Esary, F.~Proschan, D.~W.~Walkup, \emph{Association
+of random variables, with applications}, Ann.\ Math.\ Statist.\ 38
+(1967), 1466--1474.
+\bibitem{FKG} C.~M.~Fortuin, P.~W.~Kasteleyn, J.~Ginibre,
+\emph{Correlation inequalities on some partially ordered sets},
+Comm.\ Math.\ Phys.\ 22 (1971), 89--103.
 \end{thebibliography}
 \end{document}
