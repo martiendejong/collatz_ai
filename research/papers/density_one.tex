@@ -787,6 +787,27 @@ Jacobian $J_k$ --- the linearization of ``solve the depth-$(k{+}1)$
 Perron problem given the depth-$k$ feed input,'' which exists exactly
 by the Block-Equation Lemma. Measuring $\|J_k\|$ on the top scale is
 the next instrument.
+\MEASURED{} (script 203): pushing $P_W$ through the depth-$(k{+}1)$
+fixed-point equation gives, \emph{exactly},
+$x = \tfrac1g\,[A\,x\!\circ\!T4 + b\,y\!\circ\!R]$ with $x$ the profile
+top-deviation and $y$ the min-field top-deviation, so
+$d_{\mathrm{lin}} = (f_1 f_2 f_3)^2$ with $f_1$ the resolvent gain,
+$f_2 = \|y\|/\|u\|$ the min/mean top-deviation ratio, $f_3$ the tower
+correspondence. Measured ($k \to k{+}1$, $13..18$):
+$f_1 = 0.9225 \to 0.9154$ (falling), $f_3 = 1.127 \to 1.109$
+(falling/stable) --- \emph{both benign}; the creep carrier is
+$f_2 = 0.861 \to 0.882$: \emph{the min-smoothing (attenuation)
+factor}, the frozen-$\lam$ cousin of $\kappa_{\mathrm{deep}}$. The
+circle closes: the localized form of Conjecture G is the original
+attenuation question, now with quantified headroom ---
+\[
+d < 1 \iff f_2 < \frac{1}{f_1 f_3} \approx 0.985,
+\qquad f_2 = 0.882 \text{ at } k = 17{\to}18,
+\]
+about $10\%$ of room at the familiar $+0.005$-per-depth creep, the two
+companion factors measured helping, and the mechanism named: the
+top-scale smoothing exerted by the min over its three lifts weakening
+slowly with depth. Conjecture G $=$ that smoothing does not die.
 \end{remark}
 
 \section{The five bookkeeping tasks}
