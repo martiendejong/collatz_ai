@@ -769,6 +769,24 @@ $\sigma_W(k)/\rho(k)$ convergent below $1$ via S1-nesting --- an
 operator statement, now backed by flat data --- and (B) the
 identification: exhibit the operator quantity that \emph{does} bound
 $d_k$, and show it inherits (A)'s flatness.
+\MEASURED{} (script 202, adjointness machine-checked to $10^{-18}$):
+the operator-norm candidate for (B) \emph{fails} ---
+$s_{\max}(M)/\rho = 1.53 \to 1.51$ ($k = 12..17$, slowly falling), so
+$d \le s_{\max}/\rho$ is true but useless, and $M$ is strongly
+non-normal ($s_{\max}/\sigma_W \approx 2.0$). Meanwhile the realized
+endpoint field $x = P_W v$ has one-step Rayleigh growth
+$\|Mx\|/(\rho\|x\|) = 0.491 \pm 0.001$ --- \emph{dead flat, the
+flattest constant of the campaign}: the realization lives in the
+strongly contracting part of $M$'s range, $k$-uniformly. Since
+$d_k \approx 0.77$ exceeds \emph{every} within-depth quantity of the
+realized field, the conclusion is structural: \emph{the cross-depth
+ratio $d$ is not a within-depth propagation quantity at all}. It
+compares Perron eigenvectors of different depths, so the correct
+avatar for (B) is the \emph{cross-depth map itself}: the tower
+Jacobian $J_k$ --- the linearization of ``solve the depth-$(k{+}1)$
+Perron problem given the depth-$k$ feed input,'' which exists exactly
+by the Block-Equation Lemma. Measuring $\|J_k\|$ on the top scale is
+the next instrument.
 \end{remark}
 
 \section{The five bookkeeping tasks}
