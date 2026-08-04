@@ -11087,3 +11087,42 @@ SPECTRALE INTERPRETATIE: rho1(k) = -1/2 * eta(k) waarbij eta(k) het AANDEEL van 
 VAR_END_BLOCK KRUIST 1.0 bij k~12. Between k=11 (0.990) en k=12 (1.005). Dit markeert het niveau waarop de TYPE-SCHEIDING Var_{r,s}[log(v_r(s)/m(s))] > 1: de log-spreiding van types t.o.v. lokaal gemiddelde overschrijdt "eenheid" (log-schaal eenheid). De var_end_CODE krimpt tegelijkertijd: bij k=12, var_end_CODE = 0.00262. Ratio BLOCK/CODE bij k=12: 1.005/0.00262 ~ 384. Dit groeit snel (384, 515, 689, 924, 1227 voor k=12..16).
 
 BEWIJS-RELEVANTIE: d_k < 1 bewezen voor k=4..19 door directe meting. Het k=3 geval geeft rho1=-0.5 exact als GRONDTOESTAND: de K-L operator's eigenvector bij k=3 is een pure eerste harmonische op Z/3, de maximaal anti-correlerende mogelijke functie. Als k groeit: meer harmonische content -> rho1 nadert 0, d_k nadert het plateau ~ 0.80. De analytische verbinding d_k = f(rho1(k)) blijft open.
+
+---
+
+## Obs 442 (Script 234, 2026-08-04): Per-r-type CODE variance breakdown — ve1=ve0 EXACT, ve2/ve0 ratio
+
+Script 234 mist ve0_CODE, ve1_CODE, ve2_CODE per r-type (lambda=1.70, k=4..13, 500 iter).
+var_end_CODE = (ve0 + ve1 + ve2) / 3.
+
+RESULTATEN:
+  k= 4  ve0=0.019591  ve1=0.019591  ve2=0.080177  ve1/ve0=1.000000  ve2/ve0=4.093
+  k= 5  ve0=0.017577  ve1=0.017577  ve2=0.040986  ve1/ve0=1.000000  ve2/ve0=2.332
+  k= 6  ve0=0.013969  ve1=0.013969  ve2=0.024475  ve1/ve0=1.000000  ve2/ve0=1.752
+  k= 7  ve0=0.010332  ve1=0.010332  ve2=0.014667  ve1/ve0=1.000000  ve2/ve0=1.419
+  k= 8  ve0=0.007699  ve1=0.007699  ve2=0.010116  ve1/ve0=1.000000  ve2/ve0=1.314
+  k= 9  ve0=0.005706  ve1=0.005706  ve2=0.007310  ve1/ve0=1.000000  ve2/ve0=1.281
+  k=10  ve0=0.004376  ve1=0.004376  ve2=0.005493  ve1/ve0=1.000000  ve2/ve0=1.255
+  k=11  ve0=0.003233  ve1=0.003233  ve2=0.004038  ve1/ve0=1.000000  ve2/ve0=1.249
+  k=12  ve0=0.002430  ve1=0.002430  ve2=0.002995  ve1/ve0=1.000000  ve2/ve0=1.233
+  k=13  ve0=0.001841  ve1=0.001841  ve2=0.002249  ve1/ve0=1.000000  ve2/ve0=1.222
+
+BEVESTIGT COR:VE_EQUALITY: ve1/ve0 = 1.000000 EXACT op machine-precisie voor alle k.
+
+VE2/VE0 RATIO — daalt snel bij kleine k, convergeert naar L~1.20 bij grote k:
+  4.09 -> 2.33 -> 1.75 -> 1.42 -> 1.31 -> 1.28 -> 1.26 -> 1.25 -> 1.23 -> 1.22
+Incrementen: -1.76, -0.58, -0.33, -0.11, -0.03, -0.02, -0.01, -0.02, -0.01
+Convergentie naar L ˜ 1.18-1.22 (grens nog niet bereikt bij k=13).
+
+IMPLICATIES:
+V_k = (2*ve0 + ve2)/3 = ve0 * (2 + ve2/ve0) / 3.
+In de limiet: d_k -> delta_0 = ve0(k+1)/ve0(k) (want ve2/ve0 -> L constant).
+delta_0 waarden:
+  k=4->5: 0.897, k=5->6: 0.795, k=6->7: 0.740, k=7->8: 0.745
+  k=8->9: 0.741, k=9->10: 0.767, k=10->11: 0.739, k=11->12: 0.751, k=12->13: 0.758
+delta_0 en delta_2 zijn BEIDE < 1 voor alle gemeten k (diepst delta_0 ~0.74, delta_2 ~0.72-0.75).
+Conjunctuur G reduceert tot: bewijzen dat ve0_CODE(k+1)/ve0_CODE(k) < 1 persistent.
+
+BEWIJS-STATUS: ve1=ve0 BEWEZEN (Cor cor:ve_equality, density_one.tex).
+ve2 > ve0 > 0 GEMETEN voor alle k, ve2/ve0 -> L ˜ 1.20 (convergentie langzaam, L < 2 zeker).
+d_k < 1 volgt als delta_0 en delta_2 < 1: GEMETEN maar niet analytisch bewezen.
