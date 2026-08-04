@@ -831,6 +831,45 @@ the structural mechanism behind the measured $d_k < 1$.
 The remaining step toward an analytic proof of Conjecture G is to
 formalize this mixing-contraction via Cauchy--Schwarz and the
 ergodicity of $\sigma_1$.
+
+\noindent\emph{Measured mixing strength.} \MEASURED{} (script 232b,
+$k = 13\ldots 16$, $\lambda = 1.70$.) The $\sigma_1$-autocorrelation
+of $\log v(r{=}0)$,
+\[
+  \rho_1(k) \;=\;
+  \frac{\operatorname{Cov}_s[\log v(r{=}0,\,s),\;\log v(r{=}0,\,\sigma_1(s))]}
+       {\operatorname{Var}_s[\log v(r{=}0,\,s)]},
+\]
+is \emph{negative}: $\rho_1 = -0.190, -0.187, -0.185, -0.182$
+for $k = 13, 14, 15, 16$.
+This is stronger than mere decorrelation --- the shuffle actively
+anti-correlates: when $v(r{=}0,s)$ is above average, $v(r{=}0,\sigma_1(s))$
+tends to be below average.
+The 3-adic explanation: $\sigma_1(s) - s = (3s+2) \bmod N_\ell$ always
+has $3$-adic valuation $v_3(3s+2) = 0$ (since $3s+2 \equiv 2 \pmod 3$), so
+the 3-adic distance $|s - \sigma_1(s)|_3 = 1$ is maximal for every $s$.
+The Perron eigenvector oscillates on this maximally-separated scale,
+producing $\rho_1 < 0$.
+The mixing gain $2(1-\rho_1) \approx 2.37$ quantifies the extra variance
+injected by the shuffle relative to the baseline; this is the
+source of the $d_k < 1$ contraction.
+
+\noindent\emph{Two variance quantities and the var-end dichotomy.}
+The endpoint tower variance $V_k$ of Conjecture G is \emph{spatial} variance
+within each type: how much does $\log v(r,s)$ deviate from the mean of
+its three ``level-siblings'' (same $r$, positions $s, s+N_\ell/3, s+2N_\ell/3$)?
+This quantity \emph{shrinks} with $k$ ($d_k \approx 0.76$, measured).
+A distinct quantity --- the \emph{type-separation} variance
+$\operatorname{Var}_{r,s}[\log(v(r,s)/m(s))]$ where $m(s)=(v_0+v_1+v_2)(s)/3$
+is the local cross-type mean --- \emph{grows} with $k$ (reaching $\approx 1.05$
+at $k=16$, growing at rate $> 1$ per depth).
+The ratio spatial/type-separation grows from $\approx 500$ at $k=13$
+to $\approx 1200$ at $k=16$.
+This dichotomy mirrors Obs~434 (global CV grows while local var-end shrinks):
+the \emph{micro-structure} (spatial roughness per type) is homogenizing, while
+the \emph{macro-structure} (type separation) amplifies.
+Conjecture G is the statement that the micro-structure homogenizes to zero;
+the growing macro-structure is a separate (and less subtle) phenomenon.
 \end{remark}
 
 \begin{definition}[Conjecture G --- the residual open core, stated
