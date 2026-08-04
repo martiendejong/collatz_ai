@@ -892,6 +892,40 @@ Conjecture G is the statement that the micro-structure homogenizes to zero;
 the growing macro-structure is a separate (and less subtle) phenomenon.
 \end{remark}
 
+\begin{remark}[Complete depth profile: $d_k < 1$ from $k=4$ to $k=19$]\label{rem:full_dk}
+\MEASURED{} (script~233, $k{=}3..12$, $500$ iterations; scripts~229--231, $k{=}13..19$;
+$\lam{=}1.70$.) Extending Remark~\ref{rem:frozen} to the shallow regime.
+\[
+\begin{array}{r|rrrrrrrrr|l}
+k & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & k{=}13\ldots19\\
+\hline
+d_k     & .405 & .639 & .689 & .675 & .722 & .734 & .761 & .737 & .748
+        & .756\ldots.775 \\
+\rho_1  & -.374 & -.293 & -.267 & -.232 & -.224 & -.212 & -.204 & -.199 & -.194
+        & -.190\ldots-.182
+\end{array}
+\]
+(Anchor: $k=3$ gives $\rho_1 = -\tfrac{1}{2}$ exact, Corollary~\ref{cor:k3};
+$V_3^{\rm CODE} = 0.0977$; $d_3$ undefined as a ratio.)
+Three readings.
+(i)~\emph{$d_k < 1$ without exception.} The contraction holds from the smallest
+non-trivial depth ($d_4 = 0.405$, $N = 27$ classes) through the computational
+frontier ($d_{19} = 0.775$, $N \approx 2.8\text{G}$): the contraction is not
+an asymptotic feature of large $k$.
+(ii)~\emph{$\rho_1$ monotonically negative, rising slowly toward $0$.} The
+$\sigma_1$-autocorrelation rises from its exact $k=3$ floor $-1/2$
+to $-0.182$ at $k=16$; it has not reached $0$ on the measurable range.
+The failure mode of Conjecture G requires $\rho_1 \to 0$
+(H\"older exponent $\alpha_H \to 0$, Remark~\ref{rem:Gframe}); the data give
+no sign of convergence to $0$.
+(iii)~\emph{Type-separation variance crosses $1$ at $k=12$.}
+$V_{11}^{\mathrm{BLOCK}} = 0.990$, $V_{12}^{\mathrm{BLOCK}} = 1.005$:
+the macro-structure (Remark~\ref{rem:sigma1}, type-separation) exceeds unit
+variance precisely where the micro-structure $V_k^{\mathrm{CODE}}$ (Conjecture G's
+$V_k$) continues to shrink. The dichotomy is fully established at
+directly computable depths.
+\end{remark}
+
 \begin{definition}[Conjecture G --- the residual open core, stated
 precisely]\label{conj:G}
 For fixed $\lam \in (1, 2]$ let $v^{(k)}_\lam$ be the Perron profile of
@@ -904,9 +938,10 @@ $V_k(\lam) = \Var_{\mathrm{count}}\big(\log_2 v^{(k)}_\lam -
 (1,2]$. By Theorem~\ref{thm:endpoint} and
 Remarks~\ref{rem:decomp}--\ref{rem:frozen}, Conjecture G implies
 $\gamma_k \to 1$, i.e.\ $\pi_1(x) \ge x^{1-\varepsilon}$ for every
-$\varepsilon$. Status: measured $d$-column at $\lam = 1.70$ through
-$k = 19$: $0.756/0.754/0.759/0.766/0.769/0.772/0.775$; two independent
-instruments put the limit at $\approx 0.84$; a persistent linear
+$\varepsilon$. Status: measured $d$-column at $\lam = 1.70$ through $k = 19$, including
+the shallow regime $k=4..12$ (see Remark~\ref{rem:full_dk}): $d_k < 1$
+at every depth without exception; plateau values $0.756/0.754/0.759/0.766/0.769/0.772/0.775$;
+two independent instruments put the limit at $\approx 0.84$; a persistent linear
 $+0.003$ tail (the failure mode) is not excluded. The natural analytic
 setting is the S1-nested frozen-$\lam$ hierarchy: the depth-$k$ systems
 embed by constant lifting, the deep-subcritical operator has a clean
