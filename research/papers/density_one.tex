@@ -850,9 +850,9 @@ The CODE-variance deviation at $(r{=}1, s)$ is
 \[
   \log v(r{=}1,s) - \log \mathrm{mean}_1(s),
 \]
-where $\mathrm{mean}_1(s) = \tfrac{1}{3}(v(r{=}1,s) + v(r{=}1,s{+}N_\ell/3) + v(r{=}1,s{+}2N_\ell/3))$.
-By part~(i), $\{{\sigma_1(s),\sigma_1(s{+}N_\ell/3),\sigma_1(s{+}2N_\ell/3)}\}
-= \{\sigma_1(s),\sigma_1(s){+}N_\ell/3,\sigma_1(s){+}2N_\ell/3\}$,
+where $\mathrm{mean}_1(s) = \tfrac{1}{3}\sum_{j=0}^{2} v(r{=}1,\,s{+}jN_\ell/3)$.
+By part~(i), the multiset $\{\sigma_1(s{+}jN_\ell/3)\}_{j=0}^{2}$
+equals $\{\sigma_1(s){+}jN_\ell/3\}_{j=0}^{2}$,
 so $\mathrm{mean}_1(s) = \tfrac{A}{\rho}\,\mathrm{mean}_0(\sigma_1(s))$.
 Therefore
 \[
@@ -893,13 +893,13 @@ $r{=}1$ positions in a maximally ergodic fashion, progressively
 destroying the positive correlation
 $\operatorname{Cov}[\log v(r{=}1,s),\,\log m(s)] > 0$
 that would otherwise sustain within-triple spread.
-By Corollary~\ref{cor:ve_equality}, this is exact:
-$\mathrm{ve}_1^{\mathrm{CODE}} = \mathrm{ve}_0^{\mathrm{CODE}}$ at every depth, so
-$V_k = \tfrac{1}{3}(2\,\mathrm{ve}_0^{\mathrm{CODE}} + \mathrm{ve}_2^{\mathrm{CODE}})$.
-Conjecture G reduces to showing that the combined variance of the $r{=}0$ and $r{=}2$ types
-decreases depth by depth. The remaining step toward an analytic proof is to bound
-the depth-$k$ to depth-$(k{+}1)$ transition for $\mathrm{ve}_0^{\mathrm{CODE}}$ and
-$\mathrm{ve}_2^{\mathrm{CODE}}$ via Cauchy--Schwarz and the ergodicity of $\sigma_1$.
+By Corollary~\ref{cor:ve_equality} (proved),
+$\mathrm{ve}_1 = \mathrm{ve}_0$ at every depth, so
+$V_k = \tfrac{1}{3}(2\,\mathrm{ve}_0 + \mathrm{ve}_2)$.
+Conjecture~G reduces to showing that $\mathrm{ve}_0$ and $\mathrm{ve}_2$
+decrease depth by depth; the remaining step is to bound the
+depth-$(k)$-to-$(k{+}1)$ transition for these two quantities
+via Cauchy--Schwarz and the ergodicity of $\sigma_1$.
 
 \noindent\emph{Measured mixing strength.} \MEASURED{} (script 232b,
 $k = 13\ldots 16$, $\lambda = 1.70$.) The $\sigma_1$-autocorrelation
