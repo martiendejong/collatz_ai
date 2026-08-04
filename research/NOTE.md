@@ -10989,3 +10989,40 @@ VERIFICATIE: d_17 = 0.7692 matcht Obs 403 (Script 200 gaf d_17=0.7690; verschil 
   d_14-d_13: -0.0025 | d_15-d_14: +0.0055 | d_16-d_15: +0.0072 (hoog, transient)
   d_17-d_16: +0.00303 | d_18-d_17: +0.00309 | d_19-d_18: +0.00304  <-- STABIEL
 BEVINDING: de creep is EXACT +0.003/stap voor k=16..19 (vier aaneengesloten punten; met k=16 als eerste stabiele stap dus de reeks k=16,17,18,19). De vroege k=13..15 tonen een transiente "aanloop" met wisselend teken; vanaf k=16 is de creeprate constant. CREEP-PROJECTIE: als +0.003/stap aanhoudt tot het convergentieplateau (Obs 436: d_inf ≈ 0.807 bij lambda≈1.87 niveau), dan bereikt d_k het plateau rond k = 19 + (0.807-0.775)/0.003 ≈ k=30. Al die stappen: d_k < 0.807 << 1. De reeks is absoluut veilig. CONCLUSIE: Endpoint Decay (d_k < 1) bevestigd voor ALLE k=13..19 bij lambda=1.70. De creep +0.003/stap is een structurele eigenschap die het plateau nadert bij d_inf ≈ 0.80-0.81, ruim onder 1. Zeven aaneengesloten d_k-punten < 1, gemiddeld 0.765.
+
+**OBS 438 / SIGMA1 IS DE ENIGE ENKELVOUDIGE-CYCLUS-KAART: ANALYTISCH BEWIJS + STRUCTURELE BASIS VOOR ENDPOINT DECAY**
+CONTEXT. De K-L operator gebruikt vijf index-kaarten op {0,...,Nl-1}: sigma0(s)=4s mod Nl (T4 r=2->r=0), sigma1(s)=(4s+2) mod Nl (T4 r=1->r=0), sigma2(s)=(4s+3) mod Nl (T4 r=2->r=1), R1(s)=4s mod Nl (B1-minimumterm), R3(s)=(2s+1) mod Nl (B3-minimumterm). Vraag: welke zijn enkelvoudige cycli van lengte Nl?
+NUMERIEKE VERIFICATIE (k=6, Nl=81). Orbit-structuren:
+  sigma0=R1 (4s mod Nl):  3 vaste punten, orbit-lengten {1:3, 3:2, 9:2, 27:2}. NIET enkelvoudig.
+  sigma1 ((4s+2) mod Nl): 0 vaste punten, orbit-lengten {81:1}. ENKELVOUDIGE CYCLUS. ✓
+  sigma2 ((4s+3) mod Nl): 3 vaste punten, orbit-lengten {1:3, 3:2, 9:2, 27:2}. NIET enkelvoudig.
+  R3     ((2s+1) mod Nl): 1 vast punt,  orbit-lengten {1:1, 2:1, 6:1, 18:1, 54:1}. NIET enkelvoudig.
+CONCLUSIE: sigma1 IS DE ENIGE enkelvoudige-cyclus-kaart. Alle andere kaarten hebben vaste punten of kortere cycli.
+ANALYTISCH BEWIJS (sigma1 enkelvoudige Nl-cyclus voor alle k>=3). Nl=3^{k-2}. Orbit-lengte van s:
+  sigma1^t(s) = 4^t*s + (2/3)*(4^t-1) [mod Nl].
+  sigma1^t(s) = s  iff  (4^t-1)*(3s+2) = 0 mod 3^{k-1}  [na vermenigvuldigen met 3].
+  gcd(3s+2, 3^{k-1}) = 1 voor ALLE s  (want 3s+2 ≡ 2 mod 3, dus 3 ∤ 3s+2).
+  Dus de voorwaarde reduceert tot:  4^t ≡ 1 mod 3^{k-1}.
+  LTE (p=3, a=4, b=1, 3|4-1=3): v3(4^t - 1) = v3(3) + v3(t) = 1 + v3(t).
+  4^t ≡ 1 mod 3^{k-1}  iff  v3(4^t-1) >= k-1  iff  v3(t) >= k-2  iff  3^{k-2} | t.
+  Minimale t: t = 3^{k-2} = Nl.
+  Elke orbit heeft lengte Nl; er zijn Nl punten; dus PRECIES EEN cyclus van lengte Nl. QED.
+NUMERIEKE VERIFICATIE LTE (k=3..15): 4^Nl ≡ 1 mod 3^{k-1} (exact) EN 4^Nl ≢ 1 mod 3^k bevestigd voor k=3..15 via Python modexp. De exponent Nl is MINIMAAL: ord_{3^{k-1}}(4) = 3^{k-2} = Nl. ✓
+STRUCTURELE BETEKENIS. sigma1 is precies de kaart voor type r=1 (D2-knopen): de eigenvector-update rho*v(r=1,s) = A*v(r=0, sigma1(s)) gebruikt ALLEEN de A-term (geen B). De ENIGE maximaal-ergodische kaart correspondeert met de ENIGE type zonder B-bijdrage.
+T4-MIXING CONTRACTION (INFORMEEL). De enkelvoudige Nl-cyclus van sigma1 betekent dat de reeks (v(r=0, sigma1(s)), v(r=0, sigma1^2(s)), ...) een volledige cyclus doorloopt over ALLE r=0-waarden. Dit "schud" de r=0-waarden willekeurig door de r=1-posities — maximale mixing. Gevolg:
+  * Cov_s[v(r=1,s), m(s)] = A * Cov_s[v(r=0, sigma1(s)), m(s)]
+  * Na sigma1-shuffling: Cov[v(r=0, sigma1(s)), m(s)] KLEINER dan Cov[v(r=0,s), m(s)] > 0
+  * Dit reduceert de correlatie tussen de r=1-component en het lokale gemiddelde m(s)
+  * Gevolg: Var[log(v(r=1,s)/m(s))] KRIMPT per K-L-iteratie → bijdrage aan var_end krimpt → d_k < 1.
+BEWIJS-ROUTE NAAR ANALYTISCH BEWIJS d_k < 1:
+  Stap 1 (BEWEZEN, dit obs): sigma1 is enkelvoudige Nl-cyclus voor alle k >= 3 (LTE-bewijs).
+  Stap 2 (numeriek): de autocorrelatie van log(v(r=0)) bij verschuiving sigma1 is < 1 voor k >= 3.
+  Stap 3 (open): formaliseer de variantie-contractie via Cauchy-Schwarz + ergodische mixing van sigma1.
+  Stap 4 (open): combineer met B-termen (sigma2, R1, R3) om volledige d_k < 1 af te leiden.
+  Stap 3 gaat schematisch: Var[f∘sigma1] = Var[f] (sigma1 behoudt verdeling); Cov[f∘sigma1, g] < sqrt(Var[f]*Var[g]) als f,g niet perfect gecorreleerd zijn (Cauchy-Schwarz strikt). Dit geeft Var[A*f∘sigma1 + B*h] < A*Var[f] + ... voor geschikte h.
+CONJECTURE G -> ENDPOINT DECAY ROUTE (analytisch). Als de Perron-eigenvector Hölder-regulier is met exponent alpha > 0 in de 3-adische metriek (Conjectuur G), dan decayt de autocorrelatie:
+  Cov_s[log v(r=0,s), log v(r=0, sigma1^c(s))] = O(c^{-alpha}) (of sneller)
+  voor c de "cyclische verschuiving" geïnduceerd door sigma1.
+  Dit geeft een EXPLICIETE BOVENGRENS d_k <= 1 - delta(alpha) < 1 voor alle k.
+  IMPLICATIEKETEN: Conjectuur G (alpha_inf > 0) -> autocorrelatie-decay -> d_k < 1 -> var_end -> 0 -> Endpoint Decay -> gamma_k -> 1 -> dichtheid 1 voor Collatz.
+OPEN STAP: kwantificeer de verschuiving c(k) geïnduceerd door sigma1 als functie van k, en bind de autocorrelatie als functie van c en alpha_k.
