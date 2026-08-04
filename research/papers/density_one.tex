@@ -824,6 +824,46 @@ $= 2|c_1|^2 \operatorname{Re}(\omega) = 2|c_1|^2 \cdot (-\tfrac{1}{2})$,
 while $\operatorname{Var}[f_0] = 2|c_1|^2$.  Hence $\rho_1 = -\tfrac{1}{2}$.
 \end{proof}
 
+\begin{corollary}[$\sigma_1$ maps triplets to triplets; $\mathrm{ve}_1 = \mathrm{ve}_0$]\label{cor:ve_equality}
+\PROVED{}
+(i)~For every $s \in \{0,\ldots,N_\ell-1\}$ and $j \in \{0,1,2\}$,
+\[
+  \sigma_1\!\left(s + j\,\tfrac{N_\ell}{3}\right) \;\equiv\; \sigma_1(s) + j\,\tfrac{N_\ell}{3}
+  \pmod{N_\ell}.
+\]
+Hence $\sigma_1$ maps every triplet $\{s,\,s{+}N_\ell/3,\,s{+}2N_\ell/3\}$
+to the triplet $\{\sigma_1(s),\,\sigma_1(s){+}N_\ell/3,\,\sigma_1(s){+}2N_\ell/3\}$.
+
+(ii)~At the Perron vector of any depth $k \ge 4$, the code-variance
+contributions of the $r{=}1$ and $r{=}0$ node types are equal:
+$\mathrm{ve}_1^{\mathrm{CODE}} = \mathrm{ve}_0^{\mathrm{CODE}}$.
+Consequently, $V_k = \tfrac{1}{3}(2\,\mathrm{ve}_0^{\mathrm{CODE}} + \mathrm{ve}_2^{\mathrm{CODE}})$.
+\end{corollary}
+\begin{proof}
+(i) $\sigma_1(s + jN_\ell/3) = (4s + 4jN_\ell/3 + 2) \bmod N_\ell
+= \sigma_1(s) + 4j\cdot N_\ell/3 \bmod N_\ell$.
+Since $4 \equiv 1 \pmod{3}$, we have $4j \equiv j \pmod{3}$, so
+$4j \cdot N_\ell/3 \equiv j \cdot N_\ell/3 \pmod{N_\ell}$.
+
+(ii) The $r{=}1$ K-L equation gives $v(r{=}1,\,s) = \tfrac{A}{\rho}\,v(r{=}0,\,\sigma_1(s))$.
+The CODE-variance deviation at $(r{=}1, s)$ is
+\[
+  \log v(r{=}1,s) - \log \mathrm{mean}_1(s),
+\]
+where $\mathrm{mean}_1(s) = \tfrac{1}{3}(v(r{=}1,s) + v(r{=}1,s{+}N_\ell/3) + v(r{=}1,s{+}2N_\ell/3))$.
+By part~(i), $\{{\sigma_1(s),\sigma_1(s{+}N_\ell/3),\sigma_1(s{+}2N_\ell/3)}\}
+= \{\sigma_1(s),\sigma_1(s){+}N_\ell/3,\sigma_1(s){+}2N_\ell/3\}$,
+so $\mathrm{mean}_1(s) = \tfrac{A}{\rho}\,\mathrm{mean}_0(\sigma_1(s))$.
+Therefore
+\[
+  \log v(r{=}1,s) - \log\mathrm{mean}_1(s)
+  \;=\; \log v(r{=}0,\,\sigma_1(s)) - \log\mathrm{mean}_0(\sigma_1(s)).
+\]
+Since $\sigma_1$ is a bijection (Lemma~\ref{lem:sigma1}), summing over
+$s \in \{0,\ldots,N_\ell/3{-}1\}$ yields
+$\mathrm{ve}_1^{\mathrm{CODE}} = \mathrm{ve}_0^{\mathrm{CODE}}$.
+\end{proof}
+
 \begin{remark}[Structural uniqueness and T4-mixing contraction]\label{rem:sigma1}
 Among the five K-L index maps --- $\sigma_0(s)=4s$, $\sigma_1(s)=4s+2$,
 $\sigma_2(s)=4s+3$ (the three T4-pullback components) and $R_1(s)=4s$,
@@ -845,12 +885,13 @@ $r{=}1$ positions in a maximally ergodic fashion, progressively
 destroying the positive correlation
 $\operatorname{Cov}[\log v(r{=}1,s),\,\log m(s)] > 0$
 that would otherwise sustain within-triple spread.
-The consequent reduction in
-$\operatorname{Var}[\log(v(r{=}1,s)/m(s))]$ per K-L step is
-the structural mechanism behind the measured $d_k < 1$.
-The remaining step toward an analytic proof of Conjecture G is to
-formalize this mixing-contraction via Cauchy--Schwarz and the
-ergodicity of $\sigma_1$.
+By Corollary~\ref{cor:ve_equality}, this is exact:
+$\mathrm{ve}_1^{\mathrm{CODE}} = \mathrm{ve}_0^{\mathrm{CODE}}$ at every depth, so
+$V_k = \tfrac{1}{3}(2\,\mathrm{ve}_0^{\mathrm{CODE}} + \mathrm{ve}_2^{\mathrm{CODE}})$.
+Conjecture G reduces to showing that the combined variance of the $r{=}0$ and $r{=}2$ types
+decreases depth by depth. The remaining step toward an analytic proof is to bound
+the depth-$k$ to depth-$(k{+}1)$ transition for $\mathrm{ve}_0^{\mathrm{CODE}}$ and
+$\mathrm{ve}_2^{\mathrm{CODE}}$ via Cauchy--Schwarz and the ergodicity of $\sigma_1$.
 
 \noindent\emph{Measured mixing strength.} \MEASURED{} (script 232b,
 $k = 13\ldots 16$, $\lambda = 1.70$.) The $\sigma_1$-autocorrelation
