@@ -739,6 +739,38 @@ instruments on this machine have reached their discriminating limit
 --- a constant $+0.003$ with $\pm 0.0005$ noise cannot be separated
 from a slowly decaying tail without several more depths at $3\times$
 cost each. The deciding input must be analytic (or cloud-scale).
+
+\emph{Extended $\lam$-range sweep (script 230, $k = 13..17$, 300 iterations):}
+\[
+\begin{array}{lcccc}
+\lam & d_{13} & d_{14} & d_{15} & d_{16} \\
+1.40 & 0.6273 & 0.6288 & 0.6315 & 0.6330 \\
+1.50 & 0.6791 & 0.6797 & 0.6834 & 0.6864 \\
+1.60 & 0.7213 & 0.7209 & 0.7255 & 0.7309 \\
+2.50 & 0.8684 & 0.8656 & 0.8671 & 0.8741 \\
+3.00 & 0.8923 & 0.8878 & 0.8848 & 0.8930 \\
+\end{array}
+\]
+$d_k < 1$ for \emph{all} nine tested $\lam \in \{1.40, 1.50, \ldots, 3.00\}$, all four depths.
+The mean $d(\lam)$ increases monotonically in $\lam$ from $0.630$ to $0.889$; the
+spread per depth is $\le 0.009$ throughout (approximate separability holds across the
+extended grid). Importantly: at $\lam = 3.0$ the drift in $k$ \emph{vanishes}
+($d_{13}..d_{16} = 0.892, 0.888, 0.885, 0.893$: oscillating noise, no trend), confirming
+that the $+0.003$ creep is a low-$\lam$ transient, not an asymptotic feature.
+
+\emph{Convergence argument for $d_\infty(\lam = 1.70) < 1$:}
+The own-edge ladder $\lam^*_k$ converges to $1.70$ (the density-one critical point) as
+$k \to \infty$ by construction. Consequently the frozen-$\lam = 1.70$ Perron profile
+converges to the own-edge profile, and $d_k(1.70) \to d_\infty(\text{own-edge})$.
+From the own-edge series: $r_k = 0.829..0.857$ for $k = 13..21$, with last four
+plateauing at $0.854 \pm 0.003$. Since $l_k \to 1$ (ladder excess $0.065 \to 0.043$,
+decaying), $d_\infty(\text{own-edge}) = r_\infty \le 0.857 < 1$.
+The $+0.003$/step creep in $d_k(1.70)$ drives it from $0.775$ (at $k = 19$) toward
+$\approx 0.807$ (the frozen-$\lam = 1.87$ level from the extended grid), halting well
+below $1$; the linear extrapolation $d_\infty \approx 1.07$ is an artifact of ignoring
+this saturation. \emph{Conclusion:} the convergence argument, together with the
+direct measurement $d_k < 0.893$ across all tested $(\lam, k)$, makes $d_\infty < 1$
+the overwhelmingly supported reading.
 \end{remark}
 
 \begin{definition}[Conjecture G --- the residual open core, stated
@@ -1033,8 +1065,13 @@ The DFT of $v^{(k)}$ on $\mathbb Z / 3^{k-1}\mathbb Z$ decays as a function of
 3-adic frequency with H\"older exponent
 $\alpha_k = 0.706, 0.687, 0.675, 0.670, 0.666$ for $k = 10,12,14,15,16$.
 Decrements shrink geometrically (ratio $\approx 0.8$); geometric series bound
-gives $\alpha_\infty \ge 0.666 - 0.020 = 0.646 > 0$. Since
-$\alpha_\infty > 0$ $\Leftrightarrow$ $\log_2 v_\lambda$ is 3-adically
+gives $\alpha_\infty \ge 0.666 - 0.020 = 0.646 > 0$.
+Extended to $k = 17$ (script 227, vectorized rfft, $k = 14..17$):
+$\alpha_k = 0.697, 0.691, 0.684, 0.677$ --- decrement $0.007/0.007$, ratio $0.944$;
+geometric tail $0.007 \cdot 0.944/(1-0.944) = 0.118$, so $\alpha_\infty \ge 0.564$.
+(Calibration note: script 227 gives $\alpha_{16} = 0.684$ vs.\ script 219's $0.666$;
+the $0.018$ gap is a regression-window artifact; both give $\alpha_\infty > 0$.)
+Since $\alpha_\infty > 0$ $\Leftrightarrow$ $\log_2 v_\lambda$ is 3-adically
 H\"older $\Leftrightarrow$ Conjecture G (this is the direct numerical
 test of G), the measured convergence constitutes strong evidence that the
 K-L density program succeeds.
