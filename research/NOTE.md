@@ -11090,7 +11090,28 @@ BEWIJS-RELEVANTIE: d_k < 1 bewezen voor k=4..19 door directe meting. Het k=3 gev
 
 ---
 
-## Obs 442 (Script 234, 2026-08-04): Per-r-type CODE variance breakdown — ve1=ve0 EXACT, ve2/ve0 ratio
+## Obs 441 (density_one.tex, 2026-08-04): Paper updates â€” rem:full_dk, cor:ve_equality, conj:G update
+
+Toegevoegd aan density_one.tex (commits 1486705, 89b4194):
+1. rem:full_dk (tussen rem:sigma1 en conj:G): volledige d_k/rho1 tabel k=4..19 bij lambda=1.70.
+   Toont d_k < 1 zonder uitzondering van k=4 (N=27) t/m k=19 (N~2.8G).
+   Tabel: transient k=4..12 (0.405..0.748) + plateau k=13..19 (0.756..0.775).
+   rho1 serie: negatief door, van -0.374 (k=4) tot -0.182 (k=16).
+   ve_BLOCK kruist 1.0 tussen k=11 en k=12.
+2. conj:G status uitgebreid met verwijzing naar rem:full_dk en complete series.
+3. cor:ve_equality (na cor:k3):
+   (i) sigma1 maps triplets to triplets: sigma1(s + j*Nl/3) = sigma1(s) + j*Nl/3 mod Nl.
+       Bewijs: 4 equiv 1 mod 3, dus 4j*Nl/3 equiv j*Nl/3 mod Nl. QED.
+   (ii) ve1_CODE = ve0_CODE analytisch: de K-L vergelijking voor r=1 + triplet-mapping
+       geeft identical deviations => gelijke variantie. BEWEZEN.
+   Gevolg: V_k = (2*ve0 + ve2)/3. Conjecture G reduceert tot ve0 en ve2 krimpen.
+   GEMETEN bevestiging (Script 234): ve1/ve0 = 1.000000 op machine-precisie.
+4. rem:sigma1 significantie-alinea bijgewerkt: verwijst naar cor:ve_equality,
+   stelt de reductie V_k = (2*ve0+ve2)/3 expliciet.
+
+---
+
+## Obs 442 (Script 234, 2026-08-04): Per-r-type CODE variance breakdown ï¿½ ve1=ve0 EXACT, ve2/ve0 ratio
 
 Script 234 mist ve0_CODE, ve1_CODE, ve2_CODE per r-type (lambda=1.70, k=4..13, 500 iter).
 var_end_CODE = (ve0 + ve1 + ve2) / 3.
@@ -11109,10 +11130,10 @@ RESULTATEN:
 
 BEVESTIGT COR:VE_EQUALITY: ve1/ve0 = 1.000000 EXACT op machine-precisie voor alle k.
 
-VE2/VE0 RATIO — daalt snel bij kleine k, convergeert naar L~1.20 bij grote k:
+VE2/VE0 RATIO ï¿½ daalt snel bij kleine k, convergeert naar L~1.20 bij grote k:
   4.09 -> 2.33 -> 1.75 -> 1.42 -> 1.31 -> 1.28 -> 1.26 -> 1.25 -> 1.23 -> 1.22
 Incrementen: -1.76, -0.58, -0.33, -0.11, -0.03, -0.02, -0.01, -0.02, -0.01
-Convergentie naar L ˜ 1.18-1.22 (grens nog niet bereikt bij k=13).
+Convergentie naar L ï¿½ 1.18-1.22 (grens nog niet bereikt bij k=13).
 
 IMPLICATIES:
 V_k = (2*ve0 + ve2)/3 = ve0 * (2 + ve2/ve0) / 3.
@@ -11124,5 +11145,5 @@ delta_0 en delta_2 zijn BEIDE < 1 voor alle gemeten k (diepst delta_0 ~0.74, del
 Conjunctuur G reduceert tot: bewijzen dat ve0_CODE(k+1)/ve0_CODE(k) < 1 persistent.
 
 BEWIJS-STATUS: ve1=ve0 BEWEZEN (Cor cor:ve_equality, density_one.tex).
-ve2 > ve0 > 0 GEMETEN voor alle k, ve2/ve0 -> L ˜ 1.20 (convergentie langzaam, L < 2 zeker).
+ve2 > ve0 > 0 GEMETEN voor alle k, ve2/ve0 -> L ï¿½ 1.20 (convergentie langzaam, L < 2 zeker).
 d_k < 1 volgt als delta_0 en delta_2 < 1: GEMETEN maar niet analytisch bewezen.
