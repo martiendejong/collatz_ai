@@ -856,6 +856,49 @@ subtlety, flagged honestly: EPW association applies directly to the
 min (a nondecreasing function of the lifts), but \emph{spread} is not
 monotone --- the proof route must pass through monotone moment
 functionals, and that step is the genuine open craft.
+\emph{Common-cause skeleton.} (Script 207, Obs~411.) Within each D3-share
+bucket the type walk continues i.i.d.\ (Freshness), so the between-bucket
+covariance satisfies the classical Chebyshev covariance inequality:
+\begin{equation}\label{eq:floor}
+\mathrm{Cov}\!\bigl(\log L,\log S\bigr)
+\;\ge\; \mathrm{Cov}\!\bigl(\mathbb{E}[\log L\mid Z],\,
+\mathbb{E}[\log S\mid Z]\bigr)
+\;\ge\; 0,
+\end{equation}
+where $Z$ is the D3-share along the $G$-step type walk and the last
+inequality uses that both conditional means are monotone in $Z$
+(\emph{checked} every depth $k=15..17$, True in every bucket; mechanism:
+$B_3 > 1 > B_1$ makes D3-rich blocks level-rich and the $C_{\mathrm{inj}}$
+ordering $D_3 = 2.94$ vs $D_1 = 1.28$ makes them roughness-rich ---
+one cause, two monotone effects). The between-group term measures
+${\approx}\,0.45$ in correlation units, giving a \emph{provable
+floor} $\mathrm{corr}(\log L,\log S) \ge 0.45 > 0$ from three ingredients:
+Freshness (proved), monotonicity (checked), and the classical Chebyshev
+covariance inequality.
+\emph{Floor-to-$f_2$ translation.} Any positive coupling forces
+$\mathrm{SHAPE} < 1$ (min of a non-degenerate distribution is strictly
+below the mean). Since $\mathrm{SCALE} = q_\infty \approx 0.98$
+(subcriticality at frozen $\lam$),
+\[
+f_2^\infty \;=\; \mathrm{SCALE}_\infty \times \mathrm{SHAPE}_\infty
+\;<\; 0.98 \;<\; 0.985 \;=\; \text{threshold.}
+\]
+The structural anchor is $\sigma_W/\rho = 0.755$ (flat, Obs~405):
+eigenvector diversity at operator level does not vanish as $k\to\infty$,
+so the coupling cannot die at any finite depth. The remaining open step is
+the explicit regularity transfer: operator-level $\sigma_W/\rho \to$
+Perron-vector $\mathrm{CV}$ (sub-question (B) of this remark).
+\emph{Proxy comparison (negative, informative).} Replacing the raw D3-count
+by the ancestral log-weight $\sum \log b_i$ or by the D3-rate $\#D_3 /
+\text{alive steps}$ (scripts 207b, 207c) \emph{worsens} the partial
+correlation (0.77 and 0.73 vs.\ 0.66). Reason: the log-weight conflates
+D3 frequency with walk duration via negative $\log B_1$ contributions;
+the rate discards walk-survival length, which is itself a correlated
+signal. The raw count uniquely integrates both signals. Conclusion: the
+coupling is a \emph{branching-frequency} phenomenon, not a
+weight-magnitude one --- this aligns the EPW proof more directly with the
+discrete type structure (each step is a fresh i.i.d.\ trit) than with
+the continuous weight accumulation.
 \end{remark}
 
 \section{The five bookkeeping tasks}
@@ -907,7 +950,7 @@ using difference inequalities}, Acta Arith.\ 109 (2003), 237--258.
 \bibitem{G1} M.~de Jong (with Jengo), \emph{Towards density $x^{1-\varepsilon}$
 for the $3x+1$ problem: a program with one open lemma}, companion manuscript,
 July 2026 (papers/gamma\_to\_one.tex in the repository).
-\bibitem{NOTE} Research log, Obs.\ 289--410,
+\bibitem{NOTE} Research log, Obs.\ 289--412,
 \texttt{github.com/martiendejong/collatz\_ai}.
 \bibitem{EPW} J.~D.~Esary, F.~Proschan, D.~W.~Walkup, \emph{Association
 of random variables, with applications}, Ann.\ Math.\ Statist.\ 38
