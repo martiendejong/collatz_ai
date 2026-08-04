@@ -804,6 +804,26 @@ and $4^{N_\ell} \not\equiv 1 \pmod{3^k}$, confirmed for $k = 3,\ldots,15$
 by exact modular exponentiation.)
 \end{proof}
 
+\begin{corollary}[Ground-state autocorrelation at $k=3$]\label{cor:k3}
+At $k=3$, $N_\ell = 3$ and $\sigma_1$ cycles $0 \to 2 \to 1 \to 0$.
+For any centered function $f_0 \colon \{0,1,2\} \to \mathbb{R}$
+(i.e.\ $f_0(0)+f_0(1)+f_0(2)=0$),
+\[
+  \rho_1 \;:=\;
+  \frac{\operatorname{Cov}[f_0(s),\,f_0(\sigma_1(s))]}
+       {\operatorname{Var}[f_0(s)]}
+  \;=\; -\tfrac{1}{2}.
+\]
+\end{corollary}
+\begin{proof}
+Any centered function on $\mathbb{Z}/3\mathbb{Z}$ has zero DC Fourier coefficient.
+Its DFT writes $f_0(s) = c_1\,\omega^s + c_2\,\omega^{2s}$ with $\omega = e^{2\pi i/3}$
+and $c_2 = \bar c_1$ (real $f_0$). The $\sigma_1$-shift sends $s \mapsto s+1$
+in the cycle order, so $\operatorname{Cov}[f_0(s), f_0(\sigma_1(s))]$
+$= 2|c_1|^2 \operatorname{Re}(\omega) = 2|c_1|^2 \cdot (-\tfrac{1}{2})$,
+while $\operatorname{Var}[f_0] = 2|c_1|^2$.  Hence $\rho_1 = -\tfrac{1}{2}$.
+\end{proof}
+
 \begin{remark}[Structural uniqueness and T4-mixing contraction]\label{rem:sigma1}
 Among the five K-L index maps --- $\sigma_0(s)=4s$, $\sigma_1(s)=4s+2$,
 $\sigma_2(s)=4s+3$ (the three T4-pullback components) and $R_1(s)=4s$,
