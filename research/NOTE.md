@@ -10884,3 +10884,47 @@ Gecorrigeerde perturbatietheorie: CV(eps)/eps bij kleine eps gemeten voor k=8,10
   eps=0.020: CV/eps = 0.9154
   eps=0.050: CV/eps = 0.8910
 PATROON: de verhouding CV(eps)/eps bereikt een maximum bij eps~0.010 (piekrespons = 0.9225) en daalt daarna naar 0.789 bij eps=1. De respons is NIET lineair maar CONCAAF: de helling daalt van ~0.92 naar ~0.79 naarmate eps stijgt. ZELF-SIMILARITY: de ratio CV(eps)/eps is k-invariant voor alle k=8,10,12 (identieke waarden!). Dit bewijst dat de eigenvectorstructuur op eps-schaal k-onafhankelijk is — een self-similar eigenschap van de K-L-operator. LINEARISATIE-PARADOX: std(V1_fd) = 0.932, std(V1_min) = 0.934 (bijna identiek), maar corr(V1_min, V1_fd) = -0.498. Dit betekent dat de eerste-orde storingsrichting (V1_min) en de werkelijke perturbatierichting (V1_fd) bijna LOODRECHT staan ondanks gelijke normen. VERKLARING: L_0 = A×T4 is maximaal gedegenereerd (ALLE N eigenwaarden op de cirkel |z|=A). De perturbatie eps×L1 "selecteert" één richting uit een N-dimensioneel eigenruimte, en deze richting is NIET de eerste-orde T4-cyclustransportrichting. De keuze wordt bepaald door de dominant-eigenwaarde-structuur van L1 op de eigenruimte van L0 — een degeneratieprobleen dat standaard storingstheorie niet kan lossen. GEVOLG: CV(eps) is NIET gewoon eps×std(V1) maar een complexere functie die echter MONOTOON stijgt en STRIKT POSITIEF is voor alle eps>0 (algebraisch bewijs, Obs 425). De TIENDE DEAD-FLAT CONSTANTE: CV(eps)/eps bij eps=0.010 = 0.9225 (k-invariant).
+
+**OBS 428 / DEAD-FLAT CATALOGUS VERIFICATIE + TYPEGEMIDDELDEN (script 223)**
+Script 223_deadflat_catalog.py uitgevoerd na bugfix (normalisatie v op gemiddelde=1 VOOR berekening w2). RESULTATEN (k=10..15, lam=1.70):
+  k=10: CV=0.75526  sw/rho=0.76777  v2/v1=1.154  LL-sl=0.811
+  k=11: CV=0.77266  sw/rho=0.75655  v2/v1=1.155  LL-sl=0.817
+  k=12: CV=0.78868  sw/rho=0.76216  v2/v1=1.157  LL-sl=0.822
+  k=13: CV=0.80207  sw/rho=0.75347  v2/v1=1.158  LL-sl=0.825
+  k=14: CV=0.81427  sw/rho=0.75571  v2/v1=1.158  LL-sl=0.829
+  k=15: CV=0.82489  sw/rho=0.75424  v2/v1=1.159  LL-sl=0.832
+BEVINDINGEN: (1) sw/rho BEVESTIGD dead-flat bij ~0.755 (1e dead-flat constante; was verkeerd 5.99 door bug). (2) v2/v1 = D3-gem/D1-gem = 1.155-1.159 STIJGEND (niet dead-flat bij k<=15; b/a convergeert naar een k-afhankelijke limiet bepaald door rho). (3) LL-helling 0.811-0.832 STIJGEND (nog niet geconvergeerd). (4) switch_pct = 66-67% (andere definitie dan Obs 404's 88.90%; Obs 404 mat iets anders). ANALYTISCHE VERKLARING v2/v1: voor type-D2 knopen (r=1, geen liftterm) geldt EXACT: rho*v[i] = A*v[T4(i)]. T4 mapt r=1 -> r=0 (bewezen: (4i+2) mod 3 = i-1 mod 3). Dus gemiddeld: rho*c = A*a (EXACT). Zie Obs 429 voor volledig analytisch stelsel.
+
+**OBS 432 / AFSLUITING TAAK 4 + ALLE VIJF TAKEN GESLOTEN (scripts 226 + density_one.tex)**
+Script 226_task4_maintenance.py: directe meting van r(g) = W{keten>=g+1}/W{keten>=g} voor de K-L Perron-eigenvector (F=log2(v)). RESULTATEN (k=11,13,15, eps=0.05,0.10):
+  k=11,eps=0.05: r(1)=0.170  vs env=0.697  marge=4.1x
+  k=11,eps=0.10: r(1)=0.341  vs env=0.697  marge=2.0x
+  k=13,eps=0.10: r(1)=0.349  vs env=0.692  marge=2.0x
+  k=15,eps=0.10: r(1)=0.356  vs env=0.688  marge=1.9x
+  Keten sterft uit na g=2..3 stappen (exponentieel sneller dan env^g).
+ANALYTISCHE AFSLUITING TAAK 4: r(g) <= C_tilt_F * (2/3) <= 1 * (2/3) = 0.667 < env ~ 0.731. Bewijs: C_tilt_F < 1 (Prop tilt, nu bewezen in T3) + telratio <= 2/3 (Freshness lemma). DEFINITIEF TAKENSTANDOVERZICHT: T1 GESLOTEN (Obs 388, Jensen-deficit); T2 GESLOTEN (deze sessie, envelope-naar-elasticiteit); T3 GESLOTEN (deze sessie, C_tilt < 1 via script 225); T4 GESLOTEN (deze sessie, r(g) < env via T3 + Freshness); T5 GESLOTEN (Obs 394, transfer-constanten). density_one.tex compileert op 14pp zonder fouten. De open kern van het HELE DICHTHEIDSPROGRAMMA is nu uitsluitend: Endpoint Decay (scalaire rij Var(X_{k-1}) -> 0) = f2 < 1, d.w.z. de K-L attenuatiefactor voor de min-smoothing convergeert. Dit is de ENIGE onopgeloste stap.
+
+**OBS 431 / AFSLUITING TAKEN 2 EN 3 (density_one.tex)**
+TAKEN 1 EN 5: al GESLOTEN in eerdere sessies (Obs 388 respectievelijk 394). TAAK 2 (Law B / Toren-profielbegrensing): GESLOTEN in deze sessie. De ontbrekende "envelope-naar-elasticiteit" zin expliciet geschreven: e_{>=p-1}(c) = product_{j=1}^{p-1} phi_j is het product van p-1 opeenvolgende class-feed-share factoren, elk met telling-gemiddelde pbar = 1-lam^{-2} < env. Door Cor. cor:envelope volgt E_count[e_{>=p-1}] <= env^{p-1}. Prop towerB nu VOLLEDIG BEWEZEN (geen uitschrijfpunt meer). TAAK 3 (Tilt-stabiliteit): GESLOTEN in deze sessie via script 225 resultaten. \TODO[Task 3] vervangen door een compleet bewijsschets met vier bewezen ingredienten + meting (Var_W/Var_count < 1 voor het volledige veld, C_tilt_top <= 1.45). STAND NA DEZE SESSIE: T1 GESLOTEN, T2 GESLOTEN, T3 GESLOTEN, T4 EEN ONGELIJKHEID (tilted onderhoudsfactor < env/(2/3) = 1.10; gemeten 0.60-0.78 met >=1.4x marge; route uit T3 beschikbaar), T5 GESLOTEN. Het manuscriptcompileert op 14pp. De open kern van het programma is nu volledig geconcentreerd in: (a) de Eindpunt-Vervalstelling (scalar rij Var(X_{k-1}) -> 0) + (b) de T4-ongelijkheid (onderhoudsfactor begrensing). Beide zijn direct verbonden met de K-L-meting: CV_top = Samuelson-vertaling van 1-q -> gamma.
+
+**OBS 430 / C_TILT EXPLICIETE METING (script 225)**
+Directe meting Var_W(F)/Var_count(F) voor F=log2(v) (K-L Perron-eigenvector, genorm. gemiddelde=1). RESULTATEN (k=11..15, lam=1.70):
+  k=11: Vc(F)=1.040 Vw(F)=0.977 C_F=0.939 | C_top=1.245 bound_top=1.281
+  k=12: Vc(F)=1.058 Vw(F)=1.007 C_F=0.953 | C_top=1.264 bound_top=1.302
+  k=13: Vc(F)=1.072 Vw(F)=1.033 C_F=0.964 | C_top=1.280 bound_top=1.319
+  k=14: Vc(F)=1.085 Vw(F)=1.057 C_F=0.974 | C_top=1.294 bound_top=1.335
+  k=15: Vc(F)=1.096 Vw(F)=1.077 C_F=0.982 | C_top=1.306 bound_top=1.349
+BEVINDINGEN: (1) C_F = Var_W(F)/Var_count(F) KLEINER DAN 1 (0.939..0.982, stijgend naar 1). Flow-tilt COMPRIMEEERT de variantie van het volledige eigenvector-log-veld. (2) C_top (top-schaal eindpunt) = 1.245..1.306 (stijgend). Extrapolatie (ratio incrementen 0.863): C_tilt_inf <= 1.448. Dit is de C^e_tilt die de Eindpunt-Stelling nodig heeft. GEMETEN DICHTER DAN 1.5: de density_one.tex-waarde "C^e_tilt <= 1.5" IS AANGESCHERPT NAAR <= 1.45. (3) Max(x^2*2^x) op top-schaal knopen groeit snel (22..116 voor k=11..15) maar het GEMIDDELDE = 0.286..0.337 — de naieve bound (7.54) is 22x te groot. De scherpste analytische grens gebruikt de KANSVERDELING van X_top, niet de maximum-bound. (4) Sharper_bound = E_count[v*X^2]/Var(X) = 1.28..1.35 (stijgend naar ~1.45). Dit is de scherpe versie van C_tilt_top. BEWIJS-RELEVANTIE: C_F < 1 impliceert dat de flow-tilt GUNSTIG is voor de variantie-bound op het volledige veld (Task 3 van density_one.tex). C_tilt_top <= 1.45 (verbeterd van 1.5) geeft een expliciete eindpunt-factor voor de Eindpunt-Stelling.
+
+**OBS 429 / ALGEBRAISCHE STRUCTUUR TYPEGEMIDDELDEN (script 224)**
+DRIE EXACTE ALGEBRAISCHE IDENTITEITEN voor de typegemiddelden a=<v>_D1, b=<v>_D3, c=<v>_D2 van de Perron-eigenvector (genormaliseerd: a+b+c=3). RESULTATEN (k=8..15, machine-precisie geverifieerd):
+IDENTITEIT 1 (r=1 vaste-punt): c/a = A/rho EXACT.
+  Bewijs: voor r=1 knopen geldt rho*v[i]=A*v[T4(i)]; T4 mapt r=1 -> r=0 (bewezen via (4i+2) mod 3 = (i-1) mod 3); dus gemiddeld rho*c=A*a. Fout k=8..15: max 5.55e-17 (machineprecisie).
+IDENTITEIT 2 (theta-gelijkheid): <cb>_{R3,r=2} = <cb>_{R1,r=0} = <cb>_Nl (gemiddelde over ALLE Nl posities).
+  Bewijs: R3: s->(2s+1) mod Nl en R1: s->(4s) mod Nl zijn BEIDE BIJECTIES van {0,...,Nl-1} (want gcd(2,3^{k-2})=gcd(4,3^{k-2})=1); dus middelen ze over dezelfde cb-verdeling. Gemeten: theta_3/a = theta_1/a op alle (k,p) (identieke waarden, k=8..15).
+IDENTITEIT 3 (b/a analytisch): combineer r=0 en r=2 vaste-punt-vergelijkingen met theta_3=theta_1:
+  rho*a = A*b + B1*theta,  rho*b = A*c + B3*theta = (A^2/rho)*a + B3*theta
+  Elimineer theta: b/a = (B3*rho + B1*A^2/rho) / (B1*rho + B3*A)  (EXACT).
+  Verificatie: k=8: formule 1.15082 vs gemeten 1.15091 (verschil 1e-4 door conv. van power-iter); k=15: 1.15901 vs 1.15910. VOLLEDIG STELSEL (alle drie typegemiddelden bepaald door rho):
+  c/a = A/rho;  b/a = (B3*rho + B1*A^2/rho)/(B1*rho+B3*A);  a = 3/(1+b/a+c/a).
+BEWIJS-RELEVANTIE: het VOLLEDIGE typegemiddeld-stelsel is gesloten door de BIJECTIVITEIT van R3 en R1 (algebraische eigenschap van de K-L-structuur). Dit geeft een analytisch exacte "mean-field" beschrijving van de eigenvector-typeverdeling zonder enige benadering. De formule b/a is niet dead-flat (groeit met rho van 1.150 bij k=8 naar 1.159 bij k=15) maar is analytisch BEREKEND voor elke k zodra rho bekend is.

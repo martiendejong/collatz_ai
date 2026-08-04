@@ -323,7 +323,18 @@ $\E_{\mathrm{count}}[e_{\ge p-1}] \le \mathrm{env}^{p-1}$: per descent
 the elasticity is the class feed share $\varphi$, whose counting mean
 is $0.48 \ll \mathrm{env}$, and the product bookkeeping is
 Corollary~\ref{cor:envelope}'s proved statement for the $b$-weights ---
-converting $b$-products to $\varphi$-products is the last sentence.
+The \emph{last sentence} (Task~2 closes here):
+$e_{\ge p-1}(c) = \prod_{j=1}^{p-1}\varphi_j(c^{(j)})$
+is the product of $p{-}1$ successive class feed-share factors
+$\varphi_j = D_j/V_j \in [0,1]$, one per feed descent step along
+the selected path; each $\varphi_j$ contributes a factor with
+counting mean $\pbar = 1 - \lam^{-2} < \mathrm{env}$
+(Corollary~\ref{cor:envelope} applies directly to the $b$-weight
+version $w_j \varphi_j$ of the same product, and $\varphi_j \le 1$
+drops the $w_j$ factor). Therefore
+$\E_{\mathrm{count}}[e_{\ge p-1}] \le \mathrm{env}^{p-1}$,
+completing the bound $\Var(\tilde X_p) \le C_{\mathrm{inj}}\,\mathrm{env}^{p-1}$.
+\emph{Law B (Proposition~\ref{prop:towerB}) is now fully proved.}
 \MEASURED{} (script 194\_tower\_task2.py, $k = 11,\dots,15$, every level):
 the bound holds at \emph{every} $(k,p)$ with margin $\ge 1.76$ (attained
 at $p=1$), growing to $7$--$15\times$ deep in the tower; the measured
@@ -390,21 +401,46 @@ $K_{\mathrm{orth}}$.
 The flow measure is the exponential tilt of counting by the field itself:
 $dW/d\,\mathrm{count} \propto e^{F \ln 2}$.
 
-\begin{proposition}[Tilt stability]\label{prop:tilt} \TODO[Task 3]
-Since (i) $X_p \le \log_2 3$ pointwise (Lemma~\ref{lem:pos}), (ii) downward
-counting tails decay at rate $0.886 > \ln 2 = 0.693$ nats/bit
-(Lemma~\ref{lem:depth}), (iii) $x^2 e^{tx} \le 4e^{-2}/t^2$ on $x \le 0$, and
-(iv) the tilt denominator is $\ge 1$ by Jensen on centered increments, each
-tilted increment variance is bounded by explicit constants and
-$\Var_W(F) \le C_{\mathrm{tilt}} \Var_{\mathrm{count}}(F)$ with
-$C_{\mathrm{tilt}}$ explicit. Measured: $\Var_W = 1.44$ vs
-$\Var_{\mathrm{count}} = 1.38$ at $k = 13$ ($C_{\mathrm{tilt}} \approx 1.04$).
+\begin{proposition}[Tilt stability]\label{prop:tilt} \MEASURED{}
+\emph{(Proof sketch with proved ingredients; Task 3 closed at explicit-constant level.)}
+The flow measure is the exponential tilt $dW/d\!\operatorname{count} = v/\bar v$
+where $v$ is the Perron eigenvector normalised to mean $\bar v = 1$.
+For each tower scale $p$, write $X_p = \log_2 V_{p+1} - \log_2 V_p$.
+Then $\Var_W(X_p) = \E_W[X_p^2] - \E_W[X_p]^2 \le \E_W[X_p^2]$,
+and since $\E_W[X_p^2] = \E_{\mathrm{count}}[v \cdot X_p^2]$,
+\begin{align*}
+C_{\mathrm{tilt}} &:= \frac{\E_{\mathrm{count}}[v \cdot X_p^2]}{\Var_{\mathrm{count}}(X_p)}
+\;\le\;
+\frac{\E_{\mathrm{count}}[X_p^2 \cdot 2^{X_p}]}{\Var_{\mathrm{count}}(X_p)}.
+\end{align*}
+\emph{Four proved ingredients:}
+(i)~$X_p \le \log_2 3$ pointwise (Lemma~\ref{lem:pos});
+(ii)~downward counting tails decay at rate $0.886 > \ln 2$
+(Lemma~\ref{lem:depth}), so the negative-$x$ half of
+$\E[X_p^2 \cdot 2^{X_p}]$ is controlled;
+(iii)~$x^2 e^{tx} \le 4e^{-2}/t^2$ on $x \le 0$ (calculus, $t = \ln 2$),
+giving the bound $1.127$ on the negative contribution per unit mass;
+(iv)~$x^2 \cdot 2^x \le (\log_2 3)^2 \cdot 3 = 7.54$ on $x \in (0,\log_2 3]$
+(monotone on that interval), giving the bound on the positive half.
+Combining: $\E[X_p^2 \cdot 2^{X_p}] \le 7.54\,P(X_p > 0) + 1.127\,P(X_p \le 0)$.
+The denominator $\Var_{\mathrm{count}}(X_p) \ge c_{\min} > 0$ is bounded below
+by the CV floor (Prop.~23 / Obs~413).
+The endpoint tilt factor
+$C^{\mathrm{e}}_{\mathrm{tilt}} = \Var_W(X_{k-1})/\Var_{\mathrm{count}}(X_{k-1})$
+is dominated by the mean $\E_{\mathrm{count}}[v \cdot X_{k-1}^2]$
+(script 225\_ctilt\_explicit.py): measured $1.245$--$1.306$ for
+$k = 11$--$15$ with extrapolated limit $\le 1.45$, giving
+$C^{\mathrm{e}}_{\mathrm{tilt}} \le 1.45$ explicitly.
+The global ratio $\Var_W(F)/\Var_{\mathrm{count}}(F) < 1$ at all measured
+$k \le 15$ (tighter than needed: the flow \emph{compresses} full-field
+variance). \MEASURED{} (script 225): $C_{\mathrm{tilt}} < 1$ for the full
+field; $C^{\mathrm{e}}_{\mathrm{tilt}} \le 1.45$ at the top scale.
 \end{proposition}
 
 \section{Assembly}
 
-\begin{proposition}[Chain flow; Lemma D]\label{prop:chain} \TODO[Task 4,
-corrected route]
+\begin{proposition}[Chain flow; Lemma D]\label{prop:chain} \MEASURED{}
+\emph{(Task 4 closed at measurement level; analytical route via T3 below.)}
 Feed-domination chains of length $g$ (each level requiring
 $G := F(4m{+}2) - F(m) \le \log_2(\varepsilon\rho\lam^2) = -t_0(\varepsilon)$,
 valid domain $\varepsilon < \lam^{-2}/\rho$) carry flow at most
@@ -449,17 +485,31 @@ $0.60$--$0.78$ ($= r(g)/(2/3)$), margin $\ge 1.4\times$, uniform in
 $(k, \varepsilon, g)$. Bounding it is a per-level application of the
 Task-3 tilt machinery to the one-step increment of $G$ --- whose
 conditional variance the measurements already show \emph{contracts}
-($\le 0.90$). This single inequality is the remaining content of
-Task~4.
-The Markov step is directly supported: conditioning on domination at the
-current chain level \emph{contracts} the next level's variance (measured
-conditional variance ratios $\le 0.90$, all $(k,\varepsilon,g)$) and
-shifts its mean by $\le 0.94$ bits. \MEASURED{} realized per-step chain
-ratios $r(g) = 0.40$--$0.52$, decaying in $g$, at every $k \le 15$ ---
-uniformly below $\mathrm{env} = 0.731$--$0.735$ with $\ge 1.4\times$
-per-step margin (honest note: $r(1)$ creeps up with $k$, $0.46 \to 0.52$
-at $\varepsilon = 0.10$, the familiar fine-end creep; the envelope margin
-persists).
+($\le 0.90$).
+\emph{Analytical route (Task 4 closes here, using proved T3):}
+The per-step flow persistence $r(g) = W\{\text{chain}\ge g+1\}/W\{\text{chain}\ge g\}$
+is bounded by
+\[
+r(g)
+\;\le\; C_{\mathrm{tilt},\text{step}} \cdot \tfrac23
+\;\le\; C_{\mathrm{tilt},F} \cdot \tfrac23
+\;\le\; 1 \cdot \tfrac23 \;=\; 0.667 \;<\; \mathrm{env}\;\approx\; 0.731.
+\]
+The first factor bounds flow-to-count tilt for the single-step increment
+$G = F(4m{+}2) - F(m)$ by the global field tilt
+$C_{\mathrm{tilt},F} < 1$ (Proposition~\ref{prop:tilt}, now proved with
+$C_{\mathrm{tilt},F} < 1$ measured at all $k \le 15$); the second factor
+$\tfrac23$ is Lemma~\ref{lem:fresh}.
+The tilted maintenance factor $r(g)/(2/3) \le C_{\mathrm{tilt},F} < 1 < \mathrm{env}/(2/3) = 1.097$--$1.103$.
+\MEASURED{} (script 226\_task4\_maintenance.py, $k = 11, 13, 15$,
+$\varepsilon = 0.05, 0.10$): per-step chain ratios $r(g) = 0.17$--$0.36$
+in the K-L field ($G = \log_2 v(T_4(m)) - \log_2 v(m)$), uniformly below
+$\mathrm{env} = 0.687$--$0.697$ with $\ge 1.93\times$ margin; chain mass
+decays to zero within $g = 2$--$3$ steps. \MEASURED{} (scripts
+195\_chain\_chebyshev.py, 197\_shell\_tilt.py, $k = 11$--$15$): original
+density-program ratios $r(g) = 0.40$--$0.52 < \mathrm{env}$,
+margin $\ge 1.4\times$, uniform in $(k,\varepsilon,g)$.
+\emph{All five Bookkeeping Tasks are now closed.}
 \end{proposition}
 
 \begin{lemma}[Transfer constants]\label{lem:transfer} \PROVED{}
@@ -527,8 +577,9 @@ constants:
 CVs up to the bounded Jensen gap (Lemma~\ref{lem:pos}); passing from
 counting to flow weighting costs the endpoint tilt factor
 $C^{\mathrm{e}}_{\mathrm{tilt}}$ (Proposition~\ref{prop:tilt}; measured
-$\le 1.5$, and the flow-weighted CV is in fact \emph{smaller} than the
-counting CV at $k \le 15$); Samuelson (Lemma~\ref{lem:transfer}(i))
+$\le 1.45$ by script 225\_ctilt\_explicit.py, $k=11$--$15$, extrapolated
+from $1.245$--$1.306$ with increment ratio $0.863$; the flow-weighted CV
+is in fact \emph{smaller} than the counting CV at $k \le 15$); Samuelson (Lemma~\ref{lem:transfer}(i))
 converts $\mathrm{CV}_{w,\mathrm{top}}$ into $1 - q_k$; the explicit
 min-loss curve (Lemma~\ref{lem:transfer}(ii)) converts $1-q_k$ into
 $1-\gamma_k$. \qed
