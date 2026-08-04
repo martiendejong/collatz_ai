@@ -10868,6 +10868,9 @@ Methode   Script  Sleutelbevinding                            Status
 Nieuwe dead-flat constanten: std(Re eig M) = 0.251; corr(trop,real) = 0.89; H1/N = 2.0
 Sterkste nieuwe bevinding: ML toont dat R2=87% LOKAAL verklaarbaar is maar 13% GLOBAAL blijft.
 De 13% globale fractie is precies de fractie die de FKG-koppeling draagt.
+
+**OBS 427 / FOURIER-MODESELECTIE (script 222)**
+Rayleigh-quotienten R(j) = Re(<u_j, L_1 u_j>) voor alle Fourier-modes j van L_0=A×T4. RESULTATEN: dominante mode is altijd j=0 (uniform) met R(j=0) = 0.7221 = rho_1. Tweede-hoogste R(j≠0) daalt snel met k: k=5: 0.062, k=6: 0.025, k=7: 0.021, k=8: 0.009. STRUCTUUR: T4-cyclus doorloopt altijd r=0→r=2→r=1→r=0→... (periode-3!). Het RHS-patroon langs de cyclus is: (-0.081, -0.642, +0.722) per periode-3 blok — som ≈ 0 (per constructie). Hierdoor heeft de cyclische-transport-V1 een SCHERPE PERIODE-3 OSCILLATIE maar geen lange-range drift. Dit verklaart waarom V1_min ANTI-CORRELEERT met V1_fd: de werkelijke eigenvector-perturbatie is een gladde combinatie van Fourier-modes gewogen door de min-operatorstructuur, niet het scherpe periode-3 signaal. BEWIJS-RELEVANTIE: R(j=0) = rho_1 > 0 bevestigt dat L_1 de uniforme mode versterkt (eigenwaardecorrectie positief). De snelle afname van R(j≠0) met k betekent dat de NIET-UNIFORME modecompetitie zwakker wordt met grotere k — MAAR de eigenvector zelf (V1_fd) blijft k-invariant in norm (std(V1_fd)=0.932 dead-flat). PARADOX OPGELOST: het periode-3 V1 heeft dezelfde NORM als V1_fd maar is LOODRECHT (corr=-0.5). Dit komt doordat de Perron-eigenvector van L_eps bij kleine eps een complexe combinatie is van Fourier-modes, gedomineerd door de min-operator-selectie, niet de cyclische-transport-selectie.
 Sterkste analytische vondst: log-Sobolev met rho_LS > 0 impliceert hypercontractiviteit,
 wat een directe bodem legt op CV_inf > 0 zonder Conjecture G te veronderstellen.
 ```
