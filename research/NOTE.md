@@ -10929,6 +10929,20 @@ IDENTITEIT 3 (b/a analytisch): combineer r=0 en r=2 vaste-punt-vergelijkingen me
   c/a = A/rho;  b/a = (B3*rho + B1*A^2/rho)/(B1*rho+B3*A);  a = 3/(1+b/a+c/a).
 BEWIJS-RELEVANTIE: het VOLLEDIGE typegemiddeld-stelsel is gesloten door de BIJECTIVITEIT van R3 en R1 (algebraische eigenschap van de K-L-structuur). Dit geeft een analytisch exacte "mean-field" beschrijving van de eigenvector-typeverdeling zonder enige benadering. De formule b/a is niet dead-flat (groeit met rho van 1.150 bij k=8 naar 1.159 bij k=15) maar is analytisch BEREKEND voor elke k zodra rho bekend is.
 
+**OBS 434 / TWEE VARIANTIEGROOTHEDEN: GLOBALE CV vs LOCALE VAR_END (conceptuele verheldering)**
+KERN-ONDERSCHEID. De K-L operator kent TWEE variantiegrootheid, met TEGENGESTELD gedrag als k groeit:
+(1) GLOBALE CV = std(v^(k))/mean(v^(k)) — algehele spreiding van de volledige Perron-eigenvector. GROEIT monotoon: 0.755 -> 0.835 voor k=10..16 (Scripts 223, 228). Macrostructuur: rijke knopen worden rijker, arme knopen armer.
+(2) LOCALE VAR_END = Var_s[log2(T[:,s]) - log2(mean(T[:,s]))] met T[:,s]=[v[s], v[s+Nl], v[s+2Nl]] — BINNEN-DRIELING-spreiding van log-waarden relatief aan het LOKALE gemiddelde (niet het globale). Equivalent aan Var(~X_{k-1}) in density_one.tex. KRIMPT per diepte: d_k = var_end(k+1)/var_end(k) < 1 voor alle gemeten lambda en k. Microstructuur: de drie types worden RELATIEF gelijker t.o.v. hun lokale context.
+METING SAMENVATTING (Scrips 200, 199, 198):
+  lambda=1.70 (frozen): d_k ≈ 0.756-0.769 voor k=13..17
+  lambda=2.00 (frozen): d_k ≈ 0.822-0.830 voor k=13..16
+  Eigen rand lambda*_k: r_k = d_k * l_k ≈ 0.829-0.854 voor k=13..21 (l_k > 1 is de ladder-factor)
+PARADOX VERKLAARD: CV groeit (globale spreiding toeneemt) terwijl var_end krimpt (lokale homogenisering) omdat:
+  - Langere-bereik correlaties in v^(k) nemen toe (globale CV groeit)
+  - Maar de K-L min-smoothing "middelt" de drie types lokaal steeds beter (var_end krimpt)
+  Dit is analogie met HOMOGENISATIE: microstructuur middelt uit, macrostructuur wordt groter.
+ENDPOINT DECAY = var_end(k) -> 0: NUMERIEK BEVESTIGD voor alle gemeten lambda (max d_k = 0.854 << 1). De ANALYTISCHE GRENS d_k < 1 voor ALLE k analytisch is de enige open stap. Verbinding met K-L analyse: C_tilt_F < 1 (Prop tilt, Obs 430) + chain flow r(g) < env (Obs 432) geven INZICHT in WAAROM de binnen-drieling-spreiding krimpt (de min-operator is zelf-corrigerend) maar formeel bewijs d_k < 1 is nog niet afgeleid.
+
 **OBS 433 / FOURIER-HOELDER k=17 + CV-EXTRAPOLATIE CV_inf (scripts 227, 228)**
 FOURIER-HOELDER k=17 (script 227 herschreven + opnieuw uitgevoerd). NIEUWE RESULTATEN (volledig spectrum FFT, alle k=14..17, n_iter=400):
   k=14: |alpha| = 0.6967  k=15: |alpha| = 0.6908  k=16: |alpha| = 0.6837  k=17: |alpha| = 0.6770
@@ -10939,3 +10953,11 @@ KALIBRATIE-DISCREPANTIE: Obs 424 (Script 219) gaf k=16: 0.666; Script 227 geeft 
 NIEUW DATAPUNT k=17: |alpha(17)| = 0.677. Dit is het EERSTE k=17 resultaat. Vergeleken met k=16 (|alpha|=0.684) geeft decrement = 0.007, consistent met de trend.
 BEWIJS-RELEVANTIE: alpha_inf > 0 is NUMERIEK STERK ONDERSTEUND (5 k-niveaus met consistent dalende exponent, beide calibraties geven positief limiet). Dit geeft STERK BEWIJS voor Conjecture G (de Perron-maat op Z_3 is in L^2(Z_3)). Formeel bewijs ontbreekt nog.
 CV-EXTRAPOLATIE (script 228, k=16 verificatie): CV(k=16) = 0.83451, dCV=0.00962 (doorzettende trend). Extrapolatie: CV_inf ~ 0.91-0.93 (methode A: 0.907, methode B: 0.927). Conservatieve bovengrens: CV_inf <= 1.03. CONCLUSIE: CV_inf > 0 BEWEZEN; CV_inf < inf GEMETEN; CV_inf < 1 ONZEKER (schatting 0.92, ub 1.03). Exacte relatie c/a = A/rho geverifieerd bij k=16 (fout 1.05e-14). Type-gemiddelden k=16: a=1.205, b=1.398, c=0.396. Max(v)/Min(v) bij k=16: 29.6/0.149 = 199x. De TRIVIALE bovengrens CV <= max-1 geeft (max-1)^2 = 818 >> CV^2 = 0.70 (spreading ratio = 0.00085).
+
+**OBS 435 / d_k REEKS VERLENGD NAAR k=19 (lambda=1.70): var_end(20)=0.000302, d_19=0.7753 (scripts 229, 229b)**
+METHODE. Script 229 herberekende var_end(k) voor k=13..17 via power-iteratie (n=300 iters, lam=1.70); Script 229b laadde k20_lam170_200c.npy (N=3^19=1.16G, float32, 4.65 GB) via numpy mmap_mode='r' en berekende var_end in 20 chunks van 20M elementen (OOM-proof voor 8.66 GiB float64-stack). RESULTATEN:
+  var_end(13)=0.001976, var_end(14)=0.001494, var_end(15)=0.001126
+  var_end(16)=0.000855, var_end(17)=0.000655, var_end(19)=0.000389 (Script 200b), var_end(20)=0.000302
+VOLLEDIGE d_k-REEKS (lambda=1.70, Endpoint-Decay-factor):
+  d_13=0.7560  d_14=0.7535  d_15=0.7590  d_16=0.7662  d_17=0.7690  [d_18 gap]  d_19=0.7753
+VERIFICATIE: d_13..d_16 matchen Script 200 op 5-6 significante cijfers (max afwijking <1e-4). CONSISTENTIE: var_end(19)=0.000389 uit Script 200b consistent met d_k-trend — extrapolatie geeft d_18~0.773, en d_18×var_end(17)=0.773×0.000655=0.000507; dan d_18_check=0.000389/0.000507=0.767, consistent. TREND: d_k groeit langzaam van 0.754 naar 0.775 (increment ~+0.003/stap bij grote k). Extrapolatie (lineaire fit op k=14..17,19): d_inf ~ 0.81±0.03 als de trend doorzet. HARDE GRENS: d_k < 1 voor ALLE k=13..17,19. Gemiddeld d_k = 0.763. Endpoint Decay bevestigd t/m k=19 bij lambda=1.70. BEWIJS-RELEVANTIE: de d_k-reeks vormt de kern van het Endpoint Decay lemma. Alle gemeten waarden ruim onder 1 (marge > 20%). De open analytische stap blijft: bewijs d_k < 1 voor ALLE k (analytisch, niet alleen numeriek).
