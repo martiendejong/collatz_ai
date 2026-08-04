@@ -11053,3 +11053,37 @@ BETEKENIS VAN DE DICHOTOMIE:
 SIGMA1-TRIPLET-MAPPING (analytisch). sigma1_{k+1}(s_0 + j*Nl_k) = sigma1_{k+1}(s_0) + j*Nl_k (mod 3*Nl_k) voor j=0,1,2. BEWIJS: (4(s_0+j*Nl_k)+2) mod 3*Nl_k = (4*s_0+2 + 4*j*Nl_k) mod 3*Nl_k = sigma1(s_0) + j*Nl_k (want 4*j*Nl_k mod 3*Nl_k = j*Nl_k voor j=0,1,2: 4j ≡ j mod 3 voor j=0,1,2). Dit betekent: sigma1 BEWAART de tripletstructuur (mapt {s_0, s_0+Nl_k, s_0+2*Nl_k} naar {s_1, s_1+Nl_k, s_1+2*Nl_k}). GEVOLG: Var[X(r=1)] = Var[X(r=0) circ sigma1_k] = Var[X(r=0)] (bijectiviteit) -> ve0=ve1 in var_end_CODE. Geverifieerd numeriek (ve0~ve1~ve2 in Script 232b). De sigma1-mapping op tripletindices {0,...,Nl_k-1} is precies sigma1_k = enkelvoudige Nl_k-cyclus (Lem lem:sigma1 op schaal k).
 
 BEWIJS-STATUS: De sigma1-triplet-mapping toont dat var_end_CODE(r=1) = var_end_CODE(r=0) altijd (analytisch). De OPEN STAP is: toon var_end_CODE(k+1, r=0) < var_end_CODE(k, r=0). Dit vereist de recursie van de depth-(k+1) r=0 vergelijking: rho*v^{k+1}(r=0,s) = A*v^{k+1}(r=2,sigma0(s)) + B1*cb^{k+1}(R1(s)) in termen van de depth-k structuur (Block-Equation Lemma).
+
+**OBS 440 / VOLLEDIGE d_k-REEKS k=3..19 + RHO1-EXACT RESULTAAT k=3 (Script 233)**
+VOLLEDIGE METING d_k (lambda=1.70) van k=3 tot k=19 (Scripts 233 + 229-231):
+  k=3:  ve=0.097742  d=n.v.t.   rho1=-0.500000  ve_BLOCK=0.537
+  k=4:  ve=0.039605  d=0.4052   rho1=-0.373731  ve_BLOCK=0.676
+  k=5:  ve=0.025303  d=0.6389   rho1=-0.293149  ve_BLOCK=0.770
+  k=6:  ve=0.017434  d=0.6890   rho1=-0.266855  ve_BLOCK=0.838
+  k=7:  ve=0.011760  d=0.6746   rho1=-0.232000  ve_BLOCK=0.885
+  k=8:  ve=0.008496  d=0.7224   rho1=-0.223779  ve_BLOCK=0.925
+  k=9:  ve=0.006236  d=0.7340   rho1=-0.212005  ve_BLOCK=0.951
+  k=10: ve=0.004746  d=0.7610   rho1=-0.204363  ve_BLOCK=0.972
+  k=11: ve=0.003500  d=0.7375   rho1=-0.198673  ve_BLOCK=0.990
+  k=12: ve=0.002617  d=0.7478   rho1=-0.194023  ve_BLOCK=1.005  <- BLOCK KRUIST 1.0
+  k=13: ve=0.001976  d=0.7560   rho1=-0.190190  ve_BLOCK=1.018
+  k=14: ve=0.001494  d=0.7535   rho1=-0.187166  ...
+  k=15: ve=0.001126  d=0.7590   rho1=-0.184598
+  k=16: ve=0.000855  d=0.7662   rho1=-0.182386
+  k=17: ve=0.000655  d=0.7692   (Script 229/231)
+  k=18: ve=0.000504  d=0.7723
+  k=19: ve=0.000389  d=0.7753
+d_k < 1 BEVESTIGD voor ALLE k=4..19 (16 aaneengesloten niveaus).
+TRANSIENT k=4..9: groot variatie (0.405-0.734), plateau begint k=10+ (~0.74-0.78).
+
+RHO1 EXACT RESULTAAT k=3. rho1(k=3) = -0.500000 EXACT. ANALYTISCHE VERKLARING:
+Nl=3 bij k=3. sigma1: 0->2->1->0 (enkelvoudige 3-cyclus). Fourier op Z/3: gecentreerde f0 heeft c_0=0. De ENIGE niet-triviale component is de eerste harmonische (freq=1/3). rho1 = Re(e^{2pi*i/3}) = cos(2pi/3) = -1/2 voor een PURE eerste harmonische. BEWIJS: voor gecentreerde f0 op Z/3 met c_0=0:
+  Cov[f0(s), f0(sigma1(s))] = Sigma_omega |c_omega|^2 * cos(2pi*omega/3) = |c_1|^2*cos(2pi/3) + |c_2|^2*cos(4pi/3) = (|c_1|^2+|c_2|^2)*(-1/2) = -Var[f0]/2.
+  Dus rho1 = -1/2 ALTIJD voor k=3 (ongeacht eigenvector-waarden), QED.
+SPECTRALE INTERPRETATIE: rho1(k) = -1/2 * eta(k) waarbij eta(k) het AANDEEL van het eerste harmonische vermogen in de sigma1-cyclische ordening is. Als k->inf:
+  eta(inf) = 2*|rho1(inf)| ~ 2*0.18 = 0.36 (schatting vanuit trend).
+  Dus ~36% van het spectrale vermogen zit in de eerste harmonische van de sigma1-cyclus, zelfs in de limiet.
+
+VAR_END_BLOCK KRUIST 1.0 bij k~12. Between k=11 (0.990) en k=12 (1.005). Dit markeert het niveau waarop de TYPE-SCHEIDING Var_{r,s}[log(v_r(s)/m(s))] > 1: de log-spreiding van types t.o.v. lokaal gemiddelde overschrijdt "eenheid" (log-schaal eenheid). De var_end_CODE krimpt tegelijkertijd: bij k=12, var_end_CODE = 0.00262. Ratio BLOCK/CODE bij k=12: 1.005/0.00262 ~ 384. Dit groeit snel (384, 515, 689, 924, 1227 voor k=12..16).
+
+BEWIJS-RELEVANTIE: d_k < 1 bewezen voor k=4..19 door directe meting. Het k=3 geval geeft rho1=-0.5 exact als GRONDTOESTAND: de K-L operator's eigenvector bij k=3 is een pure eerste harmonische op Z/3, de maximaal anti-correlerende mogelijke functie. Als k groeit: meer harmonische content -> rho1 nadert 0, d_k nadert het plateau ~ 0.80. De analytische verbinding d_k = f(rho1(k)) blijft open.
