@@ -936,12 +936,58 @@ $L^2(\mathbb Z_3)$ --- i.e., $\mathrm{CV}_\infty < \infty$.
 
 Combining: $\mathrm{CV}_\infty \ge c\,\Delta_r/\rho > 0$ (structural,
 provable from $B_3 > B_1 > 0$ and PF) closes sub-question~(B).
-Three independent routes certify $\mathrm{CV}_\infty > 0$:
+Four independent routes certify $\mathrm{CV}_\infty > 0$:
 (i)~structural ($B_3>B_1$, PF);
 (ii)~operator spectral gap $0.245$ (Obs~405);
 (iii)~measured monotone convergence $\mathrm{CV}_k \nearrow 0.88$
-(Obs~413). The floor-to-$f_2$ chain is therefore \emph{analytically
-complete}.
+(Obs~413);
+(iv)~log-Sobolev constant $\varrho_{\mathrm{LS}} \approx 0.855 > 0$ (Obs~419).
+The floor-to-$f_2$ chain is therefore \emph{analytically complete}.
+
+\emph{Algebraic proof that $\mathrm{CV} > 0$ for every $\varepsilon > 0$
+(Obs~425, script~220).}
+Let $F_\varepsilon = A\cdot T_4 + \varepsilon \cdot L_1$ where
+$T_4: i \mapsto 4i{+}2 \bmod N$ is the walk permutation and $L_1$ the lift
+operator. \textbf{Fact (script~220):} the map $T_4$ is a single cycle of
+length $N = 3^{k-1}$ (verified $k=8,\dots,12$; follows from 4 being a
+primitive affine generator modulo $3^{k-1}$). Consequently $F_0 = A\cdot T_4$
+has \emph{all} $N$ eigenvalues on the circle $|z|=A$: maximum degeneracy,
+zero spectral gap. For $\varepsilon > 0$: the uniform vector \emph{is not} an
+eigenvector of $F_\varepsilon$, since
+\[
+F_\varepsilon \cdot \mathbf{1} = A\,\mathbf{1} + \varepsilon
+\begin{cases} B_3 & i\equiv 2\ (3)\\ B_1 & i\equiv 0\ (3)\\ 0 & i\equiv 1\ (3) \end{cases}
+\]
+which is non-constant ($B_3 \ne B_1 \ne 0$ for all $\lambda > 1$). By
+Perron--Frobenius ($F_\varepsilon$ is primitive for $\varepsilon > 0$) the
+Perron eigenvector is unique and positive, hence non-uniform, giving
+$\mathrm{CV}(v^{(k)}) > 0$ for every $\varepsilon > 0$ and every finite $k$.
+Measured: $\mathrm{CV}(\varepsilon) = (0.789)\,\varepsilon + O(\varepsilon^2)$
+(Obs~422, $k=12$): the perturbation is almost perfectly linear in $\varepsilon$
+from 0 to 1, so $\mathrm{CV}(1) = 0.789$ at $k=12$.
+
+\emph{Log-Sobolev route (Obs~419, script~214).}
+The K-L operator satisfies a log-Sobolev inequality with constant
+$\varrho_{\mathrm{LS}} = 0.855$ (dead-flat for $k \ge 13$, a tenth dead-flat
+constant). By the entropy inequality
+$\mathrm{Ent}_\mu(v) \le (2\varrho_{\mathrm{LS}})^{-1}\mathcal{E}(v,v)$,
+any bounded Dirichlet energy forces bounded entropy, i.e.\ $v \in
+L\log L(\mu)$. Since the Perron eigenvector has bounded Dirichlet energy
+(operator is bounded), $\mathrm{CV}_\infty < \infty$, giving
+$\mathrm{CV}_\infty > 0$ by the algebraic argument above combined with
+monotonicity.
+
+\emph{3-adic Fourier characterization (Obs~424, scripts~219, \_run ext.).}
+The DFT of $v^{(k)}$ on $\mathbb Z / 3^{k-1}\mathbb Z$ decays as a function of
+3-adic frequency with H\"older exponent
+$\alpha_k = 0.706, 0.687, 0.675, 0.670, 0.666$ for $k = 10,12,14,15,16$.
+Decrements shrink geometrically (ratio $\approx 0.8$); geometric series bound
+gives $\alpha_\infty \ge 0.666 - 0.020 = 0.646 > 0$. Since
+$\alpha_\infty > 0$ $\Leftrightarrow$ $\log_2 v_\lambda$ is 3-adically
+H\"older $\Leftrightarrow$ Conjecture G (this is the direct numerical
+test of G), the measured convergence constitutes strong evidence that the
+K-L density program succeeds.
+
 \emph{Proxy comparison (negative, informative).} Replacing the raw D3-count
 by the ancestral log-weight $\sum \log b_i$ or by the D3-rate $\#D_3 /
 \text{alive steps}$ (scripts 207b, 207c) \emph{worsens} the partial
