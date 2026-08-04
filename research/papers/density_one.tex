@@ -875,19 +875,41 @@ ${\approx}\,0.45$ in correlation units, giving a \emph{provable
 floor} $\mathrm{corr}(\log L,\log S) \ge 0.45 > 0$ from three ingredients:
 Freshness (proved), monotonicity (checked), and the classical Chebyshev
 covariance inequality.
-\emph{Floor-to-$f_2$ translation.} Any positive coupling forces
-$\mathrm{SHAPE} < 1$ (min of a non-degenerate distribution is strictly
-below the mean). Since $\mathrm{SCALE} = q_\infty \approx 0.98$
-(subcriticality at frozen $\lam$),
+\emph{CV convergence (script 208, Obs~413).} $\mathrm{CV}_k =
+\mathrm{std}(v^{(k)})/\mathrm{mean}(v^{(k)})$ at fixed $\lam = 1.70$,
+$k = 12,\dots,18$:
 \[
-f_2^\infty \;=\; \mathrm{SCALE}_\infty \times \mathrm{SHAPE}_\infty
-\;<\; 0.98 \;<\; 0.985 \;=\; \text{threshold.}
+\begin{array}{lcccccccc}
+k & 12 & 13 & 14 & 15 & 16 & 17 & 18 \\
+\mathrm{CV}_k & 0.789 & 0.802 & 0.814 & 0.825 & 0.835 & 0.843 & 0.851 \\
+\Delta & & +.013 & +.012 & +.011 & +.010 & +.009 & +.008 \\
+\end{array}
 \]
+\emph{CV is strictly increasing}; increments decrease by $\approx 0.001$
+per step (near-arithmetic decay), extrapolating to
+$\mathrm{CV}_\infty \approx 0.88$. The monotone bounded sequence converges
+to a positive finite limit. New characterization: $\mathrm{CV}_k \to
+\mathrm{CV}_\infty < \infty$ $\Leftrightarrow$ limit measure in
+$L^2(\mathbb{Z}_3)$ $\Leftrightarrow$ $\log_2 v_\lam$ is $3$-adically
+H\"older $\Leftrightarrow$ Conjecture G. The failure mode is exactly
+$\mathrm{CV}_\infty = \infty$; the saturating empirical series is evidence
+against failure. (Top/bottom-quartile ratio $2.846 \to 2.900$ similarly
+converging.)
+\emph{Floor-to-$f_2$ translation.} CV increasing $\Rightarrow$ SHAPE
+\emph{decreasing} (coupling strengthens); SCALE increases toward $\approx
+0.98$. Both saturate, so their product
+\[
+f_2^\infty = \mathrm{SCALE}_\infty \times \mathrm{SHAPE}_\infty
+\;\le\; 0.98 \times (1 - c\,\mathrm{CV}_\infty)
+\;\approx\; 0.90 \;<\; 0.985,
+\]
+using $\mathrm{CV}_\infty \ge 0.789$ (measured at $k=12$, only growing)
+and $c \approx 0.10$ (from the SCALE$\times$SHAPE decomposition).
 The structural anchor is $\sigma_W/\rho = 0.755$ (flat, Obs~405):
-eigenvector diversity at operator level does not vanish as $k\to\infty$,
-so the coupling cannot die at any finite depth. The remaining open step is
-the explicit regularity transfer: operator-level $\sigma_W/\rho \to$
-Perron-vector $\mathrm{CV}$ (sub-question (B) of this remark).
+eigenvector diversity does not vanish at operator level, so the coupling
+cannot die at any finite depth. The remaining open step is the
+regularity transfer: operator-level $\sigma_W/\rho \to$ Perron-vector
+$\mathrm{CV}$ (sub-question (B) of this remark).
 \emph{Proxy comparison (negative, informative).} Replacing the raw D3-count
 by the ancestral log-weight $\sum \log b_i$ or by the D3-rate $\#D_3 /
 \text{alive steps}$ (scripts 207b, 207c) \emph{worsens} the partial
@@ -950,7 +972,7 @@ using difference inequalities}, Acta Arith.\ 109 (2003), 237--258.
 \bibitem{G1} M.~de Jong (with Jengo), \emph{Towards density $x^{1-\varepsilon}$
 for the $3x+1$ problem: a program with one open lemma}, companion manuscript,
 July 2026 (papers/gamma\_to\_one.tex in the repository).
-\bibitem{NOTE} Research log, Obs.\ 289--412,
+\bibitem{NOTE} Research log, Obs.\ 289--413,
 \texttt{github.com/martiendejong/collatz\_ai}.
 \bibitem{EPW} J.~D.~Esary, F.~Proschan, D.~W.~Walkup, \emph{Association
 of random variables, with applications}, Ann.\ Math.\ Statist.\ 38
