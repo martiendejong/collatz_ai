@@ -11026,3 +11026,30 @@ CONJECTURE G -> ENDPOINT DECAY ROUTE (analytisch). Als de Perron-eigenvector Hö
   Dit geeft een EXPLICIETE BOVENGRENS d_k <= 1 - delta(alpha) < 1 voor alle k.
   IMPLICATIEKETEN: Conjectuur G (alpha_inf > 0) -> autocorrelatie-decay -> d_k < 1 -> var_end -> 0 -> Endpoint Decay -> gamma_k -> 1 -> dichtheid 1 voor Collatz.
 OPEN STAP: kwantificeer de verschuiving c(k) geïnduceerd door sigma1 als functie van k, en bind de autocorrelatie als functie van c en alpha_k.
+
+**OBS 439 / SIGMA1-AUTOCORRELATIE NEGATIEF (rho1~-0.185) + DICHOTOMIE VAR_END_BLOCK VS VAR_END_CODE (Script 232b)**
+BUG-FIX (Script 232). Script 232 gebruikte v[:Nl] als "r=0 blok" wat FOUT is in de interleaved ordening (v[j] heeft r=j%3, s=j//3). De JUISTE extractie: v0=v[0::3] (r=0), v1=v[1::3] (r=1), v2=v[2::3] (r=2).
+SIGMA1-AUTOCORRELATIE (gecorrigeerd, lambda=1.70, N_iter=300):
+  k=13: rho1=-0.190190,  k=14: rho1=-0.187166,  k=15: rho1=-0.184598,  k=16: rho1=-0.182386
+  rho_cross=rho1 EXACT (verifieert v1[s]=(A/rho)*v0[sigma1(s)]+const => f1=f0circ sigma1+const).
+  mixing_gain=2*(1-rho1) ~ 2.365-2.380.
+INTERPRETATIE rho1 < 0: de sigma1-kaart (s -> (4s+2) mod Nl) ANTI-CORRELEERT de log-eigenvector: als v0(s) boven gemiddelde, dan v0(sigma1(s)) ONDER gemiddelde. Dit is STERKER dan decorrelatlie; het is actieve OSCILLATIE op de sigma1-schaal. De sigma1-schaal is MAXIMAAL 3-adisch ver van s (|s-sigma1(s)|_3 = 1, maximum).
+3-ADISCHE INTERPRETATIE: sigma1(s)-s = (3s+2) mod Nl heeft v3(3s+2)=0 voor alle s (want 3s+2 ≡ 2 mod 3), dus de 3-adische afstand |s - sigma1(s)|_3 = 1 is ALTIJD maximaal. De negatieve autocorrelatie rho1 ~ -0.185 zegt: de eigenvector oscilleert significant op de maximale 3-adische schaal, wat de ergodische T4-mixing weerspiegelt.
+CONVERGENTIE-OBSERVATIE: rho1 STIJGT langzaam naar 0 (k=13..16: -0.1902, -0.1872, -0.1846, -0.1824). Extrapolatie: rho1 ~ -0.19 + 0.002*(k-13), nadert 0 voor k -> inf maar langzaam. Dit correleert met de d_k-creep (+0.003/stap): naarmate rho1 naar 0 nadert, wordt de sigma1-mixing zwakker -> d_k nadert zijn plateau.
+
+DICHOTOMIE VAR_END_BLOCK vs VAR_END_CODE (k=13..16):
+  VAR_END_BLOCK = within-triplet TYPE-scheiding bij dezelfde s-positie: Var[(r,s): log v_r(s) - log mean_s(v0+v1+v2)(s)].
+    k=13: 1.018  k=14: 1.030  k=15: 1.040  k=16: 1.049  (GROEIT!)
+    ve0b,ve1b,ve2b k=13: 0.219, 0.774, 0.275.  (ve1b DOMINANT: type r=1 sterk afwijkend van lokaal gemiddelde)
+  VAR_END_CODE = within-same-type RUIMTELIJKE VARIATIE bij schaal Nl/3 (wat Scripts 229/231 berekenen):
+    k=13: 0.001976  k=14: 0.001494  k=15: 0.001126  k=16: 0.000855  (KRIMPT, d_k ~ 0.756-0.759)
+  Ratio BLOCK/CODE: k=13: 515,  k=14: 689,  k=15: 924,  k=16: 1227  (SNEL GROEIEND)
+
+BETEKENIS VAN DE DICHOTOMIE:
+  VAR_END_BLOCK groeit: de drie typen worden STEEDS MEER gescheiden van hun lokale gemiddelde. De absolute type-ongelijkheid neemt toe. Dit correleert met de groeiende globale CV (Obs 434).
+  VAR_END_CODE krimpt: de ruimtelijke RUWHEID van elk type afzonderlijk op schaal Nl/3 neemt af. Elk knooppunt v_r(s) nadert het gemiddelde van zijn drie 'level-buren' (zelfde type, s, s+Nl/3, s+2*Nl/3). Dit IS de Endpoint Decay (Conjecture G).
+  HOMOGENISATIE-ANALOGIE: micro (ruimtelijke ruwheid per type) middelt uit; macro (type-scheiding) groeit. Zie Obs 434 voor de parallelle beschrijving.
+
+SIGMA1-TRIPLET-MAPPING (analytisch). sigma1_{k+1}(s_0 + j*Nl_k) = sigma1_{k+1}(s_0) + j*Nl_k (mod 3*Nl_k) voor j=0,1,2. BEWIJS: (4(s_0+j*Nl_k)+2) mod 3*Nl_k = (4*s_0+2 + 4*j*Nl_k) mod 3*Nl_k = sigma1(s_0) + j*Nl_k (want 4*j*Nl_k mod 3*Nl_k = j*Nl_k voor j=0,1,2: 4j ≡ j mod 3 voor j=0,1,2). Dit betekent: sigma1 BEWAART de tripletstructuur (mapt {s_0, s_0+Nl_k, s_0+2*Nl_k} naar {s_1, s_1+Nl_k, s_1+2*Nl_k}). GEVOLG: Var[X(r=1)] = Var[X(r=0) circ sigma1_k] = Var[X(r=0)] (bijectiviteit) -> ve0=ve1 in var_end_CODE. Geverifieerd numeriek (ve0~ve1~ve2 in Script 232b). De sigma1-mapping op tripletindices {0,...,Nl_k-1} is precies sigma1_k = enkelvoudige Nl_k-cyclus (Lem lem:sigma1 op schaal k).
+
+BEWIJS-STATUS: De sigma1-triplet-mapping toont dat var_end_CODE(r=1) = var_end_CODE(r=0) altijd (analytisch). De OPEN STAP is: toon var_end_CODE(k+1, r=0) < var_end_CODE(k, r=0). Dit vereist de recursie van de depth-(k+1) r=0 vergelijking: rho*v^{k+1}(r=0,s) = A*v^{k+1}(r=2,sigma0(s)) + B1*cb^{k+1}(R1(s)) in termen van de depth-k structuur (Block-Equation Lemma).
