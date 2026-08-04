@@ -11147,3 +11147,97 @@ Conjunctuur G reduceert tot: bewijzen dat ve0_CODE(k+1)/ve0_CODE(k) < 1 persiste
 BEWIJS-STATUS: ve1=ve0 BEWEZEN (Cor cor:ve_equality, density_one.tex).
 ve2 > ve0 > 0 GEMETEN voor alle k, ve2/ve0 -> L � 1.20 (convergentie langzaam, L < 2 zeker).
 d_k < 1 volgt als delta_0 en delta_2 < 1: GEMETEN maar niet analytisch bewezen.
+
+---
+
+## Obs 443 (Script 235, 2026-08-05): Cyclus Diophantische beperkingen — SP1A near-miss paren + SP1B Baker grens
+
+Script 235_cycle_diophantine.py (SP1A + SP1B).
+
+SP1A: Near-miss (k,h) paren waar 2^h boven 3^k zit (eps = h - k*log2(3) kleinst).
+Convergenten van de CF van log2(3) geven de gevaarlijkste paren:
+  n=1: k=1,  h=2,  eps=0.415037  (triviaal)
+  n=3: k=5,  h=8,  eps=0.075188  (eerste echte near-miss)
+  n=5: k=41, h=65, eps=0.016537  (derde convergent boven log2(3))
+Top-3 near-misses voor k<=200 (kleinste eps):
+  k=200, h=317, eps=0.00750 (niet-convergent, maar kleine eps)
+  k=147, h=233, eps=0.01051
+  k=94,  h=149, eps=0.01352
+  k=41,  h=65,  eps=0.01654 *CONV*
+
+SP1B: Onderste grens n0 via cyclus-vergelijking n0*(2^h - 3^k) = S.
+S_min (front-loaded halvings: h_1=h-k+1, overige=1) = 2^h + 2*3^k - 3*2^k.
+log2(n0_min) = log2(S_min) - log2(gap) met gap = 2^h - 3^k.
+De S_min grens is te zwak om n0 > 2^68 te garanderen voor k<=200
+(log2(n0_min) maximaal ~9 voor de beste convergent-paren in dit bereik).
+
+Conclusie: de eenvoudige S_min grens is niet genoeg.
+De werkelijke uitsluitingsresultaten (Simons-de Weger 2003) bewijzen k >= 35000
+via LLL-lattice methoden — dit script documenteert de structuur van de paren
+en laat zien WAT er bewezen moet worden (eps klein => n0 niet noodzakelijk groot).
+
+---
+
+## Obs 444 (Script 236, 2026-08-05): Cyclus algebraische beperkingen — SP2A halvings + SP2C mod-3
+
+Script 236_cycle_algebraic.py (SP2A + SP2C).
+
+SP2A: Voor k=1..7 alle halvings-patronen (h_1,...,h_k) met h_i>=1, som=h_k=ceil(k*log2(3)).
+Cyclus-integriteitscheck: n0 = S/(2^h - 3^k) een positieve oneven integer?
+  k=1: h=2, gap=1, 1 patroon, 1 kandidaat: n0=1 (triviaal).
+  k=2: h=4, gap=7, 3 patronen, 1 kandidaat: n0=1 (zelfde triviale cyclus).
+  k=3: h=5, gap=5, 6 patronen, 0 kandidaten.
+  k=4: h=7, gap=47, 20 patronen, 0 kandidaten.
+  k=5: h=8, gap=13, 35 patronen, 0 kandidaten.
+  k=6: h=10, gap=295, 126 patronen, 0 kandidaten.
+  k=7: h=12, gap=1909, 462 patronen, 0 kandidaten.
+Totaal: alleen de triviale cyclus (n0=1) overleeft als integeroplossing voor k=1..7.
+
+SP2C: Mod-3 type constraint op cyclus-elementen.
+Na elke Collatz stap T(n) = (3n+1)/2^v geldt: T(n) = 2^{-v} mod 3.
+  v even => volgend element = 1 mod 3 (r=1 in K-L)
+  v odd  => volgend element = 2 mod 3 (r=2 in K-L)
+Gevolg: n0 mod 3 in {1, 2}; n0 = 0 mod 3 is ONMOGELIJK in een echte cyclus
+(want n0 wordt bepaald door h_k parity: h_k even => r0=1, h_k odd => r0=2).
+Triviaal geverifieerd: de enige kandidaat n0=1 heeft mod3=1 en h_k=2 (even) -> r0=1. OK.
+
+---
+
+## Obs 445 (Script 237, 2026-08-05): K-L Perron gewicht op cyclus-kandidaten — SP3A + SP3B
+
+Script 237_cycle_kl_weight.py (SP3A + SP3B).
+
+SP3A: K-L Perron gewicht v[1] op positie 1 (triviale cyclus element n=1, K-L index i=1).
+  K=4:  v[1]=0.263, rank=26%  (beneden gemiddelde)
+  K=5:  v[1]=0.248, rank=37%
+  K=8:  v[1]=0.101, rank=28%
+  K=10: v[1]=0.059, rank=25%
+  K=11: v[1]=0.045, rank=24%
+v[1] daalt absoluut maar rank stabiliseert op ~25%: het triviale cycluspunt zit
+CONSISTENT in het onderste kwartiel van de Perron vector. v0[sigma1(0)] ~ 0.13..0.72.
+
+SP3B: sigma1 anti-correlatie als cyclus-beperking.
+Correcte gezamenlijke fractie: fractie van s waarbij ZOWEL v0(s) > mediaan(v0)
+ALS v0(sigma1(s)) > mediaan(v0) (de enige relevante maat, want v1(s) = A/rho * v0(sigma1(s))).
+Verwachte waarde onder onafhankelijkheid: 0.25. Gemeten:
+  K=4:  frac_joint=0.111, ratio=0.44  (rho1=-0.374)
+  K=5:  frac_joint=0.148, ratio=0.59  (rho1=-0.293)
+  K=7:  frac_joint=0.198, ratio=0.79  (rho1=-0.232)
+  K=10: frac_joint=0.204, ratio=0.82  (rho1=-0.204)
+  K=13: frac_joint=0.208, ratio=0.83  (rho1=-0.190)
+ratio convergeert naar ~0.83 (niet naar 1.0): de anti-correlatie van sigma1 reduceert
+de kans op gezamenlijk-hoge posities persistent met factor ~0.83.
+
+Implicatie voor k=35000-cyclus (Simons-de Weger grens):
+  P(alle k elementen gezamenlijk hoog) ~ 0.204^35000 = 10^{-24202}
+  [niet rigoureus — cyclus-elementen zijn niet onafhankelijk]
+Maar het kwantificeert de K-L spanning: een cyclus vereist een configuratie die de
+anti-correlatie-structuur van sigma1 stelselmatig moet overwinnen.
+
+SAMENVATTING DRIE TRACKS:
+Track 1 (Diophantisch): CF-convergenten geven de gevaarlijkste (k,h) paren.
+  S_min grens is te zwak; uitsluitingsbewijs vereist LLL/Baker (Simons-de Weger: k>=35000).
+Track 2 (Algebraisch): voor k=1..7 geen cyclus behalve triviale n0=1.
+  Mod-3: n0 = 0 mod 3 onmogelijk (structureel bewezen).
+Track 3 (K-L): triviale cyclus bij 25e percentiel; sigma1 anti-correlatie
+  reduceert gezamenlijke kans op hoge-gewichtsposities met factor 0.83 per niveau.
