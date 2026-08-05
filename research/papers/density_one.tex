@@ -992,6 +992,14 @@ Decompose by the $\bmod\,3$ residue of $j$ (= r-type of $\sigma_0(j)$).
   at group $j$ compares the \emph{same} three $v_2$ values as the minimum; when
   $v_2[a]$ is the maximum of its triplet, it is excluded from the minimum,
   so $\mathrm{cb}[a]$ is smaller --- creating a structural anti-correlation.
+  Concretely, for exchangeable positive $(X, Y, Z)$:
+  \[
+    \mathrm{Cov}(X,\,\min(X,Y,Z)) = \tfrac13\bigl(E[\min^2] - \mu\,E[\min]\bigr)
+  \]
+  where $\mu = E[X]$; this is negative whenever
+  $(\mu - E[\min])\,E[\min] > \mathrm{Var}[\min]$
+  (a condition satisfied for any sufficiently spread distribution, verified
+  numerically at every $k$).
 \item $j\equiv 1\pmod3$ \emph{(indirect, via $v_0$)}.
   $\mathrm{cb}$ uses $v_1$, not $v_2$; but $v_1(s) = (A/\rho)\,v_0[\sigma_1(s)]$
   and $v_0$ is the blend of $v_2$ and $\mathrm{cb}$ (eq.~\ref{eq:v0blend}).
