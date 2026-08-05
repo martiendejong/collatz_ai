@@ -865,22 +865,26 @@ $\mathrm{ve}_1^{\mathrm{CODE}} = \mathrm{ve}_0^{\mathrm{CODE}}$.
 \MEASURED{} (script~234, $k{=}4\ldots13$, $\lambda = 1.70$): $\mathrm{ve}_1/\mathrm{ve}_0 =
 1.000000$ to machine precision at every depth, confirming (ii).
 By contrast, $\mathrm{ve}_2^{\mathrm{CODE}} > \mathrm{ve}_0^{\mathrm{CODE}}$ throughout:
-the ratio $\mathrm{ve}_2/\mathrm{ve}_0$ falls from $4.09$ ($k{=}4$) to $1.22$
-($k{=}13$), converging toward a limit $L \approx 1.20$.
+the ratio $\mathrm{ve}_2/\mathrm{ve}_0$ falls from $4.09$ ($k{=}4$) to $1.19$
+($k{=}17$), converging toward a limit $L < 6/5$.
 In the deep regime both $\mathrm{ve}_0$ and $\mathrm{ve}_2$ decay at
-the same rate ($\delta_0 \approx \delta_2 \approx 0.75$),
+the same rate ($\delta_0 \approx \delta_2 \approx 0.76$),
 consistent with $d_k \to \delta_0 < 1$ in the limit $k \to \infty$.
-Extended measurement (script~238, $k{=}4..16$, $\lambda{=}1.70$):
+Extended measurement (script~238, $k{=}4..17$, $\lambda{=}1.70$):
 \[
-\begin{array}{r|rrrrrrrrrrrrr}
-k & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+\begin{array}{r|rrrrrrrrrrrrrr}
+k & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 \\
 \hline
-\mathrm{ve}_2/\mathrm{ve}_0 & 4.09 & 2.33 & 1.75 & 1.42 & 1.31 & 1.28 & 1.26 & 1.25 & 1.23 & 1.22 & 1.21 & 1.20 & 1.20 \\
+\mathrm{ve}_2/\mathrm{ve}_0 & 4.09 & 2.33 & 1.75 & 1.42 & 1.31 & 1.28 & 1.26 & 1.25 & 1.23 & 1.22 & 1.21 & 1.20 & 1.196 & 1.190 \\
 \end{array}
 \]
-The ratio $\mathrm{ve}_2/\mathrm{ve}_0$ is monotonically decreasing;
-its limit $L$ lies below $1.20$ and convergence is slow (decrements
-shrink geometrically at rate $\approx 0.80$).
+The ratio is monotonically decreasing; geometric extrapolation from
+$k{=}15..17$ (decrement rate $\approx 0.93$) gives $L \approx 1.10$,
+below $7/6 \approx 1.167$ and $6/5 = 1.20$.
+\MEASURED{} (script~238: lambda-dependence at $k{=}13$: ratio falls from
+$1.30$ to $1.18$ as $\lambda$ rises from $1.30$ to $1.90$, with the
+bonus weight $B_3 = \lambda^{\alpha-1}$ increasing but its \emph{relative}
+variance contribution decreasing.)
 \end{proof}
 
 \begin{corollary}[$\sigma_{20}$ is a single $N_\ell$-cycle; transport term
@@ -922,10 +926,13 @@ since $\sigma_{20}$ is a bijection, averaging over $s$ gives CODE-variance $= \m
 Decomposing $v_2 = v_2^{\mathrm{tr}} + v_2^{\mathrm{bon}}$ (transport $+ B_3$ bonus),
 the extra $\mathrm{ve}_2 - \mathrm{ve}_0 > 0$ arises from cross-terms and
 the CODE-variance of the bonus term $(B_3/\rho)\,\mathrm{cb}[R_3(s)]$.
-\MEASURED{} (script~238 Part~3, $k{=}14$):
-$\mathrm{ve}_2^{\mathrm{tr}}/\mathrm{ve}_0 = 1.000$ to five decimal places;
-the extra variance is $(\mathrm{ve}_2-\mathrm{ve}_0)/\mathrm{ve}_0 \approx L - 1 \approx 0.21$
-at $k{=}14$.
+\MEASURED{} (script~238 Part~3, $k{=}14$, $\lambda{=}1.70$, $\rho{=}1.047$):
+$\max_s|v_2(s) - v_2^{\mathrm{pred}}(s)|/v_2(s) < 10^{-14}$ (machine precision);
+$\mathrm{ve}_2^{\mathrm{tr}}/\mathrm{ve}_0 = 1.000000$ (to six decimal places);
+$\sigma_{20}$ triplet-map check: $\sigma_{20}(s{+}N_\ell/3) - \sigma_{20}(s) - N_\ell/3 = 0$
+(exact, all $s$).
+The extra variance is $(\mathrm{ve}_2-\mathrm{ve}_0)/\mathrm{ve}_0 = 0.2111$
+at $k{=}14$ (i.e., $\mathrm{ve}_2/\mathrm{ve}_0 = 1.2111$ as reported above).
 \end{corollary}
 
 \begin{remark}[Structural uniqueness and T4-mixing contraction]\label{rem:sigma1}

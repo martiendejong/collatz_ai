@@ -11304,21 +11304,34 @@ DEEL 1: ve2/ve0 reeks bij lambda=1.70, k=4..16:
   k= 14: ve0=0.001396  ve2=0.001691  ratio=1.211  d_ve0=0.759  d_ve2=0.752
   k= 15: ve0=0.001055  ve2=0.001269  ratio=1.203  d_ve0=0.755  d_ve2=0.750
   k= 16: ve0=0.000802  ve2=0.000960  ratio=1.196  d_ve0=0.761  d_ve2=0.756
+  k= 17: ve0=0.000616  ve2=0.000733  ratio=1.190  d_ve0=0.768  d_ve2=0.764
 
-Monotoon dalend; delta-ve0 convergeert naar ~0.757, delta-ve2 convergeert naar ~0.752.
+Monotoon dalend; delta-ve0 convergeert naar ~0.76, delta-ve2 convergeert naar ~0.76.
 Diep regime: beide ve-varianten dalen met DEZELFDE snelheid => ratio L stabiliseert.
-Extrapolatie op basis van geometrisch-dalende incrementen:
-  verhouding decrements bij k=14..16: (1.203-1.196)/(1.211-1.203) = 0.875
-  residu-som = 0.007/(1-0.875) = 0.056 => L_extrap <= 1.196 - 0.056 = 1.14 (ondergrens)
-  conservatieve schatting: L in [1.14, 1.20]
+Extrapolatie Script 238 (geometrisch, k=15..17, rate=0.932):
+  L_extrap = 1.097 (onder 7/6 = 1.167, onder 6/5 = 1.200)
+  Onzekerheid: de rate 0.932 is hoger dan de eerdere 0.80, mogelijk transient.
+  Conservatieve schatting: L in [1.09, 1.17]
 
 BEWIJS VAN ve1 = ve0 (lem:ve_equality):
   Elke rij van de script bevestigt ve1 = ve0 tot machine-precisie (6 significante cijfers).
   Analytisch: via r=1 K-L vergelijking v1(s) = (A/rho)*v0[sigma_1(s)].
   sigma_1 beeldt triplets af op triplets (4 = 1 mod 3) => CODE-variantie behouden.
 
-DEEL 3 (analytische decompositie, k=14, lambda=1.70) — zie Script 238 Part 3:
+DEEL 2: lambda-afhankelijkheid bij k=13
+  lam=1.30: ve0=0.000035  ve2=0.000045  ratio=1.296  B3=1.166  B3/B1=1.300
+  lam=1.50: ve0=0.000381  ve2=0.000486  ratio=1.277  B3=1.268  B3/B1=1.500
+  lam=1.70: ve0=0.001841  ve2=0.002249  ratio=1.222  B3=1.364  B3/B1=1.700
+  lam=1.90: ve0=0.005315  ve2=0.006247  ratio=1.175  B3=1.456  B3/B1=1.900
+  B3/B1 = lambda (exact). Ratio daalt met stijgende lambda: meer B3 => minder relatieve bonus-variantie.
+  (Groter lambda => eigenvector meer "gespreid", cb varieert minder relatief.)
+
+DEEL 3 (analytische decompositie, k=14, lambda=1.70):
+  rho = 1.047
   v2(s) = (A^2/rho^2)*v0[sigma_20(s)] + (B3/rho)*cb[R3(s)]
-  Geverifieerd: max_rel_err < 10^{-10}
-  ve2_transport/ve0 = 1.000 (tot 6 decimalen)
-  Extra ve2 van bonus = ve2 - ve2_transport = (L-1)*ve0 ~ 0.21*ve0 bij k=14
+  Geverifieerd: max_rel_err = 1.03e-15 (machine precision)
+  ve0 (direct) = 0.001396
+  ve2_transport = 0.001396  => ve2_transport/ve0 = 1.000000 (exact op 6 decimalen)
+  ve2 (totaal) = 0.001691  => ve2/ve0 = 1.2111
+  Extra ve2 = ve2 - ve2_transport = 0.000295 = 0.2111 * ve0
+  sigma_20 triplet-check: sigma_20(s+Nl/3) - sigma_20(s) - Nl/3 = 0 (exact)
