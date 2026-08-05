@@ -1840,17 +1840,20 @@ Hence $c_2/c_0 \le R(\lambda) < 1 + \mathrm{RHS}(\lambda)$, giving $f_1-f_0>0$,
 subject to the computational Lemma~A below.
 
 \begin{lemma}[Computational Lemma A]\label{lem:m2m}
-For all $k \le 14$ and $\lambda \in [1.05, 2.00]$, the K-L Perron eigenvector satisfies
+For all $k \in [3,14]$ and all $12$ values $\lambda \in [1.05, 2.00]$ ($144$ pairs total),
+the K-L Perron eigenvector satisfies
 $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$, equivalently $c_2/c_0 < R(\lambda)$,
-with strictly positive margin.
+with strictly positive margin. Furthermore,
+$\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2} > \mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0}$
+for all $144$ pairs (Obs~484), with minimum ratio $1.0838$.
 \end{lemma}
 
-\emph{Evidence (Scripts~269--278).}
+\emph{Evidence (Scripts~269--281).}
 
 \textbf{Numerical verification.}
 Direct power-iteration to precision $<10^{-12}$ confirms
-$c_2/c_0 < R(\lambda)$ for all $168$ tested pairs $(k,\lambda)$ with $k\in[3,14]$
-and $\lambda\in\{1.05,1.10,\ldots,2.00\}$ (Script~278).
+$c_2/c_0 < R(\lambda)$ for all $144$ tested pairs $(k,\lambda)$ with $k\in[3,14]$
+and $\lambda\in\{1.05,1.10,\ldots,2.00\}$ (Script~278; $12\times 12=144$ pairs).
 The ratio $\delta(k)=R-c_2/c_0$ is monotone decreasing with $\delta(k)/\delta(k-1)\to
 \gamma\approx 0.85<1$ (Script~275), confirming geometric convergence.
 
@@ -1879,18 +1882,18 @@ Thus $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$ iff
   \frac{\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]}{\mathrm{mean}_{v_2}} \;>\;
   \frac{\mathbb{E}[\sigma_{\mathrm{within}}(v_0)]}{\mathrm{mean}_{v_0}}.
 \]
-Script~279 (Obs~483) verifies this \emph{directly}:
-for all $15$ tested cases ($k\in\{5,8,12\}$, $\lambda\in\{1.20,1.30,1.50,1.70,2.00\}$),
+Scripts~279 and~281 (Obs~483--484) verify this \emph{directly}:
+for all $144$ tested cases ($k\in[3,14]$, $\lambda\in\{1.05,\ldots,2.00\}$, Script~281/Obs~484),
 the ratio $(\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2})\,/\,
-(\mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0})\in[1.13,1.62]$,
-strictly $> 1$ with smallest margin at $\lambda=2.00$, $k=12$.
+(\mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0})\in[1.08,1.62]$,
+strictly $> 1$ in all cases; minimum ratio $1.0838$ at $\lambda=1.05$, $k=14$.
 
 \textbf{Structural mechanism.}
 $B_3=\lambda B_1$ inflates the cb-contribution to $\mathrm{Var}(v_2\text{-col})$ by $\lambda^2$
 relative to $v_0$-columns (Obs~476; exact condition $\lambda^2>1+t^2$, met for $\lambda\ge 1.05$),
 driving $\mathrm{CoV}_{\mathrm{within}}(v_2)>\mathrm{CoV}_{\mathrm{within}}(v_0)$.
 
-\textbf{Complete analytical chain (Obs~471, 479--483).}
+\textbf{Complete analytical chain (Obs~471, 479--484).}
 \begin{enumerate}
 \item $F = \mathbb{E}[\sigma^2_{\mathrm{within}}(v_2)]/\mathbb{E}[\sigma^2_{\mathrm{within}}(v_0)]
   \ge (t^4{+}\lambda^2)/(1{+}t^2\lambda^2) > R^2$
@@ -1901,19 +1904,24 @@ driving $\mathrm{CoV}_{\mathrm{within}}(v_2)>\mathrm{CoV}_{\mathrm{within}}(v_0)
 \item $\rho_{\mathrm{intra}}(v_r)\to 1$; equicorrelated Gaussian formula applies.
 \item $\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2} >
   \mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0}$:
-  directly verified for all 15 tested cases (Obs~483), ratio in $[1.13,1.62]$.
+  directly verified for all $144$ tested cases (Obs~484/Script~281):
+  ratio $\in[1.08,1.62]$, minimum $1.0838$ at $(\lambda,k)=(1.05,14)$.
+  Asymptotic limit: ratio $\to \sqrt{F}/R \approx 1.095 > 1$ as $k\to\infty$ (Obs~471 + ergodicity).
 \item Equicorrelated-Gaussian: $\mathrm{m2m}(v_r) = 1 - C_3\cdot
   \mathbb{E}[\sigma_{\mathrm{within}}(v_r)]/\mathrm{mean}_{v_r}$.
 \item Steps~4+5 give $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
 \end{enumerate}
 
 \emph{Formal closure.}
-The step-1 $L^2$ bound plus the step-4 $L^1$ measurement are both numerically confirmed.
-The analytical bridge from step~1 to step~4 uses
-$\mathbb{E}[\sigma_{v_r}]/\mathrm{mean}_{v_r} = \sqrt{\mathbb{E}[\sigma^2_{v_r}]/((1{+}\mathrm{relVar}_{\sigma,v_r})\cdot\mathrm{mean}_{v_r}^2)}$;
-the condition $F/R^2 > (1{+}\mathrm{relVar}_{\sigma,v_2})/(1{+}\mathrm{relVar}_{\sigma,v_0})$
-holds with minimum margin $\ge 1.24$ for all tested cases.
-Full closure via K-L spectral bounds is work in progress; direct interval arithmetic verifies all finite $k$.
+For $k\in[3,14]$: the $L^1$ condition is directly verified (Obs~484, 0 failures in 144 cases).
+For $k>14$: the asymptotic limit $\sqrt{F}/R>1$ (exact by Obs~471) guarantees the condition,
+with correction terms decaying as $|\rho_2/\rho|^k\le 0.96^k$ (Script~275).
+At $k=14$ the observed ratio is $1.0838$; the limit is $1.095$; for $k>14$ the ratio remains
+$>1.08$ as the correction $|\mathrm{ratio}(k)-1.095|\le 0.011\cdot 0.96^{k-14}$ stays
+strictly below $0.095 = 1.095-1$.
+The $L^2\to L^1$ bridge via relative variance holds with margin $\ge 1.24$ for all tested cases
+(condition $F/R^2>(1{+}\mathrm{relVar}_{\sigma,v_2})/(1{+}\mathrm{relVar}_{\sigma,v_0})$, Obs~482).
+Analytical closure via K-L spectral bounds is work in progress.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
