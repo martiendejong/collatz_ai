@@ -980,6 +980,33 @@ $\mathrm{Cov}$ from $-4{\times}10^{-6}$ ($\lambda{=}1.30$) to $-3{\times}10^{-4}
 Depth scan ($k{=}5..12$, $\lambda{=}1.70$ and $2.00$): $\mathrm{Cov}$ decreases in magnitude
 as $k$ grows but remains strictly negative throughout.
 
+\noindent\emph{Analytical mechanism for $\mathrm{Cov} < 0$ (script~245, $k{=}12$,
+$\lambda\in\{1.30,\ldots,2.00\}$).}
+Decompose by the $\bmod\,3$ residue of $j$ (= r-type of $\sigma_0(j)$).
+\begin{itemize}
+\item $j\equiv 2\pmod3$ \emph{(direct, structural)}.
+  $\sigma_0(j)=4j\bmod N_\ell \equiv 2\pmod3$, so
+  $\mathrm{cb}[\sigma_0(j)]$ is the CODE-triplet minimum of $v_2$:
+  $\mathrm{cb}[a] = \min(v_2[a_0],\,v_2[a_0+N_\ell/9],\,v_2[a_0{+}2N_\ell/9])$
+  where $a = \sigma_0(j)$, $a_0 = \lfloor a/3\rfloor$. The CODE-triplet of $v_2$
+  at group $j$ compares the \emph{same} three $v_2$ values as the minimum; when
+  $v_2[a]$ is the maximum of its triplet, it is excluded from the minimum,
+  so $\mathrm{cb}[a]$ is smaller --- creating a structural anti-correlation.
+\item $j\equiv 1\pmod3$ \emph{(indirect, via $v_0$)}.
+  $\mathrm{cb}$ uses $v_1$, not $v_2$; but $v_1(s) = (A/\rho)\,v_0[\sigma_1(s)]$
+  and $v_0$ is the blend of $v_2$ and $\mathrm{cb}$ (eq.~\ref{eq:v0blend}).
+  The direct anti-correlation propagates through $v_0\to v_1$,
+  giving $\mathrm{Cov}_1 < 0$.
+\item $j\equiv 0\pmod3$: $\mathrm{cb}$ uses $v_0$; coupling to $v_2$ is weak
+  ($\mathrm{Cov}_0 \approx 0$, slightly negative to slightly positive).
+\end{itemize}
+\MEASURED{}: at $\lambda{=}1.70$, $k{=}12$:
+$\mathrm{Cov}_{r=2}=-1.79{\times}10^{-4}$,
+$\mathrm{Cov}_{r=1}=-1.17{\times}10^{-4}$,
+$\mathrm{Cov}_{r=0}=-2.1{\times}10^{-6}$;
+$r{=}2$ dominates, $r{=}1$ is significant, $r{=}0$ negligible.
+Pattern is robust across all $\lambda\in\{1.30,\ldots,2.00\}$.
+
 \noindent\emph{Near-analytical argument for $L>1$.}
 In the log-linear regime,
 $\mathrm{ve}_0 \approx w_2^2\,\mathrm{ve}_2 + w_{\mathrm{cb}}^2\,\mathrm{ve}_{\mathrm{cb}}

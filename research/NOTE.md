@@ -11472,3 +11472,54 @@ Script 241_dk_lambda_scan.py (k=12..14 voor alle lambda) + Script 244_cov_block_
   (B) Cov(u_v2, u_cb) < 0 ALTIJD (alle lambda, alle geteste diepten)
   (C) L = ve2/ve0 > 1 ALTIJD (alle lambda)
   Consequentie: L > 1 is een universele structurele eigenschap van het K-L systeem.
+
+---
+
+## Obs 451 (Script 245, 2026-08-05): Cov decompositie per r-type — analytisch mechanisme bevestigd
+
+Script 245_cov_rtype_decomp.py. Decomposeer Cov naar r-type van sigma0(j) = 4j%Nl.
+
+RESULTAAT: Alle drie r-types dragen bij met NEGATIEVE Cov (bij vrijwel alle lambda):
+  k=12, lam=1.70:
+    r=0: Cov=-2.1e-6 (contribution: -7.1e-7) — klein negatief
+    r=1: Cov=-1.17e-4 (contribution: -3.9e-5) — matig negatief
+    r=2: Cov=-1.79e-4 (contribution: -5.95e-5) — sterkst negatief
+    TOTAAL: -9.91e-5 (klopt met Script 244)
+
+  lam=2.00 (sterkste effect):
+    r=0: Cov=+8.7e-7 (contribution: +2.9e-7) — bijna nul, licht positief
+    r=1: Cov=-3.68e-4 (contribution: -1.23e-4)
+    r=2: Cov=-5.73e-4 (contribution: -1.91e-4)
+    TOTAAL: -3.13e-4
+
+ANALYTISCH MECHANISME (drie niveaus):
+
+(1) DIRECT — r=2 groepen (j equiv 2 mod 3):
+    sigma0(j) = 4j%Nl heeft r-type j%3 = 2.
+    v2_at_sigma0[j] = v2[4j%Nl] is ZELF een van de drie waarden in:
+      cb[4j%Nl] = min(v2[m], v2[m+Nl/9], v2[m+2Nl/9]) met m=(4j%Nl)//3.
+    Specifiek: de CODE-triplet van v2_at_sig0 bij groep j=2 vergelijkt {v2[8],v2[2],v2[5]}
+    en cb[8] = min(v2[2],v2[5],v2[8]) = minimum van DEZELFDE drie waarden!
+    => Wanneer v2[8] groot is (boven triplet-gemiddelde):
+       - v2[8] is de MAX => niet in de minimum => cb[8] = min(v2[2],v2[5]) = KLEINER
+       - ld_v2[0] > 0 en ld_cb[0] < 0 => negatief product (anti-correlatie)
+    Dit is DIRECTE structurele anti-correlatie: min-functie sluit grote waarden uit.
+
+(2) INDIRECT — r=1 groepen (j equiv 1 mod 3):
+    cb[4j%Nl] gebruikt v1 (niet v2) voor j equiv 1 mod 3.
+    MAAR: v1(s) = (A/rho)*v0[sigma1(s)] en v0(s) = (A*v2[sig0]+B1*cb[sig0])/rho.
+    Omdat Cov(v2,cb_block) < 0 (direct bewezen), volgt:
+      v0 = blend(v2, cb) is minder gecorreleerd met v2 dan v2 zelf.
+      v1 = (A/rho)*v0[sigma1] erft deze verminderde correlatie.
+    => Cov(v2_triplet, v1_cb_triplet) < 0 (INDIRECT via v0-koppeling)
+
+(3) NEUTRAAL — r=0 groepen (j equiv 0 mod 3):
+    cb gebruikt v0. Nauwelijks directe koppeling met v2.
+    Cov_r0 bijna nul (licht negatief bij kleine lambda, licht positief bij grote lambda).
+
+IMPLICATIE: De directe (r=2) en indirecte (r=1) bijdragen samen garanderen Cov < 0.
+De r=0 bijdrage is neutraal/verwaarloosbaar.
+Dit geeft een BIJNA-ANALYTISCH bewijs van Cov < 0:
+  - Direct deel (r=2): bewezen via min-selectie structuur (zie Obs 448/450)
+  - Indirect deel (r=1): volgt uit v1=(A/rho)*v0[sigma1] en het directe deel
+  - Totaal Cov = (1/3)*(Cov_r0 + Cov_r1 + Cov_r2) < 0 ✓
