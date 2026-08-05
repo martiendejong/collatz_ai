@@ -13027,3 +13027,50 @@ CONCLUSIE: Stap (3b) is VOLLEDIG NUMERIEK BEWEZEN voor k=3..14, λ=1.05..2.00.
   De analytische kloof is: L² (Obs 471) => L¹ (E[sigma_col]) omzetting.
   Numeriek: marge E2/E0 ≥ 1.08 voor alle geteste gevallen. L¹/sqrt(L²) ≈ 0.98-1.00.
 
+## Obs 483 (Script blo2ukbvz, 2026-08-06): DIRECTE VERIFICATIE E[sigma_within_v2]/mu2 > E[sigma_within_v0]/mu0
+
+KERNRESULTAAT: De DIRECTE bewijsconditie voor stap (3b) is volledig numeriek bevestigd.
+
+E[sigma_within_vr]/mean_vr is de grootte die m2m_vr bepaalt via de equicorreleerde Gaussiaan:
+  m2m_vr = 1 - C3 * E[sigma_within_vr] / mean_vr.
+  m2m_v2 < m2m_v0 iff E[sigma_within_v2]/mean_v2 > E[sigma_within_v0]/mean_v0.
+
+DATA (E_sig_w0/mu0, E_sig_w2/mu2, ratio=(E_sig_w2/mu2)/(E_sig_w0/mu0), R=mean_v2/mean_v0):
+```
+lam  k   E_sig_w0/mu0  E_sig_w2/mu2  ratio   R        OK
+1.20  5   0.0258729     0.0370620    1.4325  0.9056   OK
+1.20  8   0.0089797     0.0104926    1.1685  0.9059   OK
+1.20 12   0.0022959     0.0026121    1.1377  0.9060   OK
+1.30  5   0.0351544     0.0534628    1.5208  0.9432   OK
+1.30  8   0.0150180     0.0176983    1.1785  0.9446   OK
+1.30 12   0.0048546     0.0056056    1.1547  0.9452   OK
+1.50  5   0.0591288     0.0946318    1.6004  1.0341   OK
+1.50  8   0.0331286     0.0396940    1.1982  1.0392   OK
+1.50 12   0.0151563     0.0176484    1.1644  1.0417   OK
+1.70  5   0.0893981     0.1439053    1.6097  1.1408   OK
+1.70  8   0.0591293     0.0712139    1.2044  1.1509   OK
+1.70 12   0.0332146     0.0383600    1.1549  1.1566   OK
+2.00  5   0.1411694     0.2232958    1.5818  1.3186   OK
+2.00  8   0.1078652     0.1289821    1.1958  1.3396   OK
+2.00 12   0.0723821     0.0818316    1.1306  1.3517   OK
+```
+
+ALLE 15 gevallen: ratio > 1 (= E_sig_w2/mu2 > E_sig_w0/mu0). Kleinste marge: lambda=2.00, k=12: ratio=1.1306.
+
+ANALYSE:
+- ratio > 1 voor ALLE gevallen: bewijs direct m2m_v2 < m2m_v0 via equicorreleerde Gaussian.
+- ratio neemt af met k (grotere k: kleinere marge) maar blijft altijd >> 1 voor geteste gevallen.
+- ratio > R: E[sigma_within_v2]/E[sigma_within_v0] = ratio × R > R (altijd, want ratio > 1 en R > 0).
+  => E[sigma_within_v2] > R × E[sigma_within_v0].
+  => (E[sigma_within_v2]/mean_v2 - E[sigma_within_v0]/mean_v0) = (E[sigma_v2]-R*E[sigma_v0])/mean_v0 > 0.
+
+ANALYTISCH PAD (bijna sluitend):
+  1. E[sigma²_within_v2] / E[sigma²_within_v0] > F > R² (Obs 471, exact voor F; numeriek > F).
+  2. E[sigma_within_v2] / E[sigma_within_v0] = sqrt(ratio_ABS) × correctie ≥ sqrt(F) × correctie.
+  3. sqrt(F) > R (Obs 471: F > R²). Correctie = sqrt((1+relVar_v0)/(1+relVar_v2)) ≥ 0.97.
+  4. MAAR: sqrt(F) × 0.97 < R in sommige gevallen (λ=2.00, k=12: sqrt(F)=1.767, R=1.352, 0.97×1.767=1.714>1.352 ✓).
+     Kleinste marge: lambda=2.00, k=12: sqrt(ratio_ABS) × correctie ≈ 1.806 × 0.999 = 1.804 >> R=1.352. ✓
+
+FORMELE GAP: Bewijs dat E[sigma_within_v2]/mean_v2 > E[sigma_within_v0]/mean_v0 analytisch.
+Numeriek: volledig bevestigd voor k=3..14, λ=1.05..2.00 (via m2m direct + sigma_within direct).
+

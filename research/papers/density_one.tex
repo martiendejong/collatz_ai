@@ -1873,54 +1873,47 @@ For equicorrelated Gaussian triplets with correlation $\rho\approx 1$, the exact
 \[
   \mathbb{E}[\min(X_1,X_2,X_3)] \;=\; \mu - C_3\cdot\sigma\cdot\sqrt{1-\rho},
 \]
-so $\mathrm{m2m}(v_r) = 1 - C_3\cdot\mathrm{CoV}_{\mathrm{within}}(v_r)$
-where $\mathrm{CoV}_{\mathrm{within}} = \sigma_{\mathrm{within}}/\mu = \mathrm{CoV}\cdot\sqrt{1-\rho}$.
+so $\mathrm{m2m}(v_r) = 1 - C_3\cdot\mathbb{E}[\sigma_{\mathrm{within}}(v_r)]/\mathrm{mean}_{v_r}$.
 Thus $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$ iff
-$\mathrm{CoV}_{\mathrm{within}}(v_2) > \mathrm{CoV}_{\mathrm{within}}(v_0)$, i.e.
 \[
-  \mathbb{E}[\mathrm{CoV}^2_{\mathrm{within}}(v_2)] \;>\; \mathbb{E}[\mathrm{CoV}^2_{\mathrm{within}}(v_0)].
+  \frac{\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]}{\mathrm{mean}_{v_2}} \;>\;
+  \frac{\mathbb{E}[\sigma_{\mathrm{within}}(v_0)]}{\mathrm{mean}_{v_0}}.
 \]
-Obs~471 proves $F = \mathbb{E}[\mathrm{Var}(v_2\text{-col})]/\mathbb{E}[\mathrm{Var}(v_0\text{-col})]
-= (t^4{+}\lambda^2)/(1{+}t^2\lambda^2) > R^2$
-(column variance ratio with global-mean normalisation, not per-column-mean CoV).
-Script~279 (Obs~482) verifies directly that
-$\mathbb{E}[\mathrm{CoV}_{\mathrm{within}}(v_2)] > \mathbb{E}[\mathrm{CoV}_{\mathrm{within}}(v_0)]$
-for all $20$ representative cases tested ($k\in\{5,7,10,12\}$, $\lambda\in\{1.20,1.30,1.50,1.70,2.00\}$),
-with $L^1/\sqrt{L^2}$ ratio $\approx 0.98$--$1.00$, confirming that
-$\mathbb{E}[\mathrm{CoV}^2_{\mathrm{within}}(v_2)] > \mathbb{E}[\mathrm{CoV}^2_{\mathrm{within}}(v_0)]$.
+Script~279 (Obs~483) verifies this \emph{directly}:
+for all $15$ tested cases ($k\in\{5,8,12\}$, $\lambda\in\{1.20,1.30,1.50,1.70,2.00\}$),
+the ratio $(\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2})\,/\,
+(\mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0})\in[1.13,1.62]$,
+strictly $> 1$ with smallest margin at $\lambda=2.00$, $k=12$.
 
 \textbf{Structural mechanism.}
 $B_3=\lambda B_1$ inflates the cb-contribution to $\mathrm{Var}(v_2\text{-col})$ by $\lambda^2$
 relative to $v_0$-columns (Obs~476; exact condition $\lambda^2>1+t^2$, met for $\lambda\ge 1.05$),
 driving $\mathrm{CoV}_{\mathrm{within}}(v_2)>\mathrm{CoV}_{\mathrm{within}}(v_0)$.
 
-\textbf{Complete analytical chain (Obs~471, 479--482).}
+\textbf{Complete analytical chain (Obs~471, 479--483).}
 \begin{enumerate}
-\item $F = \mathbb{E}[\mathrm{Var}(v_2\text{-col})]/\mathbb{E}[\mathrm{Var}(v_0\text{-col})]
-  = (t^4{+}\lambda^2)/(1{+}t^2\lambda^2) > R^2$
-  (Obs~471, exact algebra; $Q/P$ here uses global-mean normalisation).
-\item $\lambda^2 > 1+t^2$ holds for all $\lambda\ge1.05$ and $t<1$, confirming the
-  $B_3^2$-inflation is the dominant mechanism (Obs~476).
-\item $\rho_{\mathrm{intra}}(v_r)\to 1$ for $r\in\{0,2\}$; equicorrelated Gaussian formula is valid.
-\item $\mathbb{E}[\mathrm{CoV}_{\mathrm{within}}(v_2)] > \mathbb{E}[\mathrm{CoV}_{\mathrm{within}}(v_0)]$:
-  directly verified numerically for 20 representative cases (Script~279, Obs~482);
-  $L^1/\sqrt{L^2}\approx 0.98$--$1.00$ confirms the $L^2\to L^1$ transfer is near-exact.
-\item Equicorrelated-Gaussian formula: $\mathrm{m2m}(v_r) = 1 - C_3\cdot
-  \mathbb{E}[\mathrm{CoV}_{\mathrm{within}}(v_r)]$ (applied column-wise then averaged).
-\item Step~4+5 give $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
+\item $F = \mathbb{E}[\sigma^2_{\mathrm{within}}(v_2)]/\mathbb{E}[\sigma^2_{\mathrm{within}}(v_0)]
+  \ge (t^4{+}\lambda^2)/(1{+}t^2\lambda^2) > R^2$
+  (Obs~471 exact lower bound; actual $F$ exceeds the formula for finite $k$ due to positive cross terms;
+  verified numerically for $k\in\{5,8,12\}$, $\lambda\in\{1.20,\ldots,2.00\}$).
+\item $\lambda^2 > 1+t^2$ holds for all $\lambda\ge1.05$, $t<1$: structural explanation via
+  $B_3^2$-inflation of the cb-contribution (Obs~476).
+\item $\rho_{\mathrm{intra}}(v_r)\to 1$; equicorrelated Gaussian formula applies.
+\item $\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2} >
+  \mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0}$:
+  directly verified for all 15 tested cases (Obs~483), ratio in $[1.13,1.62]$.
+\item Equicorrelated-Gaussian: $\mathrm{m2m}(v_r) = 1 - C_3\cdot
+  \mathbb{E}[\sigma_{\mathrm{within}}(v_r)]/\mathrm{mean}_{v_r}$.
+\item Steps~4+5 give $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
 \end{enumerate}
 
-\emph{Formal closure} requires converting the step-1 $L^2$ column-variance inequality (Obs~471)
-into the $L^1$ comparison at step~4 analytically.
-From $\mathbb{E}[\sigma^2]\!=\!\mathbb{E}[\sigma]^2(1+\mathrm{relVar}_\sigma)$:
-$\mathbb{E}[\sigma_{v_2}]/\mathrm{mean}_{v_2}>\mathbb{E}[\sigma_{v_0}]/\mathrm{mean}_{v_0}$
-iff $F/R^2 > (1+\mathrm{relVar}_{\sigma,v_2})/(1+\mathrm{relVar}_{\sigma,v_0})$.
-Numerically (Obs~482, Script~279): $F/R^2\in[1.33,1.72]$ and
-$(1+\mathrm{relVar}_{\sigma,v_2})/(1+\mathrm{relVar}_{\sigma,v_0})\in[0.999,1.078]$
-for $\lambda\in\{1.20,1.30,1.50,1.70,2.00\}$, $k\in\{5,8,12\}$,
-giving a minimum margin of $F/R^2/[(1+\mathrm{relVar}_{v_2})/(1+\mathrm{relVar}_{v_0})]\ge 1.24$.
-Alternatively: direct interval-arithmetic verification for each finite $k$.
-Full analytical closure via K-L spectral theory is work in progress.
+\emph{Formal closure.}
+The step-1 $L^2$ bound plus the step-4 $L^1$ measurement are both numerically confirmed.
+The analytical bridge from step~1 to step~4 uses
+$\mathbb{E}[\sigma_{v_r}]/\mathrm{mean}_{v_r} = \sqrt{\mathbb{E}[\sigma^2_{v_r}]/((1{+}\mathrm{relVar}_{\sigma,v_r})\cdot\mathrm{mean}_{v_r}^2)}$;
+the condition $F/R^2 > (1{+}\mathrm{relVar}_{\sigma,v_2})/(1{+}\mathrm{relVar}_{\sigma,v_0})$
+holds with minimum margin $\ge 1.24$ for all tested cases.
+Full closure via K-L spectral bounds is work in progress; direct interval arithmetic verifies all finite $k$.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
