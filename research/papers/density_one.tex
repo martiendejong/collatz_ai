@@ -973,13 +973,32 @@ $\mathrm{ve}_{\mathrm{cb}}/\mathrm{ve}_0$ from $5.6$ to $1.44$;
 $\mathrm{Cov}(u_2, u_{\mathrm{cb}})$ from $-0.071$ to $-2{\times}10^{-5}$ (all negative);
 $w_2 \in [0.382, 0.412]$ (stable from $k\ge8$).
 
+\noindent\emph{Near-analytical argument for $L>1$.}
+In the log-linear regime,
+$\mathrm{ve}_0 \approx w_2^2\,\mathrm{ve}_2 + w_{\mathrm{cb}}^2\,\mathrm{ve}_{\mathrm{cb}}
++ 2w_2 w_{\mathrm{cb}}\,\mathrm{Cov}(u_2, u_{\mathrm{cb}})$.
+Since $\mathrm{Cov}(u_2,u_{\mathrm{cb}}) \le 0$ and $w_2^2 + w_{\mathrm{cb}}^2 < 1$
+(strict: $w_{\mathrm{cb}} > 0$, $w_2^2 + w_{\mathrm{cb}}^2 \approx 0.52$),
+the condition $\mathrm{ve}_0 < \mathrm{ve}_2$ reduces to
+\[
+  \frac{\mathrm{ve}_{\mathrm{cb}}}{\mathrm{ve}_2} \;<\; \frac{1+w_2}{w_{\mathrm{cb}}} \;\approx\; 2.24.
+\]
+The measured ratio $\mathrm{ve}_{\mathrm{cb}}/\mathrm{ve}_2$ ranges from $1.36$ ($k{=}4$)
+to $1.20$ ($k{=}15$) and is converging toward ${\approx}1.2$:
+far below the critical threshold $2.24$.
+Thus $L>1$ is an approximate analytical consequence of the measured bound
+$\mathrm{ve}_{\mathrm{cb}}/\mathrm{ve}_2 < 2.24$ (pending exact treatment of nonlinear terms;
+note that the linear formula underpredicts $\mathrm{ve}_0$ by $\approx 27\%$,
+so the true threshold for $L{>}1$ may differ slightly from $2.24$).
+
 \noindent\emph{Contrast with $r{=}2$.} For $v_2$, the transport and bonus use
 \emph{different} maps: $\sigma_{20}$ (triplet-preserving) and $R_3 = 2s{+}1$
 (NOT triplet-preserving, $R_3(s{+}N_\ell/3) = R_3(s) + 2N_\ell/3$).
-The mismatch of $R_3$ adds extra CODE-variance to $\mathrm{ve}_2$ (Corollary~\ref{cor:sigma20}(iv)).
-Thus $\mathrm{ve}_2 > \mathrm{ve}_0$ follows from two competing structural effects:
-the $r{=}0$ equation compresses via anti-correlation, while
-the $r{=}2$ equation expands via $R_3$-breaking.
+The $R_3$ mismatch adds extra CODE-variance to $\mathrm{ve}_2$
+(Corollary~\ref{cor:sigma20}(iv)).
+So $\mathrm{ve}_2 > \mathrm{ve}_0$ arises from two competing structural effects:
+$r{=}0$ compression via anti-correlation (reduces ve$_0$ below ve$_2$),
+$r{=}2$ expansion via $R_3$-breaking (raises ve$_2$ above ve$_0$).
 Their balance determines $L = \lim_{k\to\infty}\mathrm{ve}_2/\mathrm{ve}_0 \approx 1.10$.
 \end{remark}
 
