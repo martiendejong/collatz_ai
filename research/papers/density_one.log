@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  5 AUG 2026 02:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  5 AUG 2026 03:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -443,7 +443,16 @@ Overfull \hbox (4.86214pt too wide) detected at line 880
  []
 
 [11]
-Overfull \hbox (14.92026pt too wide) in paragraph at lines 958--974
+Overfull \hbox (7.1031pt too wide) in paragraph at lines 951--957
+\OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 measured\OT1/cmr/m/n/10.95 ]: Let $\OML
+/cmm/m/it/10.95 u[]; u[]$ \OT1/cmr/m/n/10.95 de-note the log-deviations from tr
+iplet means. The weights $\OML/cmm/m/it/10.95 w[] \OT1/cmr/m/n/10.95 = \OML/cmm
+/m/it/10.95 A []=\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A [] \OT1/cmr/m/n/10.9
+5 +
+ []
+
+[12]
+Overfull \hbox (14.92026pt too wide) in paragraph at lines 1006--1022
 \OT1/cmr/m/it/10.95 Significance for Con-jec-ture G. $\OML/cmm/m/it/10.95 ^^[[]
 $ \OT1/cmr/m/n/10.95 gov-erns the up-date of type-$\OML/cmm/m/it/10.95 r[]\OT1/
 cmr/m/n/10.95 1$ nodes: $\OML/cmm/m/it/10.95 ^^Z v\OT1/cmr/m/n/10.95 (\OML/cmm/
@@ -454,7 +463,7 @@ n/10.95 (\OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ;  ^^[[
  []
 
 
-Overfull \hbox (5.78891pt too wide) in paragraph at lines 975--978
+Overfull \hbox (5.78891pt too wide) in paragraph at lines 1023--1026
 \OT1/cmr/m/it/10.95 Measured mix-ing strength. \OT1/cmr/m/n/10.95 [\OT1/cmr/m/s
 c/10.95 measured\OT1/cmr/m/n/10.95 ] (script 232b, $\OML/cmm/m/it/10.95 k \OT1/
 cmr/m/n/10.95 = 13 [] 16$, $\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 = 1\OML/
@@ -462,22 +471,26 @@ cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 70$.) The $\OML/cmm/m/it/10.95 ^^[[]$\OT1/cm
 r/m/n/10.95 -autocorrelation
  []
 
-[12] [13] [14] [15] [16] [17] [18] [19] (density_one.aux)
+[13] [14] [15] [16] [17] [18] [19] [20] (density_one.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `density_one.out' has not changed.
 (rerunfilecheck)             Checksum: 6430DCFFF325D1EDF7AC7E1ABA58CB41;1602.
  ) 
 Here is how much of TeX's memory you used:
- 10233 strings out of 467871
- 154828 string characters out of 5419828
+ 10240 strings out of 467871
+ 154907 string characters out of 5419828
  588706 words of memory out of 5000000
- 38921 multiletter control sequences out of 15000+600000
+ 38924 multiletter control sequences out of 15000+600000
  644046 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,550b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,550b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm060
 0.pk> <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 0800.pk><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
@@ -509,9 +522,9 @@ Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/HP/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/
 HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 >
-Output written on density_one.pdf (19 pages, 485413 bytes).
+Output written on density_one.pdf (20 pages, 488904 bytes).
 PDF statistics:
- 381 PDF objects out of 1000 (max. 8388607)
- 74 named destinations out of 1000 (max. 500000)
+ 389 PDF objects out of 1000 (max. 8388607)
+ 78 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

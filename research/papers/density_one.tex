@@ -935,6 +935,54 @@ The extra variance is $(\mathrm{ve}_2-\mathrm{ve}_0)/\mathrm{ve}_0 = 0.2111$
 at $k{=}14$ (i.e., $\mathrm{ve}_2/\mathrm{ve}_0 = 1.2111$ as reported above).
 \end{corollary}
 
+\begin{remark}[$r{=}0$ compression: $\mathrm{ve}_0$ as a blended CODE-variance;
+analytical mechanism for $L>1$]\label{rem:ve0_blend}
+\MEASURED{} (script~240, $k{=}4..14$, $\lambda{=}1.70$.)
+
+\textup{Since $\sigma_0 = R_1 = 4s \bmod N_\ell$ (both the T4-pullback and B-index for $r{=}0$ nodes
+are the same map), the $r{=}0$ K-L equation simplifies to}
+\begin{equation}\label{eq:v0blend}
+  \rho\,v_0(s) \;=\; (A\,v_2 + B_1\,\mathrm{cb})\bigl[\sigma_0(s)\bigr].
+\end{equation}
+Since $\sigma_0$ maps triplets to triplets ($4\equiv 1\pmod3$):
+\begin{equation}\label{eq:ve0exact}
+  \mathrm{ve}_0 = \mathrm{CODE\text{-}var}(A\,v_2 + B_1\,\mathrm{cb}) \qquad
+  \text{[exact, verified to machine precision at every depth]}.
+\end{equation}
+\MEASURED{}: Let $u_2, u_{\mathrm{cb}}$ denote the log-deviations from triplet means.
+The weights $w_2 = A\,\bar v_2/(A\,\bar v_2 + B_1\,\bar{\mathrm{cb}})$
+and $w_{\mathrm{cb}} = 1 - w_2$ satisfy $w_2 \approx 0.385$, $w_{\mathrm{cb}} \approx 0.615$
+(stable for $k \ge 8$).
+The variance ordering is
+\[
+  \mathrm{ve}_{\mathrm{cb}} > \mathrm{ve}_2 > \mathrm{ve}_0 \quad
+  \text{at every measured depth } k=4..14.
+\]
+The minimum function $\mathrm{cb}[j] = \min(v[j],\,v[j{+}N_\ell],\,v[j{+}2N_\ell])$
+\emph{amplifies} CODE-variance: $\mathrm{ve}_{\mathrm{cb}}/\mathrm{ve}_0$ runs from $5.6$ ($k{=}4$)
+to $1.45$ ($k{=}14$), converging toward ${\approx}1.3$.
+Despite $\mathrm{ve}_{\mathrm{cb}} > \mathrm{ve}_2 > \mathrm{ve}_0$, the blend $A\,v_2 + B_1\,\mathrm{cb}$
+produces a CODE-variance \emph{below} both components because
+\[
+  \mathrm{Cov}(u_2,\, u_{\mathrm{cb}}) < 0 \quad \text{at every depth}
+\]
+(anti-correlation: positions where $v_2$ is above its triplet mean are dominated by $v_0$ or $v_1$
+in the minimum, pulling $\mathrm{cb}$ below its triplet mean at those same positions).
+Data at $k{=}4..15$, $\lambda{=}1.70$:
+$\mathrm{ve}_{\mathrm{cb}}/\mathrm{ve}_0$ from $5.6$ to $1.44$;
+$\mathrm{Cov}(u_2, u_{\mathrm{cb}})$ from $-0.071$ to $-2{\times}10^{-5}$ (all negative);
+$w_2 \in [0.382, 0.412]$ (stable from $k\ge8$).
+
+\noindent\emph{Contrast with $r{=}2$.} For $v_2$, the transport and bonus use
+\emph{different} maps: $\sigma_{20}$ (triplet-preserving) and $R_3 = 2s{+}1$
+(NOT triplet-preserving, $R_3(s{+}N_\ell/3) = R_3(s) + 2N_\ell/3$).
+The mismatch of $R_3$ adds extra CODE-variance to $\mathrm{ve}_2$ (Corollary~\ref{cor:sigma20}(iv)).
+Thus $\mathrm{ve}_2 > \mathrm{ve}_0$ follows from two competing structural effects:
+the $r{=}0$ equation compresses via anti-correlation, while
+the $r{=}2$ equation expands via $R_3$-breaking.
+Their balance determines $L = \lim_{k\to\infty}\mathrm{ve}_2/\mathrm{ve}_0 \approx 1.10$.
+\end{remark}
+
 \begin{remark}[Structural uniqueness and T4-mixing contraction]\label{rem:sigma1}
 Among the five K-L index maps --- $\sigma_0(s)=4s$, $\sigma_1(s)=4s+2$,
 $\sigma_2(s)=4s+3$ (the three T4-pullback components) and $R_1(s)=4s$,

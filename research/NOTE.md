@@ -11335,3 +11335,45 @@ DEEL 3 (analytische decompositie, k=14, lambda=1.70):
   ve2 (totaal) = 0.001691  => ve2/ve0 = 1.2111
   Extra ve2 = ve2 - ve2_transport = 0.000295 = 0.2111 * ve0
   sigma_20 triplet-check: sigma_20(s+Nl/3) - sigma_20(s) - Nl/3 = 0 (exact)
+
+---
+
+## Obs 448 (Script 240, 2026-08-05): ve0 decompositie — sigma0 = R1, ve_cb > ve2 > ve0
+
+Script 240_ve0_decomposition.py.
+
+HOOFDRESULTAAT (exact, machine-precisie bevestigd):
+  sigma_0 = R_1 = 4s mod Nl (dezelfde map voor transport EN bonus in r=0 vergelijking)
+  => rho * v0(s) = (A*v2 + B1*cb)[sigma0(s)]
+  => ve0 = CODE-var(A*v2 + B1*cb) EXACT (ve_f = ve0 tot 1e-16 bij k=4..15)
+
+VOLGORDE VARIANTIES (k=4..15, lambda=1.70):
+  ve_cb > ve2 > ve0 op ELKE diepte.
+  min-functie VERGROOT de CODE-variantie (cb[j] = min van 3 waarden kiest altijd de laagste,
+  wat extreme selectie geeft en hogere spreiding dan het gemiddelde).
+  ve_cb/ve0: 5.55 (k=4) -> 1.44 (k=15), convergeert naar ~1.3
+  ve2/ve0: 4.09 (k=4) -> 1.20 (k=15), convergeert naar L ~ 1.10
+
+GEWICHTEN (stabiel vanaf k>=8):
+  w2 = A*mean_v2 / (A*mean_v2 + B1*mean_cb) ~= 0.382
+  wcb = B1*mean_cb / (A*mean_v2 + B1*mean_cb) ~= 0.618
+  (cb-term domineert het r=0 update met ~62%)
+
+ANTI-CORRELATIE (bewijst L > 1 mechanisme):
+  Cov(log_dev_v2, log_dev_cb) < 0 op elke diepte k=4..15
+  Waarde: -0.071 (k=4) -> -2e-5 (k=15), kleiner wordend maar ALTIJD NEGATIEF
+  Betekenis: waar v2 HOOG is (boven triplet-gemiddelde), is cb LAAG (v0 of v1 is minimum)
+  => de blend A*v2 + B1*cb heeft LAGERE CODE-var dan elk van de termen afzonderlijk
+  => ve0 < ve2 (L > 1)
+
+LINEAIRE FORMULE (eerste-orde, niet nauwkeurig):
+  ve0 ~ w2^2*ve2 + wcb^2*ve_cb + 2*w2*wcb*Cov = voorspelling
+  Meting: lineaire formule onderschat ve0 met ~27-28% (ve0_err ~ -0.28 bij k=8..15)
+  Niet-lineaire termen (log-ruimte) zijn significant.
+
+CONTRAST MET r=2:
+  Voor v2: transport gebruikt sigma_20 (triplet-behoudend) maar bonus gebruikt R3=2s+1 NIET triplet-behoudend
+  R3(s+Nl/3) = R3(s) + 2Nl/3 != R3(s) + Nl/3 => R3 breekt triplet-structuur
+  => ve2 > ve0 door R3-mismatch (vergroot CODE-var)
+  => ve0 < ve2 door sigma0=R1 samenvallen (vermindert CODE-var via anti-correlatie)
+  Samen: L = ve2/ve0 > 1 analytisch verklaard (niet rigoureus bewezen)
