@@ -1698,9 +1698,22 @@ Then
   = \rho^2(f_1-f_0) + q\rho(f_0-f_2) + q^2(f_2-f_1),
 \]
 with $q/\rho \approx 0.04$ at $\lambda=1.70$ so term 1 dominates:
-$f_1-f_0 = B_3 c_0(1-A/\rho) + A^2 B_1(c_0-c_2)/\rho^2$, positive with margin
-${\approx}200\times$ (verified all $k,\lambda$ tested;
-the remaining open step is a uniform bound $(c_2-c_0)/c_0 < \lambda^5(1-A/\rho)\rho^2$).
+$f_1-f_0 = B_3 c_0(1-A/\rho) + A^2 B_1(c_0-c_2)/\rho^2$.
+
+The sign of $f_1-f_0$ splits by regime:
+\textbf{(A)} For $\lambda < 1.45$ (approximately): $c_2 < c_0$, so both terms are positive
+and $f_1-f_0 > 0$ is trivial.
+\textbf{(B)} For $\lambda > 1.45$: $c_2 > c_0$, but a depth scan ($k=5,\ldots,13$) shows
+$(c_2-c_0)/c_0$ converges monotonically to a finite limit $L(\lambda)$ as $k\to\infty$
+(e.g.\ $L(1.70)\approx 0.154$, $L(1.90)\approx 0.264$, $L(2.00)\approx 0.327$),
+while $\text{RHS}(\lambda) = \lambda^5(1-A/\rho)\rho^2$ grows faster (e.g.\ $10.0$, $16.1$, $20.1$
+at the same $\lambda$ values).
+The minimum margin over all tested $(k,\lambda)$ is $61\times$ (at $\lambda=1.90$, converging
+from above with $k$).
+Hence $f_1-f_0>0$ for \emph{all} tested depths and $\lambda\in[1.30,2.00]$, with a stable
+safety margin.
+(Rigorous closure requires proving $c_2/c_0 < 1 + \lambda^5(1-A/\rho)\rho^2$ analytically;
+numerically this is verified with margin $\ge 61\times$ for all $k\le 13$.)
 Verified to relative error $\le 2\times 10^{-16}$ at all tested depths and $\lambda$.
 \end{remark}
 
