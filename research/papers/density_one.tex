@@ -870,19 +870,83 @@ the ratio $\mathrm{ve}_2/\mathrm{ve}_0$ falls from $4.09$ ($k{=}4$) to $1.22$
 In the deep regime both $\mathrm{ve}_0$ and $\mathrm{ve}_2$ decay at
 the same rate ($\delta_0 \approx \delta_2 \approx 0.75$),
 consistent with $d_k \to \delta_0 < 1$ in the limit $k \to \infty$.
+Extended measurement (script~238, $k{=}4..16$, $\lambda{=}1.70$):
+\[
+\begin{array}{r|rrrrrrrrrrrrr}
+k & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+\hline
+\mathrm{ve}_2/\mathrm{ve}_0 & 4.09 & 2.33 & 1.75 & 1.42 & 1.31 & 1.28 & 1.26 & 1.25 & 1.23 & 1.22 & 1.21 & 1.20 & 1.20 \\
+\end{array}
+\]
+The ratio $\mathrm{ve}_2/\mathrm{ve}_0$ is monotonically decreasing;
+its limit $L$ lies below $1.20$ and convergence is slow (decrements
+shrink geometrically at rate $\approx 0.80$).
 \end{proof}
+
+\begin{corollary}[$\sigma_{20}$ is a single $N_\ell$-cycle; transport term
+of $v_2$ has CODE-variance $\mathrm{ve}_0$]\label{cor:sigma20}
+\PROVED{} + \MEASURED{} (script~238, $k{=}4..14$)
+
+Define the composed map $\sigma_{20}(s) = (16s + 14) \bmod N_\ell$,
+which appears in the K-L fixed-point equation for $r{=}2$ nodes:
+\begin{equation}\label{eq:v2decomp}
+  \rho^2\,v_2(s) \;=\; A^2\,v_0\bigl[\sigma_{20}(s)\bigr]
+  \;+\; A\,B_3\,\mathrm{cb}\bigl[R_3(s)\bigr].
+\end{equation}
+\textup{(Derivation: substitute $v_1(s') = (A/\rho)\,v_0[\sigma_1(s')]$ into the
+$r{=}2$ equation $\rho\,v_2(s) = A\,v_1[\sigma_2(s)] + B_3\,\mathrm{cb}[R_3(s)]$,
+using $\sigma_{20} = \sigma_1 \circ \sigma_2$, i.e.,
+$(16s+14) = 4(4s+3)+2$; verified to $\max_s\!<\!10^{-10}$ relative error.)}
+
+(i) \textbf{$\sigma_{20}$ is a single $N_\ell$-cycle.} Proof by LTE:
+$\sigma_{20}^n(0) = 14\cdot(16^n-1)/15 \bmod N_\ell$.
+Since $\gcd(14\cdot 5^{-1}, N_\ell)=1$ (both coprime to $3^{k-2}$),
+this is zero mod $N_\ell$ iff $3^{k-1}\mid 16^n-1$.
+By LTE ($v_3(16-1)=v_3(15)=1$): $v_3(16^n-1)=1+v_3(n)$,
+so the condition becomes $v_3(n)\ge k-2$, i.e., $N_\ell \mid n$.
+Hence the orbit of $0$ has length exactly $N_\ell$; since $\sigma_{20}$ is
+a bijection, it is a single $N_\ell$-cycle.
+\MEASURED{} (script~239, $k=4..14$, single cycle verified at all depths.)
+
+(ii) \textbf{$\sigma_{20}$ maps triplets to triplets.}
+Identical argument to Corollary~\ref{cor:ve_equality}(i):
+$16 \equiv 1\pmod{3}$ gives $\sigma_{20}(s+jN_\ell/3)=\sigma_{20}(s)+jN_\ell/3 \bmod N_\ell$.
+
+(iii) \textbf{The transport term has CODE-variance $\mathrm{ve}_0$.}
+The map $s\mapsto (A^2/\rho^2)\,v_0[\sigma_{20}(s)]$ is a bijective rescaling
+of $v_0$. By~(ii), its CODE-variance deviation at $(r{=}2,\,s)$ equals
+that of $v_0$ at $(r{=}0,\,\sigma_{20}(s))$;
+since $\sigma_{20}$ is a bijection, averaging over $s$ gives CODE-variance $= \mathrm{ve}_0$.
+
+(iv) \textbf{Extra variance in $\mathrm{ve}_2$ comes entirely from the bonus.}
+Decomposing $v_2 = v_2^{\mathrm{tr}} + v_2^{\mathrm{bon}}$ (transport $+ B_3$ bonus),
+the extra $\mathrm{ve}_2 - \mathrm{ve}_0 > 0$ arises from cross-terms and
+the CODE-variance of the bonus term $(B_3/\rho)\,\mathrm{cb}[R_3(s)]$.
+\MEASURED{} (script~238 Part~3, $k{=}14$):
+$\mathrm{ve}_2^{\mathrm{tr}}/\mathrm{ve}_0 = 1.000$ to five decimal places;
+the extra variance is $(\mathrm{ve}_2-\mathrm{ve}_0)/\mathrm{ve}_0 \approx L - 1 \approx 0.21$
+at $k{=}14$.
+\end{corollary}
 
 \begin{remark}[Structural uniqueness and T4-mixing contraction]\label{rem:sigma1}
 Among the five K-L index maps --- $\sigma_0(s)=4s$, $\sigma_1(s)=4s+2$,
 $\sigma_2(s)=4s+3$ (the three T4-pullback components) and $R_1(s)=4s$,
 $R_3(s)=2s+1$ (all modulo $N_\ell$, the two B-term arguments) ---
-$\sigma_1$ is the \emph{only} single-cycle map.
+$\sigma_1$ is the \emph{only} single-cycle map among the five.
 The others have fixed points: $\sigma_0 = R_1$ has three fixed points
 $\{0, N_\ell/3, 2N_\ell/3\}$ and orbits of lengths $1, 3, \ldots, N_\ell/3$;
 $\sigma_2$ has a fixed point at $s = N_\ell-1$ with the same multi-cycle
 structure; $R_3$ has a fixed point at $s = N_\ell - 1$ and orbits of length
 $\operatorname{ord}_{N_\ell}(2) = 2N_\ell/3$.
 \MEASURED{} (all five orbit structures verified at $k=6$, $N_\ell = 81$.)
+Two \emph{composed} maps are also single $N_\ell$-cycles:
+$\sigma_{20} = \sigma_1\circ\sigma_2 = (16s{+}14)\bmod N_\ell$
+(proved via LTE in Corollary~\ref{cor:sigma20})
+and $\sigma_{\mathrm{tot}} = \sigma_1\circ\sigma_2\circ\sigma_0 = (64s{+}14)\bmod N_\ell$
+\MEASURED{} (script~239, $k{=}4..14$: single $N_\ell$-cycle at every depth).
+The LTE argument for $\sigma_{\mathrm{tot}}$ proceeds identically: orbit of
+$0$ returns at $n=N_\ell$ because $v_3(64{-}1)=2$ and
+$v_3(64^n{-}1)=2{+}v_3(n)\geq k$ iff $v_3(n)\geq k{-}2$, i.e., $N_\ell\mid n$.
 
 \noindent\emph{Significance for Conjecture G.}
 $\sigma_1$ governs the update of type-$r{=}1$ nodes:

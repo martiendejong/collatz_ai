@@ -11241,3 +11241,84 @@ Track 2 (Algebraisch): voor k=1..7 geen cyclus behalve triviale n0=1.
   Mod-3: n0 = 0 mod 3 onmogelijk (structureel bewezen).
 Track 3 (K-L): triviale cyclus bij 25e percentiel; sigma1 anti-correlatie
   reduceert gezamenlijke kans op hoge-gewichtsposities met factor 0.83 per niveau.
+
+---
+
+## Obs 446 (Script 239, 2026-08-05): Cykelstructuur van alle K-L indexmappen + samengestelde mappen
+
+Script 239_sigma02_cycle_structure.py. Alle vijf K-L indexmappen plus sigma_total en sigma_20.
+
+DEFINITIE sigma_20: De T4-pullback van r=2 gevolgd door r=1 geeft de samengestelde s-afbeelding:
+  sigma_20(s) = sigma_1(sigma_2(s)) = (4*(4s+3)+2) mod Nl = (16s+14) mod Nl.
+Dit is de map die verschijnt in de gefixeerd-punt vergelijking voor r=2 knooppunten.
+  sigma_total(s) = sigma_1(sigma_2(sigma_0(s))) = (64s+14) mod Nl.
+
+MEETRESULTATEN (k=4..14):
+  sigma_0: (k-1) cycli van max lengte Nl/3. NIET enkel-cyclisch.
+    (4s mod Nl = vermenigvuldiging met 4; ord(4) mod 3^{k-2} = 3^{k-3})
+  sigma_1: EEN cyclus van lengte Nl. ENKEL-CYCLISCH (bewezen, lem:sigma1).
+  sigma_2: (k-1) cycli van max lengte Nl/3. NIET enkel-cyclisch. Vaste punt bij Nl-1.
+  sigma_total: EEN cyclus van lengte Nl. ENKEL-CYCLISCH.
+  sigma_20:    EEN cyclus van lengte Nl. ENKEL-CYCLISCH.
+
+BEWIJS (LTE, algemeen kriterium):
+  Affiene map (as+b) mod Nl met v3(a-1)=1 en v3(b)=0 is een enkel Nl-cyclus.
+  sigma_1:  a=4, a-1=3, v3(3)=1; b=2, v3(2)=0. VOLDOET.
+  sigma_20: a=16, a-1=15, v3(15)=1; b=14, v3(14)=0. VOLDOET.
+  sigma_total: a=64, a-1=63=9*7, v3(63)=2 != 1. Aparte analyse nodig.
+    64^n - 1 = (4^3)^n - 1 = ... v3(64^n-1)=1+v3(n) (LTE: v3(64-1)=v3(63)=2? NEE: 63=9*7, v3(63)=2)
+    Correctie: LTE geeft v3(a^n-1) = v3(a-1) + v3(n) als v3(a-1)>=1.
+    Dus voor sigma_total: v3(64^n-1)=v3(63)+v3(n)=2+v3(n).
+    Conditie: 3^{k-2} | 64^n-1 => v3(64^n-1)>=k-2 => 2+v3(n)>=k-2 => v3(n)>=k-4.
+    Minimale n = 3^{k-4}. Dan sigma_total: orbit lengte 3^{k-4} = Nl/9, NIET Nl.
+    MAAR: meetresultaat zegt 1 cyclus van lengte Nl. Contradictie?
+    Nakijken: het vaste punt is s* = -14/63 mod Nl. 63s*=-14 mod 3^{k-2}.
+    gcd(63, 3^{k-2}) = 9 voor k>=5. 9 | -14? -14 mod 9 = -5 mod 9 = 4. NEE.
+    Dus GEEN vast punt bestaat, en de orbitlengte-analyse moet herzien worden.
+    Meting overtuigend: voor k=4..14 geeft sigma_total ALTIJD 1 cyclus van lengte Nl.
+    => De LTE-kriterium voor sigma_total werkt anders; numerieke verificatie dominant.
+
+VERBAND MET ve2-ANALYSE:
+  sigma_20 enkel-cyclisch + 16 = 1 mod 3 => sigma_20 beeldt triplets af op triplets.
+  Bewijs: sigma_20(s + Nl/3) = (16*(s+Nl/3)+14) mod Nl = sigma_20(s) + Nl/3 mod Nl. Geverifieerd.
+  Gevolg: de transportterm (A^2/rho^2)*v0[sigma_20(s)] heeft CODE-variantie = ve0.
+  De extra ve2 > ve0 komt uitsluitend van de bonus term (B3/rho)*cb[R3(s)].
+
+---
+
+## Obs 447 (Script 238, 2026-08-05): Diepe ve2/ve0 meting + analytische decompositie
+
+Script 238_ve2_ratio_deep.py.
+
+DEEL 1: ve2/ve0 reeks bij lambda=1.70, k=4..16:
+  k=  4: ve0=0.019591  ve2=0.080177  ratio=4.093  d_ve0=---    d_ve2=---
+  k=  5: ve0=0.017577  ve2=0.040986  ratio=2.332  d_ve0=0.897  d_ve2=0.511
+  k=  6: ve0=0.013969  ve2=0.024475  ratio=1.752  d_ve0=0.795  d_ve2=0.597
+  k=  7: ve0=0.010332  ve2=0.014667  ratio=1.419  d_ve0=0.740  d_ve2=0.599
+  k=  8: ve0=0.007699  ve2=0.010116  ratio=1.314  d_ve0=0.745  d_ve2=0.690
+  k=  9: ve0=0.005706  ve2=0.007310  ratio=1.281  d_ve0=0.741  d_ve2=0.723
+  k= 10: ve0=0.004376  ve2=0.005493  ratio=1.255  d_ve0=0.767  d_ve2=0.751
+  k= 11: ve0=0.003233  ve2=0.004038  ratio=1.249  d_ve0=0.739  d_ve2=0.735
+  k= 12: ve0=0.002430  ve2=0.002995  ratio=1.233  d_ve0=0.752  d_ve2=0.742
+  k= 13: ve0=0.001841  ve2=0.002249  ratio=1.222  d_ve0=0.758  d_ve2=0.751
+  k= 14: ve0=0.001396  ve2=0.001691  ratio=1.211  d_ve0=0.759  d_ve2=0.752
+  k= 15: ve0=0.001055  ve2=0.001269  ratio=1.203  d_ve0=0.755  d_ve2=0.750
+  k= 16: ve0=0.000802  ve2=0.000960  ratio=1.196  d_ve0=0.761  d_ve2=0.756
+
+Monotoon dalend; delta-ve0 convergeert naar ~0.757, delta-ve2 convergeert naar ~0.752.
+Diep regime: beide ve-varianten dalen met DEZELFDE snelheid => ratio L stabiliseert.
+Extrapolatie op basis van geometrisch-dalende incrementen:
+  verhouding decrements bij k=14..16: (1.203-1.196)/(1.211-1.203) = 0.875
+  residu-som = 0.007/(1-0.875) = 0.056 => L_extrap <= 1.196 - 0.056 = 1.14 (ondergrens)
+  conservatieve schatting: L in [1.14, 1.20]
+
+BEWIJS VAN ve1 = ve0 (lem:ve_equality):
+  Elke rij van de script bevestigt ve1 = ve0 tot machine-precisie (6 significante cijfers).
+  Analytisch: via r=1 K-L vergelijking v1(s) = (A/rho)*v0[sigma_1(s)].
+  sigma_1 beeldt triplets af op triplets (4 = 1 mod 3) => CODE-variantie behouden.
+
+DEEL 3 (analytische decompositie, k=14, lambda=1.70) — zie Script 238 Part 3:
+  v2(s) = (A^2/rho^2)*v0[sigma_20(s)] + (B3/rho)*cb[R3(s)]
+  Geverifieerd: max_rel_err < 10^{-10}
+  ve2_transport/ve0 = 1.000 (tot 6 decimalen)
+  Extra ve2 van bonus = ve2 - ve2_transport = (L-1)*ve0 ~ 0.21*ve0 bij k=14

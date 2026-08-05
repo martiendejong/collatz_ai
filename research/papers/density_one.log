@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  4 AUG 2026 00:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  5 AUG 2026 02:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -407,32 +407,15 @@ Overfull \hbox (0.12808pt too wide) in paragraph at lines 263--267
  []
 
 [4]
-Overfull \hbox (29.23114pt too wide) in paragraph at lines 368--374
+Overfull \hbox (29.23114pt too wide) in paragraph at lines 379--385
 [][]\OT1/cmr/bx/n/10.95 Proposition 4.10 \OT1/cmr/m/n/10.95 (Count-ing vari-anc
 e)\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/it/10.95 Com-bin-ing the tower pieces: the
  sum-ma-tion bound $[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 F\OT1/cmr/m/n/1
 0.95 ) \OMS/cmsy/m/n/10.95 ^^T
  []
 
-
-Overfull \hbox (18.94524pt too wide) in paragraph at lines 393--402
-[][]\OT1/cmr/bx/n/10.95 Proposition 5.1 \OT1/cmr/m/n/10.95 (Tilt sta-bil-ity)\O
-T1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 bookkeeping\OT1/c
-mr/m/n/10.95 ]\OT1/cmr/m/it/10.95 [Task 3] Since (i) $\OML/cmm/m/it/10.95 X[] \
-OMS/cmsy/m/n/10.95 ^^T [][] \OT1/cmr/m/n/10.95 3$ \OT1/cmr/m/it/10.95 point-wis
-e (Lemma [][]4.4[][]),
- []
-
-
-Overfull \hbox (3.93062pt too wide) in paragraph at lines 406--463
-[][]\OT1/cmr/bx/n/10.95 Proposition 6.1 \OT1/cmr/m/n/10.95 (Chain flow; Lemma D
-)\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 bookkeeping\OT
-1/cmr/m/n/10.95 ]\OT1/cmr/m/it/10.95 [Task 4, cor-rected route] Feed-domination
-
- []
-
 [5] [6] [7]
-Overfull \hbox (77.99454pt too wide) in paragraph at lines 585--609
+Overfull \hbox (77.99454pt too wide) in paragraph at lines 636--660
 \OT1/cmr/m/n/10.95 (pure depth, pa-ram-e-ter frozen; the cross terms are sub-cr
 it-i-cal Per-ron pro-files) and $\OML/cmm/m/it/10.95 l[] \OT1/cmr/m/n/10.95 = [
 ](\OML/cmm/m/it/10.95 k[]\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; ^^U[]\OT1/cm
@@ -440,7 +423,41 @@ r/m/n/10.95 )\OML/cmm/m/it/10.95 =[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 k[]
 \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; ^^U[]\OT1/cmr/m/n/10.95 )$
  []
 
-[8] [9] [10] [11] [12] (density_one.aux)
+[8] [9] [10]
+Overfull \hbox (7.11536pt too wide) in paragraph at lines 833--836
+\OT1/cmr/m/it/10.95 Hence $\OML/cmm/m/it/10.95 ^^[[]$ \OT1/cmr/m/it/10.95 maps 
+ev-ery triplet $\OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 s;  s[]N[]=\OT1/cmr/m/
+n/10.95 3\OML/cmm/m/it/10.95 ;  s[]\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 N[]=
+\OT1/cmr/m/n/10.95 3\OMS/cmsy/m/n/10.95 g$ \OT1/cmr/m/it/10.95 to the triplet $
+\OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 ^^[[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it
+/10.95 s\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ;  ^^[[]\OT1/cmr/m/n/10.95 (\OM
+L/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 )[]\OML/cmm/m/it/10.95 N[]=\OT1/cmr/m/n/10
+.95 3\OML/cmm/m/it/10.95 ;  ^^[[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/
+cmr/m/n/10.95 )[]2\OML/cmm/m/it/10.95 N[]=\OT1/cmr/m/n/10.95 3\OMS/cmsy/m/n/10.
+95 g$\OT1/cmr/m/it/10.95 . 
+ []
+
+[11]
+Overfull \hbox (14.92026pt too wide) in paragraph at lines 951--967
+\OT1/cmr/m/it/10.95 Significance for Con-jec-ture G. $\OML/cmm/m/it/10.95 ^^[[]
+$ \OT1/cmr/m/n/10.95 gov-erns the up-date of type-$\OML/cmm/m/it/10.95 r[]\OT1/
+cmr/m/n/10.95 1$ nodes: $\OML/cmm/m/it/10.95 ^^Z v\OT1/cmr/m/n/10.95 (\OML/cmm/
+m/it/10.95 r[]\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; s\OT1/cmr/m/n/10.95 ) =
+ \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 v\OT1/cmr/m/
+n/10.95 (\OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ;  ^^[[
+]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ))$;
+ []
+
+
+Overfull \hbox (5.78891pt too wide) in paragraph at lines 968--971
+\OT1/cmr/m/it/10.95 Measured mix-ing strength. \OT1/cmr/m/n/10.95 [\OT1/cmr/m/s
+c/10.95 measured\OT1/cmr/m/n/10.95 ] (script 232b, $\OML/cmm/m/it/10.95 k \OT1/
+cmr/m/n/10.95 = 13 [] 16$, $\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 = 1\OML/
+cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 70$.) The $\OML/cmm/m/it/10.95 ^^[[]$\OT1/cm
+r/m/n/10.95 -autocorrelation
+ []
+
+[12] [13] [14] [15] [16] [17] [18] [19] (density_one.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -449,45 +466,47 @@ Package rerunfilecheck Info: File `density_one.out' has not changed.
 (rerunfilecheck)             Checksum: 6430DCFFF325D1EDF7AC7E1ABA58CB41;1602.
  ) 
 Here is how much of TeX's memory you used:
- 10198 strings out of 467871
- 154383 string characters out of 5419828
- 585943 words of memory out of 5000000
- 38905 multiletter control sequences out of 15000+600000
- 643066 words of font info for 98 fonts, out of 8000000 for 9000
+ 10233 strings out of 467871
+ 154828 string characters out of 5419828
+ 589706 words of memory out of 5000000
+ 38921 multiletter control sequences out of 15000+600000
+ 644046 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,550b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,550b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm060
 0.pk> <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 0800.pk><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmbx10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmcsc10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmex10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/HP/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/HP/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/HP/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/HP/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/HP/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/HP/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
-/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/
-Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-<C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.
+ic/amsfonts/cm/cmbxti10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/HP/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/HP/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/HP/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/HP/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/HP/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/H
+P/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Us
+ers/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.
 pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr9.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmsy6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmsy8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/HP/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/HP/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on density_one.pdf (12 pages, 414912 bytes).
+mr6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr7.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr9.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/HP/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/HP/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/
+HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+>
+Output written on density_one.pdf (19 pages, 484571 bytes).
 PDF statistics:
- 318 PDF objects out of 1000 (max. 8388607)
- 58 named destinations out of 1000 (max. 500000)
+ 381 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
