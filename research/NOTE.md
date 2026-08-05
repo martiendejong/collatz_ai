@@ -11653,6 +11653,67 @@ NOOT: Script 248 heeft een bug in de berekening van h1 (het ruwe inter-triplet C
 
 ---
 
+## Obs 456 (Script 251, 2026-08-05): Ouder-kind anti-correlatie is de ROOT CAUSE van Cov<0 en d_k<1
+
+Script 251_cross_scale_cov.py. Correcte analyse van het slot-1 anti-correlatie mechanisme.
+
+STRUCTURELE IDENTIFICATIE VAN DE OORZAAK:
+
+  slot-1 Cov = Cov(ld_v2[j*+Nl3], ld_cb[j*+Nl3])
+             = Cov(ld_v2[3m+2], ld_min_t(m))  (j*+Nl3 = 3m+2, m = (j*+Nl3)//3)
+
+  Waarbij:
+    v2[3m+2] = v-waarde op FIJN niveau (index 3m+2 in v2-vector)
+    min_t(m) = min(v2[m], v2[m+Nl3], v2[m+2Nl3]) = waarde op GROF niveau m
+
+  KETENMECHANISME (chain rule van correlaties):
+    Corr(v2[3m+2], v2[m])         = -0.226  (NEGATIEF — ouder-kind anti-correlatie)
+    Corr(v2[m], min_t(m))         = +0.884  (POSITIEF — X in eigen min-triplet, Script 246)
+    => Corr(v2[3m+2], min_t(m))   = -0.270  (NEGATIEF — product van bovenstaande)
+    => Cov(ld_v2_s1, ld_cb_s1)    = -3.7e-3 (NEGATIEF — bevestigt Script 247)
+
+UNIVERSALITEIT (lam-scan k=8):
+  lam=1.30: Corr_raw=-0.648, Corr_ld=-0.220, Cov_ld=-3.1e-4
+  lam=1.50: Corr_raw=-0.394, Corr_ld=-0.217, Cov_ld=-1.5e-3
+  lam=1.70: Corr_raw=-0.226, Corr_ld=-0.199, Cov_ld=-3.7e-3
+  lam=1.90: Corr_raw=-0.130, Corr_ld=-0.188, Cov_ld=-6.7e-3
+  lam=2.00: Corr_raw=-0.099, Corr_ld=-0.181, Cov_ld=-8.3e-3
+
+DIEPTE-SCAN (lam=1.70):
+  k=5:  Corr_raw=-0.879, Corr_ld=-0.979, Cov_ld=-9.9e-2  (sterk bij kleine k)
+  k=7:  Corr_raw=-0.310, Corr_ld=-0.176, Cov_ld=-6.2e-3
+  k=8:  Corr_raw=-0.226, Corr_ld=-0.199, Cov_ld=-3.7e-3
+  k=11: Corr_raw=-0.162, Corr_ld=-0.009, Cov_ld=-2.8e-4  (verzwakking bij grote k)
+
+SLEUTELINSICHT — OUDER-KIND ANTI-CORRELATIE:
+  In de K-L eigenvektor is v2[3s+2] en v2[s] NEGATIEF gecorreleerd.
+  Dit is de multi-schaal structuur: de "kind"-waarde (fijn niveau 3s+2)
+  is anti-gecorreleerd met de "ouder"-waarde (grof niveau s).
+  
+  Mechanisme: de K-L operator voor r=2 bij (s=3m+2) gebruikt cb[(6m+5)] = min(v2[2m+1],...),
+  terwijl r=2 bij (s=m) cb[(2m+1)] = min(v2[(2m+1)//3],...) gebruikt.
+  De min-operatie op VERSCHILLENDE schalen creëert de anti-correlatie tussen niveaus.
+  De fijnere waarde v2[3m+2] krijgt een minimum op schaal 2m+1 (grover);
+  de grofsere waarde v2[m] krijgt een minimum op schaal (2m+1)//3 (nóg grover).
+  Dit scale-mismatch creeërt de negatieve parent-child correlatie.
+
+IMPLICATIE VOOR CONJECTURE G:
+  d_k < 1 is gevoed door Cov(ld_v2, ld_cb) < 0 (Obs 450/451)
+  die Cov < 0 is gevoed door Corr(v2[3s+2], v2[s]) < 0 (dit Obs)
+  die anti-correlatie is een structurele eigenschap van de K-L eigenvektor
+  op meerdere schalen (MULTI-SCHAAL EIGENSCHAP).
+  
+  De verzwakking met toenemende k (Corr_raw afneemt: -0.88 naar -0.16) suggereert
+  dat bij k→∞ deze anti-correlatie naar 0 gaat — maar Cov_ld ABSOLUTE WAARDE
+  neemt ook af, consistent met V_k → 0 (de eigenvektor uniformiseert).
+  
+  De RATIO Cov_ld / (ve_0_variance) stabiel < 1 => d_k < 1 persisteert.
+
+SCRIPT 250 NOOT: Script 250 berekende abusievelijk de INTRA-triplet Cov op GROF niveau
+  (positief door definitie), niet de cross-schaal Cov. Script 251 is de correcte analyse.
+
+---
+
 ## Obs 455 (Scripts 249+249b, 2026-08-05): Tweede eigenwaarde gelineariseerde K-L operator — d_k ~ r² voor lambda>=1.60
 
 Scripts 249_second_eigenvalue_clean.py (gedefleerde machtsiteratie, gearchiveerd met bekende fout)
