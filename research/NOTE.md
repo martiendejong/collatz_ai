@@ -11615,3 +11615,38 @@ De eenvoudige "direct structural" verklaring (slot 0: v2 is in cb's triplet) wer
 Het echte mechanisme is een RECURSIEVE eigenschap van de K-L eigenvektor waarbij
 de 4×-permutatie (sigma0) een specifiek slot-volgorde-effect creëert.
 Mechanisme volledig analytisch open — vereist diepere studie van de K-L eigenstructuur.
+
+---
+
+## Obs 454 (Script 248, 2026-08-05): Inter-triplet structuur — raw Cov POSITIEF, log-dev Cov NEGATIEF
+
+Script 248_inter_triplet_cov.py. Onderzoek de verhouding tussen intra-triplet en inter-triplet Cov.
+
+CENTRALE BEVINDING:
+De RUWE (niet-log-deviatie) Cov tussen v2[slot] en cb[naburige min] is POSITIEF voor alle lambda:
+  lam=1.30: cov_intra=+2.06e-2  cov_inter=+1.92e-2
+  lam=1.70: cov_intra=+2.99e-2  cov_inter=+2.29e-2
+  lam=2.00: cov_intra=+2.59e-2  cov_inter=+1.68e-2
+
+LOG-DEVIATIE Cov (wat CODE-variantie meet):
+  slot 0 (intra): POSITIEF  lam=1.30: -5.7e-5, lam=1.70: +2.3e-4, lam=2.00: +1.6e-3
+  slot 1 (inter): NEGATIEF  lam=1.30: -3.1e-4, lam=1.70: -3.7e-3, lam=2.00: -8.3e-3
+  slot 2 (inter): NEGATIEF  lam=1.30: -2.7e-4, lam=1.70: -3.8e-3, lam=2.00: -9.7e-3
+
+MECHANISME:
+  - Ruw Cov POSITIEF: alle v2 waarden zijn positief gecorreleerd (eigenvektor globale structuur)
+  - Log-deviatie NEGATIEF (slots 1,2): de log-deviatie-transformatie verwijdert de globale trend
+    en blootlegt de RELATIEVE ORDENING binnen CODE-triplets
+  - Wanneer slot 1 van v2 BOVEN het CODE-triplet-gemiddelde is (positief log-dev),
+    is cb van de naburige min ONDER haar CODE-triplet-gemiddelde (negatief log-dev)
+  - Dit is een EIGENVEKTOR-EIGENSCHAP op CODE-triplet-niveau, niet een simpele structurele relatie
+
+IMPLICATIE:
+De anti-correlatie Cov(ld_v2, ld_cb) < 0 (Script 244) die CODE-variantie-verkleining drijft
+is een EMERGENTE EIGENSCHAP van de K-L eigenvektor die via log-deviatie-transformatie zichtbaar wordt.
+Ruwe covariantie is positief (eigenvektorcorrelatie); log-deviatie keert dit om via relatieve ordening.
+Analytisch mechanisme: open. Verband met 4×-permutatie en slot-mismatch waarschijnlijk centraal.
+
+NOOT: Script 248 heeft een bug in de berekening van h1 (het ruwe inter-triplet Cov):
+  h1 = (h0 + Nl9)%Nl3 is FOUT; correct is h1 = j*//3 + Nl9.
+  De log-deviatie slot-decompositie (cov_s0, cov_s1, cov_s2) is WEL correct.
