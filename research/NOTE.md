@@ -12590,3 +12590,59 @@ MARGINAAL GEVAL lam -> 1+:
   Dit is consistent: bij lam=1 is de K-L operator triviaal (alle eigenvectoren = 1).
   Voor lam > 1 geldt de strikte ongelijkheid altijd.
 
+## Obs 473 (Script 271, 2026-08-05): Log-normaal grensbewijs -- MISLUKT
+
+Script 271_lognormal_bound.py.
+
+AANPAK: Gebruik de iid log-normaal-stelling als formeel grensbewijs.
+  m2m_LN(sig) = exp(-0.84628 * sig) strikt afnemend in sig.
+  Als max|m2m_actual - m2m_LN| < gap_LN/2 => bewijs gesloten.
+
+RESULTAAT: NIET levensvatbaar als formeel bewijs.
+  Max_err (v0+v2 samen) = 0.044..0.197 voor k in [8,10], lam in [1.30,1.90].
+  Gap_m2m = 0.003..0.010.
+  Verhouding gap/max_err = 0.03..0.06 (max_err is 15-60x groter dan gap).
+
+REDEN MISLUKKING: K-L kolom-drietallen zijn NIET iid.
+  De drie elementen {v_r[j3], v_r[j3+Nl3], v_r[j3+2*Nl3]} komen uit verschillende
+  sub-sub-klassen met systematisch verschillende gemiddelden.
+  De iid log-normaal benadering negeert deze gemiddeldeverschillen => grote per-kolom fouten.
+
+POSITIEF SIGNAAL (GEMIDDELDE BIAS):
+  Beide biases zijn negatief: LN overschat de werkelijke m2m.
+    bias_v0 = actual - LN_pred ~= -0.011 (lam=1.70, k=10)
+    bias_v2 = actual - LN_pred ~= -0.012
+  delta_bias = bias_v0 - bias_v2 = +0.001 > 0 (werkelijke gap GROTER dan LN-gap).
+  De niet-iid structuur HELPT: de gap_m2m = 0.0051 > gap_LN = 0.0036.
+  Maar formeel bewijs vereist kwantificering van de systematische bias.
+
+CONCLUSIE: iid log-normaal aanpak faalt als formeel bewijs.
+Volgende stap: niet-iid uitbreiding of directe B/A-structuurargument.
+
+## Obs 474 (Script 272, 2026-08-05): Brede sweep + B/A-argument + gemiddelde bias
+
+Script 272_m2m_bias_structure.py.
+
+TRACK A (Gemiddelde bias analyse):
+  Bereken signed mean bias = E[m2m_actual - m2m_LN] per v0 en v2.
+  Als gap_LN + (bias_v0 - bias_v2) > 0 => bewijs gesloten in expectation.
+
+TRACK B (B/A structureel argument):
+  v0 gebruikt B1 = lam^(alpha-2), v2 gebruikt B3 = lam^(alpha-1) = lam * B1.
+  B3/A = lam^(alpha+1) > B1/A = lam^alpha.
+  Test: voor synthetische drietallen X_r = A*Z_r + B*W_r (W = block min),
+  geeft groter B => kleiner m2m?
+
+TRACK C (Brede sweep k=5..14, lam=1.10..1.95):
+  Verificatie c2/c0 < R voor alle combinaties.
+
+STRUCTURELE ONTDEKKING (tijdens analyse):
+  Voor v0-kolom-drietallen met j3%3=0:
+    ALLE drie Z-inputs (v2-waarden via T4) zijn uit SUB-KLASSE 0 van v2.
+    ALLE drie cb-inputs (R1-permutatie) zijn uit SUB-KLASSE 0 van cb.
+  Voor v2-kolom-drietallen met j3%3=0:
+    ALLE drie Z'-inputs (v0-waarden via v1) zijn uit SUB-KLASSE 0 van v1.
+    ALLE drie cb'-inputs (R3-permutatie) zijn uit SUB-KLASSE 1 van cb (GESCRAMBLED).
+  Dus: v0-kolommen gebruiken cb met gemiddelde c0, v2-kolommen gebruiken cb met gemiddelde c1 = t*c0.
+  Dit is een ANALYTISCH BEWIJS van de structurele asymmetrie (cb-klas selectie).
+

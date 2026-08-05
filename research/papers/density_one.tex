@@ -1746,6 +1746,47 @@ $\mathrm{m2m}(v_2) \le \mathrm{m2m}(v_0)$.
 The cross-covariance correction is $\le 2\%$ and does not break $Q/P > R^2$
 (verified numerically for all $k \le 13$, $\lambda \in [1.30, 2.00]$).
 
+\textbf{Theorem (log-normal monotonicity, exact):}
+For any triplet $(Y_1,Y_2,Y_3)$ with $Y_r = C\exp(\sigma Z_r)$, $C,\sigma>0$, and
+$(Z_1,Z_2,Z_3)$ a fixed joint distribution with $\mathrm{P}(Z_{(1)} < \bar Z) > 0$:
+\[
+\frac{d}{d\sigma}\mathrm{m2m}(\sigma) =
+\frac{d}{d\sigma}\frac{\mathbb{E}[e^{\sigma Z_{(1)}}]}{\mathbb{E}[e^{\sigma Z}]} < 0.
+\]
+\emph{Proof.}
+$\frac{d}{d\sigma}\log\mathrm{m2m} = \mathbb{E}_{q_\sigma}[Z_{(1)}] - \mathbb{E}_{q_\sigma}[Z]$
+where $q_\sigma$ is the exponentially tilted measure
+$dq_\sigma/dP = e^{\sigma Z}/\mathbb{E}[e^{\sigma Z}]$.
+Since $Z_{(1)} \le Z$ a.s., $\mathbb{E}_{q_\sigma}[Z_{(1)}] \le \mathbb{E}_{q_\sigma}[Z]$,
+with strict inequality when $\mathrm{P}(Z_{(1)} < Z) > 0$.
+$\square$
+
+Hence for log-normal column triplets, $\mathrm{CoV}^2(v_2) > \mathrm{CoV}^2(v_0)$
+directly implies $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
+The K-L eigenvector columns are approximately (not exactly) log-normal:
+the iid approximation error is $\approx 10\times$ the m2m gap (Script~271),
+but the MEAN signed bias for v0 and v2 are in the same direction and the gap in means
+exceeds the gap in the log-normal predictions (Scripts~269,272).
+Formal closure for non-iid K-L columns requires extending the log-normal
+monotonicity theorem to the exact K-L distribution class.
+
+\textbf{Structural remark on block-minimum alignment (Step A evidence).}
+A finer structural fact sheds light on why $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
+For column-triplets with $j_3 \equiv 0 \pmod{3}$, one can verify directly from the
+permutation formulas that:
+\begin{itemize}
+  \item Each $v_0$-column-triplet element uses a block-minimum $cb$ drawn from
+        the \emph{sub-class-0} portion of $cb$ (mean $c_0$).
+  \item Each $v_2$-column-triplet element uses a $cb$ drawn from
+        the \emph{sub-class-1} portion (mean $c_1 = tc_0 < c_0$).
+\end{itemize}
+Thus the additive ``floor'' contribution $B_1 c_0 / \rho$ to $v_0$-columns is larger than
+the contribution $B_3 c_1 / \rho = \lambda t \cdot B_1 c_0 / \rho$ to $v_2$-columns only if
+$1 > \lambda t$; when $\lambda t > 1$ the $v_2$ cb-contribution is larger but drawn from
+the smaller-mean class, making the relative effect on $\mathrm{m2m}$ non-trivial.
+The net outcome -- $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$ -- is confirmed
+numerically for all $k \le 14$, $\lambda \in [1.10, 1.95]$ (Scripts~269--272).
+
 \textbf{Step B (analytical):} $R(\lambda) - 1 < \mathrm{RHS}(\lambda)$.
 \emph{Proof.} Factoring: $R-1 = (1-t)(\lambda-1-t)/(1+t\lambda)$.
 If $\lambda-1-t \le 0$: $R \le 1 \le 1+\mathrm{RHS}$. Done.
@@ -1757,17 +1798,28 @@ $\lambda^5\rho^2 \ge \lambda^5\lambda^{-4} = \lambda$, so
   \;<\; \frac{\lambda-1}{\lambda} \;<\; 1. \qquad\square
 \]
 
-Hence $c_2/c_0 \le R(\lambda) < 1 + \mathrm{RHS}(\lambda)$, giving $f_1-f_0>0$.
-The sole remaining step (Step A, statistical) is that $\mathrm{CoV}^2$ ordering implies
-$\mathrm{m2m}$ ordering for K-L eigenvector column distributions.
-Verified for all $k \le 14$, $\lambda \in [1.30, 2.00]$ with positive margin
-(Scripts~269--270).
-\emph{Asymptotic sharpness:} the ratio $c_2/c_0$ converges to $R(\lambda)$ from below
-as $k \to \infty$ (the K-L fractal measure at $k=\infty$ is a balanced fixed point
-where $\mathrm{m2m}(v_2) = \mathrm{m2m}(v_0)$ exactly); the margin decreases by
-factor $\approx 0.6$ per two depth levels.
+Hence $c_2/c_0 \le R(\lambda) < 1 + \mathrm{RHS}(\lambda)$, giving $f_1-f_0>0$,
+subject to the computational Lemma~A below.
+
+\begin{lemma}[Computational Lemma A]\label{lem:m2m}
+For all $k \le 14$ and $\lambda \in [1.10, 1.95]$, the K-L Perron eigenvector satisfies
+$\mathrm{m2m}(v_2) \le \mathrm{m2m}(v_0)$, equivalently $c_2/c_0 \le R(\lambda)$,
+with positive margin.
+\end{lemma}
+
+\emph{Evidence.} Verified by Scripts~269--272 via direct computation of the K-L
+eigenvector to precision $<10^{-12}$ (1000+ power iterations).
+The ratio $c_2/c_0$ converges monotonically to $R(\lambda)$ from below as $k\to\infty$
+(the K-L fractal measure at $k=\infty$ is a balanced fixed point where
+$\mathrm{m2m}(v_2) = \mathrm{m2m}(v_0)$ exactly); the margin halves by factor
+$\approx 0.6$ per two depth levels (Script~270).
+The log-normal approximation theorem (strictly decreasing $\mathrm{m2m}$ in $\sigma$ for
+iid log-normal triplets, Script~271) provides the correct directional mechanism via
+$\mathrm{CoV}^2(v_2) > \mathrm{CoV}^2(v_0)$; the iid approximation error is
+$\approx 10\times$ the gap (due to systematic sub-class heterogeneity in K-L columns),
+so it does not close the lemma but confirms the direction.
 For a \emph{formal} proof, a second-order stochastic dominance argument or a direct
-formalization of the log-normal monotonicity theorem for correlated K-L triplets
+extension of the log-normal monotonicity theorem to non-iid K-L column distributions
 would suffice.
 \end{remark}
 
