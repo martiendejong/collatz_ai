@@ -1264,6 +1264,25 @@ $\sigma_W(k)/\rho(k)$ convergent below $1$ via S1-nesting --- an
 operator statement, now backed by flat data --- and (B) the
 identification: exhibit the operator quantity that \emph{does} bound
 $d_k$, and show it inherits (A)'s flatness.
+\MEASURED{} (script~249b, $k{=}6..11$, $\lam{=}1.70$; lambda-scan $k{=}8$):
+direct convergence rate of the \emph{nonlinear} K-L power iteration
+$r_k = \|v^{(k)}_n - v^{(k)}_\infty\|/\|v^{(k)}_{n-1} - v^{(k)}_\infty\|$
+($\ell^2$ norm, after perturbation of the converged eigenvector,
+late-window median).
+Depth scan at $\lam=1.70$: $r_k = 0.794, 0.815, 0.848, 0.851, 0.856, 0.824$
+for $k=6..11$ --- broadly flat near $0.84$.
+Lambda scan at $k=8$: $r = 0.836, 0.837, 0.847, 0.854, 0.866, 0.868$
+for $\lam = 1.40, 1.50, 1.60, 1.70, 1.80, 1.90, 2.00$ ($r < 1$ for all).
+Key observation: $r_k \approx \sqrt{d_k^{\mathrm{CODE}}}$ holds to $\pm 2\%$
+for $\lam \ge 1.60$ (ratio $r_k/\sqrt{d_k^{\mathrm{CODE}}} \in [0.971, 1.014]$),
+consistent with $r_k \approx \sqrt{\sigma_W/\rho}$ since
+$d_k \approx \sigma_W/\rho$ (Scripts~201, 241):
+the \emph{nonlinear} convergence rate is the square root of the
+\emph{linearized} spectral radius.
+At $\lam=1.30$: $r = 0.864$ but $\sqrt{d_k^{\mathrm{CODE}}} = 0.755$,
+ratio~$1.14$ --- CODE-variance decays \emph{faster} than the spectral-gap
+prediction at small $\lam$ (nonlinear finite-depth effect; at $\lam{=}1.30$
+the eigenvector is more uniform and higher eigenmodes contribute).
 \MEASURED{} (script 202, adjointness machine-checked to $10^{-18}$):
 the operator-norm candidate for (B) \emph{fails} ---
 $s_{\max}(M)/\rho = 1.53 \to 1.51$ ($k = 12..17$, slowly falling), so

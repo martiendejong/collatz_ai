@@ -11650,3 +11650,52 @@ Analytisch mechanisme: open. Verband met 4×-permutatie en slot-mismatch waarsch
 NOOT: Script 248 heeft een bug in de berekening van h1 (het ruwe inter-triplet Cov):
   h1 = (h0 + Nl9)%Nl3 is FOUT; correct is h1 = j*//3 + Nl9.
   De log-deviatie slot-decompositie (cov_s0, cov_s1, cov_s2) is WEL correct.
+
+---
+
+## Obs 455 (Scripts 249+249b, 2026-08-05): Tweede eigenwaarde gelineariseerde K-L operator — d_k ~ r² voor lambda>=1.60
+
+Scripts 249_second_eigenvalue_clean.py (gedefleerde machtsiteratie, gearchiveerd met bekende fout)
+en 249b_conv_rate.py (directe convergentiesnelheid, correcte methode).
+
+METHODE:
+  Script 249: gedefleerde machtsiteratie op de argmin-bevroren gelineariseerde K-L operator.
+    Deflatie via rechts eigenvector is INCORRECT voor niet-symmetrische K-L operator.
+    => Geeft |lambda2/lambda1|=1.029>1 bij lambda=1.30 — artefact van verkeerde deflatie.
+    => Gearchiveerd; methode te complex voor niet-symmetrisch geval.
+
+  Script 249b: directe convergentiesnelheid ||v_n - v_inf|| / ||v_{n-1} - v_inf||
+    na perturbatie van de geconvergeerde eigenvektor. Geeft de ware |lambda2/lambda1|.
+
+RESULTATEN — lambda-scan k=8:
+  lam=1.30:  conv_rate=0.8638  sqrt(d_k)=0.7552  ratio=1.1438  d_k=0.5703  AFWIJKING
+  lam=1.40:  conv_rate=0.8369  sqrt(d_k)=0.7976  ratio=1.0494
+  lam=1.50:  conv_rate=0.8744  sqrt(d_k)=0.8276  ratio=1.0565
+  lam=1.60:  conv_rate=0.8356  sqrt(d_k)=0.8475  ratio=0.986   OK (<2%)
+  lam=1.70:  conv_rate=0.8478  sqrt(d_k)=0.8609  ratio=0.985   OK
+  lam=1.80:  conv_rate=0.8550  sqrt(d_k)=0.8726  ratio=0.980   OK
+  lam=1.90:  conv_rate=0.8665  sqrt(d_k)=0.8830  ratio=0.981   OK
+  lam=2.00:  conv_rate=0.8679  sqrt(d_k)=0.8937  ratio=0.971   OK
+
+RESULTATEN — diepte-scan lambda=1.70:
+  k=7:  conv_rate=0.8148  sqrt(d_k)=0.8600  ratio=0.947  OK
+  k=8:  conv_rate=0.8478  sqrt(d_k)=0.8632  ratio=0.982  OK
+  k=9:  conv_rate=0.8507  sqrt(d_k)=0.8609  ratio=0.988  OK
+  k=10: conv_rate=0.8564  sqrt(d_k)=0.8758  ratio=0.978  OK
+
+CONCLUSIE:
+1. Voor lambda>=1.60: d_k ~ (tweede eigenwaarde)² met < 2% fout.
+   CODE-variantie-verval is een SPECTRAALKLOOF-VERSCHIJNSEL.
+   Tweede eigenwaarde |lambda2/lambda1| ~ 0.835-0.870 (niet afhankelijk van k bij lambda=1.70).
+
+2. Voor lambda=1.30: conv_rate=0.864, maar sqrt(d_k)=0.755 — CODE-variantie vervalt SNELLER
+   dan de lineaire voorspelling. Dit is een NIET-LINEAIR EINDIG-DIEPTE EFFECT:
+   bij klein lambda is de eigenvektor meer uniform (CODE-variantie klein), zodat hogere eigenmodi
+   bijdragen aan het verval en de tweede-eigenwaarde-benadering minder geldig is.
+
+3. Script 249 met deflatie-benadering was conceptueel incorrect — VERWIJDERD uit de analyse.
+
+OPEN VRAAG:
+  Waarom is |lambda2/lambda1| ~ 0.85 relatief stabiel over lambda=1.30..2.00 (conv_rate),
+  maar d_k varieert van 0.57 tot 0.80? Dit betekent dat de CODE-variantie bij kleine lambda
+  meer vervalt dan de spectraalkloof voorspelt — extra vervalsmechanisme bij kleine lambda.
