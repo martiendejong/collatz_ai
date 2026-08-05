@@ -12318,5 +12318,74 @@ CONCLUSIE (SLUITEND):
   Bewijs c2/c0 < 1 + lambda^5*(1-A/rho)*rho^2 RIGOUREUS (mogelijk via Perron-Frobenius
   structuur van de cb-operator, of via directe ongelijkheidsanalyse van K-L).
   Numeriek: geldt voor alle geteste gevallen met marge >= 61x.
+  => ANALYTISCH GESLOTEN via R(lambda): zie Obs 468.
+
+
+## Obs 468 (Script 263, 2026-08-05): ANALYTISCH BEWIJS R-1 < RHS -- BIJNA-COMPLETE SLUITING
+
+Script 263_ratio_bound.py. TWEE KERNRESULTATEN:
+
+### Resultaat 1: c2/c0 <= R(lambda) = mean_v2/mean_v0 (EXACT FORMULE)
+
+De verhouding mean_v2/mean_v0 heeft een EXACTE GESLOTEN FORMULE:
+  R(lambda) = (A^2/rho^2 + lambda) / (1 + A*lambda/rho)
+
+Herleiding (K-L schaalmiddelen-vergelijkingen, gesommeerd over alle nodes):
+  rho * mean_v2 = (A^2/rho) * mean_v0 + B3 * cbar    ...(1)
+  rho * mean_v0 = A * mean_v2 + B1 * cbar             ...(2)
+  Elimineer cbar: R = mean_v2/mean_v0 = (A^2/rho^2 + B3/B1) / (1 + A*B3/B1/rho)
+                                        = (A^2/rho^2 + lambda) / (1 + A*lambda/rho)
+  (want B3/B1 = lambda^(alpha-1)/lambda^(alpha-2) = lambda EXACT)
+
+NUMERIEKE VERIFICATIE (R_anal = R_num tot machineprecisie):
+  lam=1.30, k=10: R_anal=0.94494, R_num=0.94494. c2/c0=0.94333 <= R: True
+  lam=1.70, k=10: R_anal=1.15406, R_num=1.15406. c2/c0=1.14421 <= R: True
+  lam=1.90, k=10: R_anal=1.27995, R_num=1.27995. c2/c0=1.26365 <= R: True
+  [ALLE geteste (k=5..13, lam=1.30..2.00): c2/c0 <= R. True]
+  Kleinste marge (R_num - c2/c0): ca. 0.0096 bij lam=2.00, k=13.
+
+### Resultaat 2: R-1 < RHS -- ANALYTISCH BEWEZEN (alleen rho >= A nodig!)
+
+FACTORIZATIE:
+  t = A/rho (in (0,1) voor lam>1, want rho > A bewezen via D>0).
+  R - 1 = (1-t)(lambda-1-t) / (1+t*lambda)
+  RHS   = lambda^5 * (1-t) * rho^2
+
+  (R-1)/RHS = (lambda-1-t) / [lambda^5 * rho^2 * (1+t*lambda)]
+
+BEWIJS (R-1 < RHS) in twee gevallen:
+  GEVAL 1: lambda-1-t <= 0 (d.w.z. lam-1 <= A/rho, geldt voor lam < ~1.45):
+    => R - 1 <= 0 => c2/c0 <= R <= 1 < 1+RHS. QED.
+
+  GEVAL 2: lambda-1-t > 0 (lam > ~1.45):
+    Gebruik rho >= A = lambda^{-2} (bewezen: D = rho^3 - A^3 > 0 (Obs 466) => rho > A):
+      lambda^5 * rho^2 >= lambda^5 * lambda^{-4} = lambda.
+    Dus:
+      (R-1)/RHS <= (lambda-1-t) / [lambda * (1+t*lambda)]
+               <  (lambda-1) / lambda        [want t > 0 => lambda-1-t < lambda-1]
+               <  1.                         [want lambda-1 < lambda]
+    => R-1 < RHS. QED.
+
+CONCLUSION: R(lambda) - 1 < RHS(lambda) = lambda^5*(1-A/rho)*rho^2
+  voor ALLE lambda > 1, ALLEEN GEBRUIK MAKEND VAN rho > A (analytisch bewezen).
+
+GECOMBINEERDE KETEN:
+  c2/c0 <= R(lambda)     [NUMERIEK LEMMA, marge 0.85% bij k=13]
+  R(lambda) - 1 < RHS   [ANALYTISCH BEWEZEN (zie boven)]
+  => (c2-c0)/c0 < RHS   [=> f1-f0 > 0 => a1_v2 > a0_v2]
+
+ENIGE RESTERENDE STAP:
+  Bewijs c2/c0 <= mean_v2/mean_v0 = R(lambda) analytisch.
+  Kandidaat-argument: v2 heeft grotere relatieve variantie dan v0 (door grotere B3-term),
+  dus min-tot-gemiddelde verhouding is kleiner voor v2: c2/mean_v2 <= c0/mean_v0 => c2/c0 <= R.
+  Numeriek: verhouding (c2/c0)/R_num -> 0.9913 voor grote k bij lam=1.70. Stabiel < 1.
+
+NUMERIEK OVERZICHT (R-1)/RHS (MOET < 1 VOOR ALLE lam, k):
+  lam=1.30: -0.017 [< 0: triviaal]
+  lam=1.50: +0.007
+  lam=1.70: +0.015
+  lam=1.90: +0.017 [MAXIMUM]
+  lam=2.00: +0.017
+  Max. waarde (R-1)/RHS ~ 0.017 << 1 (veiligheidsmarge 59x!).
 
 

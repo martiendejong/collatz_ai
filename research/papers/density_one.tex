@@ -1700,20 +1700,38 @@ Then
 with $q/\rho \approx 0.04$ at $\lambda=1.70$ so term 1 dominates:
 $f_1-f_0 = B_3 c_0(1-A/\rho) + A^2 B_1(c_0-c_2)/\rho^2$.
 
-The sign of $f_1-f_0$ splits by regime:
-\textbf{(A)} For $\lambda < 1.45$ (approximately): $c_2 < c_0$, so both terms are positive
-and $f_1-f_0 > 0$ is trivial.
-\textbf{(B)} For $\lambda > 1.45$: $c_2 > c_0$, but a depth scan ($k=5,\ldots,13$) shows
-$(c_2-c_0)/c_0$ converges monotonically to a finite limit $L(\lambda)$ as $k\to\infty$
-(e.g.\ $L(1.70)\approx 0.154$, $L(1.90)\approx 0.264$, $L(2.00)\approx 0.327$),
-while $\text{RHS}(\lambda) = \lambda^5(1-A/\rho)\rho^2$ grows faster (e.g.\ $10.0$, $16.1$, $20.1$
-at the same $\lambda$ values).
-The minimum margin over all tested $(k,\lambda)$ is $61\times$ (at $\lambda=1.90$, converging
-from above with $k$).
-Hence $f_1-f_0>0$ for \emph{all} tested depths and $\lambda\in[1.30,2.00]$, with a stable
-safety margin.
-(Rigorous closure requires proving $c_2/c_0 < 1 + \lambda^5(1-A/\rho)\rho^2$ analytically;
-numerically this is verified with margin $\ge 61\times$ for all $k\le 13$.)
+The sign of $f_1-f_0$ reduces to a comparison of $c_2/c_0$ against a threshold.
+Set $t = A/\rho \in (0,1)$ (proved: $\rho > A$ from $D > 0$) and let
+\[
+  R(\lambda) \;=\; \frac{A^2/\rho^2 + \lambda}{1 + A\lambda/\rho}
+  \;=\; \frac{\bar a_{v_2}}{\bar a_{v_0}},
+\]
+the \emph{exact} ratio of the r-type overall means, derived by eliminating
+$\bar c$ from the two scalar K-L mean equations
+$\rho\,\bar a_{v_2} = (A^2/\rho)\,\bar a_{v_0} + B_3\bar c$ and
+$\rho\,\bar a_{v_0} = A\,\bar a_{v_2} + B_1\bar c$ (using $B_3/B_1 = \lambda$ exactly).
+Then $f_1-f_0 > 0$ follows in two steps:
+
+\textbf{Step A (numerical lemma):} $c_2/c_0 \le R(\lambda)$ for all tested $(k, \lambda)$,
+verified with margin $\ge 0.85\%$ at $k=13$.
+
+\textbf{Step B (analytical):} $R(\lambda) - 1 < \mathrm{RHS}(\lambda)$.
+\emph{Proof.} Factoring: $R-1 = (1-t)(\lambda-1-t)/(1+t\lambda)$.
+If $\lambda-1-t \le 0$: $R \le 1 \le 1+\mathrm{RHS}$. Done.
+If $\lambda-1-t > 0$: using $\rho \ge A = \lambda^{-2}$ (proved),
+$\lambda^5\rho^2 \ge \lambda^5\lambda^{-4} = \lambda$, so
+\[
+  \frac{R-1}{\mathrm{RHS}} = \frac{\lambda-1-t}{\lambda^5\rho^2(1+t\lambda)}
+  \;\le\; \frac{\lambda-1-t}{\lambda(1+t\lambda)}
+  \;<\; \frac{\lambda-1}{\lambda} \;<\; 1. \qquad\square
+\]
+
+Hence $c_2/c_0 \le R(\lambda) < 1 + \mathrm{RHS}(\lambda)$, giving $f_1-f_0>0$
+(numerically: $(R-1)/\mathrm{RHS} \le 0.017$ for all tested $\lambda$, margin $59\times$).
+The sole remaining analytical step is the numerical lemma in Step A
+($c_2/c_0 \le \bar a_{v_2}/\bar a_{v_0}$); a candidate proof uses the larger relative
+variance of $v_2$ (driven by the stronger $B_3$ forcing) which reduces its
+column-minimum-to-mean ratio relative to $v_0$.
 Verified to relative error $\le 2\times 10^{-16}$ at all tested depths and $\lambda$.
 \end{remark}
 
