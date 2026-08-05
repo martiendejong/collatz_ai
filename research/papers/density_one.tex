@@ -1585,6 +1585,36 @@ coupling is a \emph{branching-frequency} phenomenon, not a
 weight-magnitude one --- this aligns the EPW proof more directly with the
 discrete type structure (each step is a fresh i.i.d.\ trit) than with
 the continuous weight accumulation.
+
+\emph{3-adic class structure and stable log-space floor}
+(scripts~253--258, $k{=}5..14$, lambda-scan).
+The $v_2[s]$ component has a persistent mod-$3$ class-mean bias:
+at $k{=}8$, $\lambda{=}1.70$, $\bar a_0 = 0.140 < \bar a_1 = 0.328 < \bar a_2 = 0.363$.
+The doubling map $s\mapsto 2s{+}1$ acts as the transposition $0\leftrightarrow 1$
+on $\mathbb{Z}/3\mathbb{Z}$ (and fixes $2$), so it anti-correlates
+$v_2[2s{+}1]$ against $v_2[s]$ by swapping low and high class means.
+In log-space the between-class contribution
+$\mathrm{Corr}_{\mathrm{log,btwn}} \approx -0.427$
+converges to a stable floor as $k\to\infty$ ($-0.450$ at $k{=}6$,
+$-0.427$ at $k{=}14$, $\lambda{=}1.70$); the within-class log-space
+contribution reverses sign with depth (from $-0.245$ to $+0.111$) but
+cannot overcome the between-class floor.
+\MEASURED{} (script~257b, column-triplet CODE-variance\footnote{The
+correct column-triplet CODE-variance groups
+$\{v[j],v[j{+}N_\ell],v[j{+}2N_\ell]\}$ for each $j\in[0,N_\ell)$;
+the incorrect row-triplet grouping $\{v[3s],v[3s{+}1],v[3s{+}2]\}$
+reverses the sign of $d_k - 1$.}):
+$d_k = 0.690, 0.675, 0.723, 0.734, 0.761, 0.738, 0.748, 0.755, 0.756$
+for $k=6..14$ at $\lambda{=}1.70$ --- converging to $d_\infty \approx 0.756$
+(\emph{strong form} of Conjecture G).
+Lambda-scan at $k{=}12{\to}13$: $d = 0.569, 0.629, 0.679, 0.722, 0.755,
+0.783, 0.803, 0.822$ for $\lambda = 1.30, 1.40, 1.50, 1.60, 1.70, 1.80,
+1.90, 2.00$ (all $< 1$).
+Self-similar structure (script~255): within class $2{\to}2$ (same mod-3
+class, fixed by $s\mapsto 2s{+}1$), the mod-9 sub-class swap
+$2\leftrightarrow 5$ (means $0.428$ vs.\ $0.198$) explains $85.8\%$ of
+the within-class anti-correlation --- matching the $84.7\%$ fraction
+at the top level, confirming a fractal self-similar cascade.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}

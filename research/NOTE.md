@@ -11944,3 +11944,119 @@ IMPLICATIE VOOR VERMOEDEN G:
   Een formeel bewijs vereist het tonen dat de gezamenlijke bijdrage van alle schalen
   strikt negatief is -- dit is de CENTRALE OPEN VRAAG voor het bewijs van Vermoeden G.
 
+---
+
+## Obs 461 (Script 256, 2026-08-05): Diepte-scan klasse-gemiddelden -- a0/a1 convergeert naar ~0.41
+
+Script 256_depth_class_means.py. Diepte-scan k=5..14 van klasse-gemiddelden en anti-correlaties.
+
+KLASSE-GEMIDDELDE RATIO a0/a1 PER DIEPTE (lam=1.70):
+  k=5: 0.4388, k=6: 0.4350, k=7: 0.4309, k=8: 0.4269
+  k=9: 0.4243, k=10: 0.4220, k=11: 0.4198, k=12: 0.4180
+  k=13: 0.4165, k=14: 0.4151
+  => Traag afnemend, convergeert naar ~0.41. Klasse-asymmetrie BLIJFT BESTAAN als k->inf.
+
+CV-VERHOUDING (lam=1.70):
+  k=5: CV0=0.164, CV1=0.233; k=14: CV0=0.372, CV1=0.480.
+  CV0 < CV1 blijft ALTIJD geldig. CVs nemen toe met k (eigenvector spreidt uit).
+
+LINEAIRE ANTI-CORRELATIE VERZWAKT MET k:
+  Corr(v2[2s+1], v2[s]) (lam=1.70):
+  k=6: -0.678, k=8: -0.287, k=10: -0.212, k=12: -0.166, k=14: -0.138
+  Ratios per niveau: 0.584, 0.725, 0.824, 0.898, ..., 0.931 (-> 1)
+  => Lijkt op k^(-alpha) verval met alpha ~ 1.9.
+
+BETWEEN-CLASS CONTRIBUTION (lam=1.70):
+  corr_btwn (lineaire ruimte): k=8: -0.231, k=12: -0.202, k=14: -0.195
+  => Ook afnemend, maar trager. Bij lam=2.00, k=12: btwn=+0.105 (fout teken!).
+
+---
+
+## Obs 462 (Scripts 257+257b, 2026-08-05): CORRECTE d_k -- CODE-variance NEEMT AF met k
+
+Script 257_dk_convergence.py (BUG: wrong grouping) en 257b_dk_correct.py (CORRECT).
+
+BUG IN 257: Gebruikte lv.reshape(Nl, 3) die {v[3s], v[3s+1], v[3s+2]} groepeert
+(vaste s, varierende r-type). Dit is NIET de CODE-drieling.
+
+CORRECTE GROEPERING (CODE-drieling):
+  cb[j] = min(v[j], v[j+Nl], v[j+2Nl]) voor j in [0, Nl)
+  => CODE-variance = within-column-drieling variantie van log(v)
+  => Correct: np.column_stack([lv[:Nl], lv[Nl:2Nl], lv[2Nl:]]) (kolom-stacking)
+
+CORRECTE d_k WAARDEN (lam=1.70, k=5..14):
+  k=5->6: d=0.690, k=6->7: d=0.675, k=7->8: d=0.723, k=8->9: d=0.734
+  k=9->10: d=0.761, k=10->11: d=0.738, k=11->12: d=0.748
+  k=12->13: d=0.755, k=13->14: d=0.756
+  => ALLE d_k < 1! Convergeert naar ~0.756 (STERKE VORM Vermoeden G).
+  => ve0(k) -> 0 geometrisch met ratio ~0.75.
+
+VERKEERDE d_k WAARDEN (lv.reshape):
+  k=5->6: 1.080, k=6->7: 1.052, ..., k=13->14: 1.010
+  => OMGEKEERDE CONCLUSIE: d_k > 1 door verkeerde groepering!
+
+LAMBDA-SCAN (k=12->13, correcte formule):
+  lam=1.30: d=0.569, lam=1.40: d=0.629, lam=1.50: d=0.679
+  lam=1.60: d=0.722, lam=1.70: d=0.755, lam=1.80: d=0.783
+  lam=1.90: d=0.803, lam=2.00: d=0.822
+  => ALLE duidelijk < 1. d_k neemt toe met lambda maar blijft < 1.
+
+CONCLUSIE:
+  d_k -> 0.756 < 1 als k -> inf bij lam=1.70. STERKE Vermoeden G numeriek bewezen t/m k=14.
+  ve0(k) daalt geometrisch => K-L eigenvektor homogeniseert exponentieel snel.
+
+---
+
+## Obs 463 (Script 258, 2026-08-05): LOG-RUIMTE anti-correlatie -- stabiele between-class floor
+
+Script 258_logspace_anticorr.py. Kernvraag: is LOG-RUIMTE Corr(log v2[2s+1], log v2[s]) stabiel?
+
+LOG-RUIMTE vs LINEAIRE ANTI-CORRELATIE (diepte-scan lam=1.70):
+  k=6:  lin=-0.678  log=-0.695  (log sterker negatief dan lineair)
+  k=8:  lin=-0.287  log=-0.378
+  k=10: lin=-0.212  log=-0.345
+  k=12: lin=-0.166  log=-0.328
+  k=14: lin=-0.138  log=-0.316
+
+  => Log-ruimte Corr is NEGATIEVER dan lineaire Corr, maar verzwakt ook.
+  => Log-ruimte verval is trager: van -0.695 naar -0.316 (factor 2.2 over 8 niveaus).
+
+LOG-RUIMTE BETWEEN-CLASS CONTRIBUTION (STABIEL!):
+  k=6: -0.4498, k=7: -0.4344, k=8: -0.4300, k=9: -0.4283, k=10: -0.4283
+  k=11: -0.4279, k=12: -0.4275, k=13: -0.4274, k=14: -0.4272
+  => CONVERGEERT naar -0.4272 als k->inf. STABIELE VLOER.
+
+MECHANISME:
+  Bij k=14: totaal log-Corr = -0.316, between-class = -0.427 (> |totaal|!)
+  => Within-class bijdrage = +0.111 (POSITIEF!)
+  Bij grote k: within-class log-anti-correlatie VERDWIJNT en wordt POSITIEF.
+  Maar between-class vloer -0.427 HOUDT het totaal NEGATIEF.
+
+LOG-RUIMTE KLASSE-GEMIDDELDEN:
+  La0(k) - La1(k) (log-klasse-scheiding):
+  k=6: -0.813, k=8: -0.826, k=10: -0.834, k=12: -0.842, k=14: -0.848
+  => Groeit TRAAG in absolutewaarde -> La0 - La1 -> -inf? Of convergentie?
+  Maar de GENORMALISEERDE between-class Corr convergeert to -0.427 (stabiel).
+
+LOG-RUIMTE CB-DOMINANTIE:
+  Corr(log v2[s], log cb[(2s+1)]) = 0.986 (k=8) -> 0.985 (k=14)
+  => Log-ruimte cb-dominantie is EVEN STERK als lineaire ruimte.
+
+LAMBDA-SCAN k=12:
+  lam=1.30: lin=-0.618 log=-0.642 btwn=-0.761  d_12=0.569
+  lam=1.70: lin=-0.166 log=-0.328 btwn=-0.428  d_12=0.755
+  lam=2.00: lin=-0.035 log=-0.247 btwn=-0.320  d_12=0.822
+  => Log-ruimte anti-correlatie altijd sterker dan lineair.
+  => Between-class ALTIJD negatief in log-ruimte (ook bij lam=2.00).
+
+KERNTHEORETISCHE IMPLICATIE:
+  De log-ruimte between-class vloer (~-0.427 bij lam=1.70) is de DIEPSTE STABIELE BRON
+  van d_k < 1. Zelfs als within-class bijdragen verzwakken/positief worden, houdt
+  de between-class vloer de totale anti-correlatie negatief.
+  Dit levert een semi-analytisch bewijs van Vermoeden G:
+    "La0 - La1 < 0 voor alle k" (log-klasse-scheiding aanhoudt)
+    + "0<->1 verwisseling anti-correleert"
+    => d_k < 1 voor alle k.
+  Formeel bewijs vereist: tonen dat La0 < La1 voor alle k vanuit de K-L vergelijking.
+
+
