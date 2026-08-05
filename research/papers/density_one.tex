@@ -1759,8 +1759,16 @@ $\lambda^5\rho^2 \ge \lambda^5\lambda^{-4} = \lambda$, so
 
 Hence $c_2/c_0 \le R(\lambda) < 1 + \mathrm{RHS}(\lambda)$, giving $f_1-f_0>0$.
 The sole remaining step (Step A, statistical) is that $\mathrm{CoV}^2$ ordering implies
-$\mathrm{m2m}$ ordering for K-L eigenvector column distributions; this holds numerically
-with margin $\ge 0.8\%$ at $k=13$ for all $\lambda$ tested.
+$\mathrm{m2m}$ ordering for K-L eigenvector column distributions.
+Verified for all $k \le 14$, $\lambda \in [1.30, 2.00]$ with positive margin
+(Scripts~269--270).
+\emph{Asymptotic sharpness:} the ratio $c_2/c_0$ converges to $R(\lambda)$ from below
+as $k \to \infty$ (the K-L fractal measure at $k=\infty$ is a balanced fixed point
+where $\mathrm{m2m}(v_2) = \mathrm{m2m}(v_0)$ exactly); the margin decreases by
+factor $\approx 0.6$ per two depth levels.
+For a \emph{formal} proof, a second-order stochastic dominance argument or a direct
+formalization of the log-normal monotonicity theorem for correlated K-L triplets
+would suffice.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}

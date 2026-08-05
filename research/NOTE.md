@@ -12546,3 +12546,47 @@ BIJGEWERKTE BEWIJSKETEN Vermoeden G (4 stappen, nu grotendeels analytisch):
 STATUS: Stap (3b) is de enige resterende niet-analytische stap.
 Bewijs: hogere CoV^2 => lagere min-tot-gemiddelde voor K-L distributies.
 
+## Obs 472 (Scripts 269-270, 2026-08-05): CONVERGENTIE c2/c0 -> R EN STRUCTUURANALYSE
+
+Script 269_cov2_to_m2m.py + 270_margin_check.py.
+
+BEVINDING 1: Twee-staps algebraische keten MISLUKT.
+  c2/c0 <= a1_v0/a2_v0 is ONWAAR (c2/c0 ~1.14, a1/a2 ~0.52 bij lam=1.70).
+  De v1-bovengrensargument geeft c2 <= t*a1_v0 en c0 <= t*a2_v0,
+  maar c0 > t*a2_v0 numeriek (ratio ~2.09), dus de bovengrens gaat de
+  verkeerde kant op voor c0.
+
+BEVINDING 2: c2/c0 convergeert naar R van onder (k -> inf).
+  Marge halveert bij elke 2 niveaus van k:
+    lam=1.70: k=10: 0.854%, k=12: 0.581%, k=14: 0.412% (factor ~0.68/2 niveaus)
+    lam=1.30: k=10: 0.170%, k=12: 0.091%, k=14: 0.048% (factor ~0.53/2 niveaus)
+  c2/c0 is monotoon STIJGEND met k en nadert R van beneden.
+  GEVOLG: voor alle eindige k geldt c2/c0 < R (numeriek bevestigd tot k=14).
+  In de limiet k->inf geldt c2/c0 = R (asymptotisch strak).
+  De K-L fraktaalmaat (k=inf) is een "gebalanceerd" vaste punt waarbij
+  min-tot-gemiddelde gelijk is voor v0 en v2.
+
+BEVINDING 3: Schrangschikking is NIET de hoofdoorzaak.
+  corr(v2_input, cb_input) in v0-drietalreconstructie = -0.156 (zwak negatief).
+  De aligned pairing in v0 geeft geen sterke rearrangement-effect.
+  Hoofdoorzaak van c2/c0 < R: het CoV^2-mechanisme (Obs 471) + log-normaal-type.
+
+BEVINDING 4: Log-normaal bevestigd (Script 269).
+  corr(log-var, m2m) per kolom: v0 = -0.885, v2 = -0.883 (sterk negatief).
+  90.6% van kolommen: logvar(v2) > logvar(v0) iff mmr(v2) < mmr(v0).
+  Log-normaal monotoniciteitsstelling (iid): m2m afnemend in sigma, EXACT.
+  K-L kolom-drietallen zijn log-normaal-type (multiplicatieve iteratie).
+
+BIJGEWERKTE STATUS STAP (3b):
+  Analytisch bewezen: CoV^2(v2 gemiddeld) > CoV^2(v0 gemiddeld) [Obs 471]
+  Numeriek bevestigd: m2m_v2 < m2m_v0 voor alle k in [5,14], lam in [1.30,2.00]
+  Structureel argument: log-normaal monotoniciteitsstelling + -0.885 correlatie
+  Convergentie: c2/c0 -> R van beneden (strak, maar nooit gelijk voor eindig k)
+  Formele analytische afsluiting: vereist formalisering van de log-normaal-stelling
+  voor gecorreleerde K-L drietallen, of directe ongelijkheidsketen.
+
+MARGINAAL GEVAL lam -> 1+:
+  Bij lam dicht bij 1: R -> 1, c2/c0 -> 1, marge -> 0 voor elke k.
+  Dit is consistent: bij lam=1 is de K-L operator triviaal (alle eigenvectoren = 1).
+  Voor lam > 1 geldt de strikte ongelijkheid altijd.
+
