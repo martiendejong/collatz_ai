@@ -984,22 +984,28 @@ as $k$ grows but remains strictly negative throughout.
 $\lambda\in\{1.30,\ldots,2.00\}$).}
 Decompose by the $\bmod\,3$ residue of $j$ (= r-type of $\sigma_0(j)$).
 \begin{itemize}
-\item $j\equiv 2\pmod3$ \emph{(direct, structural)}.
-  $\sigma_0(j)=4j\bmod N_\ell \equiv 2\pmod3$, so
-  $\mathrm{cb}[\sigma_0(j)]$ is the CODE-triplet minimum of $v_2$:
-  $\mathrm{cb}[a] = \min(v_2[a_0],\,v_2[a_0+N_\ell/9],\,v_2[a_0{+}2N_\ell/9])$
-  where $a = \sigma_0(j)$, $a_0 = \lfloor a/3\rfloor$. The CODE-triplet of $v_2$
-  at group $j$ compares the \emph{same} three $v_2$ values as the minimum; when
-  $v_2[a]$ is the maximum of its triplet, it is excluded from the minimum,
-  so $\mathrm{cb}[a]$ is smaller --- creating a structural anti-correlation.
-  Concretely, for exchangeable positive $(X, Y, Z)$:
+\item $j\equiv 2\pmod3$ \emph{(structural: cb draws from $v_2$)}.
+  $\sigma_0(j)=4j\bmod N_\ell \equiv 2\pmod3$ (r-type preserved by $4\equiv1\pmod3$), so
+  $\mathrm{cb}[\sigma_0(j)]$ is the minimum of a $v_2$ CODE-triplet:
   \[
-    \mathrm{Cov}(X,\,\min(X,Y,Z)) = \tfrac13\bigl(E[\min^2] - \mu\,E[\min]\bigr)
+    \mathrm{cb}[a] = \min\bigl(v_2[a_0],\;v_2[a_0+{\textstyle\tfrac{N_\ell}{3}}],\;
+    v_2[a_0{+}\tfrac{2N_\ell}{3}]\bigr), \quad
+    a = \sigma_0(j),\quad a_0 = \bigl\lfloor a/3\bigr\rfloor.
   \]
-  where $\mu = E[X]$; this is negative whenever
-  $(\mu - E[\min])\,E[\min] > \mathrm{Var}[\min]$
-  (a condition satisfied for any sufficiently spread distribution, verified
-  numerically at every $k$).
+  Both $u_{v_2,\sigma_0}$ and $u_{\mathrm{cb},\sigma_0}$ are thus functions
+  of $v_2$ at nearby but \emph{distinct} positions; the resulting
+  $\mathrm{Cov}_2 < 0$ is the dominant contribution (script~245) and
+  is confirmed universally (script~244).
+  \emph{Caveat} (script~246, $k{=}5..13$, all $\lambda$): the
+  seemingly-natural formula
+  $\mathrm{Cov}(X,\min(X,Y,Z))=\tfrac13(E[\min^2]-\mu E[\min])$
+  applies to the \emph{internal} $v_2$-triplet covariance
+  $\mathrm{Cov}(v_2[s],\min\text{-triplet}(v_2[s]))$,
+  which is \emph{positive} (${\approx}{+}2{\times}10^{-2}$) for $k{\ge}5$
+  with ${\approx}70\%$ formula error; the negativity condition
+  $(\mu-E[\min])E[\min]>{\rm Var}[\min]$ fails for all $k{\ge}5$.
+  The cross-term $\mathrm{Cov}(u_2,u_{\mathrm{cb}}) < 0$ (script~244) is a
+  distinct, deeper property of the eigenvector; analytical mechanism open.
 \item $j\equiv 1\pmod3$ \emph{(indirect, via $v_0$)}.
   $\mathrm{cb}$ uses $v_1$, not $v_2$; but $v_1(s) = (A/\rho)\,v_0[\sigma_1(s)]$
   and $v_0$ is the blend of $v_2$ and $\mathrm{cb}$ (eq.~\ref{eq:v0blend}).

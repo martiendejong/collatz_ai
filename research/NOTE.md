@@ -11523,3 +11523,40 @@ Dit geeft een BIJNA-ANALYTISCH bewijs van Cov < 0:
   - Direct deel (r=2): bewezen via min-selectie structuur (zie Obs 448/450)
   - Indirect deel (r=1): volgt uit v1=(A/rho)*v0[sigma1] en het directe deel
   - Totaal Cov = (1/3)*(Cov_r0 + Cov_r1 + Cov_r2) < 0 ✓
+
+---
+
+## Obs 452 (Script 246, 2026-08-05): CORRECTIE analytisch mechanisme — formule geeft verkeerd teken
+
+Script 246_cov_formula_verify.py verifieert de formule Cov(X, min(X,Y,Z)) = (1/3)(E[min²]-μE[min])
+voor de interne v2 CODE-triplet covariantie.
+
+RESULTAAT (lambda scan k=12):
+  lam=1.30: cov_formula=+6.84e-3  cov_direct=+2.28e-2  err=70%  neg?=NO
+  lam=1.50: cov_formula=+3.91e-3  cov_direct=+1.36e-2  err=71%  neg?=NO
+  lam=1.70: cov_formula=+1.59e-3  cov_direct=+5.68e-3  err=72%  neg?=NO
+  lam=1.90: cov_formula=+7.10e-4  cov_direct=+2.61e-3  err=73%  neg?=NO
+  lam=2.00: cov_formula=+5.00e-4  cov_direct=+1.87e-3  err=73%  neg?=NO
+
+RESULTAAT (depth scan lambda=1.70):
+  k=4: NEGATIEF (cov_direct=-2.5e-2, neg?=YES) — speciale kleine k case
+  k=5..13: POSITIEF (cov_direct ≈ +2.5e-2 tot +3.8e-3, neg?=NO voor k≥5)
+
+CRUCIALE CONCLUSIE:
+De formule Cov(X, min(X,Y,Z)) = (1/3)(E[min²]-μE[min]) meet de VERKEERDE covariantie.
+Ze meet: Cov(v2[s], min(v2[s], v2[s+Nl/3], v2[s+2Nl/3])) — de INTERNE v2-triplet Cov.
+Dit is POSITIEF voor k≥5 (sterke positieve within-triplet correlaties in de eigenvektor).
+
+De RELEVANTE covariantie is Cov(ld_v2_sig0, ld_cb_sig0) (Script 244) — negatief door
+log-deviatie kruisterm. Dit is een ANDERE grootheid die de CODE-variantie-expansie bepaalt.
+
+OBS 451 CORRECTIE: De claim "v2_at_sigma0[j] is zelf een van de drie waarden in cb[4j%Nl]"
+is ONJUIST voor k≥5 in het algemeen. Voor k=5 geldt het voor j=2 (j*=8) maar NIET voor
+j=5 (j*=2) en j=8 (j*=5). Het directe mechanisme gaat niet op voor grote k.
+
+PAPER UPDATE: rem:ve0_blend gecorrigeerd:
+  - Fout Nl/9 → correct Nl/3 in cb formule
+  - Formule Cov(X,min)=(1/3)(E[min²]-μE[min]) verwijderd (fout grootheid, fout teken k≥5)
+  - "Structural anti-correlation via same triplet values" claim verwijderd
+  - Vervangen door: empirisch bevestigde Cov<0 met analytisch open mechanisme
+  - Script 246 caveat toegevoegd
