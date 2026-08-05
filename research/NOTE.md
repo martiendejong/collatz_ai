@@ -12854,3 +12854,73 @@ Geteste gevallen: k=4,5,6 × lambda=1.5,1.7,2.0 (9 cases). ALLE gevallen: Jacobi
   zodat E[m2m] daalt als E[CoV^2] stijgt. Dit is exact de regressie-argument richting.
   Vereist: d/d(CoV^2) E[m2m] < 0 voor K-L kolom-drietallen. Dit is de SLEUTEL stap.
 
+
+## Obs 481 (Script quick_test, 2026-08-06): rho_intra → 1 als k → inf, NIET → 0
+
+SLEUTELONTDEKKING: De binnen-kolom correlatie rho_intra = 1 - sigma^2_within/sigma^2_marginal
+  NADERT 1 (PERFECTE CORRELATIE) als k → ∞, NIET 0.
+
+Gemeten waarden (lambda=1.70):
+  k=4:  rho_v0=0.782, rho_v2=0.677
+  k=6:  rho_v0=0.920, rho_v2=0.908
+  k=8:  rho_v0=0.964, rho_v2=0.965
+  k=10: rho_v0=0.981, rho_v2=0.982
+  k=12: rho_v0=0.990, rho_v2=0.990
+
+Gemeten waarden (lambda=2.00):
+  k=4:  rho_v0=0.751, rho_v2=0.614
+  k=8:  rho_v0=0.941, rho_v2=0.932
+  k=12: rho_v0=0.974, rho_v2=0.972
+
+INTERPRETATIE: De drie elementen van elke kolom-drietallen worden steeds uniformer (beter gecorreleerd)
+  als k → ∞. Dit betekent: min(col)/mean(col) → 1 voor elke kolom.
+  => m2m_vr → 1 voor r=0 en r=2 als k → ∞.
+  => c2/c0 = m2m_v2 * R / m2m_v0 → 1 * R / 1 = R. ✓
+  Dit VERKLAART de convergentie c2/c0 → R precies.
+
+GEVOLG VOOR BEWIJS: De ijde-Gaussian benadering (onafhankelijke Gaussianen) is NIET de juiste
+  benadering. De JUISTE benadering is equicorreleerde Gaussianen met rho → 1:
+    E[min(col)] = mu - C3 * sigma * sqrt(1-rho) (equicorreleerd Gaussiaans, EXACT).
+  Zodat: m2m ≈ 1 - C3 * CoV * sqrt(1-rho) = 1 - C3 * CoV_within.
+  Hier: CoV_within = sigma_within/mu = sigma*sqrt(1-rho)/mu = CoV*sqrt(1-rho).
+
+  m2m_v2 < m2m_v0 iff CoV_within_v2 > CoV_within_v0.
+
+ANALYTISCHE AFSLUITING (bijna compleet):
+  CoV_within_vr^2 = sigma_within^2 / mu^2 = (sigma^2 * (1-rho)) / mu^2.
+  Global gemiddelde: E[CoV_within_vr^2] = E[sigma_within^2/mu^2].
+
+  Obs 471 bewijst: E[CoV^2(v2-col)] > E[CoV^2(v0-col)] GLOBAAL.
+  Vraag: geldt CoV_within^2 >= CoV^2 (is within-column CoV <= total CoV)?
+
+  Voor equicorreleerde kolommen: sigma_within = sigma*sqrt(1-rho) <= sigma.
+  Dus CoV_within <= CoV. Maar dat is in de JUISTE richting: de vergelijking is
+  CoV_within_v2 > CoV_within_v0, niet CoV_v2 > CoV_v0.
+
+  Relatie: E[CoV_within^2] vs E[CoV^2]:
+  sigma_within^2 = sigma^2 * (1-rho) * (2/3) [voor equicorreleerde drietallen, zie afleiding].
+  Dus E[CoV_within^2] = E[CoV^2 * (1-rho) * 2/3].
+
+  Als rho_v0 ≈ rho_v2 (WAARGENOMEN! beide ≈ gelijk voor groot k):
+    E[CoV_within_v2^2] / E[CoV_within_v0^2] ≈ E[CoV^2_v2] / E[CoV^2_v0] > 1. (Obs 471) ✓
+
+  Dit sluit m2m_v2 < m2m_v0 BIJNA volledig af:
+  (i)  E[CoV^2_v2] > E[CoV^2_v0] (Obs 471, EXACT).
+  (ii) rho_v0 ≈ rho_v2 (EMPIRISCH, beide → 1 in nagenoeg gelijke snelheid).
+  (iii) Equicorreleerde Gaussian geldig (rho → 1 => centrale-limietstelling).
+  (iv) m2m_vr = 1 - C3 * CoV_within_vr => m2m_v2 < m2m_v0 iff CoV_within_v2 > CoV_within_v0.
+  (v)  (i)+(ii) => E[CoV_within_v2^2] > E[CoV_within_v0^2].
+  (vi) E[CoV_within_v2] > E[CoV_within_v0] als de variatie van CoV_within gering is. (EMPIRISCH OK)
+  => m2m_v2 < m2m_v0. QED (semi-formeel).
+
+RESTEREND GAAT: Toon formeel aan dat rho_v0 ≈ rho_v2 (tot voldoende nauwkeurigheid voor (v)).
+  Alternatief: directe numerieke verificatie k=3..14 (Script 278, alle OK).
+
+CoV_v2 > CoV_v0 NUMERIEK BEVESTIGD (alle geteste gevallen):
+  lambda=1.30, k=12: CoV_v0=0.1675, CoV_v2=0.2763. (factor 1.65x)
+  lambda=1.70, k=12: CoV_v0=0.5039, CoV_v2=0.6807. (factor 1.35x)
+  lambda=2.00, k=12: CoV_v0=0.9069, CoV_v2=1.1806. (factor 1.30x)
+
+m2m_v2 < m2m_v0 NUMERIEK BEVESTIGD (alle geteste gevallen, 28 cases):
+  lambda=1.30..2.00, k=4..12: ALLE OK.
+
