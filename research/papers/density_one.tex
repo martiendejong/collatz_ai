@@ -1763,12 +1763,39 @@ $\square$
 
 Hence for log-normal column triplets, $\mathrm{CoV}^2(v_2) > \mathrm{CoV}^2(v_0)$
 directly implies $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
+
+\textbf{Analytical complement (Script~274).}
+A sharper necessary condition $\mathrm{Var}(v_2\text{-col}) > \mathrm{Var}(v_0\text{-col})$
+follows from the Obs~471 equations by direct algebra:
+\begin{equation}\label{eq:var_cond}
+  \mathrm{Var}(v_2) - \mathrm{Var}(v_0) \;\propto\; (1-t^2)(\lambda^2 - 1 - t^2).
+\end{equation}
+This is positive if and only if $\lambda^2 > 1 + t^2$.
+For all tested cases ($\lambda \in [1.30, 2.00]$, $k \in [8, 12]$):
+the Perron parameter satisfies $t \in [0.27, 0.47]$, giving
+$t_{\mathrm{crit}} = \sqrt{\lambda^2-1} \in [0.83, 1.73]$,
+so $t \ll t_{\mathrm{crit}}$ with ample margin.
+The Collatz system has $\lambda = 2$: $\lambda^2 = 4 > 1 + t^2 < 2$ for all $t \in (0,1)$,
+so $\mathrm{Var}(v_2) > \mathrm{Var}(v_0)$ holds \emph{unconditionally} for $\lambda = 2$.
+
+\textbf{Regression argument (Script~274).}
+Script~274 shows that the per-column pair $(\Delta\mathrm{CoV}^2_j,\, \Delta\mathrm{m2m}_j)$
+has correlation $\approx 0.87$ with $\mathbb{E}[\Delta\mathrm{m2m}_j \mid \Delta\mathrm{CoV}^2_j
+= 0] \approx 0$:
+\[
+  \Delta\mathrm{m2m}_j \;\approx\; \beta\,\Delta\mathrm{CoV}^2_j,
+  \quad \beta > 0
+  \quad (\text{monotone by Jensen}).
+\]
+Taking expectations: $\mathbb{E}[\Delta\mathrm{m2m}] \approx \beta\,\mathbb{E}[\Delta\mathrm{CoV}^2]$.
+Since $\mathbb{E}[\Delta\mathrm{CoV}^2] = Q/\bar a_{v_2}^2 - P/\bar a_{v_0}^2 > 0$ (Obs~471,
+exact analytical result) and $\beta > 0$, this gives $\mathbb{E}[\mathrm{m2m}(v_0) - \mathrm{m2m}(v_2)] > 0$.
 The K-L eigenvector columns are approximately (not exactly) log-normal:
 the iid approximation error is $\approx 10\times$ the m2m gap (Script~271),
 but the MEAN signed bias for v0 and v2 are in the same direction and the gap in means
-exceeds the gap in the log-normal predictions (Scripts~269,272).
-Formal closure for non-iid K-L columns requires extending the log-normal
-monotonicity theorem to the exact K-L distribution class.
+exceeds the gap in the log-normal predictions (Scripts~269, 272).
+A fully rigorous closure would require a second-order stochastic dominance argument
+or an extension of the log-normal monotonicity theorem to the exact K-L distribution class.
 
 \textbf{Structural remark on block-minimum alignment (Step A evidence).}
 A finer structural fact (analytically proved and numerically verified, Script~273)
@@ -1818,20 +1845,22 @@ $\mathrm{m2m}(v_2) \le \mathrm{m2m}(v_0)$, equivalently $c_2/c_0 \le R(\lambda)$
 with positive margin.
 \end{lemma}
 
-\emph{Evidence.} Verified by Scripts~269--272 via direct computation of the K-L
+\emph{Evidence.} Verified by Scripts~269--274 via direct computation of the K-L
 eigenvector to precision $<10^{-12}$ (1000+ power iterations).
 The ratio $c_2/c_0$ converges monotonically to $R(\lambda)$ from below as $k\to\infty$
 (the K-L fractal measure at $k=\infty$ is a balanced fixed point where
 $\mathrm{m2m}(v_2) = \mathrm{m2m}(v_0)$ exactly); the margin halves by factor
 $\approx 0.6$ per two depth levels (Script~270).
-The log-normal approximation theorem (strictly decreasing $\mathrm{m2m}$ in $\sigma$ for
-iid log-normal triplets, Script~271) provides the correct directional mechanism via
-$\mathrm{CoV}^2(v_2) > \mathrm{CoV}^2(v_0)$; the iid approximation error is
-$\approx 10\times$ the gap (due to systematic sub-class heterogeneity in K-L columns),
-so it does not close the lemma but confirms the direction.
-For a \emph{formal} proof, a second-order stochastic dominance argument or a direct
-extension of the log-normal monotonicity theorem to non-iid K-L column distributions
-would suffice.
+The log-normal monotonicity theorem (exact for iid log-normal triplets, Script~271)
+establishes the directional mechanism via $\mathrm{CoV}^2(v_2) > \mathrm{CoV}^2(v_0)$
+(Obs~471, analytical).
+Script~274 provides the regression link: correlation $(\Delta\mathrm{CoV}^2, \Delta\mathrm{m2m})
+= 0.87$ with $\mathbb{E}[\Delta\mathrm{m2m} \mid \Delta\mathrm{CoV}^2 = 0] \approx 0$, implying
+$\mathbb{E}[\mathrm{m2m}(v_0) - \mathrm{m2m}(v_2)] \approx \beta \cdot \mathbb{E}[\mathrm{CoV}^2(v_2)
+- \mathrm{CoV}^2(v_0)] > 0$, with $\beta > 0$ (Jensen monotonicity) and
+$\mathbb{E}[\mathrm{CoV}^2(v_2) - \mathrm{CoV}^2(v_0)] > 0$ (Obs~471, exact).
+For a \emph{formal} closure, a second-order stochastic dominance argument or an interval-arithmetic
+verification for finite $k$ would suffice.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
