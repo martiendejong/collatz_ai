@@ -11560,3 +11560,58 @@ PAPER UPDATE: rem:ve0_blend gecorrigeerd:
   - "Structural anti-correlation via same triplet values" claim verwijderd
   - Vervangen door: empirisch bevestigde Cov<0 met analytisch open mechanisme
   - Script 246 caveat toegevoegd
+
+---
+
+## Obs 453 (Script 247, 2026-08-05): Slot-decomposering r=2 Cov — slot-0 is POSITIEF, slots 1,2 negatief
+
+Script 247_cov_coarse_fine.py. Decompositie van Cov per SLOT (0,1,2) binnen elke CODE-triplet
+voor de r=2 groepen (j equiv 2 mod 3).
+
+SETUP BEVESTIGING:
+  cb[j* equiv 2] = min(v2[q], v2[q+Nl3], v2[q+2Nl3]) met q=j*//3: EXACTE formule.
+  In de CODE-triplet van v2_at_sigma0 bij groep g (r=2): de drie slots zijn
+    slot 0: v2_at_sigma0[g] = v2[3q+2]  en  cb_at_sigma0[g] = min(v2[q], v2[q+Nl3], v2[q+2Nl3])
+    slot 1: v2_at_sigma0[g+Nl3] = v2[3(q+Nl/9)+2]  en  cb = min bij basis q+Nl/9
+    slot 2: v2_at_sigma0[g+2Nl3] = v2[3(q+2Nl/9)+2]  en  cb = min bij basis q+2Nl/9
+
+RESULTAAT k=8, lam=1.70:
+  r=2 groepen slot-decompositie:
+    slot 0: Cov = +2.337e-4  (POSITIEF - onverwacht!)
+    slot 1: Cov = -3.728e-3  (NEGATIEF - dominante bijdrage)
+    slot 2: Cov = -3.805e-3  (NEGATIEF - dominante bijdrage)
+
+  Volledige r-type decompositie:
+    r=0: slot0=-3.0e-4  slot1=+3.8e-4  slot2=-8.0e-4  totaal contrib=-8.0e-5
+    r=1: slot0=-9.2e-4  slot1=+5.1e-4  slot2=-6.4e-4  totaal contrib=-1.2e-4
+    r=2: slot0=+2.3e-4  slot1=-3.7e-3  slot2=-3.8e-3  totaal contrib=-8.1e-4
+
+  Totaal Cov = -1.007e-3 (klopt met Script 244)
+
+  v2[j*] IN coarse triplet van cb[j*]: slechts 1/Nl3 = 1/243 gevallen (=0.0123 voor k=8)
+
+CRUCIALE CONCLUSIE:
+De "directe structurele anti-correlatie" die verwacht werd bij SLOT 0 (vanwege cb=min van v2 CODE-triplet)
+is POSITIEF, niet negatief. De anti-correlatie zit volledig in SLOTS 1 en 2.
+
+Dit betekent:
+  - Slot 0: v2_at_sigma0 en cb_at_sigma0 zijn POSITIEF gecorreleerd (gaan samen omhoog/omlaag)
+  - Slots 1,2: NEGATIEF gecorreleerd (als v2 boven gemiddelde, dan cb onder gemiddelde)
+
+INTERPRETATIE:
+De CODE-triplet van v2_at_sigma0 bij r=2 groep g gebruikt:
+  {v2[j*], v2[j*+Nl3], v2[j*+2Nl3]} = "type-2 posities" in drie coarse CODE-triplets
+
+De cb CODE-triplet gebruikt:
+  {min(coarse block 0), min(coarse block 1), min(coarse block 2)}
+
+De ASYMMETRIE tussen slots: type-2 positie van block 0 is positief gecorreleerd met
+min(block 0), maar type-2 positie van block 1 is NEGATIEF gecorreleerd met min(block 1).
+Dit wijst op een RECURSIEVE ordening in de eigenvektor: hoe block-positie (slot index)
+de covariantie bepaalt.
+
+IMPLICATIE VOOR ANALYTISCH BEWIJS:
+De eenvoudige "direct structural" verklaring (slot 0: v2 is in cb's triplet) werkt niet.
+Het echte mechanisme is een RECURSIEVE eigenschap van de K-L eigenvektor waarbij
+de 4×-permutatie (sigma0) een specifiek slot-volgorde-effect creëert.
+Mechanisme volledig analytisch open — vereist diepere studie van de K-L eigenstructuur.

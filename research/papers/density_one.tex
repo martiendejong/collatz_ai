@@ -992,20 +992,20 @@ Decompose by the $\bmod\,3$ residue of $j$ (= r-type of $\sigma_0(j)$).
     v_2[a_0{+}\tfrac{2N_\ell}{3}]\bigr), \quad
     a = \sigma_0(j),\quad a_0 = \bigl\lfloor a/3\bigr\rfloor.
   \]
-  Both $u_{v_2,\sigma_0}$ and $u_{\mathrm{cb},\sigma_0}$ are thus functions
-  of $v_2$ at nearby but \emph{distinct} positions; the resulting
-  $\mathrm{Cov}_2 < 0$ is the dominant contribution (script~245) and
-  is confirmed universally (script~244).
-  \emph{Caveat} (script~246, $k{=}5..13$, all $\lambda$): the
-  seemingly-natural formula
-  $\mathrm{Cov}(X,\min(X,Y,Z))=\tfrac13(E[\min^2]-\mu E[\min])$
-  applies to the \emph{internal} $v_2$-triplet covariance
-  $\mathrm{Cov}(v_2[s],\min\text{-triplet}(v_2[s]))$,
-  which is \emph{positive} (${\approx}{+}2{\times}10^{-2}$) for $k{\ge}5$
-  with ${\approx}70\%$ formula error; the negativity condition
-  $(\mu-E[\min])E[\min]>{\rm Var}[\min]$ fails for all $k{\ge}5$.
-  The cross-term $\mathrm{Cov}(u_2,u_{\mathrm{cb}}) < 0$ (script~244) is a
-  distinct, deeper property of the eigenvector; analytical mechanism open.
+  Both $u_{v_2,\sigma_0}$ and $u_{\mathrm{cb},\sigma_0}$ are functions of
+  $v_2$ at nearby but \emph{distinct} positions; the anti-correlation
+  $\mathrm{Cov}_2 < 0$ is dominant (script~245) and universal (script~244).
+  \emph{Slot-level caveat} (script~247, $k{=}8$, $\lambda{=}1.70$): within the
+  $r{=}2$ CODE-triplet group, the contribution from slot~0 (the position
+  where $v_2[\sigma_0(j)]$ is closest to $\mathrm{cb}[\sigma_0(j)]$'s triplet)
+  is \emph{positive} ($+2.3{\times}10^{-4}$); slots~1 and~2 carry the full
+  anti-correlation ($-3.7{\times}10^{-3}$ and $-3.8{\times}10^{-3}$).
+  Likewise, the i.i.d.\ formula
+  $\mathrm{Cov}(X,\min)=\tfrac13(E[\min^2]-\mu E[\min])$
+  yields the \emph{wrong sign} for $k{\ge}5$ (script~246: internal $v_2$-triplet
+  Cov is $+2{\times}10^{-2}$, 70\% error; negativity condition fails).
+  The sign reversal is a recursive property of the K-L eigenvector's
+  slot-level ordering; analytical mechanism open.
 \item $j\equiv 1\pmod3$ \emph{(indirect, via $v_0$)}.
   $\mathrm{cb}$ uses $v_1$, not $v_2$; but $v_1(s) = (A/\rho)\,v_0[\sigma_1(s)]$
   and $v_0$ is the blend of $v_2$ and $\mathrm{cb}$ (eq.~\ref{eq:v0blend}).
