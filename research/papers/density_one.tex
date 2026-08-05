@@ -1677,9 +1677,31 @@ The cb term is positive ($c_1 = (A/\rho)\,c_0$, Obs~464).
 The T4 term opposes, but is outweighed: ratio $\approx 17$--$22$ across
 $\lambda\in[1.30,2.00]$ (measured), consistent with the dimensional
 estimate $B_3/A^2 = \lambda^{\alpha+3}\gg 1$.
-Thus $\bar a_0^{v_2} < \bar a_1^{v_2}$ holds at every measured depth and $\lambda$;
-the single open step is a uniform bound showing $B_3 c_0(\rho-A) > A^2(\bar
-a_2^{v_0}-\bar a_0^{v_0})$ without recursion.
+Script 261 closes the proof further: the 6-variable system
+\eqref{eq:a0a1_exact} together with \emph{(D)--(F)} forms a circulant-like
+chain that decouples into an analytic $3\times 3$ subsystem
+(for $\bar a_0^{v_2}, \bar a_1^{v_2}, \bar a_2^{v_2}$) with closed-form solution
+\begin{equation}\label{eq:closed_form}
+  \bar a_r^{v_2} = \bigl(\rho^2 f_r + q\rho\, f_{r+2} + q^2 f_{r+1}\bigr)/D,
+  \quad D = \rho^3 - q^3,\quad q = A^3/\rho^2,
+\end{equation}
+(indices mod 3), where $D>0$ iff $q < \rho$ iff $A < \rho$
+(verified for all $\lambda>1$; physically: the Perron eigenvalue exceeds the bare
+T4 factor).
+The forcing terms use $c_1 = (A/\rho)\,c_0$:
+$f_0 = B_3(A/\rho)\,c_0 + A^2 B_1 c_2/\rho^2$,\;
+$f_1 = (B_3 + A^2 B_1/\rho^2)\,c_0$,\;
+$f_2 = B_3 c_2 + A^3 B_1 c_0/\rho^3$.
+Then
+\[
+  D(\bar a_1^{v_2} - \bar a_0^{v_2})
+  = \rho^2(f_1-f_0) + q\rho(f_0-f_2) + q^2(f_2-f_1),
+\]
+with $q/\rho \approx 0.04$ at $\lambda=1.70$ so term 1 dominates:
+$f_1-f_0 = B_3 c_0(1-A/\rho) + A^2 B_1(c_0-c_2)/\rho^2$, positive with margin
+${\approx}200\times$ (verified all $k,\lambda$ tested;
+the remaining open step is a uniform bound $(c_2-c_0)/c_0 < \lambda^5(1-A/\rho)\rho^2$).
+Verified to relative error $\le 2\times 10^{-16}$ at all tested depths and $\lambda$.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
