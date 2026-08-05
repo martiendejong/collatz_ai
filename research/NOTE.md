@@ -11714,6 +11714,59 @@ SCRIPT 250 NOOT: Script 250 berekende abusievelijk de INTRA-triplet Cov op GROF 
 
 ---
 
+## Obs 457 (Script 252, 2026-08-05): cb-dominantie + itererende anti-correlatie + verdubbeling als kern
+
+Script 252_iterated_anticorr.py. Decompositie van ouder-kind anti-correlatie + iteratie.
+
+SCHOK-BEVINDING 1 — CB DOMINANTIE:
+  Corr(v2[s], cb[(2s+1)%Nl]) = +0.9977  (BIJNA PERFECT!)
+  Corr(v2[3s+2], cb[(6s+5)%Nl]) = +0.9998
+
+  => v2[s] ≈ (B3/ρ) · cb[(2s+1)]  (de cb-term domineert; T4-term bijna verwaarloosbaar)
+  => De K-L eigenvektor voor type-2 knopen is BIJNA VOLLEDIG BEPAALD door de min-van-blok invoer.
+
+  Dit vereenvoudigt de eigenvektor-vergelijking tot:
+    v2[s] ≈ C · min(v2[(2s+1)//3], v2[(2s+1)//3+Nl3], v2[(2s+1)//3+2Nl3])
+  = "RECURSIEVE MIN-VAN-GROVER STRUCTUUR"
+
+SCHOK-BEVINDING 2 — FUNDAMENTELE VERDUBBELING ANTI-CORRELATIE:
+  Corr(v2[2s+1], v2[s]) = -0.287  (NEGATIEF, k=8, lam=1.70)
+
+  Dit is de DIEPSTE STRUCTURELE EIGENSCHAP. De "verdubbeling" s→2s+1 anti-correleert.
+  Gevolg: Corr(v2[3s+2], v2[s]) ≈ Corr(v2[2(2s+1)+1], v2[2s+1]) x Corr(v2[2s+1], v2[s])... 
+  Nee, simpeler: v2[3s+2] ≈ C·cb[(6s+5)] ≈ C·v2[2s+1] (cb≈slot0 van triplet bij 2s+1)
+  => Corr(v2[3s+2], v2[s]) ≈ Corr(v2[2s+1], v2[s]) = -0.287 ≈ -0.294 (gemeten). KLOPT!
+
+BEVINDING 3 — ALTERNERENDE TEKENPATROON:
+  Corr(v2[3s+2], v2[s])       = -0.294  (niveau 1 vs 0, NEGATIEF)
+  Corr(v2[9s+8], v2[3s+2])    = -0.357  (niveau 2 vs 1, NEGATIEF)
+  Corr(v2[9s+8], v2[s])       = +0.573  (niveau 2 vs 0, POSITIEF)
+
+  Twee niveaus anti-correlatie = positive correlatie op 2 niveaus! Klassieke regel: neg x neg = pos.
+  Lambda-scan k=8: patroon robuust (neg01 en neg12 altijd negatief, pos02 altijd positief).
+  Diepte-scan lam=1.70: zelfde patroon k=6..12, correlaties verzwakken met k maar tekens stabiel.
+
+STRUCTURELE VERKLARING:
+  v2[s] ≈ C · min(v2[~2s/3], ...)  [cb bij ~2s/3]
+  v2[2s+1] ≈ C · min(v2[~4s/3], ...)  [cb bij ~4s/3]
+
+  Corr(v2[~2s/3], v2[s]) = +0.319 (POSITIEF: kleiner s-index, groter v2)
+  Corr(v2[~4s/3], v2[s]) = NEGATIEF (groter s-index dan s, kleiner v2)
+
+  De SCHAALOMKERING: ~2s/3 < s => positieve correlatie; ~4s/3 > s => negatieve correlatie.
+  Dit is een MONOTONE STRUCTUUR van de eigenvektor: v2 neemt af met s (op gemiddelde).
+  Wanneer v2[s] groot is (s is relatief klein), dan v2[~4s/3] klein (groter s-index => kleiner v2).
+
+IMPLICATIE VOOR ANALYTICAL PROOF:
+  Te bewijzen: v2[s] ≈ C · cb[(2s+1)] (cb-dominantie) EN Corr(v2[2s+1], v2[s]) < 0.
+  Dit reduceert tot: min(v2[(2s+1)//3], ...) en min(v2[(4s+3)//3], ...) anti-correleren.
+  En dat reduceert tot: v2[(2s+1)//3] en v2[(4s+3)//3] anti-correleren.
+  Maar (4s+3)//3 ≈ 4s/3 > s en (2s+1)//3 ≈ 2s/3 < s:
+  => Anti-correlatie tussen posities KLEINER en GROTER dan s in de eigenvektor.
+  Dit is de MONOTONE-ACHTIGE STRUCTUUR van de K-L eigenvektor.
+
+---
+
 ## Obs 455 (Scripts 249+249b, 2026-08-05): Tweede eigenwaarde gelineariseerde K-L operator — d_k ~ r² voor lambda>=1.60
 
 Scripts 249_second_eigenvalue_clean.py (gedefleerde machtsiteratie, gearchiveerd met bekende fout)
