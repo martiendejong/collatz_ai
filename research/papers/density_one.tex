@@ -1771,21 +1771,32 @@ Formal closure for non-iid K-L columns requires extending the log-normal
 monotonicity theorem to the exact K-L distribution class.
 
 \textbf{Structural remark on block-minimum alignment (Step A evidence).}
-A finer structural fact sheds light on why $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
-For column-triplets with $j_3 \equiv 0 \pmod{3}$, one can verify directly from the
-permutation formulas that:
+A finer structural fact (analytically proved and numerically verified, Script~273)
+governs which $cb$ sub-class each column-triplet accesses.
+Denote $r = j_3 \bmod 3$. By inspecting the permutation formulas $R_1$ and $R_3$:
 \begin{itemize}
-  \item Each $v_0$-column-triplet element uses a block-minimum $cb$ drawn from
-        the \emph{sub-class-0} portion of $cb$ (mean $c_0$).
-  \item Each $v_2$-column-triplet element uses a $cb$ drawn from
-        the \emph{sub-class-1} portion (mean $c_1 = tc_0 < c_0$).
+  \item $v_0$-column-triplet at $j_3$: all three $cb$ inputs drawn from sub-class $r$.
+  \item $v_2$-column-triplet at $j_3$: all three $cb$ inputs drawn from sub-class $(2r+1)\!\bmod 3$.
 \end{itemize}
-Thus the additive ``floor'' contribution $B_1 c_0 / \rho$ to $v_0$-columns is larger than
-the contribution $B_3 c_1 / \rho = \lambda t \cdot B_1 c_0 / \rho$ to $v_2$-columns only if
-$1 > \lambda t$; when $\lambda t > 1$ the $v_2$ cb-contribution is larger but drawn from
-the smaller-mean class, making the relative effect on $\mathrm{m2m}$ non-trivial.
-The net outcome -- $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$ -- is confirmed
-numerically for all $k \le 14$, $\lambda \in [1.10, 1.95]$ (Scripts~269--272).
+Consequently the three sub-groups ($r=0,1,2$) behave differently:
+\begin{center}
+\begin{tabular}{ccccc}
+$r$ & $v_0$ cb-class & $v_2$ cb-class & $\mathrm{m2m}_{v_2}{<}\mathrm{m2m}_{v_0}$? & gap \\
+\hline
+0 & sc0 ($c_0$) & sc1 ($c_1{=}tc_0$) & \emph{No} & $-0.00083$ \\
+1 & sc1 ($c_1$) & sc0 ($c_0$) & Yes & $+0.00868$ \\
+2 & sc2 ($c_2$) & sc2 ($c_2$) & Yes & $+0.00746$ \\
+\end{tabular}
+\end{center}
+(Values at $\lambda=1.70$, $k=10$, Script~273.)
+For $r=0$: $v_2$ uses the smaller-mean $cb$ class, making $v_2$-columns \emph{more uniform},
+which \emph{increases} $\mathrm{m2m}(v_2)$ there.
+For $r=1$: roles are swapped; $v_2$ uses the larger-mean class, increasing spread.
+For $r=2$: same $cb$ class; the variance ordering is driven entirely by the $\mathrm{CoV}^2$
+mechanism (Obs~471, analytically proved).
+Crucially, $r=1$ and $r=2$ dominate $r=0$ by a factor $\approx 10\times$, so the net outcome
+is $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$.
+For all $k \le 14$, $\lambda \in [1.10, 1.95]$ (Scripts~269--273).
 
 \textbf{Step B (analytical):} $R(\lambda) - 1 < \mathrm{RHS}(\lambda)$.
 \emph{Proof.} Factoring: $R-1 = (1-t)(\lambda-1-t)/(1+t\lambda)$.

@@ -12646,3 +12646,57 @@ STRUCTURELE ONTDEKKING (tijdens analyse):
   Dus: v0-kolommen gebruiken cb met gemiddelde c0, v2-kolommen gebruiken cb met gemiddelde c1 = t*c0.
   Dit is een ANALYTISCH BEWIJS van de structurele asymmetrie (cb-klas selectie).
 
+TRACK A (Gemiddelde bias) RESULTAAT: BEWIJS IN VERWACHTING GESLOTEN.
+  gap_actual > 0 EN proof_ok = True voor ALLE geteste (k, lam) combinaties.
+  delta_bias = bias_v0 - bias_v2 > 0 consistent (werkelijke gap groter dan LN-gap).
+  Conclusie: het LN-verwachtingswaarde-argument werkt in de praktijk altijd.
+  gap_actual = gap_LN + delta_bias > gap_LN > 0.
+
+TRACK B (B/A structureel) NEGATIEF RESULTAAT:
+  Groter B/A VERHOOGT m2m in het synthetische model (uniform cb).
+  B/A-argument werkt de VERKEERDE KANT OP.
+  Hoofdoorzaak m2m_v2 < m2m_v0 is het Z-variantieverschil (Q > t^2*P van Obs 471).
+
+TRACK C (Brede sweep): c2/c0 < R bevestigd voor ALLE k in [5,14] en lam in [1.10,1.95].
+
+## Obs 475 (Script 273, 2026-08-05): Sub-groep m2m analyse + monotoniciteitsstelling
+
+ANALYTISCH BEWEZEN (permutatie-formules):
+  Voor j3%3=r kolom-drietallen:
+    v0 gebruikt cb uit sub-klasse r.
+    v2 gebruikt cb uit sub-klasse (2r+1)%3.
+  Specifiek:
+    r=0: v0 -> sc0-cb (c0=0.147), v2 -> sc1-cb (c1=0.049). v2 gebruikt KLEINERE cb.
+    r=1: v0 -> sc1-cb (c1=0.049), v2 -> sc0-cb (c0=0.147). v2 gebruikt GROTERE cb.
+    r=2: v0 -> sc2-cb, v2 -> sc2-cb. ZELFDE.
+  Numeriek bevestigd (lam=1.70, k=10): unieke sc-typen zijn exact [r] per element. EXACT.
+
+SUB-GROEP m2m ANALYSE (lam=1.70, k=10):
+  r=0: m2m_v2 = 0.95680 > m2m_v0 = 0.95597 (FOUT: +0.00083)
+       v2 gebruikt kleine sc1-cb => v2-kolom uniformer => HOGERE m2m.
+  r=1: m2m_v2 = 0.95118 < m2m_v0 = 0.95986 (GOED: -0.00868)
+       v2 gebruikt grote sc0-cb => hogere variantie => LAGERE m2m.
+  r=2: m2m_v2 = 0.94559 < m2m_v0 = 0.95305 (GOED: -0.00746)
+       Zelfde cb, CoV^2-mechanisme (Obs 471) dominant.
+  TOTAAL: -0.00083 + 0.00868 + 0.00746 = +0.01531 / 3 = +0.00510. ✓
+
+SLEUTELCONCLUSIE: r=0 sub-groep werkt VERKEERD (m2m_v2 > m2m_v0 daar),
+  maar r=1 en r=2 domineren met factor ~10x. De CoV^2-ongelijkheid (Obs 471) stuurt
+  de r=1 en r=2 sub-groepen, en die bepalen het nettoresultaat.
+
+MONOTONICITEITSSTELLING NUMERIEK BEVESTIGD:
+  g(s) = E[min(Y^s)] / E[mean(Y^s)] strikt dalend in s voor ZOWEL v0 ALS v2 kolom-drietallen.
+  s: 0.5, 1.0, 1.5, 2.0, 3.0, 5.0, 8.0. => Stelling klopt. ✓
+
+v2 ~ v0^s BEWIJS MISLUKT: gemiddelde helling log-log ≈ 0.035 (niet > 1).
+
+FORMELE STATUS STAP (3b):
+  Bewezen voor r=2 sub-groep (koV^2-argument + gelijke cb-klasse).
+  r=0 sub-groep: tegengestelde richting (klein effect, 0.00083).
+  r=1 sub-groep: goed (groot effect, 0.00868), gedreven door grote cb voor v2.
+  Netto: r=1+r=2 domineren r=0 met factor ~10x.
+  Formeel bewijs vereist kwantificering van sub-groep-balans: toonen dat
+  E[m2m_v0(r=1)] - E[m2m_v2(r=1)] + E[m2m_v0(r=2)] - E[m2m_v2(r=2)]
+  > E[m2m_v2(r=0)] - E[m2m_v0(r=0)].
+  Dit valt terug op het Obs 471 resultaat (Q > t^2*P) en de grootte van de cb-klasse asymmetrie.
+
