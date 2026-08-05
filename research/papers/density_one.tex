@@ -972,6 +972,13 @@ Data at $k{=}4..15$, $\lambda{=}1.70$:
 $\mathrm{ve}_{\mathrm{cb}}/\mathrm{ve}_0$ from $5.6$ to $1.44$;
 $\mathrm{Cov}(u_2, u_{\mathrm{cb}})$ from $-0.071$ to $-2{\times}10^{-5}$ (all negative);
 $w_2 \in [0.382, 0.412]$ (stable from $k\ge8$).
+\MEASURED{} (script~244, $k{=}12$, $\lambda\in\{1.30,\ldots,2.00\}$): the anti-correlation
+$\mathrm{Cov}(u_2, u_{\mathrm{cb}}) < 0$ holds for \emph{every} tested $\lambda$;
+$\mathrm{Cov}$ from $-4{\times}10^{-6}$ ($\lambda{=}1.30$) to $-3{\times}10^{-4}$ ($\lambda{=}2.00$)
+(magnitude growing with $\lambda$). The exact formula $\mathrm{ve}_0 =
+\mathrm{CODE\text{-}var}(A\,v_2 + B_1\,\mathrm{cb})$ verified to machine precision at every $\lambda$.
+Depth scan ($k{=}5..12$, $\lambda{=}1.70$ and $2.00$): $\mathrm{Cov}$ decreases in magnitude
+as $k$ grows but remains strictly negative throughout.
 
 \noindent\emph{Near-analytical argument for $L>1$.}
 In the log-linear regime,
@@ -1129,7 +1136,30 @@ $\varepsilon$. Status: measured $d$-column at $\lam = 1.70$ through $k = 19$, in
 the shallow regime $k=4..12$ (see Remark~\ref{rem:full_dk}): $d_k < 1$
 at every depth without exception; plateau values $0.756/0.754/0.759/0.766/0.769/0.772/0.775$;
 two independent instruments put the limit at $\approx 0.84$; a persistent linear
-$+0.003$ tail (the failure mode) is not excluded. The natural analytic
+$+0.003$ tail (the failure mode) is not excluded.
+\MEASURED{} (script~242, $k{=}8..11$):
+$d_k(\lam) < 1$ for \emph{all}
+$\lam \in \{1.30, 1.40, \ldots, 2.00\}$; monotone in $\lam$:
+\[
+\begin{array}{r|cccccccc}
+\lam & 1.30 & 1.40 & 1.50 & 1.60 & 1.70 & 1.80 & 1.90 & 2.00 \\
+\hline
+d_{11} & 0.570 & 0.628 & 0.678 & 0.718 & 0.752 & 0.778 & 0.800 & 0.814 \\
+\end{array}
+\]
+Full lambda-scan deepened to $k{=}12..14$ (script~241):
+\[
+\begin{array}{r|cccccccc}
+\lam & 1.30 & 1.40 & 1.50 & 1.60 & 1.70 & 1.80 & 1.90 & 2.00 \\
+\hline
+d_{13} & 0.570 & 0.630 & 0.681 & 0.724 & 0.759 & 0.785 & 0.807 & 0.824 \\
+\end{array}
+\]
+Values flat across $k{=}12,13,14$ at every $\lambda$; the depth-creep ($+0.003$/step
+at $\lambda{=}1.70$, $k{=}13..19$) is absent in the range $k{=}12..14$, suggesting
+it is an asymptotic phenomenon of the deep regime.
+$V_{k+1}/V_k$ matches $d_k$ to within $0.005$ at every $\lam$
+(the $L$-ratio $\mathrm{ve}_2/\mathrm{ve}_0$ is depth-stable for all $\lam$). The natural analytic
 setting is the S1-nested frozen-$\lam$ hierarchy: the depth-$k$ systems
 embed by constant lifting, the deep-subcritical operator has a clean
 spectral gap, and $g$'s convergence is the existence of the endpoint

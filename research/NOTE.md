@@ -11377,3 +11377,98 @@ CONTRAST MET r=2:
   => ve2 > ve0 door R3-mismatch (vergroot CODE-var)
   => ve0 < ve2 door sigma0=R1 samenvallen (vermindert CODE-var via anti-correlatie)
   Samen: L = ve2/ve0 > 1 analytisch verklaard (niet rigoureus bewezen)
+  NOTE: cb in de K-L formule is de BLOCK minimum cb[j]=min(v[j],v[j+Nl],v[j+2Nl]),
+  NIET de cross-type minimum min(v0[s],v1[s],v2[s]). Script 243 gebruikte cross-type
+  (verkeerde definitie) => positieve correlatie. Script 244 gebruikt block min (correct).
+
+---
+
+## Obs 449 (Script 242, 2026-08-05): lambda-scan d_k — universele contraction bevestigd
+
+Script 242_dk_lambda_fast.py. Snelle scan k=8..11 voor lambda in {1.30, 1.40, ..., 2.00}.
+Aanvulling op Script 241 (diep, k=12..14, lam=1.30/1.40 voltooid).
+
+HOOFDRESULTAAT: d_k < 1 voor ALLE geteste lambda en ALLE diepten:
+  lam=1.30: d_k=8..11 in {0.570, 0.583, 0.569, 0.570}  => ~0.571
+  lam=1.40: d_k=8..11 in {0.636, 0.639, 0.624, 0.628}  => ~0.630
+  lam=1.50: d_k=8..11 in {0.685, 0.689, 0.671, 0.678}  => ~0.678
+  lam=1.60: d_k=8..11 in {0.718, 0.733, 0.709, 0.718}  => ~0.718
+  lam=1.70: d_k=8..11 in {0.741, 0.767, 0.739, 0.752}  => ~0.750
+  lam=1.80: d_k=8..11 in {0.761, 0.793, 0.761, 0.778}  => ~0.774
+  lam=1.90: d_k=8..11 in {0.780, 0.814, 0.780, 0.800}  => ~0.794
+  lam=2.00: d_k=8..11 in {0.799, 0.829, 0.798, 0.814}  => ~0.810
+
+MONOTOON IN LAMBDA: d_k stijgt van ~0.57 (lam=1.30) naar ~0.81 (lam=2.00).
+  Maar ALTIJD < 1. Dichtstbijzijnde geval: lam=2.00, d_k ~ 0.81 (ruim < 1).
+
+SCRIPT 241 DEEP BEVESTIGING (k=12..14):
+  lam=1.30: d_12=0.571, d_13=0.569, d_14=0.570 (stabiel, consistent met fast scan)
+  lam=1.40: d_12=0.631, d_13=0.629, d_14=0.630 (stabiel)
+
+VK-RATIO vs ve0-RATIO (vrijwel identiek):
+  lam=1.30: dVk=0.568 vs d_11=0.570  (diff < 0.003)
+  lam=1.50: dVk=0.675 vs d_11=0.678  (diff < 0.004)
+  lam=1.70: dVk=0.748 vs d_11=0.752  (diff < 0.005)
+  lam=2.00: dVk=0.811 vs d_11=0.814  (diff < 0.004)
+  => V_k daalt precies even snel als ve0 => L-verhouding ve2/ve0 is diep-stabiel voor alle lambda.
+
+GEVOLG VOOR CONJECTURE G:
+  Conjectuur G (limsup V_{k+1}/V_k < 1 voor enige lambda) is gemeten op ALLE lambda in [1.30,2.00].
+  Sterkere bewering: d_k(lambda) < 1 UNIFORMLY over geteste lambda.
+  Monotonie: d_k stijgt met lambda maar blijft < 1 op het volledige gemeten bereik.
+  Grensgedrag: lam -> infinity geeft A=0 en alleen B1, B3 termen; verwacht d_k -> 1 of divergentie?
+  Op lam=2.00 nog gezonde marge van ~0.19 (1 - 0.81).
+
+---
+
+## Obs 450 (Scripts 241+244, 2026-08-05): universele anti-correlatie; diepe lambda-scan bevestigd
+
+Script 241_dk_lambda_scan.py (k=12..14 voor alle lambda) + Script 244_cov_block_lambda_scan.py.
+
+**Script 241 (diep, k=12..14)**:
+  lam=1.30: d_k=12=0.571, d_13=0.569, d_14=0.570 (stabiel, plat)
+  lam=1.40: d_k=12=0.631, d_13=0.629, d_14=0.630
+  lam=1.50: d_k=12=0.682, d_13=0.681, d_14=0.681 (UITERST PLAT — al geconvergeerd!)
+  lam=1.60: d_k=12=0.724, d_13=0.724, d_14=0.723 (ook vrijwel plat)
+  lam=1.70: d_k=12=0.758, d_13=0.759, d_14=0.755 (consistent met Script 238)
+  lam=1.80: d_k=12=0.785, d_13=0.785, d_14=0.782
+  lam=1.90: d_k=12=0.806, d_13=0.807, d_14=0.804
+  lam=2.00: d_k=12=0.824, d_13=0.824, d_14=0.820
+
+  OPVALLEND: voor lambda <= 1.80 zijn de d_k waarden vrijwel constant (creep < 0.003).
+  De "+0.003/diepte creep" uit het diepe regime bij lambda=1.70 (k=13..19) is kennelijk
+  een diep-asymptotisch fenomeen, niet zichtbaar bij k=12..14. Bij kleinere lambda is
+  er helemaal geen zichtbare creep bij deze diepten.
+
+**Script 244 (blok-cb anti-correlatie, k=12)**:
+  CORRECTIE VAN SCRIPT 243: cb moet de BLOCK minimum zijn:
+    cb[j] = min(v[j], v[j+Nl], v[j+2Nl])  (NIET cross-type min(v0,v1,v2))
+  
+  HOOFDRESULTAAT: Cov(u_v2_sig0, u_cb_sig0) < 0 voor ALLE lambda:
+  lam=1.30: cov=-4.09e-6, L=1.310, ve_cb/ve2=1.557
+  lam=1.40: cov=-1.22e-5, L=1.308, ve_cb/ve2=1.417
+  lam=1.50: cov=-2.90e-5, L=1.288, ve_cb/ve2=1.322
+  lam=1.60: cov=-5.74e-5, L=1.261, ve_cb/ve2=1.256
+  lam=1.70: cov=-9.91e-5, L=1.233, ve_cb/ve2=1.209
+  lam=1.80: cov=-1.56e-4, L=1.207, ve_cb/ve2=1.175
+  lam=1.90: cov=-2.29e-4, L=1.185, ve_cb/ve2=1.149
+  lam=2.00: cov=-3.13e-4, L=1.166, ve_cb/ve2=1.130
+
+  Cov magnitude groeit met lambda (meer negatief bij grotere lambda).
+  w2 daalt met lambda: 0.44 (lam=1.30) -> 0.36 (lam=2.00) — cb-term domineert meer.
+  ve_cb/ve2 convergeert naar ~1.13 bij lambda=2.00 (ver onder drempel 2.24).
+
+  DIEPTE-SCAN bij lambda=1.70 en lambda=2.00:
+  k=5: cov=-0.0252 (lam=1.70), -0.0514 (lam=2.00)  L=2.33, 2.16
+  k=6: cov=-0.0097, -0.0200                          L=1.75, 1.57
+  k=7: cov=-0.0025, -0.0053                          L=1.42, 1.32
+  k=8: cov=-1.01e-3, -2.16e-3                        L=1.31, 1.24
+  k=10: cov=-2.42e-4, -6.76e-4                       L=1.26, 1.19
+  k=12: cov=-9.91e-5, -3.13e-4                       L=1.23, 1.17
+  Cov daalt in magnitude maar BLIJFT ALTIJD NEGATIEF. L daalt ook maar blijft > 1.
+
+  GEVOLG: Alle drie universele beweringen bevestigd voor lambda in [1.30,2.00]:
+  (A) ve0 = CODE-var(A*v2_sig0 + B1*cb_sig0) EXACT (alle lambda, machine precision OK)
+  (B) Cov(u_v2, u_cb) < 0 ALTIJD (alle lambda, alle geteste diepten)
+  (C) L = ve2/ve0 > 1 ALTIJD (alle lambda)
+  Consequentie: L > 1 is een universele structurele eigenschap van het K-L systeem.
