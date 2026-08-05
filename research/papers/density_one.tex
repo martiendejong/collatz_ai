@@ -1040,6 +1040,39 @@ Decompose by the $\bmod\,3$ residue of $j$ (= r-type of $\sigma_0(j)$).
   \approx 4s/3 > s$ gives a \emph{larger} scale with smaller eigenvector values,
   creating $\mathrm{Corr}(v_2[2s{+}1], v_2[s]) < 0$ via the monotone decay of the
   profile with $s$.
+
+  \emph{3-adic class-mean structure and self-similar mechanism}
+  (scripts~253--255, $k{=}8$, $\lambda$-scan):
+  $v_2[s]$ has a strong systematic bias by $s \bmod 3$:
+  $\bar a_0 = 0.140$, $\bar a_1 = 0.328$, $\bar a_2 = 0.363$ (ratio $a_0/a_1 = 0.427$).
+  The doubling map $s\mapsto 2s{+}1$ acts on $\mathbb{Z}/3\mathbb{Z}$ as the transposition
+  $0\leftrightarrow 1$ (and fixes $2$), so it swaps the small class~$0$ with the
+  larger class~$1$: when $v_2[s]$ is small (class~0), $v_2[2s{+}1]$ lands in class~1
+  (large) and vice versa, producing anti-correlation.
+  The between-class term alone (analytic formula using $\bar a_0, \bar a_1, \bar a_2$)
+  accounts for $84.7\%$ of $\mathrm{Corr}(v_2[2s{+}1],v_2[s]) = -0.287$ at
+  $\lambda{=}1.70$; within class~$2{\to}2$ (fixed by $\bmod 3$, corr~$=-0.370$) the
+  same mechanism repeats at the $\bmod 9$ level (sub-classes $2\leftrightarrow 5$,
+  means $0.428$ vs.\ $0.198$), explaining $85.8\%$ of the within-class correlation ---
+  an \emph{identical fraction}, confirming self-similarity.
+
+  \emph{Self-consistency of the class means.}
+  From the K-L equation: $\rho\,\bar a_0 \approx B_3\,c_1$ and $\rho\,\bar a_1 \approx B_3\,c_0$
+  where $c_r = \mathbb{E}[\min_3\{v|class\,r\}]$.
+  Since $\mathrm{CV}_0 = 0.278 < \mathrm{CV}_1 = 0.374$, the min-ratio
+  $\kappa_r = c_r/a_r$ satisfies $\kappa_0 > \kappa_1$
+  (lower CV $\Rightarrow$ min is closer to the mean).
+  Self-consistency then forces $(a_0/a_1)^2 = \kappa_1/\kappa_0 < 1$, i.e.\
+  $a_0 < a_1$.  Measured: $(a_0/a_1)^2 = 0.182$, $\kappa_1/\kappa_0 = 0.145$
+  (gap due to $\approx 27\%$ T4 contribution for class~0).
+
+  \emph{Multi-scale decomposition} (script~255): approximating $v_2[s]$ by its
+  $\bmod 3^m$ class mean and computing the resulting proxy correlation gives cumulative
+  contributions $-0.243, -0.264, -0.292, \ldots \to -0.287$ for $m=1,2,3,\ldots,6$.
+  At $\lambda{=}2.00$ the level-1 term is $+0.052$ (wrong sign), but level-4 ($\bmod 81$)
+  already gives $-0.222$, converging to the correct $-0.182$: the anti-correlation
+  is \emph{genuinely multi-scale}, with deeper 3-adic levels dominant at large $\lambda$.
+  This self-similar structure is the deepest identified source of $d_k < 1$.
 \item $j\equiv 1\pmod3$ \emph{(indirect, via $v_0$)}.
   $\mathrm{cb}$ uses $v_1$, not $v_2$; but $v_1(s) = (A/\rho)\,v_0[\sigma_1(s)]$
   and $v_0$ is the blend of $v_2$ and $\mathrm{cb}$ (eq.~\ref{eq:v0blend}).

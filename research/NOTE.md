@@ -11813,3 +11813,134 @@ OPEN VRAAG:
   Waarom is |lambda2/lambda1| ~ 0.85 relatief stabiel over lambda=1.30..2.00 (conv_rate),
   maar d_k varieert van 0.57 tot 0.80? Dit betekent dat de CODE-variantie bij kleine lambda
   meer vervalt dan de spectraalkloof voorspelt — extra vervalsmechanisme bij kleine lambda.
+
+---
+
+## Obs 458 (Script 253, 2026-08-05): 3-adische mod-3 klassenmiddelen -- STERKE BIASTRUCTUUR
+
+Script 253_3adic_structure.py. Test: heeft v2[s] een systematische structuur per s mod 3?
+
+SLEUTELBEVINDING -- MOD-3 BIAS:
+  k=8, lam=1.70 (Nl=729):
+    Gemiddelde v2[s==0 mod 3] = 0.140  (KLEINST)
+    Gemiddelde v2[s==1 mod 3] = 0.328
+    Gemiddelde v2[s==2 mod 3] = 0.363  (GROOTST)
+    Ratio 0/1 = 0.427  (klasse 0 heeft minder dan HALF gemiddelde van klasse 1!)
+
+VERDUBBELING MAP WISSELWERKING:
+  De map s -> 2s+1 op Z/3Z: 0->1, 1->0, 2->2 (VERWISSELT klasse 0 en 1, fixeert klasse 2)
+  => v2[s] klein (s in kl.0) en v2[2s+1] groter (2s+1 in kl.1): ANTI-CORRELATIE
+  => v2[s] groter (s in kl.1) en v2[2s+1] kleiner (2s+1 in kl.0): ANTI-CORRELATIE
+
+LAMBDA-SCAN k=8 (Corr(v2[s], v2[(2s+1)%Nl]) voor ALLE s):
+  lam=1.30: Corr=-0.644  gemiddelden 0.448, 0.751, 0.693
+  lam=1.50: Corr=-0.394  gemiddelden 0.255, 0.505, 0.507
+  lam=1.70: Corr=-0.219  gemiddelden 0.140, 0.328, 0.363
+  lam=1.90: Corr=-0.110  gemiddelden 0.079, 0.218, 0.266
+  lam=2.00: Corr=-0.071  gemiddelden 0.061, 0.180, 0.231
+  (Anti-correlatie zwakt af maar blijft negatief voor alle lambda.)
+
+MOD-9 HIËRARCHIESTUUR (sub-klassen):
+  Gemiddelden per s mod 9 (lam=1.70, k=8):
+    s==0: 0.167, s==1: 0.236, s==2: 0.428
+    s==3: 0.109, s==4: 0.316, s==5: 0.198
+    s==6: 0.144, s==7: 0.432, s==8: 0.462
+  Klasse 1 (s==1,4,7 mod 9): stijgend in waarde: 0.236 < 0.316 < 0.432 (sub-hierarchie!)
+  Klasse 2 (s==2,5,8 mod 9): niet-monotoon, 2<->5 wisseling (zie Obs 460).
+
+---
+
+## Obs 459 (Script 254, 2026-08-05): Zelf-consistentie mod-3 klassen -- min-ratio mechanisme
+
+Script 254_selfconsistent_class.py. Verificatie zelf-consistentie: rho*a[r] ~= B3*c[sigma(r)].
+
+ZELF-CONSISTENTIE VERGELIJKINGEN (cb-dominantie benadering):
+  sigma(0)=1, sigma(1)=0, sigma(2)=2 (van K-L vergelijking: (2s+1)%3 bij s==r)
+  rho*a0 ~= B3*c1  (v2[s==0] wordt bepaald door cb bij class 1)
+  rho*a1 ~= B3*c0  (v2[s==1] wordt bepaald door cb bij class 0)
+  rho*a2 ~= B3*c2  (v2[s==2] wordt bepaald door cb bij class 2)
+
+GEMETEN WAARDEN (k=8, lam=1.70):
+  c[0] = Mean(cb[j==0 mod 3]) = 0.226  min-ratio k0 = 1.611
+  c[1] = Mean(cb[j==1 mod 3]) = 0.077  min-ratio k1 = 0.234
+  c[2] = Mean(cb[j==2 mod 3]) = 0.256  min-ratio k2 = 0.706
+  k0 >> k1: cb van klasse 0 is proportioneel VEEL GROTER dan a[0]
+
+  Zelf-consistentie check:
+    r=0: rho*a0=0.1427  B3*c1=0.1045  ratio=1.365  (T4 bijdrage: 27%)
+    r=1: rho*a1=0.3342  B3*c0=0.3078  ratio=1.086  (T4 bijdrage:  8%)
+    r=2: rho*a2=0.3695  B3*c2=0.3493  ratio=1.058  (T4 bijdrage:  6%)
+  => T4-term is significant voor klasse 0 (27%) maar klein voor klassen 1,2.
+  => De cb-dominantie geldt globaal (Corr=0.998) maar de GEMIDDELDEN van klasse 0 worden
+     significant beinvloed door de T4-term.
+
+REDEN VOOR a0 < a1 -- MIN-RATIO ARGUMENT:
+  CV[0] = 0.278 < CV[1] = 0.374 (klasse 0 heeft KLEINER relatieve spreiding)
+  Kleinere CV => min-ratio k_r = E[min3]/E[X] is groter (min dicht bij gemiddelde)
+  => k0 > k1 => c0 = k0*a0 > c1 = k1*a1 relatief
+  Zelf-consistentie: a0/a1 = c1/c0 = (k1*a1)/(k0*a0)
+  => (a0/a1)^2 = k1/k0 < 1 => a0 < a1. ZELF-CONSISTENT!
+  Gemeten: (a0/a1)^2 = 0.182, k1/k0 = 0.145. Overeenstemming (T4-bijdrage maakt het niet exact).
+
+BETWEEN-CLASS BIJDRAGE AAN ANTI-CORRELATIE:
+  Klasse-gemiddelde proxy Corr (analytische formule) = -0.231
+  Werkelijk Corr = -0.287. Fractie verklaard door between-class = 84.7%.
+  Formule: [2*a0*a1 + a2^2]/3 - mean_a^2 / Var(klasse-gemiddelden)
+
+LAMBDA-SCAN (between-class bijdrage):
+  lam=1.30: actual=-0.645  between-class=-0.782  (OVERSCHATTING bij klein lambda)
+  lam=1.70: actual=-0.287  between-class=-0.231  (84.7% verklaard)
+  lam=2.00: actual=-0.182  between-class=+0.065  (POSITIEF - klasse-gemiddelden convergeren!)
+  => Bij groot lambda: between-class FAALT (geeft zelfs positieve correlatie)
+  => Bij groot lambda domineert WITHIN-CLASS anti-correlatie (zie Obs 460).
+
+---
+
+## Obs 460 (Script 255, 2026-08-05): RECURSIEVE multi-schaal anti-correlatie -- zelf-gelijkende structuur
+
+Script 255_recursive_anticorr.py. Decompositie over 3-adische niveaus m=1..6.
+
+SLEUTELBEVINDING -- ZELF-GELIJKEND MECHANISME:
+  Corr(v2[2s+1], v2[s]) heeft een HIËRACHISCHE DECOMPOSITIE over 3-adische niveaus:
+  Bij k=8, lam=1.70 (Nl=3^6=729):
+    Niveau m=1 (mod 3):   proxy Corr = -0.243  (84.7% van totaal)
+    Niveau m=2 (mod 9):   proxy Corr = -0.264  (+7.1% extra)
+    Niveau m=3 (mod 27):  proxy Corr = -0.292  (+9.7% extra, overshoot)
+    Niveau m=4 (mod 81):  proxy Corr = -0.338  (+15.4%, overshoot)
+    Niveau m=5 (mod 243): proxy Corr = -0.303  (+correctie)
+    Niveau m=6 (mod 729): proxy Corr = -0.287  (EXACTE reconstructie)
+
+BINNEN KLASSE 2 -- DEZELFDE STRUCTUUR OP NIVEAU 2:
+  Corr(v2[2s+1], v2[s] | s==2 mod 3) = -0.370 (MEER negatief dan totaal -0.287!)
+  Mod-9 sub-klassen binnen klasse 2:
+    s==2 mod 9 -> 2s+1==5 mod 9: gemiddelde 0.428 -> 0.198 (hoog naar laag)
+    s==5 mod 9 -> 2s+1==2 mod 9: gemiddelde 0.198 -> 0.428 (laag naar hoog)
+    s==8 mod 9 -> 2s+1==8 mod 9: gemiddelde 0.462 -> 0.462 (gefixeerd punt)
+  Between-subclass (mod-9) verklaart 85.8% van Corr_22 = -0.370.
+  Dit is BIJNA GELIJK AAN 84.7% die tussen-klasse verklaarde op niveau 1 -- FRACTALE HERHALING!
+
+LAMBDA-SCAN -- NIVEAU-BIJDRAGEN:
+  lam=1.30: actual=-0.645  L1=-0.782  L2=-0.715  L3=-0.690  L4=-0.682  L5=-0.660  L6=-0.645
+  lam=1.70: actual=-0.287  L1=-0.243  L2=-0.264  L3=-0.292  L4=-0.338  L5=-0.303  L6=-0.287
+  lam=1.90: actual=-0.207  L1=-0.035  L2=-0.097  L3=-0.164  L4=-0.252  L5=-0.217  L6=-0.207
+  lam=2.00: actual=-0.182  L1=+0.052  L2=-0.027  L3=-0.111  L4=-0.222  L5=-0.188  L6=-0.182
+
+  Bij lam=2.00: L1=+0.052 (FOUT TEKEN!), maar L4=-0.222 ~ totaal -0.182.
+  => Bij groot lambda: MOD-81 schaal (level 4) is de DOMINANTE bijdrage aan anti-correlatie.
+  => De anti-correlatie is DIEP 3-ADISCH: alle schalen dragen bij, hogere schalen domineren bij groot lambda.
+
+THEORETISCH KADER:
+  De map s -> 2s+1 op Z/3^m Z heeft een PERMUTATIE-STRUCTUUR:
+  Baan: 0->1->3->7->6->4->0 (cyclus lengte 6 in Z/9Z)
+        2->5->2 (cyclus lengte 2)
+        8->8 (fixpunt)
+  Op elke 3-adische schaal: de permutatie wisselt "hoge" sub-klassen met "lage" sub-klassen.
+  Dit is de UNIVERSELE bron van anti-correlatie bij alle lambda.
+
+IMPLICATIE VOOR VERMOEDEN G:
+  Corr(v2[2s+1], v2[s]) < 0 voor alle lambda >= 1 (empirisch bewezen t/m k=8).
+  De multi-schaal decompositie laat zien dat dit BIJDRAGEN OP ALLE 3-ADISCHE NIVEAUS heeft.
+  Dit suggereert dat k -> inf de anti-correlatie AANHOUDT, wat d_k < 1 impliceert.
+  Een formeel bewijs vereist het tonen dat de gezamenlijke bijdrage van alle schalen
+  strikt negatief is -- dit is de CENTRALE OPEN VRAAG voor het bewijs van Vermoeden G.
+
