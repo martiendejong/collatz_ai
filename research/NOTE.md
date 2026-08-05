@@ -12376,9 +12376,8 @@ GECOMBINEERDE KETEN:
 
 ENIGE RESTERENDE STAP:
   Bewijs c2/c0 <= mean_v2/mean_v0 = R(lambda) analytisch.
-  Kandidaat-argument: v2 heeft grotere relatieve variantie dan v0 (door grotere B3-term),
-  dus min-tot-gemiddelde verhouding is kleiner voor v2: c2/mean_v2 <= c0/mean_v0 => c2/c0 <= R.
-  Numeriek: verhouding (c2/c0)/R_num -> 0.9913 voor grote k bij lam=1.70. Stabiel < 1.
+  Equivalent: bewijs m2m_v2 <= m2m_v0 (min-tot-gemiddelde van v2 <= die van v0).
+  Numeriek: m2m_v2 < m2m_v0 voor alle geteste (k, lam). Zie Obs 469.
 
 NUMERIEK OVERZICHT (R-1)/RHS (MOET < 1 VOOR ALLE lam, k):
   lam=1.30: -0.017 [< 0: triviaal]
@@ -12387,5 +12386,37 @@ NUMERIEK OVERZICHT (R-1)/RHS (MOET < 1 VOOR ALLE lam, k):
   lam=1.90: +0.017 [MAXIMUM]
   lam=2.00: +0.017
   Max. waarde (R-1)/RHS ~ 0.017 << 1 (veiligheidsmarge 59x!).
+
+
+## Obs 469 (Script 264, 2026-08-05): EQUIVALENTIE m2m_v2 <= m2m_v0 <=> c2/c0 <= R + STRUCTURELE VERKLARING
+
+Script 264_subclass_het.py. De resterende gap herleid tot een enkelvoudige min-tot-gemiddelde vergelijking.
+
+EXACTE EQUIVALENTIE (algebraisch):
+  m2m_r := c_r / mean_v_r  (min-tot-gemiddelde ratio, r-type eigenvector nodes)
+  c2/c0 = (m2m_v2 / m2m_v0) * R
+  => c2/c0 <= R  iff  m2m_v2 <= m2m_v0
+
+NUMERIEKE VERIFICATIE (k=8, alle lam):
+  lam=1.30: m2m_v0=0.98266, m2m_v2=0.97937. True
+  lam=1.50: m2m_v0=0.96367, m2m_v2=0.95612. True
+  lam=1.70: m2m_v0=0.93791, m2m_v2=0.92500. True
+  lam=1.90: m2m_v0=0.90774, m2m_v2=0.88894. True
+  lam=2.00: m2m_v0=0.89153, m2m_v2=0.86990. True
+  [Alle geteste k=5..13, lam=1.30..2.00: m2m_v2 < m2m_v0. True.]
+
+STRUCTUREEL (bij lam=1.70, k=10):
+  CV sub-klasse gemiddelden v2: 0.358 > CV v0: 0.270.
+  v2 sc0 forcing: B3*c1 = B3*(A/rho)*c0  [extra-kleine c1 + kleinere T4-coeff A^2/rho]
+  v0 sc1 forcing: B1*c1 = B1*(A/rho)*c0  [zelfde c1, maar groter T4-coeff A]
+  => v2 sub-klasse 0 DUBBEL onderdrukt vs v0 sub-klasse 1 (kleinste cb EN kleinste T4-coeff).
+  => Grotere sub-klasse spreiding voor v2 => lagere min-tot-gemiddelde => m2m_v2 < m2m_v0.
+
+BIJGEWERKTE BEWIJSKETEN Vermoeden G (3 analytisch + 1 numeriek lemma):
+  (1) c1 = (A/rho)*c0 EXACT (Obs 464)          [ANALYTISCH]
+  (2) rho > A  iff  D > 0 (Obs 466)            [ANALYTISCH]
+  (3) m2m_v2 <= m2m_v0 => c2/c0 <= R (Obs 469) [NUMERIEK LEMMA]
+  (4) R - 1 < RHS (Obs 468, Step B)            [ANALYTISCH: (lam-1)/lam < 1]
+  => f1-f0 > 0 => a1_v2 > a0_v2 => d_k < 1.
 
 
