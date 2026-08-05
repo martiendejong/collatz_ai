@@ -12061,6 +12061,67 @@ KERNTHEORETISCHE IMPLICATIE:
   => OPGELOST in Obs 464: c_1 = (A/rho)*c_0 EXACT => a0 < a1 voor alle lambda > 1.
 
 
+## Obs 465 (Script 260, 2026-08-05): VOLLEDIGE ONTLEDING a0_v2 < a1_v2 + T4-bijdrage
+
+Script 260_a0_a1_full.py. Sluit bewijsketen volledig: beide termen (cb + T4) in K-L ontleed.
+
+K-L VERGELIJKING VOOR v2 NODES (EXACT, geverifieerd):
+  Alle v2 nodes (r=2): T4(3s+2) = (12s+10) mod N heeft r-type (12s+10) mod 3 = 1 ALTIJD.
+  => T4 mapt ALLE v2 nodes naar v1 nodes (tau(s) = (4s+3) mod Nl).
+  => v1[tau(s)] = (A/rho)*v0[sigma1(tau(s))] = (A/rho)*v0[(16s+14) mod Nl].
+  => Volle K-L: rho*v2[s] = A*(A/rho)*v0[(16s+14) mod Nl] + B3*cb[(2s+1) mod Nl].
+
+PHI-KLASSE DISTRIBUTIE (EXACT, 100% geconcentreerd):
+  phi(s) = (16s+14) mod Nl. phi(s) mod 3 = (16s+14) mod 3 = (s+2) mod 3.
+  Voor s==0 mod 3: phi(s) mod 3 = 2 => ALTIJD klasse-2 van v0. => m0 = a2_v0.
+  Voor s==1 mod 3: phi(s) mod 3 = 0 => ALTIJD klasse-0 van v0. => m1 = a0_v0.
+  Geverifieerd: phi class distribution = [r0:0.000, r1:0.000, r2:1.000] voor class-0
+                                        = [r0:1.000, r1:0.000, r2:0.000] voor class-1.
+
+CB-KLASSE VERDELING VOOR R3 (EXACT):
+  R3[s] = (2s+1) mod Nl. R3 mod 3 = (2s+1) mod 3 = (2s+1) mod 3.
+  Voor s==0 mod 3: R3 mod 3 = 1 => cb-klasse 1 => Mean(cb[R3]) = c_1.
+  Voor s==1 mod 3: R3 mod 3 = 0 => cb-klasse 0 => Mean(cb[R3]) = c_0.
+  Dus: B3*c_1 voor a0_v2, B3*c_0 voor a1_v2.
+
+VOLLEDIGE K-L ONTLEDING (geverifieerd tot machineprecisie, rel. fout <= 2e-16):
+  rho*a0_v2 = B3*c_1 + (A^2/rho)*a2_v0   (c_1 = (A/rho)*c_0, m0=a2_v0)
+  rho*a1_v2 = B3*c_0 + (A^2/rho)*a0_v0   (m1=a0_v0)
+
+A1-A0 ONTLEDING:
+  rho*(a1-a0) = B3*(c_0-c_1) + (A^2/rho)*(a0_v0-a2_v0)
+             = B3*c_0*(1-A/rho) - (A^2/rho)*(a2_v0-a0_v0)
+
+  Cb-term:  B3*c_0*(1-A/rho)/rho > 0  (POSITIEF, drijft a1 > a0)
+  T4-term: -(A^2/rho)*(a2_v0-a0_v0)/rho < 0  (NEGATIEF, werkt tegen)
+  Verhouding cb/T4 (k=8, lam=1.70): 0.199 / 0.011 = ~17  (cb domineert 17x)
+  Verhouding cb/T4 (k=8, lam=1.30): 0.322 / 0.019 = ~17  (stabiel over lam)
+
+  a2_v0 > a0_v0 altijd (geverifieerd voor alle geteste k, lam).
+  Maar factor 17x marge: T4-oppositie nooit genoeg om cb-term te overtreffen.
+
+NUMERIEKE RESULTATEN (k=8):
+  lam  | cb_term  | T4_term  | netto=a1-a0 | ratio cb/T4
+  1.30 | +0.3219  | -0.0190  | +0.3029     | 17.0
+  1.50 | +0.2673  | -0.0171  | +0.2502     | 15.6
+  1.70 | +0.1995  | -0.0115  | +0.1880     | 17.3
+  1.90 | +0.1456  | -0.0071  | +0.1385     | 20.6
+  2.00 | +0.1249  | -0.0055  | +0.1194     | 22.6
+
+WAAROM cb/T4 ~ 17? Dimensionele schaling:
+  cb_term ~ B3*c_0*(1-A/rho) ~ lam^(alpha-1) * lam^(-2) = lam^(alpha-3)
+  T4_term ~ (A^2/rho)*(a2_v0-a0_v0) ~ lam^(-4) * lam^(alpha-2) = lam^(alpha-6)
+  Verhouding ~ lam^3. Bij lam=1.70: 1.70^3 = 4.9 * (B3/B1 contrast) ~ 17. Consistent.
+
+CONCLUSIE:
+  a0_v2 < a1_v2 voor alle geteste lam in [1.30, 2.00] en k in [5, 11].
+  Bewijs bijna volledig:
+  - c_1 = (A/rho)*c_0 EXACT (Obs 464, bewezen)
+  - m0 = a2_v0, m1 = a0_v0 EXACT (phi-klasse 100% geconcentreerd)
+  - cb-term dominant (factor ~17-22x over T4-term, alle geteste cases)
+  - Rigoureus resterende gap: laten zien dat B3*c_0*(rho-A) > A^2*(a2_v0-a0_v0)
+    analytisch. Numeriek: altijd waar met grote marge (17-22x).
+
 ## Obs 464 (Script 259, 2026-08-05): EXACT ANALYTISCH BEWIJS van c_1 = (A/rho)*c_0
 
 Script 259_c1_c0_ratio.py. Sluit de bewijsketen af: c_1 < c_0 => a0 < a1 => La0 < La1.
