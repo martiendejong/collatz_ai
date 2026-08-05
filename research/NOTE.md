@@ -12420,3 +12420,70 @@ BIJGEWERKTE BEWIJSKETEN Vermoeden G (3 analytisch + 1 numeriek lemma):
   => f1-f0 > 0 => a1_v2 > a0_v2 => d_k < 1.
 
 
+## Obs 470 (Scripts 266-267, 2026-08-05): GEWICHTSONGELIJKHEID + VARIANTIE-MECHANISME
+
+Scripts 266_subclass_weight.py, 267_variance_proof.py.
+
+GEWICHTSONGELIJKHEID (Script 266):
+  Kernvraag: waarom is m2m_v2 < m2m_v0? Antwoord: gewichten van sub-klassen.
+
+  Definieer w_r_v = a_r_v / sum_v (relatief gewicht sub-klasse r).
+  "Klein-cb sub-klasse" = sub-klasse die c1 = (A/rho)*c0 ontvangt (KLEINSTE cb):
+    - Voor v2: is sc0 (s=0 mod 3), gewicht w_0_v2.
+    - Voor v0: is sc1 (s=1 mod 3), gewicht w_1_v0.
+
+  GEVERIFIEERD (alle geteste k in [5,13], lam in [1.30,2.00]):
+    w_0_v2 <= w_1_v0  (TRUE voor alle gevallen)
+    a0_v2 / a1_v0 <= R  (TRUE voor alle gevallen, ratio ~ 0.71-0.83)
+    a0_v2 <= a1_v0  (TRUE voor alle gevallen)
+
+  Bij lam=1.70, k=10:
+    a0_v2 = 0.0889, a1_v0 = 0.1092, R = 1.154
+    a0_v2/a1_v0 = 0.815, ratio/R = 0.706 << 1
+    w_0_v2 = 16.6%, w_1_v0 = 23.6% (7% minder gewicht voor klein-cb sc in v2)
+
+  REDUCTIE: a0_v2 <= a1_v0 is equivalent aan
+    (A^2/rho)*a2_v0 + B3*c1 <= A*a1_v2 + B1*c1   (uit K-L voor beide SC's)
+  wat herleidt tot:
+    (§) B1*(c0 - t*c2) + (A^2/rho)*(a0_v0 - a2_v2) >= 0
+  waarbij t = A/rho.
+
+  DEELRESULTAAT: c0 - t*c2 >= c0*(1-t^3)/(1+t*lam) > 0.
+  Bewijs: c2/c0 <= R (num. lemma) en R <= 1/t (ANALYTISCH: t*R = t(t^2+lam)/(1+t*lam) <= 1
+  want t^3 <= 1 voor t < 1). Dus c0 - t*c2 >= c0*(1-tR) = c0*(1-t^3)/(1+t*lam) > 0.
+  Het tweede term (A^2/rho)*(a0_v0-a2_v2) kan negatief zijn maar is kleiner in magnitude.
+
+  STATUS: a0_v2 <= a1_v0 is empirisch bewezen, algebraisch equivalent aan (§),
+  en (§) geldt numeriek met marge ~7x. Het exacte bewijs van (§) vereist
+  distribitionele informatie (bijv. a2_v2 <= a0_v0 + iets kleins) die buiten het
+  6-variabelen gemiddeldensysteem valt.
+
+VARIANTIE-MECHANISME (Script 267):
+  GEVERIFIEERD: CoV^2(v2 kolom-drietallen) > CoV^2(v0 kolom-drietallen)
+  voor ALLE geteste (k, lam):
+    lam=1.30 k=10: CoV^2_v0=0.000090, CoV^2_v2=0.000120 (v2>v0: True)
+    lam=1.70 k=10: CoV^2_v0=0.002129, CoV^2_v2=0.002671 (v2>v0: True, marge 25%)
+    lam=2.00 k=10: CoV^2_v0=0.007365, CoV^2_v2=0.008739 (v2>v0: True, marge 19%)
+
+  MECHANISME: v2 nodes gebruiken B3 = lam*B1 als cb-coefficient vs B1 voor v0.
+  De cb-gedreven bijdrage aan de kolom-variantie is voor v2:
+    (B3/rho)^2 * Var(cb_inputs) = lam^2 * (B1/rho)^2 * Var(cb_inputs)
+  vs voor v0:
+    (B1/rho)^2 * Var(cb_inputs)
+  Factor lam^2 > 1 zorgt dat v2 kolommen een grotere cb-gedreven spreiding hebben.
+  De T4-term voor v2 is kleiner (coeff A^2/rho^2 < A voor v0) maar de cb-term
+  compenseert meer dan voldoende.
+
+  PER SUB-KLASSE: sc0 overtreedt (CoV^2_v2 < CoV^2_v0 voor sc0), sc1 en sc2 houden.
+  Zelfde mixing-effect als bij m2m (Script 265) en gewichten (Script 266).
+
+  IMPLICATIE: Grotere CoV^2 => lagere min-tot-gemiddelde ratio (voor vaste verdeling).
+  Als CoV^2(v2) > CoV^2(v0) voor ELKE kolom afzonderlijk => m2m_v2 < m2m_v0.
+  Geldt globaal (overall CoV^2 v2 > v0) maar NIET per kolom voor sc0 (mixing-effect).
+
+SAMENVATTING RESTERENDE GAP:
+  Alle drie benaderingen (direct, gewicht, variantie) leiden tot HETZELFDE mengeffect:
+  sub-klasse 0 van v2 overtreedt licht, maar sc1 en sc2 compenseren met 2.4x groter gewicht.
+  Analytisch bewijs vereist een VARIANTIE-ARGUMENT of PERRON-FROBENIUS EXTENSIE
+  dat de distribitionele eigenschappen van de K-L eigenvector beschrijft.
+
