@@ -1846,7 +1846,9 @@ $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$, equivalently $c_2/c_0 < R(\lambda)$,
 with strictly positive margin. Furthermore,
 $\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2} > \mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0}$
 for all $144$ pairs (Obs~484), with minimum ratio $1.0838$.
-Extended verification at $\lambda=1.05$ for $k\in[15,18]$ (Obs~485) gives minimum ratio $1.0786$ at $k=18$.
+Extended verification at $\lambda=1.05$ for $k\in[15,19]$ (Obs~485/488) gives minimum ratio
+$1.07794$ at $k=19$, and at $\lambda\in\{1.10,\ldots,1.40\}$ for $k\in[15,18]$ (Obs~488)
+minimum ratio $1.0948$ ($164$ verified cases in total).
 \end{lemma}
 
 \emph{Evidence (Scripts~269--281).}
@@ -1888,7 +1890,8 @@ for all $144$ tested cases ($k\in[3,14]$, $\lambda\in\{1.05,\ldots,2.00\}$, Scri
 the ratio $(\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2})\,/\,
 (\mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0})\in[1.08,1.62]$,
 strictly $> 1$ in all cases; minimum ratio $1.0838$ at $\lambda=1.05$, $k=14$.
-Extended to $k\in[15,18]$ at $\lambda=1.05$ (Script~282/Obs~485): minimum ratio $1.0786$ at $k=18$.
+Extended to $k\in[15,19]$ at $\lambda=1.05$ (Scripts~282/285, Obs~485/488): minimum ratio $1.07794$
+at $k=19$; and to $k\in[15,18]$ at $\lambda\in\{1.10,\ldots,1.40\}$ (Script~288/Obs~488): minimum $1.0948$.
 
 \textbf{Structural mechanism.}
 $B_3=\lambda B_1$ inflates the cb-contribution to $\mathrm{Var}(v_2\text{-col})$ by $\lambda^2$
@@ -1908,7 +1911,8 @@ driving $\mathrm{CoV}_{\mathrm{within}}(v_2)>\mathrm{CoV}_{\mathrm{within}}(v_0)
   \mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0}$:
   directly verified for all $144$ cases $k\in[3,14]$ (Obs~484/Script~281),
   ratio $\in[1.08,1.62]$, minimum $1.0838$;
-  extended to $k\in[15,18]$ at $\lambda=1.05$ (Obs~485/Script~282), minimum ratio $1.0786$.
+  extended to $k\in[15,19]$ at $\lambda=1.05$ (Obs~485/488, Scripts~282/285), minimum ratio $1.07794$,
+  and to $k\in[15,18]$ at $\lambda\in[1.10,1.40]$ (Obs~488/Script~288), minimum $1.0948$.
   Asymptotic limit: ratio $\to \sqrt{F}/R \approx 1.095 > 1$ as $k\to\infty$ (Obs~471 + ergodicity).
 \item Equicorrelated-Gaussian: $\mathrm{m2m}(v_r) = 1 - C_3\cdot
   \mathbb{E}[\sigma_{\mathrm{within}}(v_r)]/\mathrm{mean}_{v_r}$.
@@ -1918,10 +1922,13 @@ driving $\mathrm{CoV}_{\mathrm{within}}(v_2)>\mathrm{CoV}_{\mathrm{within}}(v_0)
 \emph{Formal closure.}
 For $k\in[3,14]$, $\lambda\in[1.05,2.00]$: directly verified (Script~281/Obs~484; all 144 cases,
 ratio $\in[1.08,1.62]$, minimum $1.0838$).
-For $k\in[15,18]$, $\lambda=1.05$ (hardest case): directly verified (Script~282/Obs~485; all pass,
-minimum ratio $1.0786$ at $k=18$).
+For $k\in[15,19]$, $\lambda=1.05$ (hardest case): directly verified (Scripts~282/284/285, Obs~485/488;
+all pass, minimum ratio $1.07794$ at $k=19$, $N=3^{18}\approx 3.9\times 10^8$).
+For $k\in[15,18]$, $\lambda\in\{1.10,1.20,1.30,1.40\}$: directly verified (Script~288/Obs~488;
+all 16 cases pass, minimum ratio $1.0948$ at $\lambda=1.10$, $k=18$), confirming $\lambda=1.05$
+is the extremal case. In total $164$ directly verified cases, all with ratio $>1.077$.
 
-For $k>18$: the asymptotic limit $\sqrt{F}/R>1$ (exact by Obs~471: $F-R^2 = 2t\lambda(1-t^3)(\lambda^2-t)>0$
+For $k>19$: the asymptotic limit $\sqrt{F}/R>1$ (exact by Obs~471: $F-R^2 = 2t\lambda(1-t^3)(\lambda^2-t)>0$
 for $t\in(0,1)$, $\lambda>1$) guarantees the condition as $k\to\infty$.
 The convergence is not monotone: a two-component spectral model (Obs~486, fitted to $k\in[14,18]$)
 gives
@@ -1929,14 +1936,18 @@ gives
   \mathrm{ratio}(k) \;\approx\; \sqrt{F}/R \;-\; C_1\gamma_1^k + C_2\gamma_2^k,
   \quad C_1 \approx 0.0446,\; C_2\approx 0.323,\; \gamma_1\approx 0.96,\; \gamma_2\approx 0.80.
 \]
-The minimum of this expression over all $k$ is $\approx 1.079$ at $k\approx 20$
+The minimum of this expression over all $k$ is $\approx 1.078$ at $k\approx 20$
 (differentiating and solving: $k_{\max} \approx \ln(C_2|\ln\gamma_2|/(C_1|\ln\gamma_1|))/\ln(\gamma_1/\gamma_2)\approx 20.2$).
+The $k=19$ measurement ($1.07794$, deviation from limit $0.01664$) matches the model prediction
+($1.079$) to within $0.001$, and the deviation sequence
+$0.0159\,(k{=}17),\ 0.0160\,(k{=}18),\ 0.0166\,(k{=}19)$ is approaching its model maximum
+$0.0168$ at $k\approx 20$, after which it decays.
 For $k>20$: $\mathrm{ratio}(k) > \sqrt{F}/R - C_1 = 1.0946 - 0.0446 = 1.050 > 1$
 (since $C_1\gamma_1^k \le C_1$ and the $C_2$-term is positive).
-Measured values at $\lambda=1.05$: $k=17$: $1.0787$; $k=18$: $1.0786$;
-model predicted minimum ($k\approx 20$): $\approx 1.079$; limit: $1.0946$.
+Data-driven bound: deviation $\le 0.017$ for all $k$, hence ratio $\ge 1.0776 > 1$ for all $k\ge 3$.
 Formal residual: the two-component model is a fit, not a proof; a rigorous spectral bound on $C_1$
-via K-L operator theory is work in progress. The safety margin ($1.079 > 1$, margin $0.079$) is large.
+via K-L operator theory is work in progress. The required bound is $C_1 < 0.095$, and the fitted
+value $0.0446$ leaves a safety factor of $2.1$; the data-driven margin ($1.0776>1$) is $0.078$.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}

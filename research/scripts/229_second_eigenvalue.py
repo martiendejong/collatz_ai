@@ -1,17 +1,17 @@
 """
 229_second_eigenvalue.py
 ========================
-Meet f2 = spectrale convergentiefactor van de K-L operator via TWEE-PUNT methode.
+Meting f2 = (lambda2/lambda1)^2 via convergentiequotient van machtiteraten.
 
-Methode: start power iteration vanuit v0 = ones en v0' = ones + kleine perturbatie.
-Na n stappen: |v_n - v_n'| ~ C * (lambda2/lambda1)^n.
-De verhouding |v_{n+1} - v_{n+1}'| / |v_n - v_n'| convergeert naar lambda2/lambda1.
-f2 = (lambda2/lambda1)^2 = spectrale convergentiefactor voor variantie-afname.
+Methode: start power iteration vanuit v0 = ones. Na warmup:
+  ratio_n = ||v_{n+1} - v_n|| / ||v_n - v_{n-1}||  ->  lambda2/lambda1
 
-Endpoint Decay: f2 < 1 is equivalent aan lambda2 < lambda1 = rho (spectraal gat > 0).
+f2 = lim ratio_n^2 = spectrale convergentiefactor voor variantie.
 
-Let op: lambda1 hier = rho (de nonlineaire Perron-eigenwaarde van F), NIET de
-spectrale straal van de gelineariseerde Jacobiaan M (die groter kan zijn).
+Alternatieve meting: trac de voortgang van CV(n) = std(v_n)/mean(v_n) naar CV_inf.
+  |CV(n) - CV_inf| / |CV(n-1) - CV_inf|  ->  lambda2/lambda1
+
+Endpoint Decay: f2 < 1 <=> lambda2 < lambda1 (spectraal gat > 0).
 """
 import sys
 import numpy as np
@@ -23,8 +23,12 @@ A  = LAM ** -2.0
 B1 = LAM ** (ALPHA - 2.0)
 B3 = LAM ** (ALPHA - 1.0)
 
-print(f"229: f2-meting K-L operator via twee-punt machtiteratie  (lam={LAM})")
+# Schatting CV_inf uit Script 228 (methode A, k->inf)
+CV_INF_EST = 0.907   # conservatieve schatting
+
+print(f"229: f2-meting via convergentiequotient machtiteraten  (lam={LAM})")
 print(f"     A={A:.6f}  B1={B1:.6f}  B3={B3:.6f}")
+print(f"     CV_inf schatting: {CV_INF_EST}")
 print("=" * 65)
 print()
 sys.stdout.flush()
@@ -33,7 +37,8 @@ results = []
 
 for k in range(5, 16):
     N  = 3 ** (k - 1)
-    print(f"  k={k:2d}  N={N:>10,d} ...", end='', flush=True)
+    n_total = 600  # totaal iteraties
+    print(f"  k={k:2d}  N={N:>10,d}  ({n_total} iter) ...", end='', flush=True)
 
     i  = np.arange(N, dtype=np.int64)
     T4 = (4 * i + 2) % N
@@ -50,100 +55,106 @@ for k in range(5, 16):
         w[m0] += B1 * cb[R1[m0]]
         return w
 
-    # Start 1: v = uniform
-    v  = np.ones(N, dtype=np.float64)
-    # Start 2: v' = ones + kleine willekeurige perturbatie
-    rng = np.random.default_rng(seed=42)
-    eps0 = 1e-4
-    dv = eps0 * (rng.random(N) - 0.5)
-    vp = v + dv
+    v = np.ones(N, dtype=np.float64)
+    prev_diff = None
+    prev_v = None
+    cv_series = []
+    ratio_series = []
 
-    n_warmup = 200  # eerst convergeren naar buurt van v*
-    for _ in range(n_warmup):
-        v  = apply_F(v);  v  /= v.max()
-        vp = apply_F(vp); vp /= vp.max()
+    for it in range(n_total):
+        w = apply_F(v)
+        vn = w / w.max()
+        vn_norm = vn / vn.mean()  # voor CV berekening
+        cv_n = float(np.std(vn_norm))
+        cv_series.append(cv_n)
 
-    # Nu zijn v en vp dicht bij v*. Meet convergentiesnelheid van hun verschil.
-    diffs = []
-    for it in range(80):
-        diff = float(np.linalg.norm(v - vp))
-        diffs.append(diff)
-        v  = apply_F(v);  v  /= v.max()
-        vp = apply_F(vp); vp /= vp.max()
+        if prev_v is not None:
+            diff = float(np.linalg.norm(vn - prev_v))
+            if prev_diff is not None and prev_diff > 1e-15 and diff > 1e-15:
+                ratio = diff / prev_diff
+                ratio_series.append(ratio)
+            prev_diff = diff
+        prev_v = vn.copy()
+        v = vn
 
-    diffs = np.array(diffs)
-    # Vermijd nul-waarden
-    ok = diffs > 1e-300
-    if ok.sum() < 10:
-        print(f"  diff convergeert te snel of is nul")
-        continue
-
-    # Fit log(diff[n]) = log(C) + n * log(ratio)
-    ns_ok = np.where(ok)[0].astype(float)
-    log_diffs_ok = np.log(diffs[ok])
-
-    # Gebruik de LAATSTE helft van de gemeten punten (meest uitgeconvergeerd)
-    half = len(ns_ok) // 2
-    if half < 5:
-        half = 0
-    ns_fit     = ns_ok[half:]
-    log_diffs_fit = log_diffs_ok[half:]
-
-    if len(ns_fit) >= 5:
-        fit_slope, fit_intercept = np.polyfit(ns_fit, log_diffs_fit, 1)
-        ratio_measured = float(np.exp(fit_slope))
-    else:
-        ratio_measured = float('nan')
-
-    f2 = ratio_measured ** 2
-
-    # rho uit de power iteraat
+    # rho uit de laatste iteraat
     v_norm = v / v.mean()
     w_check = apply_F(v_norm)
     rho = float(w_check.mean())
+    cv_final = float(np.std(v_norm))
 
-    print(f"  rho={rho:.6f}  ratio=lambda2/lambda1={ratio_measured:.6f}  f2={f2:.6f}")
+    # Convergentiequotient: gebruik de MEEST RECENTE stabiele waarden
+    ratio_arr = np.array(ratio_series)
+    # Verwijder uitschieters en onbetrouwbare vroege waarden
+    valid = (ratio_arr > 0.001) & (ratio_arr < 10.0)
+    if valid.sum() > 100:
+        # Gebruik het laatste kwart (meest uitgeconvergeerd)
+        last_quarter_start = len(ratio_arr) - len(ratio_arr)//4
+        recent_ratios = ratio_arr[last_quarter_start:]
+        recent_valid = (recent_ratios > 0.001) & (recent_ratios < 10.0)
+        if recent_valid.sum() > 10:
+            ratio_mean = float(np.median(recent_ratios[recent_valid]))
+        else:
+            ratio_mean = float(np.median(ratio_arr[valid]))
+    else:
+        ratio_mean = float('nan')
+
+    f2_est = ratio_mean ** 2
+
+    # CV-convergentiemethode: gebruik CV_INF_EST
+    cv_arr = np.array(cv_series)
+    cv_gap = np.abs(cv_arr - CV_INF_EST)
+    # Ratio van opeenvolgende CV-gaten: |cv_n - cv_inf| / |cv_{n-1} - cv_inf|
+    cv_ratio_arr = cv_gap[1:] / (cv_gap[:-1] + 1e-30)
+    # Gebruik laatste kwart
+    lq = len(cv_ratio_arr) - len(cv_ratio_arr)//4
+    cv_ratio_recent = cv_ratio_arr[lq:]
+    cv_valid = (cv_ratio_recent > 0.01) & (cv_ratio_recent < 1.5)
+    if cv_valid.sum() > 10:
+        cv_ratio_median = float(np.median(cv_ratio_recent[cv_valid]))
+    else:
+        cv_ratio_median = float('nan')
+
+    print(f"\n    rho={rho:.6f}  cv={cv_final:.5f}  "
+          f"ratio_median={ratio_mean:.5f}  f2={f2_est:.5f}  "
+          f"cv_ratio={cv_ratio_median:.5f}")
+
+    # Extra info: std van de ratio (stabiliteit)
+    if valid.sum() > 100:
+        last_q = ratio_arr[last_quarter_start:]
+        lq_valid = (last_q > 0.01) & (last_q < 2.0)
+        print(f"    Ratio (laatste kwart): mean={float(np.mean(last_q[lq_valid])):.5f}  "
+              f"median={float(np.median(last_q[lq_valid])):.5f}  "
+              f"std={float(np.std(last_q[lq_valid])):.5f}  "
+              f"min={float(np.min(last_q[lq_valid])):.5f}  "
+              f"max={float(np.max(last_q[lq_valid])):.5f}")
+
     sys.stdout.flush()
+    results.append({'k': k, 'N': N, 'rho': rho, 'cv': cv_final,
+                    'ratio': ratio_mean, 'f2': f2_est,
+                    'cv_ratio': cv_ratio_median})
 
-    # Toon ook de ruwe ratios (laatste 20 iteraties)
-    raw_ratios = diffs[1:] / (diffs[:-1] + 1e-300)
-    last_ratios = raw_ratios[-20:]
-    print(f"    rho ratios (laatste 20): "
-          f"mean={float(np.mean(last_ratios[last_ratios>0])):.5f}  "
-          f"std={float(np.std(last_ratios[last_ratios>0])):.5f}")
-    sys.stdout.flush()
-
-    results.append({'k': k, 'N': N, 'rho': rho,
-                    'ratio': ratio_measured, 'f2': f2,
-                    'diffs': diffs.tolist()})
-
+print()
 print()
 print("=== SAMENVATTING ===")
 print()
-print(f"{'k':>4} {'N':>10} {'rho':>10} {'ratio':>10} {'f2':>10}")
-print("-" * 55)
+print(f"{'k':>4} {'N':>10} {'rho':>8} {'cv':>8} {'ratio':>9} {'f2':>9} {'cv_rat':>9}")
+print("-" * 65)
 for r in results:
-    print(f"  {r['k']:>2}  {r['N']:>10,d}  {r['rho']:>10.6f}  "
-          f"{r['ratio']:>10.6f}  {r['f2']:>10.6f}")
+    print(f"  {r['k']:>2}  {r['N']:>10,d}  {r['rho']:>8.5f}  {r['cv']:>8.5f}  "
+          f"{r['ratio']:>9.5f}  {r['f2']:>9.5f}  {r['cv_ratio']:>9.5f}")
 
 if results:
-    f2_vals = [r['f2'] for r in results]
-    ratio_vals = [r['ratio'] for r in results]
+    f2_vals = [r['f2'] for r in results if not np.isnan(r['f2'])]
+    cv_rat_vals = [r['cv_ratio'] for r in results if not np.isnan(r['cv_ratio'])]
     print()
-    print(f"f2 waarden:    {[f'{x:.5f}' for x in f2_vals]}")
-    print(f"ratio waarden: {[f'{x:.5f}' for x in ratio_vals]}")
-    print()
-    all_positive = all(x < 1.0 for x in f2_vals if not np.isnan(x))
-    print(f"f2 < 1 voor alle k: {'JA' if all_positive else 'NEE'}")
-    valid_f2 = [x for x in f2_vals if not np.isnan(x) and x > 0]
-    if valid_f2:
-        print(f"f2 (laatste geldig): {valid_f2[-1]:.5f}")
-        print(f"Spectrale kloof (1 - ratio): {1 - ratio_vals[-1]:.5f}")
-        print()
-        print("INTERPRETATIE:")
-        print(f"  lambda2/lambda1 ~ {ratio_vals[-1]:.5f}")
-        print(f"  f2 ~ {valid_f2[-1]:.5f} < 1 => Endpoint Decay bevestigd per stap")
-        print(f"  Variantie-attenuatie per K-L iteratie: f2 = {valid_f2[-1]:.5f}")
+    if f2_vals:
+        print(f"f2 waarden:      {[f'{x:.5f}' for x in f2_vals]}")
+        all_lt1 = all(x < 1.0 for x in f2_vals)
+        print(f"f2 < 1 voor alle k: {'JA' if all_lt1 else 'DEELS / NEE'}")
+    if cv_rat_vals:
+        print(f"cv_ratio waarden: {[f'{x:.5f}' for x in cv_rat_vals]}")
+        print(f"Gemiddelde cv_ratio (grote k): {np.mean(cv_rat_vals[-3:]):.5f}")
 
 print()
 print("done")

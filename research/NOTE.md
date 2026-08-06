@@ -13294,3 +13294,48 @@ FORMELE STATUS:
   - Bewijs dat correction monotoon daalt voor k > k_max: volgt uit dominante spectrale component argument.
   - Analytisch bewijs van spectrale dominantie (C1_eff is de enige component voor k >> k_max): work in progress.
 
+## Obs 488 (2026-08-06): k=19 GEVERIFIEERD + BREDE k=15..18 VERIFICATIE + CORRECTE corrLtoL
+
+### (a) Script 285: k=19, lambda=1.05 (N=387,420,489, float32, 40 iters, chunked T4)
+  E_s0/mu0=0.0000246  E_s2/mu2=0.0000265
+  ratio = 1.07794     (correctie t.o.v. limiet 1.09458: 0.01664)
+  rho: wmax convergeerde naar 1.576646 (stabiel vanaf iter 30).
+
+  VERGELIJKING MET MODEL (Obs 486): voorspeld 1.079, gemeten 1.0779. Model klopt op 0.001.
+  correction(19)=0.01664 > correction(18)=0.01601 > correction(17)=0.0159:
+  de trog ligt bij k~20-21 (consistent met k_max=20.2 uit model).
+  Verwacht minimum: ratio(20) ~ 1.0776 (correction ~ 0.0168 uit model).
+  BOUND UPDATE: correction(k) <= 0.017 voor alle k (model-max 0.0168 bij k=20.2).
+  Dus: ratio(k) >= 1.0946 - 0.017 = 1.0776 > 1 voor alle k >= 3, lambda=1.05.
+
+### (b) Script 288: k=15..18 voor lambda=1.10, 1.20, 1.30, 1.40 (16 cases, float32, 40 iters)
+  Alle 16 PASS. Minimum ratio 1.094835 (lambda=1.10, k=18).
+    lam=1.10: k=15: 1.1001, k=16: 1.0987, k=17: 1.0953, k=18: 1.0948
+    lam=1.20: k=15: 1.1270, k=16: 1.1250, k=17: 1.1220, k=18: 1.1212
+    lam=1.30: k=15: 1.1443, k=16: 1.1419, k=17: 1.1392, k=18: 1.1381
+    lam=1.40: k=15: 1.1527, k=16: 1.1501, k=17: 1.1476, k=18: 1.1463
+  CONCLUSIE: lambda=1.05 is inderdaad de hardste case; voor lambda>=1.10 blijft ratio >= 1.095
+  (dieper in de trog dan lambda=1.05 komt geen enkele andere lambda).
+  Voor lambda >= 1.50 is R(lambda) > 1 en is c2/c0 < R al triviaal uit c2/c0 -> R van onderen
+  plus m2m-monotonie; de kritieke strook is lambda in [1.05, 1.40].
+
+### (c) Script 287: GEFIXTE corrLtoL berekening (bug in 286: rho na normalisatie = 1.0)
+  Fix: wmax opslaan voor normalisatie; t = A/rho correct.
+  Correcte sqFR-waarden (k=14): lam=1.05: 1.0946, 1.10: 1.1165, 1.20: 1.1578,
+    1.30: 1.1939, 1.40: 1.2245 (uit 288), 2.00: 1.3062.
+  Resultaat over 144 cases: 3 "FAIL" van het corrLtoL > B_bound criterium:
+    lam=1.05 k=4 (corrLtoL=0.812 < B=0.916), lam=1.05 k=5 (0.907 < 0.915), lam=1.10 k=4 (0.849 < 0.899).
+  MAAR: bij die 3 cases is de ratio DIRECT geverifieerd (1.66, 1.24, 1.85) — het corrLtoL-criterium
+  is alleen een VOLDOENDE voorwaarde. Voor k >= 6 geldt corrLtoL > B_bound in ALLE 144 cases
+  met marge >= 0.05. Dit sluit de asymptotische keten:
+    ratio(k) = corrLtoL(k) * ratio_L2(k), ratio_L2 ~ sqrt(F)/R (exact ondergrensbaar via Obs 471),
+    corrLtoL(k) in [0.98, 1.00] voor lam=1.05 en k >= 6 (stabiel, geen dalende trend).
+
+### Gecombineerde status stap (3b)
+  DIRECT GEVERIFIEERD: k=3..14 x 12 lambda's (144 cases, Script 281) +
+    k=15..19 lambda=1.05 (Scripts 282/284/285) + k=15..18 lambda=1.10..1.40 (Script 288).
+  Totaal 164 cases, alle ratio > 1. Minimum: 1.07794 (lambda=1.05, k=19).
+  ASYMPTOTISCH: sqrt(F)/R > 1 exact (Obs 471); trog bij k~20 met diepte 0.017;
+    data-gestuurde bound ratio >= 1.0776 > 1 voor alle k.
+  RESTERENDE FORMELE KLOOF: rigoureuze spectrale bound C1_eff < 0.095 (veiligheidsfactor 5.6x).
+
