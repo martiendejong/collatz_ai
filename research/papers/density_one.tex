@@ -1923,13 +1923,20 @@ minimum ratio $1.0786$ at $k=18$).
 
 For $k>18$: the asymptotic limit $\sqrt{F}/R>1$ (exact by Obs~471: $F-R^2 = 2t\lambda(1-t^3)(\lambda^2-t)>0$
 for $t\in(0,1)$, $\lambda>1$) guarantees the condition as $k\to\infty$.
-The convergence is not monotone: the ratio passes through a minimum trough around $k\approx 18$
-(ratio $\approx 1.079$ at $\lambda=1.05$) before rising toward $\sqrt{F}/R$.
-Measured values at $\lambda=1.05$: $k=14$: $1.0838$; $k=15$: $1.0830$; $k=16$: $1.0822$;
-$k=17$: $1.0787$; $k=18$: $1.0786$; limit $\sqrt{F}/R=1.0946$.
-The global minimum over all tested $(k,\lambda)$ is $\approx 1.079$, leaving margin $>0.07$ above $1$.
-Formal closure for $k>18$: showing that the trough never dips below $1$ via K-L spectral gap analysis
-is work in progress; current numerical evidence gives minimum margin $\approx 0.079$.
+The convergence is not monotone: a two-component spectral model (Obs~486, fitted to $k\in[14,18]$)
+gives
+\[
+  \mathrm{ratio}(k) \;\approx\; \sqrt{F}/R \;-\; C_1\gamma_1^k + C_2\gamma_2^k,
+  \quad C_1 \approx 0.0446,\; C_2\approx 0.323,\; \gamma_1\approx 0.96,\; \gamma_2\approx 0.80.
+\]
+The minimum of this expression over all $k$ is $\approx 1.079$ at $k\approx 20$
+(differentiating and solving: $k_{\max} \approx \ln(C_2|\ln\gamma_2|/(C_1|\ln\gamma_1|))/\ln(\gamma_1/\gamma_2)\approx 20.2$).
+For $k>20$: $\mathrm{ratio}(k) > \sqrt{F}/R - C_1 = 1.0946 - 0.0446 = 1.050 > 1$
+(since $C_1\gamma_1^k \le C_1$ and the $C_2$-term is positive).
+Measured values at $\lambda=1.05$: $k=17$: $1.0787$; $k=18$: $1.0786$;
+model predicted minimum ($k\approx 20$): $\approx 1.079$; limit: $1.0946$.
+Formal residual: the two-component model is a fit, not a proof; a rigorous spectral bound on $C_1$
+via K-L operator theory is work in progress. The safety margin ($1.079 > 1$, margin $0.079$) is large.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
