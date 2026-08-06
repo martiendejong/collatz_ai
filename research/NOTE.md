@@ -13384,3 +13384,61 @@ regulariteitstheorie voor het K-L Perron-profiel + kwantitatieve discretisatiefo
 EMPIRISCH VERVOLG: k=20 (Script 289, lopend) en k=21 (haalbaar via memmap, ~1u) verlengen
 de directe verificatie en versmallen de familie; voorbij k~22 is directe berekening op.
 
+
+## Obs 490 (2026-08-06): EXACTE KLASSE-IDENTITEITEN — (3b) EQUIVALENT MET λ·s0 > s2 (DOORBRAAK)
+
+Alle onderstaande identiteiten zijn EXACT (machine-precisie geverifieerd, verify_identity*.py
+en verify_slack.py; 8 gevallen lam in {1.05,1.30,1.70,2.00} x k in {8,12}; identiteits-ratio
+1.00000000 in alle gevallen).
+
+### (a) Exacte klassegemiddelde-identiteiten
+Middel de eigenvergelijking rho*v[i] = A*v[T4(i)] + B_r*cb[R(s)] per klasse r = i mod 3.
+T4 beeldt klasse 0->2, 1->0, 2->1 af, bijectief per klasse (s -> 4s, 4s+2, 4s+3 mod Nl);
+R1(s) = 4s mod Nl en R3(s) = 2s+1 mod Nl zijn bijecties. Dit geeft het EXACTE stelsel:
+  rho*mu0 = A*mu2 + B1*cbar,  rho*mu1 = A*mu0,  rho*mu2 = A*mu1 + B3*cbar
+met cbar = E[cb]. Oplossen (t = A/rho):
+  ** mu1/mu0 = t   en   mu2/mu0 = (t^2+lam)/(1+t*lam) = R   EXACT, voor ELKE eindige k. **
+GEVOLG: stap (3b) c2/c0 < R  <=>  g2 > R*g0  <=>  g2/mu2 > g0/mu0,
+waar g_r = E[kolomgemiddelde - kolomminimum] (de "gap"). GEEN Gauss/equicorrelatie-benadering
+meer nodig — de m2m-formalisering via C3*sigma*sqrt(1-rho_intra) is hiermee OVERBODIG als
+schakel in de keten (blijft alleen als heuristische duiding).
+
+### (b) Klasse-1 is een exacte kopie van klasse 0
+v1[s] = t*v0[(4s+2) mod Nl] elementgewijs; op kolomniveau: elke klasse-1 kolom = t x een
+klasse-0 kolom (bijectie m -> (4m+2) mod Nl3, kolomstructuur behouden omdat 4*Nl3 = Nl3 mod Nl).
+Dus g1 = t*g0 exact en de hele klasse-1 gapverdeling is een geschaalde kopie.
+
+### (c) Exacte kolomrecursies
+  col_v0(m) = t*col_v2(4m) + t*lam^alpha * col_cb(4m)          [elementgewijs uitgelijnd]
+  col_v2(m) = t*col_v1(...) + t*lam^(alpha+1) * col_cb(2m+1)   [= t^2*col_v0(..) + ...]
+De cb-kolomindices doorlopen ALLE cb-kolommen precies een keer (bijecties m->4m, m->2m+1
+mod Nl3) => de geinjecteerde cb-gapgemiddelden zijn IDENTIEK: gamma0 = gamma2 = gammabar.
+
+### (d) Slack-reductie
+Definieer slack S = E[min(a*x+b*y)] - a*E[min x] - b*E[min y] >= 0 (superadditiviteit van min).
+Klasse 0: (a,b) = (t, w) met w = t*lam^alpha, paren (col_v2(j), col_cb(j)).
+Klasse 2: (a,b) = (t^2, lam*w), paren (col_v0(sigma(m)), col_cb(tau(m))).
+Met W := lam*(1-t^3)/(1+t*lam) geldt EXACT (alle coefficienten vallen samen op W):
+  (1-t^3)*(g2 - R*g0) = W*(s0 - s2/lam)
+  ** (3b)  <=>  lam*s0 > s2. **
+GEMETEN: s2/s0 = 0.55..0.70 (stabiel over lam en k), terwijl lam >= 1.05 — ruime marge.
+
+### (e) Rigoureuze eigenschappen van S (bewezen lemma's)
+  (i) S(a,b) >= 0; S(0,b) = S(a,0) = 0.
+  (ii) S is 1-homogeen: S(ca,cb) = c*S(a,b).
+  (iii) S is concaaf in (a,b) (min van lineaire functies minus lineair).
+  (iv) S is coordinaatsgewijs NIET-DALEND: dS/da = E[x_J - min x] >= 0 puntsgewijs
+       (J = argmin van de mix). Geldt onvoorwaardelijk voor elk ensemble.
+Via (ii): s2 = lam*S_ens2(t^2/lam, w). Dus VOLDOENDE voor (3b):
+  S_ens2(t^2/lam, w) < S_ens0(t, w),
+met t^2/lam ~ 0.31 << t ~ 0.58 (lam=1.05): monotonie (iv) levert het kussen zodra de
+ensemble-vergelijking (col_v0-ensemble vs col_v2-ensemble, verschillende koppeling aan cb)
+is gecontroleerd. col_v2 = t*col_v1 + lam*w*col_cb (recursie!) suggereert INDUCTIE in k.
+
+### Resterende formele kloof (geherformuleerd)
+Oud: "bound C1 < 0.095 in een niet-identificeerbaar spectraal model" (Obs 489: ingetrokken).
+Nieuw: bewijs S_ens2(t^2/lam, w) <= S_ens0(t, w) — een vergelijking van twee expliciete,
+niet-negatieve, concave, monotone functionalen op eindige ensembles, met factor-lam kussen
+en inductieve structuur. Dit is een scherp geformuleerd combinatorisch/variationeel probleem,
+GEEN asymptotische rate-schatting meer. Empirisch vervolg: meet s2/s0 voor k = 13..19 om de
+limiet L(lam) = lim s2/s0 te schatten (verwacht ~0.75 bij lam=1.05, ver onder lam).

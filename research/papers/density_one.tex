@@ -1851,6 +1851,56 @@ $1.07794$ at $k=19$, and at $\lambda\in\{1.10,\ldots,1.40\}$ for $k\in[15,18]$ (
 minimum ratio $1.0948$ ($164$ verified cases in total).
 \end{lemma}
 
+\begin{lemma}[Exact class identities and slack reduction]\label{lem:exact_reduction}
+Let $v$ be the Perron eigenvector of the K-L operator at level $k$, $t=A/\rho$,
+$\mu_r$ the class-$r$ mean, $c_r$ the class-$r$ column-min mean, $g_r=\mu_r-c_r$
+the mean column gap, and $\bar c=\mathbb{E}[cb]$. Then, exactly, for every finite $k$
+and every $\lambda$:
+\begin{enumerate}
+\item[(i)] $\mu_1=t\,\mu_0$ and $\mu_2 = R(\lambda)\,\mu_0$ with $R=(t^2+\lambda)/(1+t\lambda)$.
+\item[(ii)] Every class-$1$ column equals $t$ times a class-$0$ column
+  (bijection $m\mapsto (4m{+}2) \bmod N_{l3}$); hence $g_1=t\,g_0$.
+\item[(iii)] Column recursions: $\mathrm{col}_{v_0}(m)= t\,\mathrm{col}_{v_2}(4m)
+  + t\lambda^{\alpha}\,\mathrm{col}_{cb}(4m)$ and
+  $\mathrm{col}_{v_2}(m)= t^2\,\mathrm{col}_{v_0}(\sigma(m))
+  + t\lambda^{\alpha+1}\,\mathrm{col}_{cb}(2m{+}1)$, elementwise aligned; the cb-column
+  index maps are bijections, so both classes receive every cb-column exactly once.
+\item[(iv)] With the slack functional
+  $S = \mathbb{E}[\min(ax+by)] - a\,\mathbb{E}[\min x] - b\,\mathbb{E}[\min y]\ \ge 0$
+  evaluated on the class-$0$ decomposition ($s_0$, weights $(t,\,t\lambda^\alpha)$) and the
+  class-$2$ decomposition ($s_2$, weights $(t^2,\,t\lambda^{\alpha+1})$), and
+  $W=\lambda(1-t^3)/(1+t\lambda)$:
+  \[
+    (1-t^3)\,(g_2 - R\,g_0) \;=\; W\,\bigl(s_0 - s_2/\lambda\bigr).
+  \]
+\end{enumerate}
+Consequently, by (i), step~(3b) $c_2/c_0<R$ is \emph{equivalent} to $g_2>R\,g_0$, and by (iv)
+to the single inequality
+\[
+  \boxed{\;\lambda\, s_0 \;>\; s_2.\;}
+\]
+Moreover $S$ is $1$-homogeneous, concave, and coordinatewise nondecreasing in $(a,b)$
+(the derivative $\partial S/\partial a = \mathbb{E}[x_J-\min x]\ge 0$ pointwise, $J$ the
+argmin of the mix), so $s_2 = \lambda\,S_{\mathrm{ens}_2}(t^2/\lambda,\, t\lambda^\alpha)$
+and it suffices to compare the two ensembles at weights $t^2/\lambda \ll t$.
+\end{lemma}
+
+\emph{Proof sketch.} (i): average the eigen-equation over each class; $T_4$ maps class
+$0\to2$, $1\to0$, $2\to1$ bijectively ($s\mapsto 4s,\,4s{+}2,\,4s{+}3 \bmod N_l$), and
+$R_1,R_3$ are bijections, so each class-average sees $\bar c$; solve the resulting
+$3\times3$ linear system. (ii): the class-$1$ rows have no cb-term. (iii): substitute
+$s=m+eN_{l3}$ and use $4N_{l3}\equiv N_{l3} \pmod{N_l}$. (iv): expand both recursions,
+take means, use (iii)'s bijectivity ($\gamma_0=\gamma_2=\bar\gamma$, which cancels), and
+observe that both coefficient combinations reduce to $W$. All four parts verified to
+machine precision for $\lambda\in\{1.05,1.30,1.70,2.00\}$, $k\in\{8,12\}$
+(identity ratio $1.00000000$; reconstruction error $<10^{-15}$). $\square$
+
+\emph{Significance.} The equicorrelated-Gaussian step below is thereby demoted from a
+link in the chain to a heuristic interpretation: the exact target is $\lambda s_0>s_2$,
+a comparison of two explicit nonnegative concave functionals with a factor-$\lambda$
+cushion. Measured $s_2/s_0 \in [0.55,0.70]$ across all tested $(\lambda,k)$,
+against the required $s_2/s_0 < \lambda \ge 1.05$.
+
 \emph{Evidence (Scripts~269--281).}
 
 \textbf{Numerical verification.}
@@ -1942,12 +1992,14 @@ $k\approx 21$, degrading to $\approx 1.03$ at $k=60$, and ceases to exclude rati
 near $k\approx 100$ for its most slowly decaying members ($\gamma_1\approx 0.998$).
 \emph{Honest formal status:} step~(3b) is proved for the directly verified range
 ($164$ cases, $k\le 19$, minimum ratio $1.07794$) and holds asymptotically with the exact
-limit $1.0946$; for the intermediate range the condition is supported by the trend and by
-the structural inequality $F>R^2$ at every $k$ (Obs~471, which controls the $L^2$-version
-of the ratio), but a rigorous bound on the convergence \emph{rate} of the column statistics
-to their continuum ($3$-adic) limit is required to close it and is work in progress
-(the natural route: H\"older regularity of the limiting K-L Perron profile on $\mathbb{Z}_3$,
-which would give $\mathrm{dev}(k)\le c\,3^{-\beta k}$ with effective constants).
+limit $1.0946$. For the remaining range, Lemma~\ref{lem:exact_reduction} reduces the
+condition \emph{exactly} to $\lambda s_0 > s_2$ (measured $s_2/s_0\in[0.55,0.70]$,
+required $<\lambda$); closing it rigorously requires the ensemble comparison
+$S_{\mathrm{ens}_2}(t^2/\lambda, t\lambda^\alpha) \le S_{\mathrm{ens}_0}(t, t\lambda^\alpha)$,
+for which the monotonicity/concavity/homogeneity toolkit of the slack functional and the
+inductive structure of the column recursions (each $v_2$-column is itself a mix one level
+deeper) are the natural instruments. This replaces the earlier open-ended convergence-rate
+question with a sharply formulated variational problem. Work in progress.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
