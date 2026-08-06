@@ -13477,3 +13477,16 @@ Alle 144 gevallen: lam*s0 > s2 met RUIME marge.
   Trend in k (lam=1.05): s2/s0 stijgt langzaam: 0.55 (k=8) -> 0.70 (k=12) -> ~0.74 richting
   limiet; de (3b)-limietmarge 1.0946 > 1 correspondeert met lim s2/s0 < lam. Voor het
   tail-bewijs is een bovengrens lim sup s2/s0 <= L < 1.05 nodig; empirisch L ~ 0.75-0.85.
+
+## Obs 492 (2026-08-06): s2/s0 TREND NAAR DE LIMIET (Script 292, lam=1.05)
+
+k=15: 0.72815, k=16: 0.72887, k=17: 0.74094 (float64, RAM).
+Volledig profiel lam=1.05 (Scripts 291+292): na klein-k ruis (piek 0.743 bij k=7,
+dip 0.554 bij k=8) stijgt s2/s0 glad en vertragend: 0.660 (k=9) -> 0.702 (k=11) ->
+0.723 (k=14) -> 0.741 (k=17). Schijnbare limiet L ~ 0.75-0.80, RUIM onder lam = 1.05.
+
+Verband met de limiet: via de identiteit is lim s2/s0 < lam equivalent met de strikte
+asymptotische ongelijkheid G_inf = lim g2/(R*g0) > 1 (zelfde open kern als voorheen; de
+s-formulering geeft er een factor-lam kussen en een variationele structuur omheen).
+Gemeten g2/(R*g0) bij k=12: 1.0937 — dicht bij de sigma-ratio-limiet 1.0946, consistent
+met stabiliserende gapvormen.
