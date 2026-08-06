@@ -25,3 +25,7 @@
 - CEILING model (gamma_inf = H(1/log2 3) = 0.950): gamma flattens, never crosses 0.950.
 - DENSITY model (gamma_inf = 1): gamma crosses 0.950 around k ~ 27 +- 3.
 - Discriminating experiment: exact-integer certifications at k = 25-30 (cloud scale).
+
+13. (frozen 2026-08-06, Obs 502) gamma-ladder law (1-gamma) ~ C*(2/3)^(k/6):
+    gamma(25) = 0.9378 +- 0.002; gamma(27) = 0.9457 +- 0.002;
+    gamma crosses 0.95 at k = 28.3 +- 1. (DENSITY fork; CEILING predicts flattening.)

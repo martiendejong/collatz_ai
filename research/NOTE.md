@@ -13810,3 +13810,42 @@ Delta-bound — triviaal veilig omdat zelfs Delta <= 20 (kappa=0.9999, loc 4e-25
 volstaat; grove rigoureuze entry-bounds op M^38 zijn genoeg.
 SCHAALBAARHEID: zelfde keten werkt per (lambda, k); positiviteitsdiepte groeit ~lineair
 in k, Delta blijft klein (operator goed mengend na m stappen).
+
+## Obs 502 (2026-08-06): GAMMA-LADDER-WET, RHO-CASCADE-KOPPELING, DIGIT-1-VOORSPELLING (Script 306)
+
+### (a) De gamma-ladder volgt een zuivere geometrische wet — kandidaat (2/3)^(1/6)
+De 9 certificaatpunten (k=9..21, incl. de 7 records): (1-gamma_k) ~ C * r^k met
+r = 0.9347 globaal gefit, max log-residu 1.3% over 12 diepteniveaus.
+KANDIDAAT GESLOTEN VORM: r = (2/3)^(1/6) = 0.93466 (match op 4 decimalen).
+Structurele duiding: 2/3 is de chain-survival-wet per generatie (Freshness Lemma);
+"/6" zou ~6 diepteniveaus per effectieve generatie betekenen.
+EERLIJK: 1 gefitte parameter + familie simpele kandidaten => numerologierisico;
+daarom VOORGEREGISTREERD (PREDICTIONS #13): gamma(25) = 0.9378 +- 0.002,
+gamma(27) = 0.9457 +- 0.002, 0.95-kruising bij k = 28.3 +- 1 (DENSITY-vork;
+CEILING-model voorspelt afvlakking en geen kruising).
+NB: certificaat-lambda's zijn ronde rationalen (marge ~2e-4) => gamma-vervuiling
+~1.5e-4, klein t.o.v. incrementen 4e-3; de wet is daar robuust voor.
+
+### (b) rho convergeert exact met de cascade-amplitude: rate = sqrt(plateau)
+rho(k)-incrementen bij lam=1.05, ratio's k=14..17: 0.633, 0.631, 0.640, 0.636 —
+doodstabiel op 0.635 = sqrt(prefix-plateau 0.41) = 0.640 binnen 1%.
+Twee onafhankelijke observabelen (Perron-eigenwaarde-convergentie en de
+prefix-variantie-cascade) delen EEN constante. Dit bindt de cascade-ratio aan
+een spectraal meetbare grootheid en geeft een tweede instrument voor Conjectuur G.
+
+### (c) Digit-1-profiel analytisch voorspeld — raak bij lam=1.70, leerzaam mis bij 1.05
+Voorspelling uit exacte identiteiten (cb-subklasse-injectie: klasse 0 krijgt c_{d},
+klasse 2 krijgt c_{tau(d)} met tau = transpositie 0<->1 — het 2=-1 mod 3 mechanisme):
+  lam=1.70: cos(voorspeld, gemeten) = +0.9987 (!) — de tweede sport van de ladder
+    is analytisch berekenbaar; amplitude-ratio 0.45 (linearisatie + ontbrekende A-term).
+  lam=1.05: cos = -0.03 — MIS, en begrepen: bij lage lam domineert de A-term-transport
+    (de x4-carry sleept het grote digit-0-effect naar digit-1-afhankelijkheid), die de
+    voorspelling nog niet meeneemt. VOLGENDE STAP: volledige eerste-orde transfer
+    (injectie + A-transport) — dat is exact de analytische cascade-recursie.
+
+### Dynamische-base-afronding (antwoord op Martiens vraag)
+De groeiende-capaciteit-variant (factoradic/Ostrowski) toonde zich NIET in de data
+(resonantietest nul, Obs 496). Het duale patroon — vaste base 3 met geometrisch
+krimpende informatie per digit — bleek de productieve incarnatie: het is nu het
+centrale object (de cascade) van de hele G-strategie. De dynamische base leeft dus
+voort als spiegelbeeld: niet meer opties per digit, maar minder informatie per digit.
