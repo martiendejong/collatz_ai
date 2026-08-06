@@ -1995,13 +1995,20 @@ near $k\approx 100$ for its most slowly decaying members ($\gamma_1\approx 0.998
 \emph{Honest formal status:} step~(3b) is proved for the directly verified range
 ($165$ cases, $k\le 20$, minimum ratio $1.07769$) and holds asymptotically with the exact
 limit $1.0946$. For the remaining range, Lemma~\ref{lem:exact_reduction} reduces the
-condition \emph{exactly} to $\lambda s_0 > s_2$ (measured $s_2/s_0\in[0.55,0.70]$,
-required $<\lambda$); closing it rigorously requires the ensemble comparison
-$S_{\mathrm{ens}_2}(t^2/\lambda, t\lambda^\alpha) \le S_{\mathrm{ens}_0}(t, t\lambda^\alpha)$,
-for which the monotonicity/concavity/homogeneity toolkit of the slack functional and the
-inductive structure of the column recursions (each $v_2$-column is itself a mix one level
-deeper) are the natural instruments. This replaces the earlier open-ended convergence-rate
-question with a sharply formulated variational problem. Work in progress.
+condition \emph{exactly} to $\lambda s_0 > s_2$ (measured $s_2/s_0\le 0.74$ across all
+tested cases, apparent limit $\approx 0.75$--$0.80$ at $\lambda=1.05$, required $<\lambda$).
+Structural findings sharpen the target (Obs~493--494): pointwise,
+$\mathrm{slack}=\min_j(a\,u_j+b\,q_j)$ over the excess vectors $u=x-\min x$, $q=y-\min y$;
+the excess vectors obey the exact one-level recursion
+$p_2 = t^2 p_0' + \lambda w\, q' - \mathrm{slack}'$, so the pair law of $(p,q)$ satisfies a
+renormalization fixed-point equation. Empirically the argmin-misalignment probability
+converges to the independence value $2/3$ for both ensembles, and the normalized
+conditional slacks stabilize rapidly ($0.99$ and $1.18$), giving the limit decomposition
+$L=\lim s_2/s_0 \approx (\kappa_2/\kappa_0)\cdot t\cdot (g_0/g_2)_\infty \approx 0.73$,
+matching measurement. The remaining rigorous work is a one-time fixed-point analysis
+(contraction of the excess-pair law under renormalization; argmin-mixing of the index maps
+$m\mapsto 4m,\ 2m{+}1$; bound $L<\lambda$ at the fixed point) — replacing unbounded-$k$
+verification by a single variational/mixing argument. Work in progress.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
