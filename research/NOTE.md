@@ -14065,3 +14065,29 @@ STATUS c<1-PROGRAMMA NA VANDAAG (eerlijke eindstand):
   H1/H2 tegelijk: als gap lokaal ~ mean^e met vaste e, volgt proportionaliteit
   met b = e*gamma en positiviteit uit gamma > 0 automatisch!).
 De elasticiteitswet zou dus het HELE homogenisatie-lemma kunnen dragen.
+
+## Obs 510 (2026-08-06): e-> 2 GEFALSIFIEERD ALS UNIVERSEEL; e(q) IS EEN INTRINSIEK VAST PROFIEL
+
+### Falsificatie (Script 315)
+e-> 2 geldt NIET universeel: lam=1.30 schiet door (e -> 4.3), lam=1.90 blijft eronder
+(-> 1.69, stijgend), lam=1.05 exploderend (ruisregime). De "schone 2.0" bij lam=1.70
+(Obs 509) was een momentopname bij k=13, q=6. INGETROKKEN als kandidaat-wet.
+Ook: de multifractale kruis-cel-koppeling dlog(gamma_C)/dlog(m_C) is ZWAK (+0.08..0.24),
+niet e-1: binnen-cel-elasticiteit en tussen-cel-koppeling zijn verschillende dingen.
+
+### Collapse-test (Script 316): e(q) is INTRINSIEK
+Over k=12/13/14 collapsen de e(q)-profielen puntsgewijs in q (bulk):
+  q=2: 1.41/1.42/1.40   q=3: 1.60/1.63/1.61   q=4: 1.63/1.75/1.73
+  q=5: 1.87/1.85/1.92   q=6: 1.80/1.97/1.99   q=7: -/1.97/2.21
+GEEN collapse in k-q-coordinaten; de bovenste 2-3 digits (afstand d<=4 van de top)
+zijn randartefacten (e = 2.4-3.5, groeiend met k — uitsluiten in analyses).
+CONCLUSIE: e(q) is een vast stijgend profiel (zelfde familie als het ratio-profiel
+van Obs 497), zonder universele limiet; lambda-afhankelijk en mogelijk onbegrensd
+bij lage lambda.
+
+### Consequentie voor c<1
+b_q = e_q * gamma_q met gamma_q geometrisch dalend en e_q stijgend. De diepe vraag:
+blijft het product weg van 0 (gemeten: b_q steeg 0.036 -> 0.19 t/m q=10 bij lam=1.70 —
+JA empirisch). Dit is dezelfde vaste-profiel-stabiliteit als Obs 497; de creep-vraag
+in nog een gedaante. Methodische winst: randartefact-regel (d<=4 uitsluiten) voorkomt
+toekomstige schijnpatronen zoals de e=2-momentopname.
