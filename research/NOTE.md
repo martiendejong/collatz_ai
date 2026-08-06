@@ -13933,3 +13933,39 @@ P(mis)=2/3, onafhankelijkheid) zijn precies het gereedschap om c te begrenzen.
 Alle 12 lambda's x k in {9,10}: 24/24 rigoureus positief. Kleinste marge over het
 volledige blok k=5..10: +1.550e-4 (lambda=21/20, k=10). Identiteit tot 33 cijfers.
 Gecombineerd certificaat: research/certificates/cert_lemmaA_k5-10.txt (72 gevallen).
+
+## Obs 505 (2026-08-06): c-DECOMPOSITIE — HET c<1-BEWIJS SPLITST IN TWEE CONCRETE LEMMA'S
+
+### Exacte decompositie (Script 311)
+Schrijf E[min|cel] = takgemiddelde - G(cel). Regressie dG_q = b_q*m_q(v) + eps_q
+(orthogonaal). Dan EXACT: c_q = (1-b_q)^2 + Var(eps_q)/inc_q.
+GEVERIFIEERD: identiteit klopt op 4 decimalen per q, alle lambda's.
+
+### Metingen (k=13)
+- Var(eps)/inc = 0.0000 voor q <= 7 bij ALLE lambda's (1.05/1.30/1.70):
+  de gap-toename is BIJNA PERFECT proportioneel aan de niveau-toename
+  (corr(m, dG) tot +0.992 bij lam=1.70). Schaal-proportionaliteit bijna exact.
+- b_q > 0 overal (op een ruisvloer-punt na: q=8, lam=1.05, dieptes bij precisiegrens).
+- b_0 = globale relatieve topgap: lam=1.70: b_0=0.0363 vs E[G]/E[vbar]=0.0339;
+  lam=1.30: 0.0048 vs 0.0046; lam=1.05: 0.0004 vs 0.00045. IDENTIFICATIE: b_0 is
+  de relatieve gap zelf.
+- b_q GROEIT met diepte (lam=1.70: 0.036 -> 0.19 bij q=10) — de diepe cellen
+  hebben sterkere gap-niveau-koppeling. Dit drijft de c-daling met q.
+
+### De twee resterende lemma's (samen => c < 1 => Conjectuur G op het eindpunt)
+LEMMA ALPHA (positieve gap-niveau-associatie): b_q >= b_min > 0.
+  Mechanisme: 1-homogeniteit + celonafhankelijke vormverdeling => cellen met hoger
+  conditioneel gemiddelde zijn opgeschaalde kopieen => gap schaalt mee.
+  FKG/EPW-associatie is het formalisatiegereedschap (al in het paper geciteerd).
+LEMMA BETA (vorm-homogenisatie): Var(eps_q) <= theta * b_q(2-b_q) * inc_q, theta < 1.
+  Empirisch theta <= 0.15 in de bulk; eps meet vorm-heterogeniteit tussen cellen,
+  begrensd door de mixing/equidistributie (Obs 494/499).
+GEVOLG: c = (1-b)^2 + resid geeft een ANALYTISCHE uitdrukking voor de mysterieuze
+d_inf ~ 0.84 van Conjectuur G: bij het eindpunt (1-b)^2 = 0.824 => b ~ 0.092 —
+de relatieve topgap bij lambda=2 (~9%, consistent met metingen).
+De creep-vraag wordt: convergeert b_q naar een positieve limiet (vast profiel,
+Obs 497 zegt ja empirisch) en blijft het residu begrensd.
+
+EERLIJKE KANTTEKENINGEN: diepe q (>=9) hebben groeiend residu en ruis; de b-groei
+met q verdient een eigen verklaring (kandidaat: conditionele relatieve gap groeit
+met vergrotingsfactor van de cel-hierarchie).
