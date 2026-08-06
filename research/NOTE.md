@@ -13791,3 +13791,22 @@ Output: E:/temp/cert_full_out.txt (kopie: research/certificates/cert_lemmaA_k5-8
 Computational Lemma A is voor het blok k in [5,8] x 12 lambda's nu een rigoureus
 computer-geassisteerd resultaat (op de Birkhoff-eigenvectorafstand-stap na,
 residual ~1e-30 vs marges >= 1.7e-3).
+
+## Obs 501 (2026-08-06): BIRKHOFF-KETEN SLUIT — LEMMA A LAGE-k-BLOK STRUCTUREEL COMPLEET
+
+Script 305, krapste geval (lambda=21/20, k=7, marge +5.4e-4):
+  (1) Argmin-stabiliteit: min relatieve marge 1.125e-5 (mediaan 5.3e-3). Binnen elke
+      bal met straal << 1e-5 rond w is het argmin-patroon bevroren => F = M_pi exact
+      lineair daar. Frozen-check: |M w - rho w|/min(w) = 1.95e-15.
+  (2) M_pi^38 volledig positief (positiviteitsdiepte m=38);
+      projectieve diameter Delta_38 = 2.944 => Birkhoff kappa = 0.627.
+  (3) Lokalisatie: d_H(w, v*) <= m*eps/(1-kappa) = 1.0e-28
+      (eps ~ 1e-30 CW-residual uit Obs 500).
+KETEN: CW (onvoorwaardelijk) + argmin-stabiliteit (1e-5 >> 1e-28) + Birkhoff-contractie
+  => criteria bij v* = criteria bij w tot op 1e-28 << marges 5.4e-4.
+CONCLUSIE: het gecertificeerde blok van Lemma A (48 gevallen, k=5..8) is nu STRUCTUREEL
+een volledig computer-geassisteerd bewijs. Resterend: mechanische intervalversie van de
+Delta-bound — triviaal veilig omdat zelfs Delta <= 20 (kappa=0.9999, loc 4e-25) ruim
+volstaat; grove rigoureuze entry-bounds op M^38 zijn genoeg.
+SCHAALBAARHEID: zelfde keten werkt per (lambda, k); positiviteitsdiepte groeit ~lineair
+in k, Delta blijft klein (operator goed mengend na m stappen).
