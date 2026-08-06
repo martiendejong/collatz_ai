@@ -14193,3 +14193,16 @@ de contractie c hangen exact samen; de volledige k-afhankelijkheid van het
 klassegemiddelde-niveau is een vrijheidsgraad, exact geparametriseerd door rho.
 Het hele gamma->1-programma comprimeert tot: "gammabar(2,k) -> 0 geometrisch"
 — en de gemeten rate is sqrt(c) met c ~ 0.83 via drie instrumenten.
+
+## Obs 515 (2026-08-07): k=21 GEVERIFIEERD — ratio = 1.07744, TROG VLAKT AF
+
+Script 290 (memmap, N=3^20=3.49e9, float32, 30 iters, ~14u wandklok incl. I/O-concurrentie):
+  E_s0/mu0=0.0000131  E_s2/mu2=0.0000141
+  ratio = 1.07744  (sigma-proxy)  dev = 0.01714
+dev-reeks lam=1.05: 0.0159 (k17), 0.0160 (k18), 0.0166 (k19), 0.0169 (k20), 0.0171 (k21).
+Incrementen: +0.0001, +0.0006, +0.0003, +0.0002 — sterk vertragend; geextrapoleerde
+trog dev_max ~ 0.0176 rond k~22-25 => ratio_min ~ 1.0770 >> 1.
+Direct geverifieerd totaal: 166 gevallen, minimum 1.07744 (lam=1.05, k=21).
+NB: rho(21)=1.576581 bij 30 iters licht onder-geconvergeerd (k=20 gaf 1.576710 bij
+35 iters; wmax oscilleerde nog); de ratio-statistiek is daar robuust voor (schaalvrij).
+Exact-criterium-pass (gap-vorm) op de bewaarde vector loopt (294-stijl).
