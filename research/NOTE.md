@@ -13152,25 +13152,101 @@ FORMELE KLOOF (resterende):
 Verificatie E[sigma_within(v2)]/mean_v2 > E[sigma_within(v0)]/mean_v0 voor k=15..18 bij lambda=1.05.
 
 DATA:
-  k  iters  E_s0/mu0   E_s2/mu2   ratio   R      F    sqrt(F)/R
-  15  150   0.0001482  0.0001605  1.08300  0.8609  0.8880  1.09457
-  16  100   0.0000946  0.0001024  1.08217  0.8609  0.8880  1.09457
-  17   80   0.0000604  0.0000652  1.07867  0.8609  0.8880  1.09458
-  18   60   0.0000385  0.0000416  1.07856  0.8609  0.8880  1.09458
+  k  iters  E_s0/mu0   E_s2/mu2   ratio    R      F    sqrt(F)/R  cross-check
+  15  150   0.0001482  0.0001605  1.08300  0.8609  0.8880  1.09457  (Scripts 282)
+  16  100   0.0000946  0.0001024  1.08217  0.8609  0.8880  1.09457  (Scripts 282)
+  17   80   0.0000604  0.0000652  1.07867  0.8609  0.8880  1.09458  (Scripts 282)
+  17  200   (rerun)               1.07867  0.8609  0.8880  1.09458  (br392kexb CONFIRMED)
+  18   60   0.0000385  0.0000416  1.07856  0.8609  0.8880  1.09458  (b9rky1spj)
+  18   80   (float32)             1.07856  0.8609  0.8880  1.09458  (Script 284/bib7yyj0o CONFIRMED)
 
-ALLE 4 gevallen: ratio > 1 (minimum 1.07856 bij k=18). OK.
+ALLE 4 k-waarden: ratio > 1 (minimum 1.07856 bij k=18). OK.
+CROSS-CHECK: k=17 (80 vs 200 iters) identiek. k=18 (60 vs 80 iters, float32 vs float64) identiek.
+  => Iteratieconvergentie bevestigd. Werkelijke fout < 0.00005.
 
 INZICHT: de ratio nadert de limiet 1.0946 van ONDEREN maar niet monotoon.
-  Er is een minimumtrog rond k=17-18 (ratio ≈ 1.079), daarna stijgt ratio naar 1.095.
-  Voor alle geteste k (3..18) geldt ratio > 1.078 >> 1.
+  Er is een minimumtrog rond k=17-18 (ratio ≈ 1.079), daarna stijgt ratio terug naar 1.095.
+  Twee-component model (Obs 486) voorspelt maximale trog bij k≈20 (ratio ≈ 1.079).
+  Voor alle geteste k (3..18) geldt ratio > 1.0786 >> 1.
 
-ITERATIE-NAUWKEURIGHEID:
-  k=17 (80 iters): fout ~ 0.96^80 ≈ 3.8% op eigenvector, effect op ratio ~ ±0.003.
-  k=18 (60 iters): fout ~ 0.96^60 ≈ 8.8% op eigenvector, effect op ratio ~ ±0.007.
-  MAAR: k=17 resultaat (1.07867) identiek voor 60 EN 80 iteraties => fout kleiner dan geschat.
-  Werkelijke iteratiefout bij k=17,18: waarschijnlijk < 0.001.
+CONCLUSIE: ratio > 1.0786 voor k=3..18, lambda=1.05. Formele kloof voor k>18 via Obs 486 + Script 285.
 
-CONCLUSIE: ratio > 1.079 voor k=3..18, lambda=1.05. Formele kloof voor k>18 via asymptotiek.
+Git commits:
+  113f1e5: Obs 485 in NOTE.md + density_one.tex update
+  (pending): Obs 486 twee-component model + Script 285 k=19
 
 Git commit: na Obs 485 en update density_one.tex.
+
+## Obs 486 (2026-08-06): TWEE-COMPONENT SPECTRALE MODEL - ANALYSEPAD VOOR k>18
+
+DOEL: Beargumenteer ratio(k) > 1 voor ALLE k > 18 via spectrale structuur.
+
+### Twee-component model
+Data voor lambda=1.05 suggereren:
+  ratio(k) ≈ ratio(∞) - C1 * gamma1^k + C2 * gamma2^k
+  met ratio(∞) = 1.09457, gamma1 ≈ 0.96, gamma2 ≈ 0.80.
+
+Fit op k=14..18 data:
+  C1 ≈ 0.04461 (langzaam-vervallende component, drift ratio omlaag)
+  C2 ≈ 0.3227  (snel-vervallende component, drift ratio omhoog)
+  gamma1 = 0.96, gamma2 = 0.80
+
+CHECK (model vs data):
+  k=14: model 1.095 - 0.04461*0.96^14 + 0.3227*0.80^14
+       = 1.095 - 0.02520 + 0.01420 = 1.084  ✓ (data: 1.0838)
+  k=15: 1.095 - 0.02418 + 0.01135 = 1.082  ✓ (data: 1.0830)
+  k=16: 1.095 - 0.02322 + 0.00909 = 1.081  ~ (data: 1.0822)
+  k=17: 1.095 - 0.02230 + 0.00727 = 1.080  ~ (data: 1.0787)
+  k=18: 1.095 - 0.02140 + 0.00582 = 1.079  ✓ (data: 1.0786)
+
+MODEL VOORSPELLINGEN voor k>18:
+  k=19: 1.095 - 0.02054 + 0.00465 = 1.079 (correctie ≈ 0.016)
+  k=20: 1.095 - 0.01972 + 0.00372 = 1.079 (maximale trog)
+  k=22: 1.095 - 0.01822 + 0.00238 = 1.079
+  k=25: 1.095 - 0.01625 + 0.00122 = 1.080
+  k=30: 1.095 - 0.01311 + 0.00040 = 1.082 (ratio begint te stijgen)
+  k=inf: 1.09457 (limiet)
+
+MAXIMALE TROG: bij k_max ≈ 20.2, correctie ≈ 0.0160.
+  k_max = log(C2*log(gamma2) / (C1*log(gamma1))) / log(gamma1/gamma2)
+        = log(0.3227*0.2231 / (0.04461*0.0408)) / log(0.96/0.80)
+        = log(39.56) / 0.1823 ≈ 20.2
+
+CONCLUSIE UIT MODEL:
+  ratio(k) >= 1.095 - 0.016 = 1.079 voor ALLE k >= 3.
+  Veiligheidsmargin: 1.079 - 1 = 0.079 >> 0.
+
+### Formele status
+- Model is gefit op data k=14..18, gamma1=0.96 uit Script 275.
+- Model voorspelt ratio ≈ 1.079 voor k=18..22 (geverifieerd tot k=18).
+- Script 285: verificatie k=19 gepland (nog niet uitgevoerd).
+- FORMELE KLOOF: analytisch bewijzen dat correctie ≤ 0.020 voor alle k > 18.
+  Voldoende: aantonen C1 * gamma1^k < 0.095 voor alle k.
+  Dit volgt triviaal als C1 < 0.095 (C1 = 0.0446 < 0.095). QED voor dit component!
+  Tweede component: C2 * gamma2^k is POSITIEF (verhoogt ratio), dus geen gevaar.
+
+### BEWIJS VAN CORRECTIEBOUND (ANALYTISCH)
+
+CLAIM: ratio(k) > 1 voor alle k > 18, gegeven dat model ratio(k) ≈ 1.095 - C1*gamma1^k + C2*gamma2^k.
+
+BEWIJS:
+  ratio(k) >= 1.095 - C1 * gamma1^k   (want C2*gamma2^k >= 0)
+           >= 1.095 - C1              (want gamma1^k <= 1)
+           = 1.095 - 0.0446
+           = 1.050 > 1.  QED (gegeven het model).
+
+MAAR: dit is slechts een bewijs GEGEVEN HET MODEL. We moeten nog bewijzen dat het model
+de correcte twee-component structuur heeft (niet drie of meer).
+
+### Pad naar volledig bewijs
+(1) Bewijs dat de K-L operator F twee dominante sub-leading eigenwaarden heeft:
+    gamma1 = |rho2/rho| < 1 (langzaamste verval, veroorzaakt trog)
+    gamma2 = |rho3/rho| < gamma1 (snellere verval, veroorzaakt initiële stijging)
+(2) Bewijs dat de coëfficiënten C1, C2 voldoen aan C1 < 0.095.
+(3) Dan: ratio(k) >= 1.095 - C1 > 1 voor alle k.
+
+Stap (1) is standard Perron-Frobenius theorie + numerieke verificatie van spectrale gap.
+Stap (2) vereist: bound op de gevoeligheid van ratio(k) voor eigenvector perturbaties.
+
+Huidige status: EMPIRISCH geverifieerd (data + model fit). Analytisch bewijs: work in progress.
 
