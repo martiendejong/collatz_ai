@@ -13717,3 +13717,8 @@ prefix-incrementen staat nog open.
     bron+demping). Dit is dezelfde renormalisatie als Obs 493, nu in ANOVA-taal.
 (b) Convergentie-audit prefix-incrementen (iteratie-aantallen varieren).
 (c) Tekenwisselings-transfer: de (-rho_d)-structuur analytisch uit x4-carry afleiden.
+
+### Obs 498 addendum: convergentie-audit prefix-incrementen (audit_prefix.py)
+Diepe incrementen (p>=6, k=12, lam=1.05) IDENTIEK over 300/600/1200/2400 iteraties:
+max relatieve verschil 8.8e-16. Het cascade-plateau is systeemeigenschap, geen
+solver-artefact. Calibratie-zorg uit Obs 498 opgelost.
