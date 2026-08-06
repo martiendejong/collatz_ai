@@ -14145,3 +14145,23 @@ BETEKENIS:
 (3) Voor het c<1-programma: b_q-waarden zijn nu uitdrukbaar in de c-vectoren van
     opeenvolgende niveaus — de diepe-profiel-stabiliteit wordt een uitspraak over
     de c-reeks.
+
+## Obs 513 (2026-08-06): RHO(2,k)-INSTRUMENT — DERDE METING VAN c, WORTELWET BEVESTIGD
+
+Script 318: 1-rho(lam=2, k) voor k=5..16 (alle CW-gap ~2e-15):
+  0.13899 0.12033 0.10498 0.08967 0.08061 0.07327 0.06651 0.06016 0.05495
+  0.05002 0.04550 0.04148
+Late ratio's stabiliseren op ~0.911 (k=13..16: 0.9134/0.9103/0.9095/0.9117).
+
+WORTELWET-KRUISVALIDATIE: sqrt(d(2.00)) = sqrt(0.824) = 0.908 ~ gemeten 0.911.
+De rho-convergentie volgt de AMPLITUDE-rate sqrt(c), zelfde wet als Obs 502b
+(lam=1.05: rate 0.635 = sqrt(0.41)). Daarmee is de eindpunt-contractie nu via
+DRIE onafhankelijke instrumenten gemeten: prefix-plateau (d_k), variantie-kolom
+(paper), en rho(2,k)-rate => c_endpoint ~ 0.83.
+
+VORK-STATUS (eerlijk): pure-geometrische fit rate 0.9086 (resid 0.0085);
+leveling-fit y_inf=0.0065, rate 0.898 (resid 0.0038) — extra parameter wint
+marginaal, NIET beslissend (zelfde identificeerbaarheids-les als Obs 489).
+Onderscheidend vermogen pas rond k~25-30 bij deze rate. Uitbreiding k=17-18
+(RAM-haalbaar) en k=19-21 (memmap) gepland; rho(2, k=20) kost ~30-60 min met
+de 289-machinerie.
