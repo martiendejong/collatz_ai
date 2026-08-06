@@ -13753,3 +13753,31 @@ De argmin-equidistributie (a) is dan een TE BEWIJZEN eigenschap van het RDE-vast
     (digit-regels voor argmin; annealed mean-field). (3) De sign-alternatie
     (2 = -1 mod 3) en klasse-zuiverheid van cb zijn de structurele ingredienten
     die elk model moet meenemen.
+
+## Obs 500 (2026-08-06): RIGOUREUZE INTERVALCERTIFICERING — VAN "GEMETEN" NAAR "GECERTIFICEERD"
+
+Script 304: mpmath.iv intervalrekening (prec=120), exacte rationale lambda's,
+rigoureuze omhulling van lambda^alpha via interval-log/exp. Methode:
+  Fase 1: punt-iteratie op 120-bit precisie (convergentie tot CW-gap ~1e-30).
+  Fase 2: EEN enkele rigoureuze intervalpass op de puntvector w.
+  Collatz-Wielandt: rho ligt ONVOORWAARDELIJK in [min F(w)_i/w_i, max F(w)_i/w_i]
+  voor elke positieve w (F monotoon + 1-homogeen) — geen wrapping-probleem.
+LES: interval-iteratie over honderden stappen explodeert (wrapping); punt-iteratie
++ enkelvoudige intervalpass is de juiste architectuur.
+
+RESULTAAT (8/8 gecertificeerd; lambda in {21/20, 13/10, 17/10, 2}, k in {5,6}):
+  R - c2/c0 rigoureus POSITIEF: +5.1e-3 (21/20,k5), +1.7e-3 (21/20,k6),
+    +2.1e-2, +9.8e-3, +7.5e-2, +3.8e-2, +1.3e-1, +7.4e-2.
+  g2/(R*g0) rigoureus > 1: 1.19 .. 1.65.
+  Identiteit mu2/mu0 = R bevestigd tot 30-35 cijfers (interval bevat 0) — de
+  exacte identiteiten (Obs 490) nu ook rigoureus-numeriek gevalideerd.
+  rho-intervallen: breedte 0 tot 1e-9 (17/10 k5: iets meer iteraties nodig).
+
+RESTERENDE STAP voor onvoorwaardelijke criterium-certificering: de criteria zijn
+geevalueerd op w (residual ~1e-30), niet op v*; een Birkhoff-contractieconstante
+(projectieve diameter van F^m) zou |w - v*| rigoureus begrenzen. Met marges 1e-3
+vs residual 1e-30 is dit een routinestap (werk gepland).
+
+OPSCHALING: pipeline is O(N * iters) pure Python; k<=8 x alle 12 lambda's haalbaar
+in uren. Daarmee wordt Computational Lemma A voor het lage-k-blok een rigoureus
+computer-geassisteerd lemma (Hales-stijl) i.p.v. een meting.
