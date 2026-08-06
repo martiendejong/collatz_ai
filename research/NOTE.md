@@ -13335,7 +13335,52 @@ FORMELE STATUS:
   DIRECT GEVERIFIEERD: k=3..14 x 12 lambda's (144 cases, Script 281) +
     k=15..19 lambda=1.05 (Scripts 282/284/285) + k=15..18 lambda=1.10..1.40 (Script 288).
   Totaal 164 cases, alle ratio > 1. Minimum: 1.07794 (lambda=1.05, k=19).
-  ASYMPTOTISCH: sqrt(F)/R > 1 exact (Obs 471); trog bij k~20 met diepte 0.017;
-    data-gestuurde bound ratio >= 1.0776 > 1 voor alle k.
-  RESTERENDE FORMELE KLOOF: rigoureuze spectrale bound C1_eff < 0.095 (veiligheidsfactor 5.6x).
+  ASYMPTOTISCH: sqrt(F)/R > 1 exact (Obs 471).
+  LET OP: de model-gebaseerde tail-bound uit Obs 486/487 is NIET robuust — zie Obs 489.
+
+## Obs 489 (2026-08-06): IDENTIFICEERBAARHEIDS-ANALYSE — EERLIJKE DOWNGRADE VAN OBS 486/487
+
+DOEL: robuustheid van het twee-component model toetsen nu het k=19 punt beschikbaar is.
+
+METHODE (fit-familie analyse): scan alle (gamma1, gamma2) op een grid; per paar lineaire
+kleinste kwadraten voor (C1, C2) op dev(k) = C1*gamma1^k - C2*gamma2^k, data k=14..19
+(dev = 1.09458 - ratio). Familie = alle fits met rmse < 2x globale beste rmse (6.9e-4).
+
+RESULTAAT: 4180 fits in de familie. De familie is STERK gedegenereerd:
+  - Beste fit verschuift naar gamma1=0.968, gamma2=0.960 (bijna collineair!), C1=0.389 (!).
+  - De vorige fit (C1=0.045, gamma1=0.96, gamma2=0.80 op k=14..18) is slechts EEN lid
+    van een brede familie; C1 is NIET identificeerbaar uit deze data.
+  - Worst case binnen de familie: gamma1=0.998 -> trog bij k~200 met diepte 0.141,
+    d.w.z. geëxtrapoleerde ratio 0.954 < 1 (!).
+
+PUNTSGEWIJZE ENVELOPE (max dev over familie, per k):
+  k=20: dev <= 0.0185  ratio >= 1.0761
+  k=21: dev <= 0.0197  ratio >= 1.0748
+  k=25: dev <= 0.0248  ratio >= 1.0698
+  k=30: dev <= 0.0309  ratio >= 1.0637
+  k=40: dev <= 0.0424  ratio >= 1.0522
+  k=60: dev <= 0.0631  ratio >= 1.0315
+  k=100: dev <= 0.0958 ratio >= 0.9987  <- envelope raakt 1 rond k~100
+
+EERLIJKE CONCLUSIES:
+  (1) Obs 486's "C1 = 0.045, veiligheidsfactor 2.1" en Obs 487's "correction <= 0.017 voor
+      alle k" waren artefacten van een slecht geconditioneerde 4-parameter fit. INGETROKKEN
+      als bewijs-claims; behouden als beschrijving van de best-fit.
+  (2) Wat data k<=19 WEL robuust geven: ratio >= 1.075 voor k <= ~21 (envelope) en de
+      exacte limiet 1.0946 (Obs 471). De tail k in [22, ~enkele honderden] is open zonder
+      een RIGOUREUZE k-richting contractie-rate.
+  (3) De formele kloof is dus niet "C1 < 0.095" maar: een bewijsbare bovengrens op de
+      convergentiesnelheid van de kolomstatistieken naar hun continuum-limiet.
+
+THEORETISCH PAD (continuum-limiet): de level-k systemen zijn discretisaties van een
+limiet-operator op Z_3 (3-adische gehelen). De inbedding level-k -> level-(k+1) als
+periodieke vectoren intertwint EXACT met de A-term (gecheckt: (4i+2) mod 3^k commuteert
+met mod 3^{k-1}), maar NIET met de cb-term (kolommen van ingebedde vectoren zijn constant,
+dus min degenereert). De k-rate gamma1 correspondeert met 3^{-beta} waar beta de
+Holder-regulariteit van het limietprofiel is; gamma1=0.96-0.998 impliceert beta in
+[0.001, 0.04] — zeer lage regulariteit, consistent met min-koppeling. Bewijsprogramma:
+regulariteitstheorie voor het K-L Perron-profiel + kwantitatieve discretisatiefout.
+
+EMPIRISCH VERVOLG: k=20 (Script 289, lopend) en k=21 (haalbaar via memmap, ~1u) verlengen
+de directe verificatie en versmallen de familie; voorbij k~22 is directe berekening op.
 

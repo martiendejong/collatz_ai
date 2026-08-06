@@ -1930,24 +1930,24 @@ is the extremal case. In total $164$ directly verified cases, all with ratio $>1
 
 For $k>19$: the asymptotic limit $\sqrt{F}/R>1$ (exact by Obs~471: $F-R^2 = 2t\lambda(1-t^3)(\lambda^2-t)>0$
 for $t\in(0,1)$, $\lambda>1$) guarantees the condition as $k\to\infty$.
-The convergence is not monotone: a two-component spectral model (Obs~486, fitted to $k\in[14,18]$)
-gives
-\[
-  \mathrm{ratio}(k) \;\approx\; \sqrt{F}/R \;-\; C_1\gamma_1^k + C_2\gamma_2^k,
-  \quad C_1 \approx 0.0446,\; C_2\approx 0.323,\; \gamma_1\approx 0.96,\; \gamma_2\approx 0.80.
-\]
-The minimum of this expression over all $k$ is $\approx 1.078$ at $k\approx 20$
-(differentiating and solving: $k_{\max} \approx \ln(C_2|\ln\gamma_2|/(C_1|\ln\gamma_1|))/\ln(\gamma_1/\gamma_2)\approx 20.2$).
-The $k=19$ measurement ($1.07794$, deviation from limit $0.01664$) matches the model prediction
-($1.079$) to within $0.001$, and the deviation sequence
-$0.0159\,(k{=}17),\ 0.0160\,(k{=}18),\ 0.0166\,(k{=}19)$ is approaching its model maximum
-$0.0168$ at $k\approx 20$, after which it decays.
-For $k>20$: $\mathrm{ratio}(k) > \sqrt{F}/R - C_1 = 1.0946 - 0.0446 = 1.050 > 1$
-(since $C_1\gamma_1^k \le C_1$ and the $C_2$-term is positive).
-Data-driven bound: deviation $\le 0.017$ for all $k$, hence ratio $\ge 1.0776 > 1$ for all $k\ge 3$.
-Formal residual: the two-component model is a fit, not a proof; a rigorous spectral bound on $C_1$
-via K-L operator theory is work in progress. The required bound is $C_1 < 0.095$, and the fitted
-value $0.0446$ leaves a safety factor of $2.1$; the data-driven margin ($1.0776>1$) is $0.078$.
+The convergence is not monotone: the measured deviation from the limit,
+$\mathrm{dev}(k)=\sqrt{F}/R-\mathrm{ratio}(k)$, rises through
+$0.0159\,(k{=}17),\ 0.0160\,(k{=}18),\ 0.0166\,(k{=}19)$ and is expected to peak
+(the ``trough'' in ratio) before decaying to $0$.
+Two-component spectral fits $\mathrm{dev}(k)= C_1\gamma_1^k - C_2\gamma_2^k$ describe the
+data well, but an identifiability analysis over the full family of fits consistent with the
+$k\in[14,19]$ data (Obs~489) shows that $C_1$ and $\gamma_1$ are \emph{not} individually
+identifiable: the family's pointwise envelope guarantees ratio $\ge 1.075$ only up to
+$k\approx 21$, degrading to $\approx 1.03$ at $k=60$, and ceases to exclude ratio $=1$
+near $k\approx 100$ for its most slowly decaying members ($\gamma_1\approx 0.998$).
+\emph{Honest formal status:} step~(3b) is proved for the directly verified range
+($164$ cases, $k\le 19$, minimum ratio $1.07794$) and holds asymptotically with the exact
+limit $1.0946$; for the intermediate range the condition is supported by the trend and by
+the structural inequality $F>R^2$ at every $k$ (Obs~471, which controls the $L^2$-version
+of the ratio), but a rigorous bound on the convergence \emph{rate} of the column statistics
+to their continuum ($3$-adic) limit is required to close it and is work in progress
+(the natural route: H\"older regularity of the limiting K-L Perron profile on $\mathbb{Z}_3$,
+which would give $\mathrm{dev}(k)\le c\,3^{-\beta k}$ with effective constants).
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}
