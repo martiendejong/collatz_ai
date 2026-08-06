@@ -14041,3 +14041,27 @@ lokale versie = zelfde Chebyshev per cel op de gevezelde identiteiten);
 (H3) gewogen E[b_C^2] < 2*gewogen E[b_C] (automatisch zolang b_C <= 2-delta).
 De groeiende spreiding van b_C is GEEN obstructie voor c < 1; alleen randmassa
 (b_C <= 0 of >= 2) zou dat zijn — gemeten randmassa: 0-8% diep, 0% in de bulk.
+
+## Obs 509 (2026-08-06): GAP-ELASTICITEIT — b_C = e_C * gamma_C MET e -> 2 (NIEUW PATROON)
+
+Script 314: b_C is NIET de lokale relatieve gap gamma_C zelf, maar een versterkte
+versie: de elasticiteit e = b_C/gamma_C (respons van log-gap op log-niveau binnen
+een cel) GROEIT met diepte:
+  lam=1.70: e = 1.23 -> 1.44 -> 1.60 -> 1.74 -> 1.91 -> 2.00 (q=1..6) — nadert 2.0
+  opvallend schoon. Hypothese: lokaal gap ~ mean^2 (elasticiteit 2 = variantie-achtige
+  schaling van de gap in het diepe regime?).
+  lam=1.05: e = 2.0 -> 2.7 -> 2.9 -> 6.0 -> 5.4 -> 12.2 — dieper regime bij de
+  ruisvloer; onduidelijk of de groei reeel is of ruis-gedreven.
+Correlatie(b_C, gamma_C) matig (0.2-0.65): gamma verklaart een deel van de
+b-heterogeniteit; de rest is een tweede celcoordinaat.
+
+STATUS c<1-PROGRAMMA NA VANDAAG (eerlijke eindstand):
+- Exact: cascade-formule, endpoint-identiteit r=c, decompositie c=(1-b)^2+resid,
+  basisgeval b_0>0 BEWEZEN.
+- Data-verankerd: per-cel proportionaliteit (corr ~1), positiviteit vrijwel overal,
+  residuen nul in de bulk.
+- Open: (H1) per-cel proportionaliteit bewijzen; (H2) lokale positiviteit;
+  en nieuw: de elasticiteits-structuur e->2 verklaren (kandidaat-mechanisme voor
+  H1/H2 tegelijk: als gap lokaal ~ mean^e met vaste e, volgt proportionaliteit
+  met b = e*gamma en positiviteit uit gamma > 0 automatisch!).
+De elasticiteitswet zou dus het HELE homogenisatie-lemma kunnen dragen.
