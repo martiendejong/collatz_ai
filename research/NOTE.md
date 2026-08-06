@@ -13490,3 +13490,34 @@ asymptotische ongelijkheid G_inf = lim g2/(R*g0) > 1 (zelfde open kern als voorh
 s-formulering geeft er een factor-lam kussen en een variationele structuur omheen).
 Gemeten g2/(R*g0) bij k=12: 1.0937 — dicht bij de sigma-ratio-limiet 1.0946, consistent
 met stabiliserende gapvormen.
+
+## Obs 493 (2026-08-06): DISSECTIE VAN DE SLACK-VERGELIJKING + EXCESS-RENORMALISATIE (Script 293)
+
+### Combinatorische herschrijving
+Pointwise: slack = min_j(a*u_j + b*q_j) met u = x - min(x), q = y - min(y) de
+excess-vectoren (elk >= 0, elk met een nul-entry). Slack = 0 iff de nullen samenvallen.
+Doel (3b): E[min_j(t^2*p0_j + lam*w*q_j)]_tau  <  lam * E[min_j(t*p2_j + w*q_j)]_aligned,
+met p0/p2 = excess van v0-/v2-kolommen, q = excess van cb-kolommen, w = t*lam^alpha.
+
+### Dissectie (parametrisatie pass=col_v1; gewichtsstap t->t/lam rigoureus via monotonie)
+  lam=1.05: s2/(lam*s0) = 0.556 (k=6) .. 0.689 (k=14); gewichtsfactor ~0.963,
+            ensemble-factor 0.55..0.71 draagt de k-trend.
+  lam=1.10: 0.470..0.627;  lam=1.30: 0.291..0.442;  lam=1.70: 0.152..0.246;
+  lam=2.00: 0.096..0.170.  Marge groeit sterk met lam; lam=1.05 is overal extremaal.
+  lin2 (kwaliteit cb-gedomineerde lineaire bound s2 <= t*D2): overschat 18-36% — de
+  D-slope-bound is bruikbaar maar niet scherp.
+  D2/D0 = 0.55-0.60 ~ t bij lam=1.05: de tau-koppeling (klasse 2) en de uitgelijnde
+  koppeling (klasse 0) hebben VERGELIJKBARE uitlijningskwaliteit; de asymmetrie komt
+  vrijwel geheel van de ingebouwde factor t^2 vs t op de pass-excessen. Dit is de
+  structurele reden dat s2 < lam*s0 met ruime marge.
+
+### Exacte excess-renormalisatie (de inductieve structuur)
+Uit de kolomrecursie col_v2 = t^2*col_v0' + lam*w*col_cb' volgt pointwise EXACT:
+  p2_j = t^2*p0'_j + lam*w*q'_j - slack'   (excess op niveau k in termen van niveau k-1)
+Dit definieert een recursieve verdelingsvergelijking voor het excess-paar (p, q) onder
+de K-L renormalisatie. BEWIJSPROGRAMMA:
+  (1) toon dat de verdelingsafbeelding een contractie is op een geschikte cone
+      (invariant-cone / Hilbert-metriek argument) => fixed point + convergentie s2/s0 -> L;
+  (2) bound L < lam op het fixed point (eindige verificatie op een rigoureus ingesloten
+      benadering van de limietverdeling).
+Dit vervangt "onbegrensde k-verificatie" door een EENMALIGE fixed-point-analyse.
