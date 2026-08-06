@@ -13546,3 +13546,60 @@ BETEKENIS:
 Route naar bewijs verscherpt: toon (a) P(mis) -> 2/3 met rate (onafhankelijkheid van
 argmins onder de renormalisatie — mengingseigenschap van de indexafbeeldingen 4m/2m+1),
 (b) kappa-convergentie, (c) g2/g0 -> R*G_inf met G_inf > 1 uit de vaste-punt-vergelijking.
+
+## Obs 495 (2026-08-06): CONDITIONERING, k=20 EXACT CRITERIUM, LAMBDA-RAND, KLOOF-GROOTBOEK
+
+### (a) Eerlijkheidsnoot bij Obs 490
+Identiteit (i) mu2/mu0 = R stond al in het paper (regel ~1706: "exact ratio of the
+r-type overall means", afgeleid via eliminatie van cbar). Obs 490 is daar een
+herontdekking van; NIEUW zijn (ii) klasse-1-kopie, (iii) kolomrecursies met
+cb-bijecties, (iv) de slack-reductie (3b) <=> lam*s0 > s2, en de S-lemma's.
+
+### (b) k=20 exact criterium (Script 294, post-hoc op bewaarde memmap)
+  sigma-ratio cross-check: 1.07769 = Script 289 EXACT (juiste vector gelezen).
+  mu2/mu0 - R = +3.4e-6: identiteitsresidu = meetruis-bound (float32 + rho op 6 cijfers).
+  c2/c0 - R = -2.1e-6: NOMINAAL fail maar BINNEN de ruis — de ware marge bij k=20 is
+    ~1e-6 (extrapolatie float64-marges: 5.5e-5 bij k=12, factor ~0.6/stap).
+  g2/(R*g0) = 1.0781 > 1: het ZELFDE criterium in de goed-geconditioneerde vorm,
+    marge 8%, robuust.
+LES (belangrijk): c2/c0 vs R is een verschil van bijna-gelijke getallen (~1e-6 bij k=20)
+en numeriek hopeloos bij grote k; de gap-vorm g2 > R*g0 meet het verschil DIRECT.
+De Obs 490-equivalentie is dus ook numeriek essentieel, niet alleen conceptueel.
+Status exacte criterium: float64 strikt geverifieerd t/m k=17 (via slacks, Scripts
+291/292); k=18..20 via goed-geconditioneerde gap/sigma-vormen (float32, marge ~8%).
+
+### (c) Lambda-rand (Script 295, lam=1.01/1.02/1.03, k<=12, float64)
+Identiteit op machine-precisie; c2/c0 < R overal strikt; genormaliseerde marges
+vrijwel lam-onafhankelijk (g2/(R*g0) ~ 1.074-1.164; s2/s0 ~ 0.56-0.74, eis < lam).
+Geen degeneratie bij lam -> 1+. Bovendien: de feasibility-edge lam*(k) -> 2 van het
+programma ligt waar de marges MAXIMAAL zijn (s2/s0 ~ 0.17 bij lam=2).
+
+### (d) KLOOF-GROOTBOEK (volledige keten density_one.tex, stand 6-aug-2026)
+DOEL PAPER: gamma(k) -> 1, d.w.z. pi_1(x) >= x^(1-eps) (K-L telling; NIET volledige
+Collatz, NIET natuurlijke dichtheid 1). Reeds hard: certificaten t/m k=21, gamma=0.9184
+(exact-integer geverifieerd; publiceerbaar boven K-L 2003's 0.84).
+
+BEWEZEN (labels PROVED): Freshness, Type rigidity, Absorption, Envelope, Saturation,
+Jensen-deficit, Density-beats-depth, Transfer constants (Taak 5), edge-rate identiteit,
+blok-zelfgelijkvormigheid, Obs 471, klasse-identiteiten (Obs 490 + paper-Lemma).
+
+TAKEN 1-4 (elk gereduceerd tot EEN expliciete ongelijkheid, marges gemeten):
+  T1 covariance: dicht op expliciet-c0-niveau; optionele FKG-upgrade open.
+  T2 envelope-naar-elasticiteit: E_count[e_{>=p-1}] <= env^{p-1} (gemeten 0.48 << env).
+  T3 C_tilt expliciet: marge 1.28x ruw, 3.3x gemeten.
+  T4 tilted maintenance factor < 1.10: gemeten 0.60-0.78 (marge >= 1.4x).
+OPEN KERN: Conjectuur G — limsup V_{k+1}/V_k < 1 (endpoint-contractie). Gemeten
+d_k < 1 t/m k=19 (plateau ~0.77, limietschatting 0.84), maar "+0.003/stap creep
+niet uitgesloten" — d.i. de eerlijke faalmodus. Stap (3b)/slack-werk voedt de
+ve-ratio/klassemonotonie-machinerie die G's mechanisme draagt; het
+renormalisatieprogramma van Obs 493 is direct relevant voor G (zelfde type
+vaste-punt-contractie, een niveau dieper).
+
+PRIORITEITEN (simpel -> zwaar):
+  1. Obs 490-lemma's volledig uitschrijven in het paper (gedaan: sketch; nu vol bewijs).
+  2. k=21-resultaat verwerken (loopt).
+  3. Taken T2/T4: de twee overgebleven expliciete ongelijkheden aanvallen met de
+     slack/monotonie-toolkit (zelfde technieken, eindige margewinst nodig).
+  4. Renormalisatie-vast-punt formaliseren (dient zowel (3b)-staart als Conjectuur G).
+  5. Conjectuur G: de +0.003-creep beslechten (diepere d_k-metingen of de contractie
+     van het vaste punt).
