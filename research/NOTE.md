@@ -13781,3 +13781,13 @@ vs residual 1e-30 is dit een routinestap (werk gepland).
 OPSCHALING: pipeline is O(N * iters) pure Python; k<=8 x alle 12 lambda's haalbaar
 in uren. Daarmee wordt Computational Lemma A voor het lage-k-blok een rigoureus
 computer-geassisteerd lemma (Hales-stijl) i.p.v. een meting.
+
+### Obs 500 addendum: VOLLEDIGE RUN — 48/48 GECERTIFICEERD
+Alle 12 rationale lambda's x k in {5,6,7,8}: R - c2/c0 rigoureus positief in elk
+geval (kleinste marge +5.384e-4 bij lambda=21/20, k=7),
+g2/(R*g0) > 1 rigoureus (1.19..1.65), identiteit mu2/mu0 = R tot 23-35 cijfers,
+CW-gap <= 2.2e-16 (46 gevallen exact 0 op printprecisie).
+Output: E:/temp/cert_full_out.txt (kopie: research/certificates/cert_lemmaA_k5-8.txt).
+Computational Lemma A is voor het blok k in [5,8] x 12 lambda's nu een rigoureus
+computer-geassisteerd resultaat (op de Birkhoff-eigenvectorafstand-stap na,
+residual ~1e-30 vs marges >= 1.7e-3).

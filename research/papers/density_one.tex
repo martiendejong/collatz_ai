@@ -1849,6 +1849,18 @@ for all $144$ pairs (Obs~484), with minimum ratio $1.0838$.
 Extended verification at $\lambda=1.05$ for $k\in[15,20]$ (Obs~485/488/491) gives minimum ratio
 $1.07769$ at $k=20$ (Obs~491), and at $\lambda\in\{1.10,\ldots,1.40\}$ for $k\in[15,18]$ (Obs~488)
 minimum ratio $1.0948$ ($165$ verified cases in total).
+
+\emph{Certified block (Obs~500, Script~304).} For the $48$ pairs $k\in[5,8]$,
+$\lambda\in\{21/20,\ldots,2\}$ (all twelve grid values, exact rationals), the margins are
+\emph{rigorously certified} by interval arithmetic (precision $120$ bits, rigorous
+enclosure of $\lambda^{\alpha}$, Collatz--Wielandt enclosure of $\rho$ --- unconditional
+for the monotone $1$-homogeneous operator): $R - c_2/c_0 > 0$ in all $48$ cases with
+certified minimum margin $+5.38\times 10^{-4}$ ($\lambda=21/20$, $k=7$), $g_2/(R\,g_0) > 1$
+(range $1.19$--$1.65$), and the identity $\mu_2/\mu_0 = R$ confirmed to $23$--$35$ digits.
+Certificate: \texttt{research/certificates/cert\_lemmaA\_k5-8.txt}. The single remaining
+step for fully unconditional criterion certification is a Birkhoff-contraction bound on
+the eigenvector distance (evaluation residual $\sim 10^{-30}$ against margins
+$\ge 5\times 10^{-4}$).
 \end{lemma}
 
 \begin{lemma}[Exact class identities and slack reduction]\label{lem:exact_reduction}

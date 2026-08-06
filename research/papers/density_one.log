@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  6 AUG 2026 10:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  6 AUG 2026 13:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -572,17 +572,21 @@ r/m/n/10.95 ^^A[][])$
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `density_one.out' has not changed.
 (rerunfilecheck)             Checksum: 6430DCFFF325D1EDF7AC7E1ABA58CB41;1602.
  ) 
 Here is how much of TeX's memory you used:
- 10273 strings out of 467871
- 155268 string characters out of 5419828
+ 10275 strings out of 467871
+ 155294 string characters out of 5419828
  590452 words of memory out of 5000000
- 38935 multiletter control sequences out of 15000+600000
- 645004 words of font info for 104 fonts, out of 8000000 for 9000
+ 38936 multiletter control sequences out of 15000+600000
+ 645172 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,550b,679s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,550b,720s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm109
 5.pk> <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 0600.pk> <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\t
@@ -592,34 +596,35 @@ amsfonts/cm/cmbx12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmbxti10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/HP/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/HP/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/HP/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/HP/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/HP/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/User
-s/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:
-/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pf
-b><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmr17.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmr7.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr9.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/HP/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/HP/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/HP/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/HP/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/User
-s/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.p
-fb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb>
-Output written on density_one.pdf (27 pages, 567736 bytes).
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/HP/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/HP/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/HP/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/H
+P/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Us
+ers/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.
+pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr17.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/HP/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/HP/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/HP/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/HP/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/HP/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Use
+rs/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
+sam10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/symbols/msbm10.pfb>
+Output written on density_one.pdf (27 pages, 575785 bytes).
 PDF statistics:
- 453 PDF objects out of 1000 (max. 8388607)
+ 458 PDF objects out of 1000 (max. 8388607)
  97 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
