@@ -13888,3 +13888,43 @@ PREDICTIE-NUANCE: voorspelling #13 (gamma(25)=0.9378) betrof de LADDER-WET op
 gecertificeerde waarden; de echte-lambda*-schatting is 0.9429+-0.004 (dit Obs).
 Beide voorgeregistreerd; een toekomstige k=25-certificaatrun toetst #13,
 een polished certificaat toetst #14.
+
+## Obs 504 (2026-08-06): GESLOTEN PLATEAU-FORMULE — CONJECTUUR G REDUCEERT TOT c < 1 (DOORBRAAK)
+
+### Twee nieuwe EXACTE stellingen (Scripts 308-310, machine-precisie geverifieerd)
+(1) A-BEHOUD: inc_p(v o T4) = inc_p(v) voor elke p, EXACT.
+    Bewijs: T4 = 4i+2 is affien => bijectief op Z/3^(p+1) => conditionering op lage
+    digits wordt gepermuteerd, incrementvelden zijn permutaties van elkaar. QED.
+(2) SHIFT-IDENTITEIT: inc_p(CBv) = W2 * inc_{p-1}(cb) voor p>=1, EXACT,
+    met W2 = (B1^2+B3^2)/3.
+    Bewijs: de cb-term leest s = floor(i/3) (digit-shift), R1/R3 zijn affiene
+    bijecties (inc-behoudend), en de drie klassen bezetten disjuncte rijen met
+    gewichten B1^2, B3^2, 0. QED.
+
+### De gesloten balans en de plateau-formule
+Exact per digit: (rho^2 - A^2)*inc_p(v) = W2*inc_{p-1}(cb) + 2A*cross_p.
+Definieer c_q = inc_q(cb)/inc_q(v) (min-aggregatiecoefficient). Diep (cross ~ -0.5%):
+  ** r(lambda) = W2 * c / (rho^2 - A^2) **
+Numeriek: lam=1.05: 0.673*0.996/1.662 = 0.4031 vs gemeten 0.41 (2%).
+          lam=1.70: 0.835*0.795/0.970 = 0.6845 vs gemeten 0.70 (2%).
+c-metingen: lam=1.05: c = 0.994..0.999 (min vernietigt daar bijna niets);
+            lam=1.70: c = 0.79..0.93, dalend in q.
+
+### ENDPOINT-IDENTITEIT (exact algebra)
+Bij lambda=2: W2 = 2^(2a-4)(1+4)/3 = 15/16 en 1 - A^2 = 1 - 1/16 = 15/16: GELIJK.
+Dus bij het eindpunt (lambda -> 2, rho -> 1) wordt de formule r = c EXACT.
+** CONJECTUUR G BIJ HET EINDPUNT <=> c < 1 **: de elementwise min van drie
+sibling-takken (die hun lage-digit-structuur delen en alleen in de top-digit
+verschillen) vernietigt strikt lage-digit-incrementvariantie.
+Dit is de scherpste reductie tot nu toe: alle algebra is exact; de volledige
+open kern van het gamma->1-programma zit in EEN scalaire coefficient c met
+heldere probabilistische betekenis. De alignment-statistieken (Obs 494:
+P(mis)=2/3, onafhankelijkheid) zijn precies het gereedschap om c te begrenzen.
+
+### Status bewijsprogramma na Obs 504
+- (3b)-staart: lam*s0 > s2 via dezelfde inc-machinerie aanpakbaar.
+- Conjectuur G: gereduceerd tot c(lambda) < (rho^2-A^2)/W2, met gelijkheid
+  exact op het eindpunt. TE BEWIJZEN: strikte variantiedestructie door de min.
+- Kandidaat-aanpak voor c<1: E[min] = gedeeld deel - gap-term; de gap-term is
+  positief gecorreleerd met het gedeelde deel (FKG-achtig) => variantiereductie.
+  De paper citeert al EPW/FKG — precies het juiste gereedschap.
