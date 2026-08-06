@@ -14206,3 +14206,11 @@ Direct geverifieerd totaal: 166 gevallen, minimum 1.07744 (lam=1.05, k=21).
 NB: rho(21)=1.576581 bij 30 iters licht onder-geconvergeerd (k=20 gaf 1.576710 bij
 35 iters; wmax oscilleerde nog); de ratio-statistiek is daar robuust voor (schaalvrij).
 Exact-criterium-pass (gap-vorm) op de bewaarde vector loopt (294-stijl).
+
+### Obs 515 addendum: exact criterium k=21 bevestigd (gap-vorm)
+Post-hoc pass op de bewaarde k=21-vector: g2/(R*g0) = 1.077620 > 1 (marge 7.8%);
+sigma-cross-check 1.07744 exact; c-vorm-marge +5.1e-6 binnen float32-ruis
+(identiteitsresidu 4.1e-6) — gap-vorm is het criterium, conform Obs 495.
+Debug-les (harness): dubbele backslashes in bash-heredocs worden samengeklapt;
+python-\a werd BEL in de tex (2x). Regel: paper-edits via de Edit-tool, niet via
+heredoc-python met backslash-strings.
