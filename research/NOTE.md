@@ -14165,3 +14165,31 @@ marginaal, NIET beslissend (zelfde identificeerbaarheids-les als Obs 489).
 Onderscheidend vermogen pas rond k~25-30 bij deze rate. Uitbreiding k=17-18
 (RAM-haalbaar) en k=19-21 (memmap) gepland; rho(2, k=20) kost ~30-60 min met
 de 289-machinerie.
+
+## Obs 514 (2026-08-06): EXACTE MASSA-IDENTITEIT — RHO EN GAPMASSA ZIJN EEN VRIJHEIDSGRAAD
+
+### Stelling (exact, elke k en lambda; Script 319, ratio 1.000000 in 12/12 checks)
+  rho(lam,k) = rho_lin(lam) - ((B1+B3)/3) * gammabar(lam,k)
+met rho_lin = lam^-2 + (lam^(a-2)+lam^(a-1))/3 (de mean-field-K-L-eigenwaarde:
+uniforme linker-eigenvector, exact voor elke k) en gammabar = E[G]/E[v] de relatieve
+gapmassa. BEWIJS: som van de drie exacte klassegemiddelde-vergelijkingen.
+GEVOLGEN:
+(1) UNIVERSELE BOVENGRENS rho <= rho_lin (min <= mean), gelijkheid iff gaps verdwijnen.
+(2) Bij lam=2 is rho_lin = 1/4 + 3/4 = 1 EXACT: 1 - rho(2,k) = (3/4)*gammabar(2,k).
+    DE VORK (DENSITY vs CEILING) IS EXACT: "gammabar(2,k) -> 0 of niet".
+    Gemeten relgap-reeks bij lam=2: 0.185 (k=5) -> 0.055 (k=16), rate ~0.91 = sqrt(c).
+(3) De feasibility-rand: lambda*(k) lost rho_lin(lam*) - 1 = w*gammabar op — de
+    gamma-ladder is een exacte functie van de gapmassa op de rand.
+
+### Correctie op Obs 511 (verbetering!)
+De gesloten vorm gammabar = 1 - 3(1-t^3)/[t*lam^a*(1+t*lam)*(1+t+R)] is EXACT op
+elke eindige k (machine-precisie geverifieerd, 6/6 gevallen, diff ~1e-16 — het
+eerdere "restverschil ~3e-5 = eindige-k" was handrekenonnauwkeurigheid).
+Deze formule en de massa-identiteit zijn dezelfde identiteit in twee gedaanten.
+
+### Structurele consolidatie
+Alle reeksen zijn EEN reeks: rho(lam,k), gammabar(lam,k), en (via de wortelwet)
+de contractie c hangen exact samen; de volledige k-afhankelijkheid van het
+klassegemiddelde-niveau is een vrijheidsgraad, exact geparametriseerd door rho.
+Het hele gamma->1-programma comprimeert tot: "gammabar(2,k) -> 0 geometrisch"
+— en de gemeten rate is sqrt(c) met c ~ 0.83 via drie instrumenten.
