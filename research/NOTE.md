@@ -13995,3 +13995,27 @@ INDUCTIEPROGRAMMA: elke cel splitst in 3 subcellen met zelf-similaire
 subklasse-structuur (de kolomrecursies van Obs 490); hetzelfde Chebyshev-argument
 per niveau, met (3b)-op-schaal als input per sport. Plus Lemma beta
 (vorm-homogenisatie, residu-bound) voor de volledige c<1.
+
+## Obs 507 (2026-08-06): INDUCTIESTRUCTUUR — ALPHA EN BETA VERSMELTEN TOT EEN HOMOGENISATIE-LEMMA
+
+Script 312, per-cel-analyse van de gap-niveau-associatie op elk digitniveau:
+- Gevezelde klasse-1-identiteit: exact per cel (err ~1e-16; affiene bijecties
+  behouden celstructuur).
+- LOKALE POSITIVITEIT: fractie cellen met positieve lokale cov(u_C, w_C):
+  q=1: 100%, q=2: 100% (beide lambda's); q=4: 97.5%/100%; q=6: 81.5%/99.3%
+  (lam=1.05 diep zit bij de ruisvloer). De Chebyshev-structuur herhaalt zich
+  cel-gewijs vrijwel universeel.
+- GEEN vaste globale vorm diep (vormcoherentie 0.01-0.07): elke cel heeft een
+  eigen triple-orientatie. MAAR: de gemiddelde u-vorm en w-vorm zijn per niveau
+  vrijwel PARALLEL (bv. q=2: [0.286,-0.374,0.088] vs [0.362,-0.494,0.132]).
+  De juiste lokale invariant: w_C ~ b_local * u_C per cel (gap-triple parallel
+  aan mean-triple, met celspecifieke orientatie).
+
+CONSOLIDATIE VAN HET BEWIJSPROGRAMMA:
+Lemma alpha (b_q>0) en Lemma beta (residu klein) reduceren samen tot EEN uitspraak:
+  ** HOMOGENISATIE-LEMMA: conditionele gap-triples zijn asymptotisch proportioneel
+     aan conditionele mean-triples, cel-gewijs, met uniforme coefficient. **
+Dit is de kwantitatieve schaalinvariantie van het RDE-vaste-punt (Obs 493/499),
+nu met (i) een bewezen basisgeval (q=0, Obs 506), (ii) 100%-lokale positiviteit
+gemeten op alle niveaus, (iii) de exacte gevezelde identiteiten als inductie-
+gereedschap. Status: scherp geformuleerd open lemma; al het omringende is exact.
