@@ -13603,3 +13603,44 @@ PRIORITEITEN (simpel -> zwaar):
   4. Renormalisatie-vast-punt formaliseren (dient zowel (3b)-staart als Conjectuur G).
   5. Conjectuur G: de +0.003-creep beslechten (diepere d_k-metingen of de contractie
      van het vaste punt).
+
+## Obs 496 (2026-08-06): DIGIT-ANOVA — HET LOG-PROFIEL IS BIJNA DIGIT-SEPARABEL (Script 296)
+
+VRAAG (Martien): zijn er meer patronen in de stijl van de binair-ternair conversie,
+eventueel met "dynamische bases" (groeiende digit-capaciteit)?
+
+### Antwoord op de dynamische-base-vraag
+Het idee bestaat: factorial number system / mixed radix (digit i heeft i+1 opties,
+plaatswaarden i!). De Collatz-natuurlijke incarnatie is OSTROWSKI-numeratie op de
+kettingbreuk van log2(3): digit-capaciteiten = kettingbreukcoefficienten; de
+convergenten (3/2, 8/5, 19/12, 65/41, 84/53, ...) zijn exact de bijna-botsingen
+3^k ~ 2^m (bv. 3^12 ~ 2^19). Dit is de wiskundige veralgemening van de
+binair-ternair structuur.
+
+### Resonantietest (Script 297) — eerlijk nulresultaat
+Hypothese: wiebels in ratio(k)/s2s0(k) correleren met delta(k) = ||k*log2(3)||.
+Resultaat: Spearman rho ~ 0.0-0.34, p > 0.3 in het gladde regime (k=9..19): GEEN
+significante correlatie. Wel suggestief: de twee grootste s2/s0-anomalieen (piek
+k=7, dip k=8) omlijsten de 11/7-resonantie en k=5 (8/5-resonantie) wijkt ook af;
+te weinig data om dat van klein-k-ruis te onderscheiden. Genoteerd als verkennend.
+
+### Digit-ANOVA (Script 296, k=12) — STERK POSITIEF RESULTAAT
+Decompositie van Var(log2 v) naar ternaire digits van de klasse-index:
+  lam=1.05: hoofdeffecten 86.3% (waarvan digit 0: 0.1123 van 0.1149 — de exacte
+    klassenstructuur 1/t/R!), buurpaar-interacties 11.3%, rest ~2.4%.
+    Digit-effect decay: 0.1123 -> 0.0019 -> 0.0007 -> ~0 (factor ~60 per positie).
+  lam=1.70: hoofdeffecten 59.9% (digit 0: 0.5922), interacties 19.9%.
+    Decay: 0.592 -> 0.0157 -> 0.0240 (!) -> 0.0017 -> 1e-4 (niet-monotoon bij p=2).
+INTERPRETATIE:
+(1) Het log-profiel is BIJNA DIGIT-SEPARABEL: log v ~ som_p f_p(digit_p) + kleine
+    interacties — een bijna-productmaat op Z_3. De digitgewichten dalen geometrisch:
+    het duale van Martiens groeiende-capaciteit-idee (constante base, krimpende
+    informatie-inhoud per digit).
+(2) Digit 0-dominantie = de exacte klasse-identiteiten (Obs 490) in ANOVA-taal.
+(3) DIRECT RELEVANT VOOR CONJECTUUR G: digit-additiviteit + geometrische decay
+    impliceert toren-variantie-contractie V_{k+1}/V_k < 1. Een bewijs van
+    digit-effect-decay uit de eigenvergelijking (de f_p voldoen aan een lineair
+    getriggerd systeem plus min-correcties) zou G's mechanisme sluiten.
+(4) Meer interactie bij hogere lam: consistent met d_k stijgend in lam (paper-tabel).
+VERVOLG: (a) cumulatieve prefix-ANOVA om V_k-additiviteit direct te toetsen;
+(b) de f_p-recursie afleiden uit de eigenvergelijking; (c) interactie-decay meten.
