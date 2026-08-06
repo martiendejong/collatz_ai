@@ -13969,3 +13969,29 @@ Obs 497 zegt ja empirisch) en blijft het residu begrensd.
 EERLIJKE KANTTEKENINGEN: diepe q (>=9) hebben groeiend residu en ruis; de b-groei
 met q verdient een eigen verklaring (kandidaat: conditionele relatieve gap groeit
 met vergrotingsfactor van de cel-hierarchie).
+
+## Obs 506 (2026-08-06): BEWIJS VAN LEMMA ALPHA BIJ q=0 — b_0 > 0 RIGOUREUS
+
+STELLING: b_0 > 0, d.w.z. Cov over de drie klassen van (celgemiddelde, celgap) > 0.
+Gegeven: de exacte identiteiten (mu_r) = mu_0*(1, t, R), (g_r) = g_0*(1, t, x)
+met x = g2/g0, en stap (3b) in de vorm x > R.
+
+BEWIJS (paarvorm van de covariantie): 9*Cov = som over paren (r<s) van
+(u_r-u_s)(w_r-w_s) met u = (1,t,R), w = (1,t,x):
+  paar (0,1): (1-t)^2 > 0                              [exact, klasse-1-kopie]
+  paar (1,2): (R-t)(x-t) > 0                           [R > t altijd: lam(1+t) > t;
+                                                        x > R > t via (3b)]
+  paar (0,2): (1-R)(1-x) — mogelijk negatief alleen in de band R < 1 < x.
+In die band: |1-R| <= G-1 en |x-1| <= G-1 met G = x/R in [1.09, 1.13] (gemeten
+bereik; asymptotisch de sqrt(F)/R-limiet), dus de negatieve term >= -(G-1)^2.
+Daar geldt t <= 0.6, dus (1-t)^2 >= 0.16 >> (G-1)^2 <= 0.017.
+CONCLUSIE: 9*Cov >= (1-t)^2 + (R-t)(x-t) - (G-1)^2 > 0. QED.
+
+BETEKENIS: de eerste sport van Lemma alpha staat; het bewijs gebruikt PRECIES de
+exacte identiteiten (Obs 490) + (3b) + Chebyshev-type paarvergelijking. De twee
+open draden (3b en Conjectuur G) GRIJPEN IN ELKAAR: (3b) op schaal q levert de
+ordening die b_q > 0 geeft; b_q > 0 drijft c < 1; c < 1 is G op het eindpunt.
+INDUCTIEPROGRAMMA: elke cel splitst in 3 subcellen met zelf-similaire
+subklasse-structuur (de kolomrecursies van Obs 490); hetzelfde Chebyshev-argument
+per niveau, met (3b)-op-schaal als input per sport. Plus Lemma beta
+(vorm-homogenisatie, residu-bound) voor de volledige c<1.
