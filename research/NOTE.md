@@ -13928,3 +13928,8 @@ P(mis)=2/3, onafhankelijkheid) zijn precies het gereedschap om c te begrenzen.
 - Kandidaat-aanpak voor c<1: E[min] = gedeeld deel - gap-term; de gap-term is
   positief gecorreleerd met het gedeelde deel (FKG-achtig) => variantiereductie.
   De paper citeert al EPW/FKG — precies het juiste gereedschap.
+
+### Obs 500 addendum 2: k=9-10 GECERTIFICEERD — blok nu 72/72
+Alle 12 lambda's x k in {9,10}: 24/24 rigoureus positief. Kleinste marge over het
+volledige blok k=5..10: +1.550e-4 (lambda=21/20, k=10). Identiteit tot 33 cijfers.
+Gecombineerd certificaat: research/certificates/cert_lemmaA_k5-10.txt (72 gevallen).
