@@ -13644,3 +13644,32 @@ INTERPRETATIE:
 (4) Meer interactie bij hogere lam: consistent met d_k stijgend in lam (paper-tabel).
 VERVOLG: (a) cumulatieve prefix-ANOVA om V_k-additiviteit direct te toetsen;
 (b) de f_p-recursie afleiden uit de eigenvergelijking; (c) interactie-decay meten.
+
+## Obs 497 (2026-08-06): PREFIX-ANOVA — VAST DIGIT-RATIO-PROFIEL, NIEUW INSTRUMENT VOOR G
+
+### Prefix-variantie (Script 298, k=13)
+C(p) = Var(E[log2 v | onderste p+1 digits]) dekt de totale variantie exact (100%).
+Incrementen vervallen geometrisch:
+  lam=1.05: ratio's 0.14 -> 0.23 -> 0.25 -> 0.33 -> ... -> plateau ~0.41
+  lam=1.70: ratio's 0.35 -> 0.49 -> 0.56 -> 0.65 -> ... -> plateau ~0.68-0.70
+Ordening in lam klopt met de d_k-tabel (d_13(1.30)=0.570; d(1.70)~0.75).
+
+### k-stabiliteit (Script 299, lam=1.70, k=10..15)
+De ratio inc(p+1)/inc(p) PER DIGITPOSITIE is vrijwel k-onafhankelijk:
+  p=0: 0.345..0.349, p=1: 0.482..0.494, p=2: 0.553..0.567, p=3: 0.637..0.661,
+  interieur-plateau: 0.674 (k=10) -> 0.702 (k=15); randeffect bij diepste 2-3 digits.
+INTERPRETATIE: het per-digit-ratio-profiel is een VAST PROFIEL (renormalisatie-
+vast-punt-signatuur). Het plateau is de asymptotische contractieconstante — dit is
+Conjectuur G's d_inf, nu meetbaar als goed-geconditioneerde binnen-k groottheid
+i.p.v. als kruisvergelijking van V_k over diepten.
+CAVEAT (eerlijk): het plateau kruipt +0.0025/stap omhoog (0.674 -> 0.702 over
+k=10..15), zelfde fenomeen als de d_k-creep (+0.003). Bij geometrisch uitdovende
+kruip: limiet ~0.71-0.72 << 1. Bij lineaire kruip: raakt 1 rond k~135. De vraag
+"dooft de kruip uit" is DE kernvraag; dit instrument maakt haar per digitpositie
+analyseerbaar (de f_p-recursie uit de eigenvergelijking bepaalt het profiel).
+
+### Verband met eerdere Obs
+- Digit-0-effect = exacte klasse-identiteiten (Obs 490).
+- Digit-separabiliteit (Obs 496) + vast ratio-profiel (dit Obs) = het profiel is
+  bijna een productmaat met vaste per-digit contractie — het renormalisatie-
+  vaste-punt van Obs 493 in ANOVA-coordinaten.
