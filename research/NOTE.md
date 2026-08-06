@@ -13673,3 +13673,47 @@ analyseerbaar (de f_p-recursie uit de eigenvergelijking bepaalt het profiel).
 - Digit-separabiliteit (Obs 496) + vast ratio-profiel (dit Obs) = het profiel is
   bijna een productmaat met vaste per-digit contractie — het renormalisatie-
   vaste-punt van Obs 493 in ANOVA-coordinaten.
+
+## Obs 498 (2026-08-06): STRUCTUURBATTERIJ — NAASTE-BUUR-VELD + TEKENWISSELING + CASCADE (Script 300)
+
+Methodologie-upgrade: eigenvector-CACHE (research/cache/, 15 vectoren lam x k) —
+elke analyse nu seconden i.p.v. minuten; batterij met shuffle-ruisvloer en
+klasse-1-exactheid als validatie (max err 5.6e-16: machinerie klopt).
+
+### Bevindingen lam=1.05 (k=13)
+(1) STERK GEBAND: I(d=1)=1.4e-3 vs I(d=2)=3.3e-5 (factor 42); Gibbs-residu
+    (voorbij mains+buurparen) slechts 2.4%. Het veld is bijna naaste-buur.
+(2) TEKENWISSELING: cos(f_p, f_{p+1}) = -0.996, -1.000 voor de dragende digits —
+    de hoofdeffectprofielen zijn een vaste vorm maal (-rho_d)^p. Dit verklaart de
+    periode-2 wiebels in k-reeksen (spike k=7/dip k=8 e.d.) en matcht de bekende
+    klasse-anticorrelatie van de verdubbelingsafbeelding.
+(3) Ruisvloer: mains ~6e-7, I ~9e-7 (shuffle) — dragende signalen p<=3; dieper is vlak.
+
+### Bevindingen lam=1.70 (k=13)
+Minder extreem geband (d=1->2 factor 6.4); Gibbs-residu 20.7% waarvan 16.9%
+DRIEWEG-EN-HOGER — echt hogere-orde structuur bij hoge lam.
+
+### DE KERNVONDST: diepe schalen zijn een CASCADE, geen additief veld
+Additief model (mains + buurparen, orthogonale ANOVA) vs gemeten prefix-incrementen
+(lam=1.05): inc(0): model 0.1123 = meting; inc(1): model 0.0158 = meting 0.0158 (!);
+inc(2): model 0.0018 vs meting 0.0036 (helft); p>=3: model ~1e-5 vs meting 9.1e-4 —
+de diepe prefix-incrementen bestaan VRIJWEL VOLLEDIG uit hogere-orde interacties
+van aaneengesloten digitblokken 0..p.
+INTERPRETATIE: log v = additief hoofdgedeelte (86%) + multiplicatieve CASCADE op de
+fijne schalen, gegenereerd door de min-niet-lineariteit. Het prefix-plateau (0.41 bij
+lam=1.05, 0.70 bij lam=1.70, Obs 497) is de decay-ratio van de contiguous-block-
+interactiemassa — de "cascade-ratio". CONJECTUUR G = "de cascade contracteert".
+Het te bewijzen object is hiermee geisoleerd: niet de mains (exact bekend, klasse-
+identiteiten), niet de paarterm (snel uitdovend), maar de cascade-recursie die de
+min-operator per niveau aan de blokinteracties toevoegt.
+CALIBRATIE-NOOT (eerlijk): diepste incrementen (p>=9, <1e-6) naderen de
+power-iteratie-precisie; het paper-audit (V_k stabiel over 150..1200 iteraties)
+suggereert dat het plateau reeel is, maar een convergentie-audit specifiek voor
+prefix-incrementen staat nog open.
+
+### Vervolg (scherpste hefbomen)
+(a) Cascade-recursie expliciet: druk de blok-interactiemassa op niveau p+1 uit in
+    die op niveau p via de eigenvergelijking (A-term lineair = behoud; min-term =
+    bron+demping). Dit is dezelfde renormalisatie als Obs 493, nu in ANOVA-taal.
+(b) Convergentie-audit prefix-incrementen (iteratie-aantallen varieren).
+(c) Tekenwisselings-transfer: de (-rho_d)-structuur analytisch uit x4-carry afleiden.
