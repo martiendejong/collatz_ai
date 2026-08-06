@@ -13722,3 +13722,34 @@ prefix-incrementen staat nog open.
 Diepe incrementen (p>=6, k=12, lam=1.05) IDENTIEK over 300/600/1200/2400 iteraties:
 max relatieve verschil 8.8e-16. Het cascade-plateau is systeemeigenschap, geen
 solver-artefact. Calibratie-zorg uit Obs 498 opgelost.
+
+## Obs 499 (2026-08-06): ARGMIN-EQUIDISTRIBUTIE + MEAN-FIELD-FALSIFICATIE (Scripts 302-303)
+
+### (a) Argmin-patroon is maximaal-entropisch (Script 302)
+pi(j) = argmin_e v[j+e*Nl]: verdeling exact 1/3-1/3-1/3, geen ties, en ONVOORSPELBAAR
+uit zowel onderste als bovenste m digits (winst < 2% boven kansniveau bij m=4; k=12..14,
+lam=1.05/1.70). De selectiestructuur van de min hangt van alle schalen af.
+GEVOLG: de "bevries het patroon in simpele regels"-route is dood; de niet-lineariteit
+is echt verdeeld over alle digitniveaus. (Positief geformuleerd: de selectie is
+asymptotisch uniform — consistent met P(mis)=2/3, Obs 494.)
+
+### (b) Mean-field cascade reproduceert de constanten NIET (Script 303)
+Populatiemodel met de exacte kolomrecursies maar onafhankelijke draws
+(klasse-zuivere cb-kolommen, uniforme subklasse-mixing — de fouten van v1-model
+gecorrigeerd): mu2/mu0 = 0.853 vs R = 0.861 (identiteit faalt door ontbrekende
+zelfconsistentie van rho), sigma-ratio -> 1.000 (fluctuatievormen egaliseren),
+s2/s0 verkeerde lam-ordening, decay-ratio 0.87 vs gemeten plateau 0.41.
+CONCLUSIE (belangrijk negatief): onafhankelijkheids-/annealed-aannames volstaan
+niet — de CONSTANTEN worden gedragen door de gestructureerde correlaties van de
+deterministische indexafbeeldingen (sibling-correlaties op de boom). De juiste
+wiskundige setting is een recursieve distributievergelijking (RDE, type
+min-plus-lineair; Aldous-Bandyopadhyay) op de GESTRUCTUREERDE boom, niet de iid-boom.
+De argmin-equidistributie (a) is dan een TE BEWIJZEN eigenschap van het RDE-vaste-punt
+(mixing), niet een aanname.
+
+### Netto-effect van deze ronde op de bewijsstrategie
+(1) Cascade geisoleerd (Obs 498) en zijn wiskundige thuis geidentificeerd (RDE op
+    gestructureerde boom). (2) Twee doodlopende shortcuts eerlijk afgesloten
+    (digit-regels voor argmin; annealed mean-field). (3) De sign-alternatie
+    (2 = -1 mod 3) en klasse-zuiverheid van cb zijn de structurele ingredienten
+    die elk model moet meenemen.
