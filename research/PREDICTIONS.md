@@ -29,3 +29,9 @@
 13. (frozen 2026-08-06, Obs 502) gamma-ladder law (1-gamma) ~ C*(2/3)^(k/6):
     gamma(25) = 0.9378 +- 0.002; gamma(27) = 0.9457 +- 0.002;
     gamma crosses 0.95 at k = 28.3 +- 1. (DENSITY fork; CEILING predicts flattening.)
+
+14. (frozen 2026-08-06, Obs 503) true-lambda* extrapolation (Script 307):
+    gamma_true(25) = 0.9429 +- 0.004; lambda*(21) = 1.8955 +- 0.003
+    (=> polished k=21 certificate at lambda~1.894 should be feasible, gamma ~ 0.922).
+    Rate of extrapolated (1-gamma): 0.926/step (~2^(-1/9)); certified-points rate
+    0.9347 (~(2/3)^(1/6)); discrepancy attributed to lower-bound bias of certificates.

@@ -13849,3 +13849,42 @@ De groeiende-capaciteit-variant (factoradic/Ostrowski) toonde zich NIET in de da
 krimpende informatie per digit — bleek de productieve incarnatie: het is nu het
 centrale object (de cascade) van de hele G-strategie. De dynamische base leeft dus
 voort als spiegelbeeld: niet meer opties per digit, maar minder informatie per digit.
+
+## Obs 503 (2026-08-06): GAMMA(25) IN MINUTEN — GEOMETRISCHE RHO-EXTRAPOLATIE (Script 307)
+
+METHODE (i.p.v. dagenlange 3^24-certificaatrun): rho_k(lambda) berekend voor k=9..16
+op lambda-grid 1.85..1.93 (alle CW-gap ~2e-15, machine-converged); geometrische staart
+rho_k = rho_inf - C*r^k gefit op k=12..16 (r ~ 0.88-0.90 bij deze lambda's, consistent
+met sqrt(cascade-plateau), Obs 502b); geextrapoleerd naar doel-k; lambda*(k) opgelost
+uit rho_k(lambda)=1. Totale rekentijd ~25 min.
+
+VALIDATIE tegen gecertificeerde records (certified = ondergrenzen):
+  k=17: extrap 0.8968 vs cert 0.8953 (+0.0015)
+  k=19: extrap 0.9105 vs cert 0.9069 (+0.0036)
+  k=20: extrap 0.9167 vs cert 0.9146 (+0.0021)
+  k=21: extrap 0.9226 vs cert 0.9184 (+0.0042)
+Offsets POSITIEF zoals verwacht (ronde-lambda-certificaten met slack; float32-sweeps
+mogelijk onder-geconvergeerd bij grote k — offset groeit met k). Eerlijke foutmarge
+extrapolatie: ~+-0.003 (rate-gevoeligheid over 5-9 stappen).
+
+SCHATTINGEN (echte lambda*-waarden):
+  gamma(22)=0.9281  gamma(23)=0.9333  gamma(24)=0.9382  gamma(25)=0.9429
+  gamma(26)=0.9472  gamma(27)=0.9512  gamma(28)=0.9548
+De 0.95-kruising: k ~ 27-28 — DENSITY-vork ondersteund; geen spoor van
+CEILING-afvlakking (0.9507) t/m k=28.
+
+RATE-SPANNING (eerlijk): gecertificeerde punten k=9..21 gaven rate 0.9347
+(~(2/3)^(1/6) = 0.93466); de geextrapoleerde reeks k=21..28 geeft 0.926
+(~2^(-1/9) = 0.92587 — alternatieve kandidaat!). Vermoedelijke verklaring:
+ondergrens-bias van de certificaten (groeiend met k) vertekent de gecertificeerde
+rate omhoog. Discriminatie vergt betere certificaten of exacte lambda*-waarden.
+
+BONUS-INZICHT (actioneerbaar): true lambda*(21) ~ 1.8955 >> gecertificeerde 1.890.
+Een polish-run van het BESTAANDE k=21-systeem bij lambda=1.894-1.895 zou het record
+naar gamma ~ 0.922 kunnen tillen ZONDER dieper te gaan (zelfde 3.5e9 constraints,
+~15h sweeps + 71 min verificatie — veel goedkoper dan k=22).
+
+PREDICTIE-NUANCE: voorspelling #13 (gamma(25)=0.9378) betrof de LADDER-WET op
+gecertificeerde waarden; de echte-lambda*-schatting is 0.9429+-0.004 (dit Obs).
+Beide voorgeregistreerd; een toekomstige k=25-certificaatrun toetst #13,
+een polished certificaat toetst #14.
