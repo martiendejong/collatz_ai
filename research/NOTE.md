@@ -14091,3 +14091,32 @@ blijft het product weg van 0 (gemeten: b_q steeg 0.036 -> 0.19 t/m q=10 bij lam=
 JA empirisch). Dit is dezelfde vaste-profiel-stabiliteit als Obs 497; de creep-vraag
 in nog een gedaante. Methodische winst: randartefact-regel (d<=4 uitsluiten) voorkomt
 toekomstige schijnpatronen zoals de e=2-momentopname.
+
+## Obs 511 (2026-08-06): GESLOTEN VORM VOOR b_0 + EXACTE EINDPUNT-VERDWIJNING (STELLING)
+
+### Stelling (volgt puur uit de exacte klasse-identiteiten, Obs 490)
+De globale relatieve topgap heeft de gesloten vorm
+  b_0 = gamma_bar = 1 - 3(1-t^3) / [t*lam^alpha*(1+t*lam)*(1+t+R)].
+Afleiding: E[G]/E[vbar] = 1 - c_bar/mu_bar en mu_bar/c_bar = (1+t+R)/3 *
+t*lam^alpha*(1+t*lam)/(1-t^3) exact (identiteitenstelsel).
+NUMERIEKE CHECK: lam=1.70: voorspeld 0.03383, gemeten 0.03386;
+lam=1.05: voorspeld 0.00048, gemeten 0.00045. (Restverschil = eindige-k.)
+
+### EINDPUNT-VERDWIJNING (exact-rationaal geverifieerd)
+Bij (lam, rho) = (2, 1): t = 1/4, lam^alpha = 3, R = 11/8, en
+  3(1-t^3) = 189/64 = t*lam^alpha*(1+t*lam)*(1+t+R)   EXACT.
+Dus ** b_0 = 0 precies op het feasibility-eindpunt **: de coarse gap collapst
+exact op de rand. Nieuw karakterisering: de K-L-rand is het punt waar
+min = mean op de grofste schaal (c_bar = mu_bar).
+
+### Betekenis voor het c<1-programma
+(1) Op het eindpunt is de grofste schaal exact KRITISCH ((1-b_0)^2 = 1); de
+    contractie d_inf ~ 0.84 wordt volledig gedragen door de diepe b_q's (die via
+    de stijgende elasticiteit e_q groeien, Obs 505/510). De eerdere schatting
+    "b ~ 0.092 op het eindpunt" betreft de diepe b, niet b_0.
+(2) Het bewijsdoel verschuift definitief naar de diepe-profiel-stabiliteit:
+    b_q = e_q*gamma_q weg van 0 voor grote q — zelfde vaste-profiel-vraag als
+    Obs 497. De coarse lagen zijn nu VOLLEDIG algebraisch begrepen.
+(3) Methodewinst: dit kwam uit systematische constanten-mining (relatie-kandidaten
+    uit de exacte identiteiten, getraind op lam=1.70, gevalideerd op 1.05) —
+    het "miljard-keer-beter"-recept werkt.
