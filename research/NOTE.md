@@ -13521,3 +13521,28 @@ de K-L renormalisatie. BEWIJSPROGRAMMA:
   (2) bound L < lam op het fixed point (eindige verificatie op een rigoureus ingesloten
       benadering van de limietverdeling).
 Dit vervangt "onbegrensde k-verificatie" door een EENMALIGE fixed-point-analyse.
+
+## Obs 494 (2026-08-06): UITLIJNING IS ASYMPTOTISCH ONAFHANKELIJK — P(mis) -> 2/3
+
+Metingen lam=1.05, k=8..16 (align_stats.py):
+  P(misalign) ens0: 0.716 -> 0.695 -> 0.682 -> 0.673 -> 0.6714   (limiet ~ 2/3!)
+  P(misalign) ens2: 0.679 -> 0.655 -> 0.665 -> 0.666 -> 0.6655   (limiet ~ 2/3!)
+  E[slack|mis]/(a*E[p]) ens0: 1.11 -> 1.04 -> 1.01 -> 1.003 -> 0.992  (limiet ~ 1.0)
+  E[slack|mis]/(a*E[p]) ens2: 1.13 -> 1.23 -> 1.19 -> 1.19 -> 1.183   (limiet ~ 1.18)
+
+BETEKENIS:
+(1) P(mis) = 2/3 is precies de ONAFHANKELIJKHEIDSWAARDE (argmin pass onafhankelijk
+    uniform van argmin cb). Geen fijnafgestemde correlatiestructuur — de misalignment
+    is generiek. Dit maakt het fixed-point-programma (Obs 493) hanteerbaar: geen
+    delicate uitlijningscorrelaties te controleren.
+(2) Decompositie van de limiet: L = lim s2/s0 ~ (P2*kappa2)/(P0*kappa0) * t * (g0/g2)_inf
+    ~ (0.665*1.18)/(0.671*0.99) * 0.575/0.938 ~ 0.73 — reproduceert de gemeten s2/s0.
+(3) Deze lokale statistieken convergeren SNEL (increments krimpen ~0.75/stap), in
+    tegenstelling tot de trage dev(k)-drift: de s-ratio-limiet wordt bepaald door snel
+    stabiliserende locale-vorm-constanten maal exacte schaalfactoren (t, lam, g-ratio's).
+(4) kappa2/kappa0 ~ 1.19: klasse-2's conditionele slack is relatief groter (zwaardere
+    cb-weging), maar de factor t*(g0/g2) domineert ruim.
+
+Route naar bewijs verscherpt: toon (a) P(mis) -> 2/3 met rate (onafhankelijkheid van
+argmins onder de renormalisatie — mengingseigenschap van de indexafbeeldingen 4m/2m+1),
+(b) kappa-convergentie, (c) g2/g0 -> R*G_inf met G_inf > 1 uit de vaste-punt-vergelijking.
