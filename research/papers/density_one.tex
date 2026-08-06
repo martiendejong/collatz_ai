@@ -2021,6 +2021,35 @@ matching measurement. The remaining rigorous work is a one-time fixed-point anal
 (contraction of the excess-pair law under renormalization; argmin-mixing of the index maps
 $m\mapsto 4m,\ 2m{+}1$; bound $L<\lambda$ at the fixed point) — replacing unbounded-$k$
 verification by a single variational/mixing argument. Work in progress.
+
+\emph{Cascade formula and the reduction of the contraction constant (Obs~504--507).}
+Two further exact identities close most of the remaining structure. Writing
+$\mathrm{inc}_p(X)$ for the variance of the digit-$p$ prefix increment of a field $X$:
+(i) the backbone preserves increment spectra, $\mathrm{inc}_p(v\circ T_4)=\mathrm{inc}_p(v)$
+exactly (affine maps are bijections on low digits); (ii) the cb-injection shifts the
+cb-spectrum by one digit with weight $W_2=(B_1^2{+}B_3^2)/3$:
+$\mathrm{inc}_p(\mathrm{CB}v) = W_2\,\mathrm{inc}_{p-1}(cb)$ exactly. The per-digit balance
+then yields the closed formula for the cascade ratio,
+\[
+  r(\lambda) \;=\; \frac{W_2\, c}{\rho^2 - A^2}, \qquad
+  c \;=\; \lim_q \mathrm{inc}_q(cb)/\mathrm{inc}_q(v),
+\]
+reproducing the measured plateaus to $2\%$ ($0.403$ vs $0.41$ at $\lambda=1.05$; $0.685$
+vs $0.70$ at $\lambda=1.70$). At the endpoint $\lambda=2$ one has the exact algebraic
+identity $W_2 = 1-A^2 = 15/16$, hence $r=c$ there: \emph{the tower contraction
+(Conjecture~G at the endpoint) is equivalent to $c<1$} — strict destruction of prefix
+variance by the elementwise min of the three sibling branches. Decomposing
+$\mathbb{E}[\min\mid\mathrm{cell}] = \text{branch mean} - G(\mathrm{cell})$ and regressing
+$\Delta G = b\,m_q(v) + \varepsilon$ gives the exact split $c_q = (1-b_q)^2 +
+\mathrm{Var}(\varepsilon_q)/\mathrm{inc}_q$; measured residuals vanish for $q\le 7$ at all
+tested $\lambda$ (scale-proportionality nearly exact, correlations up to $+0.99$), and
+$b_0$ equals the global relative top-gap. The base case $b_0>0$ is \emph{proved}
+(pairwise Chebyshev on the exact class triples $(1,t,R)$ and $(1,t,x)$, using step~(3b)
+as the ordering input, with explicit margin $9\,\mathrm{Cov} \ge (1-t)^2 + (R-t)(x-t)
+- (G-1)^2 > 0$); local positive association holds in $100\%$ of cells at shallow depth
+and $97\%$+ deep. What remains is a single sharply-stated open lemma
+(\emph{homogenization}: conditional gap-triples are asymptotically proportional to
+conditional mean-triples, cell-wise) — everything surrounding it is exact.
 \end{remark}
 
 \begin{remark}[Cycle exclusion: three independent tracks]\label{rem:cycle_excl}

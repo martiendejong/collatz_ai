@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  6 AUG 2026 18:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  6 AUG 2026 19:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -567,7 +567,7 @@ ript 274 shows that the per-column pair $(^^A[][]\OML/cmm/m/it/10.95 ;  \OT1/cm
 r/m/n/10.95 ^^A[][])$
  []
 
-[22] [23] [24] [25] [26] [27] (density_one.aux)
+[22] [23] [24] [25] [26] [27] [28] (density_one.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -576,8 +576,8 @@ Package rerunfilecheck Info: File `density_one.out' has not changed.
 (rerunfilecheck)             Checksum: 6430DCFFF325D1EDF7AC7E1ABA58CB41;1602.
  ) 
 Here is how much of TeX's memory you used:
- 10275 strings out of 467871
- 155294 string characters out of 5419828
+ 10276 strings out of 467871
+ 155301 string characters out of 5419828
  590452 words of memory out of 5000000
  38936 multiletter control sequences out of 15000+600000
  645172 words of font info for 105 fonts, out of 8000000 for 9000
@@ -618,9 +618,9 @@ rs/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
 sam10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb>
-Output written on density_one.pdf (27 pages, 575889 bytes).
+Output written on density_one.pdf (28 pages, 579047 bytes).
 PDF statistics:
- 458 PDF objects out of 1000 (max. 8388607)
- 97 named destinations out of 1000 (max. 500000)
+ 462 PDF objects out of 1000 (max. 8388607)
+ 98 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
