@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  5 AUG 2026 04:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.22)  6 AUG 2026 09:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -452,7 +452,26 @@ iplet means. The weights $\OML/cmm/m/it/10.95 w[] \OT1/cmr/m/n/10.95 = \OML/cmm
  []
 
 [12]
-Overfull \hbox (13.53168pt too wide) in paragraph at lines 1017--1023
+Overfull \hbox (7.59142pt too wide) in paragraph at lines 1013--1043
+\OT1/cmr/m/n/10.95 matching the ob-served $[](\OML/cmm/m/it/10.95 v[]\OT1/cmr/m
+/n/10.95 [3\OML/cmm/m/it/10.95 m[]\OT1/cmr/m/n/10.95 2]\OML/cmm/m/it/10.95 ; []
+[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 m\OT1/cmr/m/n/10.95 )) = \OMS/cmsy/m/
+n/10.95 ^^@\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 270$. Th
+e \OT1/cmr/m/it/10.95 parent--child anti-correlation
+ []
+
+[13]
+Overfull \hbox (42.49258pt too wide) in paragraph at lines 1069--1076
+\OT1/cmr/m/n/10.95 com-put-ing the re-sult-ing proxy cor-re-la-tion gives cu-mu
+-la-tive con-tri-bu-tions $\OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 0\OML/cmm/
+m/it/10.95 :\OT1/cmr/m/n/10.95 243\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 ^^@
+\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 264\OML/cmm/m/it/10
+.95 ; \OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/
+m/n/10.95 292\OML/cmm/m/it/10.95 ; [] \OMS/cmsy/m/n/10.95 !
+ []
+
+
+Overfull \hbox (13.53168pt too wide) in paragraph at lines 1084--1090
 \OT1/cmr/m/n/10.95 [\OT1/cmr/m/sc/10.95 measured\OT1/cmr/m/n/10.95 ]: at $\OML/
 cmm/m/it/10.95 ^^U[]\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95
  70$, $\OML/cmm/m/it/10.95 k[]\OT1/cmr/m/n/10.95 12$: $[][] = \OMS/cmsy/m/n/10.
@@ -463,7 +482,7 @@ m/m/it/10.95 :\OT1/cmr/m/n/10.95 1[]10[]$;
  []
 
 
-Overfull \hbox (31.34183pt too wide) in paragraph at lines 1024--1031
+Overfull \hbox (31.34183pt too wide) in paragraph at lines 1091--1098
 \OT1/cmr/m/it/10.95 Near-analytical ar-gu-ment for $\OML/cmm/m/it/10.95 L > \OT
 1/cmr/m/n/10.95 1$\OT1/cmr/m/it/10.95 . \OT1/cmr/m/n/10.95 In the log-linear re
 gime, $[][] \OMS/cmsy/m/n/10.95 ^^Y \OML/cmm/m/it/10.95 w[] [][] \OT1/cmr/m/n/1
@@ -471,8 +490,8 @@ gime, $[][] \OMS/cmsy/m/n/10.95 ^^Y \OML/cmm/m/it/10.95 w[] [][] \OT1/cmr/m/n/1
 []w[] []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 u[]; u[]\OT1/cmr/m/n/10.95 )$.
  []
 
-[13]
-Overfull \hbox (14.92026pt too wide) in paragraph at lines 1073--1089
+
+Overfull \hbox (14.92026pt too wide) in paragraph at lines 1140--1156
 \OT1/cmr/m/it/10.95 Significance for Con-jec-ture G. $\OML/cmm/m/it/10.95 ^^[[]
 $ \OT1/cmr/m/n/10.95 gov-erns the up-date of type-$\OML/cmm/m/it/10.95 r[]\OT1/
 cmr/m/n/10.95 1$ nodes: $\OML/cmm/m/it/10.95 ^^Z v\OT1/cmr/m/n/10.95 (\OML/cmm/
@@ -482,8 +501,8 @@ n/10.95 (\OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ;  ^^[[
 ]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ))$;
  []
 
-
-Overfull \hbox (5.78891pt too wide) in paragraph at lines 1090--1093
+[14]
+Overfull \hbox (5.78891pt too wide) in paragraph at lines 1157--1160
 \OT1/cmr/m/it/10.95 Measured mix-ing strength. \OT1/cmr/m/n/10.95 [\OT1/cmr/m/s
 c/10.95 measured\OT1/cmr/m/n/10.95 ] (script 232b, $\OML/cmm/m/it/10.95 k \OT1/
 cmr/m/n/10.95 = 13 [] 16$, $\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 = 1\OML/
@@ -491,22 +510,96 @@ cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 70$.) The $\OML/cmm/m/it/10.95 ^^[[]$\OT1/cm
 r/m/n/10.95 -autocorrelation
  []
 
-[14] [15] [16] [17] [18] [19] [20] [21] (density_one.aux)
+[15] [16] [17] [18] [19]
+Overfull \hbox (67.62001pt too wide) in paragraph at lines 1589--1622
+\OML/cmm/m/it/10.95 k[]\OT1/cmr/m/n/10.95 12[]13$: $\OML/cmm/m/it/10.95 d \OT1/
+cmr/m/n/10.95 = 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 569\OML/cmm/m/it/10.95
+ ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 629\OML/cmm/m/it
+/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 679\OML/cm
+m/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 722\
+OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.9
+5 755\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/
+n/10.95 783\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/
+cmr/m/n/10.95 803\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 
+:\OT1/cmr/m/n/10.95 822$ for $\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 = 1\OM
+L/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 30\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95
+ 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 40\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/
+10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 50\OML/cmm/m/it/10.95 ; \OT1/cmr
+/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 60\OML/cmm/m/it/10.95 ; \OT
+1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 70\OML/cmm/m/it/10.95 
+; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 80\OML/cmm/m/it/1
+0.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 90\OML/cmm/m
+/it/10.95 ; \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 00$
+ []
+
+
+Overfull \hbox (7.54617pt too wide) in paragraph at lines 1657--1664
+\OT1/cmr/m/n/10.95 Substituting $\OML/cmm/m/it/10.95 v[]\OT1/cmr/m/n/10.95 [\OM
+L/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 ] = (\OML/cmm/m/it/10.95 A=^^Z\OT1/cmr/m/n
+/10.95 ) \OML/cmm/m/it/10.95 v[]\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 ^^[[]\O
+T1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 )]$ (ex-act, Obs 464)
+ and com-put-ing $\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.9
+5 s\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 ^^[[]\OT1/cmr/m/n/10.95 (\OML/cmm
+/m/it/10.95 ^^\\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 )) =
+ (16\OML/cmm/m/it/10.95 s[]\OT1/cmr/m/n/10.95 14)  []
+ []
+
+[20]
+
+LaTeX Warning: Reference `eq:a0a1_exact' on page 21 undefined on input line 168
+1.
+
+[21]
+Overfull \hbox (16.00946pt too wide) in paragraph at lines 1749--1752
+[]\OT1/cmr/bx/n/10.95 Theorem (log-normal mono-tonic-ity, ex-act): \OT1/cmr/m/n
+/10.95 For any triplet $(\OML/cmm/m/it/10.95 Y[]; Y[]; Y[]\OT1/cmr/m/n/10.95 )$
+ with $\OML/cmm/m/it/10.95 Y[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 C []\OT
+1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^[Z[]\OT1/cmr/m/n/10.95 )$,
+ []
+
+
+Overfull \hbox (11.17285pt too wide) in paragraph at lines 1767--1770
+[]\OT1/cmr/bx/n/10.95 Analytical com-ple-ment (Script 274). \OT1/cmr/m/n/10.95 
+A sharper nec-es-sary con-di-tion $[](\OML/cmm/m/it/10.95 v[][]\OT1/cmr/m/n/10.
+95 ) \OML/cmm/m/it/10.95 > []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 v[][]\OT1/
+cmr/m/n/10.95 )$
+ []
+
+
+Overfull \hbox (23.05331pt too wide) in paragraph at lines 1781--1785
+[]\OT1/cmr/bx/n/10.95 Regression ar-gu-ment (Script 274). \OT1/cmr/m/n/10.95 Sc
+ript 274 shows that the per-column pair $(^^A[][]\OML/cmm/m/it/10.95 ;  \OT1/cm
+r/m/n/10.95 ^^A[][])$
+ []
+
+[22] [23] [24]
+
+LaTeX Warning: Reference `lem:exact_reduction' on page 25 undefined on input li
+ne 1995.
+
+[25] [26] [27] (density_one.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `density_one.out' has not changed.
 (rerunfilecheck)             Checksum: 6430DCFFF325D1EDF7AC7E1ABA58CB41;1602.
  ) 
 Here is how much of TeX's memory you used:
- 10246 strings out of 467871
- 155011 string characters out of 5419828
- 589053 words of memory out of 5000000
- 38928 multiletter control sequences out of 15000+600000
- 644387 words of font info for 102 fonts, out of 8000000 for 9000
+ 10273 strings out of 467871
+ 155268 string characters out of 5419828
+ 590053 words of memory out of 5000000
+ 38935 multiletter control sequences out of 15000+600000
+ 645004 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,550b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,550b,679s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm109
 5.pk> <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 0600.pk> <C:\Users\HP\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\t
@@ -521,27 +614,29 @@ ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/HP/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/HP/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/HP/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/User
-s/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
-/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pf
+s/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:
+/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pf
 b><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-17.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmr6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr7.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmr8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmr9.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmsy6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/HP/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/HP/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/HP/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Use
-rs/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb>
-Output written on density_one.pdf (21 pages, 496757 bytes).
+12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr17.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr6.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr7.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr9.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/HP/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/HP/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/HP/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/HP/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/HP/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/HP/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/User
+s/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.p
+fb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb>
+Output written on density_one.pdf (27 pages, 566700 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
- 79 named destinations out of 1000 (max. 500000)
+ 451 PDF objects out of 1000 (max. 8388607)
+ 97 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

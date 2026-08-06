@@ -1846,9 +1846,9 @@ $\mathrm{m2m}(v_2) < \mathrm{m2m}(v_0)$, equivalently $c_2/c_0 < R(\lambda)$,
 with strictly positive margin. Furthermore,
 $\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2} > \mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0}$
 for all $144$ pairs (Obs~484), with minimum ratio $1.0838$.
-Extended verification at $\lambda=1.05$ for $k\in[15,19]$ (Obs~485/488) gives minimum ratio
-$1.07794$ at $k=19$, and at $\lambda\in\{1.10,\ldots,1.40\}$ for $k\in[15,18]$ (Obs~488)
-minimum ratio $1.0948$ ($164$ verified cases in total).
+Extended verification at $\lambda=1.05$ for $k\in[15,20]$ (Obs~485/488/491) gives minimum ratio
+$1.07769$ at $k=20$ (Obs~491), and at $\lambda\in\{1.10,\ldots,1.40\}$ for $k\in[15,18]$ (Obs~488)
+minimum ratio $1.0948$ ($165$ verified cases in total).
 \end{lemma}
 
 \begin{lemma}[Exact class identities and slack reduction]\label{lem:exact_reduction}
@@ -1940,8 +1940,8 @@ for all $144$ tested cases ($k\in[3,14]$, $\lambda\in\{1.05,\ldots,2.00\}$, Scri
 the ratio $(\mathbb{E}[\sigma_{\mathrm{within}}(v_2)]/\mathrm{mean}_{v_2})\,/\,
 (\mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0})\in[1.08,1.62]$,
 strictly $> 1$ in all cases; minimum ratio $1.0838$ at $\lambda=1.05$, $k=14$.
-Extended to $k\in[15,19]$ at $\lambda=1.05$ (Scripts~282/285, Obs~485/488): minimum ratio $1.07794$
-at $k=19$; and to $k\in[15,18]$ at $\lambda\in\{1.10,\ldots,1.40\}$ (Script~288/Obs~488): minimum $1.0948$.
+Extended to $k\in[15,20]$ at $\lambda=1.05$ (Scripts~282/285/289, Obs~485/488/491): minimum ratio
+$1.07769$ at $k=20$; and to $k\in[15,18]$ at $\lambda\in\{1.10,\ldots,1.40\}$ (Script~288/Obs~488): minimum $1.0948$.
 
 \textbf{Structural mechanism.}
 $B_3=\lambda B_1$ inflates the cb-contribution to $\mathrm{Var}(v_2\text{-col})$ by $\lambda^2$
@@ -1961,7 +1961,7 @@ driving $\mathrm{CoV}_{\mathrm{within}}(v_2)>\mathrm{CoV}_{\mathrm{within}}(v_0)
   \mathbb{E}[\sigma_{\mathrm{within}}(v_0)]/\mathrm{mean}_{v_0}$:
   directly verified for all $144$ cases $k\in[3,14]$ (Obs~484/Script~281),
   ratio $\in[1.08,1.62]$, minimum $1.0838$;
-  extended to $k\in[15,19]$ at $\lambda=1.05$ (Obs~485/488, Scripts~282/285), minimum ratio $1.07794$,
+  extended to $k\in[15,20]$ at $\lambda=1.05$ (Obs~485/488/491, Scripts~282/285/289), minimum ratio $1.07769$,
   and to $k\in[15,18]$ at $\lambda\in[1.10,1.40]$ (Obs~488/Script~288), minimum $1.0948$.
   Asymptotic limit: ratio $\to \sqrt{F}/R \approx 1.095 > 1$ as $k\to\infty$ (Obs~471 + ergodicity).
 \item Equicorrelated-Gaussian: $\mathrm{m2m}(v_r) = 1 - C_3\cdot
@@ -1972,18 +1972,20 @@ driving $\mathrm{CoV}_{\mathrm{within}}(v_2)>\mathrm{CoV}_{\mathrm{within}}(v_0)
 \emph{Formal closure.}
 For $k\in[3,14]$, $\lambda\in[1.05,2.00]$: directly verified (Script~281/Obs~484; all 144 cases,
 ratio $\in[1.08,1.62]$, minimum $1.0838$).
-For $k\in[15,19]$, $\lambda=1.05$ (hardest case): directly verified (Scripts~282/284/285, Obs~485/488;
-all pass, minimum ratio $1.07794$ at $k=19$, $N=3^{18}\approx 3.9\times 10^8$).
+For $k\in[15,20]$, $\lambda=1.05$ (hardest case): directly verified (Scripts~282/284/285/289,
+Obs~485/488/491; all pass, minimum ratio $1.07769$ at $k=20$, $N=3^{19}\approx 1.2\times 10^9$).
 For $k\in[15,18]$, $\lambda\in\{1.10,1.20,1.30,1.40\}$: directly verified (Script~288/Obs~488;
 all 16 cases pass, minimum ratio $1.0948$ at $\lambda=1.10$, $k=18$), confirming $\lambda=1.05$
-is the extremal case. In total $164$ directly verified cases, all with ratio $>1.077$.
+is the extremal case. In total $165$ directly verified cases, all with ratio $>1.077$.
+The deviation sequence $0.0159\,(k{=}17),\ 0.0160\,(k{=}18),\ 0.0166\,(k{=}19),\ 0.0169\,(k{=}20)$
+shows decelerating increments, consistent with a trough near $k\approx 20$--$22$.
 
-For $k>19$: the asymptotic limit $\sqrt{F}/R>1$ (exact by Obs~471: $F-R^2 = 2t\lambda(1-t^3)(\lambda^2-t)>0$
+For $k>20$: the asymptotic limit $\sqrt{F}/R>1$ (exact by Obs~471: $F-R^2 = 2t\lambda(1-t^3)(\lambda^2-t)>0$
 for $t\in(0,1)$, $\lambda>1$) guarantees the condition as $k\to\infty$.
 The convergence is not monotone: the measured deviation from the limit,
 $\mathrm{dev}(k)=\sqrt{F}/R-\mathrm{ratio}(k)$, rises through
-$0.0159\,(k{=}17),\ 0.0160\,(k{=}18),\ 0.0166\,(k{=}19)$ and is expected to peak
-(the ``trough'' in ratio) before decaying to $0$.
+$0.0159\,(k{=}17),\ 0.0160\,(k{=}18),\ 0.0166\,(k{=}19),\ 0.0169\,(k{=}20)$ and is expected
+to peak (the ``trough'' in ratio) before decaying to $0$.
 Two-component spectral fits $\mathrm{dev}(k)= C_1\gamma_1^k - C_2\gamma_2^k$ describe the
 data well, but an identifiability analysis over the full family of fits consistent with the
 $k\in[14,19]$ data (Obs~489) shows that $C_1$ and $\gamma_1$ are \emph{not} individually
@@ -1991,7 +1993,7 @@ identifiable: the family's pointwise envelope guarantees ratio $\ge 1.075$ only 
 $k\approx 21$, degrading to $\approx 1.03$ at $k=60$, and ceases to exclude ratio $=1$
 near $k\approx 100$ for its most slowly decaying members ($\gamma_1\approx 0.998$).
 \emph{Honest formal status:} step~(3b) is proved for the directly verified range
-($164$ cases, $k\le 19$, minimum ratio $1.07794$) and holds asymptotically with the exact
+($165$ cases, $k\le 20$, minimum ratio $1.07769$) and holds asymptotically with the exact
 limit $1.0946$. For the remaining range, Lemma~\ref{lem:exact_reduction} reduces the
 condition \emph{exactly} to $\lambda s_0 > s_2$ (measured $s_2/s_0\in[0.55,0.70]$,
 required $<\lambda$); closing it rigorously requires the ensemble comparison

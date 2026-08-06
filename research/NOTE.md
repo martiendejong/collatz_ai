@@ -13442,3 +13442,38 @@ niet-negatieve, concave, monotone functionalen op eindige ensembles, met factor-
 en inductieve structuur. Dit is een scherp geformuleerd combinatorisch/variationeel probleem,
 GEEN asymptotische rate-schatting meer. Empirisch vervolg: meet s2/s0 voor k = 13..19 om de
 limiet L(lam) = lim s2/s0 te schatten (verwacht ~0.75 bij lam=1.05, ver onder lam).
+
+### Obs 490 addendum: affiene slackvormen + vlakke-limiet-scherpte
+Met d = E[min over cb-kolommen] (dubbel-min) gelden de exacte affiene vormen:
+  s0 = c0 - t*c2 - t*lam^alpha * d
+  s2 = c2 - t^2*c0 - t*lam^(alpha+1) * d
+(d-termen vallen weg in lam*s0 - s2 = c0(lam+t^2) - c2(1+lam*t), consistent.)
+De niet-negativiteitsconstraint s0 >= 0 geeft x = c2/c0 <= 1/t - lam^alpha * (d/c0);
+in de vlakke limiet (gaps -> 0) geldt d/c0 -> cbar/mu0 = (1-t^3)/(t*lam^alpha*(1+t*lam))
+en dan wordt de bovengrens EXACT R. Conclusie: alle zuiver algebraische herschikkingen
+zijn scherp in de vlakke limiet; de strikte ongelijkheid van (3b) zit onherleidbaar in
+de VERDELINGSASYMMETRIE (cb:pass gewichtsverhouding is factor lam/t groter voor klasse 2,
+en geconcentreerdere mixen hebben minder slack). Bewijsrichting: kwantitatieve
+"balans => meer slack" lemma op de recursief gerelateerde ensembles (inductie in k).
+
+## Obs 491 (2026-08-06): k=20 GEVERIFIEERD — ratio = 1.07769
+
+Script 289 (memmap, N=3^19=1.16e9, float32, 35 iters, genormaliseerd via constanten-schaling):
+  E_s0/mu0=0.0000167  E_s2/mu2=0.0000181
+  ratio = 1.07769  rho = 1.576710  sqrt(F)/R = 1.09459  dev = 0.01690
+Validatie: zelfde code op k=8 reproduceert 1.15504 en rho=1.57373 exact (alle cijfers).
+
+dev-reeks lam=1.05: k=17: 0.0159, k=18: 0.0160, k=19: 0.0166, k=20: 0.0169.
+Incrementen: +0.0001, +0.0006, +0.0003 — vertragend; trog nabij maar nog niet gekeerd.
+Direct geverifieerd totaal nu 165 gevallen, minimum ratio 1.07769 (lam=1.05, k=20).
+Script 290 (k=21, N=3.5e9) GESTART — dev(21) < dev(20) zou de keer bevestigen.
+
+### Obs 490 addendum 2: Script 291 — s2/s0 over alle 144 gevallen
+Alle 144 gevallen: lam*s0 > s2 met RUIME marge.
+  max s2/s0 = 0.74271 (lam=1.05, k=7); min marge lam - s2/s0 = +0.307.
+  Identiteit (1-t^3)(g2-R*g0) = W(s0-s2/lam): ratio 1.00000000 voor alle k>=4;
+  bij k=3 (N=9, Nl3=1, gedegenereerd eenkolomsniveau) afwijkingen tot 4e-3 door
+  convergentieresidu — k=3 is sowieso direct geverifieerd.
+  Trend in k (lam=1.05): s2/s0 stijgt langzaam: 0.55 (k=8) -> 0.70 (k=12) -> ~0.74 richting
+  limiet; de (3b)-limietmarge 1.0946 > 1 correspondeert met lim s2/s0 < lam. Voor het
+  tail-bewijs is een bovengrens lim sup s2/s0 <= L < 1.05 nodig; empirisch L ~ 0.75-0.85.
