@@ -14120,3 +14120,28 @@ min = mean op de grofste schaal (c_bar = mu_bar).
 (3) Methodewinst: dit kwam uit systematische constanten-mining (relatie-kandidaten
     uit de exacte identiteiten, getraind op lam=1.70, gevalideerd op 1.05) —
     het "miljard-keer-beter"-recept werkt.
+
+## Obs 512 (2026-08-06): DE GEVEZELDE GEMIDDELDE-HIERARCHIE IS EXACT OPLOSBAAR PER NIVEAU
+
+Script 317: het digit-1 subklasse-stelsel
+  mu0[d] = t*mu2[d] + (B1/rho)*c[d]
+  mu1[d] = t*mu0[sigma(d)]          sigma = 3-cykel (d -> d+2)
+  mu2[d] = t*mu1[d] + (B3/rho)*c[tau(d)]   tau = transpositie (0<->1, het 2=-1-mechanisme)
+lost cyclisch op: mu0[d] = [f(d) + t^3 f(sigma d) + t^6 f(sigma^2 d)]/(1-t^9),
+f(d) = t*(B3/rho)*c[tau(d)] + (B1/rho)*c[d].
+GEVERIFIEERD: max rel err ~1e-15 en digit-1-profiel cos = +1.000000 bij lam=1.05,
+1.70, 1.90. Ook c1 = t*c0 exact op subklasse-niveau (1.00000000).
+Dit verklaart de eerdere mislukte injectie-alleen-voorspelling (Obs 502c): de
+cyclische A-transport (sigma-structuur) was de ontbrekende component.
+
+BETEKENIS:
+(1) De volledige klassegemiddelde-HIERARCHIE (digit voor digit) is exacte lineaire
+    algebra, niveau voor niveau, met als enige niet-algebraische input per niveau
+    de c-vector (cb-subklassegemiddelden = de min-data). De cascade is dus formeel:
+    een exact lineair skelet + een rij c-vectoren ("temperatuurreeks van de min").
+(2) VOLGENDE MIJN-DOELWIT: de c-verfijningsratio's per niveau — volgen die een
+    herkenbare recursie? (Op het eindpunt zijn alle coefficienten rationaal;
+    een gesloten eindpunt-hierarchie is denkbaar.)
+(3) Voor het c<1-programma: b_q-waarden zijn nu uitdrukbaar in de c-vectoren van
+    opeenvolgende niveaus — de diepe-profiel-stabiliteit wordt een uitspraak over
+    de c-reeks.
