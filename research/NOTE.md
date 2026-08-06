@@ -14019,3 +14019,25 @@ Dit is de kwantitatieve schaalinvariantie van het RDE-vaste-punt (Obs 493/499),
 nu met (i) een bewezen basisgeval (q=0, Obs 506), (ii) 100%-lokale positiviteit
 gemeten op alle niveaus, (iii) de exacte gevezelde identiteiten als inductie-
 gereedschap. Status: scherp geformuleerd open lemma; al het omringende is exact.
+
+## Obs 508 (2026-08-06): HOMOGENISATIE VERFIJND — PROPORTIONALITEIT PER CEL, NIET UNIFORME COEFFICIENT
+
+Script 313: verdeling van b_C (lokale regressiecoefficient) over cellen, per diepte.
+FALSIFICATIE: sd(b_C) GROEIT met q (sd-ratio's 1.3-3.9 per stap); geen convergentie
+naar een uniforme coefficient. De b-heterogeniteit is zelf cascade-gedreven
+(b_C ~ lokale relatieve gap ~ multiplicatieve celstructuur).
+MAAR: de per-cel CORRELATIE blijft bijna perfect in de bulk:
+  lam=1.70: mediaan corr_C = +1.000/+0.998/+0.995/+0.995/+0.992/+0.990 (q=1..6),
+            fractie positief 100% t/m q=6, 94.5% bij q=7, 91.8% bij q=8.
+  lam=1.05: mediaan +0.997/+0.945/+0.955/+0.971/+0.893 (q=1..5); diep ruisvloer.
+
+VERFIJNDE VORM VAN HET LEMMA (data-verankerd):
+Met corr_C ~ 1 geldt per cel: inc_C(cb) = (1-b_C)^2 * var(u_C), dus
+  c_q = variantie-gewogen gemiddelde van (1-b_C)^2 over cellen.
+  ** c < 1  <=>  gewogen massa van b_C in (0, 2), weg van de randen. **
+Te bewijzen: (H1) per-cel proportionaliteit corr_C -> 1 (de vorm-uitspraak);
+(H2) b_C > 0 gewogen-vrijwel-overal (de orde-uitspraak; basisgeval bewezen Obs 506,
+lokale versie = zelfde Chebyshev per cel op de gevezelde identiteiten);
+(H3) gewogen E[b_C^2] < 2*gewogen E[b_C] (automatisch zolang b_C <= 2-delta).
+De groeiende spreiding van b_C is GEEN obstructie voor c < 1; alleen randmassa
+(b_C <= 0 of >= 2) zou dat zijn — gemeten randmassa: 0-8% diep, 0% in de bulk.
