@@ -14236,3 +14236,23 @@ Het te bewijzen invariant is nu maximaal scherp: "E[G | digit_p = d] is evenwijd
 aan E[vbar | digit_p = d]" (gemeten afwijking < 1e-4), en de contractiefactor is
 sqrt(c_p) — dezelfde constante als de increment-transfer (Obs 504), consistent
 over twee aggregatieniveaus.
+
+## Obs 517 (2026-08-07): HET PARALLELLITEITSMECHANISME — DUBBELE ONDERDRUKKING (Script 323)
+
+VRAAG (uit Obs 516): waarom is cos(cb-profiel, vbar-profiel) = 1.0000?
+ANTWOORD (gekwantificeerd, geen exact invariant maar dubbele kleinheid):
+  1-cos(cb,vbar) ~ (|G-profiel|/|vbar-profiel| * sin(theta_G))^2 / 2
+met twee onafhankelijk kleine factoren:
+  (i) gap-amplitude: |G-profiel|/|vbar-profiel| ~ gamma-schaal (0.0005..0.06);
+  (ii) scheefheid: sin(theta_G) ~ 0.03..0.35 (1-cos(G,vbar) gemeten 4e-5..0.9 —
+       het G-profiel is deels maar NIET perfect uitgelijnd).
+CHECK: lam=1.90, p=0: voorspeld ~(0.1*0.115)^2/2 ~ 6.6e-5, gemeten 3.0e-5 (orde klopt);
+factor ~100 onderdrukking t.o.v. naieve gamma^2-schaling.
+BONUS-METING: de richness-profielspreiding per digit (E[G|d]/E[vbar|d]-spread) is
+klein (1e-5..1e-2) en daalt met diepte — "richness bijna digit-onafhankelijk", de
+mixing-uitspraak in meetbare vorm.
+CONSEQUENTIE VOOR HET PROGRAMMA: H1 op digitniveau is TWEEDE-ORDE-beschermd:
+de scheve gap-component komt in c_q alleen kwadratisch binnen (consistent met
+Var(eps)/inc ~ 0 in de bulk, Obs 505). Het bewijsdoel hoeft dus geen exacte
+parallelliteit: eerste-orde-uitlijning + gamma-kleinheid volstaat — een veel
+mildere (en realistisch bewijsbare) eis dan het oorspronkelijke homogenisatie-lemma.
