@@ -14256,3 +14256,17 @@ de scheve gap-component komt in c_q alleen kwadratisch binnen (consistent met
 Var(eps)/inc ~ 0 in de bulk, Obs 505). Het bewijsdoel hoeft dus geen exacte
 parallelliteit: eerste-orde-uitlijning + gamma-kleinheid volstaat — een veel
 mildere (en realistisch bewijsbare) eis dan het oorspronkelijke homogenisatie-lemma.
+
+## Obs 518 (2026-08-07): LANGZAME GOLF IN DE RESIDUEN — PERIODE ONBESLIST, ORD-6-HYPOTHESE NIET GESTEUND
+
+De log-residuen van gammabar(2,k) na gladde trendfit tonen een langzame golf
+(runs +++/---/++++/--; lag-1-autocorr +0.51; GEEN periode-2 zoals het 2=-1-teken-
+mechanisme zou geven op dit niveau). Mechanisme-kandidaat ord(2 mod 9) = 6
+(zou ook de "/6" in de ladder-rate verklaren) GETEST:
+  lam=2-reeks (k=5..16): beste periode T = 8.3 (R^2 0.83, maar 2 sinusparams na
+  3-param trend op 12 punten — overfit-risico groot).
+  lam=1.05 dev-reeks (k=14..21, onafhankelijk): beste periode T = 4.25.
+CONCLUSIE (eerlijk): golfstructuur reeel maar periode niet gepind; de twee
+onafhankelijke reeksen zijn het oneens; ord-6-hypothese NIET ondersteund.
+Geparkeerd — beslissing vergt diepere reeksen (geen zware runs conform Martiens
+richtlijn). De "/6" in (2/3)^(1/6) blijft daarmee zonder mechanisme-bevestiging.
