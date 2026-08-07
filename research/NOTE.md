@@ -14214,3 +14214,25 @@ sigma-cross-check 1.07744 exact; c-vorm-marge +5.1e-6 binnen float32-ruis
 Debug-les (harness): dubbele backslashes in bash-heredocs worden samengeklapt;
 python-\a werd BEL in de tex (2x). Regel: paper-edits via de Edit-tool, niet via
 heredoc-python met backslash-strings.
+
+## Obs 516 (2026-08-07): MARGE-IDENTITEIT + DE MIN ALS SCALAIRE PROFIELCONTRACTIE (Scripts 321-322)
+
+### (a) Nieuwe exacte identiteit: marge = (3b)-surplus
+Omdat mu2 = R*mu0 exact (Obs 490): R - c2/c0 = (g2 - R*g0)/c0 EXACT
+(geverifieerd: ratio 1.0000000000). De 72 gecertificeerde marges ZIJN dus de
+(3b)-surplus per geval. Voorspelling: marge-verval in k met rate sqrt(c(lam)).
+Data k=5..10 nog transient (rates stijgend, lam=1.05: 0.60 bij k=12-13 vs
+voorspeld 0.64 — consistent); bekende k=8-anomalie zichtbaar (ratio 1.098).
+
+### (b) DE MIN IS EEN SCALAIRE CONTRACTIE OP DIGIT-PROFIELEN (sterkste H1-vorm)
+Digit-hoofdeffectprofielen van het cb-veld vs het vbar-veld (Script 322):
+  cos = +1.0000 op ELKE digit p (beide lambda's; kleinste 0.9994) — de min
+  behoudt de profielrichting exact binnen meetprecisie.
+  Amplituderatio = sqrt(c_p): lam=1.70: p=0: 0.9637 vs sqrt(0.9287)=0.9637 (!),
+  p=4: 0.9354 vs sqrt(0.8815)=0.9389; lam=1.05: 0.9986-0.9996 vs sqrt(0.994..0.999).
+INTERPRETATIE: op profielniveau (aggregatie over cellen) wast de b_C-heterogeniteit
+volledig uit en resteert zuivere proportionaliteit — H1 geldt daar EXACT-binnen-ruis.
+Het te bewijzen invariant is nu maximaal scherp: "E[G | digit_p = d] is evenwijdig
+aan E[vbar | digit_p = d]" (gemeten afwijking < 1e-4), en de contractiefactor is
+sqrt(c_p) — dezelfde constante als de increment-transfer (Obs 504), consistent
+over twee aggregatieniveaus.
