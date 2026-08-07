@@ -14270,3 +14270,31 @@ CONCLUSIE (eerlijk): golfstructuur reeel maar periode niet gepind; de twee
 onafhankelijke reeksen zijn het oneens; ord-6-hypothese NIET ondersteund.
 Geparkeerd — beslissing vergt diepere reeksen (geen zware runs conform Martiens
 richtlijn). De "/6" in (2/3)^(1/6) blijft daarmee zonder mechanisme-bevestiging.
+
+## Obs 519 (2026-08-07): ORBIT-STRATIFICATIE VAN GAP-RICHNESS — NIEUWE STRUCTUURWET (Scripts 324-325)
+
+### 27-systeem exact + cykelcatalogus
+Digit-2 gevezeld stelsel (27 onbekenden, 9 c-waarden) exact opgelost: max rel err
+1.2e-15 / 2.1e-15. Structuurvondst: de samengestelde pass-map is u -> u+5 mod 9
+(9-cykel; 64u+14 = u+5 mod 9) — schone cyclische solve.
+Routing-cykels op Z/9: pass 4u: vaste punten {0,3,6} + twee 3-cykels;
+cb-map 2u+1: 6-CYKEL (0 1 3 7 6 4) + 2-cykel (2 5) + vast punt 8.
+
+### DE WET: kortere cb-routing-orbit => rijkere gap (VOORGEREGISTREERD + KRUISGEVALIDEERD)
+Digit-2 (Z/9), lam=1.70: vast punt 0.0402 > 2-cykel 0.0325 > 6-cykel 0.0311 (~4 sd).
+Digit-3 (Z/27, orbits 18/6/2/1) — voorspelde ordening STRIKT MONOTOON bevestigd
+bij ALLE lambda's:
+  lam=1.05: 0.00054 > 0.00048 > 0.00045 > 0.00043
+  lam=1.70: 0.04484 > 0.03549 > 0.03192 > 0.03053
+  lam=1.90: 0.07420 > 0.06030 > 0.05510 > 0.05314
+MECHANISME: u = -1 mod 3^j is de zelfvoedende lijn van de verdubbelingsmap
+(2(-1)+1 = -1); korte orbits recirculeren hun eigen gap-informatie, lange orbits
+middelen uit over veel sites (orbitlengte als effectieve mengtijd).
+
+### BEWIJSRELEVANTIE (belangrijk)
+ord(2 mod 3^j) = 2*3^(j-2): typische orbits worden LANG met j; de korte (rijke)
+orbits {1,2,6,...}-lengtes hebben gezamenlijke dichtheid -> 0. Dus:
+  ** richness-homogenisatie geldt buiten een expliciet verdwijnend-kleine
+     uitzonderingsstrata-verzameling ** — precies de vorm die H1/Lemma beta
+nodig heeft. De b_C-heterogeniteit (Obs 508) krijgt hiermee een arithmetische
+stratificatie i.p.v. een amorf toevalsveld; de strata zijn per niveau berekenbaar.
