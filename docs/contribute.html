@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bijdragen · Contribute</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<style>
+.form-grid { display: flex; flex-direction: column; gap: 16px; max-width: 640px; }
+.form-grid label { font-weight: 600; color: var(--accent); font-size: 0.95rem; }
+.form-grid input[type="text"], .form-grid select, .form-grid textarea {
+  background: var(--panel2); border: 1px solid var(--line); color: var(--text);
+  border-radius: 8px; padding: 10px 14px; font-size: 1rem; width: 100%;
+  font-family: inherit;
+}
+.form-grid textarea { min-height: 160px; resize: vertical; }
+.form-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+.form-actions button {
+  border: none; border-radius: 8px; padding: 11px 22px; cursor: pointer;
+  font-size: 1rem; font-weight: 700;
+}
+.btn-gh { background: var(--accent); color: var(--bg); }
+.btn-mail { background: var(--panel2); color: var(--text); border: 1px solid var(--line) !important; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Bijdragen</span><span class="en">Contribute</span></div>
+    <h1 class="nl">Draag bij aan het onderzoek</h1>
+    <h1 class="en">Contribute to the research</h1>
+    <p class="lead nl">Reproducties, toetsen van voorspellingen, bewijsideeën, foutmeldingen · alles is welkom,
+    en alles wordt openbaar behandeld in de repository.</p>
+    <p class="lead en">Reproductions, prediction tests, proof ideas, error reports · everything is welcome,
+    and everything is handled publicly in the repository.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="nl">Bijdrageformulier</span><span class="en">Contribution form</span></h2>
+    <p class="nl">Vul het formulier in. Met <b>"Open als GitHub-issue"</b> wordt je bijdrage als
+    voor-ingevuld issue geopend in de openbare onderzoeksrepository (GitHub-account nodig; je kunt
+    de tekst daar nog bewerken vóór verzending). Liever per e-mail? Gebruik de tweede knop.</p>
+    <p class="en">Fill in the form. <b>"Open as GitHub issue"</b> opens your contribution as a
+    prefilled issue in the public research repository (GitHub account required; you can still edit
+    the text there before submitting). Prefer email? Use the second button.</p>
+
+    <div class="form-grid">
+      <div>
+        <label for="cName"><span class="nl">Naam (optioneel)</span><span class="en">Name (optional)</span></label>
+        <input type="text" id="cName" placeholder="">
+      </div>
+      <div>
+        <label for="cType"><span class="nl">Soort bijdrage</span><span class="en">Type of contribution</span></label>
+        <select id="cType">
+          <option value="repro">Reproductie van een resultaat / Reproduction of a result</option>
+          <option value="prediction">Toets van een voorspelling / Prediction test</option>
+          <option value="certification">Uitbreiding certificering / Certification extension</option>
+          <option value="proof">Bewijsidee of lemma-poging / Proof idea or lemma attempt</option>
+          <option value="error">Foutmelding (cursus of onderzoek) / Error report (course or research)</option>
+          <option value="question">Vraag / Question</option>
+          <option value="other">Anders / Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="cRef"><span class="nl">Betreft (les, script of observatie, optioneel)</span>
+          <span class="en">Concerns (lesson, script or observation, optional)</span></label>
+        <input type="text" id="cRef" placeholder="b.v. / e.g. les 5.3, script 311, Obs 504">
+      </div>
+      <div>
+        <label for="cMsg"><span class="nl">Je bijdrage</span><span class="en">Your contribution</span></label>
+        <textarea id="cMsg" placeholder=""></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="btn-gh" onclick="submitGithub()">
+          <span class="nl">Open als GitHub-issue</span><span class="en">Open as GitHub issue</span></button>
+        <button class="btn-mail" onclick="submitMail()">
+          <span class="nl">Verstuur per e-mail</span><span class="en">Send by email</span></button>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:26px">
+      <div class="title nl">Wat er met je bijdrage gebeurt</div>
+      <div class="title en">What happens with your contribution</div>
+      <span class="nl">Issues zijn openbaar en worden in het onderzoekslog (NOTE.md) verwerkt met
+      naamsvermelding, tenzij je anoniem wilt blijven. Reproducties en falsificaties zijn even welkom
+      als bevestigingen · zie les 6.1 over waarom dat de kern van de methode is.</span>
+      <span class="en">Issues are public and are processed into the research log (NOTE.md) with
+      attribution, unless you prefer anonymity. Reproductions and falsifications are as welcome as
+      confirmations · see lesson 6.1 on why that is the heart of the method.</span>
+    </div>
+
+    <p class="nl">Ideeën nodig? De tabel "Zelf meedoen" in <a href="b6l3.html">les 6.3</a> geeft concrete
+    openstaande vragen, van een middag reproductiewerk tot het open homogenisatie-lemma.</p>
+    <p class="en">Need ideas? The "Getting involved" table in <a href="b6l3.html">lesson 6.3</a> lists
+    concrete open questions, from an afternoon of reproduction work to the open homogenisation lemma.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="index.html"><span class="dir nl">‹ terug</span><span class="dir en">‹ back</span>
+      <span class="nl">Cursusoverzicht</span><span class="en">Course overview</span></a>
+    <a href="b6l3.html" style="text-align:right"><span class="dir nl">context ›</span><span class="dir en">context ›</span>
+      <span class="nl">Les 6.3 · Zelf meedoen</span><span class="en">Lesson 6.3 · Getting involved</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script>
+function gatherContribution() {
+  var name = document.getElementById('cName').value.trim();
+  var typeSel = document.getElementById('cType');
+  var type = typeSel.options[typeSel.selectedIndex].text.trim();
+  var ref = document.getElementById('cRef').value.trim();
+  var msg = document.getElementById('cMsg').value.trim();
+  var lang = document.documentElement.getAttribute('data-lang');
+  if (!msg) {
+    alert(lang === 'en' ? 'Please write your contribution first.' : 'Schrijf eerst je bijdrage.');
+    return null;
+  }
+  var title = '[' + (lang === 'en' ? 'contribution' : 'bijdrage') + '] ' + type + (ref ? ' · ' + ref : '');
+  var body = msg
+    + '\n\n---\n'
+    + (ref ? ((lang === 'en' ? 'Concerns: ' : 'Betreft: ') + ref + '\n') : '')
+    + (name ? ((lang === 'en' ? 'From: ' : 'Van: ') + name + '\n') : '')
+    + (lang === 'en' ? 'Submitted via the course contribution form.' : 'Ingezonden via het cursus-bijdrageformulier.');
+  return { title: title, body: body };
+}
+function submitGithub() {
+  var c = gatherContribution();
+  if (!c) return;
+  var url = 'https://github.com/martiendejong/collatz_ai/issues/new'
+    + '?title=' + encodeURIComponent(c.title)
+    + '&body=' + encodeURIComponent(c.body);
+  window.open(url, '_blank');
+}
+function submitMail() {
+  var c = gatherContribution();
+  if (!c) return;
+  window.location.href = 'mailto:info@martiendejong.nl'
+    + '?subject=' + encodeURIComponent(c.title)
+    + '&body=' + encodeURIComponent(c.body);
+}
+</script>
+</body>
+</html>
