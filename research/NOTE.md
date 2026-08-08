@@ -14566,3 +14566,41 @@ de vork wordt beslist door het homogenisatie-lemma (analytisch) of door
 substantieel diepere reeksen (k >= 20 bij lam=2, zwaar). De empirische winst van
 vandaag: het beste instrument (TR), de exacte convergentiestatus van elke waarde,
 en drie gefalsifieerde te-simpele verklaringen.
+
+## Obs 528 (2026-08-08): BACKBONE-ELIMINATIE — HET PROBLEEM GEREDUCEERD TOT EEN KERN + EEN MIN (STELLING)
+
+### Stelling (machine-geverifieerd 1.5e-15 / 3.5e-15; Script 338)
+De backbone i -> 4i+2 is EEN ENKELE N-cykel (numeriek herbevestigd), en de
+eigenvergelijking inverteert er exact langs:
+  v(i) = (1/rho) * sum_{n>=0} t^n * f(T4^n(i)),
+met f het feedveld (B1/B3-termen uit cb; klasse 1 krijgt 0). Omdat T4 de klassen
+exact met periode 3 doorloopt (0->2->1), is het coefficientenpatroon langs de
+cykel 3-periodiek. GEVOLG: v valt volledig weg en het fixed point is equivalent met
+de cb-alleen-vergelijking
+  ** w = M3(K w) **
+waarin w het cb-veld is (dimensie N/3), K een EXPLICIETE positieve kern (geometrische
+gewichten t^n met 3-periodieke B-modulatie langs de ene T4-cykel), en M3 de
+min-over-top-digit-triple. EEN veld, EEN niet-lineariteit, lineair deel in gesloten
+vorm opgelost.
+
+### Waarom dit het probleem kleiner maakt
+(1) Dimensie gedeeld door 3; alle klasse-structuur zit nu IN de kern (de identiteiten
+    van blok-4-type worden eenregelige kernuitspraken: rijsommen van K geven
+    rho_lin, massa-identiteit, etc.).
+(2) De open kern (contractie/homogenisatie) wordt: "smoothing van M3 o K" — de kern
+    middelt geometrisch langs EEN volledige cykel, d.w.z. met PERFECTE equidistributie
+    (single cycle!). Dat is de sterkst mogelijke mixing-input voor het
+    homogenisatie-argument; de enige storende term is de lokale min over de
+    top-digit-triple.
+(3) De RDE-formulering (Obs 493/499) krijgt zijn definitieve concrete gedaante:
+    een min-van-geometrisch-gemiddelde-vergelijking op een cykel — het soort object
+    waarvoor contractie-in-projectieve-metriek en equidistributie-argumenten
+    standaardgereedschap zijn.
+
+### Vervolg (de aanval op de kleinste vorm)
+(a) Kernrijsommen exact uitschrijven -> alle blok-4-identiteiten herafleiden in
+    kerntaal (uitschrijfwerk, gegarandeerd).
+(b) De smoothing-vraag voor M3 o K formuleren in Hilbert-metriek op het cb-veld;
+    de Birkhoff-machinerie van Obs 501 is direct toepasbaar op de kern.
+(c) De orbit-wet (Obs 519-521) herinterpreteren als eigenschap van K's
+    correlatiestructuur langs de cykel.
