@@ -51,3 +51,6 @@
 17. (frozen 2026-08-08, Obs 525) TR(2.00, 17->18) in [0.828, 0.838] (center 0.833):
     the series has converged near c(2) = 0.830 = rate(gammabar)^2; no further rise
     beyond 0.838. Same definitions as #16 (Script 333/334 recipe, full convergence).
+
+    SCORECARD #17: HIT (0.83565 in [0.828, 0.838]) — but series still rising
+    (+0.0057/step); stationarity reading invalidated; see Obs 526.

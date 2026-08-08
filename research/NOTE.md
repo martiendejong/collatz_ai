@@ -14510,3 +14510,32 @@ naar-0.830-lezing verklaart de hele reeks zonder kruip-hypothese.
 #16 bevroor een waarde uit een nog convergerende reeks — precies het soort fout
 dat voorregistratie hoort te vangen, en ving. De juiste voorspelling toetst
 STATIONARITEIT OP DE LIMIET, niet het voorlaatste punt.
+
+## Obs 526 (2026-08-08): #17 RAAK MAAR DE REEKS STIJGT DOOR — VORK HEROPEND IN HET SCHONE INSTRUMENT
+
+### Scorekaart
+#17: TR(2.00, 17->18) = 0.83565 in [0.828, 0.838] — RAAK (band was ruim).
+Volledig geconvergeerd (300 vs 400 iters identiek; float32-recept, Script 336).
+
+### De diepere boodschap (belangrijker dan de treffer)
+TR-reeks diep regime: 0.8185 (14->15), 0.8229, 0.8300, 0.8357 (17->18).
+Stijging +0.0044, +0.0071, +0.0057 per stap — GEEN duidelijke vertraging.
+Daarmee sneuvelt ook de Obs 525-lezing "geconvergeerd op 0.830 = rate(gammabar)^2":
+de reeks is er alweer voorbij. De kruip-achtige stijging die Obs 524 aan het
+V-instrument toeschreef, zit OOK in het schone TR-instrument, zodra je diep genoeg
+kijkt. Doortrekken van +0.006/stap zou 1.0 raken rond k ~ 45; geometrisch uitdovende
+incrementen zouden convergeren rond 0.85-0.86. NIET TE ONDERSCHEIDEN met k <= 18.
+
+### Eerlijke eindstand van de kruipvraag (drie iteraties deze dag)
+Obs 524: "geen kruip" (voorbarig, pre-asymptotisch plateau).
+Obs 525: "convergentie naar 0.830" (sneuvelde binnen een dag op #17-data).
+Obs 526: de stijging is reeel en aanhoudend t/m k=18 in het beste instrument;
+DE VORK IS OPEN, en de TR(2,k)-reeks is nu het scherpste discriminerende object.
+Wat zou beslissen: TR op k=19 (haalbaar, ~1-2u float32) en k=20-21 (memmap, zwaar —
+geparkeerd). Analytisch: het homogenisatie-lemma blijft de enige route die de
+limiet ECHT vastlegt.
+
+### Meta-les
+Drie keer binnen 24 uur een limiet-claim moeten bijstellen op eigen bevroren
+voorspellingen: het voorregistratie-systeem functioneert precies zoals bedoeld —
+het dwingt de bijstelling af VOORDAT de claim zich vastzet.
