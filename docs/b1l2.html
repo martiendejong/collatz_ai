@@ -133,12 +133,44 @@
       <div class="controls" style="margin-top:8px">
         <button onclick="growTree()"><span class="nl">Boom opnieuw laten groeien</span><span class="en">Regrow the tree</span></button>
       </div>
-      <div class="caption nl">De eerste generaties van de omgekeerde Collatz-boom, laag voor laag opgebouwd.
-        Elke tak ×2 gaat altijd door; de (m−1)/3-takken ontstaan alleen bij m ≡ 4 (mod 6). De vraag
-        "dekt de boom alles?" is dezelfde vraag als het vermoeden.</div>
-      <div class="caption en">The first generations of the inverse Collatz tree, built layer by layer.
-        The ×2 branch always continues; the (m−1)/3 branches appear only when m ≡ 4 (mod 6). The question
-        "does the tree cover everything?" is the same question as the conjecture.</div>
+      <div class="caption nl">De eerste generaties van de omgekeerde Collatz-boom als klassiek diagram.
+        Elke tak ×2 gaat altijd door; de (m−1)/3-takken ontstaan alleen bij m ≡ 4 (mod 6).</div>
+      <div class="caption en">The first generations of the inverse Collatz tree as a classic diagram.
+        The ×2 branch always continues; the (m−1)/3 branches appear only when m ≡ 4 (mod 6).</div>
+    </div>
+
+    <h3 class="nl">De boom als spiraal</h3>
+    <h3 class="en">The tree as a spiral</h3>
+    <p class="nl">Hetzelfde object wordt pas echt mooi in poolcoördinaten. Kies de <b>straal</b> als
+    \(\log_2 n\): omdat \(\log_2(2n) = \log_2 n + 1\), liggen alle verdubbelingen automatisch op
+    <b>één rechte straal, met gelijke stappen naar buiten</b>. Geef elke \((m{-}1)/3\)-aftakking een
+    hoekverschuiving evenredig met \(1/\text{straal}\) (dus gelijke <i>boog</i>-afstand): de zijtakken
+    draaien dan proportioneel weg en de boom wordt een spiraalstelsel.</p>
+    <p class="en">The same object becomes truly beautiful in polar coordinates. Choose the <b>radius</b>
+    as \(\log_2 n\): since \(\log_2(2n) = \log_2 n + 1\), all doublings automatically lie on
+    <b>one straight ray, with equal steps outward</b>. Give every \((m{-}1)/3\) branch an angular offset
+    proportional to \(1/\text{radius}\) (i.e. equal <i>arc</i> distance): the side branches then rotate
+    away proportionally and the tree becomes a system of spirals.</p>
+
+    <div class="figure">
+      <div class="controls">
+        <span class="nl">krul:</span><span class="en">curl:</span>
+        <input type="range" id="curlSlider" min="10" max="160" value="70" style="width:140px">
+        <span class="nl">diepte:</span><span class="en">depth:</span>
+        <input type="range" id="depthSlider" min="10" max="30" value="24" style="width:140px">
+        <button onclick="drawRadialTree(true)"><span class="nl">Opnieuw laten groeien</span><span class="en">Regrow</span></button>
+      </div>
+      <canvas id="radialCanvas" width="900" height="760"></canvas>
+      <div class="caption nl">De circulaire Collatz-boom. Blauwgroene stralen = verdubbelingsketens
+        (zelfde hoek, gelijke log-stappen naar buiten); roze sprongen = de (m−1)/3-aftakkingen, die
+        iets naar binnen springen (afstand log₂3 ≈ 1.585) en proportioneel wegdraaien. Elke straal is
+        dus één "even snelweg", en de roze knikken zijn de plekken waar de ×3-wereld invoegt.
+        Speel met de krul-regelaar: de spiraalarmen zijn dezelfde boom, anders opgerold.</div>
+      <div class="caption en">The circular Collatz tree. Teal rays = doubling chains (same angle, equal
+        log steps outward); pink jumps = the (m−1)/3 branches, stepping slightly inward (distance
+        log₂3 ≈ 1.585) and rotating away proportionally. Every ray is thus one "even highway", and the
+        pink kinks are where the ×3 world merges in. Play with the curl slider: the spiral arms are the
+        same tree, rolled up differently.</div>
     </div>
 
     <p class="nl">Dit boombeeld is de brug naar het telprogramma van blok 3: in plaats van "bevat de boom
@@ -370,9 +402,104 @@ function runReal() {
   }
 }
 
+/* ---- subject 3b: radial/spiral Collatz tree ---- */
+var radialAnim = null;
+function buildRadialTree(maxDepth, curlDeg) {
+  // node: value n, angle a; radius = log2(n)*scale
+  // child 2n: same angle; child (n-1)/3: angle + curl/radius (equal arc), sign fixed
+  var nodes = [{ n: 1, a: 0, d: 0, parent: null, type: null }];
+  var out = [];
+  var queue = [nodes[0]];
+  var seen = {};
+  seen[1] = true;
+  var curlArc = curlDeg / 60; // arc units
+  while (queue.length) {
+    var nd = queue.shift();
+    out.push(nd);
+    if (nd.d >= maxDepth) continue;
+    var kids = [];
+    var v2 = nd.n * 2;
+    if (v2 < 4e6) kids.push({ n: v2, a: nd.a, type: 'x2' });
+    if (nd.n % 6 === 4 && (nd.n - 1) / 3 > 1 && ((nd.n - 1) / 3) % 2 === 1) {
+      var v3 = (nd.n - 1) / 3;
+      var r = Math.max(Math.log2(nd.n), 1);
+      kids.push({ n: v3, a: nd.a + curlArc / r, type: 'div3' });
+    }
+    kids.forEach(function (k) {
+      if (seen[k.n + '@' + k.a.toFixed(4)]) return;
+      seen[k.n + '@' + k.a.toFixed(4)] = true;
+      var child = { n: k.n, a: k.a, d: nd.d + 1, parent: nd, type: k.type };
+      queue.push(child);
+    });
+  }
+  return out;
+}
+function drawRadialTree(animate) {
+  var curl = parseInt(document.getElementById('curlSlider').value, 10);
+  var maxDepth = parseInt(document.getElementById('depthSlider').value, 10);
+  var nodes = buildRadialTree(maxDepth, curl);
+  var cv = document.getElementById('radialCanvas'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, cx = W / 2, cy = H / 2;
+  var maxR = 0;
+  nodes.forEach(function (nd) { maxR = Math.max(maxR, Math.log2(nd.n)); });
+  var scale = (Math.min(W, H) / 2 - 24) / maxR;
+  function xy(nd) {
+    var r = Math.log2(nd.n) * scale;
+    return [cx + r * Math.cos(nd.a - Math.PI / 2), cy + r * Math.sin(nd.a - Math.PI / 2)];
+  }
+  if (radialAnim) cancelAnimationFrame(radialAnim);
+  var byDepth = [];
+  nodes.forEach(function (nd) {
+    if (!byDepth[nd.d]) byDepth[nd.d] = [];
+    byDepth[nd.d].push(nd);
+  });
+  var startT = null;
+  var totalMs = animate ? 4200 : 0;
+  function frame(ts) {
+    if (startT === null) startT = ts;
+    var prog = totalMs === 0 ? 1 : Math.min((ts - startT) / totalMs, 1);
+    var showDepth = prog * maxDepth;
+    ctx.clearRect(0, 0, W, H);
+    // faint circles at powers of two
+    ctx.strokeStyle = '#1d2340';
+    for (var p = 2; p <= maxR; p += 2) {
+      ctx.beginPath(); ctx.arc(cx, cy, p * scale, 0, 7); ctx.stroke();
+    }
+    for (var d = 1; d <= Math.min(showDepth, maxDepth); d++) {
+      var layer = byDepth[d] || [];
+      var alpha = Math.min(showDepth - (d - 1), 1);
+      layer.forEach(function (nd) {
+        if (!nd.parent) return;
+        var p1 = xy(nd.parent), p2 = xy(nd);
+        ctx.strokeStyle = nd.type === 'x2'
+          ? 'rgba(94,234,212,' + (0.75 * alpha) + ')'
+          : 'rgba(240,171,252,' + (0.9 * alpha) + ')';
+        ctx.lineWidth = nd.type === 'x2' ? 1.1 : 1.6;
+        ctx.beginPath(); ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); ctx.stroke();
+      });
+    }
+    // root + labels for small values
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath(); ctx.arc(cx, cy, 4, 0, 7); ctx.fill();
+    ctx.fillStyle = '#e8eaf6'; ctx.font = '11px sans-serif';
+    nodes.forEach(function (nd) {
+      if (nd.n <= 32 && nd.d <= Math.floor(showDepth)) {
+        var q = xy(nd);
+        ctx.fillText(nd.n, q[0] + 4, q[1] - 4);
+      }
+    });
+    if (prog < 1) radialAnim = requestAnimationFrame(frame);
+  }
+  radialAnim = requestAnimationFrame(frame);
+}
+document.addEventListener('input', function (e) {
+  if (e.target && (e.target.id === 'curlSlider' || e.target.id === 'depthSlider')) drawRadialTree(false);
+});
+
 window.addEventListener('DOMContentLoaded', function () {
   drawHist();
   growTree();
+  drawRadialTree(true);
   runWalks();
 });
 </script>
