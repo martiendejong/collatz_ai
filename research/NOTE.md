@@ -14484,3 +14484,29 @@ De V-kruip is vermoedelijk een artefact van tel-weging/endpoint-referentie.
 ### Bevroren voorspelling (PREDICTIONS #16)
 TR(2.00, 16->17) = 0.8215 +- 0.0045 (stationariteit; definitie: inc_last-ratio
 zoals in Script 333, zelfde iteratie-aantallen-schema).
+
+## Obs 525 (2026-08-08): PREDICTIE #16 MIS — EN DE HERINTERPRETATIE DIE ALLES KLOPPEND MAAKT
+
+### De misser (eerlijk, Scripts 334-335)
+TR(2.00, 16->17) = 0.83005 vs voorspeld 0.8215 +- 0.0045: MIS (+2 sigma).
+Convergentie-audit: alle inc_last-waarden machine-exact (rel diff <= 3e-11) bij
+verdubbelde iteraties — de misser is reeel, geen artefact. SCOREKAART: #16 = MIS.
+
+### De herinterpretatie (sterker dan de oorspronkelijke claim)
+Volledige TR-reeks: 0.8237 0.7967 0.8109 0.8218 0.8218 0.8185 0.8229 0.8300.
+De laatste drie stijgen — maar dit is CONVERGENTIE, geen kruip:
+  rate(gammabar(2,k))^2 = 0.9109^2 = 0.8297 = TR(16->17) = 0.8300 (!!)
+De twee instrumenten (gap-massa-rate kwadraat en top-laag-variantie-rate) komen
+samen op c(2) = 0.830; de wortelwet is nu exact op VIER decimalen:
+  sqrt(0.83005) = 0.91107 vs gemeten gammabar-rate 0.9105-0.9116.
+Daarmee is ook de U3-fijnspanning (Obs 524-tijdperk: 0.9037 vs 0.9094) OPGELOST:
+beide waren pre-asymptotisch en convergeren naar dezelfde constante.
+GECORRIGEERDE STAND: c(2) = 0.830 +- 0.001 (twee instrumenten, 4 decimalen
+consistent); Obs 524's "stationair op 0.820" was voorbarig — de vlakte bij k=12-15
+was een pre-asymptotisch plateau. Kruipvraag blijft open maar de convergentie-
+naar-0.830-lezing verklaart de hele reeks zonder kruip-hypothese.
+
+### Les (voorregistratie werkt!)
+#16 bevroor een waarde uit een nog convergerende reeks — precies het soort fout
+dat voorregistratie hoort te vangen, en ving. De juiste voorspelling toetst
+STATIONARITEIT OP DE LIMIET, niet het voorlaatste punt.

@@ -44,3 +44,10 @@
 16. (frozen 2026-08-08, Obs 524) TR(2.00, k=16->17) = 0.8215 +- 0.0045, where
     TR = inc_last(k+1)/inc_last(k) per Script 333 (log2-field, prefix increments,
     last layer). Stationarity claim: no upward creep in the clean instrument.
+
+    SCORECARD #16: MISS (measured 0.83005). Reinterpretation in Obs 525:
+    series was still converging; limit matches rate(gammabar)^2 at 4 decimals.
+
+17. (frozen 2026-08-08, Obs 525) TR(2.00, 17->18) in [0.828, 0.838] (center 0.833):
+    the series has converged near c(2) = 0.830 = rate(gammabar)^2; no further rise
+    beyond 0.838. Same definitions as #16 (Script 333/334 recipe, full convergence).
