@@ -14604,3 +14604,29 @@ vorm opgelost.
     de Birkhoff-machinerie van Obs 501 is direct toepasbaar op de kern.
 (c) De orbit-wet (Obs 519-521) herinterpreteren als eigenschap van K's
     correlatiestructuur langs de cykel.
+
+## Obs 529 (2026-08-08): KERNTAAL OPERATIONEEL — RIJSOMSTELLING + JACOBIAAN-SPECTRUM (Script 339)
+
+### Rijsomstelling (exact, sd ~1e-16)
+De rijsommen van de expliciete kern K zijn klasse-constant met gesloten vormen:
+  klasse 0: (B1 + B3*t)/(rho(1-t^3))     [1.2362 bij lam=1.05: exact]
+  klasse 1: (B1*t + B3*t^2)/(rho(1-t^3))
+  klasse 2: (B3 + B1*t^2)/(rho(1-t^3))
+Reconstructie v = K@cb: max rel err 1.4e-15/2.8e-15. De blok-4-identiteiten zijn
+hiermee herleid tot eenregelige kern-rijsom-uitspraken (bijv. massa-identiteit =
+gewogen som van de drie rijsomconstanten).
+
+### Bevroren cb-Jacobiaan: gecertificeerde iteratieconstanten
+J = K-rijen geselecteerd door het argmin-patroon. Euler: J w* = w* exact (1e-15);
+subleidend spectrum |lam_2|: 0.6732 (lam=1.05), 0.8030 (lam=1.70) — de
+convergentieconstanten van de cb-iteratie, direct bruikbaar in de
+certificeringsketen (vervangt de grovere Birkhoff-diameterschatting).
+NB: een ogenschijnlijke match |lam_3| ~ sqrt(TR) bij lam=1.05 (0.6376 vs 0.6362)
+faalde de kruistoets bij lam=1.70 (0.803 vs 0.870) — NIET geclaimd, conform de
+drie-poten-discipline.
+
+### Status van de kernvorm na een dag
+w = M3(K w) staat: kern expliciet, rijsommen gesloten, reconstructie exact,
+Jacobiaan-spectrum meetbaar, Euler-structuur bevestigd. De contractievraag is nu
+een concrete operator-vraag over M3 o K — het kleinste en scherpste object waarin
+het gamma->1-programma ooit is uitgedrukt.
