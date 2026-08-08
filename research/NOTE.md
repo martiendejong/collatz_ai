@@ -14369,3 +14369,15 @@ De mod-729-voorspelling (Obs 520-addendum-stijl) gebruikte fit-A op k=13; de met
 hier gebruikt langste-orbit-A op k=14 — appels/peren, dus de "hit/miss"-vraag is
 onbeslisbaar. Regel: bevries formule, referentie, weging, k en modulus — niet alleen
 het getal.
+
+### Obs 521 addendum: verenigende lus-vorm theta^L/(1-theta^L)
+Lus-evenwicht-afleiding: elke orbit is een gesloten lus in de feed-graaf; met
+per-stap-transfer theta wordt het mean-excess van een L-lus
+  excess(L) = C * theta^L / (1 - theta^L).
+LIMIETEN: theta -> 1: excess ~ C/(L(1-theta)) — de 1/L-vorm; theta klein:
+excess ~ C*theta^L — de c^L-vorm. De twee eerdere kandidaten (Obs 520) zijn dus
+limieten van EEN formule; de data (theta-fit ~0.98 uit L=1,2 bij lam=1.9) zit in
+het crossover-regime, wat de midden-L-afwijkingen van zuivere 1/L verklaart.
+EEN-KANAALS-FIT mist delta(6) nog met factor ~2 (gemeten hoger); verfijning met
+twee kanalen (pass-lus sigma en feed-lus tau hebben verschillende periodes) is de
+volgende stap. Dit is nu het scherpste kandidaat-mechanisme voor de orbit-wet.
