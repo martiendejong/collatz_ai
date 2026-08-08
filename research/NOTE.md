@@ -14298,3 +14298,33 @@ orbits {1,2,6,...}-lengtes hebben gezamenlijke dichtheid -> 0. Dus:
      uitzonderingsstrata-verzameling ** — precies de vorm die H1/Lemma beta
 nodig heeft. De b_C-heterogeniteit (Obs 508) krijgt hiermee een arithmetische
 stratificatie i.p.v. een amorf toevalsveld; de strata zijn per niveau berekenbaar.
+
+## Obs 520 (2026-08-08): KWANTITATIEVE ORBIT-WET — delta(L) = A + B/L, VOORGEREGISTREERD 6/6 RAAK
+
+### De wet (Scripts 326-327)
+Richness-afwijking per orbit van u->2u+1 mod 3^j volgt delta(L) = A(lam) + B(lam,j)/L:
+  - 1/L-fit verslaat c^L-fit in ALLE 9 basisfits (R2 tot 0.995 vs 0.79-0.98).
+  - A(lam) stabiel over moduli (9/27/81/243): 0.00042-0.00044 | 0.0291-0.0300 |
+    0.0513-0.0519 — de GEHOMOGENISEERDE richness, resolutie-onafhankelijk.
+  - B groeit per digitniveau met factor ~1.44-1.48.
+VOORREGISTRATIE (bevroren voor de mod-243-run): A ongewijzigd; B(243) = 1.44*B(81).
+UITKOMST: A = 0.00044/0.03004/0.05172 (exact); B = 0.00025/0.03076/0.04409
+(voorspeld 0.00025/0.0299/0.0434) — 6/6 binnen 3%.
+B-groeiratio's (9->27->81->243): ~1.42-1.50; gesloten-vorm-kandidaten 3^(1/3) = 1.442
+en 3/2 = 1.5 zijn nog niet te onderscheiden — EERLIJK OPEN.
+
+### Mechanisme (bewijsvorm!)
+Celrichness = ORBITGEMIDDELDE van de geinjecteerde feed (de gevezelde recursie is
+lineair in de middeling). Voor een gemiddelde over L equidistribuerende punten van een
+veld met correlatiemassa B geldt afwijking ~ B/L — de 1/L is de variantie van een
+ergodisch gemiddelde. B = som van autocovarianties van het richnessveld langs de
+verdubbelingsorbit; groei ~1.47^j = de correlatiemassa op fijnere resolutie.
+
+### Consequentie voor het homogenisatie-lemma (belangrijk)
+|richness(cel) - A| <= B(j)/L(cel). Typische orbits hebben L ~ 3^j (ord(2 mod 3^j) =
+2*3^(j-2)), dus B/L_typ ~ (1.47/3)^j -> 0 GEOMETRISCH. Zelfs matig-korte orbits
+(L ~ 3^(j/2)) homogeniseren met rate (1.47/1.73)^j. Alleen begrensde-L-orbits behouden
+afwijking, en die hebben dichtheid -> 0. Daarmee heeft H1/H2's "buiten dunne
+uitzonderingsverzameling" nu een EXPLICIETE kwantitatieve gedaante; het te bewijzen
+residu is de ergodische-middeling-afschatting zelf (equidistributie van de
+verdubbelingsorbit + correlatie-afval van het richnessveld — beide standaard-vormig).
