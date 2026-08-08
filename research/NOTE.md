@@ -14338,3 +14338,34 @@ GEEN CLT-artefact van kleine deelverzamelingen maar een dynamische eigenschap va
 zelfvoedende feed-routing. De orbit-wet staat daarmee op drie poten: kwantitatieve
 vorm (1/L), voorgeregistreerde validatie (6/6 op mod 243), en mechanisme-controle
 (shuffle, z=6.4).
+
+## Obs 521 (2026-08-08): CORRECTIES OP OBS 520 — VORM ONBESLIST, MECHANISME OPEN (Script 329)
+
+### (1) Functievorm delta(L): NIET vastgesteld
+Met A = gemiddelde van de langste orbit (schonere referentie, k=14, mod 243, lam=1.9):
+  excessen L=1,2,6,18,54: 0.0384, 0.0190, 0.0126, 0.0062, 0.0015.
+  delta(1)/delta(2) = 2.02 (1/L-conform!) maar delta(6) zit factor ~2 en delta(18)
+  factor ~3 BOVEN de 1/L-lijn; log-log-hellingen varieren -0.4..-1.3 (geen zuivere
+  machtwet). De Obs 520-fit woog naar orbitgrootte en drukte de midden-L-afwijking weg.
+  BLIJFT STAAN: strikte monotonie, dynamisch karakter (shuffle z=6.4), A-stabiliteit.
+  ONBESLIST: de precieze vorm (1/L vs macht vs mengvorm) — wegingsafhankelijk.
+
+### (2) Groeiconstante: geen schone 4/3
+delta(1)-A groeiratio's per niveau (m9..m729, k=14):
+  lam=1.05: 1.55, 1.33, 1.21, 1.19 (dalend, WEG van 4/3)
+  lam=1.70: 1.56, 1.40, 1.33, 1.32   lam=1.90: 1.54, 1.38, 1.32, 1.30
+Bij hoge lam consistent ~1.30-1.33 maar nog dalend; bij lam=1.05 duidelijk lager.
+4/3-kandidaat VERZWAKT; mogelijk lam-afhankelijke limiet. GEPARKEERD.
+
+### (3) Mechanisme: AR ~ 0 langs orbits — ergodische middeling ondergraven
+lag-1/lag-2-autocorrelatie van richness langs de langste orbit: -0.05..-0.09 (wit).
+De verrijking is dus een GEMIDDELDE-VERSCHUIVING per orbit, geen uitmiddeling van
+gecorreleerde fluctuaties. Nieuw kandidaat-mechanisme: gesloten-feed-lus-evenwicht
+(elke orbit is een gesloten lus in de feed-graaf; zelfversterking per lus bepaalt
+de mean-shift). Kwantitatieve voorspelling daarvan nog af te leiden — OPEN.
+
+### (4) Methodeles (belangrijk): voorregistratie moet DEFINITIES bevriezen
+De mod-729-voorspelling (Obs 520-addendum-stijl) gebruikte fit-A op k=13; de meting
+hier gebruikt langste-orbit-A op k=14 — appels/peren, dus de "hit/miss"-vraag is
+onbeslisbaar. Regel: bevries formule, referentie, weging, k en modulus — niet alleen
+het getal.
