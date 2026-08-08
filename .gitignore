@@ -14,3 +14,8 @@ research/scripts/certificate_k17.npy
 research/scripts/certificate_k18.npy
 research/lean/CollatzCert/.lake/
 research/k21/
+research/certificates/*.npy
+research/cache/
+*.aux
+*.log
+*.out
