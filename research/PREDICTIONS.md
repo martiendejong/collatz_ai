@@ -35,3 +35,8 @@
     (=> polished k=21 certificate at lambda~1.894 should be feasible, gamma ~ 0.922).
     Rate of extrapolated (1-gamma): 0.926/step (~2^(-1/9)); certified-points rate
     0.9347 (~(2/3)^(1/6)); discrepancy attributed to lower-bound bias of certificates.
+
+15. (frozen 2026-08-08, Obs 522/U2) s(k) := minus slope of linear fit of rho(lam,k)
+    over lam in {1.85, 1.87, 1.89, 1.91, 1.93}. Prediction: s(k) decreases
+    monotonically toward s(inf) = -rho_lin'(2) = 0.1556 (algebraic, from the mass
+    identity). Measured so far: s(9)=0.3320 ... s(16)=0.2929, ratio ~0.982/step.
