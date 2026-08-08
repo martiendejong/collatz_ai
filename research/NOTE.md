@@ -14539,3 +14539,30 @@ limiet ECHT vastlegt.
 Drie keer binnen 24 uur een limiet-claim moeten bijstellen op eigen bevroren
 voorspellingen: het voorregistratie-systeem functioneert precies zoals bedoeld —
 het dwingt de bijstelling af VOORDAT de claim zich vastzet.
+
+## Obs 527 (2026-08-08): RISE ∝ GAMMABAR VERWORPEN — OSCILLATIE-LEZING VAN DE TR-REEKS (Script 337)
+
+### De falsificatie
+Hypothese (vorm vooraf bevroren): TR-rise per stap = beta * gammabar met
+lambda-onafhankelijke beta. GEMETEN beta: lam=1.30: +0.49/+1.06/-0.08;
+lam=1.70: -0.09/+0.22/+0.32; lam=1.90: -0.05/+0.10/+0.18; lam=2.00: -0.05/+0.07/+0.13.
+beta varieert wild en GROEIT met k terwijl gammabar daalt: VERWORPEN. De
+"zelfdovende kruip via gapmassa"-route is daarmee dood.
+
+### Wat het patroon WEL laat zien: gedempte oscillatie
+Rises per k (14/15/16): lam=1.30: +0.0017/+0.0027/-0.0002 (GEDRAAID!);
+lam=1.70: -0.0025/+0.0055/+0.0071; lam=1.90: -0.0026/+0.0045/+0.0077;
+lam=2.00: -0.0032/+0.0044/+0.0071 (en +0.0057 bij 17).
+Alle reeksen: negatief -> positief -> (bij lam=1.30 al) weer vlak. Dit is de
+signatuur van OSCILLERENDE CONVERGENTIE — zelfde fenomeen als de dev-trog bij
+lam=1.05 (k~20). De "gestage stijging" van Obs 526 is vermoedelijk de opgaande
+flank van zo'n golf; lam=1.30 (verder in zijn cyclus) is al gedraaid.
+ZWAKKE (eerlijk gelabelde) evidentie voor convergentie i.p.v. drift-naar-1.
+
+### Strategische conclusie van de patroonjacht op de vork
+De TR-reeks oscilleert met lambda-afhankelijke fase; kruip vs golf is bij k <= 18
+niet te scheiden. De patroonjacht heeft hier de dataresolutie-grens bereikt:
+de vork wordt beslist door het homogenisatie-lemma (analytisch) of door
+substantieel diepere reeksen (k >= 20 bij lam=2, zwaar). De empirische winst van
+vandaag: het beste instrument (TR), de exacte convergentiestatus van elke waarde,
+en drie gefalsifieerde te-simpele verklaringen.
