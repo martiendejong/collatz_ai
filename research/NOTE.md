@@ -14630,3 +14630,35 @@ w = M3(K w) staat: kern expliciet, rijsommen gesloten, reconstructie exact,
 Jacobiaan-spectrum meetbaar, Euler-structuur bevestigd. De contractievraag is nu
 een concrete operator-vraag over M3 o K — het kleinste en scherpste object waarin
 het gamma->1-programma ooit is uitgedrukt.
+
+## Obs 530 (2026-08-08): DE VALUATIEWET — DE MENGSTRUCTUUR IS EEN FUNCTIE VAN v3(n) (Scripts 340-341)
+
+### De ontdekking
+De autocorrelatie van het log-veld langs de ene T4-cykel VERVALT NIET klassiek,
+maar volgt een exacte hierarchie: ** ACF(n) = phi_lambda(v3(n)) ** — afhankelijk
+van n vrijwel uitsluitend via de 3-adische valuatie. Spreiding binnen
+valuatieklassen: sd 0.0002-0.03 (v3>=2: < 0.005). Waarden (lam=1.05/1.70/2.00):
+  v3=0: -0.42 / -0.28 / -0.24   (anti-correlatie: klasse-mismatch, tau-structuur)
+  v3=1: +0.78 / +0.46 / +0.39
+  v3=2: +0.95 / +0.71 / +0.63
+  v3=3: +0.99 / +0.82 / +0.75
+  v3=4: +1.00 / +0.89 / +0.83
+Altijd strikt onder de prefix-fractie-bovengrens C(v3)/Var, met deficit dat
+krimpt met v3 (het translatie-verlies binnen behouden digits).
+
+### Mechanisme (bewijsklaar)
+T4^n is affien met multiplicator 4^n; ord(4 mod 3^m) = 3^(m-1), dus
+4^n = 1 mod 3^(v3(n)+1): T4^n behoudt v3(n)+1 lage digits op een translatie na.
+Omdat het veld voor 86%+ (lam=1.05) in de lage digits leeft (Obs 496), correleert
+het sterk met zijn beeld op 3-machtige lags. De niet-deelbare lags mengen de
+klassen => de negatieve constante (2 = -1 mod 3 wederom).
+
+### Waarom dit de contractie-aanval hervormt
+De kruistermen in Var(Kw) = som over n,m van t^(n+m) B(n)B(m) Cov(w o map_n, w o map_m)
+zijn nu EXPLICIET: Cov = phi(v3(n-m))-structuur. Hoge-correlatie-lags zijn
+geometrisch sparse (dichtheid 3^-j voor v3 >= j) terwijl t^n geometrisch weegt:
+de hierarchische som convergeert met berekenbare constanten. "Mixing-schattingen"
+worden vervangen door exacte valuatie-sommen — de cascade-coefficienten van het
+kernmodel w = M3(K w) zijn hiermee in principe uitschrijfbaar in gesloten
+hierarchische vorm. Dit is de laatste structurele bouwsteen die het
+contractiebewijs nodig had aan de K-kant; het open residu blijft de min-transfer.
