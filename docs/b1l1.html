@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 1.1 · Wat is het Collatz-vermoeden?</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch">
+    <button data-lang="nl">NL</button>
+    <button data-lang="en">EN</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 1 · Het Vermoeden</span><span class="en">Block 1 · The Conjecture</span> › <b>1.1</b></div>
+    <h1 class="nl">Wat is het Collatz-vermoeden?</h1>
+    <h1 class="en">What is the Collatz conjecture?</h1>
+    <p class="lead nl">Eén regel, twee gevallen, en een vraag die al bijna een eeuw niemand kan beantwoorden.</p>
+    <p class="lead en">One rule, two cases, and a question nobody has been able to answer for almost a century.</p>
+  </div>
+
+  <!-- ===== SUBJECT 1 ===== -->
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Het 3n+1-proces</span><span class="en">The 3n+1 process</span></h2>
+
+    <p class="nl">Neem een willekeurig positief geheel getal. Is het even, deel het door 2. Is het oneven,
+    vermenigvuldig met 3 en tel er 1 bij. Herhaal. In formulevorm:</p>
+    <p class="en">Take any positive whole number. If it is even, divide it by 2. If it is odd,
+    multiply by 3 and add 1. Repeat. As a formula:</p>
+
+    $$C(n) = \begin{cases} n/2 & \text{als } n \text{ even} \\ 3n+1 & \text{als } n \text{ oneven} \end{cases}$$
+
+    <p class="nl">Het vermoeden van Collatz zegt: <b>waar je ook begint, je komt altijd uit bij 1.</b>
+    Bijvoorbeeld vanaf 6: <code>6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1</code>. De rij stuitert op en neer
+    als een hagelsteen in een onweerswolk; daarom heten deze rijen <i>hagelsteenrijen</i>.</p>
+    <p class="en">The Collatz conjecture states: <b>wherever you start, you always reach 1.</b>
+    For example from 6: <code>6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1</code>. The sequence bounces up and down
+    like a hailstone in a thundercloud, which is why these are called <i>hailstone sequences</i>.</p>
+
+    <h3 class="nl">Probeer het zelf</h3>
+    <h3 class="en">Try it yourself</h3>
+    <div class="figure">
+      <div class="controls">
+        <input type="number" id="orbitInput" value="27" min="1" max="999999999">
+        <button onclick="runOrbit()"><span class="nl">Start de baan</span><span class="en">Run the orbit</span></button>
+        <button class="secondary" onclick="randomOrbit()"><span class="nl">Willekeurig</span><span class="en">Random</span></button>
+      </div>
+      <canvas id="orbitCanvas" width="900" height="360"></canvas>
+      <div class="stat-row">
+        <div class="stat"><span class="nl">stappen: </span><span class="en">steps: </span><b id="statSteps">–</b></div>
+        <div class="stat"><span class="nl">hoogste punt: </span><span class="en">peak: </span><b id="statMax">–</b></div>
+        <div class="stat"><span class="nl">start: </span><span class="en">start: </span><b id="statStart">–</b></div>
+      </div>
+      <div class="caption nl">De baan wordt stap voor stap getekend (verticale as logaritmisch).
+        Elke tot nu toe geteste startwaarde eindigt bij 1 · maar niemand kan bewijzen dat dat altijd zo is.</div>
+      <div class="caption en">The orbit is drawn step by step (vertical axis logarithmic).
+        Every starting value tested so far ends at 1 · but nobody can prove it always does.</div>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 2 ===== -->
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De baan van 27</span><span class="en">The orbit of 27</span></h2>
+
+    <p class="nl">Kleine startgetallen kunnen zich wild gedragen. Het beroemdste voorbeeld is 27:
+    een onschuldig getal van twee cijfers dat <b>111 stappen</b> nodig heeft en onderweg piekt op
+    <b>9232</b>, ruim 340 keer zijn startwaarde. Buurgetallen 26 en 28 zijn in ongeveer tien stappen klaar.</p>
+    <p class="en">Small starting numbers can behave wildly. The most famous example is 27:
+    an innocent two-digit number that needs <b>111 steps</b> and peaks at
+    <b>9232</b> along the way, over 340 times its starting value. Its neighbours 26 and 28 finish in about ten steps.</p>
+
+    <div class="figure">
+      <canvas id="canvas27" width="900" height="340"></canvas>
+      <div class="controls" style="margin-top:10px">
+        <button onclick="replay27()"><span class="nl">Opnieuw afspelen</span><span class="en">Replay</span></button>
+      </div>
+      <div class="caption nl">De volledige baan van 27 (logaritmische schaal). De grillige pieken laten zien
+        waarom er geen simpele "het wordt steeds kleiner"-redenering bestaat.</div>
+      <div class="caption en">The full orbit of 27 (logarithmic scale). The jagged peaks show
+        why no simple "it keeps getting smaller" argument exists.</div>
+    </div>
+
+    <p class="nl">Deze onvoorspelbaarheid is de kern van het probleem: de <i>gemiddelde</i> trend is dalend
+    (dat zien we in les 1.2), maar individuele banen kunnen willekeurig lang stijgen voor ze omkeren.</p>
+    <p class="en">This unpredictability is the heart of the problem: the <i>average</i> trend is downward
+    (we will see this in lesson 1.2), but individual orbits can climb for arbitrarily long before turning around.</p>
+  </div>
+
+  <!-- ===== SUBJECT 3 ===== -->
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Formuleringen van het vermoeden</span><span class="en">Formulations of the conjecture</span></h2>
+
+    <p class="nl">Er zijn precies drie manieren waarop een baan <i>niet</i> bij 1 zou kunnen uitkomen.
+    Het vermoeden sluit ze allebei uit (de derde is uitkomen bij 1):</p>
+    <p class="en">There are exactly three things an orbit can do; two of them would mean it
+    never reaches 1. The conjecture excludes both:</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 300" width="900">
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 z" fill="#9aa3c7"/>
+          </marker>
+        </defs>
+        <!-- panel 1: reaches 1 -->
+        <rect x="15" y="20" width="270" height="250" rx="12" fill="#1f2440" stroke="#5eead4"/>
+        <text x="150" y="50" text-anchor="middle" fill="#5eead4" font-size="17" font-weight="bold" class="nl">bereikt 1 ✓</text>
+        <text x="150" y="50" text-anchor="middle" fill="#5eead4" font-size="17" font-weight="bold" class="en">reaches 1 ✓</text>
+        <polyline points="45,220 75,160 105,190 135,110 165,150 195,90 225,170 255,235" fill="none" stroke="#5eead4" stroke-width="2.5"/>
+        <circle cx="255" cy="235" r="6" fill="#5eead4"/>
+        <text x="255" y="258" text-anchor="middle" fill="#e8eaf6" font-size="13">1</text>
+        <!-- panel 2: cycle -->
+        <rect x="315" y="20" width="270" height="250" rx="12" fill="#1f2440" stroke="#fbbf24"/>
+        <text x="450" y="50" text-anchor="middle" fill="#fbbf24" font-size="17" font-weight="bold" class="nl">andere cyclus ✗</text>
+        <text x="450" y="50" text-anchor="middle" fill="#fbbf24" font-size="17" font-weight="bold" class="en">other cycle ✗</text>
+        <polyline points="345,230 375,170 405,200 435,150" fill="none" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arr)"/>
+        <circle cx="480" cy="165" r="45" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <text x="480" y="171" text-anchor="middle" fill="#fbbf24" font-size="13" class="nl">lus</text>
+        <text x="480" y="171" text-anchor="middle" fill="#fbbf24" font-size="13" class="en">loop</text>
+        <!-- panel 3: divergence -->
+        <rect x="615" y="20" width="270" height="250" rx="12" fill="#1f2440" stroke="#f0abfc"/>
+        <text x="750" y="50" text-anchor="middle" fill="#f0abfc" font-size="17" font-weight="bold" class="nl">divergentie ✗</text>
+        <text x="750" y="50" text-anchor="middle" fill="#f0abfc" font-size="17" font-weight="bold" class="en">divergence ✗</text>
+        <polyline points="645,240 675,210 705,225 735,175 765,195 795,130 825,150 855,75" fill="none" stroke="#f0abfc" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="750" y="258" text-anchor="middle" fill="#9aa3c7" font-size="13" class="nl">naar oneindig…</text>
+        <text x="750" y="258" text-anchor="middle" fill="#9aa3c7" font-size="13" class="en">to infinity…</text>
+      </svg>
+      <div class="caption nl">Het vermoeden = "elke baan zit in het linkerpaneel". De enige bekende cyclus in de
+        positieve getallen is 1 → 4 → 2 → 1; het vermoeden zegt dat er geen andere is én dat geen enkele baan wegvliegt.</div>
+      <div class="caption en">The conjecture = "every orbit lives in the left panel". The only known cycle among
+        positive integers is 1 → 4 → 2 → 1; the conjecture says there is no other one and no orbit escapes to infinity.</div>
+    </div>
+
+    <p class="nl">Formeel: voor elke \(n \ge 1\) bestaat er een \(k\) met \(C^{k}(n) = 1\).
+    Dit splitst in twee onafhankelijke deelbeweringen: <b>geen niet-triviale cycli</b> en
+    <b>geen divergente banen</b>. Die twee delen blijken heel verschillend moeilijk te zijn (blok 2, les 2.4).</p>
+    <p class="en">Formally: for every \(n \ge 1\) there is a \(k\) with \(C^{k}(n) = 1\).
+    This splits into two independent sub-claims: <b>no non-trivial cycles</b> and
+    <b>no divergent orbits</b>. These two parts turn out to differ greatly in difficulty (block 2, lesson 2.4).</p>
+
+    <div class="callout">
+      <div class="title nl">Versnelde variant</div>
+      <div class="title en">Accelerated variant</div>
+      <span class="nl">Omdat \(3n+1\) voor oneven \(n\) altijd even is, gebruiken onderzoekers vaak de
+      versnelde afbeelding \(T(n) = (3n+1)/2\) voor oneven \(n\). Dezelfde vraag, iets nettere statistiek.
+      We komen hierop terug in blok 2.</span>
+      <span class="en">Because \(3n+1\) is always even for odd \(n\), researchers often use the
+      accelerated map \(T(n) = (3n+1)/2\) for odd \(n\). Same question, slightly cleaner statistics.
+      We return to this in block 2.</span>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 4 ===== -->
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Waarom is dit zo moeilijk?</span><span class="en">Why is this so hard?</span></h2>
+
+    <div class="quote">
+      <span class="nl">"Mathematics may not be ready for such problems."</span>
+      <span class="en">"Mathematics may not be ready for such problems."</span>
+      <span class="who">Paul Erdős</span>
+    </div>
+
+    <p class="nl">De moeilijkheid komt uit een botsing van twee werelden. De stap "deel door 2" leeft in de
+    <b>binaire</b> wereld: hij knipt het laatste bit van het getal af. De stap "maal 3 plus 1" leeft in de
+    <b>ternaire</b> wereld: hij is eenvoudig in basis 3. Maar geen enkele talstelselbril maakt béide stappen
+    tegelijk eenvoudig:</p>
+    <p class="en">The difficulty comes from a collision of two worlds. The step "divide by 2" lives in the
+    <b>binary</b> world: it chops off the last bit. The step "times 3 plus 1" lives in the
+    <b>ternary</b> world: it is simple in base 3. But no number system makes both steps
+    simple at the same time:</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 210" width="900">
+        <rect x="40" y="30" width="360" height="150" rx="12" fill="#1f2440" stroke="#5eead4"/>
+        <text x="220" y="60" text-anchor="middle" fill="#5eead4" font-size="16" font-weight="bold" class="nl">binair (basis 2)</text>
+        <text x="220" y="60" text-anchor="middle" fill="#5eead4" font-size="16" font-weight="bold" class="en">binary (base 2)</text>
+        <text x="220" y="95" text-anchor="middle" fill="#e8eaf6" font-size="15" font-family="monospace">n/2 : 110100 → 11010</text>
+        <text x="220" y="122" text-anchor="middle" fill="#5eead4" font-size="13" class="nl">triviaal: schuif één bit</text>
+        <text x="220" y="122" text-anchor="middle" fill="#5eead4" font-size="13" class="en">trivial: shift one bit</text>
+        <text x="220" y="155" text-anchor="middle" fill="#9aa3c7" font-size="14" font-family="monospace" class="nl">3n+1 : chaos in de bits</text>
+        <text x="220" y="155" text-anchor="middle" fill="#9aa3c7" font-size="14" font-family="monospace" class="en">3n+1 : chaos in the bits</text>
+
+        <rect x="500" y="30" width="360" height="150" rx="12" fill="#1f2440" stroke="#f0abfc"/>
+        <text x="680" y="60" text-anchor="middle" fill="#f0abfc" font-size="16" font-weight="bold" class="nl">ternair (basis 3)</text>
+        <text x="680" y="60" text-anchor="middle" fill="#f0abfc" font-size="16" font-weight="bold" class="en">ternary (base 3)</text>
+        <text x="680" y="95" text-anchor="middle" fill="#e8eaf6" font-size="15" font-family="monospace">3n+1 : 1201 → 12011</text>
+        <text x="680" y="122" text-anchor="middle" fill="#f0abfc" font-size="13" class="nl">triviaal: schuif en plak 1</text>
+        <text x="680" y="122" text-anchor="middle" fill="#f0abfc" font-size="13" class="en">trivial: shift and append 1</text>
+        <text x="680" y="155" text-anchor="middle" fill="#9aa3c7" font-size="14" font-family="monospace" class="nl">n/2 : chaos in de digits</text>
+        <text x="680" y="155" text-anchor="middle" fill="#9aa3c7" font-size="14" font-family="monospace" class="en">n/2 : chaos in the digits</text>
+        <text x="450" y="112" text-anchor="middle" fill="#fbbf24" font-size="26">⚡</text>
+      </svg>
+      <div class="caption nl">Elke stap is simpel in zijn eigen talstelsel en chaotisch in het andere.
+        Het samenspel van die twee onverenigbare structuren genereert het pseudo-toevallige gedrag.
+        Deze spanning tussen 2 en 3 wordt het hoofdthema van blok 2.</div>
+      <div class="caption en">Each step is simple in its own number system and chaotic in the other.
+        The interplay of these two incompatible structures generates the pseudo-random behaviour.
+        This tension between 2 and 3 becomes the main theme of block 2.</div>
+    </div>
+
+    <p class="nl">Daar komt bij: veralgemeningen van dit soort functies zijn bewijsbaar
+    <b>onbeslisbaar</b> (Conway, 1972; les 1.3). Het Collatz-probleem zelf hoeft niet onbeslisbaar te zijn,
+    maar het leeft gevaarlijk dicht bij die grens. En de "bijna alle getallen dalen"-resultaten
+    (blok 2 en 3) laten precies zien wat er wél kan: statistische controle over de massa van de getallen,
+    zonder controle over elk individueel getal.</p>
+    <p class="en">On top of that: generalisations of this kind of function are provably
+    <b>undecidable</b> (Conway, 1972; lesson 1.3). The Collatz problem itself need not be undecidable,
+    but it lives dangerously close to that border. And the "almost all numbers descend" results
+    (blocks 2 and 3) show exactly what is possible: statistical control over the mass of integers,
+    without control over each individual one.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="index.html"><span class="dir nl">‹ terug</span><span class="dir en">‹ back</span>
+      <span class="nl">Cursusoverzicht</span><span class="en">Course overview</span></a>
+    <a href="b1l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 1.2 · Eerste verkenningen</span><span class="en">Lesson 1.2 · First explorations</span></a>
+  </div>
+
+  <footer>
+    <a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course
+  </footer>
+</div>
+
+<script>
+function collatzOrbit(n) {
+  var orbit = [n];
+  var guard = 0;
+  while (n !== 1 && guard < 3000) {
+    n = (n % 2 === 0) ? n / 2 : 3 * n + 1;
+    orbit.push(n); guard++;
+  }
+  return orbit;
+}
+
+function drawOrbit(canvasId, orbit, color, animMs, statIds) {
+  var cv = document.getElementById(canvasId);
+  var ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, pad = 42;
+  var maxV = Math.max.apply(null, orbit);
+  var lmax = Math.log10(maxV) * 1.05 + 0.1;
+  ctx.clearRect(0, 0, W, H);
+  // axes + gridlines (powers of 10)
+  ctx.strokeStyle = '#2c3357'; ctx.fillStyle = '#9aa3c7'; ctx.font = '12px sans-serif';
+  for (var p = 0; p <= Math.ceil(lmax); p++) {
+    var y = H - pad - (p / lmax) * (H - 2 * pad);
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - 12, y); ctx.stroke();
+    ctx.fillText('10^' + p, 4, y + 4);
+  }
+  var nPts = orbit.length;
+  function xy(i) {
+    var x = pad + (i / Math.max(nPts - 1, 1)) * (W - pad - 20);
+    var y = H - pad - (Math.log10(orbit[i]) / lmax) * (H - 2 * pad);
+    return [x, y];
+  }
+  var start = null;
+  function frame(ts) {
+    if (!start) start = ts;
+    var t = Math.min((ts - start) / animMs, 1);
+    var upto = Math.max(1, Math.floor(t * nPts));
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = '#2c3357'; ctx.fillStyle = '#9aa3c7';
+    for (var p = 0; p <= Math.ceil(lmax); p++) {
+      var y = H - pad - (p / lmax) * (H - 2 * pad);
+      ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - 12, y); ctx.stroke();
+      ctx.fillText('10^' + p, 4, y + 4);
+    }
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (var i = 0; i < upto; i++) {
+      var q = xy(i);
+      if (i === 0) ctx.moveTo(q[0], q[1]); else ctx.lineTo(q[0], q[1]);
+    }
+    ctx.stroke();
+    var last = xy(upto - 1);
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(last[0], last[1], 5, 0, 7); ctx.fill();
+    ctx.fillStyle = '#e8eaf6'; ctx.font = 'bold 13px sans-serif';
+    ctx.fillText(orbit[upto - 1].toLocaleString(), Math.min(last[0] + 10, W - 90), last[1] - 8);
+    if (statIds) {
+      document.getElementById(statIds[0]).textContent = (upto - 1);
+      document.getElementById(statIds[1]).textContent = Math.max.apply(null, orbit.slice(0, upto)).toLocaleString();
+      document.getElementById(statIds[2]).textContent = orbit[0].toLocaleString();
+    }
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function runOrbit() {
+  var n = parseInt(document.getElementById('orbitInput').value, 10);
+  if (!(n >= 1)) return;
+  var orbit = collatzOrbit(n);
+  drawOrbit('orbitCanvas', orbit, '#5eead4', Math.min(6000, 40 * orbit.length + 600), ['statSteps', 'statMax', 'statStart']);
+}
+function randomOrbit() {
+  var n = 3 + Math.floor(Math.random() * 99997);
+  document.getElementById('orbitInput').value = n;
+  runOrbit();
+}
+function replay27() {
+  drawOrbit('canvas27', collatzOrbit(27), '#f0abfc', 7000, null);
+}
+window.addEventListener('DOMContentLoaded', function () {
+  runOrbit();
+  replay27();
+});
+</script>
+</body>
+</html>

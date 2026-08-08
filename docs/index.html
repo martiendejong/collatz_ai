@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collatz Cursus · Collatz Course</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">COLLATZ<span class="dot">·</span>CURSUS</div>
+  <div class="langswitch">
+    <button data-lang="nl">NL</button>
+    <button data-lang="en">EN</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="kicker nl">Van 3n+1 tot de onderzoeksfrontlinie</span>
+    <span class="kicker en">From 3n+1 to the research frontier</span>
+    <h1 class="nl">Het Collatz-vermoeden</h1>
+    <h1 class="en">The Collatz Conjecture</h1>
+    <p class="subtitle nl">
+      Een cursus in zes blokken: van de eerste hagelsteenrij tot de exacte identiteiten en
+      open vragen van een lopend onderzoeksprogramma. Geen voorkennis nodig behalve
+      middelbare-schoolwiskunde en nieuwsgierigheid.
+    </p>
+    <p class="subtitle en">
+      A course in six blocks: from the first hailstone sequence to the exact identities and
+      open questions of an active research programme. No prerequisites beyond
+      high-school mathematics and curiosity.
+    </p>
+  </div>
+
+  <!-- BLOK 1 -->
+  <div class="block-card">
+    <h2><span class="nl">Blok 1 · Het Vermoeden</span><span class="en">Block 1 · The Conjecture</span>
+      <span class="badge live nl">beschikbaar</span><span class="badge live en">available</span></h2>
+    <div class="desc nl">Wat het probleem is, waarom het beroemd is, en wat je ziet als je begint te rekenen.</div>
+    <div class="desc en">What the problem is, why it is famous, and what you see when you start computing.</div>
+    <ul class="lesson-list">
+      <li><span class="lnum">1.1</span>
+        <span><a href="b1l1.html"><span class="nl">Wat is het Collatz-vermoeden?</span><span class="en">What is the Collatz conjecture?</span></a><br>
+        <span class="ldesc nl">Het 3n+1-proces · de baan van 27 · formuleringen · waarom zo moeilijk</span>
+        <span class="ldesc en">The 3n+1 process · the orbit of 27 · formulations · why so hard</span></span></li>
+      <li><span class="lnum">1.2</span>
+        <span><a href="b1l2.html"><span class="nl">Eerste verkenningen</span><span class="en">First explorations</span></a><br>
+        <span class="ldesc nl">Stoptijden · de verificatiegrens · de Collatz-boom · de drift-heuristiek</span>
+        <span class="ldesc en">Stopping times · the verification bound · the Collatz tree · the drift heuristic</span></span></li>
+      <li><span class="lnum">1.3</span>
+        <span><a href="b1l3.html"><span class="nl">Geschiedenis en context</span><span class="en">History and context</span></a><br>
+        <span class="ldesc nl">Herkomst · verwante problemen · onbeslisbaarheid · de status vandaag</span>
+        <span class="ldesc en">Origins · related problems · undecidability · the status today</span></span></li>
+    </ul>
+  </div>
+
+  <!-- BLOK 2 -->
+  <div class="block-card soon">
+    <h2><span class="nl">Blok 2 · De Arithmetische Structuur</span><span class="en">Block 2 · The Arithmetic Structure</span>
+      <span class="badge nl">in voorbereiding</span><span class="badge en">in preparation</span></h2>
+    <div class="desc nl">De twee gezichten van het probleem: binair (delen door 2) en ternair (maal 3).</div>
+    <div class="desc en">The two faces of the problem: binary (dividing by 2) and ternary (times 3).</div>
+    <ul class="lesson-list">
+      <li><span class="lnum">2.1</span><span><span class="nl">Pariteitsvectoren en de 2-adische kant</span><span class="en">Parity vectors and the 2-adic side</span></span></li>
+      <li><span class="lnum">2.2</span><span><span class="nl">De ternaire kant</span><span class="en">The ternary side</span></span></li>
+      <li><span class="lnum">2.3</span><span><span class="nl">Dichtheid en maat</span><span class="en">Density and measure</span></span></li>
+      <li><span class="lnum">2.4</span><span><span class="nl">Cycli en divergentie</span><span class="en">Cycles and divergence</span></span></li>
+    </ul>
+  </div>
+
+  <!-- BLOK 3 -->
+  <div class="block-card soon">
+    <h2><span class="nl">Blok 3 · Het Krasikov–Lagarias-Raamwerk</span><span class="en">Block 3 · The Krasikov–Lagarias Framework</span>
+      <span class="badge nl">in voorbereiding</span><span class="badge en">in preparation</span></h2>
+    <div class="desc nl">De machine die ondergrenzen π₁(x) ≥ x^γ produceert · de basis van ons programma.</div>
+    <div class="desc en">The machine that produces lower bounds π₁(x) ≥ x^γ · the basis of our programme.</div>
+    <ul class="lesson-list">
+      <li><span class="lnum">3.1</span><span><span class="nl">Tellen met ongelijkheden</span><span class="en">Counting with inequalities</span></span></li>
+      <li><span class="lnum">3.2</span><span><span class="nl">De K-L-operator</span><span class="en">The K-L operator</span></span></li>
+      <li><span class="lnum">3.3</span><span><span class="nl">Van feasibility naar record</span><span class="en">From feasibility to record</span></span></li>
+    </ul>
+  </div>
+
+  <!-- BLOK 4 -->
+  <div class="block-card soon">
+    <h2><span class="nl">Blok 4 · Exacte Structuur van het K-L-Systeem</span><span class="en">Block 4 · Exact Structure of the K-L System</span>
+      <span class="badge nl">in voorbereiding</span><span class="badge en">in preparation</span></h2>
+    <div class="desc nl">De verborgen algebra van de operator: identiteiten die exact zijn op elke diepte.</div>
+    <div class="desc en">The hidden algebra of the operator: identities that are exact at every depth.</div>
+    <ul class="lesson-list">
+      <li><span class="lnum">4.1</span><span><span class="nl">De klasse-identiteiten</span><span class="en">The class identities</span></span></li>
+      <li><span class="lnum">4.2</span><span><span class="nl">De massa-identiteit</span><span class="en">The mass identity</span></span></li>
+      <li><span class="lnum">4.3</span><span><span class="nl">De gevezelde hiërarchie</span><span class="en">The fibered hierarchy</span></span></li>
+      <li><span class="lnum">4.4</span><span><span class="nl">Gaps, slack en certificering</span><span class="en">Gaps, slack and certification</span></span></li>
+    </ul>
+  </div>
+
+  <!-- BLOK 5 -->
+  <div class="block-card soon">
+    <h2><span class="nl">Blok 5 · De Cascade en de Contractie</span><span class="en">Block 5 · The Cascade and the Contraction</span>
+      <span class="badge nl">in voorbereiding</span><span class="badge en">in preparation</span></h2>
+    <div class="desc nl">Het diepste niveau: hoe fijnstructuur per digit uitdooft, en de ene open ongelijkheid.</div>
+    <div class="desc en">The deepest level: how fine structure decays per digit, and the one open inequality.</div>
+    <ul class="lesson-list">
+      <li><span class="lnum">5.1</span><span><span class="nl">Digit-decompositie</span><span class="en">Digit decomposition</span></span></li>
+      <li><span class="lnum">5.2</span><span><span class="nl">De contractieconstante c</span><span class="en">The contraction constant c</span></span></li>
+      <li><span class="lnum">5.3</span><span><span class="nl">Op weg naar c &lt; 1</span><span class="en">Towards c &lt; 1</span></span></li>
+      <li><span class="lnum">5.4</span><span><span class="nl">De vork</span><span class="en">The fork</span></span></li>
+    </ul>
+  </div>
+
+  <!-- BLOK 6 -->
+  <div class="block-card soon">
+    <h2><span class="nl">Blok 6 · Onderzoekspraktijk en Open Problemen</span><span class="en">Block 6 · Research Practice and Open Problems</span>
+      <span class="badge nl">in voorbereiding</span><span class="badge en">in preparation</span></h2>
+    <div class="desc nl">Hoe je dit soort onderzoek eerlijk doet · en waar de grenzen liggen.</div>
+    <div class="desc en">How to do this kind of research honestly · and where the limits are.</div>
+    <ul class="lesson-list">
+      <li><span class="lnum">6.1</span><span><span class="nl">Eerlijk rekenen</span><span class="en">Honest computation</span></span></li>
+      <li><span class="lnum">6.2</span><span><span class="nl">Van meting naar bewijs</span><span class="en">From measurement to proof</span></span></li>
+      <li><span class="lnum">6.3</span><span><span class="nl">De open kern en de grote kloof</span><span class="en">The open core and the big gap</span></span></li>
+    </ul>
+  </div>
+
+  <footer>
+    <span class="nl">Onderdeel van het open onderzoeksproject</span>
+    <span class="en">Part of the open research project</span>
+    <a href="https://github.com/martiendejong/collatz_ai">github.com/martiendejong/collatz_ai</a>
+  </footer>
+</div>
+</body>
+</html>

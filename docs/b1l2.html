@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 1.2 · Eerste verkenningen</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch">
+    <button data-lang="nl">NL</button>
+    <button data-lang="en">EN</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 1 · Het Vermoeden</span><span class="en">Block 1 · The Conjecture</span> › <b>1.2</b></div>
+    <h1 class="nl">Eerste verkenningen</h1>
+    <h1 class="en">First explorations</h1>
+    <p class="lead nl">Wat leren we door gewoon te rekenen? Verrassend veel · en precies genoeg om te zien waar het echte probleem zit.</p>
+    <p class="lead en">What do we learn by just computing? Surprisingly much · and exactly enough to see where the real problem lies.</p>
+  </div>
+
+  <!-- ===== SUBJECT 1 ===== -->
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Stoptijden</span><span class="en">Stopping times</span></h2>
+
+    <p class="nl">Twee natuurlijke maten voor hoe "lang" een baan is. De <b>totale stoptijd</b>
+    \(\sigma_\infty(n)\) telt de stappen tot de baan 1 bereikt. De <b>stoptijd</b> \(\sigma(n)\)
+    telt slechts tot de baan voor het eerst <i>onder zijn startwaarde</i> duikt:</p>
+    <p class="en">Two natural measures of how "long" an orbit is. The <b>total stopping time</b>
+    \(\sigma_\infty(n)\) counts steps until the orbit reaches 1. The <b>stopping time</b> \(\sigma(n)\)
+    counts only until the orbit first dips <i>below its starting value</i>:</p>
+
+    $$\sigma(n) = \min\{k : C^k(n) < n\}, \qquad \sigma_\infty(n) = \min\{k : C^k(n) = 1\}$$
+
+    <p class="nl">Waarom dat onderscheid? Als élk getal een eindige stoptijd heeft, volgt per inductie dat
+    élk getal bij 1 komt. De stoptijd is dus het strategisch belangrijke object · en over stoptijden
+    is veel meer bekend (blok 2).</p>
+    <p class="en">Why the distinction? If every number has a finite stopping time, induction shows
+    every number reaches 1. The stopping time is thus the strategically important object · and much
+    more is known about stopping times (block 2).</p>
+
+    <div class="figure">
+      <div class="controls">
+        <span class="nl">Totale stoptijden voor n = 2 t/m</span><span class="en">Total stopping times for n = 2 to</span>
+        <input type="number" id="histN" value="100000" min="1000" max="2000000" step="10000">
+        <button onclick="drawHist()"><span class="nl">Bereken</span><span class="en">Compute</span></button>
+      </div>
+      <canvas id="histCanvas" width="900" height="330"></canvas>
+      <div class="stat-row">
+        <div class="stat"><span class="nl">gemiddelde: </span><span class="en">mean: </span><b id="histMean">–</b></div>
+        <div class="stat"><span class="nl">maximum: </span><span class="en">maximum: </span><b id="histMax">–</b></div>
+        <div class="stat"><span class="nl">kampioen: </span><span class="en">champion: </span><b id="histArg">–</b></div>
+      </div>
+      <div class="caption nl">Histogram van totale stoptijden, live berekend in je browser. De verdeling heeft
+        een duidelijke bult plus een lange staart van "kampioenen". Het gemiddelde groeit logaritmisch met n ·
+        een eerste hint van de drift-heuristiek in subject 4.</div>
+      <div class="caption en">Histogram of total stopping times, computed live in your browser. The distribution
+        has a clear bulk plus a long tail of "champions". The mean grows logarithmically in n ·
+        a first hint of the drift heuristic in subject 4.</div>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 2 ===== -->
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De verificatiegrens</span><span class="en">The verification bound</span></h2>
+
+    <p class="nl">Computers hebben het vermoeden geverifieerd voor alle startwaarden tot ongeveer
+    \(2^{68} \approx 2{,}95 \times 10^{20}\) (Barina, 2020). Dat klinkt indrukwekkend, en dat is het
+    rekentechnisch ook. Maar wiskundig gezien is het niets: er blijven oneindig veel ongeteste getallen over.</p>
+    <p class="en">Computers have verified the conjecture for all starting values up to about
+    \(2^{68} \approx 2.95 \times 10^{20}\) (Barina, 2020). That sounds impressive, and computationally
+    it is. But mathematically it is nothing: infinitely many untested numbers remain.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 150" width="900">
+        <line x1="40" y1="75" x2="880" y2="75" stroke="#2c3357" stroke-width="3"/>
+        <rect x="40" y="65" width="240" height="20" rx="4" fill="#5eead4" opacity="0.85"/>
+        <text x="160" y="52" text-anchor="middle" fill="#5eead4" font-size="14" class="nl">geverifieerd t/m 2⁶⁸</text>
+        <text x="160" y="52" text-anchor="middle" fill="#5eead4" font-size="14" class="en">verified up to 2⁶⁸</text>
+        <text x="160" y="108" text-anchor="middle" fill="#9aa3c7" font-size="12">≈ 295.000.000.000.000.000.000</text>
+        <text x="600" y="52" text-anchor="middle" fill="#f0abfc" font-size="14" class="nl">oneindig veel ongeteste getallen…</text>
+        <text x="600" y="52" text-anchor="middle" fill="#f0abfc" font-size="14" class="en">infinitely many untested numbers…</text>
+        <text x="870" y="80" fill="#f0abfc" font-size="20">∞</text>
+        <g fill="#f0abfc" opacity="0.5">
+          <circle cx="330" cy="75" r="3"/><circle cx="420" cy="75" r="3"/><circle cx="510" cy="75" r="3"/>
+          <circle cx="600" cy="75" r="3"/><circle cx="690" cy="75" r="3"/><circle cx="780" cy="75" r="3"/>
+        </g>
+      </svg>
+      <div class="caption nl">Verificatie dekt een beginstuk; het vermoeden gaat over álle getallen.
+        Vergelijk: het Pólya-vermoeden gold tot ~1,8 × 10³⁶ⁱ… en bleek toch fout. Grote geteste bereiken
+        zijn evidentie, geen bewijs.</div>
+      <div class="caption en">Verification covers an initial segment; the conjecture is about all integers.
+        Compare: the Pólya conjecture held up to huge bounds… and still turned out false. Large tested
+        ranges are evidence, not proof.</div>
+    </div>
+
+    <div class="callout warn">
+      <div class="title nl">Wat verificatie wél geeft</div>
+      <div class="title en">What verification does give</div>
+      <span class="nl">Naast evidentie: een ondergrens voor tegenvoorbeelden (een divergente baan of nieuwe
+      cyclus moet boven 2⁶⁸ beginnen) en, gecombineerd met cyclustheorie, ondergrenzen voor de lengte
+      van een eventuele niet-triviale cyclus (les 2.4).</span>
+      <span class="en">Besides evidence: a lower bound for counterexamples (a divergent orbit or new cycle
+      must start above 2⁶⁸) and, combined with cycle theory, lower bounds for the length of any
+      non-trivial cycle (lesson 2.4).</span>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 3 ===== -->
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De Collatz-boom</span><span class="en">The Collatz tree</span></h2>
+
+    <p class="nl">Draai de vraag om: welke getallen komen bij \(m\) uit? Altijd \(2m\) (want \(2m\) is even),
+    en soms ook \((m-1)/3\) (als dat een oneven geheel getal is). Zo groeit vanuit 1 een oneindige boom.
+    Het vermoeden zegt precies: <b>deze boom bevat elk positief geheel getal</b>.</p>
+    <p class="en">Reverse the question: which numbers land on \(m\)? Always \(2m\) (since \(2m\) is even),
+    and sometimes \((m-1)/3\) (when that is an odd integer). From 1 an infinite tree grows.
+    The conjecture says exactly: <b>this tree contains every positive integer</b>.</p>
+
+    <div class="figure">
+      <svg id="treeSvg" viewBox="0 0 900 400" width="900"></svg>
+      <div class="controls" style="margin-top:8px">
+        <button onclick="growTree()"><span class="nl">Boom opnieuw laten groeien</span><span class="en">Regrow the tree</span></button>
+      </div>
+      <div class="caption nl">De eerste generaties van de omgekeerde Collatz-boom, laag voor laag opgebouwd.
+        Elke tak ×2 gaat altijd door; de (m−1)/3-takken ontstaan alleen bij m ≡ 4 (mod 6). De vraag
+        "dekt de boom alles?" is dezelfde vraag als het vermoeden.</div>
+      <div class="caption en">The first generations of the inverse Collatz tree, built layer by layer.
+        The ×2 branch always continues; the (m−1)/3 branches appear only when m ≡ 4 (mod 6). The question
+        "does the tree cover everything?" is the same question as the conjecture.</div>
+    </div>
+
+    <p class="nl">Dit boombeeld is de brug naar het telprogramma van blok 3: in plaats van "bevat de boom
+    alles?" vragen we "<i>hoe snel groeit</i> het aantal boomknopen onder \(x\)?" · en dat blijkt een vraag
+    waar je rigoureuze ondergrenzen voor kunt bewijzen.</p>
+    <p class="en">This tree picture is the bridge to the counting programme of block 3: instead of
+    "does the tree contain everything?" we ask "<i>how fast does</i> the number of tree nodes below \(x\)
+    grow?" · and that turns out to be a question admitting rigorous lower bounds.</p>
+  </div>
+
+  <!-- ===== SUBJECT 4 ===== -->
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De drift-heuristiek</span><span class="en">The drift heuristic</span></h2>
+
+    <p class="nl">Gebruik de versnelde afbeelding \(T\): oneven \(n \mapsto (3n+1)/2\), even \(n \mapsto n/2\).
+    Als pariteiten zich "willekeurig" gedragen, is elke stap met kans ½ een factor ≈ 3/2 en met kans ½
+    een factor 1/2. De verwachte verandering van \(\log_2 n\) per stap is dan:</p>
+    <p class="en">Use the accelerated map \(T\): odd \(n \mapsto (3n+1)/2\), even \(n \mapsto n/2\).
+    If parities behave "randomly", each step is a factor ≈ 3/2 with probability ½ and a factor 1/2
+    with probability ½. The expected change of \(\log_2 n\) per step is then:</p>
+
+    $$\mathbb{E}[\Delta \log_2 n] \approx \tfrac12\log_2\tfrac32 + \tfrac12\log_2\tfrac12 = \tfrac{\log_2 3 - 2}{2} \approx -0.2075 < 0$$
+
+    <p class="nl">Negatief! Een "typische" baan drijft dus omlaag, als een dronkenmanswandeling met
+    neerwaartse trend. Dit verklaart waarom bijna alle banen dalen · en waarom uitschieters zoals 27
+    toch bestaan (toeval kan lokaal tegen de trend in gaan).</p>
+    <p class="en">Negative! A "typical" orbit therefore drifts downward, like a random walk with a
+    downward trend. This explains why almost all orbits descend · and why outliers like 27
+    still exist (chance can locally run against the trend).</p>
+
+    <div class="figure">
+      <canvas id="walkCanvas" width="900" height="330"></canvas>
+      <div class="controls" style="margin-top:8px">
+        <button onclick="runWalks()"><span class="nl">Simuleer 40 toevalswandelingen</span><span class="en">Simulate 40 random walks</span></button>
+        <button class="secondary" onclick="runReal()"><span class="nl">Vergelijk met échte banen</span><span class="en">Compare with real orbits</span></button>
+      </div>
+      <div class="caption nl">Blauwgroen: gesimuleerde wandelingen met muntworp-pariteiten (trend −0.2075 per stap,
+        gestreepte lijn). Roze: échte Collatz-banen vanaf willekeurige startwaarden rond 10⁶. De statistische
+        gelijkenis is treffend · maar een heuristiek is geen bewijs: pariteiten zíjn niet onafhankelijk.</div>
+      <div class="caption en">Teal: simulated walks with coin-flip parities (trend −0.2075 per step,
+        dashed line). Pink: real Collatz orbits from random starts near 10⁶. The statistical resemblance
+        is striking · but a heuristic is not a proof: parities are not actually independent.</div>
+    </div>
+
+    <div class="callout">
+      <div class="title nl">Van heuristiek naar stelling</div>
+      <div class="title en">From heuristic to theorem</div>
+      <span class="nl">Deze heuristiek is wél in stellingen omgezet, voor "bijna alle" getallen:
+      Terras (1976) en later, veel sterker, Tao (2019). Hoe dat werkt · en waarom "bijna alle" niet
+      "alle" wordt · is het onderwerp van blok 2, les 2.3.</span>
+      <span class="en">This heuristic has been turned into theorems for "almost all" integers:
+      Terras (1976) and later, much more strongly, Tao (2019). How that works · and why "almost all"
+      does not become "all" · is the topic of block 2, lesson 2.3.</span>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b1l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 1.1 · Wat is het Collatz-vermoeden?</span><span class="en">Lesson 1.1 · What is the Collatz conjecture?</span></a>
+    <a href="b1l3.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 1.3 · Geschiedenis en context</span><span class="en">Lesson 1.3 · History and context</span></a>
+  </div>
+
+  <footer>
+    <a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course
+  </footer>
+</div>
+
+<script>
+/* ---- subject 1: histogram ---- */
+function totalStop(n) {
+  var s = 0;
+  while (n !== 1) {
+    n = (n % 2 === 0) ? n / 2 : 3 * n + 1;
+    s++;
+    if (n > 9e15) return -1;
+  }
+  return s;
+}
+function drawHist() {
+  var N = parseInt(document.getElementById('histN').value, 10) || 100000;
+  N = Math.min(N, 2000000);
+  var counts = {}, maxT = 0, argmax = 2, sum = 0, cnt = 0;
+  for (var n = 2; n <= N; n++) {
+    var t = totalStop(n);
+    if (t < 0) continue;
+    counts[t] = (counts[t] || 0) + 1;
+    if (t > maxT) { maxT = t; argmax = n; }
+    sum += t; cnt++;
+  }
+  var cv = document.getElementById('histCanvas'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, pad = 40;
+  ctx.clearRect(0, 0, W, H);
+  var peak = 0;
+  for (var t2 = 0; t2 <= maxT; t2++) peak = Math.max(peak, counts[t2] || 0);
+  ctx.fillStyle = '#5eead4';
+  var bw = (W - pad - 15) / (maxT + 1);
+  for (var t3 = 0; t3 <= maxT; t3++) {
+    var h = ((counts[t3] || 0) / peak) * (H - 2 * pad);
+    ctx.fillRect(pad + t3 * bw, H - pad - h, Math.max(bw - 0.5, 0.6), h);
+  }
+  ctx.strokeStyle = '#2c3357'; ctx.beginPath();
+  ctx.moveTo(pad, H - pad); ctx.lineTo(W - 10, H - pad); ctx.stroke();
+  ctx.fillStyle = '#9aa3c7'; ctx.font = '12px sans-serif';
+  for (var xt = 0; xt <= maxT; xt += 50) {
+    ctx.fillText(xt, pad + xt * bw - 6, H - pad + 16);
+  }
+  document.getElementById('histMean').textContent = (sum / cnt).toFixed(1);
+  document.getElementById('histMax').textContent = maxT;
+  document.getElementById('histArg').textContent = 'n = ' + argmax.toLocaleString();
+}
+
+/* ---- subject 3: tree ---- */
+function growTree() {
+  var svg = document.getElementById('treeSvg');
+  svg.innerHTML = '';
+  var layers = [[{ v: 1, x: 450 }]];
+  var maxDepth = 7;
+  for (var d = 0; d < maxDepth; d++) {
+    var next = [];
+    layers[d].forEach(function (node) {
+      var kids = [node.v * 2];
+      if (node.v % 6 === 4 && (node.v - 1) / 3 > 1 && (node.v - 1) / 3 % 2 === 1) kids.push((node.v - 1) / 3);
+      node.kids = kids;
+      kids.forEach(function (kv) { next.push({ v: kv, parent: node }); });
+    });
+    var spread = 860 / (next.length + 1);
+    next.forEach(function (n2, i) { n2.x = 20 + spread * (i + 1); });
+    layers.push(next);
+  }
+  var ns = 'http://www.w3.org/2000/svg';
+  function yOf(d) { return 30 + d * 52; }
+  layers.forEach(function (layer, d) {
+    layer.forEach(function (node) {
+      if (node.parent) {
+        var ln = document.createElementNS(ns, 'line');
+        ln.setAttribute('x1', node.parent.x); ln.setAttribute('y1', yOf(d - 1) + 10);
+        ln.setAttribute('x2', node.x); ln.setAttribute('y2', yOf(d) - 12);
+        ln.setAttribute('stroke', node.v === node.parent.v * 2 ? '#2c9c8a' : '#f0abfc');
+        ln.setAttribute('stroke-width', '1.6');
+        ln.setAttribute('opacity', '0');
+        svg.appendChild(ln);
+        setTimeout(function () { ln.style.transition = 'opacity 0.7s'; ln.setAttribute('opacity', '0.8'); }, 550 * d);
+      }
+      var g = document.createElementNS(ns, 'g');
+      g.setAttribute('opacity', '0');
+      var c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', node.x); c.setAttribute('cy', yOf(d)); c.setAttribute('r', d === 0 ? 15 : 13);
+      c.setAttribute('fill', '#1f2440'); c.setAttribute('stroke', d === 0 ? '#fbbf24' : '#5eead4');
+      c.setAttribute('stroke-width', '1.8');
+      var t = document.createElementNS(ns, 'text');
+      t.setAttribute('x', node.x); t.setAttribute('y', yOf(d) + 4);
+      t.setAttribute('text-anchor', 'middle'); t.setAttribute('fill', '#e8eaf6'); t.setAttribute('font-size', '11');
+      t.textContent = node.v;
+      g.appendChild(c); g.appendChild(t);
+      svg.appendChild(g);
+      setTimeout(function () { g.style.transition = 'opacity 0.7s'; g.setAttribute('opacity', '1'); }, 550 * d + 150);
+    });
+  });
+  var legend = document.createElementNS(ns, 'text');
+  legend.setAttribute('x', 12); legend.setAttribute('y', 392);
+  legend.setAttribute('fill', '#9aa3c7'); legend.setAttribute('font-size', '12');
+  legend.textContent = '×2';
+  svg.appendChild(legend);
+  var l2 = document.createElementNS(ns, 'line');
+  l2.setAttribute('x1', 34); l2.setAttribute('y1', 388); l2.setAttribute('x2', 64); l2.setAttribute('y2', 388);
+  l2.setAttribute('stroke', '#2c9c8a'); l2.setAttribute('stroke-width', '2'); svg.appendChild(l2);
+  var legend2 = document.createElementNS(ns, 'text');
+  legend2.setAttribute('x', 76); legend2.setAttribute('y', 392);
+  legend2.setAttribute('fill', '#9aa3c7'); legend2.setAttribute('font-size', '12');
+  legend2.textContent = '(m−1)/3';
+  svg.appendChild(legend2);
+  var l3 = document.createElementNS(ns, 'line');
+  l3.setAttribute('x1', 134); l3.setAttribute('y1', 388); l3.setAttribute('x2', 164); l3.setAttribute('y2', 388);
+  l3.setAttribute('stroke', '#f0abfc'); l3.setAttribute('stroke-width', '2'); svg.appendChild(l3);
+}
+
+/* ---- subject 4: drift walks ---- */
+function setupWalkAxes(ctx, W, H, pad, steps) {
+  ctx.clearRect(0, 0, W, H);
+  ctx.strokeStyle = '#2c3357'; ctx.fillStyle = '#9aa3c7'; ctx.font = '12px sans-serif';
+  for (var p = 0; p <= 30; p += 5) {
+    var y = H - pad - (p / 32) * (H - 2 * pad);
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - 10, y); ctx.stroke();
+    ctx.fillText('2^' + p, 4, y + 4);
+  }
+  // expected drift line from 2^20
+  ctx.strokeStyle = '#fbbf24'; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  var l0 = 20;
+  ctx.moveTo(pad, H - pad - (l0 / 32) * (H - 2 * pad));
+  var lend = l0 - 0.2075 * steps;
+  ctx.lineTo(W - 10, H - pad - (Math.max(lend, 0) / 32) * (H - 2 * pad));
+  ctx.stroke(); ctx.setLineDash([]);
+}
+function runWalks() {
+  var cv = document.getElementById('walkCanvas'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, pad = 38, steps = 90;
+  setupWalkAxes(ctx, W, H, pad, steps);
+  for (var w = 0; w < 40; w++) {
+    var l = 20, pts = [[pad, H - pad - (l / 32) * (H - 2 * pad)]];
+    for (var s = 1; s <= steps; s++) {
+      l += (Math.random() < 0.5) ? (Math.log2(3) - 1) : -1;
+      if (l < 0) break;
+      pts.push([pad + (s / steps) * (W - pad - 15), H - pad - (l / 32) * (H - 2 * pad)]);
+    }
+    ctx.strokeStyle = 'rgba(94,234,212,0.35)'; ctx.lineWidth = 1.3;
+    ctx.beginPath();
+    pts.forEach(function (p, i) { if (i === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]); });
+    ctx.stroke();
+  }
+}
+function runReal() {
+  var cv = document.getElementById('walkCanvas'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, pad = 38, steps = 90;
+  for (var w = 0; w < 12; w++) {
+    var n = 500000 + Math.floor(Math.random() * 1000000);
+    var l = Math.log2(n);
+    var pts = [[pad, H - pad - (l / 32) * (H - 2 * pad)]];
+    for (var s = 1; s <= steps && n !== 1; s++) {
+      n = (n % 2 === 0) ? n / 2 : (3 * n + 1) / 2;
+      l = Math.log2(n);
+      pts.push([pad + (s / steps) * (W - pad - 15), H - pad - (l / 32) * (H - 2 * pad)]);
+    }
+    ctx.strokeStyle = 'rgba(240,171,252,0.55)'; ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    pts.forEach(function (p, i) { if (i === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]); });
+    ctx.stroke();
+  }
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  drawHist();
+  growTree();
+  runWalks();
+});
+</script>
+</body>
+</html>

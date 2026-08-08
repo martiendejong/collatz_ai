@@ -1,0 +1,157 @@
+:root {
+  --bg: #0f1220;
+  --panel: #181c30;
+  --panel2: #1f2440;
+  --text: #e8eaf6;
+  --muted: #9aa3c7;
+  --accent: #5eead4;
+  --accent2: #f0abfc;
+  --warn: #fbbf24;
+  --line: #2c3357;
+  --code: #0b0e1a;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  font-size: 17px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 22px;
+  background: rgba(15,18,32,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .brand { font-weight: 700; letter-spacing: 0.4px; color: var(--text); }
+.topbar .brand .dot { color: var(--accent); }
+.langswitch button {
+  background: var(--panel2); color: var(--muted);
+  border: 1px solid var(--line); border-radius: 6px;
+  padding: 4px 12px; margin-left: 6px; cursor: pointer; font-size: 14px;
+}
+.langswitch button.active { color: var(--bg); background: var(--accent); border-color: var(--accent); font-weight: 700; }
+
+.wrap { max-width: 980px; margin: 0 auto; padding: 30px 22px 80px; }
+
+.hero {
+  padding: 48px 0 20px;
+}
+.hero h1 { font-size: 2.3rem; margin: 0 0 10px; line-height: 1.2; }
+.hero .subtitle { color: var(--muted); font-size: 1.15rem; max-width: 46em; }
+.kicker {
+  display: inline-block; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent); border-radius: 999px;
+  padding: 2px 14px; margin-bottom: 14px;
+}
+
+.block-card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px 26px; margin: 18px 0;
+}
+.block-card.soon { opacity: 0.55; }
+.block-card h2 { margin: 0 0 4px; font-size: 1.35rem; }
+.block-card .desc { color: var(--muted); margin-bottom: 12px; }
+.lesson-list { margin: 0; padding: 0; list-style: none; }
+.lesson-list li {
+  padding: 9px 0; border-top: 1px dashed var(--line);
+  display: flex; gap: 12px; align-items: baseline;
+}
+.lesson-list .lnum { color: var(--accent2); font-weight: 700; min-width: 3em; }
+.lesson-list .ldesc { color: var(--muted); font-size: 0.95rem; }
+.badge {
+  font-size: 0.72rem; padding: 1px 10px; border-radius: 999px;
+  border: 1px solid var(--warn); color: var(--warn); margin-left: 8px; white-space: nowrap;
+}
+.badge.live { border-color: var(--accent); color: var(--accent); }
+
+.crumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 8px; }
+.lesson-header h1 { font-size: 2rem; margin: 6px 0 8px; }
+.lesson-header .lead { color: var(--muted); font-size: 1.1rem; max-width: 46em; }
+
+.subject {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 26px 30px; margin: 26px 0;
+}
+.subject h2 { margin-top: 0; font-size: 1.4rem; }
+.subject h2 .snum { color: var(--accent2); margin-right: 10px; }
+.subject h3 { font-size: 1.05rem; color: var(--accent); margin: 22px 0 6px; }
+
+.figure {
+  background: var(--code); border: 1px solid var(--line); border-radius: 10px;
+  padding: 16px; margin: 18px 0; text-align: center;
+}
+.figure canvas, .figure svg { max-width: 100%; height: auto; }
+.figure .caption { font-size: 0.88rem; color: var(--muted); margin-top: 10px; text-align: left; }
+
+.controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
+.controls input[type="number"], .controls input[type="text"] {
+  background: var(--panel2); border: 1px solid var(--line); color: var(--text);
+  border-radius: 8px; padding: 7px 12px; font-size: 1rem; width: 160px;
+}
+.controls button {
+  background: var(--accent); color: var(--bg); font-weight: 700;
+  border: none; border-radius: 8px; padding: 8px 18px; cursor: pointer; font-size: 0.95rem;
+}
+.controls button.secondary { background: var(--panel2); color: var(--text); border: 1px solid var(--line); }
+.stat-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 8px; font-size: 0.95rem; }
+.stat-row .stat b { color: var(--accent); font-size: 1.15rem; }
+
+table.nice {
+  width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.95rem;
+}
+table.nice th, table.nice td { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+table.nice th { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
+table.nice td.num { font-variant-numeric: tabular-nums; }
+
+.callout {
+  border-left: 4px solid var(--accent); background: var(--panel2);
+  border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 16px 0;
+}
+.callout.warn { border-left-color: var(--warn); }
+.callout .title { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.callout.warn .title { color: var(--warn); }
+
+.quote {
+  font-style: italic; color: var(--accent2); border-left: 3px solid var(--accent2);
+  padding-left: 16px; margin: 16px 0;
+}
+.quote .who { display: block; font-style: normal; color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+
+.lesson-nav {
+  display: flex; justify-content: space-between; margin-top: 40px; gap: 12px; flex-wrap: wrap;
+}
+.lesson-nav a {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 20px; color: var(--text); flex: 1; min-width: 220px;
+}
+.lesson-nav a:hover { border-color: var(--accent); text-decoration: none; }
+.lesson-nav .dir { font-size: 0.8rem; color: var(--muted); display: block; }
+
+.timeline { position: relative; margin: 20px 0 20px 12px; padding-left: 26px; border-left: 2px solid var(--line); }
+.timeline .ev { position: relative; margin-bottom: 18px; }
+.timeline .ev::before {
+  content: ""; position: absolute; left: -33px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
+}
+.timeline .ev.big::before { background: var(--accent2); width: 15px; height: 15px; left: -34.5px; }
+.timeline .yr { font-weight: 700; color: var(--accent); margin-right: 8px; }
+
+footer { color: var(--muted); font-size: 0.85rem; text-align: center; margin-top: 60px; border-top: 1px solid var(--line); padding-top: 20px; }
+
+/* language switching */
+html[data-lang="nl"] .en { display: none !important; }
+html[data-lang="en"] .nl { display: none !important; }
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .subject { padding: 18px 16px; }
+  .hero h1 { font-size: 1.7rem; }
+}

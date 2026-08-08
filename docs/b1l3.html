@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 1.3 · Geschiedenis en context</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch">
+    <button data-lang="nl">NL</button>
+    <button data-lang="en">EN</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 1 · Het Vermoeden</span><span class="en">Block 1 · The Conjecture</span> › <b>1.3</b></div>
+    <h1 class="nl">Geschiedenis en context</h1>
+    <h1 class="en">History and context</h1>
+    <p class="lead nl">Negentig jaar aan pogingen, zijpaden en gedeeltelijke doorbraken · en waar deze cursus in dat verhaal past.</p>
+    <p class="lead en">Ninety years of attempts, side paths and partial breakthroughs · and where this course fits in that story.</p>
+  </div>
+
+  <!-- ===== SUBJECT 1 ===== -->
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Herkomst en folklore</span><span class="en">Origins and folklore</span></h2>
+
+    <p class="nl">Het probleem circuleerde decennialang mondeling voordat er serieus over gepubliceerd werd.
+    Daardoor draagt het vele namen: het 3n+1-probleem, het Syracuse-probleem, het vermoeden van Ulam,
+    Kakutani's probleem, en de naam die bleef hangen: het Collatz-vermoeden.</p>
+    <p class="en">The problem circulated by word of mouth for decades before serious publications appeared.
+    Hence its many names: the 3n+1 problem, the Syracuse problem, Ulam's conjecture,
+    Kakutani's problem, and the name that stuck: the Collatz conjecture.</p>
+
+    <div class="timeline">
+      <div class="ev big"><span class="yr">1937</span>
+        <span class="nl">Lothar Collatz noteert het probleem in zijn notitieboek tijdens zijn studie van iteraties op getallen.</span>
+        <span class="en">Lothar Collatz records the problem in his notebook while studying iterations on integers.</span></div>
+      <div class="ev"><span class="yr">±1950–1960</span>
+        <span class="nl">Het probleem verspreidt zich via Helmut Hasse, Shizuo Kakutani en Stanisław Ulam over universiteiten; Kakutani grapt dat het "een Sovjet-complot was om Amerikaans onderzoek te vertragen".</span>
+        <span class="en">The problem spreads through Helmut Hasse, Shizuo Kakutani and Stanisław Ulam; Kakutani joked it was "a Soviet plot to slow down American research".</span></div>
+      <div class="ev"><span class="yr">1972</span>
+        <span class="nl">John Conway bewijst dat veralgemeende Collatz-functies onbeslisbaar zijn (subject 3).</span>
+        <span class="en">John Conway proves generalized Collatz functions are undecidable (subject 3).</span></div>
+      <div class="ev big"><span class="yr">1976</span>
+        <span class="nl">Riho Terras bewijst: bijna alle getallen dalen onder hun startwaarde · het eerste grote "bijna alle"-resultaat.</span>
+        <span class="en">Riho Terras proves: almost all integers descend below their start · the first major "almost all" result.</span></div>
+      <div class="ev"><span class="yr">1985</span>
+        <span class="nl">Jeffrey Lagarias publiceert zijn beroemde overzichtsartikel; het probleem krijgt een vaste plek in de literatuur.</span>
+        <span class="en">Jeffrey Lagarias publishes his famous survey; the problem gains a permanent place in the literature.</span></div>
+      <div class="ev"><span class="yr">2003</span>
+        <span class="nl">Krasikov &amp; Lagarias bewijzen dat minstens x^0.84 startwaarden onder x het getal 1 bereiken (blok 3).</span>
+        <span class="en">Krasikov &amp; Lagarias prove that at least x^0.84 starting values below x reach 1 (block 3).</span></div>
+      <div class="ev big"><span class="yr">2019</span>
+        <span class="nl">Terence Tao: bijna alle banen bereiken "bijna begrensde" waarden · het sterkste bekende statistische resultaat.</span>
+        <span class="en">Terence Tao: almost all orbits attain "almost bounded" values · the strongest known statistical result.</span></div>
+      <div class="ev"><span class="yr">2020</span>
+        <span class="nl">David Barina verifieert het vermoeden computationeel tot 2⁶⁸.</span>
+        <span class="en">David Barina verifies the conjecture computationally up to 2⁶⁸.</span></div>
+      <div class="ev big"><span class="yr">2026</span>
+        <span class="nl">Dit project: exacte certificaten tillen de telgrens naar x^0.9184 en het K-L-systeem krijgt een exacte structuurtheorie (blokken 4 en 5).</span>
+        <span class="en">This project: exact certificates lift the counting bound to x^0.9184 and the K-L system acquires an exact structure theory (blocks 4 and 5).</span></div>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 2 ===== -->
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Verwante problemen</span><span class="en">Related problems</span></h2>
+
+    <p class="nl">Kleine wijzigingen in de regel geven totaal ander gedrag · een teken van hoe delicaat
+    het origineel is:</p>
+    <p class="en">Small changes to the rule give completely different behaviour · a sign of how delicate
+    the original is:</p>
+
+    <table class="nice">
+      <tr>
+        <th class="nl">Variant</th><th class="en">Variant</th>
+        <th class="nl">Gedrag</th><th class="en">Behaviour</th>
+      </tr>
+      <tr>
+        <td>3n − 1</td><td class="en" style="display:none"></td>
+        <td><span class="nl">Drie bekende cycli: {1, 2}, {5, 14, 7, 20, 10} en een cyclus van lengte 18 vanaf 17. Het "vermoeden" is hier dus fout!</span>
+            <span class="en">Three known cycles: {1, 2}, {5, 14, 7, 20, 10} and an 18-step cycle from 17. The analogous "conjecture" is false here!</span></td>
+      </tr>
+      <tr>
+        <td>5n + 1</td><td class="en" style="display:none"></td>
+        <td><span class="nl">Drift is positief (log₂5 &gt; 2): banen lijken vrijwel allemaal naar oneindig te vliegen · vermoedelijk divergent, ook onbewezen.</span>
+            <span class="en">Drift is positive (log₂5 &gt; 2): orbits appear to fly off to infinity · presumably divergent, also unproven.</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">negatieve getallen</span><span class="en">negative integers</span></td><td class="en" style="display:none"></td>
+        <td><span class="nl">Drie extra cycli (vanaf −1, −5, −17). Zelfde regel, andere wereld.</span>
+            <span class="en">Three extra cycles (from −1, −5, −17). Same rule, different world.</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Mahlers Z-getallen</span><span class="en">Mahler's Z-numbers</span></td><td class="en" style="display:none"></td>
+        <td><span class="nl">Een probleem over (3/2)ⁿ dat dezelfde 2-tegen-3-spanning bevat; ook open sinds 1968.</span>
+            <span class="en">A problem about (3/2)ⁿ containing the same 2-versus-3 tension; also open since 1968.</span></td>
+      </tr>
+    </table>
+
+    <div class="callout">
+      <div class="title nl">De les van de varianten</div>
+      <div class="title en">The lesson of the variants</div>
+      <span class="nl">3n−1 laat zien dat "geen andere cycli" géén algemeen principe is: het hangt aan
+      fijne rekenkundige details. Elk bewijs van Collatz moet dus ergens een eigenschap gebruiken die
+      3n+1 wél heeft en 3n−1 níet · een strenge test voor elke bewijspoging.</span>
+      <span class="en">3n−1 shows that "no other cycles" is not a general principle: it hinges on fine
+      arithmetic details. Any proof of Collatz must therefore use a property that 3n+1 has and
+      3n−1 lacks · a stringent test for every proof attempt.</span>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 3 ===== -->
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De onbeslisbaarheidswaarschuwing</span><span class="en">The undecidability warning</span></h2>
+
+    <p class="nl">John Conway bewees in 1972 iets ontnuchterends. Bekijk functies die, afhankelijk van
+    de restklasse van \(n\) modulo een getal \(P\), een lineaire regel \(n \mapsto a_i n + b_i\) toepassen ·
+    precies de familie waar Collatz toe behoort. Conway construeerde zo'n functie die een
+    universele computer simuleert:</p>
+    <p class="en">In 1972 John Conway proved something sobering. Consider functions that, depending on
+    the residue of \(n\) modulo some \(P\), apply a linear rule \(n \mapsto a_i n + b_i\) ·
+    exactly the family Collatz belongs to. Conway constructed such a function that simulates a
+    universal computer:</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 190" width="900">
+        <rect x="30" y="30" width="250" height="130" rx="12" fill="#1f2440" stroke="#5eead4"/>
+        <text x="155" y="62" text-anchor="middle" fill="#5eead4" font-size="15" font-weight="bold" class="nl">Collatz-achtige functie</text>
+        <text x="155" y="62" text-anchor="middle" fill="#5eead4" font-size="15" font-weight="bold" class="en">Collatz-like function</text>
+        <text x="155" y="95" text-anchor="middle" fill="#e8eaf6" font-size="14" font-family="monospace">n mod P → aᵢn + bᵢ</text>
+        <text x="155" y="130" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">regels per restklasse</text>
+        <text x="155" y="130" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">rules per residue class</text>
+        <path d="M290 95 L390 95" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arrw)"/>
+        <defs><marker id="arrw" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 z" fill="#fbbf24"/></marker></defs>
+        <text x="340" y="82" text-anchor="middle" fill="#fbbf24" font-size="13" class="nl">codeert</text>
+        <text x="340" y="82" text-anchor="middle" fill="#fbbf24" font-size="13" class="en">encodes</text>
+        <rect x="400" y="30" width="250" height="130" rx="12" fill="#1f2440" stroke="#fbbf24"/>
+        <text x="525" y="62" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="bold" class="nl">universele computer</text>
+        <text x="525" y="62" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="bold" class="en">universal computer</text>
+        <text x="525" y="95" text-anchor="middle" fill="#e8eaf6" font-size="14" font-family="monospace">FRACTRAN</text>
+        <text x="525" y="130" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">elk programma codeerbaar</text>
+        <text x="525" y="130" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">any program encodable</text>
+        <path d="M660 95 L760 95" stroke="#f0abfc" stroke-width="2.5" marker-end="url(#arrp)"/>
+        <defs><marker id="arrp" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 z" fill="#f0abfc"/></marker></defs>
+        <text x="710" y="82" text-anchor="middle" fill="#f0abfc" font-size="13" class="nl">dus</text>
+        <text x="710" y="82" text-anchor="middle" fill="#f0abfc" font-size="13" class="en">hence</text>
+        <rect x="770" y="45" width="110" height="100" rx="12" fill="#1f2440" stroke="#f0abfc"/>
+        <text x="825" y="88" text-anchor="middle" fill="#f0abfc" font-size="14" font-weight="bold" class="nl">onbeslisbaar</text>
+        <text x="825" y="88" text-anchor="middle" fill="#f0abfc" font-size="14" font-weight="bold" class="en">undecidable</text>
+        <text x="825" y="112" text-anchor="middle" fill="#9aa3c7" font-size="11">(halting)</text>
+      </svg>
+      <div class="caption nl">Conways redenering: de familie van Collatz-achtige functies kan rekenen ·
+        dus is er geen algemeen algoritme dat voor élke functie uit die familie bepaalt of alle banen
+        bij 1 komen. Voor de éne specifieke Collatz-functie zegt dit niets definitiefs, maar het
+        verklaart waarom generieke aanpakken stuklopen.</div>
+      <div class="caption en">Conway's reasoning: the family of Collatz-like functions can compute ·
+        so no general algorithm decides, for every member of the family, whether all orbits reach 1.
+        This says nothing definitive about the one specific Collatz function, but it explains why
+        generic approaches fail.</div>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 4 ===== -->
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De status vandaag</span><span class="en">The status today</span></h2>
+
+    <table class="nice">
+      <tr>
+        <th class="nl">Resultaat</th><th class="en">Result</th>
+        <th class="nl">Status</th><th class="en">Status</th>
+      </tr>
+      <tr>
+        <td><span class="nl">Bijna alle getallen dalen onder hun start (Terras 1976)</span>
+            <span class="en">Almost all integers descend below their start (Terras 1976)</span></td>
+        <td><span class="nl">✅ bewezen</span><span class="en">✅ proved</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Bijna alle banen bereiken bijna-begrensde waarden (Tao 2019)</span>
+            <span class="en">Almost all orbits attain almost bounded values (Tao 2019)</span></td>
+        <td><span class="nl">✅ bewezen</span><span class="en">✅ proved</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Minstens x^0.84 startwaarden onder x bereiken 1 (Krasikov–Lagarias 2003)</span>
+            <span class="en">At least x^0.84 starting values below x reach 1 (Krasikov–Lagarias 2003)</span></td>
+        <td><span class="nl">✅ bewezen</span><span class="en">✅ proved</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Minstens x^0.9184 startwaarden onder x bereiken 1 (dit project, 2026)</span>
+            <span class="en">At least x^0.9184 starting values below x reach 1 (this project, 2026)</span></td>
+        <td><span class="nl">🔷 exact geverifieerde certificaten; manuscripten in de openbare repo</span>
+            <span class="en">🔷 exactly verified certificates; manuscripts in the public repo</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Alle startwaarden tot 2⁶⁸ bereiken 1 (Barina 2020)</span>
+            <span class="en">All starting values up to 2⁶⁸ reach 1 (Barina 2020)</span></td>
+        <td><span class="nl">✅ geverifieerd</span><span class="en">✅ verified</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Een niet-triviale cyclus moet extreem lang zijn (≥ ~10¹¹ stappen)</span>
+            <span class="en">A non-trivial cycle must be extremely long (≥ ~10¹¹ steps)</span></td>
+        <td><span class="nl">✅ bewezen (uit verificatie + cyclustheorie)</span>
+            <span class="en">✅ proved (from verification + cycle theory)</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Géén divergente banen</span><span class="en">No divergent orbits</span></td>
+        <td><span class="nl">❌ volledig open</span><span class="en">❌ wide open</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Het volledige vermoeden</span><span class="en">The full conjecture</span></td>
+        <td><span class="nl">❌ open</span><span class="en">❌ open</span></td>
+      </tr>
+    </table>
+
+    <p class="nl">Het patroon is duidelijk: over de <b>massa</b> van de getallen is veel bekend
+    (statistische resultaten, telresultaten), over <b>elk individueel getal</b> vrijwel niets.
+    Deze cursus volgt precies die lijn: blokken 2 en 3 bouwen de statistische wereld op,
+    blokken 4 en 5 duiken in het telprogramma en zijn exacte structuur, en blok 6 bespreekt
+    eerlijk wat er nog ontbreekt.</p>
+    <p class="en">The pattern is clear: much is known about the <b>mass</b> of integers
+    (statistical results, counting results), almost nothing about <b>each individual integer</b>.
+    This course follows exactly that line: blocks 2 and 3 build the statistical world,
+    blocks 4 and 5 dive into the counting programme and its exact structure, and block 6
+    honestly discusses what is still missing.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b1l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 1.2 · Eerste verkenningen</span><span class="en">Lesson 1.2 · First explorations</span></a>
+    <a href="index.html" style="text-align:right"><span class="dir nl">overzicht ›</span><span class="dir en">overview ›</span>
+      <span class="nl">Terug naar de cursus</span><span class="en">Back to the course</span></a>
+  </div>
+
+  <footer>
+    <a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course
+  </footer>
+</div>
+</body>
+</html>
