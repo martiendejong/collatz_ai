@@ -14328,3 +14328,13 @@ afwijking, en die hebben dichtheid -> 0. Daarmee heeft H1/H2's "buiten dunne
 uitzonderingsverzameling" nu een EXPLICIETE kwantitatieve gedaante; het te bewijzen
 residu is de ergodische-middeling-afschatting zelf (equidistributie van de
 verdubbelingsorbit + correlatie-afval van het richnessveld — beide standaard-vormig).
+
+### Obs 520 addendum: shuffle-controle — de verrijking is dynamisch (z = 6.4)
+Script 328: 200 willekeurige partities met identieke groottedistributie als de echte
+orbits geven B = +0.0002 +- 0.0048 (lam=1.70) en -0.0012 +- 0.0070 (lam=1.90) —
+consistent met nul. Echte orbits: B = 0.0308 / 0.0441 => z = 6.3 / 6.5, empirische
+p < 0.005 (0/200). CONCLUSIE: de tekengedefinieerde verrijking van korte orbits is
+GEEN CLT-artefact van kleine deelverzamelingen maar een dynamische eigenschap van de
+zelfvoedende feed-routing. De orbit-wet staat daarmee op drie poten: kwantitatieve
+vorm (1/L), voorgeregistreerde validatie (6/6 op mod 243), en mechanisme-controle
+(shuffle, z=6.4).
