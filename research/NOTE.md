@@ -14381,3 +14381,48 @@ het crossover-regime, wat de midden-L-afwijkingen van zuivere 1/L verklaart.
 EEN-KANAALS-FIT mist delta(6) nog met factor ~2 (gemeten hoger); verfijning met
 twee kanalen (pass-lus sigma en feed-lus tau hebben verschillende periodes) is de
 volgende stap. Dit is nu het scherpste kandidaat-mechanisme voor de orbit-wet.
+
+## Obs 522 (2026-08-08): DE GROTE SYNTHESE — TWEE PARAMETERS, ZES GENERIEKE UITSPRAKEN
+
+### U1: de rate-identiteit (geverifieerd tot 3-4 decimalen)
+Uit rho(lam*,k)=1 + massa-identiteit volgt eerste-orde exact:
+  rate(1-gamma(k)) = rate(gammabar(2,k)) / rate(s(k)),   s = -d(rho)/d(lam).
+GEMETEN (k=10..16, alle data uit bestaand 307-grid): U1-voorspelling vs werkelijk:
+  diff = -0.0021, -0.0026, -0.0015, -0.0012, -0.0004, -0.0000, +0.0007 — convergeert.
+De "spanning" 0.926 (ladder) vs 0.911 (gap) is EXACT de s-drift: 0.911/0.982 = 0.928.
+Drie schijnbaar verschillende rates zijn EEN wet.
+
+### U2: nieuwe bevroren voorspelling (definities exact)
+s(k) := -helling van de lineaire fit van rho(lam,k) over lam in {1.85,...,1.93}.
+Uit de massa-identiteit: s(inf) = -rho_lin'(2) = 1/4 - [(alpha-2)*2^(alpha-3) +
+(alpha-1)*2^(alpha-2)]/3 = 0.1556 (algebraisch). Gemeten s(16) = 0.2929, dalend
+~0.982/stap. VOORSPELLING: s(k) daalt monotoon richting 0.156.
+
+### U0: de twee-parameter-reductie (het verenigde beeld)
+Het K-L-systeem op elke diepte = EXACT ALGEBRAISCH SKELET + twee scalars:
+  gammabar(lam,k)  — de gapmassa (bepaalt rho, lambda*, gamma via exacte identiteiten)
+  c(lam)           — de cascade-contractie (bepaalt alle convergentiesnelheden via
+                     de wortelwet: elke amplitude-rate = sqrt(variantie-contractie))
+Asymptotisch (s -> s_inf): ALLE meetbare vervalsnelheden zijn machten van sqrt(c)
+met exact berekenbare algebraische voorfactoren.
+
+### De zes generieke uitspraken (status per stuk)
+G1 SKELET: elke niveau-j-klassegemiddelde-vector lost een expliciet affien stelsel
+   op, aangedreven door de c-vector van dat niveau; zelfde routing-algebra
+   (sigma-cykels, tau-transpositie) op elk niveau. [bewezen t/m j=2; generieke
+   inductie mechanisch — uitschrijfwerk]
+G2 DEFECT-CALCULUS: elk eerste-orde-tekort t.o.v. de mean-field-versie is lineair
+   in gammabar met exacte gewichten (massa-, marge-, eindpunt-identiteiten). [bewezen]
+G3 EEN-SCHAAL-EEN-GETAL: k-afhankelijkheid coarse = rho alleen; fijnstructuur = c
+   alleen. DENSITY <=> gammabar(2,.) -> 0 <=> c(2) < 1. [bewezen resp. gereduceerd]
+G4 WORTELWET: amplitude-rates = sqrt(variantieratio's); drievoudig gemeten. [empirisch]
+G5 ARITHMETISCHE STRATIFICATIE: alle celheterogeniteit georganiseerd door de
+   orbitstructuur van u->2u+1; lus-vorm theta^L/(1-theta^L); dunne
+   uitzonderingsverzameling. [empirisch + mechanisme in ontwikkeling]
+G6 TEKENSTRUCTUUR: alle alternantie komt van 2 = -1 mod 3 (tau). [bewezen mechanisme]
+
+### Simplificatie in een zin
+"Het K-L-telsysteem is een exact oplosbaar affien skelet, verstoord door een
+gapmassa die op elke schaal met dezelfde contractie c uitdooft; het hele
+gamma->1-programma is de vraag of die uitdoving op het eindpunt strikt is (c<1),
+en alle waarneembare snelheden zijn wortels en machten van diezelfde ene c."
