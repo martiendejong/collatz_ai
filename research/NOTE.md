@@ -14426,3 +14426,31 @@ G6 TEKENSTRUCTUUR: alle alternantie komt van 2 = -1 mod 3 (tau). [bewezen mechan
 gapmassa die op elke schaal met dezelfde contractie c uitdooft; het hele
 gamma->1-programma is de vraag of die uitdoving op het eindpunt strikt is (c<1),
 en alle waarneembare snelheden zijn wortels en machten van diezelfde ene c."
+
+## Obs 523 (2026-08-08): c(lambda)-PROFIEL, VENSTERBIAS, EN EEN CROSS-INSTRUMENT-CONSTANTE (Script 330)
+
+### Het profiel (k=13, bulkvenster p=4..7, 12 lambda's)
+lam:  1.05  1.10  1.20  1.30  1.40  1.50  1.60  1.70  1.80  1.90  1.95  2.00
+r:    0.375 0.404 0.461 0.517 0.568 0.614 0.654 0.687 0.715 0.738 0.748 0.757
+c:    0.925 0.927 0.925 0.916 0.898 0.871 0.837 0.798 0.756 0.713 0.692 0.671
+Monotonie glad en robuust. MAAR: vensterbias — bij lage lambda stijgt het profiel
+nog voorbij p=7 (asymptotisch plateau ~0.41 bij 1.05 vs venster 0.375), dus de
+c-kolom is bij lage lambda ~5-10% te laag en bij lam=2 niet de eindpunt-c.
+
+### Closed-form-mining: NULRESULTAAT (correct zo)
+14 kandidaatvormen in {lam, t, R, gammabar, rho} getest met train/test-splitsing:
+geen enkele < 2% op beide. Gezien de vensterbias is dit het juiste uitkomsttype —
+mining op gebiaste data mag geen "winnaar" opleveren. Schone c(lambda)-bepaling
+vergt het diepe-digit-plateau op grotere k (geparkeerd: geen zware runs).
+
+### WEL een nieuwe regelmaat: cross-instrument-ratio ~ 1.10
+d13(lam) (toren-variantie, over-k) vs r13(lam) (prefix, binnen-k):
+  lam=1.30: 0.570/0.5165 = 1.104 | 1.70: 0.759/0.6869 = 1.105 | 2.00: 0.824/0.7568 = 1.089
+De twee contractie-instrumenten verschillen een LAMBDA-ONAFHANKELIJKE factor ~1.10
+op deze diepte — een stabiele finite-size-offset (verwachting: -> 1 als k -> inf).
+Kandidaatverklaring: het over-k-instrument telt de randlaag mee die het binnen-k-
+venster juist uitsluit. Toetsbaar door k te varieren — vervolgpunt.
+
+### Gap-splitsing phi = g2/(g0+g1+g2): geen simpele vorm
+phi(1.05/1.70/2.00) = 0.374 / 0.500 / 0.547; kandidaten lam^2/(1+lam^2) en
+lam/(1+lam) verworpen. De toevallige 1/2 bij lam=1.70 is een kruispunt, geen wet.
