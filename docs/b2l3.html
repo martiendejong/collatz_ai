@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 2.3 · Dichtheid en maat</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 2 · De Arithmetische Structuur</span><span class="en">Block 2 · The Arithmetic Structure</span> › <b>2.3</b></div>
+    <h1 class="nl">Dichtheid en maat</h1>
+    <h1 class="en">Density and measure</h1>
+    <p class="lead nl">Hoe "bijna alle getallen" een precies wiskundig begrip wordt · en hoe ver dat begrip reikt.</p>
+    <p class="lead en">How "almost all integers" becomes a precise mathematical notion · and how far that notion reaches.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Wat is natuurlijke dichtheid?</span><span class="en">What is natural density?</span></h2>
+    <p class="nl">De <b>natuurlijke dichtheid</b> van een verzameling \(A\) van positieve gehele getallen is
+    de limiet van het aandeel van \(A\) onder de eerste \(x\) getallen:</p>
+    <p class="en">The <b>natural density</b> of a set \(A\) of positive integers is the limiting share
+    of \(A\) among the first \(x\) integers:</p>
+    $$d(A) = \lim_{x \to \infty} \frac{\#\{n \le x : n \in A\}}{x}$$
+    <table class="nice">
+      <tr><th><span class="nl">Verzameling</span><span class="en">Set</span></th>
+          <th><span class="nl">Dichtheid</span><span class="en">Density</span></th></tr>
+      <tr><td><span class="nl">even getallen</span><span class="en">even numbers</span></td><td class="num">1/2</td></tr>
+      <tr><td><span class="nl">veelvouden van 1000</span><span class="en">multiples of 1000</span></td><td class="num">1/1000</td></tr>
+      <tr><td><span class="nl">kwadraten</span><span class="en">perfect squares</span></td><td class="num">0</td></tr>
+      <tr><td><span class="nl">priemgetallen</span><span class="en">prime numbers</span></td><td class="num">0</td></tr>
+    </table>
+    <p class="nl">Let op de laatste twee rijen: dichtheid 0 betekent níet "eindig veel" · er zijn oneindig
+    veel kwadraten en priemgetallen. "Bijna alle getallen hebben eigenschap E" (dichtheid 1) laat dus
+    ruimte voor oneindig veel uitzonderingen. Dit is precies de kloof tussen de stellingen van deze les
+    en het volledige vermoeden.</p>
+    <p class="en">Note the last two rows: density 0 does not mean "finitely many" · there are infinitely
+    many squares and primes. "Almost all integers have property E" (density 1) thus leaves room for
+    infinitely many exceptions. This is exactly the gap between the theorems of this lesson and the full
+    conjecture.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Terras en Everett: bijna alle banen dalen</span><span class="en">Terras and Everett: almost all orbits descend</span></h2>
+    <p class="nl">Combineer de bijectie van les 2.1 met de drift van les 1.2. De eerste \(k\)
+    pariteitsbits zijn exact uniform verdeeld; een baan blijft alleen boven zijn startwaarde als het
+    aandeel enen minstens \(\log 2 / \log 3 \approx 0.63\) is · ver boven het gemiddelde ½. De kans op
+    zo'n bitpatroon is exponentieel klein (grote-afwijkingen-theorie voor muntworpen):</p>
+    <p class="en">Combine the bijection of lesson 2.1 with the drift of lesson 1.2. The first \(k\)
+    parity bits are exactly uniform; an orbit stays above its start only if the share of ones is at
+    least \(\log 2 / \log 3 \approx 0.63\) · far above the average ½. The probability of such a bit
+    pattern is exponentially small (large deviations for coin flips):</p>
+    $$d\{n : \sigma(n) > k\} \le e^{-c k} \quad \Rightarrow \quad d\{n : \sigma(n) < \infty\} = 1$$
+    <div class="figure">
+      <canvas id="ldCanvas" width="900" height="300"></canvas>
+      <div class="caption nl">Het aandeel startwaarden (tot 10⁶) waarvan de baan na k T-stappen nog niet
+        onder de startwaarde is gedoken · live berekend. De daling is exponentieel, precies zoals de
+        muntworp-analyse voorspelt. Dit is de stelling van Terras (1976) en Everett (1977) in beeld.</div>
+      <div class="caption en">The share of starting values (up to 10⁶) whose orbit has not yet dipped
+        below its start after k T-steps · computed live. The decay is exponential, exactly as the
+        coin-flip analysis predicts. This is the theorem of Terras (1976) and Everett (1977) in a picture.</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Tao 2019: bijna begrensd</span><span class="en">Tao 2019: almost bounded</span></h2>
+    <p class="nl">"Onder je startwaarde komen" is nog ver van "1 bereiken". Kun je de daling herhalen?
+    Naïef niet: na de eerste daling is de uniformiteit van de bits verbruikt. Terence Tao vond in 2019
+    een manier om dalingen tóch te ketenen, door met een slim gekozen gewogen dichtheid
+    (logaritmische dichtheid) te werken die bijna behouden blijft onder de afbeelding:</p>
+    <p class="en">"Getting below your start" is still far from "reaching 1". Can the descent be repeated?
+    Naively not: after the first descent the uniformity of the bits is spent. In 2019 Terence Tao found
+    a way to chain descents anyway, working with a cleverly chosen weighted density
+    (logarithmic density) that is almost preserved by the map:</p>
+    <div class="callout">
+      <div class="title nl">Stelling (Tao, 2019)</div>
+      <div class="title en">Theorem (Tao, 2019)</div>
+      <span class="nl">Voor elke functie \(f\) met \(f(n) \to \infty\), hoe langzaam ook, geldt:
+      bijna alle banen (in logaritmische dichtheid) bereiken ooit een waarde onder \(f(n)\).
+      Bijvoorbeeld: bijna elke baan komt ooit onder \(\log\log\log\log n\).</span>
+      <span class="en">For any function \(f\) with \(f(n) \to \infty\), however slowly, almost all
+      orbits (in logarithmic density) eventually reach a value below \(f(n)\).
+      For instance: almost every orbit eventually dips below \(\log\log\log\log n\).</span>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 900 210" width="900">
+        <g font-size="14">
+          <rect x="30" y="40" width="255" height="120" rx="12" fill="#1f2440" stroke="#5eead4"/>
+          <text x="157" y="80" text-anchor="middle" fill="#5eead4" font-weight="bold">Terras 1976</text>
+          <text x="157" y="110" text-anchor="middle" fill="#e8eaf6" font-size="13" class="nl">bijna alle n: baan &lt; n</text>
+          <text x="157" y="110" text-anchor="middle" fill="#e8eaf6" font-size="13" class="en">almost all n: orbit &lt; n</text>
+          <rect x="322" y="40" width="255" height="120" rx="12" fill="#1f2440" stroke="#5eead4"/>
+          <text x="450" y="80" text-anchor="middle" fill="#5eead4" font-weight="bold">Tao 2019</text>
+          <text x="450" y="110" text-anchor="middle" fill="#e8eaf6" font-size="13" class="nl">bijna alle n: baan &lt; f(n)</text>
+          <text x="450" y="110" text-anchor="middle" fill="#e8eaf6" font-size="13" class="en">almost all n: orbit &lt; f(n)</text>
+          <text x="450" y="132" text-anchor="middle" fill="#9aa3c7" font-size="12">f(n) → ∞ (traag / slowly)</text>
+          <rect x="614" y="40" width="255" height="120" rx="12" fill="#1f2440" stroke="#f0abfc" stroke-dasharray="7 5"/>
+          <text x="741" y="80" text-anchor="middle" fill="#f0abfc" font-weight="bold" class="nl">vermoeden</text>
+          <text x="741" y="80" text-anchor="middle" fill="#f0abfc" font-weight="bold" class="en">conjecture</text>
+          <text x="741" y="110" text-anchor="middle" fill="#e8eaf6" font-size="13" class="nl">alle n: baan = 1</text>
+          <text x="741" y="110" text-anchor="middle" fill="#e8eaf6" font-size="13" class="en">all n: orbit = 1</text>
+          <text x="304" y="105" text-anchor="middle" fill="#fbbf24" font-size="22">›</text>
+          <text x="596" y="105" text-anchor="middle" fill="#fbbf24" font-size="22">›?</text>
+        </g>
+        <text x="450" y="192" text-anchor="middle" fill="#9aa3c7" font-size="13" class="nl">de sprong van "bijna begrensd" naar "begrensd", en van "bijna alle" naar "alle", blijft open</text>
+        <text x="450" y="192" text-anchor="middle" fill="#9aa3c7" font-size="13" class="en">the jump from "almost bounded" to "bounded", and from "almost all" to "all", remains open</text>
+      </svg>
+    </div>
+    <p class="nl">Taos methode raakt aan zijn eigen grens: het argument verliest onvermijdelijk een klein
+    beetje massa per daalronde, en "bijna begrensd" kan binnen die aanpak niet tot "bereikt 1" worden
+    opgewaardeerd. Voor méér is een ander soort greep op de uitzonderingsverzameling nodig · dat is de
+    opening voor het telprogramma van blok 3.</p>
+    <p class="en">Tao's method touches its own limit: the argument inevitably loses a little mass per
+    descent round, and within that approach "almost bounded" cannot be upgraded to "reaches 1". Anything
+    more requires a different grip on the exceptional set · which is the opening for the counting
+    programme of block 3.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b2l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 2.2 · De ternaire kant</span><span class="en">Lesson 2.2 · The ternary side</span></a>
+    <a href="b2l4.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 2.4 · Cycli en divergentie</span><span class="en">Lesson 2.4 · Cycles and divergence</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  // survival curve: fraction of n <= N with sigma(n) > k
+  var N = 1000000, KMAX = 30;
+  var surv = new Array(KMAX + 1).fill(0);
+  for (var n = 2; n <= N; n++) {
+    var m = n, k = 0;
+    while (m >= n && k <= KMAX) {
+      m = (m % 2 === 0) ? m / 2 : (3 * m + 1) / 2;
+      k++;
+    }
+    for (var j = 0; j < Math.min(k, KMAX + 1); j++) surv[j]++;
+  }
+  var cv = document.getElementById('ldCanvas'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, pad = 48;
+  ctx.clearRect(0, 0, W, H);
+  ctx.strokeStyle = '#2c3357'; ctx.fillStyle = '#9aa3c7'; ctx.font = '12px sans-serif';
+  for (var e = 0; e >= -5; e--) {
+    var y = pad + (-e / 5) * (H - 2 * pad);
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - 10, y); ctx.stroke();
+    ctx.fillText('10^' + e, 6, y + 4);
+  }
+  ctx.strokeStyle = '#5eead4'; ctx.lineWidth = 2.4;
+  ctx.beginPath();
+  for (var k2 = 0; k2 <= KMAX; k2++) {
+    var frac = surv[k2] / (N - 1);
+    if (frac <= 0) break;
+    var x = pad + (k2 / KMAX) * (W - pad - 20);
+    var y2 = pad + (-Math.log10(frac) / 5) * (H - 2 * pad);
+    if (k2 === 0) ctx.moveTo(x, y2); else ctx.lineTo(x, y2);
+  }
+  ctx.stroke();
+  ctx.fillStyle = '#9aa3c7';
+  for (var xt = 0; xt <= KMAX; xt += 5) {
+    ctx.fillText(xt, pad + (xt / KMAX) * (W - pad - 20) - 5, H - pad + 18);
+  }
+  ctx.fillStyle = '#e8eaf6'; ctx.font = '13px sans-serif';
+  var lang = document.documentElement.getAttribute('data-lang');
+  ctx.fillText(lang === 'en' ? 'share with σ(n) > k   (log scale)' : 'aandeel met σ(n) > k   (log-schaal)', W - 300, pad + 14);
+  ctx.fillText('k →', W - 40, H - pad + 18);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 6.3 · De open kern en de grote kloof</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 6 · Onderzoekspraktijk</span><span class="en">Block 6 · Research Practice</span> › <b>6.3</b></div>
+    <h1 class="nl">De open kern en de grote kloof</h1>
+    <h1 class="en">The open core and the big gap</h1>
+    <p class="lead nl">De laatste les: wat er precies nog bewezen moet worden, wat dat zou opleveren, en wat zelfs dán nog openstaat.</p>
+    <p class="lead en">The final lesson: what exactly remains to be proved, what that would yield, and what would remain open even then.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Het homogenisatie-lemma, precies gesteld</span><span class="en">The homogenisation lemma, stated precisely</span></h2>
+    <p class="nl">Alle draden van blokken 4 en 5 komen samen in één te bewijzen uitspraak over het
+    K-L-systeem op het eindpunt:</p>
+    <p class="en">All threads of blocks 4 and 5 converge on one statement to be proved about the K-L
+    system at the endpoint:</p>
+    <div class="callout">
+      <div class="title nl">Open lemma (homogenisatie)</div>
+      <div class="title en">Open lemma (homogenisation)</div>
+      <span class="nl">Voor de Perron-profielen van het K-L-systeem geldt, cel voor cel langs de
+      digit-boom en uniform in de diepte: de conditionele gap-triples zijn asymptotisch evenredig aan de
+      conditionele niveau-triples, met een evenredigheidscoëfficiënt die gewogen wegblijft van 0 ·
+      buiten een uitzonderingsverzameling van verdwijnende dichtheid (de korte banen van
+      \(u \mapsto 2u{+}1\)).</span>
+      <span class="en">For the Perron profiles of the K-L system, cell by cell along the digit tree and
+      uniformly in depth: the conditional gap triples are asymptotically proportional to the conditional
+      level triples, with a proportionality coefficient weightedly bounded away from 0 · outside an
+      exceptional set of vanishing density (the short orbits of \(u \mapsto 2u{+}1\)).</span>
+    </div>
+    <p class="nl">Gegeven dit lemma: \(c < 1\) op het eindpunt (les 5.3) ⟹ de cascade contracteert ⟹
+    \(\bar\gamma(2,k) \to 0\) ⟹ \(\gamma(k) \to 1\) (via de massa-identiteit, les 4.2). Het basisgeval
+    is bewezen, 72 gevallen zijn gecertificeerd, en de uitzonderingsstructuur is arithmetisch in kaart ·
+    maar het lemma zelf is open.</p>
+    <p class="en">Given this lemma: \(c < 1\) at the endpoint (lesson 5.3) ⟹ the cascade contracts ⟹
+    \(\bar\gamma(2,k) \to 0\) ⟹ \(\gamma(k) \to 1\) (via the mass identity, lesson 4.2). The base case
+    is proved, 72 cases are certified, and the exceptional structure is charted arithmetically · but the
+    lemma itself is open.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Wat γ → 1 wél en niet zegt</span><span class="en">What γ → 1 does and does not say</span></h2>
+    <div class="figure">
+      <svg viewBox="0 0 900 290" width="900">
+        <g font-size="13">
+          <rect x="70" y="225" width="760" height="46" rx="10" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+          <text x="450" y="248" text-anchor="middle" fill="#5eead4" font-weight="bold" class="nl">NU · π₁(x) ≥ x^0.9184 (bewezen, dit project)</text>
+          <text x="450" y="248" text-anchor="middle" fill="#5eead4" font-weight="bold" class="en">NOW · π₁(x) ≥ x^0.9184 (proved, this project)</text>
+          <text x="450" y="264" text-anchor="middle" fill="#9aa3c7" font-size="11" class="nl">minstens x^0.92 startwaarden onder x bereiken 1</text>
+          <text x="450" y="264" text-anchor="middle" fill="#9aa3c7" font-size="11" class="en">at least x^0.92 starts below x reach 1</text>
+          <rect x="70" y="160" width="760" height="46" rx="10" fill="#1f2440" stroke="#5eead4" stroke-dasharray="6 4"/>
+          <text x="450" y="183" text-anchor="middle" fill="#5eead4" class="nl">γ → 1 · π₁(x) ≥ x^(1−ε) voor elke ε (doel van het programma)</text>
+          <text x="450" y="183" text-anchor="middle" fill="#5eead4" class="en">γ → 1 · π₁(x) ≥ x^(1−ε) for every ε (the programme's goal)</text>
+          <text x="450" y="199" text-anchor="middle" fill="#9aa3c7" font-size="11" class="nl">de uitzonderingsverzameling is kleiner dan elke macht</text>
+          <text x="450" y="199" text-anchor="middle" fill="#9aa3c7" font-size="11" class="en">the exceptional set is smaller than any power</text>
+          <rect x="70" y="95" width="760" height="46" rx="10" fill="#1f2440" stroke="#fbbf24" stroke-dasharray="6 4"/>
+          <text x="450" y="118" text-anchor="middle" fill="#fbbf24" class="nl">dichtheid 1 · π₁(x)/x → 1 (nóg sterker; niet geïmpliceerd door γ → 1)</text>
+          <text x="450" y="118" text-anchor="middle" fill="#fbbf24" class="en">density 1 · π₁(x)/x → 1 (stronger still; not implied by γ → 1)</text>
+          <text x="450" y="134" text-anchor="middle" fill="#9aa3c7" font-size="11" class="nl">op een dichtheid-nul-verzameling na bereikt alles 1</text>
+          <text x="450" y="134" text-anchor="middle" fill="#9aa3c7" font-size="11" class="en">everything reaches 1 except a density-zero set</text>
+          <rect x="70" y="30" width="760" height="46" rx="10" fill="#1f2440" stroke="#f0abfc" stroke-dasharray="6 4"/>
+          <text x="450" y="53" text-anchor="middle" fill="#f0abfc" font-weight="bold" class="nl">het volledige vermoeden · élke n bereikt 1</text>
+          <text x="450" y="53" text-anchor="middle" fill="#f0abfc" font-weight="bold" class="en">the full conjecture · every n reaches 1</text>
+          <text x="450" y="69" text-anchor="middle" fill="#9aa3c7" font-size="11" class="nl">vereist bovendien: geen enkele divergente baan, geen enkele extra cyclus</text>
+          <text x="450" y="69" text-anchor="middle" fill="#9aa3c7" font-size="11" class="en">additionally requires: not one divergent orbit, not one extra cycle</text>
+        </g>
+      </svg>
+      <div class="caption nl">De implicatie-toren. Elke laag is strikt sterker dan de laag eronder, en
+        géén van de pijlen omhoog is gratis. Wie zegt dat het telprogramma "Collatz gaat bewijzen",
+        overschat het; wie zegt dat het "er niets mee te maken heeft", onderschat het.</div>
+      <div class="caption en">The implication tower. Each layer is strictly stronger than the one below,
+        and none of the upward arrows is free. Whoever says the counting programme "will prove Collatz"
+        overstates it; whoever says it "has nothing to do with it" understates it.</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De grote kloof</span><span class="en">The big gap</span></h2>
+    <p class="nl">Zelfs met γ → 1 binnen zou het volledige vermoeden openstaan, om de redenen van
+    les 2.4: tegen <b>divergente banen</b> bestaat geen enkel individueel gereedschap, en
+    <b>cycli</b> zijn klemgezet maar niet uitgesloten. Eerlijk gezegd: voor de sprong van "bijna alle"
+    naar "alle" heeft niemand · dit project inbegrepen · op dit moment een begaanbare route. Dat is geen
+    reden tot somberheid maar tot precisie: de geschiedenis van de wiskunde (Fermat, priemtweelingen vs.
+    begrensde gaten, Poincaré) laat zien dat "bijna"-resultaten en structuurtheorie vaak de humus zijn
+    waaruit het beslissende idee later groeit.</p>
+    <p class="en">Even with γ → 1 in hand, the full conjecture would remain open, for the reasons of
+    lesson 2.4: against <b>divergent orbits</b> no individual tool exists at all, and <b>cycles</b> are
+    cornered but not excluded. Honestly: for the jump from "almost all" to "all", nobody · this project
+    included · currently has a viable route. That is cause not for gloom but for precision: the history
+    of mathematics (Fermat, twin primes vs. bounded gaps, Poincaré) shows that "almost" results and
+    structure theory are often the soil from which the decisive idea later grows.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Zelf meedoen</span><span class="en">Getting involved</span></h2>
+    <p class="nl">Deze cursus eindigt waar het onderzoek verdergaat. Concrete open vragen, oplopend
+    in zwaarte:</p>
+    <p class="en">This course ends where the research continues. Concrete open questions, in increasing
+    weight:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Vraag</span><span class="en">Question</span></th>
+          <th><span class="nl">Karakter</span><span class="en">Character</span></th></tr>
+      <tr><td><span class="nl">Reproduceer de certificaten en identiteiten (scripts in de repo)</span>
+              <span class="en">Reproduce the certificates and identities (scripts in the repo)</span></td>
+          <td><span class="nl">instap · een middag werk</span><span class="en">entry level · an afternoon</span></td></tr>
+      <tr><td><span class="nl">Toets de bevroren voorspellingen (γ(25) = 0.9378 ± 0.002) met een diepere run</span>
+              <span class="en">Test the frozen predictions (γ(25) = 0.9378 ± 0.002) with a deeper run</span></td>
+          <td><span class="nl">rekenproject · dagen</span><span class="en">computing project · days</span></td></tr>
+      <tr><td><span class="nl">Breid het gecertificeerde blok uit (k ≥ 11; gevectoriseerde intervalpass)</span>
+              <span class="en">Extend the certified block (k ≥ 11; vectorised interval pass)</span></td>
+          <td><span class="nl">software + rigor</span><span class="en">software + rigour</span></td></tr>
+      <tr><td><span class="nl">Bewijs de per-cel-Chebyshev op niveau q = 1 (de tweede sport)</span>
+              <span class="en">Prove the per-cell Chebyshev at level q = 1 (the second rung)</span></td>
+          <td><span class="nl">wiskunde · scherp afgebakend</span><span class="en">mathematics · sharply delimited</span></td></tr>
+      <tr><td><span class="nl">Het homogenisatie-lemma</span><span class="en">The homogenisation lemma</span></td>
+          <td><span class="nl">onderzoek · de open kern</span><span class="en">research · the open core</span></td></tr>
+    </table>
+    <p class="nl">Alles staat op
+    <a href="https://github.com/martiendejong/collatz_ai">github.com/martiendejong/collatz_ai</a> ·
+    log, scripts, certificaten, manuscripten en deze cursus zelf. Het probleem is negentig jaar oud;
+    de gereedschappen zijn nieuwer dan ooit. Veel plezier.</p>
+    <p class="en">Everything lives at
+    <a href="https://github.com/martiendejong/collatz_ai">github.com/martiendejong/collatz_ai</a> ·
+    log, scripts, certificates, manuscripts and this very course. The problem is ninety years old;
+    the tools are newer than ever. Enjoy.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b6l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 6.2 · Van meting naar bewijs</span><span class="en">Lesson 6.2 · From measurement to proof</span></a>
+    <a href="index.html" style="text-align:right"><span class="dir nl">einde ›</span><span class="dir en">end ›</span>
+      <span class="nl">Terug naar het cursusoverzicht</span><span class="en">Back to the course overview</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

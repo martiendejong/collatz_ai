@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 4.2 · De massa-identiteit</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 4 · Exacte Structuur</span><span class="en">Block 4 · Exact Structure</span> › <b>4.2</b></div>
+    <h1 class="nl">De massa-identiteit</h1>
+    <h1 class="en">The mass identity</h1>
+    <p class="lead nl">De eigenwaarde van het systeem ís de gapmassa · en op het eindpunt λ = 2 wordt alles rationaal.</p>
+    <p class="lead en">The eigenvalue of the system is the gap mass · and at the endpoint λ = 2 everything becomes rational.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De mean-field-operator</span><span class="en">The mean-field operator</span></h2>
+    <p class="nl">Vervang in \(F\) de min door het <i>gemiddelde</i> van de drie liften. De resulterende
+    lineaire operator \(F_{\text{lin}}\) heeft een verbluffende eigenschap: sommeer de uitvoer over alle
+    componenten. De backbone is een permutatie (behoudt de som), en de feed-argumentmaps zijn bijecties,
+    dus ook de gemiddelde-triples sommeren netjes. Resultaat: totale massa wordt exact met één factor
+    vermenigvuldigd:</p>
+    <p class="en">Replace the min in \(F\) by the <i>mean</i> of the three lifts. The resulting linear
+    operator \(F_{\text{lin}}\) has a striking property: sum the output over all components. The backbone
+    is a permutation (preserves the sum), and the feed argument maps are bijections, so the mean-triples
+    also sum cleanly. Result: total mass is multiplied by exactly one factor:</p>
+    $$\rho_{\text{lin}}(\lambda) \;=\; \lambda^{-2} + \frac{\lambda^{\alpha-2} + \lambda^{\alpha-1}}{3}
+      \qquad \text{(exact, } \textit{elke } k\text{ / every } k)$$
+    <p class="nl">De uniforme vector is een exacte linker-eigenvector van \(F_{\text{lin}}\), voor elke diepte.</p>
+    <p class="en">The uniform vector is an exact left eigenvector of \(F_{\text{lin}}\), at every depth.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De identiteit: eigenwaarde = gapmassa</span><span class="en">The identity: eigenvalue = gap mass</span></h2>
+    <p class="nl">Voor de échte operator geldt min ≤ gemiddelde, en het verschil is per triple precies de
+    <b>gap</b> \(G = \text{gemiddelde} - \min \ge 0\). Dezelfde sommatie geeft dan een exacte identiteit
+    (het is de som van de drie klasse-vergelijkingen uit les 4.1):</p>
+    <p class="en">For the true operator min ≤ mean, and the difference per triple is exactly the
+    <b>gap</b> \(G = \text{mean} - \min \ge 0\). The same summation then yields an exact identity
+    (it is the sum of the three class equations of lesson 4.1):</p>
+    $$\boxed{\;\rho(\lambda, k) \;=\; \rho_{\text{lin}}(\lambda) \;-\; \frac{B_1 + B_3}{3}\,\bar\gamma(\lambda, k)\;}
+      \qquad \bar\gamma = \frac{\mathbb{E}[G]}{\mathbb{E}[v]}$$
+    <p class="nl">De groeifactor van het telsysteem is dus de lineaire waarde mín een gewogen
+    <b>relatieve gapmassa</b>. Machinecontrole over twaalf (λ, k)-combinaties: verhouding
+    linkerlid/rechterlid = 1.000000 in alle gevallen. En er is een gesloten vorm:
+    \(\bar\gamma = 1 - 3(1-t^3)\,/\,[\,t\lambda^{\alpha}(1{+}t\lambda)(1{+}t{+}R)\,]\), exact op elke k.</p>
+    <p class="en">The growth factor of the counting system is thus the linear value minus a weighted
+    <b>relative gap mass</b>. Machine check across twelve (λ, k) combinations: left/right ratio
+    = 1.000000 in every case. And there is a closed form:
+    \(\bar\gamma = 1 - 3(1-t^3)\,/\,[\,t\lambda^{\alpha}(1{+}t\lambda)(1{+}t{+}R)\,]\), exact at every k.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Het eindpunt λ = 2: alles wordt rationaal</span><span class="en">The endpoint λ = 2: everything becomes rational</span></h2>
+    <p class="nl">Op \(\lambda = 2\) (het doel \(\gamma = 1\)) vallen de constanten prachtig samen.
+    Omdat \(2^{\alpha} = 3\) exact:</p>
+    <p class="en">At \(\lambda = 2\) (the goal \(\gamma = 1\)) the constants align beautifully.
+    Because \(2^{\alpha} = 3\) exactly:</p>
+    $$\rho_{\text{lin}}(2) = \frac14 + \frac{3/4 + 3/2}{3} = \frac14 + \frac34 = 1 \quad\text{(exact!)}$$
+    $$\Rightarrow\qquad 1 - \rho(2, k) = \tfrac34\,\bar\gamma(2, k)$$
+    <p class="nl">De vraag "haalt het telprogramma \(\gamma = 1\)?" is daarmee <b>exact</b> herleid tot:
+    <i>verdwijnt de relatieve gapmassa bij λ = 2 als de diepte groeit?</i> Gemeten: van 0.185 (k=5) naar
+    0.055 (k=16), geometrisch dalend. En op het exacte eindpunt (ρ = 1, t = 1/4, λ^α = 3, R = 11/8)
+    verdwijnt de formule-γ̄ letterlijk: beide zijden van de gesloten vorm worden 189/64. De rand van het
+    K-L-programma is precies het punt waar min en gemiddelde op de grofste schaal samenvallen.</p>
+    <p class="en">The question "does the counting programme reach \(\gamma = 1\)?" is thereby
+    <b>exactly</b> reduced to: <i>does the relative gap mass at λ = 2 vanish as depth grows?</i>
+    Measured: from 0.185 (k=5) to 0.055 (k=16), decaying geometrically. And at the exact endpoint
+    (ρ = 1, t = 1/4, λ^α = 3, R = 11/8) the closed-form γ̄ literally vanishes: both sides of the closed
+    form become 189/64. The edge of the K-L programme is precisely the point where min and mean coincide
+    at the coarsest scale.</p>
+    <div class="figure">
+      <canvas id="gapCanvas" width="900" height="300"></canvas>
+      <div class="caption nl">De gemeten reeks 1 − ρ(2, k) = ¾·γ̄(2, k) voor k = 5…16 (log-schaal): een
+        strakke geometrische afname met rate ≈ 0.91 per diepte-stap. Of deze reeks écht naar nul gaat
+        (of afvlakt op een positieve constante) is "de vork" · het beslissende open punt, les 5.4.</div>
+      <div class="caption en">The measured sequence 1 − ρ(2, k) = ¾·γ̄(2, k) for k = 5…16 (log scale): a
+        tight geometric decrease with rate ≈ 0.91 per depth step. Whether this sequence truly goes to
+        zero (or levels off at a positive constant) is "the fork" · the decisive open point, lesson 5.4.</div>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b4l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 4.1 · De klasse-identiteiten</span><span class="en">Lesson 4.1 · The class identities</span></a>
+    <a href="b4l3.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 4.3 · De gevezelde hiërarchie</span><span class="en">Lesson 4.3 · The fibered hierarchy</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var ks = [5,6,7,8,9,10,11,12,13,14,15,16];
+  var y = [0.13899,0.12033,0.10498,0.08967,0.08061,0.07327,0.06651,0.06016,0.05495,0.05002,0.04550,0.04148];
+  var cv = document.getElementById('gapCanvas'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, pad = 52;
+  ctx.clearRect(0, 0, W, H);
+  ctx.strokeStyle = '#2c3357'; ctx.fillStyle = '#9aa3c7'; ctx.font = '12px sans-serif';
+  [-1, -1.2, -1.4].forEach(function (e) {
+    var yy = pad + ((-1 - e) / -0.5) * 0; // dummy
+  });
+  var lmin = Math.log10(0.03), lmax = Math.log10(0.16);
+  [0.04, 0.06, 0.08, 0.12, 0.16].forEach(function (val) {
+    var yy = H - pad - (Math.log10(val) - lmin) / (lmax - lmin) * (H - 2 * pad);
+    ctx.beginPath(); ctx.moveTo(pad, yy); ctx.lineTo(W - 10, yy); ctx.stroke();
+    ctx.fillText(val.toFixed(2), 8, yy + 4);
+  });
+  function X(k) { return pad + (k - 5) / 11 * (W - pad - 30); }
+  function Y(v) { return H - pad - (Math.log10(v) - lmin) / (lmax - lmin) * (H - 2 * pad); }
+  // fit line (geometric rate 0.911 through last point)
+  ctx.strokeStyle = '#fbbf24'; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(X(5), Y(y[11] * Math.pow(0.911, 5 - 16)));
+  ctx.lineTo(X(16), Y(y[11]));
+  ctx.stroke(); ctx.setLineDash([]);
+  ctx.strokeStyle = '#5eead4'; ctx.lineWidth = 2.2;
+  ctx.beginPath();
+  ks.forEach(function (k, i) { if (i === 0) ctx.moveTo(X(k), Y(y[i])); else ctx.lineTo(X(k), Y(y[i])); });
+  ctx.stroke();
+  ks.forEach(function (k, i) {
+    ctx.fillStyle = '#5eead4';
+    ctx.beginPath(); ctx.arc(X(k), Y(y[i]), 4, 0, 7); ctx.fill();
+    ctx.fillStyle = '#9aa3c7';
+    ctx.fillText(k, X(k) - 5, H - pad + 18);
+  });
+  ctx.fillStyle = '#e8eaf6'; ctx.font = '13px sans-serif';
+  var lang = document.documentElement.getAttribute('data-lang');
+  ctx.fillText('1 − ρ(2, k)', pad + 12, pad + 6);
+  ctx.fillStyle = '#fbbf24';
+  ctx.fillText(lang === 'en' ? 'geometric, rate 0.911' : 'geometrisch, rate 0.911', W - 230, pad + 24);
+  ctx.fillStyle = '#9aa3c7';
+  ctx.fillText('k →', W - 40, H - pad + 18);
+});
+</script>
+</body>
+</html>

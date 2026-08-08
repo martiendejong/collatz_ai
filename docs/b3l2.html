@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 3.2 · De K-L-operator</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 3 · Het Krasikov–Lagarias-Raamwerk</span><span class="en">Block 3 · The Krasikov–Lagarias Framework</span> › <b>3.2</b></div>
+    <h1 class="nl">De K-L-operator</h1>
+    <h1 class="en">The K-L operator</h1>
+    <p class="lead nl">Het hele stelsel ongelijkheden samengevat in één operator · het centrale object van de rest van deze cursus.</p>
+    <p class="lead en">The whole system of inequalities packed into one operator · the central object for the rest of this course.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De definitie</span><span class="en">The definition</span></h2>
+    <p class="nl">Kies een diepte \(k\) en werk op vectoren \(v\) met één component per restklasse
+    \(i \in \{0, \ldots, 3^{k-1}{-}1\}\) (schrijf \(N = 3^{k-1}\), \(N_\ell = N/3\)). Met
+    \(\alpha = \log_2 3\) en gewichten \(A = \lambda^{-2}\), \(B_1 = \lambda^{\alpha-2}\),
+    \(B_3 = \lambda^{\alpha-1}\) is de Krasikov–Lagarias-operator:</p>
+    <p class="en">Choose a depth \(k\) and work on vectors \(v\) with one component per residue class
+    \(i \in \{0, \ldots, 3^{k-1}{-}1\}\) (write \(N = 3^{k-1}\), \(N_\ell = N/3\)). With
+    \(\alpha = \log_2 3\) and weights \(A = \lambda^{-2}\), \(B_1 = \lambda^{\alpha-2}\),
+    \(B_3 = \lambda^{\alpha-1}\), the Krasikov–Lagarias operator is:</p>
+    $$ (Fv)(i) = A\,v(4i{+}2 \bmod N) \;+\; \begin{cases}
+      B_1\,\bar v(4\lfloor i/3\rfloor \bmod N_\ell) & i \equiv 0 \ (3) \\
+      0 & i \equiv 1 \ (3) \\
+      B_3\,\bar v(2\lfloor i/3\rfloor{+}1 \bmod N_\ell) & i \equiv 2 \ (3)
+    \end{cases} $$
+    $$ \bar v(r) = \min\{v(r),\, v(r + N_\ell),\, v(r + 2N_\ell)\} $$
+    <div class="figure">
+      <svg viewBox="0 0 900 250" width="900">
+        <defs><marker id="ar3" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 z" fill="#5eead4"/></marker>
+        <marker id="ar3p" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 z" fill="#f0abfc"/></marker></defs>
+        <rect x="70" y="90" width="200" height="70" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+        <text x="170" y="119" text-anchor="middle" fill="#5eead4" font-size="15" font-weight="bold">backbone</text>
+        <text x="170" y="143" text-anchor="middle" fill="#e8eaf6" font-size="13" font-family="monospace">i → 4i+2</text>
+        <rect x="360" y="20" width="200" height="70" rx="12" fill="#1f2440" stroke="#f0abfc" stroke-width="2"/>
+        <text x="460" y="49" text-anchor="middle" fill="#f0abfc" font-size="15" font-weight="bold">feed D1</text>
+        <text x="460" y="73" text-anchor="middle" fill="#e8eaf6" font-size="13" font-family="monospace">B₁ · min-triple (4s)</text>
+        <rect x="360" y="160" width="200" height="70" rx="12" fill="#1f2440" stroke="#f0abfc" stroke-width="2"/>
+        <text x="460" y="189" text-anchor="middle" fill="#f0abfc" font-size="15" font-weight="bold">feed D3</text>
+        <text x="460" y="213" text-anchor="middle" fill="#e8eaf6" font-size="13" font-family="monospace">B₃ · min-triple (2s+1)</text>
+        <rect x="660" y="90" width="180" height="70" rx="12" fill="#1f2440" stroke="#fbbf24" stroke-width="2"/>
+        <text x="750" y="119" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="bold">(Fv)(i)</text>
+        <text x="750" y="143" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">per klasse i mod 3</text>
+        <text x="750" y="143" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">per class i mod 3</text>
+        <line x1="275" y1="125" x2="655" y2="125" stroke="#5eead4" stroke-width="2.2" marker-end="url(#ar3)"/>
+        <line x1="565" y1="60" x2="670" y2="100" stroke="#f0abfc" stroke-width="2.2" marker-end="url(#ar3p)"/>
+        <line x1="565" y1="190" x2="670" y2="150" stroke="#f0abfc" stroke-width="2.2" marker-end="url(#ar3p)"/>
+        <text x="300" y="112" fill="#9aa3c7" font-size="12" class="nl">altijd</text>
+        <text x="300" y="112" fill="#9aa3c7" font-size="12" class="en">always</text>
+        <text x="585" y="80" fill="#9aa3c7" font-size="12">i ≡ 0</text>
+        <text x="585" y="182" fill="#9aa3c7" font-size="12">i ≡ 2</text>
+      </svg>
+      <div class="caption nl">Anatomie van de operator: een <b>backbone</b> (de permutatie i → 4i+2, die
+        de deel-door-2-structuur codeert) plus twee <b>feeds</b> die de ×3-vertakkingen inbrengen via de
+        min over drie "liften". Klasse i ≡ 1 krijgt geen feed · een derde van het systeem is passief.</div>
+      <div class="caption en">Anatomy of the operator: a <b>backbone</b> (the permutation i → 4i+2 encoding
+        the divide-by-2 structure) plus two <b>feeds</b> injecting the ×3 branchings via the min over three
+        "lifts". Class i ≡ 1 receives no feed · a third of the system is passive.</div>
+    </div>
+    <p class="nl">De parameter \(\lambda\) is de beoogde groeifactor; het doel-verband is
+    \(\gamma = \log_2 \lambda\). De <b>min</b> is er omdat een telling pas gegarandeerd is als hij het
+    in de <i>slechtste</i> van de drie liften haalt · het is een worst-case-operator, en tegelijk de enige
+    niet-lineariteit in het hele systeem.</p>
+    <p class="en">The parameter \(\lambda\) is the intended growth factor; the target relation is
+    \(\gamma = \log_2 \lambda\). The <b>min</b> appears because a count is guaranteed only if it survives
+    the <i>worst</i> of the three lifts · a worst-case operator, and at the same time the only
+    nonlinearity in the whole system.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Feasibility: het certificaatprincipe</span><span class="en">Feasibility: the certificate principle</span></h2>
+    <div class="callout">
+      <div class="title nl">Stelling (Krasikov–Lagarias, 2003)</div>
+      <div class="title en">Theorem (Krasikov–Lagarias, 2003)</div>
+      <span class="nl">Bestaat er een strikt positieve vector \(v\) met \(v \le Fv\) (componentsgewijs),
+      dan geldt \(\pi_1(x) \ge x^{\log_2 \lambda}\) voor grote \(x\).</span>
+      <span class="en">If there exists a strictly positive vector \(v\) with \(v \le Fv\) (componentwise),
+      then \(\pi_1(x) \ge x^{\log_2 \lambda}\) for large \(x\).</span>
+    </div>
+    <p class="nl">Zo'n vector heet een <b>feasibility-certificaat</b>. Het mooie: de bewering
+    "\(v \le Fv\)" is een eindige lijst van \(3^{k-1}\) elementaire ongelijkheden die iedereen
+    (mens of machine) kan nachecken. De zoektocht mag zo creatief of numeriek zijn als je wilt ·
+    het certificaat zelf is koud, verifieerbaar bewijs.</p>
+    <p class="en">Such a vector is a <b>feasibility certificate</b>. The beauty: the claim
+    "\(v \le Fv\)" is a finite list of \(3^{k-1}\) elementary inequalities that anyone
+    (human or machine) can recheck. The search may be as creative or numerical as you like ·
+    the certificate itself is cold, verifiable proof.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Perron-theorie: waarom er een scherpe rand is</span><span class="en">Perron theory: why there is a sharp edge</span></h2>
+    <p class="nl">\(F\) is <b>monotoon</b> (grotere invoer geeft grotere uitvoer) en <b>1-homogeen</b>
+    (\(F(cv) = c\,F(v)\)). Voor zulke operatoren bestaat een Perron-achtige "grootste groeifactor"
+    \(\rho(\lambda)\), met een handzame karakterisering (Collatz–Wielandt): voor élke positieve testvector \(w\),</p>
+    <p class="en">\(F\) is <b>monotone</b> (larger input gives larger output) and <b>1-homogeneous</b>
+    (\(F(cv) = c\,F(v)\)). For such operators a Perron-type "largest growth factor" \(\rho(\lambda)\)
+    exists, with a convenient characterisation (Collatz–Wielandt): for every positive test vector \(w\),</p>
+    $$ \min_i \frac{(Fw)_i}{w_i} \;\le\; \rho \;\le\; \max_i \frac{(Fw)_i}{w_i} $$
+    <p class="nl">Feasibility (\(v \le Fv\)) kan precies dan als \(\rho(\lambda) \ge 1\). Omdat
+    \(\rho(\lambda)\) daalt in \(\lambda\), is er per diepte \(k\) een scherpe rand
+    \(\lambda^{*}(k)\): de hoogste \(\lambda\) waarvoor het nog lukt. Dieper = fijnere klassen = hogere rand.
+    De jacht op records is dus een jacht op \(\lambda^{*}(k)\) bij zo groot mogelijke \(k\) · les 3.3.</p>
+    <p class="en">Feasibility (\(v \le Fv\)) is possible precisely when \(\rho(\lambda) \ge 1\). Since
+    \(\rho(\lambda)\) decreases in \(\lambda\), each depth \(k\) has a sharp edge \(\lambda^{*}(k)\):
+    the highest \(\lambda\) that still works. Deeper = finer classes = higher edge.
+    The record hunt is thus a hunt for \(\lambda^{*}(k)\) at the largest possible \(k\) · lesson 3.3.</p>
+    <div class="callout warn">
+      <div class="title nl">Vooruitblik</div>
+      <div class="title en">Looking ahead</div>
+      <span class="nl">De Collatz–Wielandt-grenzen zijn onvoorwaardelijk geldig voor elke testvector.
+      In blok 4 (les 4.4) gebruiken we ze om eigenschappen van het systeem <i>rigoureus te certificeren</i>
+      met intervalrekening · de brug van numeriek experiment naar computer-geassisteerd bewijs.</span>
+      <span class="en">The Collatz–Wielandt bounds hold unconditionally for any test vector.
+      In block 4 (lesson 4.4) we use them to <i>rigorously certify</i> properties of the system with
+      interval arithmetic · the bridge from numerical experiment to computer-assisted proof.</span>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b3l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 3.1 · Tellen met ongelijkheden</span><span class="en">Lesson 3.1 · Counting with inequalities</span></a>
+    <a href="b3l3.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 3.3 · Van feasibility naar record</span><span class="en">Lesson 3.3 · From feasibility to record</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

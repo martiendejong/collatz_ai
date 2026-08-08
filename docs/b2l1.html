@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 2.1 · Pariteitsvectoren en de 2-adische kant</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 2 · De Arithmetische Structuur</span><span class="en">Block 2 · The Arithmetic Structure</span> › <b>2.1</b></div>
+    <h1 class="nl">Pariteitsvectoren en de 2-adische kant</h1>
+    <h1 class="en">Parity vectors and the 2-adic side</h1>
+    <p class="lead nl">De baan van een getal wordt volledig bepaald door één rij bits · en die bits blijken verrassend geordend.</p>
+    <p class="lead en">The orbit of a number is fully determined by one sequence of bits · and those bits turn out to be surprisingly well organised.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De versnelde afbeelding</span><span class="en">The accelerated map</span></h2>
+    <p class="nl">Na elke oneven stap \(3n+1\) volgt gegarandeerd een deling door 2. Onderzoekers plakken die
+    twee samen tot de <b>versnelde afbeelding</b>:</p>
+    <p class="en">Every odd step \(3n+1\) is guaranteed to be followed by a division by 2. Researchers glue
+    those together into the <b>accelerated map</b>:</p>
+    <div class="nl">$$T(n) = \begin{cases} n/2 & \text{als } n \text{ even is} \\ (3n+1)/2 & \text{als } n \text{ oneven is} \end{cases}$$</div>
+    <div class="en">$$T(n) = \begin{cases} n/2 & \text{if } n \text{ is even} \\ (3n+1)/2 & \text{if } n \text{ is odd} \end{cases}$$</div>
+    <p class="nl">Zelfde vraag ("bereikt elke baan 1?"), maar elke stap doet nu precies één deling door 2.
+    Dat maakt de statistiek zuiver: per stap is de vermenigvuldigingsfactor óf 1/2 óf ≈ 3/2.</p>
+    <p class="en">Same question ("does every orbit reach 1?"), but every step now performs exactly one
+    division by 2. That cleans up the statistics: each step multiplies by either 1/2 or ≈ 3/2.</p>
+    <table class="nice">
+      <tr><th>n</th><th><span class="nl">C-baan (11 stappen)</span><span class="en">C-orbit (11 steps)</span></th>
+          <th><span class="nl">T-baan (8 stappen)</span><span class="en">T-orbit (8 steps)</span></th></tr>
+      <tr><td class="num">7</td><td class="num">7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5 …</td>
+          <td class="num">7, 11, 17, 26, 13, 20, 10, 5, 8 …</td></tr>
+    </table>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De pariteitsvector</span><span class="en">The parity vector</span></h2>
+    <p class="nl">Noteer bij elke T-stap een bit: 1 als het getal oneven was (stap ×3/2), 0 als het even was
+    (stap ×1/2). Deze rij heet de <b>pariteitsvector</b> van \(n\). Hij bepaalt de hele baan:
+    ken je de bits, dan ken je de vermenigvuldigingsfactoren.</p>
+    <p class="en">Record one bit per T-step: 1 if the number was odd (step ×3/2), 0 if it was even
+    (step ×1/2). This sequence is the <b>parity vector</b> of \(n\). It determines the whole orbit:
+    knowing the bits means knowing the multiplication factors.</p>
+    <div class="figure">
+      <div class="controls">
+        <input type="number" id="pvInput" value="27" min="1" max="99999999">
+        <button onclick="showPV()"><span class="nl">Toon pariteitsvector</span><span class="en">Show parity vector</span></button>
+      </div>
+      <div id="pvOut" style="font-family:monospace;font-size:1.05rem;word-break:break-all;color:#5eead4;text-align:left;padding:6px 10px"></div>
+      <div class="caption nl">De eerste 40 pariteitsbits van de gekozen startwaarde. Elke 1 duwt de baan omhoog
+        (×3/2), elke 0 omlaag (×1/2). Meer enen dan het gemiddelde ½ betekent een stijgende baan.</div>
+      <div class="caption en">The first 40 parity bits of the chosen start. Each 1 pushes the orbit up
+        (×3/2), each 0 down (×1/2). More ones than the average ½ means a rising orbit.</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Terras' stelling: de bits zijn eerlijk verdeeld</span><span class="en">Terras' theorem: the bits are fairly distributed</span></h2>
+    <p class="nl">Nu het verrassend geordende deel. Terras bewees in 1976:</p>
+    <p class="en">Now the surprisingly orderly part. Terras proved in 1976:</p>
+    <div class="callout">
+      <div class="title nl">Stelling (Terras, 1976)</div>
+      <div class="title en">Theorem (Terras, 1976)</div>
+      <span class="nl">De eerste \(k\) pariteitsbits van \(n\) hangen alleen af van \(n \bmod 2^k\), en de
+      afbeelding van restklassen naar bitpatronen is een <b>bijectie</b>: elk van de \(2^k\) mogelijke
+      patronen komt precies één keer voor per \(2^k\) opeenvolgende startwaarden.</span>
+      <span class="en">The first \(k\) parity bits of \(n\) depend only on \(n \bmod 2^k\), and the map
+      from residue classes to bit patterns is a <b>bijection</b>: each of the \(2^k\) possible patterns
+      occurs exactly once per \(2^k\) consecutive starting values.</span>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 900 240" width="900">
+        <text x="180" y="34" text-anchor="middle" fill="#5eead4" font-size="15" font-weight="bold" class="nl">restklassen mod 8</text>
+        <text x="180" y="34" text-anchor="middle" fill="#5eead4" font-size="15" font-weight="bold" class="en">residues mod 8</text>
+        <text x="720" y="34" text-anchor="middle" fill="#f0abfc" font-size="15" font-weight="bold" class="nl">eerste 3 pariteitsbits</text>
+        <text x="720" y="34" text-anchor="middle" fill="#f0abfc" font-size="15" font-weight="bold" class="en">first 3 parity bits</text>
+        <g font-family="monospace" font-size="14">
+          <text x="180" y="70" text-anchor="middle" fill="#e8eaf6">0</text><text x="720" y="70" text-anchor="middle" fill="#e8eaf6">000</text>
+          <text x="180" y="95" text-anchor="middle" fill="#e8eaf6">1</text><text x="720" y="95" text-anchor="middle" fill="#e8eaf6">100</text>
+          <text x="180" y="120" text-anchor="middle" fill="#e8eaf6">2</text><text x="720" y="120" text-anchor="middle" fill="#e8eaf6">010</text>
+          <text x="180" y="145" text-anchor="middle" fill="#e8eaf6">3</text><text x="720" y="145" text-anchor="middle" fill="#e8eaf6">110</text>
+          <text x="180" y="170" text-anchor="middle" fill="#e8eaf6">4</text><text x="720" y="170" text-anchor="middle" fill="#e8eaf6">001</text>
+          <text x="180" y="195" text-anchor="middle" fill="#e8eaf6">5</text><text x="720" y="195" text-anchor="middle" fill="#e8eaf6">101</text>
+          <text x="180" y="220" text-anchor="middle" fill="#e8eaf6">6</text><text x="720" y="220" text-anchor="middle" fill="#e8eaf6">011</text>
+        </g>
+        <g stroke="#2c9c8a" stroke-width="1.3" opacity="0.7">
+          <line x1="230" y1="66" x2="660" y2="66"/><line x1="230" y1="91" x2="660" y2="91"/>
+          <line x1="230" y1="116" x2="660" y2="116"/><line x1="230" y1="141" x2="660" y2="141"/>
+          <line x1="230" y1="166" x2="660" y2="166"/><line x1="230" y1="191" x2="660" y2="191"/>
+          <line x1="230" y1="216" x2="660" y2="216"/>
+        </g>
+      </svg>
+      <div class="caption nl">De bijectie voor k = 3: acht restklassen, acht patronen, één-op-één.
+        Gevolg: over grote bereiken gedragen de pariteitsbits zich exact als eerlijke muntworpen ·
+        de drift-heuristiek van les 1.2 wordt hier een stelling over beginstukken.</div>
+      <div class="caption en">The bijection for k = 3: eight residues, eight patterns, one-to-one.
+        Consequence: over large ranges the parity bits behave exactly like fair coin flips ·
+        the drift heuristic of lesson 1.2 becomes a theorem about initial segments.</div>
+    </div>
+    <p class="nl">Dit is hét gereedschap achter alle "bijna alle"-resultaten (les 2.3): het beginstuk van
+    de baan is perfect uniform. De moeilijkheid zit in wat er ná die eerste \(k\) stappen gebeurt,
+    wanneer de bits van verschillende startwaarden gaan verschillen.</p>
+    <p class="en">This is the tool behind all "almost all" results (lesson 2.3): the initial segment of
+    the orbit is perfectly uniform. The difficulty lies in what happens after those first \(k\) steps,
+    when the bits of different starting values begin to diverge.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De 2-adische voortzetting</span><span class="en">The 2-adic extension</span></h2>
+    <p class="nl">Laat \(k \to \infty\): elke startwaarde krijgt een oneindige bitrij, en de afbeelding
+    van "getal" naar "bitrij" wordt een afstandsbewarende bijectie op de <b>2-adische gehele getallen</b>
+    \(\mathbb{Z}_2\) (getallen met oneindig veel bits naar links). In die wereld is Collatz volledig
+    begrepen: de afbeelding is een nette isometrie, conjugatie met de bitshift.</p>
+    <p class="en">Let \(k \to \infty\): every start gets an infinite bit sequence, and the map from
+    "number" to "bit sequence" becomes a distance-preserving bijection on the <b>2-adic integers</b>
+    \(\mathbb{Z}_2\) (numbers with infinitely many bits to the left). In that world Collatz is fully
+    understood: the map is a clean isometry, conjugate to the bit shift.</p>
+    <div class="callout warn">
+      <div class="title nl">De addertje onder het gras</div>
+      <div class="title en">The catch</div>
+      <span class="nl">Het vermoeden gaat over de gewone gehele getallen · een verwaarloosbaar dun deelverzamelinkje
+      van \(\mathbb{Z}_2\) (maat nul!). De prachtige 2-adische theorie ziet dat dunne lijntje niet.
+      Precies dezelfde situatie zal terugkeren aan de ternaire kant (les 2.2): de structuur leeft in
+      het continuüm, het vermoeden in de discrete punten.</span>
+      <span class="en">The conjecture is about the ordinary integers · a negligibly thin subset of
+      \(\mathbb{Z}_2\) (measure zero!). The beautiful 2-adic theory cannot see that thin line.
+      Exactly the same situation returns on the ternary side (lesson 2.2): the structure lives in
+      the continuum, the conjecture in the discrete points.</span>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b1l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 1.3 · Geschiedenis en context</span><span class="en">Lesson 1.3 · History and context</span></a>
+    <a href="b2l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 2.2 · De ternaire kant</span><span class="en">Lesson 2.2 · The ternary side</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script>
+function showPV() {
+  var n = parseInt(document.getElementById('pvInput').value, 10);
+  if (!(n >= 1)) return;
+  var bits = [], m = n;
+  for (var i = 0; i < 40 && m !== 1; i++) {
+    if (m % 2 === 1) { bits.push(1); m = (3 * m + 1) / 2; }
+    else { bits.push(0); m = m / 2; }
+  }
+  var ones = bits.reduce(function (a, b) { return a + b; }, 0);
+  document.getElementById('pvOut').innerHTML =
+    bits.map(function (b) { return b ? '<span style="color:#f0abfc">1</span>' : '<span style="color:#5eead4">0</span>'; }).join('') +
+    '<br><span style="color:#9aa3c7">' + ones + ' × 1, ' + (bits.length - ones) + ' × 0</span>';
+}
+window.addEventListener('DOMContentLoaded', showPV);
+</script>
+</body>
+</html>

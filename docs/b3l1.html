@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 3.1 · Tellen met ongelijkheden</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 3 · Het Krasikov–Lagarias-Raamwerk</span><span class="en">Block 3 · The Krasikov–Lagarias Framework</span> › <b>3.1</b></div>
+    <h1 class="nl">Tellen met ongelijkheden</h1>
+    <h1 class="en">Counting with inequalities</h1>
+    <p class="lead nl">Hoeveel getallen bereiken aantoonbaar 1? Een vraag waar je, anders dan bij het volledige vermoeden, harde vooruitgang op kunt boeken.</p>
+    <p class="lead en">How many integers provably reach 1? A question on which, unlike the full conjecture, hard progress is possible.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De telfunctie en haar exponent</span><span class="en">The counting function and its exponent</span></h2>
+    <p class="nl">Definieer \(\pi_1(x)\) als het aantal startwaarden \(\le x\) waarvan de baan 1 bereikt.
+    Het vermoeden zegt \(\pi_1(x) = \lfloor x \rfloor\). Het telprogramma bewijst ondergrenzen van de vorm:</p>
+    <p class="en">Define \(\pi_1(x)\) as the number of starting values \(\le x\) whose orbit reaches 1.
+    The conjecture says \(\pi_1(x) = \lfloor x \rfloor\). The counting programme proves lower bounds of the form:</p>
+    $$\pi_1(x) \;\ge\; x^{\gamma} \qquad (x \text{ groot / large})$$
+    <p class="nl">Elke verhoging van \(\gamma\) is echte, meetbare vooruitgang: \(\gamma = 1\) zou
+    "vrijwel alle getallen" betekenen (op teltermen na). De exponent is dus een voortgangsmeter voor het
+    hele probleem · en die meter beweegt, zoals subject 3 laat zien.</p>
+    <p class="en">Every increase of \(\gamma\) is real, measurable progress: \(\gamma = 1\) would mean
+    "essentially all integers" (up to counting terms). The exponent is thus a progress gauge for the whole
+    problem · and the gauge moves, as subject 3 shows.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Het idee: zelfconsistent tellen in de boom</span><span class="en">The idea: self-consistent counting in the tree</span></h2>
+    <p class="nl">Herinner de omgekeerde boom uit les 1.2: vanuit 1 groeien voorgangers via ×2 en
+    (soms) via (m−1)/3. Tel per grootte-schijf en per restklasse hoeveel boomknopen er zijn. De boomregels
+    vertalen zich dan in <b>ongelijkheden tussen die tellingen</b>: het aantal knopen in klasse \(i\) op
+    schaal \(x\) is minstens een gewogen combinatie van aantallen op schaal \(x/2\) en \(x/3\) in
+    gerelateerde klassen.</p>
+    <p class="en">Recall the inverse tree of lesson 1.2: from 1, predecessors grow via ×2 and (sometimes)
+    via (m−1)/3. Count tree nodes per size range and per residue class. The tree rules then translate into
+    <b>inequalities between those counts</b>: the number of nodes in class \(i\) at scale \(x\) is at
+    least a weighted combination of counts at scales \(x/2\) and \(x/3\) in related classes.</p>
+    <div class="figure">
+      <svg viewBox="0 0 900 240" width="900">
+        <rect x="330" y="20" width="240" height="54" rx="10" fill="#1f2440" stroke="#5eead4"/>
+        <text x="450" y="43" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="nl">telling op schaal x, klasse i</text>
+        <text x="450" y="43" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="en">count at scale x, class i</text>
+        <text x="450" y="63" text-anchor="middle" fill="#e8eaf6" font-size="13" font-family="monospace">N(x, i)</text>
+        <g stroke="#2c9c8a" stroke-width="2">
+          <line x1="400" y1="80" x2="260" y2="140"/>
+          <line x1="500" y1="80" x2="640" y2="140"/>
+        </g>
+        <text x="300" y="105" fill="#9aa3c7" font-size="13">×2</text>
+        <text x="585" y="105" fill="#9aa3c7" font-size="13">(m−1)/3</text>
+        <rect x="140" y="145" width="240" height="54" rx="10" fill="#1f2440" stroke="#f0abfc"/>
+        <text x="260" y="168" text-anchor="middle" fill="#f0abfc" font-size="14" class="nl">schaal x/2, klasse i′</text>
+        <text x="260" y="168" text-anchor="middle" fill="#f0abfc" font-size="14" class="en">scale x/2, class i′</text>
+        <text x="260" y="188" text-anchor="middle" fill="#e8eaf6" font-size="13" font-family="monospace">N(x/2, i′)</text>
+        <rect x="520" y="145" width="240" height="54" rx="10" fill="#1f2440" stroke="#f0abfc"/>
+        <text x="640" y="168" text-anchor="middle" fill="#f0abfc" font-size="14" class="nl">schaal x/3, klasse i″ (soms)</text>
+        <text x="640" y="168" text-anchor="middle" fill="#f0abfc" font-size="14" class="en">scale x/3, class i″ (sometimes)</text>
+        <text x="640" y="188" text-anchor="middle" fill="#e8eaf6" font-size="13" font-family="monospace">N(x/3, i″)</text>
+        <text x="450" y="228" text-anchor="middle" fill="#9aa3c7" font-size="13" class="nl">N(x, i) ≥ N(x/2, i′) + [voorwaarde] · N(x/3, i″) · het stelsel "voedt zichzelf"</text>
+        <text x="450" y="228" text-anchor="middle" fill="#9aa3c7" font-size="13" class="en">N(x, i) ≥ N(x/2, i′) + [condition] · N(x/3, i″) · the system "feeds itself"</text>
+      </svg>
+      <div class="caption nl">Difference inequalities: tellingen op schaal x worden van onderaf gevoed door
+        tellingen op kleinere schalen. Vind je gewichten waarvoor dit stelsel zichzelf met groeifactor
+        \(x^{\gamma}\) in stand houdt, dan is \(\pi_1(x) \ge x^{\gamma}\) bewezen.</div>
+      <div class="caption en">Difference inequalities: counts at scale x are fed from below by counts at
+        smaller scales. If you find weights for which this system sustains itself with growth factor
+        \(x^{\gamma}\), then \(\pi_1(x) \ge x^{\gamma}\) is proved.</div>
+    </div>
+    <p class="nl">De kunst is dus een <b>zelfconsistente gewichtenset</b> te vinden. Hoe fijner je de
+    restklassen kiest (mod 9, mod 27, … mod \(3^k\)), hoe meer structuur je vangt en hoe hoger de
+    haalbare \(\gamma\) · tegen exponentieel groeiende rekenkosten. Dat is het speelveld van les 3.2.</p>
+    <p class="en">The art is to find a <b>self-consistent set of weights</b>. The finer the residue
+    classes (mod 9, mod 27, … mod \(3^k\)), the more structure you capture and the higher the achievable
+    \(\gamma\) · at exponentially growing computational cost. That is the playing field of lesson 3.2.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De historische ladder</span><span class="en">The historical ladder</span></h2>
+    <table class="nice">
+      <tr><th><span class="nl">Jaar</span><span class="en">Year</span></th>
+          <th><span class="nl">Auteurs</span><span class="en">Authors</span></th>
+          <th>γ</th>
+          <th><span class="nl">Middel</span><span class="en">Means</span></th></tr>
+      <tr><td class="num">1979</td><td>Crandall</td><td class="num">≈ 0.05</td>
+          <td><span class="nl">eerste expliciete ondergrens</span><span class="en">first explicit lower bound</span></td></tr>
+      <tr><td class="num">1989</td><td>Krasikov</td><td class="num">0.43</td>
+          <td><span class="nl">difference inequalities, mod 9</span><span class="en">difference inequalities, mod 9</span></td></tr>
+      <tr><td class="num">1995</td><td>Applegate &amp; Lagarias</td><td class="num">0.81</td>
+          <td><span class="nl">computerondersteund, mod 3⁹</span><span class="en">computer-assisted, mod 3⁹</span></td></tr>
+      <tr><td class="num">2003</td><td>Krasikov &amp; Lagarias</td><td class="num">0.84</td>
+          <td><span class="nl">verfijnd stelsel, mod 3¹¹</span><span class="en">refined system, mod 3¹¹</span></td></tr>
+      <tr><td class="num">2026</td><td><span class="nl">dit project</span><span class="en">this project</span></td><td class="num"><b>0.9184</b></td>
+          <td><span class="nl">exacte certificaten t/m diepte k=21 (3,5 miljard constraints)</span>
+              <span class="en">exact certificates up to depth k=21 (3.5 billion constraints)</span></td></tr>
+    </table>
+    <div class="figure">
+      <canvas id="ladderCanvas" width="900" height="300"></canvas>
+      <div class="caption nl">De γ-ladder in beeld, inclusief de zeven recordpunten van dit project
+        (diepten k=13 t/m 21, elk exact geverifieerd). De stippellijn markeert het doel γ = 1.
+        Waarom de ladder zich zo regelmatig gedraagt · en of hij de 1 haalt · is het onderwerp van blok 5.</div>
+      <div class="caption en">The γ ladder visualised, including the seven record points of this project
+        (depths k=13 to 21, each exactly verified). The dashed line marks the goal γ = 1.
+        Why the ladder behaves so regularly · and whether it reaches 1 · is the subject of block 5.</div>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b2l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 2.4 · Cycli en divergentie</span><span class="en">Lesson 2.4 · Cycles and divergence</span></a>
+    <a href="b3l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 3.2 · De K-L-operator</span><span class="en">Lesson 3.2 · The K-L operator</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var data = [
+    { yr: 1979, g: 0.05 }, { yr: 1989, g: 0.43 }, { yr: 1995, g: 0.81 }, { yr: 2003, g: 0.84 },
+    { yr: 2024.0, g: 0.8624 }, { yr: 2024.35, g: 0.8805 }, { yr: 2024.7, g: 0.8953 },
+    { yr: 2025.05, g: 0.9069 }, { yr: 2025.4, g: 0.9146 }, { yr: 2025.75, g: 0.9184 }
+  ];
+  var cv = document.getElementById('ladderCanvas'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height, pad = 50;
+  var y0 = 1975, y1 = 2027;
+  function X(yr) { return pad + (yr - y0) / (y1 - y0) * (W - pad - 20); }
+  function Y(g) { return H - pad - g * (H - 2 * pad); }
+  ctx.clearRect(0, 0, W, H);
+  ctx.strokeStyle = '#2c3357'; ctx.fillStyle = '#9aa3c7'; ctx.font = '12px sans-serif';
+  [0, 0.25, 0.5, 0.75, 1].forEach(function (g) {
+    ctx.beginPath(); ctx.moveTo(pad, Y(g)); ctx.lineTo(W - 10, Y(g)); ctx.stroke();
+    ctx.fillText(g.toFixed(2), 8, Y(g) + 4);
+  });
+  ctx.strokeStyle = '#fbbf24'; ctx.setLineDash([7, 6]); ctx.lineWidth = 1.6;
+  ctx.beginPath(); ctx.moveTo(pad, Y(1)); ctx.lineTo(W - 10, Y(1)); ctx.stroke();
+  ctx.setLineDash([]);
+  [1980, 1990, 2000, 2010, 2020].forEach(function (yr) {
+    ctx.fillText(yr, X(yr) - 14, H - pad + 18);
+  });
+  // steps
+  ctx.strokeStyle = '#5eead4'; ctx.lineWidth = 2.2;
+  ctx.beginPath();
+  data.forEach(function (d, i) {
+    if (i === 0) ctx.moveTo(X(d.yr), Y(d.g));
+    else { ctx.lineTo(X(d.yr), Y(data[i - 1].g)); ctx.lineTo(X(d.yr), Y(d.g)); }
+  });
+  ctx.stroke();
+  data.forEach(function (d, i) {
+    ctx.fillStyle = i >= 4 ? '#f0abfc' : '#5eead4';
+    ctx.beginPath(); ctx.arc(X(d.yr), Y(d.g), 4.5, 0, 7); ctx.fill();
+  });
+  ctx.fillStyle = '#f0abfc'; ctx.font = 'bold 13px sans-serif';
+  ctx.fillText('0.9184', X(2025.75) - 55, Y(0.9184) - 10);
+});
+</script>
+</body>
+</html>

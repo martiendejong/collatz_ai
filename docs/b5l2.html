@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 5.2 · De contractieconstante c</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 5 · De Cascade en de Contractie</span><span class="en">Block 5 · The Cascade and the Contraction</span> › <b>5.2</b></div>
+    <h1 class="nl">De contractieconstante c</h1>
+    <h1 class="en">The contraction constant c</h1>
+    <p class="lead nl">Twee bewaarstellingen, één gesloten formule · en de reductie van de hele open kern tot één scalar.</p>
+    <p class="lead en">Two preservation theorems, one closed formula · and the reduction of the entire open core to a single scalar.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Twee bewaarstellingen</span><span class="en">Two preservation theorems</span></h2>
+    <p class="nl">Hoe transformeert één toepassing van de operator het increment-spectrum
+    \(\{\text{inc}_p\}\) uit les 5.1? Exact, zo blijkt:</p>
+    <p class="en">How does one application of the operator transform the increment spectrum
+    \(\{\text{inc}_p\}\) of lesson 5.1? Exactly, it turns out:</p>
+    <div class="callout">
+      <div class="title nl">Stelling A (backbone-behoud)</div>
+      <div class="title en">Theorem A (backbone preservation)</div>
+      <span class="nl">\(\text{inc}_p(v \circ T_4) = \text{inc}_p(v)\) voor elke \(p\). <i>Bewijs:</i>
+      \(i \mapsto 4i+2\) is affien, dus bijectief op de lage digits mod \(3^{p+1}\); conditionering
+      wordt slechts gepermuteerd. ∎</span>
+      <span class="en">\(\text{inc}_p(v \circ T_4) = \text{inc}_p(v)\) for every \(p\). <i>Proof:</i>
+      \(i \mapsto 4i+2\) is affine, hence bijective on the low digits mod \(3^{p+1}\); conditioning is
+      merely permuted. ∎</span>
+    </div>
+    <div class="callout">
+      <div class="title nl">Stelling B (shift-identiteit)</div>
+      <div class="title en">Theorem B (shift identity)</div>
+      <span class="nl">De feed-term schuift het spectrum van het min-veld exact één digit op:
+      \(\text{inc}_p(\text{feed}) = W_2 \cdot \text{inc}_{p-1}(\bar v)\) met
+      \(W_2 = (B_1^2 + B_3^2)/3\). <i>Bewijs:</i> het feed-argument is \(\lfloor i/3 \rfloor\)
+      (digit-shift), de indexmaps zijn affiene bijecties, en de drie klassen bezetten disjuncte rijen
+      met gewichten \(B_1^2, 0, B_3^2\). ∎</span>
+      <span class="en">The feed term shifts the min-field's spectrum by exactly one digit:
+      \(\text{inc}_p(\text{feed}) = W_2 \cdot \text{inc}_{p-1}(\bar v)\) with
+      \(W_2 = (B_1^2 + B_3^2)/3\). <i>Proof:</i> the feed argument is \(\lfloor i/3 \rfloor\)
+      (digit shift), the index maps are affine bijections, and the three classes occupy disjoint rows
+      with weights \(B_1^2, 0, B_3^2\). ∎</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De plateau-formule</span><span class="en">The plateau formula</span></h2>
+    <p class="nl">Combineer beide stellingen met de eigenvergelijking en er valt een gesloten formule uit
+    voor de cascade-ratio \(r\) (het plateau van les 5.1). De enige niet-algebraïsche grootheid is de
+    <b>min-transfercoëfficiënt</b> \(c\): de fractie van laag-digit-incrementvariantie die de min-operator
+    doorlaat.</p>
+    <p class="en">Combine both theorems with the eigen-equation and a closed formula for the cascade
+    ratio \(r\) (the plateau of lesson 5.1) drops out. The only non-algebraic quantity is the
+    <b>min transfer coefficient</b> \(c\): the fraction of low-digit increment variance the min operator
+    passes through.</p>
+    $$\boxed{\; r(\lambda) \;=\; \frac{W_2\, c}{\rho^2 - A^2} \;}$$
+    <table class="nice">
+      <tr><th>λ</th><th><span class="nl">formule</span><span class="en">formula</span></th>
+          <th><span class="nl">voorspeld r</span><span class="en">predicted r</span></th>
+          <th><span class="nl">gemeten plateau</span><span class="en">measured plateau</span></th></tr>
+      <tr><td class="num">1.05</td><td class="num">0.673 × 0.996 / 1.662</td><td class="num">0.403</td><td class="num">0.41</td></tr>
+      <tr><td class="num">1.70</td><td class="num">0.835 × 0.795 / 0.970</td><td class="num">0.685</td><td class="num">0.70</td></tr>
+    </table>
+    <p class="nl">Klopt op 2% · en de resterende 2% is verklaard (kleine kruistermen, ook gemeten).</p>
+    <p class="en">Accurate to 2% · and the remaining 2% is accounted for (small cross terms, also measured).</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Het eindpunt: r = c exact</span><span class="en">The endpoint: r = c exactly</span></h2>
+    <p class="nl">Op het eindpunt \(\lambda = 2\), \(\rho = 1\) gebeurt iets bijzonders. Reken na
+    (met \(2^{\alpha} = 3\), \(A = 1/4\), \(B_1 = 3/4\), \(B_3 = 3/2\)):</p>
+    <p class="en">At the endpoint \(\lambda = 2\), \(\rho = 1\) something special happens. Check
+    (with \(2^{\alpha} = 3\), \(A = 1/4\), \(B_1 = 3/4\), \(B_3 = 3/2\)):</p>
+    $$W_2 = \frac{(3/4)^2 + (3/2)^2}{3} = \frac{15}{16} \qquad\text{en/and}\qquad \rho^2 - A^2 = 1 - \frac{1}{16} = \frac{15}{16}$$
+    <p class="nl">Teller-gewicht en noemer zijn <b>exact gelijk</b>. Dus op het eindpunt: \(r = c\).
+    De vraag of de cascade contracteert (de "toren-contractie" die het hele γ → 1-programma nodig heeft)
+    is daarmee <b>equivalent</b> aan één scalaire ongelijkheid:</p>
+    <p class="en">Numerator weight and denominator are <b>exactly equal</b>. So at the endpoint:
+    \(r = c\). Whether the cascade contracts (the "tower contraction" the whole γ → 1 programme needs)
+    is thereby <b>equivalent</b> to a single scalar inequality:</p>
+    $$\boxed{\; c < 1 \;}$$
+    <p class="nl">In woorden: <i>de elementwise min van drie takken die hun lage digits delen, vernietigt
+    strikt een deel van de laag-digit-incrementvariantie.</i> Alle omringende algebra is exact; dít is de
+    open kern.</p>
+    <p class="en">In words: <i>the elementwise min of three branches sharing their low digits strictly
+    destroys part of the low-digit increment variance.</i> All surrounding algebra is exact; this is the
+    open core.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Vier instrumenten, één constante</span><span class="en">Four instruments, one constant</span></h2>
+    <p class="nl">Een goede natuurkundige eis: meet dezelfde grootheid langs onafhankelijke wegen.
+    De eindpunt-contractie \(c\) is op vier manieren gemeten:</p>
+    <p class="en">A good physicist's demand: measure the same quantity along independent routes.
+    The endpoint contraction \(c\) has been measured in four ways:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Instrument</span><span class="en">Instrument</span></th>
+          <th><span class="nl">Wat het meet</span><span class="en">What it measures</span></th>
+          <th>c</th></tr>
+      <tr><td><span class="nl">prefix-plateau (les 5.1)</span><span class="en">prefix plateau (lesson 5.1)</span></td>
+          <td><span class="nl">variantie-uitdoving per digit</span><span class="en">variance decay per digit</span></td>
+          <td class="num">≈ 0.82</td></tr>
+      <tr><td><span class="nl">toren-variantiekolom</span><span class="en">tower variance column</span></td>
+          <td>V(k+1)/V(k)</td><td class="num">0.824</td></tr>
+      <tr><td><span class="nl">ρ-convergentiesnelheid²</span><span class="en">ρ convergence rate²</span></td>
+          <td><span class="nl">rate van ρ(k) → limiet, gekwadrateerd (wortelwet)</span>
+              <span class="en">rate of ρ(k) → limit, squared (square-root law)</span></td>
+          <td class="num">≈ 0.83</td></tr>
+      <tr><td>1 − ρ(2, k)</td>
+          <td><span class="nl">gap-verdwijning op het eindpunt: rate 0.911² </span>
+              <span class="en">gap vanishing at the endpoint: rate 0.911²</span></td>
+          <td class="num">0.83</td></tr>
+    </table>
+    <p class="nl">Vier onafhankelijke observabelen, één waarde: \(c \approx 0.83\), comfortabel onder 1.
+    Maar "gemeten 0.83" is geen bewijs dat de limietwaarde onder 1 blijft · dat onderscheid is precies
+    waar de volgende twee lessen over gaan.</p>
+    <p class="en">Four independent observables, one value: \(c \approx 0.83\), comfortably below 1.
+    But "measured 0.83" is not a proof that the limiting value stays below 1 · that distinction is
+    exactly what the next two lessons are about.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b5l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 5.1 · Digit-decompositie</span><span class="en">Lesson 5.1 · Digit decomposition</span></a>
+    <a href="b5l3.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 5.3 · Op weg naar c &lt; 1</span><span class="en">Lesson 5.3 · Towards c &lt; 1</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

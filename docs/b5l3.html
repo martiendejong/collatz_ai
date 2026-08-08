@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 5.3 · Op weg naar c &lt; 1</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 5 · De Cascade en de Contractie</span><span class="en">Block 5 · The Cascade and the Contraction</span> › <b>5.3</b></div>
+    <h1 class="nl">Op weg naar c &lt; 1</h1>
+    <h1 class="en">Towards c &lt; 1</h1>
+    <p class="lead nl">De aanval op de ene open ongelijkheid: een exacte decompositie, een bewezen basisgeval en een onverwachte arithmetische wet.</p>
+    <p class="lead en">The assault on the one open inequality: an exact decomposition, a proven base case and an unexpected arithmetic law.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De c-decompositie</span><span class="en">The c decomposition</span></h2>
+    <p class="nl">Schrijf het conditionele minimum als "takgemiddelde min gap":
+    \(\mathbb{E}[\min \mid \text{cel}] = \bar v_{\text{cel}} - G_{\text{cel}}\), en regressseer de
+    gap-incrementen op de niveau-incrementen: \(\Delta G = b \cdot m + \varepsilon\) (orthogonaal).
+    Dan geldt exact:</p>
+    <p class="en">Write the conditional minimum as "branch mean minus gap":
+    \(\mathbb{E}[\min \mid \text{cell}] = \bar v_{\text{cell}} - G_{\text{cell}}\), and regress the gap
+    increments on the level increments: \(\Delta G = b \cdot m + \varepsilon\) (orthogonal).
+    Then exactly:</p>
+    $$c_q = (1 - b_q)^2 + \frac{\operatorname{Var}(\varepsilon_q)}{\text{inc}_q}$$
+    <p class="nl">De meting is verbluffend schoon: het residu is <b>nul</b> (op vier decimalen) voor
+    \(q \le 7\), bij alle geteste λ's · gap-toenames zijn bijna perfect evenredig met niveau-toenames
+    (correlaties tot +0.99). Daarmee splitst \(c < 1\) in: <b>(H1)</b> evenredigheid per cel en
+    <b>(H2)</b> positiviteit van \(b\).</p>
+    <p class="en">The measurement is strikingly clean: the residual is <b>zero</b> (to four decimals) for
+    \(q \le 7\), at all tested λ's · gap increases are almost perfectly proportional to level increases
+    (correlations up to +0.99). Thus \(c < 1\) splits into: <b>(H1)</b> proportionality per cell and
+    <b>(H2)</b> positivity of \(b\).</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Het basisgeval is bewezen</span><span class="en">The base case is proved</span></h2>
+    <p class="nl">Op het grofste niveau (q = 0) zijn de cellen precies de drie klassen, en dáár kennen we
+    álle groottes exact uit blok 4: gemiddelden \((1, t, R)\,\mu_0\) en gaps \((1, t, x)\,g_0\).
+    De positiviteit van \(b_0\) wordt dan een covariantie van twee gelijk geordende drietallen ·
+    en die is positief (Chebyshev's som-ongelijkheid), met expliciete marge:</p>
+    <p class="en">At the coarsest level (q = 0) the cells are exactly the three classes, and there we know
+    every quantity exactly from block 4: means \((1, t, R)\,\mu_0\) and gaps \((1, t, x)\,g_0\).
+    Positivity of \(b_0\) then becomes a covariance of two similarly ordered triples · which is positive
+    (Chebyshev's sum inequality), with explicit margin:</p>
+    $$9\,\operatorname{Cov} \;\ge\; (1-t)^2 + (R-t)(x-t) - (G-1)^2 \;>\; 0 \qquad \blacksquare$$
+    <p class="nl">De eerste sport van de ladder staat. Daarboven wordt het subtieler: de lokale
+    coëfficiënt \(b_C\) blijkt per cel te verschillen (de spreiding groeit zelfs met de diepte), maar de
+    <i>correlatie</i> per cel blijft vrijwel perfect · en de afwijkingen zijn tweede-orde-beschermd:
+    het scheve deel van het gap-profiel komt slechts kwadratisch in \(c\) terecht (het product van twee
+    kleine factoren, gemeten factor ~100 onderdrukking).</p>
+    <p class="en">The first rung of the ladder stands. Above it things get subtler: the local coefficient
+    \(b_C\) turns out to differ per cell (its spread even grows with depth), but the per-cell
+    <i>correlation</i> stays nearly perfect · and the deviations are second-order protected: the skew
+    part of the gap profile enters \(c\) only quadratically (the product of two small factors, a
+    measured ~100× suppression).</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De orbit-stratificatiewet</span><span class="en">The orbit stratification law</span></h2>
+    <p class="nl">Waar komt de cel-heterogeniteit dan vandaan? Niet uit ruis · uit rekenkunde. Herinner de
+    baanstructuur van \(u \mapsto 2u+1\) (les 2.2 en 4.3). Stratificeer de cellen naar de baanlengte van
+    hun feed-routing, en er verschijnt een wet, hier op \(\mathbb{Z}/27\) (banen 18 + 6 + 2 + 1):</p>
+    <p class="en">So where does the cell heterogeneity come from? Not from noise · from arithmetic.
+    Recall the orbit structure of \(u \mapsto 2u+1\) (lessons 2.2 and 4.3). Stratify the cells by the
+    orbit length of their feed routing, and a law appears, here on \(\mathbb{Z}/27\) (orbits 18 + 6 + 2 + 1):</p>
+    <table class="nice">
+      <tr><th><span class="nl">baanlengte</span><span class="en">orbit length</span></th>
+          <th>λ = 1.05</th><th>λ = 1.70</th><th>λ = 1.90</th></tr>
+      <tr><td class="num">1 <span class="nl">(vast punt u ≡ −1)</span><span class="en">(fixed point u ≡ −1)</span></td>
+          <td class="num">0.00054</td><td class="num">0.04484</td><td class="num">0.07420</td></tr>
+      <tr><td class="num">2</td><td class="num">0.00048</td><td class="num">0.03549</td><td class="num">0.06030</td></tr>
+      <tr><td class="num">6</td><td class="num">0.00045</td><td class="num">0.03192</td><td class="num">0.05510</td></tr>
+      <tr><td class="num">18</td><td class="num">0.00043</td><td class="num">0.03053</td><td class="num">0.05314</td></tr>
+    </table>
+    <p class="nl">Gemeten grootheid: de relatieve gap ("gap-rijkdom") van de cellen op elke baan.
+    <b>Korter orbit ⟹ rijker</b>, strikt monotoon bij alle drie λ's · en de ordening was vóór de meting
+    op het diepere niveau voorspeld vanuit het \(\mathbb{Z}/9\)-geval. Mechanisme: het vaste punt
+    \(u \equiv -1\) is de zelfvoedende lijn van de verdubbeling (\(2(-1)+1 = -1\)); korte banen
+    recirculeren hun eigen gap-informatie, lange banen middelen uit.</p>
+    <p class="en">Measured quantity: the relative gap ("gap richness") of the cells on each orbit.
+    <b>Shorter orbit ⟹ richer</b>, strictly monotone at all three λ's · and the ordering was predicted
+    for the deeper level before the measurement, from the \(\mathbb{Z}/9\) case. Mechanism: the fixed
+    point \(u \equiv -1\) is the self-feeding line of doubling (\(2(-1)+1 = -1\)); short orbits
+    recirculate their own gap information, long orbits average out.</p>
+    <div class="callout">
+      <div class="title nl">Waarom dit hoop geeft voor het bewijs</div>
+      <div class="title en">Why this gives hope for the proof</div>
+      <span class="nl">De orde van 2 modulo \(3^j\) is \(2 \cdot 3^{\,j-2}\): typische banen worden
+      <i>lang</i> naarmate je dieper gaat, en de korte (rijke) banen vormen een verzameling met
+      verdwijnende dichtheid. De storende heterogeniteit is dus geconcentreerd op een expliciet dunne
+      uitzonderingsverzameling · precies de vorm die een homogenisatie-argument nodig heeft.</span>
+      <span class="en">The order of 2 modulo \(3^j\) is \(2 \cdot 3^{\,j-2}\): typical orbits become
+      <i>long</i> at depth, and the short (rich) orbits form a set of vanishing density. The disturbing
+      heterogeneity is thus concentrated on an explicitly thin exceptional set · exactly the shape a
+      homogenisation argument needs.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Wat er nog open staat</span><span class="en">What remains open</span></h2>
+    <p class="nl">Eerlijk samengevat is de status van \(c < 1\):</p>
+    <p class="en">Honestly summarised, the status of \(c < 1\):</p>
+    <table class="nice">
+      <tr><th><span class="nl">Onderdeel</span><span class="en">Component</span></th>
+          <th><span class="nl">Status</span><span class="en">Status</span></th></tr>
+      <tr><td><span class="nl">alle omringende algebra (blok 4 + stellingen A/B)</span>
+              <span class="en">all surrounding algebra (block 4 + theorems A/B)</span></td>
+          <td><span class="nl">✅ exact bewezen</span><span class="en">✅ proved exactly</span></td></tr>
+      <tr><td><span class="nl">basisgeval b₀ &gt; 0</span><span class="en">base case b₀ &gt; 0</span></td>
+          <td><span class="nl">✅ bewezen (Chebyshev)</span><span class="en">✅ proved (Chebyshev)</span></td></tr>
+      <tr><td><span class="nl">72 lage-diepte-gevallen</span><span class="en">72 low-depth cases</span></td>
+          <td><span class="nl">✅ rigoureus gecertificeerd</span><span class="en">✅ rigorously certified</span></td></tr>
+      <tr><td><span class="nl">per-cel-evenredigheid (H1) in de limiet</span>
+              <span class="en">per-cell proportionality (H1) in the limit</span></td>
+          <td><span class="nl">❌ open · het "homogenisatie-lemma"</span><span class="en">❌ open · the "homogenisation lemma"</span></td></tr>
+      <tr><td><span class="nl">b weg van 0 op diepe niveaus (H2)</span>
+              <span class="en">b bounded away from 0 at deep levels (H2)</span></td>
+          <td><span class="nl">❌ open · gemeten ja, bewezen nee</span><span class="en">❌ open · measured yes, proved no</span></td></tr>
+    </table>
+    <p class="nl">Het probleem is niet langer vaag ("bewijs dat een mysterieuze toren contracteert") maar
+    scherp: één lemma over de evenredigheid van gaps en niveaus, cel voor cel, met een arithmetisch
+    begrepen uitzonderingsstructuur. Open · maar aanvalbaar.</p>
+    <p class="en">The problem is no longer vague ("prove that a mysterious tower contracts") but sharp:
+    one lemma about the proportionality of gaps and levels, cell by cell, with an arithmetically
+    understood exceptional structure. Open · but attackable.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b5l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 5.2 · De contractieconstante c</span><span class="en">Lesson 5.2 · The contraction constant c</span></a>
+    <a href="b5l4.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 5.4 · De vork</span><span class="en">Lesson 5.4 · The fork</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

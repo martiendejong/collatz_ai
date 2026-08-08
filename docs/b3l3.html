@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 3.3 · Van feasibility naar record</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 3 · Het Krasikov–Lagarias-Raamwerk</span><span class="en">Block 3 · The Krasikov–Lagarias Framework</span> › <b>3.3</b></div>
+    <h1 class="nl">Van feasibility naar record</h1>
+    <h1 class="en">From feasibility to record</h1>
+    <p class="lead nl">Hoe je van een idee (v ≤ Fv) naar 3,5 miljard exact geverifieerde ongelijkheden komt · op een gewone computer.</p>
+    <p class="lead en">How to get from an idea (v ≤ Fv) to 3.5 billion exactly verified inequalities · on an ordinary desktop.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De rand λ*(k) opzoeken</span><span class="en">Finding the edge λ*(k)</span></h2>
+    <p class="nl">Per diepte \(k\): kies een kandidaat-\(\lambda\), itereer \(v \mapsto Fv\)
+    (power-iteratie) tot de vector stabiliseert, en kijk of de minimale verhouding
+    \(\min_i (Fv)_i / v_i\) boven 1 uitkomt. Zo ja: feasibel, probeer hoger; zo nee: lager.
+    De rand \(\lambda^{*}(k)\) stijgt met de diepte, en dat is het hele spel:</p>
+    <p class="en">Per depth \(k\): pick a candidate \(\lambda\), iterate \(v \mapsto Fv\)
+    (power iteration) until the vector stabilises, and check whether the minimal ratio
+    \(\min_i (Fv)_i / v_i\) exceeds 1. If yes: feasible, try higher; if no: lower.
+    The edge \(\lambda^{*}(k)\) rises with depth, and that is the whole game:</p>
+    <table class="nice">
+      <tr><th>k</th><th>N = 3^(k−1)</th><th>λ (certificaat / certificate)</th><th>γ</th></tr>
+      <tr><td class="num">13</td><td class="num">531.441</td><td class="num">1.818</td><td class="num">0.8624</td></tr>
+      <tr><td class="num">15</td><td class="num">4.782.969</td><td class="num">1.841</td><td class="num">0.8805</td></tr>
+      <tr><td class="num">17</td><td class="num">43.046.721</td><td class="num">1.860</td><td class="num">0.8953</td></tr>
+      <tr><td class="num">19</td><td class="num">387.420.489</td><td class="num">1.875</td><td class="num">0.9069</td></tr>
+      <tr><td class="num">20</td><td class="num">1.162.261.467</td><td class="num">1.885</td><td class="num">0.9146</td></tr>
+      <tr><td class="num">21</td><td class="num">3.486.784.401</td><td class="num">1.890</td><td class="num"><b>0.9184</b></td></tr>
+    </table>
+    <p class="nl">Bij k = 21 telt de vector 3,5 miljard componenten (14 GB) · de iteraties draaien dan
+    via strikt sequentiële "sweeps" over een schijfbestand, met de affiene structuur van de indexmaps
+    als sleutel tot snelheid.</p>
+    <p class="en">At k = 21 the vector has 3.5 billion components (14 GB) · iterations then run as
+    strictly sequential "sweeps" over a disk file, with the affine structure of the index maps as the
+    key to speed.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Exacte verificatie: van float naar bewijs</span><span class="en">Exact verification: from float to proof</span></h2>
+    <p class="nl">De gevonden vector is floating-point · dat overtuigt geen wiskundige. De verificatiestap
+    maakt er een bewijs van: schaal de vector naar gehele getallen (bijv. ×10¹⁰, naar beneden afgerond),
+    en check élke ongelijkheid \(v_i \le (Fv)_i\) in exacte gehele arithmetiek, met strikte
+    ondergrenzen voor de gewichten \(A, B_1, B_3\):</p>
+    <p class="en">The vector found is floating-point · which convinces no mathematician. The verification
+    step turns it into proof: scale the vector to integers (e.g. ×10¹⁰, rounded down), and check every
+    inequality \(v_i \le (Fv)_i\) in exact integer arithmetic, with strict lower bounds for the weights
+    \(A, B_1, B_3\):</p>
+    <div class="figure">
+      <svg viewBox="0 0 900 170" width="900">
+        <defs><marker id="ar4" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 z" fill="#9aa3c7"/></marker></defs>
+        <rect x="30" y="45" width="240" height="80" rx="12" fill="#1f2440" stroke="#9aa3c7"/>
+        <text x="150" y="78" text-anchor="middle" fill="#e8eaf6" font-size="14" class="nl">float-zoektocht</text>
+        <text x="150" y="78" text-anchor="middle" fill="#e8eaf6" font-size="14" class="en">float search</text>
+        <text x="150" y="102" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">creatief, snel, feilbaar</text>
+        <text x="150" y="102" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">creative, fast, fallible</text>
+        <line x1="275" y1="85" x2="330" y2="85" stroke="#9aa3c7" stroke-width="2" marker-end="url(#ar4)"/>
+        <rect x="335" y="45" width="240" height="80" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+        <text x="455" y="78" text-anchor="middle" fill="#5eead4" font-size="14" class="nl">gehele schaling + floor</text>
+        <text x="455" y="78" text-anchor="middle" fill="#5eead4" font-size="14" class="en">integer scaling + floor</text>
+        <text x="455" y="102" text-anchor="middle" fill="#9aa3c7" font-size="12" font-family="monospace">v → ⌊S·v⌋, S = 10¹⁰</text>
+        <line x1="580" y1="85" x2="635" y2="85" stroke="#9aa3c7" stroke-width="2" marker-end="url(#ar4)"/>
+        <rect x="640" y="45" width="240" height="80" rx="12" fill="#1f2440" stroke="#fbbf24" stroke-width="2"/>
+        <text x="760" y="72" text-anchor="middle" fill="#fbbf24" font-size="14" class="nl">exacte check per constraint</text>
+        <text x="760" y="72" text-anchor="middle" fill="#fbbf24" font-size="14" class="en">exact check per constraint</text>
+        <text x="760" y="95" text-anchor="middle" fill="#e8eaf6" font-size="12" font-family="monospace">3.486.784.401 ×</text>
+        <text x="760" y="115" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">nul schendingen = bewijs</text>
+        <text x="760" y="115" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">zero violations = proof</text>
+      </svg>
+      <div class="caption nl">De k=21-verificatie: alle 3.486.784.401 constraints exact gecheckt in 71 minuten
+        (chunked gehele arithmetiek, ~50 miljoen constraints per minuut). Nul schendingen. Daarmee is
+        π₁(x) ≥ x^0.9184 een stelling · geen numeriek experiment.</div>
+      <div class="caption en">The k=21 verification: all 3,486,784,401 constraints checked exactly in 71
+        minutes (chunked integer arithmetic, ~50 million constraints per minute). Zero violations. This
+        makes π₁(x) ≥ x^0.9184 a theorem · not a numerical experiment.</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Voorregistratie: de wetenschappelijke hygiëne</span><span class="en">Preregistration: the scientific hygiene</span></h2>
+    <p class="nl">Vóór de k=21-berekening draaide, is de voorspelling γ(21) ≈ 0.918 (λ* ≈ 1.890)
+    schriftelijk bevroren, afgeleid uit de regelmaat van de ladder. De meting kwam uit op 0.91839 ·
+    raak. Zulke <b>voorgeregistreerde voorspellingen</b> lopen als discipline door het hele project:
+    wie achteraf mag kiezen wat "voorspeld" was, bewijst niets over zijn begrip.</p>
+    <p class="en">Before the k=21 computation ran, the prediction γ(21) ≈ 0.918 (λ* ≈ 1.890) was frozen
+    in writing, derived from the regularity of the ladder. The measurement came out at 0.91839 · a hit.
+    Such <b>preregistered predictions</b> run through the whole project as a discipline: whoever gets to
+    choose afterwards what was "predicted" proves nothing about their understanding.</p>
+    <div class="callout">
+      <div class="title nl">De regelmaat zelf</div>
+      <div class="title en">The regularity itself</div>
+      <span class="nl">Het tekort \(1 - \gamma(k)\) blijkt over twaalf diepteniveaus een bijna perfecte
+      meetkundige rij te vormen (rate ≈ 0.935 per stap, maximale afwijking 1,3%). Waar die wet vandaan
+      komt en of hij doorzet tot \(\gamma \to 1\) · dát is de kernvraag van blok 5.</span>
+      <span class="en">The deficit \(1 - \gamma(k)\) turns out to form a nearly perfect geometric sequence
+      across twelve depth levels (rate ≈ 0.935 per step, maximal deviation 1.3%). Where that law comes
+      from and whether it continues to \(\gamma \to 1\) · that is the core question of block 5.</span>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b3l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 3.2 · De K-L-operator</span><span class="en">Lesson 3.2 · The K-L operator</span></a>
+    <a href="b4l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 4.1 · De klasse-identiteiten</span><span class="en">Lesson 4.1 · The class identities</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

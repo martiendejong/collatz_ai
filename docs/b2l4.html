@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 2.4 · Cycli en divergentie</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 2 · De Arithmetische Structuur</span><span class="en">Block 2 · The Arithmetic Structure</span> › <b>2.4</b></div>
+    <h1 class="nl">Cycli en divergentie</h1>
+    <h1 class="en">Cycles and divergence</h1>
+    <p class="lead nl">De twee manieren waarop het vermoeden zou kunnen falen · en waarom de ene veel beter begrepen is dan de andere.</p>
+    <p class="lead en">The two ways the conjecture could fail · and why one is far better understood than the other.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De cyclusvergelijking</span><span class="en">The cycle equation</span></h2>
+    <p class="nl">Stel een baan keert na \(K\) T-stappen, waarvan \(m\) oneven stappen, terug bij zijn start
+    \(n\). Uitschrijven van de \(K\) stappen geeft:</p>
+    <p class="en">Suppose an orbit returns to its start \(n\) after \(K\) T-steps, \(m\) of them odd.
+    Writing out the \(K\) steps gives:</p>
+    $$n \cdot 2^{K} = 3^{m} n + (\text{restterm}) \quad\Rightarrow\quad n = \frac{\text{restterm}}{2^{K} - 3^{m}}$$
+    <p class="nl">Wil \(n\) positief en niet te groot zijn, dan moet de noemer \(2^K - 3^m\) klein zijn ·
+    dus \(2^K \approx 3^m\), oftewel \(K/m \approx \log_2 3\). <b>Een cyclus is dus een rationale
+    benadering van \(\log_2 3\).</b> Daarmee wordt cyclusuitsluiting een vraag uit de getaltheorie van
+    irrationale getallen.</p>
+    <p class="en">For \(n\) to be positive and not too large, the denominator \(2^K - 3^m\) must be small ·
+    hence \(2^K \approx 3^m\), i.e. \(K/m \approx \log_2 3\). <b>A cycle is thus a rational approximation
+    of \(\log_2 3\).</b> Cycle exclusion thereby becomes a question in the number theory of irrationals.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Kettingbreuken van log₂ 3</span><span class="en">Continued fractions of log₂ 3</span></h2>
+    <p class="nl">De beste rationale benaderingen van \(\log_2 3 = 1.58496\ldots\) worden geleverd door zijn
+    kettingbreuk. De <b>convergenten</b> zijn precies de "bijna-botsingen" tussen machten van 2 en 3:</p>
+    <p class="en">The best rational approximations of \(\log_2 3 = 1.58496\ldots\) come from its continued
+    fraction. The <b>convergents</b> are exactly the "near collisions" between powers of 2 and 3:</p>
+    <table class="nice">
+      <tr><th><span class="nl">convergent K/m</span><span class="en">convergent K/m</span></th>
+          <th><span class="nl">bijna-botsing</span><span class="en">near collision</span></th>
+          <th><span class="nl">verhouding</span><span class="en">ratio</span></th></tr>
+      <tr><td class="num">8/5</td><td class="num">2⁸ = 256 ≈ 3⁵ = 243</td><td class="num">1.053</td></tr>
+      <tr><td class="num">19/12</td><td class="num">2¹⁹ = 524.288 ≈ 3¹² = 531.441</td><td class="num">0.9865</td></tr>
+      <tr><td class="num">65/41</td><td class="num">2⁶⁵ ≈ 3⁴¹</td><td class="num">1.0086</td></tr>
+      <tr><td class="num">84/53</td><td class="num">2⁸⁴ ≈ 3⁵³</td><td class="num">0.9977</td></tr>
+      <tr><td class="num">485/306</td><td class="num">2⁴⁸⁵ ≈ 3³⁰⁶</td><td class="num">1.0005</td></tr>
+    </table>
+    <p class="nl">Twee gevolgen. Ten eerste: omdat \(\log_2 3\) zich niet extreem goed laat benaderen
+    (kwantitatieve stellingen van Baker/Rhin over lineaire vormen in logaritmen), kan \(|2^K - 3^m|\) niet
+    té klein worden · dat dwingt kandidaat-cycli naar astronomische lengtes. Ten tweede: deze zelfde
+    convergenten duiken overal in het veld op, van cyclusgrenzen tot de fijnstructuur van meetreeksen
+    in ons eigen onderzoek.</p>
+    <p class="en">Two consequences. First: because \(\log_2 3\) does not admit extremely good approximations
+    (quantitative theorems of Baker/Rhin on linear forms in logarithms), \(|2^K - 3^m|\) cannot get too
+    small · forcing candidate cycles to astronomical lengths. Second: these same convergents appear all
+    over the field, from cycle bounds to the fine structure of measured sequences in our own research.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Wat is uitgesloten</span><span class="en">What has been excluded</span></h2>
+    <table class="nice">
+      <tr><th><span class="nl">Resultaat</span><span class="en">Result</span></th>
+          <th><span class="nl">Methode</span><span class="en">Method</span></th></tr>
+      <tr>
+        <td><span class="nl">1-cycli en 2-cycli bestaan niet (Steiner 1977; Simons 2005)</span>
+            <span class="en">1-cycles and 2-cycles do not exist (Steiner 1977; Simons 2005)</span></td>
+        <td><span class="nl">lineaire vormen in logaritmen (Baker-theorie)</span>
+            <span class="en">linear forms in logarithms (Baker theory)</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">m-cycli bestaan niet voor m ≤ 91 (Simons–de Weger 2011)</span>
+            <span class="en">m-cycles do not exist for m ≤ 91 (Simons–de Weger 2011)</span></td>
+        <td><span class="nl">kettingbreuken + rekenwerk</span>
+            <span class="en">continued fractions + computation</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Elke niet-triviale cyclus heeft meer dan ~10¹¹ stappen</span>
+            <span class="en">Any non-trivial cycle has more than ~10¹¹ steps</span></td>
+        <td><span class="nl">verificatie tot 2⁶⁸ + cyclusvergelijking</span>
+            <span class="en">verification to 2⁶⁸ + the cycle equation</span></td>
+      </tr>
+    </table>
+    <p class="nl">(Een <i>m-cyclus</i> is een cyclus die uit m stijg-en-daal-blokken bestaat.) Het beeld:
+    cycli zijn in een stevige hoek gedreven, met een helder mechanisme · de diofantische stugheid van
+    \(\log_2 3\). Volledig uitgesloten zijn ze nog niet.</p>
+    <p class="en">(An <i>m-cycle</i> is a cycle consisting of m rise-and-fall blocks.) The picture:
+    cycles have been driven into a tight corner by a clear mechanism · the Diophantine rigidity of
+    \(\log_2 3\). Fully excluded they are not.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Divergentie: de zwarte doos</span><span class="en">Divergence: the black box</span></h2>
+    <p class="nl">Voor divergente banen bestaat níets vergelijkbaars. Er is geen vergelijking die een
+    divergente baan moet oplossen, geen diofantisch mechanisme dat hem klemzet. Alle bekende statistiek
+    zegt "bijna geen enkele baan divergeert", maar tegen één hardnekkige uitzondering is geen gereedschap.
+    Vergelijk 5n+1: daar divergeert (vermoedelijk) bijna alles · zonder dat iemand van één concrete baan
+    divergentie kan bewijzen. Zelfs in de makkelijke richting staat het gereedschap machteloos.</p>
+    <p class="en">For divergent orbits nothing comparable exists. There is no equation a divergent orbit
+    must solve, no Diophantine mechanism pinning it down. All known statistics say "almost no orbit
+    diverges", but there is no tool against a single stubborn exception. Compare 5n+1: there (presumably)
+    almost everything diverges · yet nobody can prove divergence for a single concrete orbit. Even in
+    the easy direction the tools are powerless.</p>
+    <div class="callout warn">
+      <div class="title nl">Strategische conclusie van blok 2</div>
+      <div class="title en">Strategic conclusion of block 2</div>
+      <span class="nl">Individuele banen zijn onbereikbaar; massa's banen zijn goed te beheersen.
+      De vruchtbaarste openstaande richting is daarom: maak de "massa"-resultaten zó sterk dat de
+      uitzonderingsverzameling meetbaar krimpt. Dat is exact wat het telprogramma van blok 3 doet:
+      niet "alle getallen bereiken 1", maar "mínstens x^γ getallen onder x bereiken 1", met γ zo dicht
+      mogelijk bij 1.</span>
+      <span class="en">Individual orbits are out of reach; masses of orbits can be controlled.
+      The most fruitful open direction is therefore: make the "mass" results so strong that the
+      exceptional set measurably shrinks. That is exactly what the counting programme of block 3 does:
+      not "all integers reach 1", but "at least x^γ integers below x reach 1", with γ as close to 1
+      as possible.</span>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b2l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 2.3 · Dichtheid en maat</span><span class="en">Lesson 2.3 · Density and measure</span></a>
+    <a href="b3l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 3.1 · Tellen met ongelijkheden</span><span class="en">Lesson 3.1 · Counting with inequalities</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

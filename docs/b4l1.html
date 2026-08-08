@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 4.1 · De klasse-identiteiten</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 4 · Exacte Structuur</span><span class="en">Block 4 · Exact Structure</span> › <b>4.1</b></div>
+    <h1 class="nl">De klasse-identiteiten</h1>
+    <h1 class="en">The class identities</h1>
+    <p class="lead nl">Vanaf hier betreden we het eigen onderzoek van dit project: de ontdekking dat het K-L-systeem een verborgen exacte algebra draagt.</p>
+    <p class="lead en">From here on we enter this project's own research: the discovery that the K-L system carries a hidden exact algebra.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Drie klassen, één routing</span><span class="en">Three classes, one routing</span></h2>
+    <p class="nl">Verdeel de indexruimte naar digit 0: klasse \(r = i \bmod 3\). De backbone
+    \(i \mapsto 4i+2\) blijkt de klassen strikt cyclisch te routeren, en de feed-indexmaps zijn
+    bijecties per klasse:</p>
+    <p class="en">Split the index space by digit 0: class \(r = i \bmod 3\). The backbone
+    \(i \mapsto 4i+2\) routes the classes strictly cyclically, and the feed index maps are bijections
+    per class:</p>
+    <div class="figure">
+      <svg viewBox="0 0 900 240" width="900">
+        <defs><marker id="ar5" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#5eead4"/></marker></defs>
+        <circle cx="450" cy="60" r="34" fill="#1f2440" stroke="#5eead4" stroke-width="2.5"/>
+        <text x="450" y="67" text-anchor="middle" fill="#e8eaf6" font-size="18" font-weight="bold">0</text>
+        <circle cx="290" cy="180" r="34" fill="#1f2440" stroke="#5eead4" stroke-width="2.5"/>
+        <text x="290" y="187" text-anchor="middle" fill="#e8eaf6" font-size="18" font-weight="bold">1</text>
+        <circle cx="610" cy="180" r="34" fill="#1f2440" stroke="#5eead4" stroke-width="2.5"/>
+        <text x="610" y="187" text-anchor="middle" fill="#e8eaf6" font-size="18" font-weight="bold">2</text>
+        <path d="M478 82 Q560 110 600 148" fill="none" stroke="#5eead4" stroke-width="2.3" marker-end="url(#ar5)"/>
+        <path d="M578 195 Q450 250 322 195" fill="none" stroke="#5eead4" stroke-width="2.3" marker-end="url(#ar5)"/>
+        <path d="M300 148 Q340 110 422 82" fill="none" stroke="#5eead4" stroke-width="2.3" marker-end="url(#ar5)"/>
+        <text x="560" y="105" fill="#9aa3c7" font-size="13">T4</text>
+        <text x="450" y="242" fill="#9aa3c7" font-size="13" text-anchor="middle">T4</text>
+        <text x="330" y="105" fill="#9aa3c7" font-size="13">T4</text>
+        <text x="770" y="70" fill="#f0abfc" font-size="13" text-anchor="middle" class="nl">feeds: alleen naar 0 en 2,</text>
+        <text x="770" y="70" fill="#f0abfc" font-size="13" text-anchor="middle" class="en">feeds: only into 0 and 2,</text>
+        <text x="770" y="90" fill="#f0abfc" font-size="13" text-anchor="middle" class="nl">via bijectieve indexmaps</text>
+        <text x="770" y="90" fill="#f0abfc" font-size="13" text-anchor="middle" class="en">via bijective index maps</text>
+      </svg>
+      <div class="caption nl">T4 stuurt klasse 0 → 2 → 1 → 0 (want 4·3s+2 ≡ 2, 4·(3s+1)+2 ≡ 0, 4·(3s+2)+2 ≡ 1 mod 3),
+        telkens bijectief. De feed-argumentmaps s → 4s en s → 2s+1 zijn eveneens bijecties. Dit maakt
+        klassegemiddelden exact optelbaar · de sleutel tot alles wat volgt.</div>
+      <div class="caption en">T4 sends class 0 → 2 → 1 → 0 (since 4·3s+2 ≡ 2, 4·(3s+1)+2 ≡ 0, 4·(3s+2)+2 ≡ 1 mod 3),
+        each time bijectively. The feed argument maps s → 4s and s → 2s+1 are bijections too. This makes
+        class means exactly summable · the key to everything that follows.</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De hoofdidentiteit · met bewijs</span><span class="en">The main identity · with proof</span></h2>
+    <p class="nl">Zij \(v\) de Perron-eigenvector (\(Fv = \rho v\)), en \(\mu_r\) het gemiddelde van \(v\)
+    over klasse \(r\), \(\bar c\) het gemiddelde van het min-veld \(\bar v\), en \(t = A/\rho\). Middel
+    de eigenvergelijking per klasse; dankzij de bijecties middelt élke term exact:</p>
+    <p class="en">Let \(v\) be the Perron eigenvector (\(Fv = \rho v\)), \(\mu_r\) the mean of \(v\)
+    over class \(r\), \(\bar c\) the mean of the min-field \(\bar v\), and \(t = A/\rho\). Average the
+    eigen-equation per class; thanks to the bijections every term averages exactly:</p>
+    $$\rho\,\mu_0 = A\,\mu_2 + B_1\,\bar c, \qquad \rho\,\mu_1 = A\,\mu_0, \qquad \rho\,\mu_2 = A\,\mu_1 + B_3\,\bar c$$
+    <p class="nl">Oplossen van dit 3×3-stelsel (gebruik \(B_3 = \lambda B_1\)) geeft twee <b>exacte</b>
+    identiteiten, geldig op élke eindige diepte \(k\):</p>
+    <p class="en">Solving this 3×3 system (use \(B_3 = \lambda B_1\)) yields two <b>exact</b> identities,
+    valid at every finite depth \(k\):</p>
+    $$\boxed{\;\frac{\mu_1}{\mu_0} = t \qquad\text{en/and}\qquad \frac{\mu_2}{\mu_0} = R(\lambda) := \frac{t^2 + \lambda}{1 + t\lambda}\;}$$
+    <p class="nl">Geen benadering, geen limiet: puur lineaire algebra op de klassegemiddelden. De grootheid
+    \(R\) wordt de hoofdrolspeler van blok 5.</p>
+    <p class="en">No approximation, no limit: pure linear algebra on the class means. The quantity
+    \(R\) becomes the protagonist of block 5.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Klasse 1 is een exacte kopie</span><span class="en">Class 1 is an exact copy</span></h2>
+    <p class="nl">Klasse-1-rijen hebben geen feed: \(v(3s{+}1) = t \cdot v(3\,(4s{+}2 \bmod N_\ell))\).
+    Elke klasse-1-component is dus \(t\) maal een gepermuteerde klasse-0-component · niet alleen de
+    gemiddelden, de <i>volledige verdeling</i> is een geschaalde kopie. Een derde van het systeem is
+    daarmee volledig begrepen, inclusief alle fijnstructuur (kolomgaps: \(g_1 = t\,g_0\) exact).</p>
+    <p class="en">Class-1 rows have no feed: \(v(3s{+}1) = t \cdot v(3\,(4s{+}2 \bmod N_\ell))\).
+    Every class-1 component is thus \(t\) times a permuted class-0 component · not just the means, the
+    <i>entire distribution</i> is a scaled copy. A third of the system is thereby fully understood,
+    including all fine structure (column gaps: \(g_1 = t\,g_0\) exactly).</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Machinecontrole: exact betekent exact</span><span class="en">Machine check: exact means exact</span></h2>
+    <p class="nl">Omdat de identiteiten algebraïsch zijn, moeten ze op machine-precisie kloppen in elke
+    numeriek berekende eigenvector. Dat doen ze:</p>
+    <p class="en">Because the identities are algebraic, they must hold to machine precision in every
+    numerically computed eigenvector. They do:</p>
+    <table class="nice">
+      <tr><th>λ</th><th>k</th><th>|μ₂/μ₀ − R|</th><th>|μ₁/μ₀ − t|</th></tr>
+      <tr><td class="num">1.05</td><td class="num">10</td><td class="num">1.1 × 10⁻¹⁶</td><td class="num">1.1 × 10⁻¹⁶</td></tr>
+      <tr><td class="num">1.30</td><td class="num">12</td><td class="num">1.1 × 10⁻¹⁶</td><td class="num">5.6 × 10⁻¹⁷</td></tr>
+      <tr><td class="num">1.70</td><td class="num">12</td><td class="num">2.2 × 10⁻¹⁶</td><td class="num">0</td></tr>
+      <tr><td class="num">2.00</td><td class="num">10</td><td class="num">2.2 × 10⁻¹⁶</td><td class="num">1.1 × 10⁻¹⁶</td></tr>
+    </table>
+    <div class="callout">
+      <div class="title nl">Waarom dit belangrijk is</div>
+      <div class="title en">Why this matters</div>
+      <span class="nl">Vóór deze identiteiten liep de analyse van het K-L-systeem via statistische
+      benaderingen (Gauss-aannames over kolomverdelingen). De exacte identiteiten vervangen die zachte
+      schakels door algebra: de vraag "haalt γ de 1?" wordt herleidbaar tot exact geformuleerde
+      grootheden. Bovendien: bij diepte k=20 bleek het exacte criterium ook <i>numeriek</i> onmisbaar ·
+      het gevoelige verschil van twee bijna-gelijke getallen (ruis ~10⁻⁶) werd via de identiteit een
+      goed-geconditioneerde verhouding met 8% marge.</span>
+      <span class="en">Before these identities, analysis of the K-L system ran through statistical
+      approximations (Gaussian assumptions on column distributions). The exact identities replace those
+      soft links with algebra: the question "does γ reach 1?" becomes reducible to exactly formulated
+      quantities. Moreover: at depth k=20 the exact criterion proved <i>numerically</i> indispensable ·
+      the delicate difference of two nearly equal numbers (noise ~10⁻⁶) became, via the identity, a
+      well-conditioned ratio with an 8% margin.</span>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b3l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 3.3 · Van feasibility naar record</span><span class="en">Lesson 3.3 · From feasibility to record</span></a>
+    <a href="b4l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 4.2 · De massa-identiteit</span><span class="en">Lesson 4.2 · The mass identity</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

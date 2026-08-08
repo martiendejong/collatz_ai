@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 5.4 · De vork</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 5 · De Cascade en de Contractie</span><span class="en">Block 5 · The Cascade and the Contraction</span> › <b>5.4</b></div>
+    <h1 class="nl">De vork</h1>
+    <h1 class="en">The fork</h1>
+    <p class="lead nl">Twee toekomsten voor het telprogramma · en de eerlijke stand van het bewijsmateriaal.</p>
+    <p class="lead en">Two futures for the counting programme · and the honest state of the evidence.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">DENSITY versus CEILING</span><span class="en">DENSITY versus CEILING</span></h2>
+    <p class="nl">Dankzij de massa-identiteit (les 4.2) is de grote vraag exact geformuleerd:
+    \(1 - \rho(2, k) = \tfrac34 \bar\gamma(2, k)\). Twee scenario's:</p>
+    <p class="en">Thanks to the mass identity (lesson 4.2) the big question is stated exactly:
+    \(1 - \rho(2, k) = \tfrac34 \bar\gamma(2, k)\). Two scenarios:</p>
+    <div class="figure">
+      <svg viewBox="0 0 900 230" width="900">
+        <g font-size="14">
+          <rect x="40" y="25" width="390" height="180" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+          <text x="235" y="55" text-anchor="middle" fill="#5eead4" font-weight="bold" font-size="16">DENSITY</text>
+          <text x="235" y="85" text-anchor="middle" fill="#e8eaf6" class="nl">γ̄(2, k) → 0 geometrisch</text>
+          <text x="235" y="85" text-anchor="middle" fill="#e8eaf6" class="en">γ̄(2, k) → 0 geometrically</text>
+          <text x="235" y="112" text-anchor="middle" fill="#e8eaf6">⟹ γ(k) → 1</text>
+          <text x="235" y="145" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">het telprogramma haalt (vrijwel) alles:</text>
+          <text x="235" y="145" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">the counting programme captures (nearly) all:</text>
+          <text x="235" y="168" text-anchor="middle" fill="#9aa3c7" font-size="12">π₁(x) ≥ x^(1−ε) ∀ε</text>
+          <rect x="470" y="25" width="390" height="180" rx="12" fill="#1f2440" stroke="#fbbf24" stroke-width="2"/>
+          <text x="665" y="55" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="16">CEILING</text>
+          <text x="665" y="85" text-anchor="middle" fill="#e8eaf6" class="nl">γ̄(2, k) → constante &gt; 0</text>
+          <text x="665" y="85" text-anchor="middle" fill="#e8eaf6" class="en">γ̄(2, k) → constant &gt; 0</text>
+          <text x="665" y="112" text-anchor="middle" fill="#e8eaf6">⟹ γ(k) → γ∞ ≈ 0.95 &lt; 1</text>
+          <text x="665" y="145" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">het programma stuit op een plafond;</text>
+          <text x="665" y="145" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">the programme hits a ceiling;</text>
+          <text x="665" y="168" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">een principieel nieuw idee nodig</text>
+          <text x="665" y="168" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">a fundamentally new idea needed</text>
+        </g>
+      </svg>
+      <div class="caption nl">De vork. Merk op dat beide takken verenigbaar zijn met álle huidige metingen ·
+        dat is precies wat de vraag open houdt. De contractievraag c &lt; 1 (les 5.2–5.3) is de
+        DENSITY-tak in vermomming.</div>
+      <div class="caption en">The fork. Note that both branches are compatible with all current
+        measurements · which is exactly what keeps the question open. The contraction question c &lt; 1
+        (lessons 5.2–5.3) is the DENSITY branch in disguise.</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De γ-ladder-wet</span><span class="en">The γ ladder law</span></h2>
+    <p class="nl">De gecertificeerde recordpunten volgen zelf een opvallend strakke wet: het tekort
+    \(1 - \gamma(k)\) daalt geometrisch, over twaalf diepteniveaus, met rate ≈ 0.935 per stap
+    (maximale afwijking 1,3%). Extrapolatie voorspelt de 0.95-kruising rond \(k \approx 28\).
+    Er is zelfs een verleidelijke gesloten-vorm-kandidaat voor de rate:</p>
+    <p class="en">The certified record points themselves follow a strikingly tight law: the deficit
+    \(1 - \gamma(k)\) decreases geometrically, across twelve depth levels, at rate ≈ 0.935 per step
+    (maximal deviation 1.3%). Extrapolation predicts the 0.95 crossing near \(k \approx 28\).
+    There is even a tempting closed-form candidate for the rate:</p>
+    $$\left(\tfrac{2}{3}\right)^{1/6} = 0.93466\ldots \quad\text{vs.}\quad 0.9347 \;\text{(fit)}$$
+    <p class="nl">…maar eerlijkheid gebiedt: één gefitte parameter plus een familie simpele kandidaten
+    is een recept voor numerologie. Daarom is de voorspelling <b>bevroren vóór verdere metingen</b>:
+    γ(25) = 0.9378 ± 0.002 volgens de wet. Een toekomstige berekening bevestigt of ontkracht ·
+    zo hoort patroonherkenning te werken.</p>
+    <p class="en">…but honesty demands: one fitted parameter plus a family of simple candidates is a
+    recipe for numerology. The prediction has therefore been <b>frozen before further measurements</b>:
+    γ(25) = 0.9378 ± 0.002 according to the law. A future computation confirms or refutes · which is how
+    pattern recognition should work.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Waarom de data (nog) niet beslist</span><span class="en">Why the data does not (yet) decide</span></h2>
+    <p class="nl">Kun je de vork niet gewoon "uitmeten"? Nee · en het is leerzaam waarom niet. Een dalende
+    reeks met rate ~0.91 en een reeks die afvlakt op een klein positief niveau zijn bij eindige diepte
+    vrijwel niet te onderscheiden: het extra vrijheidsgraadje van de afvlak-fit wint altijd een beetje,
+    zonder iets te bewijzen. Kwantitatief: pas rond diepte k ≈ 25–30 lopen de voorspellingen ver genoeg
+    uiteen. Dit identificeerbaarheidsprobleem heeft dit project zelf op de harde manier geleerd
+    (les 6.1) · een eerder "veiligheidsargument" op basis van zo'n fit is teruggetrokken.</p>
+    <p class="en">Can't the fork simply be measured out? No · and the reason is instructive. A decaying
+    sequence at rate ~0.91 and a sequence levelling at a small positive value are nearly
+    indistinguishable at finite depth: the extra degree of freedom of the levelling fit always wins a
+    little, proving nothing. Quantitatively: only around depth k ≈ 25–30 do the predictions diverge far
+    enough. This identifiability problem was learned the hard way in this very project (lesson 6.1) ·
+    an earlier "safety argument" based on such a fit was retracted.</p>
+    <div class="callout warn">
+      <div class="title nl">De eerlijke stand</div>
+      <div class="title en">The honest state</div>
+      <span class="nl">Alle empirie wijst dezelfde kant op (c ≈ 0.83 via vier instrumenten, twaalf niveaus
+      geometrische ladder, geen spoor van afvlakking) · maar niets ervan sluit CEILING uit. De beslissing
+      moet uit een bewijs komen: het homogenisatie-lemma (les 5.3), of een principieel nieuw argument.
+      Dat is geen zwakte van het programma; het is de reden dat het probleem al negentig jaar
+      openstaat.</span>
+      <span class="en">All the evidence points the same way (c ≈ 0.83 via four instruments, a twelve-level
+      geometric ladder, no trace of levelling) · but none of it excludes CEILING. The decision must come
+      from a proof: the homogenisation lemma (lesson 5.3), or a fundamentally new argument. That is not a
+      weakness of the programme; it is the reason the problem has been open for ninety years.</span>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b5l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 5.3 · Op weg naar c &lt; 1</span><span class="en">Lesson 5.3 · Towards c &lt; 1</span></a>
+    <a href="b6l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 6.1 · Eerlijk rekenen</span><span class="en">Lesson 6.1 · Honest computation</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 6.1 · Eerlijk rekenen</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 6 · Onderzoekspraktijk</span><span class="en">Block 6 · Research Practice</span> › <b>6.1</b></div>
+    <h1 class="nl">Eerlijk rekenen</h1>
+    <h1 class="en">Honest computation</h1>
+    <p class="lead nl">Computationeel onderzoek verleidt tot zelfbedrog. Dit zijn de disciplines waarmee dit project zichzelf heeft betrapt · meermaals.</p>
+    <p class="lead en">Computational research invites self-deception. These are the disciplines by which this project caught itself · repeatedly.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Voorregistratie</span><span class="en">Preregistration</span></h2>
+    <p class="nl">De regel is simpel: <b>bevries voorspellingen schriftelijk vóór de meting.</b>
+    In dit project leeft een publiek PREDICTIONS-bestand met genummerde, gedateerde voorspellingen.
+    Het mooiste succes: γ(21) ≈ 0.918 (λ* ≈ 1.890), bevroren dagen vóór de vijftien-uur-durende
+    berekening; uitkomst 0.91839. Het eerlijkste aspect: ook míssers blijven staan · de scorekaart
+    telt beide.</p>
+    <p class="en">The rule is simple: <b>freeze predictions in writing before the measurement.</b>
+    This project keeps a public PREDICTIONS file with numbered, dated predictions. The nicest hit:
+    γ(21) ≈ 0.918 (λ* ≈ 1.890), frozen days before the fifteen-hour computation; outcome 0.91839.
+    The most honest aspect: misses stay on record too · the scorecard counts both.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Falsificaties als winst</span><span class="en">Falsifications as profit</span></h2>
+    <p class="nl">Een onderzoekslog dat alleen successen bevat, is verdacht. Dit zijn onze eigen
+    ingetrokken claims · elk met de les die hij opleverde:</p>
+    <p class="en">A research log containing only successes is suspect. These are our own retracted
+    claims · each with the lesson it yielded:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Ingetrokken claim</span><span class="en">Retracted claim</span></th>
+          <th><span class="nl">Wat de toets was</span><span class="en">What the test was</span></th>
+          <th><span class="nl">Les</span><span class="en">Lesson</span></th></tr>
+      <tr>
+        <td><span class="nl">"Spectraalmodel garandeert veiligheidsmarge"</span>
+            <span class="en">"Spectral model guarantees a safety margin"</span></td>
+        <td><span class="nl">scan van de volledige fit-familie</span>
+            <span class="en">scan of the full fit family</span></td>
+        <td><span class="nl">4 parameters op 6 punten = schijnzekerheid</span>
+            <span class="en">4 parameters on 6 points = false certainty</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">"Elasticiteit → 2 universeel"</span>
+            <span class="en">"Elasticity → 2 universally"</span></td>
+        <td><span class="nl">zelfde meting bij andere λ</span>
+            <span class="en">same measurement at other λ</span></td>
+        <td><span class="nl">een momentopname is geen wet</span>
+            <span class="en">a snapshot is not a law</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">"Mean-field-model verklaart de constanten"</span>
+            <span class="en">"Mean-field model explains the constants"</span></td>
+        <td><span class="nl">simulatie vs. gemeten waarden</span>
+            <span class="en">simulation vs. measured values</span></td>
+        <td><span class="nl">de deterministische correlaties zijn essentieel</span>
+            <span class="en">the deterministic correlations are essential</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">"Periode-6-mechanisme in de residuen"</span>
+            <span class="en">"Period-6 mechanism in the residuals"</span></td>
+        <td><span class="nl">kruistoets op onafhankelijke reeks</span>
+            <span class="en">cross-check on an independent series</span></td>
+        <td><span class="nl">mooi mechanisme ≠ waar mechanisme</span>
+            <span class="en">beautiful mechanism ≠ true mechanism</span></td>
+      </tr>
+    </table>
+    <p class="nl">Elk van deze intrekkingen kostte een middag en bespaarde maanden. De werkende
+    patroon-discipline: hypothese mét mechanisme → ordening vooraf voorspellen → kruistoetsen op een
+    onafhankelijk niveau of λ · pas daarna claimen.</p>
+    <p class="en">Each of these retractions cost an afternoon and saved months. The working pattern
+    discipline: hypothesis with mechanism → predict the ordering in advance → cross-check on an
+    independent level or λ · only then claim.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De valkuilen-catalogus</span><span class="en">The pitfall catalogue</span></h2>
+    <table class="nice">
+      <tr><th><span class="nl">Valkuil</span><span class="en">Pitfall</span></th>
+          <th><span class="nl">Tegengif</span><span class="en">Antidote</span></th></tr>
+      <tr>
+        <td><span class="nl"><b>Identificeerbaarheid</b> · de beste fit is één lid van een brede familie;
+            parameters kunnen onbepaald zijn terwijl de fit "perfect" oogt</span>
+            <span class="en"><b>Identifiability</b> · the best fit is one member of a broad family;
+            parameters can be undetermined while the fit looks "perfect"</span></td>
+        <td><span class="nl">scan de hele familie; rapporteer de envelop, niet het beste lid</span>
+            <span class="en">scan the whole family; report the envelope, not the best member</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl"><b>Ruisvloeren</b> · diepe-schaal-signalen kunnen pure numeriek zijn</span>
+            <span class="en"><b>Noise floors</b> · deep-scale signals can be pure numerics</span></td>
+        <td><span class="nl">shuffle-controle: dezelfde statistiek op geschud veld geeft de vloer</span>
+            <span class="en">shuffle control: the same statistic on a shuffled field gives the floor</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl"><b>Randartefacten</b> · de bovenste digits van een eindig systeem gedragen
+            zich afwijkend en produceren schijnpatronen</span>
+            <span class="en"><b>Edge artifacts</b> · the top digits of a finite system behave anomalously
+            and produce fake patterns</span></td>
+        <td><span class="nl">collapse-toets over meerdere diepten; randlagen uitsluiten</span>
+            <span class="en">collapse test across depths; exclude the edge layers</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl"><b>Conditionering</b> · het verschil van twee bijna-gelijke getallen meet
+            vooral je afrondingsfouten</span>
+            <span class="en"><b>Conditioning</b> · the difference of two nearly equal numbers mostly
+            measures your rounding errors</span></td>
+        <td><span class="nl">herschrijf met exacte identiteiten naar een directe meting (les 4.4)</span>
+            <span class="en">rewrite via exact identities into a direct measurement (lesson 4.4)</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl"><b>Convergentie-illusie</b> · een niet-uitgeïtereerde berekening lijkt een
+            eigenschap van het systeem</span>
+            <span class="en"><b>Convergence illusion</b> · an under-iterated computation looks like a
+            property of the system</span></td>
+        <td><span class="nl">audit: 300/600/1200/2400 iteraties moeten identiek zijn</span>
+            <span class="en">audit: 300/600/1200/2400 iterations must be identical</span></td>
+      </tr>
+    </table>
+    <p class="nl">Elk item in deze tabel is in dit project minstens één keer in het echt aangetroffen ·
+    inclusief het moment waarop een "bijna-exacte" match bij herberekening met volle precisie
+    <i>exact</i> bleek te zijn (tweemaal!). De duurste fout is niet de fout zelf, maar de fout die je
+    niet opmerkt omdat het antwoord je bevalt.</p>
+    <p class="en">Every item in this table was encountered for real in this project at least once ·
+    including the moment when a "nearly exact" match turned out to be <i>exact</i> upon full-precision
+    recomputation (twice!). The costliest error is not the error itself, but the one you fail to notice
+    because you like the answer.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b5l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 5.4 · De vork</span><span class="en">Lesson 5.4 · The fork</span></a>
+    <a href="b6l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 6.2 · Van meting naar bewijs</span><span class="en">Lesson 6.2 · From measurement to proof</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

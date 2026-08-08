@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 4.4 · Gaps, slack en certificering</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 4 · Exacte Structuur</span><span class="en">Block 4 · Exact Structure</span> › <b>4.4</b></div>
+    <h1 class="nl">Gaps, slack en certificering</h1>
+    <h1 class="en">Gaps, slack and certification</h1>
+    <p class="lead nl">De enige niet-lineariteit onder de microscoop · en hoe je beweringen daarover rigoureus laat certificeren door de computer.</p>
+    <p class="lead en">The single nonlinearity under the microscope · and how to have claims about it rigorously certified by the computer.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De slack-functionaal</span><span class="en">The slack functional</span></h2>
+    <p class="nl">Hoeveel "verliest" de min ten opzichte van lineair gedrag? Voor twee gekoppelde
+    triple-velden \(x, y\) en gewichten \(a, b > 0\) definieer de <b>slack</b>:</p>
+    <p class="en">How much does the min "lose" relative to linear behaviour? For two coupled triple
+    fields \(x, y\) and weights \(a, b > 0\) define the <b>slack</b>:</p>
+    $$S(a, b) = \mathbb{E}[\min(ax + by)] - a\,\mathbb{E}[\min x] - b\,\mathbb{E}[\min y] \;\ge\; 0$$
+    <p class="nl">Drie eigenschappen, elk met een bewijs van één regel:</p>
+    <p class="en">Three properties, each with a one-line proof:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Eigenschap</span><span class="en">Property</span></th>
+          <th><span class="nl">Bewijs</span><span class="en">Proof</span></th></tr>
+      <tr><td><span class="nl">1-homogeen: S(ca, cb) = c·S(a, b)</span><span class="en">1-homogeneous: S(ca, cb) = c·S(a, b)</span></td>
+          <td><span class="nl">min is 1-homogeen</span><span class="en">min is 1-homogeneous</span></td></tr>
+      <tr><td><span class="nl">concaaf in (a, b)</span><span class="en">concave in (a, b)</span></td>
+          <td><span class="nl">min van lineaire functies − lineair</span><span class="en">min of linear functions − linear</span></td></tr>
+      <tr><td><span class="nl">stijgend in elk gewicht</span><span class="en">increasing in each weight</span></td>
+          <td>∂S/∂a = 𝔼[x<sub>J</sub> − min x] ≥ 0 (J = argmin)</td></tr>
+    </table>
+    <p class="nl">Met deze functionaal wordt de kernvraag van het diepteprogramma (het teken van een
+    delicate klassenvergelijking, "stap 3b") <b>exact</b> herschreven als één vergelijking van twee
+    slacks: \(\lambda s_0 > s_2\). Gemeten over alle 144 testgevallen: \(s_2 / s_0 \le 0.74\),
+    terwijl \(\lambda \ge 1.05\) volstaat · ruime marge, overal.</p>
+    <p class="en">With this functional, the core question of the depth programme (the sign of a delicate
+    class comparison, "step 3b") is rewritten <b>exactly</b> as one comparison of two slacks:
+    \(\lambda s_0 > s_2\). Measured over all 144 test cases: \(s_2 / s_0 \le 0.74\), while
+    \(\lambda \ge 1.05\) suffices · ample margin, everywhere.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De marge-identiteit</span><span class="en">The margin identity</span></h2>
+    <p class="nl">Nog een dividend van de exacte identiteiten. Schrijf \(c_r\) voor het gemiddelde
+    kolom-minimum van klasse \(r\) en \(g_r = \mu_r - c_r\) voor de gemiddelde kolomgap. Omdat
+    \(\mu_2 = R\,\mu_0\) exact is, geldt:</p>
+    <p class="en">Another dividend of the exact identities. Write \(c_r\) for the mean column minimum of
+    class \(r\) and \(g_r = \mu_r - c_r\) for the mean column gap. Because \(\mu_2 = R\,\mu_0\) is exact:</p>
+    $$R - \frac{c_2}{c_0} \;=\; \frac{g_2 - R\,g_0}{c_0} \qquad \text{(exact)}$$
+    <p class="nl">Links staat een verschil van twee bijna gelijke getallen (numeriek beroerd
+    geconditioneerd op grote diepte: het echte verschil zakt onder de float-ruis). Rechts staat hetzelfde
+    getal als <i>direct gemeten</i> verschil van gaps · goed geconditioneerd, met marges van ~8% zelfs op
+    de grootste dieptes. Exacte algebra als numeriek gereedschap.</p>
+    <p class="en">The left side is a difference of two nearly equal numbers (numerically ill-conditioned
+    at large depth: the true difference sinks below float noise). The right side is the same number as a
+    <i>directly measured</i> difference of gaps · well conditioned, with ~8% margins even at the largest
+    depths. Exact algebra as a numerical tool.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Rigoureuze certificering</span><span class="en">Rigorous certification</span></h2>
+    <p class="nl">Hoe maak je van zulke metingen bewijzen? Drie ingrediënten:</p>
+    <p class="en">How do you turn such measurements into proofs? Three ingredients:</p>
+    <div class="figure">
+      <svg viewBox="0 0 900 200" width="900">
+        <g font-size="13">
+          <rect x="30" y="30" width="260" height="140" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+          <text x="160" y="60" text-anchor="middle" fill="#5eead4" font-weight="bold" font-size="15" class="nl">intervalrekening</text>
+          <text x="160" y="60" text-anchor="middle" fill="#5eead4" font-weight="bold" font-size="15" class="en">interval arithmetic</text>
+          <text x="160" y="90" text-anchor="middle" fill="#e8eaf6" class="nl">elke bewerking levert een</text>
+          <text x="160" y="110" text-anchor="middle" fill="#e8eaf6" class="nl">gegarandeerde insluiting [lo, hi]</text>
+          <text x="160" y="90" text-anchor="middle" fill="#e8eaf6" class="en">every operation returns a</text>
+          <text x="160" y="110" text-anchor="middle" fill="#e8eaf6" class="en">guaranteed enclosure [lo, hi]</text>
+          <text x="160" y="145" text-anchor="middle" fill="#9aa3c7" font-size="12">λ = 21/20 (exact), λ^α ∈ [·,·]</text>
+          <rect x="320" y="30" width="260" height="140" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+          <text x="450" y="60" text-anchor="middle" fill="#5eead4" font-weight="bold" font-size="15">Collatz–Wielandt</text>
+          <text x="450" y="90" text-anchor="middle" fill="#e8eaf6" class="nl">ρ onvoorwaardelijk ingesloten</text>
+          <text x="450" y="110" text-anchor="middle" fill="#e8eaf6" class="nl">door élke positieve testvector</text>
+          <text x="450" y="90" text-anchor="middle" fill="#e8eaf6" class="en">ρ unconditionally enclosed</text>
+          <text x="450" y="110" text-anchor="middle" fill="#e8eaf6" class="en">by any positive test vector</text>
+          <text x="450" y="145" text-anchor="middle" fill="#9aa3c7" font-size="12">min/max (Fw)ᵢ / wᵢ</text>
+          <rect x="610" y="30" width="260" height="140" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+          <text x="740" y="60" text-anchor="middle" fill="#5eead4" font-weight="bold" font-size="15" class="nl">Birkhoff-lokalisatie</text>
+          <text x="740" y="60" text-anchor="middle" fill="#5eead4" font-weight="bold" font-size="15" class="en">Birkhoff localisation</text>
+          <text x="740" y="90" text-anchor="middle" fill="#e8eaf6" class="nl">contractie in projectieve metriek</text>
+          <text x="740" y="110" text-anchor="middle" fill="#e8eaf6" class="nl">sluit de echte eigenvector in</text>
+          <text x="740" y="90" text-anchor="middle" fill="#e8eaf6" class="en">contraction in projective metric</text>
+          <text x="740" y="110" text-anchor="middle" fill="#e8eaf6" class="en">encloses the true eigenvector</text>
+          <text x="740" y="145" text-anchor="middle" fill="#9aa3c7" font-size="12">d(w, v*) ≤ 10⁻²⁸</text>
+        </g>
+      </svg>
+      <div class="caption nl">De certificeringsketen. Architectuurles uit de praktijk: itereer in gewone
+        hoge precisie en doe daarna één enkele intervalpass (interval-iteratie over honderden stappen
+        blaast de insluitingen op · het "wrapping"-effect).</div>
+      <div class="caption en">The certification chain. An architecture lesson from practice: iterate in
+        ordinary high precision and then do a single interval pass (interval iteration over hundreds of
+        steps inflates the enclosures · the "wrapping" effect).</div>
+    </div>
+    <p class="nl">Resultaat van deze pijplijn in ons programma: een blok van <b>72 gevallen</b>
+    (12 waarden van λ × diepten k = 5…10) waarin de kernongelijkheid rigoureus is gecertificeerd ·
+    kleinste marge +1.55 × 10⁻⁴, identiteiten bevestigd tot 33 decimalen, en veertien ordes van grootte
+    speling tussen de eigenvector-lokalisatie (10⁻²⁸) en de marges. In de stijl van Hales' bewijs van
+    de Kepler-conjectuur: de machine rekent, de wiskunde garandeert.</p>
+    <p class="en">Result of this pipeline in our programme: a block of <b>72 cases</b> (12 values of λ ×
+    depths k = 5…10) in which the core inequality is rigorously certified · smallest margin
+    +1.55 × 10⁻⁴, identities confirmed to 33 decimals, and fourteen orders of magnitude of slack between
+    the eigenvector localisation (10⁻²⁸) and the margins. In the style of Hales' proof of the Kepler
+    conjecture: the machine computes, the mathematics guarantees.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b4l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 4.3 · De gevezelde hiërarchie</span><span class="en">Lesson 4.3 · The fibered hierarchy</span></a>
+    <a href="b5l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 5.1 · Digit-decompositie</span><span class="en">Lesson 5.1 · Digit decomposition</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

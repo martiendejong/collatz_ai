@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 6.2 · Van meting naar bewijs</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 6 · Onderzoekspraktijk</span><span class="en">Block 6 · Research Practice</span> › <b>6.2</b></div>
+    <h1 class="nl">Van meting naar bewijs</h1>
+    <h1 class="en">From measurement to proof</h1>
+    <p class="lead nl">Niet alles wat de computer zegt is even waar. Een precieze ladder van zekerheden · en hoe je erop klimt.</p>
+    <p class="lead en">Not everything the computer says is equally true. A precise ladder of certainties · and how to climb it.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De vier gradaties</span><span class="en">The four gradations</span></h2>
+    <div class="figure">
+      <svg viewBox="0 0 900 260" width="900">
+        <g font-size="14">
+          <rect x="60" y="190" width="780" height="48" rx="10" fill="#1f2440" stroke="#9aa3c7"/>
+          <text x="120" y="219" fill="#9aa3c7" font-weight="bold" class="nl">GEMETEN</text>
+          <text x="120" y="219" fill="#9aa3c7" font-weight="bold" class="en">MEASURED</text>
+          <text x="530" y="219" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">een berekening zegt het · float, één run</text>
+          <text x="530" y="219" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">a computation says so · float, one run</text>
+          <rect x="60" y="135" width="780" height="48" rx="10" fill="#1f2440" stroke="#f0abfc"/>
+          <text x="120" y="164" fill="#f0abfc" font-weight="bold" class="nl">GEVALIDEERD</text>
+          <text x="120" y="164" fill="#f0abfc" font-weight="bold" class="en">VALIDATED</text>
+          <text x="530" y="164" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">kruisgetoetst: onafhankelijke methode, precisie-audit, andere λ of k</text>
+          <text x="530" y="164" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">cross-checked: independent method, precision audit, other λ or k</text>
+          <rect x="60" y="80" width="780" height="48" rx="10" fill="#1f2440" stroke="#5eead4"/>
+          <text x="120" y="109" fill="#5eead4" font-weight="bold" class="nl">GECERTIFICEERD</text>
+          <text x="120" y="109" fill="#5eead4" font-weight="bold" class="en">CERTIFIED</text>
+          <text x="530" y="109" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">machinaal maar rigoureus: intervalrekening, exacte gehele checks</text>
+          <text x="530" y="109" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">machine-based but rigorous: interval arithmetic, exact integer checks</text>
+          <rect x="60" y="25" width="780" height="48" rx="10" fill="#1f2440" stroke="#fbbf24" stroke-width="2"/>
+          <text x="120" y="54" fill="#fbbf24" font-weight="bold" class="nl">BEWEZEN</text>
+          <text x="120" y="54" fill="#fbbf24" font-weight="bold" class="en">PROVED</text>
+          <text x="530" y="54" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">algebra en logica · geldig voor alle gevallen tegelijk</text>
+          <text x="530" y="54" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">algebra and logic · valid for all cases at once</text>
+        </g>
+      </svg>
+      <div class="caption nl">De ladder van zekerheden. Onderzoekslogboeken in dit project labelen elke
+        bewering expliciet met haar trede · en de treden zijn géén detail: de geschiedenis van het
+        Collatz-probleem is bezaaid met "gemeten" beweringen die als "bewezen" werden onthouden.</div>
+      <div class="caption en">The ladder of certainties. Research logs in this project label every claim
+        explicitly with its rung · and the rungs are no detail: the history of the Collatz problem is
+        littered with "measured" claims remembered as "proved".</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Computer-geassisteerde lemma's in de praktijk</span><span class="en">Computer-assisted lemmas in practice</span></h2>
+    <p class="nl">De trede "gecertificeerd" verdient detail, want hij is de brug. Drie praktijkprincipes
+    uit dit project:</p>
+    <p class="en">The "certified" rung deserves detail, for it is the bridge. Three practical principles
+    from this project:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Principe</span><span class="en">Principle</span></th>
+          <th><span class="nl">Waarom</span><span class="en">Why</span></th></tr>
+      <tr>
+        <td><span class="nl">Zoek met floats, certificeer met intervallen/gehele getallen</span>
+            <span class="en">Search with floats, certify with intervals/integers</span></td>
+        <td><span class="nl">creativiteit en rigor zijn verschillende fasen; meng ze niet</span>
+            <span class="en">creativity and rigour are different phases; do not mix them</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Losse-boutenregel: itereer in punt-precisie, doe daarna één intervalpass</span>
+            <span class="en">Loose-bolts rule: iterate in point precision, then do one interval pass</span></td>
+        <td><span class="nl">interval-iteratie over honderden stappen blaast insluitingen op (wrapping)</span>
+            <span class="en">interval iteration over hundreds of steps inflates enclosures (wrapping)</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Onvoorwaardelijke ankers: gebruik stellingen die voor élke testvector gelden
+            (Collatz–Wielandt)</span>
+            <span class="en">Unconditional anchors: use theorems valid for any test vector
+            (Collatz–Wielandt)</span></td>
+        <td><span class="nl">dan hoeft de zoekfase zelf níets te bewijzen</span>
+            <span class="en">then the search phase itself need not prove anything</span></td>
+      </tr>
+    </table>
+    <p class="nl">Zo werden in dit project 3,5 miljard constraints exact geverifieerd (71 minuten),
+    72 kerngevallen rigoureus gecertificeerd, en identiteiten tot 33 decimalen bevestigd · op een
+    gewone desktop. De methode-familie is dezelfde als die van Hales' Kepler-bewijs en het
+    vier-kleuren-theorema: de computer doet het vele, de wiskunde garandeert het geheel.</p>
+    <p class="en">Thus this project verified 3.5 billion constraints exactly (71 minutes), rigorously
+    certified 72 core cases, and confirmed identities to 33 decimals · on an ordinary desktop. The
+    method family is the same as Hales' Kepler proof and the four-colour theorem: the computer does the
+    many, the mathematics guarantees the whole.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Reproduceerbaarheid</span><span class="en">Reproducibility</span></h2>
+    <p class="nl">Alles in deze cursus is na te rekenen. De openbare repository bevat:</p>
+    <p class="en">Everything in this course can be recomputed. The public repository contains:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Onderdeel</span><span class="en">Component</span></th>
+          <th><span class="nl">Inhoud</span><span class="en">Contents</span></th></tr>
+      <tr><td><code>research/NOTE.md</code></td>
+          <td><span class="nl">het volledige onderzoekslog: honderden genummerde observaties, inclusief
+              doodlopende wegen en intrekkingen</span>
+              <span class="en">the full research log: hundreds of numbered observations, including dead
+              ends and retractions</span></td></tr>
+      <tr><td><code>research/scripts/</code></td>
+          <td><span class="nl">elk resultaat heeft een genummerd script; elke figuur is regenereerbaar</span>
+              <span class="en">every result has a numbered script; every figure is regenerable</span></td></tr>
+      <tr><td><code>research/certificates/</code></td>
+          <td><span class="nl">de certificaatbestanden en gecertificeerde-marges-tabellen</span>
+              <span class="en">the certificate files and certified-margin tables</span></td></tr>
+      <tr><td><code>research/PREDICTIONS.md</code></td>
+          <td><span class="nl">de bevroren voorspellingen mét datums · ook de missers</span>
+              <span class="en">the frozen predictions with dates · misses included</span></td></tr>
+      <tr><td><code>research/papers/</code></td>
+          <td><span class="nl">de manuscripten met expliciete statuslabels per bewering</span>
+              <span class="en">the manuscripts with explicit status labels per claim</span></td></tr>
+    </table>
+    <p class="nl">Openheid is hier geen deugd maar een methode: wie zijn doodlopende wegen publiceert,
+    kan er zelf niet meer omheen redeneren.</p>
+    <p class="en">Openness here is not a virtue but a method: whoever publishes their dead ends can no
+    longer reason their way around them.</p>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b6l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 6.1 · Eerlijk rekenen</span><span class="en">Lesson 6.1 · Honest computation</span></a>
+    <a href="b6l3.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 6.3 · De open kern en de grote kloof</span><span class="en">Lesson 6.3 · The open core and the big gap</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 4.3 · De gevezelde hiërarchie</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 4 · Exacte Structuur</span><span class="en">Block 4 · Exact Structure</span> › <b>4.3</b></div>
+    <h1 class="nl">De gevezelde hiërarchie</h1>
+    <h1 class="en">The fibered hierarchy</h1>
+    <p class="lead nl">De klasse-identiteiten herhalen zich digit voor digit: een toren van exact oplosbare stelsels.</p>
+    <p class="lead en">The class identities repeat digit by digit: a tower of exactly solvable systems.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Subklassen: het 9-stelsel</span><span class="en">Subclasses: the 9-system</span></h2>
+    <p class="nl">Verfijn elke klasse naar de volgende digit: subklasse \(d = s \bmod 3\), met \(s = \lfloor i/3 \rfloor\).
+    De eigenvergelijking, per (klasse, subklasse) gemiddeld, geeft een exact 9-dimensionaal stelsel
+    waarin twee permutaties de hoofdrol spelen: de <b>3-cykel</b> \(\sigma: d \mapsto d{+}2\) (uit de
+    backbone-carry) en de <b>transpositie</b> \(\tau: d \mapsto 2d{+}1\) (0 ↔ 1, het 2 ≡ −1-spiegeltje
+    van les 2.2):</p>
+    <p class="en">Refine each class by the next digit: subclass \(d = s \bmod 3\), with \(s = \lfloor i/3 \rfloor\).
+    The eigen-equation, averaged per (class, subclass), yields an exact 9-dimensional system in which two
+    permutations star: the <b>3-cycle</b> \(\sigma: d \mapsto d{+}2\) (from the backbone carry) and the
+    <b>transposition</b> \(\tau: d \mapsto 2d{+}1\) (0 ↔ 1, the 2 ≡ −1 mirror of lesson 2.2):</p>
+    $$\mu_0[d] = t\,\mu_2[d] + \tfrac{B_1}{\rho}\,c[d], \qquad
+      \mu_1[d] = t\,\mu_0[\sigma(d)], \qquad
+      \mu_2[d] = t\,\mu_1[d] + \tfrac{B_3}{\rho}\,c[\tau(d)]$$
+    <p class="nl">Hier zijn \(c[d]\) de subklasse-gemiddelden van het min-veld. Het stelsel lost cyclisch
+    op (substitutie rond de σ-cykel, noemer \(1 - t^9\)) · gesloten formules, geen benadering.
+    Machinecontrole: relatieve fout ~10⁻¹⁵, en het voorspelde digit-1-profiel matcht de meting met
+    cosinus +1.000000 op drie geteste λ's.</p>
+    <p class="en">Here \(c[d]\) are the subclass means of the min-field. The system solves cyclically
+    (substitution around the σ-cycle, denominator \(1 - t^9\)) · closed formulas, no approximation.
+    Machine check: relative error ~10⁻¹⁵, and the predicted digit-1 profile matches measurement with
+    cosine +1.000000 at three tested λ's.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Het 27-stelsel en de cykelcatalogus</span><span class="en">The 27-system and the cycle catalogue</span></h2>
+    <p class="nl">Eén digit dieper (modulo 9 op de subindex) herhaalt de constructie zich: 27 onbekenden,
+    aangedreven door 9 c-waarden. De samengestelde backbone-map blijkt op \(\mathbb{Z}/9\) simpelweg
+    \(u \mapsto u+5\) te zijn (een 9-cykel!), en de routingpermutaties hebben elk hun eigen signatuur:</p>
+    <p class="en">One digit deeper (modulo 9 on the subindex) the construction repeats: 27 unknowns,
+    driven by 9 c-values. The composite backbone map on \(\mathbb{Z}/9\) turns out to be simply
+    \(u \mapsto u+5\) (a 9-cycle!), and the routing permutations each have their own signature:</p>
+    <table class="nice">
+      <tr><th><span class="nl">afbeelding op ℤ/9</span><span class="en">map on ℤ/9</span></th>
+          <th><span class="nl">cykelstructuur</span><span class="en">cycle structure</span></th></tr>
+      <tr><td class="num">u → 4u</td><td class="num">(0)(3)(6) · (1 4 7) · (2 8 5)</td></tr>
+      <tr><td class="num">u → 4u+2</td><td class="num">(0 2 1 6 8 7 3 5 4) · <span class="nl">één 9-cykel</span><span class="en">one 9-cycle</span></td></tr>
+      <tr><td class="num">u → 2u+1</td><td class="num">(0 1 3 7 6 4) · (2 5) · (8)</td></tr>
+    </table>
+    <p class="nl">Let op de laatste rij: de feed-map heeft een <b>6-cykel</b>, een 2-cykel en een vast punt
+    \(u = 8 \equiv -1\). Deze baanstructuur (orde van 2 modulo 9 is 6!) blijkt in blok 5 fysiek meetbare
+    gevolgen te hebben.</p>
+    <p class="en">Note the last row: the feed map has a <b>6-cycle</b>, a 2-cycle and a fixed point
+    \(u = 8 \equiv -1\). This orbit structure (the order of 2 modulo 9 is 6!) turns out to have
+    physically measurable consequences in block 5.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Het patroon: lineair skelet + min-data</span><span class="en">The pattern: linear skeleton + min data</span></h2>
+    <div class="figure">
+      <svg viewBox="0 0 900 260" width="900">
+        <g font-size="14">
+          <rect x="60" y="25" width="780" height="52" rx="10" fill="#1f2440" stroke="#5eead4"/>
+          <text x="450" y="47" text-anchor="middle" fill="#5eead4" font-weight="bold" class="nl">digit 0 · 3 klassegemiddelden · exact opgelost (les 4.1)</text>
+          <text x="450" y="47" text-anchor="middle" fill="#5eead4" font-weight="bold" class="en">digit 0 · 3 class means · solved exactly (lesson 4.1)</text>
+          <text x="450" y="68" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">input: c̄ (1 getal uit het min-veld)</text>
+          <text x="450" y="68" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">input: c̄ (1 number from the min-field)</text>
+          <rect x="60" y="95" width="780" height="52" rx="10" fill="#1f2440" stroke="#5eead4"/>
+          <text x="450" y="117" text-anchor="middle" fill="#5eead4" font-weight="bold" class="nl">digit 1 · 9 subklasse-gemiddelden · exact opgelost (σ, τ)</text>
+          <text x="450" y="117" text-anchor="middle" fill="#5eead4" font-weight="bold" class="en">digit 1 · 9 subclass means · solved exactly (σ, τ)</text>
+          <text x="450" y="138" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">input: c[0..2] (3 getallen)</text>
+          <text x="450" y="138" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">input: c[0..2] (3 numbers)</text>
+          <rect x="60" y="165" width="780" height="52" rx="10" fill="#1f2440" stroke="#5eead4"/>
+          <text x="450" y="187" text-anchor="middle" fill="#5eead4" font-weight="bold" class="nl">digit 2 · 27 gemiddelden · exact opgelost (u+5-cykel)</text>
+          <text x="450" y="187" text-anchor="middle" fill="#5eead4" font-weight="bold" class="en">digit 2 · 27 means · solved exactly (u+5 cycle)</text>
+          <text x="450" y="208" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">input: c[0..8] (9 getallen) · enzovoort, elke digit een niveau</text>
+          <text x="450" y="208" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">input: c[0..8] (9 numbers) · and so on, one level per digit</text>
+          <text x="450" y="245" text-anchor="middle" fill="#f0abfc" font-size="13" class="nl">⇣ het enige niet-algebraïsche object per niveau: de c-vector (waar de min zijn keuzes maakt)</text>
+          <text x="450" y="245" text-anchor="middle" fill="#f0abfc" font-size="13" class="en">⇣ the only non-algebraic object per level: the c-vector (where the min makes its choices)</text>
+        </g>
+      </svg>
+      <div class="caption nl">De structuurstelling van dit blok: de volledige gemiddelde-hiërarchie van het
+        K-L-systeem is niveau-voor-niveau exacte lineaire algebra. Alle moeilijkheid van het probleem is
+        gecomprimeerd in één rij getallen per niveau · de c-vectoren, de "temperatuurreeks van de min".
+        Blok 5 gaat over hoe díe reeks zich gedraagt.</div>
+      <div class="caption en">The structure theorem of this block: the entire mean hierarchy of the K-L
+        system is exact linear algebra, level by level. All difficulty of the problem is compressed into
+        one row of numbers per level · the c-vectors, the "temperature sequence of the min".
+        Block 5 is about how that sequence behaves.</div>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b4l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 4.2 · De massa-identiteit</span><span class="en">Lesson 4.2 · The mass identity</span></a>
+    <a href="b4l4.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 4.4 · Gaps, slack en certificering</span><span class="en">Lesson 4.4 · Gaps, slack and certification</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 2.2 · De ternaire kant</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 2 · De Arithmetische Structuur</span><span class="en">Block 2 · The Arithmetic Structure</span> › <b>2.2</b></div>
+    <h1 class="nl">De ternaire kant</h1>
+    <h1 class="en">The ternary side</h1>
+    <p class="lead nl">Waar de ×3-stap thuishoort · en waar het onderzoeksprogramma van blokken 3 t/m 5 zal leven.</p>
+    <p class="lead en">Where the ×3 step is at home · and where the research programme of blocks 3 to 5 will live.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Waarom basis 3?</span><span class="en">Why base 3?</span></h2>
+    <p class="nl">In les 1.1 zagen we: elke stap is simpel in zijn eigen talstelsel. De 2-adische kant
+    (les 2.1) maakte de delingen begrijpelijk. Voor de ×3-structuur wisselen we van bril: in basis 3 is
+    \(n \mapsto 3n+1\) gewoon "schuif alle digits één plek en plak een 1 achteraan":</p>
+    <p class="en">In lesson 1.1 we saw: each step is simple in its own number system. The 2-adic side
+    (lesson 2.1) made the divisions transparent. For the ×3 structure we switch glasses: in base 3,
+    \(n \mapsto 3n+1\) is just "shift all digits one place and append a 1":</p>
+    <div class="figure">
+      <svg viewBox="0 0 900 130" width="900">
+        <g font-family="monospace" font-size="20">
+          <text x="230" y="55" text-anchor="middle" fill="#e8eaf6">n = 1 2 0 1<tspan font-size="13" dy="-8">3</tspan></text>
+          <text x="450" y="55" text-anchor="middle" fill="#fbbf24" font-size="24">→</text>
+          <text x="660" y="55" text-anchor="middle" fill="#e8eaf6">3n+1 = 1 2 0 1 <tspan fill="#5eead4">1</tspan><tspan font-size="13" dy="-8">3</tspan></text>
+        </g>
+        <text x="450" y="100" text-anchor="middle" fill="#9aa3c7" font-size="13" class="nl">alle informatie schuift intact door · er komt alleen een digit bij</text>
+        <text x="450" y="100" text-anchor="middle" fill="#9aa3c7" font-size="13" class="en">all information shifts through intact · only one digit is appended</text>
+      </svg>
+    </div>
+    <p class="nl">De prijs: de delingen door 2 worden in basis 3 chaotisch. Maar er is een asymmetrie
+    die deze keuze tóch de juiste maakt voor het <b>telprogramma</b>: delen door 2 is een <i>bijectie</i>
+    op restklassen mod \(3^k\) (2 is inverteerbaar mod 3), terwijl ×3 informatie <i>toevoegt</i>.
+    De ternaire bril houdt dus precies bij hoeveel "nieuwe" getallen er per niveau ontstaan · en tellen
+    is waar blok 3 om draait.</p>
+    <p class="en">The price: divisions by 2 become chaotic in base 3. But an asymmetry makes this choice
+    right for the <b>counting programme</b>: dividing by 2 is a <i>bijection</i> on residues mod \(3^k\)
+    (2 is invertible mod 3), while ×3 <i>adds</i> information. The ternary glasses track exactly how many
+    "new" numbers appear per level · and counting is what block 3 is about.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Klassen mod 3^k: de indexruimte</span><span class="en">Classes mod 3^k: the index space</span></h2>
+    <p class="nl">Vanaf blok 3 werken we op de restklassen modulo \(3^{k}\): een ruimte van \(3^{k}\)
+    punten, geordend als een boom van ternaire digits. Digit 0 (de minst significante) splitst de ruimte
+    in drie klassen; elke volgende digit verfijnt met factor 3:</p>
+    <p class="en">From block 3 onward we work on residues modulo \(3^{k}\): a space of \(3^{k}\) points,
+    organised as a tree of ternary digits. Digit 0 (least significant) splits the space into three
+    classes; each further digit refines by a factor 3:</p>
+    <div class="figure">
+      <svg viewBox="0 0 900 250" width="900">
+        <circle cx="450" cy="35" r="16" fill="#1f2440" stroke="#fbbf24" stroke-width="2"/>
+        <text x="450" y="40" text-anchor="middle" fill="#e8eaf6" font-size="12">·</text>
+        <g stroke="#2c9c8a" stroke-width="1.5">
+          <line x1="450" y1="52" x2="230" y2="98"/><line x1="450" y1="52" x2="450" y2="98"/><line x1="450" y1="52" x2="670" y2="98"/>
+        </g>
+        <g>
+          <circle cx="230" cy="112" r="15" fill="#1f2440" stroke="#5eead4" stroke-width="1.8"/>
+          <text x="230" y="117" text-anchor="middle" fill="#e8eaf6" font-size="12">0</text>
+          <circle cx="450" cy="112" r="15" fill="#1f2440" stroke="#5eead4" stroke-width="1.8"/>
+          <text x="450" y="117" text-anchor="middle" fill="#e8eaf6" font-size="12">1</text>
+          <circle cx="670" cy="112" r="15" fill="#1f2440" stroke="#5eead4" stroke-width="1.8"/>
+          <text x="670" y="117" text-anchor="middle" fill="#e8eaf6" font-size="12">2</text>
+        </g>
+        <g stroke="#2c9c8a" stroke-width="1.2" opacity="0.8">
+          <line x1="230" y1="128" x2="160" y2="172"/><line x1="230" y1="128" x2="230" y2="172"/><line x1="230" y1="128" x2="300" y2="172"/>
+          <line x1="450" y1="128" x2="380" y2="172"/><line x1="450" y1="128" x2="450" y2="172"/><line x1="450" y1="128" x2="520" y2="172"/>
+          <line x1="670" y1="128" x2="600" y2="172"/><line x1="670" y1="128" x2="670" y2="172"/><line x1="670" y1="128" x2="740" y2="172"/>
+        </g>
+        <g font-size="11" fill="#e8eaf6">
+          <circle cx="160" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="160" y="189" text-anchor="middle">00</text>
+          <circle cx="230" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="230" y="189" text-anchor="middle">10</text>
+          <circle cx="300" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="300" y="189" text-anchor="middle">20</text>
+          <circle cx="380" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="380" y="189" text-anchor="middle">01</text>
+          <circle cx="450" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="450" y="189" text-anchor="middle">11</text>
+          <circle cx="520" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="520" y="189" text-anchor="middle">21</text>
+          <circle cx="600" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="600" y="189" text-anchor="middle">02</text>
+          <circle cx="670" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="670" y="189" text-anchor="middle">12</text>
+          <circle cx="740" cy="185" r="13" fill="#1f2440" stroke="#f0abfc"/><text x="740" y="189" text-anchor="middle">22</text>
+        </g>
+        <text x="450" y="235" text-anchor="middle" fill="#9aa3c7" font-size="13" class="nl">digit 0 = klasse · digit 1 = subklasse · enzovoort tot digit k−1</text>
+        <text x="450" y="235" text-anchor="middle" fill="#9aa3c7" font-size="13" class="en">digit 0 = class · digit 1 = subclass · and so on up to digit k−1</text>
+      </svg>
+      <div class="caption nl">De digit-boom van de indexruimte. In blokken 4 en 5 blijkt vrijwel alle structuur
+        van het probleem langs deze boom te leven: exacte identiteiten per digitniveau, en een "cascade"
+        van steeds fijnere correcties.</div>
+      <div class="caption en">The digit tree of the index space. In blocks 4 and 5 nearly all structure
+        of the problem turns out to live along this tree: exact identities per digit level, and a "cascade"
+        of ever finer corrections.</div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Het teken van 2: de spiegel in de klassen</span><span class="en">The sign of 2: the mirror in the classes</span></h2>
+    <p class="nl">Eén klein feit met grote gevolgen: \(2 \equiv -1 \pmod 3\). Vermenigvuldigen met 2
+    <i>spiegelt</i> dus de klassen: klasse 1 en klasse 2 wisselen, klasse 0 blijft. De afbeelding
+    \(u \mapsto 2u+1\), die later de "cb-feed" van de K-L-operator blijkt te sturen, werkt op digit 0
+    als de <b>transpositie</b> 0 ↔ 1 (en 2 blijft staan):</p>
+    <p class="en">One small fact with big consequences: \(2 \equiv -1 \pmod 3\). Multiplying by 2 thus
+    <i>mirrors</i> the classes: classes 1 and 2 swap, class 0 stays. The map \(u \mapsto 2u+1\), which
+    later turns out to drive the "cb-feed" of the K-L operator, acts on digit 0 as the
+    <b>transposition</b> 0 ↔ 1 (with 2 fixed):</p>
+    <table class="nice" style="max-width:420px;margin-left:auto;margin-right:auto">
+      <tr><th>u (mod 3)</th><th>2u+1 (mod 3)</th></tr>
+      <tr><td class="num">0</td><td class="num">1</td></tr>
+      <tr><td class="num">1</td><td class="num">0</td></tr>
+      <tr><td class="num">2</td><td class="num">2</td></tr>
+    </table>
+    <p class="nl">In het onderzoeksdeel van deze cursus (blok 5) verklaart precies dit spiegeltje een
+    gemeten fenomeen: digit-profielen van het systeem <i>wisselen van teken</i> per niveau
+    (correlatie −1.000 tussen opeenvolgende digits), en meetreeksen vertonen periode-2-wiebels.
+    Eén regel modulair rekenen, zichtbaar in de zesde decimaal van grote berekeningen.</p>
+    <p class="en">In the research part of this course (block 5) exactly this little mirror explains a
+    measured phenomenon: digit profiles of the system <i>alternate in sign</i> per level
+    (correlation −1.000 between consecutive digits), and measured sequences show period-2 wobbles.
+    One line of modular arithmetic, visible in the sixth decimal of large computations.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Orbits van verdubbeling: korte en lange banen</span><span class="en">Orbits of doubling: short and long paths</span></h2>
+    <p class="nl">Hoe gedraagt \(u \mapsto 2u+1\) zich op diepere digits, dus modulo \(3^j\)?
+    De <b>orde van 2</b> bepaalt het: \(\mathrm{ord}(2 \bmod 3^j) = 2 \cdot 3^{\,j-2}\) voor \(j \ge 2\).
+    De baanstructuur splitst in enkele korte banen plus steeds langere:</p>
+    <p class="en">How does \(u \mapsto 2u+1\) behave on deeper digits, i.e. modulo \(3^j\)?
+    The <b>order of 2</b> decides: \(\mathrm{ord}(2 \bmod 3^j) = 2 \cdot 3^{\,j-2}\) for \(j \ge 2\).
+    The orbit structure splits into a few short orbits plus ever longer ones:</p>
+    <table class="nice">
+      <tr><th>mod</th><th><span class="nl">baanlengtes van u → 2u+1</span><span class="en">orbit lengths of u → 2u+1</span></th>
+          <th><span class="nl">vast punt</span><span class="en">fixed point</span></th></tr>
+      <tr><td class="num">9</td><td class="num">6 + 2 + 1</td><td class="num">u = 8 (≡ −1)</td></tr>
+      <tr><td class="num">27</td><td class="num">18 + 6 + 2 + 1</td><td class="num">u = 26 (≡ −1)</td></tr>
+      <tr><td class="num">81</td><td class="num">54 + 18 + 6 + 2 + 1</td><td class="num">u = 80 (≡ −1)</td></tr>
+    </table>
+    <div class="figure">
+      <div class="controls">
+        <span class="nl">Startpunt u mod 27:</span><span class="en">Start u mod 27:</span>
+        <input type="number" id="orbInput" value="0" min="0" max="26">
+        <button onclick="showOrb()"><span class="nl">Volg de baan</span><span class="en">Follow the orbit</span></button>
+      </div>
+      <div id="orbOut" style="font-family:monospace;font-size:1rem;color:#5eead4;padding:6px 10px;text-align:left"></div>
+      <div class="caption nl">Het vaste punt u ≡ −1 is de "zelfvoedende lijn": 2(−1)+1 = −1. In blok 5
+        (les 5.3) blijkt dit geen curiositeit maar meetbare natuurkunde van het systeem: cellen op korte
+        banen zijn systematisch "gap-rijker" dan cellen op lange banen · onze orbit-stratificatiewet.</div>
+      <div class="caption en">The fixed point u ≡ −1 is the "self-feeding line": 2(−1)+1 = −1. In block 5
+        (lesson 5.3) this turns out to be measurable physics of the system, not a curiosity: cells on short
+        orbits are systematically "gap-richer" than cells on long orbits · our orbit stratification law.</div>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b2l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 2.1 · Pariteitsvectoren</span><span class="en">Lesson 2.1 · Parity vectors</span></a>
+    <a href="b2l3.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 2.3 · Dichtheid en maat</span><span class="en">Lesson 2.3 · Density and measure</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script>
+function showOrb() {
+  var u = parseInt(document.getElementById('orbInput').value, 10);
+  if (!(u >= 0 && u <= 26)) return;
+  var seen = [u], m = u;
+  for (var i = 0; i < 30; i++) {
+    m = (2 * m + 1) % 27;
+    if (m === u) break;
+    seen.push(m);
+  }
+  document.getElementById('orbOut').innerHTML =
+    seen.join(' → ') + ' → <span style="color:#f0abfc">' + u + '</span>' +
+    '<br><span style="color:#9aa3c7">' +
+    (document.documentElement.getAttribute('data-lang') === 'en' ? 'orbit length: ' : 'baanlengte: ') +
+    seen.length + '</span>';
+}
+window.addEventListener('DOMContentLoaded', showOrb);
+</script>
+</body>
+</html>
