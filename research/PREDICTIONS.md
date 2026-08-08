@@ -40,3 +40,7 @@
     over lam in {1.85, 1.87, 1.89, 1.91, 1.93}. Prediction: s(k) decreases
     monotonically toward s(inf) = -rho_lin'(2) = 0.1556 (algebraic, from the mass
     identity). Measured so far: s(9)=0.3320 ... s(16)=0.2929, ratio ~0.982/step.
+
+16. (frozen 2026-08-08, Obs 524) TR(2.00, k=16->17) = 0.8215 +- 0.0045, where
+    TR = inc_last(k+1)/inc_last(k) per Script 333 (log2-field, prefix increments,
+    last layer). Stationarity claim: no upward creep in the clean instrument.

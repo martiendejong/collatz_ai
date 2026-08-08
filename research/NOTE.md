@@ -14454,3 +14454,33 @@ venster juist uitsluit. Toetsbaar door k te varieren — vervolgpunt.
 ### Gap-splitsing phi = g2/(g0+g1+g2): geen simpele vorm
 phi(1.05/1.70/2.00) = 0.374 / 0.500 / 0.547; kandidaten lam^2/(1+lam^2) en
 lam/(1+lam) verworpen. De toevallige 1/2 bij lam=1.70 is een kruispunt, geen wet.
+
+## Obs 524 (2026-08-08): HET TR-INSTRUMENT — 1.10 VERKLAARD, GEEN KRUIP BIJ LAMBDA=2 (Scripts 331-333)
+
+### (a) De 1.10-factor volledig verklaard
+De top-laag-increment inc_last(k) vervalt over k met rate 0.7552/0.7561 (lam=1.70)
+— exact het d-plateau van het paper (0.756-0.766). CONCLUSIE: d meet de over-k-rate
+van de randlaag; r meet het binnen-k-bulkplateau; d/r ~ 1.10 is hun verschil op
+eindige k. De bulk drift omhoog (+0.006/k) richting de top-rate: beide instrumenten
+convergeren naar dezelfde limiet, en de top-rate is de SNELST geconvergeerDE schatter.
+
+### (b) TR als precisie-instrument: de schone c(lambda)-curve
+TR(k) := inc_last(k+1)/inc_last(k); k-stabiel tot |drift| <= 0.0025 op ALLE 12 lambda's:
+lam:  1.05   1.10   1.20   1.30   1.40   1.50   1.60   1.70   1.80   1.90   1.95   2.00
+c:    0.4048 0.4360 0.5011 0.5670 0.6273 0.6791 0.7213 0.7561 0.7826 0.8045 0.8138 0.8218
+Closed-form-mining op deze schone waarden (13 kandidaten, train/test): NULRESULTAAT
+(geen < 3%) — het c(lambda)-verband blijft zonder gesloten vorm. EERLIJK OPEN.
+
+### (c) DE KRUIPTEST: geen kruip bij lambda = 2 (BELANGRIJK)
+TR(2.00, k) over zeven stappen k=9..16:
+  0.8237 0.7967 0.8109 0.8218 0.8218 0.8185 0.8229
+  drifts: -0.027 +0.014 +0.011 +0.000 -0.003 +0.004 | GEMIDDELD -0.00014/stap.
+Het paper-V-instrument rapporteerde +0.003/stap kruip (DE faalmodus-zorg van
+Conjectuur G). In het schone instrument: STATIONAIR, c(2) = 0.820 +- 0.002, en de
+kruipbound is ~20x scherper dan voorheen. Dit is de sterkste DENSITY-evidentie tot
+nu toe. Kanttekening: 7 punten, wobble +-0.004; kruip < +0.001/stap niet uitgesloten.
+De V-kruip is vermoedelijk een artefact van tel-weging/endpoint-referentie.
+
+### Bevroren voorspelling (PREDICTIONS #16)
+TR(2.00, 16->17) = 0.8215 +- 0.0045 (stationariteit; definitie: inc_last-ratio
+zoals in Script 333, zelfde iteratie-aantallen-schema).
