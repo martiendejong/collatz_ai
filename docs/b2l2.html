@@ -337,15 +337,18 @@
       </div>
       <div class="caption nl">Kleuren liggen vast per digitwaarde: binair donker = 0, groenblauw = 1;
         ternair donker = 0, roze = 1, fel magenta = 2. Een vallend blok is een run die in één keer wordt
-        gelezen; een gele rand markeert digits die zojuist door de carry-rekening zijn veranderd. Let op
-        de dualiteit: <i>k</i> binaire enen eruit = <i>k</i> ternaire tweeën erin, en alleen ná een
-        enen-run verandert de voorkant. De grootboekregel toont het duw-en-trekspel: schrijven kost
+        gelezen. Gele randen verschijnen alleen bij de conversiestap (de enen-run): ze omcirkelen precies
+        de digits die de binair-naar-ternair-rekening herschrijft; het lezen van een nullen-run is geel-vrij,
+        want dan schuift alles onveranderd door. Let op de dualiteit: <i>k</i> binaire enen eruit =
+        <i>k</i> ternaire tweeën erin, en alleen ná een enen-run verandert de voorkant. De grootboekregel toont het duw-en-trekspel: schrijven kost
         log₂3 ≈ 1.585 bit per digit, lezen verwijdert gemiddeld 2 bits per rondgang · netto −0.415 bit,
         en het vermoeden zegt dat het lezen altijd wint tot alleen "1" overblijft.</div>
       <div class="caption en">Colours are fixed per digit value: binary dark = 0, teal = 1; ternary
         dark = 0, pink = 1, bright magenta = 2. A falling block is a run being read in one go; a yellow
-        outline marks digits just changed by the carry arithmetic. Note the duality: <i>k</i> binary
-        ones out = <i>k</i> ternary twos in, and only after a run of ones does the front change. The
+        outline appears only at the conversion step (the run of ones): it circles exactly the digits the
+        binary-to-ternary arithmetic rewrites; reading a run of zeros is yellow-free, since everything
+        slides through unchanged. Note the duality: <i>k</i> binary ones out = <i>k</i> ternary twos in,
+        and only after a run of ones does the front change. The
         ledger shows the tug-of-war: writing costs log₂3 ≈ 1.585 bits per digit, reading removes 2 bits
         per pass on average · net −0.415 bits, and the conjecture says reading always wins until only
         "1" remains.</div>
@@ -394,16 +397,23 @@ function toTernary(n) {
 }
 function bsClip(s) { return s.length > 60 ? '…' + s.slice(-59) : s; }
 
-function renderRow(el, str, prevStr, base) {
+/* pulse flags: which digits changed, given the RIGHT reference and alignment per case */
+function diffRight(str, ref) {
+  var flags = [], offset = str.length - ref.length;
+  for (var i = 0; i < str.length; i++) {
+    var pi = i - offset;
+    flags.push(!(pi >= 0 && pi < ref.length && ref[pi] === str[i]));
+  }
+  return flags;
+}
+function renderRow(el, str, base, flags) {
   el.innerHTML = '';
-  var offset = str.length - prevStr.length;
   for (var i = 0; i < str.length; i++) {
     var ch = str[i];
     var d = document.createElement('div');
     d.className = 'dg ' + (base === 2 ? 'b' : 't') + (ch === '…' ? '0' : ch);
     d.textContent = ch;
-    var pi = i - offset;
-    if (prevStr && ch !== '…' && (pi < 0 || prevStr[pi] !== ch)) d.classList.add('pulse');
+    if (flags && flags[i] && ch !== '…') d.classList.add('pulse');
     el.appendChild(d);
   }
   setTimeout(function () {
@@ -416,11 +426,19 @@ function markDyingRun(el, count) {
     kids[kids.length - 1 - i].classList.add('dying');
   }
 }
-function bsRenderAll() {
+/* mode: 'init' (no pulses) · 'zeros' (run read: front slides unchanged, no yellow anywhere)
+         'ones' (the one conversion step: yellow around every digit the conversion rewrites) */
+function bsRenderAll(mode, runLen) {
   var bin = bsClip(bsState.n.toString(2));
   var ter = bsClip(toTernary(bsState.n));
-  renderRow(document.getElementById('bsBin'), bin, bsState.prevBin, 2);
-  renderRow(document.getElementById('bsTer'), ter, bsState.prevTer, 3);
+  var fBin = null, fTer = null;
+  if (mode === 'ones') {
+    var oldFront = bsState.prevBin.slice(0, Math.max(0, bsState.prevBin.length - runLen));
+    fBin = diffRight(bin, oldFront);
+    fTer = diffRight(ter, bsState.prevTer);
+  }
+  renderRow(document.getElementById('bsBin'), bin, 2, fBin);
+  renderRow(document.getElementById('bsTer'), ter, 3, fTer);
   bsState.prevBin = bin; bsState.prevTer = ter;
   document.getElementById('bsW').textContent = bsState.w;
   document.getElementById('bsR').textContent = bsState.r;
@@ -446,7 +464,7 @@ function bsMacro(done) {
     markDyingRun(document.getElementById('bsBin'), j);
     setTimeout(function () {
       bsState.n = m; bsState.r += j; bsState.steps += j;
-      bsRenderAll(); bsState.busy = false; if (done) done();
+      bsRenderAll('zeros', j); bsState.busy = false; if (done) done();
     }, 500);
   } else {
     var k = 0, t = bsState.n;
@@ -460,7 +478,7 @@ function bsMacro(done) {
     markDyingRun(document.getElementById('bsBin'), k);
     setTimeout(function () {
       bsState.n = next; bsState.w += k; bsState.r += k; bsState.steps += 2 * k;
-      bsRenderAll(); bsState.busy = false; if (done) done();
+      bsRenderAll('ones', k); bsState.busy = false; if (done) done();
     }, 500);
   }
 }
