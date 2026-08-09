@@ -14757,3 +14757,41 @@ elk niveau is gammabar-machten kleiner: een ASYMPTOTISCHE EXPANSIE die op het
 eindpunt exact zou worden ALS de productbalans e*gammabar -> b* bewijsbaar is.
 Het "lineair krijgen" is dus gelukt tot op een productbalans-bewering — de
 definitieve lineaire-defect-vorm van het homogenisatie-lemma.
+
+## Obs 534 (2026-08-09): HET LEESRAAM — WAAR LANGE ENEN-REEKSEN VANDAAN KOMEN (Script 347)
+
+Aanleiding: de run-gebaseerde animatie in cursus 2.2 (gecombineerde stap
+n = a*2^k - 1 -> (a*3^k - 1)/2, ternaire staart wordt k enen). Martiens
+observatie: "er zijn maar een paar situaties waarop grote reeksen enen
+verschijnen; heel duidelijke condities". Die condities zijn nu exact.
+
+### H1 — de leesraam-stelling (exact, 184.891 stappen, 0 fouten)
+Zet A = a*3^k (het product van de conversiestap). Schrijf A binair. Dan leest
+de staart van A letterlijk het vervolg van de baan af:
+  A eindigt op:  [volgende enen-run k']  [v-1 nullen]  [1]
+oftewel A = m1*2^v + 1 met m1 het volgende oneven getal, en de trailing enen
+van m1 zijn de bits van A op posities v..v+k'-1. De toekomstige runstructuur
+IS de binaire expansie van a*3^k, gelezen van onderaf. (Triviaal na herschrijven,
+maar het juiste frame: de "poef" van de voorkant bepaalt exact wat er straks valt.)
+
+### H2 — de conditie is EEN restklasse (de kern van Martiens observatie)
+Voor elke (k, v, K) is er precies EEN restklasse van a modulo 2^(v+K+1) die een
+volgende run van exact K enen geeft: a = (1 + 2^v(2^K - 1)) * 3^(-k) mod 2^(v+K+1).
+Numeriek geverifieerd (alle geteste (k,v,K): exact 1 klasse). Elke extra gewenste
+een HALVEERT dus het aantal kwalificerende voorkanten: lange reeksen zijn
+exponentieel zeldzaam, P(k'=K) ~ 2^-K (gemeten 0.51/0.23/0.13/0.067/0.028...).
+
+### H4 — de groeiconditie (exact per macro-stap)
+log2-factor van een macro-stap = k*log2(3) - (k+v). Groei ⟺ v < 0.585*k.
+Dus: k=1 krimpt ALTIJD (-0.415 bij v=1, gemeten exact); k=2 groeit alleen bij
+v=1 (+0.170); k=3 bij v=1 (+0.755); k=4 bij v<=2. Gemiddelde drift per
+macro-stap: -0.8210 gemeten vs theorie 2*log2(3)-4 = -0.8301 (E[k]=E[v]=2).
+
+### Synthese
+Een lange klim = een KETTING van conversies waarbij a*3^k telkens in de juiste
+exponentieel dunne 2-adische cel valt (een restklasse mod 2^(v+K+1) per stap).
+Of 3-machten die cellen eeuwig kunnen blijven raken is exact de equidistributie
+van 3^k in Z2 — hetzelfde log2(3)-irrationaliteitsmuur als de productbalans
+(Obs 533). De patroonvraag "wanneer worden reeksen langer" is hiermee herleid
+tot dezelfde irreducibele kern, maar nu in zijn meest elementaire gedaante:
+één restklasse per gewenste extra een.
