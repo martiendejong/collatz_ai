@@ -14724,3 +14724,36 @@ sibling-lag/zelfconsistentie (531) + structuurfunctie met sluitende somregel (53
 Alles aan de lineaire kant is exact of tabel-exact; de wiskundige inhoud van
 gamma -> 1 is volledig geconcentreerd in de werking van een lokale min op een
 maximaal-gecorreleerde triple met tabel-bekende correlatiestructuur.
+
+## Obs 533 (2026-08-09): DE LINEARISATIE-ANALYSE — WAAR HET PROBLEEM PRECIES ZIT (Script 346)
+
+### Lokalisatie van de niet-lineariteit (exact)
+min = gemiddelde - selectiebias. EERSTE MOMENT van de bias: exact lineair bekend
+(massa-identiteit + gesloten gammabar-vorm). De niet-lineariteit zit UITSLUITEND
+in het tweede moment: de covariantie van de bias met het lokale niveau (= b).
+
+### De bilineaire structuur (tweede orde exact)
+Voor triples x = m(1+eps*xi) met kleine sliver: min = m(1 + eps*min(xi)), dus
+E[min|cel] = m - kappa*sigma_w met kappa een pure VORMCONSTANTE. Tot tweede orde is
+het systeem LINEAIR + EEN BILINEAIRE term (niveau x ruwheid). De ketting:
+b = kappa-gecorrigeerde e * gammabar (elasticiteit x relatieve gap) — herleidt de
+c<1-vraag tot de PRODUCTBALANS: gammabar -> 0, e -> oneindig, product b* eindig
+in (0,2). Gemeten: b ~ 0.1-0.19 stabiel — de balans bestaat empirisch.
+
+### Gaussianiteit van de sliver-vorm (Script 346)
+kappa_gauss (som-nul-triples) = 1.16972. Gemeten: lam=1.05: 1.18317 (ratio 1.011!),
+lam=1.70: 1.0965 (0.937), lam=2.00: 1.0442 (0.893); skew 0/-0.02/+0.08/+0.13.
+De sliver is BIJNA-Gaussisch, met kleine lam-afhankelijke vormcorrectie die groeit
+naar ~11% op het eindpunt. De "universele kappa"-linearisatie is dus een goede
+eerste orde; de vormcorrectie is de zelfconsistente rest.
+STATISTIEKVALKUIL (eerlijk genoteerd): kurtosis van eigen-sigma-genormaliseerde
+som-nul-triples is CONSTRAINED (exact -1.5 voor elke wet, ook Gauss) — die kolom
+draagt nul informatie; alleen kappa en skew discrimineren.
+
+### Het linearisatieprogramma (de opdracht "maak het lineair", stand)
+Orde 1: exact lineair (klaar). Orde 2: bilineair met bijna-universele kappa (klaar
+op 1-11% vormcorrectie na). De rest verschuift naar orde 3 (de elasticiteit e) —
+elk niveau is gammabar-machten kleiner: een ASYMPTOTISCHE EXPANSIE die op het
+eindpunt exact zou worden ALS de productbalans e*gammabar -> b* bewijsbaar is.
+Het "lineair krijgen" is dus gelukt tot op een productbalans-bewering — de
+definitieve lineaire-defect-vorm van het homogenisatie-lemma.
