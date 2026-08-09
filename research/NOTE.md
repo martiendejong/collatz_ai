@@ -15001,3 +15001,37 @@ venstertreffer vereisen — maat nul op elke schaal. Het vermoeden is de bewerin
 dat geen enkel individueel getal die samenzwering in zijn expansie heeft
 zitten; de tabel maakt de samenzwering eindig-checkbaar per diepte, de limiet
 is de equidistributiemuur.
+
+## Obs 541 (2026-08-09): CYCLI EN HET "5/8-MECHANISME" — SLUITING IS EEN DEELBAARHEID (Script 354)
+
+### De sluitingsvergelijking (1-cyclus: één klim, één daling)
+n = a*2^k - 1 klimt naar a*3^k - 1, daalt j keer: cyclus <=>
+  a * (2^(k+j) - 3^k) = 2^j - 1.
+Volledige enumeratie k,j <= 400: precies TWEE oplossingen.
+  k=1, j=1 (2^2 - 3 = 1):  a=1,  n=1  — de triviale cyclus 1-4-2-1.
+  k=2, j=1 (2^3 - 9 = -1): a=-1, n=-5 — de beroemde NEGATIEVE cyclus -5.
+Martiens "5/8-mechanisme" bestaat dus echt, maar het enige positieve exemplaar
+is de triviale cyclus; het volgende exemplaar leeft op n=-5. Steiner (1977)
+bewees via Baker (lineaire vormen in logaritmen) dat er nooit andere positieve
+1-cycli zijn; Simons (2005) sloot 2-cycli uit, Simons-de Weger m<=68,
+Hercher (2023) m<=91 fasen.
+
+### Waarom meerdere fasen niet helpen samenspannen
+2^N = 3^K * prod(1 + 1/(3 n_i)): ALLE +1-correcties hebben hetzelfde teken.
+Fasen kunnen elkaar niet uitmiddelen; elke extra fase verscherpt alleen de eis.
+Gevolg: 0 < N/K - log2(3) < 1/(3 ln2 n_min) — een eenzijdige rationale
+benadering van log2(3).
+
+### De scherpe ondergrens gereproduceerd (onafhankelijke herafleiding)
+Met n_min = 2^68 (Barina-verificatie) en de kettingbreuk van log2(3), inclusief
+semiconvergenten: minimale K = 72.057.431.991 oneven stappen, minimale
+cykellengte K+N ~ 186.265.759.594 stappen — op de cijfer gelijk aan de
+literatuurwaarde (~186 miljard). De semiconvergent-stap was essentieel: pure
+convergenten geven 355 miljard, de mediant q = 6586818670 + 65470613321 haalt
+de eis eerder.
+
+### De muur, zuiverste vorm
+Cyclusbestaan = "valt 2^N/3^K ooit in (1, 1+2^-68)" = de irrationaliteitsmaat
+van log2(3). Baker doodt kleine faseaantallen; voor alle m is de stelling te
+zwak — dezelfde ene muur als de productbalans en de equidistributie, hier in
+zijn klassiekste gedaante.
