@@ -165,6 +165,113 @@
     </div>
   </div>
 
+  <!-- ===== SUBJECT 5 ===== -->
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">De lus: Collatz als herhaalde conversie-pijplijn</span><span class="en">The loop: Collatz as a repeated conversion pipeline</span></h2>
+
+    <p class="nl">Alles uit dit blok komt samen in één procesmodel. Eén volledige Collatz-passage
+    (van oneven getal naar het volgende oneven getal) bestaat uit vier stappen · en daarna
+    herhaalt het zich:</p>
+    <p class="en">Everything in this block converges into one process model. One full Collatz pass
+    (from an odd number to the next odd number) consists of four steps · and then it repeats:</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 400" width="900">
+        <defs><marker id="arl" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#5eead4"/></marker></defs>
+        <rect x="330" y="20" width="240" height="64" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+        <text x="450" y="46" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="nl">1 · strip de nullen</text>
+        <text x="450" y="46" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="en">1 · strip the zeros</text>
+        <text x="450" y="70" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">deel door 2 tot oneven · niet-lokaal</text>
+        <text x="450" y="70" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">divide by 2 until odd · non-local</text>
+        <rect x="620" y="150" width="250" height="64" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+        <text x="745" y="176" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="nl">2 · conversiestap 3n+1</text>
+        <text x="745" y="176" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="en">2 · conversion step 3n+1</text>
+        <text x="745" y="200" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">shift-en-plak in basis 3</text>
+        <text x="745" y="200" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">shift-and-append in base 3</text>
+        <rect x="330" y="300" width="240" height="64" rx="12" fill="#1f2440" stroke="#5eead4" stroke-width="2"/>
+        <text x="450" y="326" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="nl">3 · voeg in bij een familie</text>
+        <text x="450" y="326" text-anchor="middle" fill="#5eead4" font-size="14" font-weight="bold" class="en">3 · merge into a family</text>
+        <text x="450" y="350" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">land in een verdubbelingsketen</text>
+        <text x="450" y="350" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">land inside a doubling chain</text>
+        <rect x="30" y="150" width="250" height="64" rx="12" fill="#1f2440" stroke="#f0abfc" stroke-width="2.5"/>
+        <text x="155" y="176" text-anchor="middle" fill="#f0abfc" font-size="14" font-weight="bold" class="nl">4 · de carry-automaat</text>
+        <text x="155" y="176" text-anchor="middle" fill="#f0abfc" font-size="14" font-weight="bold" class="en">4 · the carry automaton</text>
+        <text x="155" y="200" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">basis-2/3-rekenwerk · niet lineair</text>
+        <text x="155" y="200" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">base-2/3 arithmetic · not linear</text>
+        <path d="M575 66 Q700 85 738 145" fill="none" stroke="#5eead4" stroke-width="2.2" marker-end="url(#arl)"/>
+        <path d="M740 219 Q690 300 575 330" fill="none" stroke="#5eead4" stroke-width="2.2" marker-end="url(#arl)"/>
+        <path d="M325 332 Q195 305 158 219" fill="none" stroke="#5eead4" stroke-width="2.2" marker-end="url(#arl)"/>
+        <path d="M160 145 Q210 80 325 52" fill="none" stroke="#f0abfc" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#arl)"/>
+        <text x="205" y="95" fill="#f0abfc" font-size="13" font-weight="bold" class="nl">herhaal ↻</text>
+        <text x="205" y="95" fill="#f0abfc" font-size="13" font-weight="bold" class="en">repeat ↻</text>
+        <text x="450" y="180" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="bold">×3/4</text>
+        <text x="450" y="202" text-anchor="middle" fill="#9aa3c7" font-size="12" class="nl">gemiddelde krimp per rondgang</text>
+        <text x="450" y="202" text-anchor="middle" fill="#9aa3c7" font-size="12" class="en">average shrink per pass</text>
+      </svg>
+      <div class="caption nl">De Collatz-lus. Stappen 1–3 zijn volledig begrepen (lineair of exact);
+        stap 4 · het carry-rekenwerk van de basisconversie · is de enige die zich niet laat lineariseren.
+        In basis 6 is die stap letterlijk een simpele cellulaire automaat met lokale regels.</div>
+      <div class="caption en">The Collatz loop. Steps 1–3 are fully understood (linear or exact);
+        step 4 · the carry arithmetic of the base conversion · is the only one that resists linearisation.
+        In base 6 that step is literally a simple cellular automaton with local rules.</div>
+    </div>
+
+    <h3 class="nl">De herhaling ís de berekening</h3>
+    <h3 class="en">The repetition is the computation</h3>
+    <p class="nl">Elke stap afzonderlijk is bijna triviaal; alle diepte zit in het sluiten van de lus.
+    Drie observaties maken dat precies:</p>
+    <p class="en">Each individual step is almost trivial; all the depth lies in closing the loop.
+    Three observations make that precise:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Observatie</span><span class="en">Observation</span></th>
+          <th><span class="nl">Betekenis</span><span class="en">Meaning</span></th></tr>
+      <tr>
+        <td><span class="nl">Per rondgang krimpt het getal gemiddeld ×3/4</span>
+            <span class="en">Per pass the number shrinks by ×3/4 on average</span></td>
+        <td><span class="nl">de drift-heuristiek (les 1.2) is een lus-uitspraak: het vermoeden zegt dat
+            de spiraal altijd naar binnen draait</span>
+            <span class="en">the drift heuristic (lesson 1.2) is a loop statement: the conjecture says
+            the spiral always turns inward</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Het vaste punt van de lus is 1 → 4 → 2 → 1, en dat bestaat omdat 2² − 3 = 1</span>
+            <span class="en">The loop's fixed point is 1 → 4 → 2 → 1, and it exists because 2² − 3 = 1</span></td>
+        <td><span class="nl">de kleinste bijna-botsing van machten van 2 en 3; de stelling van Mihailescu
+            (Catalan) zegt dat zulke botsingen extreem zeldzaam zijn · de lus kan bijna nergens anders
+            in zijn eigen staart bijten</span>
+            <span class="en">the smallest near-collision of powers of 2 and 3; Mihailescu's theorem
+            (Catalan) says such collisions are extremely rare · the loop can hardly bite its own tail
+            anywhere else</span></td>
+      </tr>
+      <tr>
+        <td><span class="nl">Eén stap van de automaat is analyseerbaar; het gedrag van de oneindig
+            herhaalde lus is dat (in het algemeen) bewijsbaar níet (Conway, les 1.3)</span>
+            <span class="en">One automaton step is analysable; the behaviour of the infinitely repeated
+            loop is (in general) provably not (Conway, lesson 1.3)</span></td>
+        <td><span class="nl">de berekening zit niet in een stap maar in de sluiting van de lus</span>
+            <span class="en">the computation is not in any step but in the closure of the loop</span></td>
+      </tr>
+    </table>
+
+    <div class="callout">
+      <div class="title nl">De brug naar het onderzoeksprogramma</div>
+      <div class="title en">The bridge to the research programme</div>
+      <span class="nl">In blokken 3 t/m 5 correspondeert één rondgang van deze lus met één niveau van de
+      digit-toren van het telsysteem. Het onderzoeksresultaat van dit project, in lus-taal: stappen 1–3
+      zijn exact lineariseerbaar, en van stap 4 is de <i>statistiek</i> bijna volledig vangbaar ·
+      op één getal per rondgang na (de contractieconstante c van blok 5). De vraag of het telprogramma
+      γ = 1 haalt, luidt dan: <b>vergeet elke herhaling van de pijplijn een strikt positieve fractie
+      van de fijnstructuur van de vorige?</b></span>
+      <span class="en">In blocks 3 to 5, one pass of this loop corresponds to one level of the counting
+      system's digit tower. This project's research result, in loop language: steps 1–3 are exactly
+      linearisable, and of step 4 the <i>statistics</i> are almost entirely capturable · except for one
+      number per pass (the contraction constant c of block 5). The question whether the counting
+      programme reaches γ = 1 then reads: <b>does every repetition of the pipeline forget a strictly
+      positive fraction of the previous one's fine structure?</b></span>
+    </div>
+  </div>
+
   <div class="lesson-nav">
     <a href="b2l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 2.1 · Pariteitsvectoren</span><span class="en">Lesson 2.1 · Parity vectors</span></a>
