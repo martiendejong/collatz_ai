@@ -299,7 +299,7 @@
       .digitrow .dg {
         width: 26px; height: 30px; border-radius: 5px; display: flex; align-items: center;
         justify-content: center; font-family: monospace; font-size: 15px; font-weight: 700;
-        transition: opacity 0.45s, transform 0.45s, box-shadow 0.3s;
+        transition: opacity 0.5s, transform 0.55s ease-in, box-shadow 0.3s, background 0.55s, color 0.55s, border-color 0.55s;
       }
       /* kleuren per digitWAARDE — blijven gelijk tijdens bewegen */
       .dg.b0 { background: #0d1626; color: #46557a; border: 1px solid #26304d; }
@@ -309,6 +309,14 @@
       .dg.t2 { background: #7c2d8f; color: #fce7ff; border: 1px solid #d946ef; }
       .dg.pulse { box-shadow: 0 0 0 2px #fbbf24; }
       .dg.dying { opacity: 0; transform: translateY(16px); }
+      /* binaire enen vallen naar de ternaire rij en kleuren onderweg naar magenta */
+      .dg.transfer { opacity: 0.95; transform: translateY(74px) scale(1.08);
+                     background: #7c2d8f; color: #fce7ff; border-color: #d946ef; }
+      .dg.land { animation: landPulse 0.6s ease-out; }
+      @keyframes landPulse {
+        0% { transform: scale(1.4); box-shadow: 0 0 14px #d946ef; }
+        100% { transform: scale(1); box-shadow: none; }
+      }
       .rowlabel { color: var(--muted); font-size: 0.85rem; text-align: right; padding-right: 6px; }
       .ledger { display: flex; gap: 26px; justify-content: center; margin-top: 10px; flex-wrap: wrap; font-size: 0.95rem; }
       .ledger b { font-size: 1.15rem; }
@@ -328,6 +336,7 @@
       <div class="digitrow rowbin" id="bsBin"></div>
       <div class="rowlabel"><span class="nl">ternair · tweeën haken rechts aan</span><span class="en">ternary · twos attach at the right</span></div>
       <div class="digitrow rowter" id="bsTer"></div>
+      <div style="text-align:center; font-family:monospace; font-size:1.15rem; color:#fbbf24; margin-top:8px" id="bsDec"></div>
       <div class="phasetxt" id="bsPhase"></div>
       <div class="ledger">
         <div><span class="nl">geschreven: </span><span class="en">written: </span><b id="bsW" style="color:#f0abfc">0</b> <span class="nl">digits (× 1.585 bit)</span><span class="en">digits (× 1.585 bits)</span></div>
@@ -337,17 +346,18 @@
       </div>
       <div class="caption nl">Kleuren liggen vast per digitwaarde: binair donker = 0, groenblauw = 1;
         ternair donker = 0, roze = 1, fel magenta = 2. Een vallend blok is een run die in één keer wordt
-        gelezen. Gele randen verschijnen alleen bij de conversiestap (de enen-run): ze omcirkelen precies
-        de digits die de binair-naar-ternair-rekening herschrijft; het lezen van een nullen-run is geel-vrij,
-        want dan schuift alles onveranderd door. Let op de dualiteit: <i>k</i> binaire enen eruit =
+        gelezen. Bij de conversiestap vallen de binaire enen naar beneden, kleuren onderweg naar magenta
+        en landen als tweeën in de ternaire rij; gele randen omcirkelen daarbij precies de digits die de
+        binair-naar-ternair-rekening herschrijft. Het lezen van een nullen-run is geel-vrij, want dan
+        schuift alles onveranderd door. Let op de dualiteit: <i>k</i> binaire enen eruit =
         <i>k</i> ternaire tweeën erin, en alleen ná een enen-run verandert de voorkant. De grootboekregel toont het duw-en-trekspel: schrijven kost
         log₂3 ≈ 1.585 bit per digit, lezen verwijdert gemiddeld 2 bits per rondgang · netto −0.415 bit,
         en het vermoeden zegt dat het lezen altijd wint tot alleen "1" overblijft.</div>
       <div class="caption en">Colours are fixed per digit value: binary dark = 0, teal = 1; ternary
         dark = 0, pink = 1, bright magenta = 2. A falling block is a run being read in one go; a yellow
-        outline appears only at the conversion step (the run of ones): it circles exactly the digits the
-        binary-to-ternary arithmetic rewrites; reading a run of zeros is yellow-free, since everything
-        slides through unchanged. Note the duality: <i>k</i> binary ones out = <i>k</i> ternary twos in,
+        At the conversion step the binary ones fall down, turn magenta on the way and land as twos in
+        the ternary row; yellow outlines circle exactly the digits the binary-to-ternary arithmetic
+        rewrites. Reading a run of zeros is yellow-free, since everything slides through unchanged. Note the duality: <i>k</i> binary ones out = <i>k</i> ternary twos in,
         and only after a run of ones does the front change. The
         ledger shows the tug-of-war: writing costs log₂3 ≈ 1.585 bits per digit, reading removes 2 bits
         per pass on average · net −0.415 bits, and the conjecture says reading always wins until only
@@ -420,10 +430,10 @@ function renderRow(el, str, base, flags) {
     for (var j = 0; j < el.children.length; j++) el.children[j].classList.remove('pulse');
   }, 750);
 }
-function markDyingRun(el, count) {
+function markDyingRun(el, count, cls) {
   var kids = el.children;
   for (var i = 0; i < count && i < kids.length; i++) {
-    kids[kids.length - 1 - i].classList.add('dying');
+    kids[kids.length - 1 - i].classList.add(cls || 'dying');
   }
 }
 /* mode: 'init' (no pulses) · 'zeros' (run read: front slides unchanged, no yellow anywhere)
@@ -436,10 +446,19 @@ function bsRenderAll(mode, runLen) {
     var oldFront = bsState.prevBin.slice(0, Math.max(0, bsState.prevBin.length - runLen));
     fBin = diffRight(bin, oldFront);
     fTer = diffRight(ter, bsState.prevTer);
+    // de laatste k tweeën krijgen geen gele rand maar de landings-animatie
+    for (var q = 1; q <= runLen && fTer.length - q >= 0; q++) fTer[fTer.length - q] = false;
   }
   renderRow(document.getElementById('bsBin'), bin, 2, fBin);
-  renderRow(document.getElementById('bsTer'), ter, 3, fTer);
+  var terEl = document.getElementById('bsTer');
+  renderRow(terEl, ter, 3, fTer);
+  if (mode === 'ones') {
+    for (var z = 1; z <= runLen && terEl.children.length - z >= 0; z++) {
+      terEl.children[terEl.children.length - z].classList.add('land');
+    }
+  }
   bsState.prevBin = bin; bsState.prevTer = ter;
+  document.getElementById('bsDec').textContent = 'n = ' + bsState.n.toString(10);
   document.getElementById('bsW').textContent = bsState.w;
   document.getElementById('bsR').textContent = bsState.r;
   document.getElementById('bsNet').textContent = (bsState.n.toString(2).length - 1);
@@ -473,13 +492,13 @@ function bsMacro(done) {
     var p3 = 1n; for (var q = 0; q < k; q++) p3 *= 3n;
     var next = a * p3 - 1n;
     document.getElementById('bsPhase').textContent = lang === 'en'
-      ? 'run of ' + k + ' one' + (k > 1 ? 's' : '') + ' consumed in one go → ' + k + ' ternary two' + (k > 1 ? 's' : '') + ' · then the front changes'
-      : 'run van ' + (k > 1 ? k + ' enen' : '1 één') + ' in één keer verteerd → ' + k + ' ternaire twee' + (k > 1 ? 'ën' : '') + ' · daarna verandert de voorkant';
-    markDyingRun(document.getElementById('bsBin'), k);
+      ? 'run of ' + k + ' one' + (k > 1 ? 's' : '') + ' falls down and lands as ' + k + ' ternary two' + (k > 1 ? 's' : '') + ' · then the front changes'
+      : 'run van ' + (k > 1 ? k + ' enen' : '1 één') + ' valt naar beneden en landt als ' + k + ' ternaire twee' + (k > 1 ? 'ën' : '') + ' · daarna verandert de voorkant';
+    markDyingRun(document.getElementById('bsBin'), k, 'transfer');
     setTimeout(function () {
       bsState.n = next; bsState.w += k; bsState.r += k; bsState.steps += 2 * k;
       bsRenderAll('ones', k); bsState.busy = false; if (done) done();
-    }, 500);
+    }, 620);
   }
 }
 function bsSchedule() {
