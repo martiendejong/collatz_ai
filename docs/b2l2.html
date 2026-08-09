@@ -276,14 +276,22 @@
   <div class="subject">
     <h2><span class="snum">6</span><span class="nl">De bit-stroom: lezen en schrijven aan de staart</span><span class="en">The bit stream: reading and writing at the tail</span></h2>
 
-    <p class="nl">De baan ís de conversie, bit voor bit uitgevoerd. Elke oneven stap <b>schrijft</b> één
-    ternaire digit (3n+1 = schuif en plak een 1); elke even stap <b>leest</b> één binaire digit
-    (de pariteitsbit valt weg) terwijl een carry-golf door de ternaire rij trekt. Beide processen
-    werken aan de staart (rechts); de kop ademt alleen mee via de carries. Kijk zelf:</p>
-    <p class="en">The orbit is the conversion, executed bit by bit. Every odd step <b>writes</b> one
-    ternary digit (3n+1 = shift and append a 1); every even step <b>reads</b> one binary digit
-    (the parity bit drops off) while a carry wave sweeps through the ternary row. Both processes
-    act at the tail (right); the head only breathes along via the carries. See for yourself:</p>
+    <p class="nl">De baan ís de conversie, en hij loopt in <b>runs</b>: aan de staart van het binaire
+    getal staat altijd óf een blok nullen óf een blok enen. Een blok van <i>j</i> nullen valt er in
+    één keer af (<i>j</i> keer delen door 2: puur lezen, de voorkant blijft onaangeroerd). Een blok
+    van <i>k</i> enen wordt in één keer verteerd via de identiteit
+    <i>a</i>·2<sup>k</sup> − 1 → <i>a</i>·3<sup>k</sup> − 1: er verschijnen precies <i>k</i> tweeën
+    aan de staart van de ternaire rij (want 3<sup>k</sup> − 1 = "22…2"), en <b>daarna verandert de
+    voorkant</b>: de vermenigvuldiging met 3<sup>k</sup> trekt als carry-golf door de kop. Elke digit
+    houdt zijn eigen kleur (per waarde), zodat je precies ziet wát er beweegt:</p>
+    <p class="en">The orbit is the conversion, and it runs in <b>runs</b>: the tail of the binary
+    number is always either a block of zeros or a block of ones. A block of <i>j</i> zeros drops off
+    in one go (<i>j</i> divisions by 2: pure reading, the front stays untouched). A block of
+    <i>k</i> ones is consumed in one go via the identity
+    <i>a</i>·2<sup>k</sup> − 1 → <i>a</i>·3<sup>k</sup> − 1: exactly <i>k</i> twos appear at the
+    tail of the ternary row (since 3<sup>k</sup> − 1 = "22…2"), and <b>afterwards the front
+    changes</b>: the multiplication by 3<sup>k</sup> sweeps through the head as a carry wave. Every
+    digit keeps its own colour (by value), so you see exactly what moves:</p>
 
     <style>
       .digitrow { display: flex; justify-content: flex-end; gap: 3px; min-height: 34px;
@@ -291,13 +299,16 @@
       .digitrow .dg {
         width: 26px; height: 30px; border-radius: 5px; display: flex; align-items: center;
         justify-content: center; font-family: monospace; font-size: 15px; font-weight: 700;
-        transition: background 0.25s, opacity 0.4s, transform 0.3s;
+        transition: opacity 0.45s, transform 0.45s, box-shadow 0.3s;
       }
-      .rowbin .dg { background: #123c38; color: #5eead4; border: 1px solid #2c9c8a; }
-      .rowter .dg { background: #3a1f3f; color: #f0abfc; border: 1px solid #a855c7; }
-      .dg.flash { background: #7a6a1c !important; color: #fde68a !important; }
-      .dg.newdg { background: #14532d !important; color: #86efac !important; transform: scale(1.15); }
-      .dg.dying { opacity: 0.15; transform: translateY(10px); background: #7f1d1d !important; color: #fca5a5 !important; }
+      /* kleuren per digitWAARDE — blijven gelijk tijdens bewegen */
+      .dg.b0 { background: #0d1626; color: #46557a; border: 1px solid #26304d; }
+      .dg.b1 { background: #0e4f47; color: #5eead4; border: 1px solid #2c9c8a; }
+      .dg.t0 { background: #1a1226; color: #5d4a7a; border: 1px solid #32264d; }
+      .dg.t1 { background: #4a2352; color: #e9a8f5; border: 1px solid #a855c7; }
+      .dg.t2 { background: #7c2d8f; color: #fce7ff; border: 1px solid #d946ef; }
+      .dg.pulse { box-shadow: 0 0 0 2px #fbbf24; }
+      .dg.dying { opacity: 0; transform: translateY(16px); }
       .rowlabel { color: var(--muted); font-size: 0.85rem; text-align: right; padding-right: 6px; }
       .ledger { display: flex; gap: 26px; justify-content: center; margin-top: 10px; flex-wrap: wrap; font-size: 0.95rem; }
       .ledger b { font-size: 1.15rem; }
@@ -313,9 +324,9 @@
         <span class="nl">tempo:</span><span class="en">speed:</span>
         <input type="range" id="bsSpeed" min="1" max="10" value="4" style="width:110px">
       </div>
-      <div class="rowlabel"><span class="nl">binair · gelezen bits vallen rechts weg</span><span class="en">binary · read bits drop off at the right</span></div>
+      <div class="rowlabel"><span class="nl">binair · runs vallen rechts in één keer weg</span><span class="en">binary · runs drop off at the right in one go</span></div>
       <div class="digitrow rowbin" id="bsBin"></div>
-      <div class="rowlabel"><span class="nl">ternair · geschreven digits haken rechts aan</span><span class="en">ternary · written digits attach at the right</span></div>
+      <div class="rowlabel"><span class="nl">ternair · tweeën haken rechts aan</span><span class="en">ternary · twos attach at the right</span></div>
       <div class="digitrow rowter" id="bsTer"></div>
       <div class="phasetxt" id="bsPhase"></div>
       <div class="ledger">
@@ -324,14 +335,20 @@
         <div><span class="nl">netto-informatie: </span><span class="en">net information: </span><b id="bsNet" style="color:#fbbf24">–</b> bits (log₂ n)</div>
         <div><span class="nl">stappen: </span><span class="en">steps: </span><b id="bsSteps">0</b></div>
       </div>
-      <div class="caption nl">Gele flitsen = carries (digits die veranderen door de conversie-rekening);
-        groen = zojuist geschreven digit; rood/vallend = zojuist gelezen bit. De grootboekregel toont het
-        duw-en-trekspel: schrijven kost log₂3 ≈ 1.585 bit, lezen verwijdert er gemiddeld 2 per rondgang ·
-        netto −0.415 bit, en het vermoeden zegt dat dit lezen altijd wint tot alleen "1" overblijft.</div>
-      <div class="caption en">Yellow flashes = carries (digits changed by the conversion arithmetic);
-        green = digit just written; red/falling = bit just read. The ledger shows the tug-of-war:
-        writing costs log₂3 ≈ 1.585 bits, reading removes 2 per pass on average · net −0.415 bits, and
-        the conjecture says reading always wins until only "1" remains.</div>
+      <div class="caption nl">Kleuren liggen vast per digitwaarde: binair donker = 0, groenblauw = 1;
+        ternair donker = 0, roze = 1, fel magenta = 2. Een vallend blok is een run die in één keer wordt
+        gelezen; een gele rand markeert digits die zojuist door de carry-rekening zijn veranderd. Let op
+        de dualiteit: <i>k</i> binaire enen eruit = <i>k</i> ternaire tweeën erin, en alleen ná een
+        enen-run verandert de voorkant. De grootboekregel toont het duw-en-trekspel: schrijven kost
+        log₂3 ≈ 1.585 bit per digit, lezen verwijdert gemiddeld 2 bits per rondgang · netto −0.415 bit,
+        en het vermoeden zegt dat het lezen altijd wint tot alleen "1" overblijft.</div>
+      <div class="caption en">Colours are fixed per digit value: binary dark = 0, teal = 1; ternary
+        dark = 0, pink = 1, bright magenta = 2. A falling block is a run being read in one go; a yellow
+        outline marks digits just changed by the carry arithmetic. Note the duality: <i>k</i> binary
+        ones out = <i>k</i> ternary twos in, and only after a run of ones does the front change. The
+        ledger shows the tug-of-war: writing costs log₂3 ≈ 1.585 bits per digit, reading removes 2 bits
+        per pass on average · net −0.415 bits, and the conjecture says reading always wins until only
+        "1" remains.</div>
     </div>
   </div>
 
@@ -362,8 +379,12 @@ function showOrb() {
 }
 window.addEventListener('DOMContentLoaded', showOrb);
 
-/* ===== subject 6: bit-stream animation ===== */
-var bsState = { n: 27n, steps: 0, w: 0, r: 0, running: false, timer: null, prevBin: '', prevTer: '' };
+/* ===== subject 6: bit-stream animation (run-based macro steps) =====
+   even tail:  n = m·2^j          → strip the whole zero-run at once, front unchanged
+   odd tail:   n = a·2^k − 1      → a·3^k − 1: the k-one run is consumed at once,
+                                    k ternary twos appear (3^k − 1 = "22…2"), front recomputed */
+var bsState = { n: 27n, steps: 0, w: 0, r: 0, running: false, timer: null,
+                prevBin: '', prevTer: '', busy: false };
 
 function toTernary(n) {
   if (n === 0n) return '0';
@@ -371,81 +392,93 @@ function toTernary(n) {
   while (n > 0n) { s = (n % 3n).toString() + s; n = n / 3n; }
   return s;
 }
-function renderRow(el, str, prevStr, extra) {
+function bsClip(s) { return s.length > 60 ? '…' + s.slice(-59) : s; }
+
+function renderRow(el, str, prevStr, base) {
   el.innerHTML = '';
   var offset = str.length - prevStr.length;
   for (var i = 0; i < str.length; i++) {
+    var ch = str[i];
     var d = document.createElement('div');
-    d.className = 'dg';
-    d.textContent = str[i];
-    // flash digits that differ from the aligned previous string (align at the right)
+    d.className = 'dg ' + (base === 2 ? 'b' : 't') + (ch === '…' ? '0' : ch);
+    d.textContent = ch;
     var pi = i - offset;
-    if (prevStr && (pi < 0 || prevStr[pi] !== str[i])) {
-      if (extra === 'new' && i === str.length - 1) d.classList.add('newdg');
-      else d.classList.add('flash');
-    }
+    if (prevStr && ch !== '…' && (pi < 0 || prevStr[pi] !== ch)) d.classList.add('pulse');
     el.appendChild(d);
   }
+  setTimeout(function () {
+    for (var j = 0; j < el.children.length; j++) el.children[j].classList.remove('pulse');
+  }, 750);
 }
-function bsRender(phaseTxt, event) {
-  var binEl = document.getElementById('bsBin');
-  var terEl = document.getElementById('bsTer');
-  var bin = bsState.n.toString(2);
-  var ter = toTernary(bsState.n);
-  if (bin.length > 60) bin = '…' + bin.slice(-59);
-  if (ter.length > 60) ter = '…' + ter.slice(-59);
-  renderRow(binEl, bin, bsState.prevBin, event === 'append' ? '' : '');
-  renderRow(terEl, ter, bsState.prevTer, event === 'append' ? 'new' : '');
-  // dying bit visual on read
-  if (event === 'read') {
-    var ghost = document.createElement('div');
-    ghost.className = 'dg dying';
-    ghost.textContent = '0';
-    binEl.appendChild(ghost);
-    setTimeout(function () { if (ghost.parentNode) ghost.parentNode.removeChild(ghost); }, 400);
+function markDyingRun(el, count) {
+  var kids = el.children;
+  for (var i = 0; i < count && i < kids.length; i++) {
+    kids[kids.length - 1 - i].classList.add('dying');
   }
+}
+function bsRenderAll() {
+  var bin = bsClip(bsState.n.toString(2));
+  var ter = bsClip(toTernary(bsState.n));
+  renderRow(document.getElementById('bsBin'), bin, bsState.prevBin, 2);
+  renderRow(document.getElementById('bsTer'), ter, bsState.prevTer, 3);
   bsState.prevBin = bin; bsState.prevTer = ter;
   document.getElementById('bsW').textContent = bsState.w;
   document.getElementById('bsR').textContent = bsState.r;
   document.getElementById('bsNet').textContent = (bsState.n.toString(2).length - 1);
   document.getElementById('bsSteps').textContent = bsState.steps;
-  document.getElementById('bsPhase').textContent = phaseTxt;
 }
-function bsTick() {
+function bsMacro(done) {
   var lang = document.documentElement.getAttribute('data-lang');
   if (bsState.n === 1n) {
-    bsRender(lang === 'en' ? 'done: reached 1 · reading won' : 'klaar: 1 bereikt · het lezen heeft gewonnen', '');
+    document.getElementById('bsPhase').textContent = lang === 'en'
+      ? 'done: reached 1 · reading won' : 'klaar: 1 bereikt · het lezen heeft gewonnen';
     bsPauseInternal();
     return;
   }
-  if (bsState.n % 2n === 1n) {
-    bsState.n = 3n * bsState.n + 1n;
-    bsState.w += 1; bsState.steps += 1;
-    bsRender(lang === 'en'
-      ? 'odd → 3n+1: one ternary digit written (green) · binary carries ripple (yellow)'
-      : 'oneven → 3n+1: één ternaire digit geschreven (groen) · binaire carries golven (geel)', 'append');
+  if (bsState.busy) return;
+  bsState.busy = true;
+  if (bsState.n % 2n === 0n) {
+    var j = 0, m = bsState.n;
+    while (m % 2n === 0n) { j++; m = m / 2n; }
+    document.getElementById('bsPhase').textContent = lang === 'en'
+      ? 'run of ' + j + ' zero' + (j > 1 ? 's' : '') + ' drops off in one go · front unchanged · ternary carry wave'
+      : 'run van ' + j + ' nul' + (j > 1 ? 'len' : '') + ' valt er in één keer af · voorkant onveranderd · ternaire carry-golf';
+    markDyingRun(document.getElementById('bsBin'), j);
+    setTimeout(function () {
+      bsState.n = m; bsState.r += j; bsState.steps += j;
+      bsRenderAll(); bsState.busy = false; if (done) done();
+    }, 500);
   } else {
-    bsState.n = bsState.n / 2n;
-    bsState.r += 1; bsState.steps += 1;
-    bsRender(lang === 'en'
-      ? 'even → /2: one binary bit read (falls off) · ternary carry wave (yellow)'
-      : 'even → /2: één binaire bit gelezen (valt weg) · ternaire carry-golf (geel)', 'read');
+    var k = 0, t = bsState.n;
+    while (t % 2n === 1n) { k++; t = (t - 1n) / 2n; }
+    var a = (bsState.n + 1n) >> BigInt(k);
+    var p3 = 1n; for (var q = 0; q < k; q++) p3 *= 3n;
+    var next = a * p3 - 1n;
+    document.getElementById('bsPhase').textContent = lang === 'en'
+      ? 'run of ' + k + ' one' + (k > 1 ? 's' : '') + ' consumed in one go → ' + k + ' ternary two' + (k > 1 ? 's' : '') + ' · then the front changes'
+      : 'run van ' + (k > 1 ? k + ' enen' : '1 één') + ' in één keer verteerd → ' + k + ' ternaire twee' + (k > 1 ? 'ën' : '') + ' · daarna verandert de voorkant';
+    markDyingRun(document.getElementById('bsBin'), k);
+    setTimeout(function () {
+      bsState.n = next; bsState.w += k; bsState.r += k; bsState.steps += 2 * k;
+      bsRenderAll(); bsState.busy = false; if (done) done();
+    }, 500);
   }
 }
 function bsSchedule() {
   var sp = parseInt(document.getElementById('bsSpeed').value, 10);
   bsState.timer = setTimeout(function () {
     if (!bsState.running) return;
-    bsTick();
-    if (bsState.n !== 1n && bsState.running) bsSchedule();
-  }, 1400 - sp * 120);
+    bsMacro(function () { if (bsState.running) bsSchedule(); });
+  }, 1600 - sp * 130);
 }
 function bsStart() {
   var n = parseInt(document.getElementById('bsN').value, 10);
   if (!(n >= 2)) return;
   bsPauseInternal();
-  bsState = { n: BigInt(n), steps: 0, w: 0, r: 0, running: true, timer: null, prevBin: '', prevTer: '' };
-  bsRender('', '');
+  bsState = { n: BigInt(n), steps: 0, w: 0, r: 0, running: true, timer: null,
+              prevBin: '', prevTer: '', busy: false };
+  document.getElementById('bsPhase').textContent = '';
+  bsRenderAll();
   bsSchedule();
 }
 function bsPauseInternal() {
@@ -458,9 +491,9 @@ function bsPause() {
 }
 function bsStep() {
   bsPauseInternal();
-  bsTick();
+  bsMacro();
 }
-window.addEventListener('DOMContentLoaded', function () { bsStart(); bsPauseInternal(); bsRender('', ''); });
+window.addEventListener('DOMContentLoaded', function () { bsRenderAll(); });
 </script>
 </body>
 </html>
