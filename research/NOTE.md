@@ -15243,3 +15243,29 @@ vertoont dezelfde onbeslisbare kruip als alle andere instrumenten. De directe
 "Fourier-test van G" uit Obs 424/433 meet dus het gemiddelde-verval (sterk),
 niet de envelope (zwak, open) — het Fourier-instrument voegt zich daarmee
 netjes in het ene fork-patroon van het programma in plaats van het te beslissen.
+
+## Obs 548 (2026-08-09): DE EXACTE MOD-2^m-KERN — DUBBEL-STOCHASTISCH BEWEZEN, GAP-SCHAALWET 3/2 PER BIT (Scripts 362, 362b; C1 uit de analyse)
+
+Het verklaarde bewijsdoel van Obs 248/250 is uitgevoerd: de Haar-gemiddelde
+Syracuse-kern op oneven restklassen mod 2^m is EXACT rationaal construeerbaar:
+j = v2(3r+1) is deterministisch per klasse (j < m), opvolgers uniform over de
+2^j lifts; precies EEN uitzonderingsklasse per modulus (r=85 bij m=8, want
+3*85+1 = 256) waarvan de rij exact uniform is.
+
+### Drie exacte stellingen (rationale rekenkunde, geen sampling)
+  (1) De matrix is DUBBEL-STOCHASTISCH (alle kolomsommen exact 1) op elk
+      niveau m = 8..12 -> de uniforme verdeling is exact stationair (bevestigt
+      Haar-invariantie concreet; Obs 248's "≈ uniform" is nu een stelling).
+  (2) E[v2(3n+1)] onder de exacte stationaire verdeling = EXACT 2 (Obs 250).
+  (3) De empirische gap 0.938 (Obs 248) was sampling-artefact: de exacte
+      |lam_2| bij m=8 is 0.002926 — bijna-perfecte menging in EEN macro-stap.
+
+### De schaalwet (verzoent Obs 248 met Obs 265)
+  |lam_2|: 0.00293 / 0.00464 / 0.00886 / 0.01205 / 0.01793 (m=8..12)
+  — groeifactor ~1.5 per bit: |lam_2(m)| ~ 0.003*(3/2)^(m-8).
+Extrapolatie: de gap sluit rond m ~ 22-24. Interpretatie: een macro-stap kan
+maar een begrensde hoeveelheid restklasse-informatie mengen (lezen ~2 bits,
+schrijven log2(3) — de x3 schuift informatie omhoog met factor 3/2 per bit
+modulus); onder ~22 bits mengt alles vrijwel instantaan, daarboven wordt de
+keten diffusief. Obs 265's "gap -> 0" klopt dus asymptotisch, maar de exacte
+familie laat zien WAAR en HOE SNEL: (3/2)^m, niet N^(-1/2)-ruis.
