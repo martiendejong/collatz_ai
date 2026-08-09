@@ -14795,3 +14795,43 @@ van 3^k in Z2 — hetzelfde log2(3)-irrationaliteitsmuur als de productbalans
 (Obs 533). De patroonvraag "wanneer worden reeksen langer" is hiermee herleid
 tot dezelfde irreducibele kern, maar nu in zijn meest elementaire gedaante:
 één restklasse per gewenste extra een.
+
+## Obs 535 (2026-08-09): TERUG-ENGINEEREN VAN DE ENEN-PRODUCENTEN (Script 348)
+
+Vraag (Martien): welke bitreeksen leiden uiteindelijk tot een gigantische laag
+enen, en klopt het dat het 101010-patroon de producent is? Antwoord: ja, exact,
+en de hele voorgeschiedenis is terug te rekenen.
+
+### De achterwaartse afbeelding is exact
+Gegeven doelcilinder m = r mod 2^M en kanaal (k, v):
+  a = (r*2^v + 1) * 3^(-k) mod 2^(M+v),   n0 = a*2^k - 1 mod 2^(M+v+k).
+Eén restklasse per kanaal per stap terug; elke stap terug voegt k+v bits
+constraint toe. Voorwaarts geverifieerd: 681 -> 511 (9 enen), 6369 (2 stappen),
+30337 (3), 40449 (4) — allemaal raak.
+
+### Het 101010-patroon bevestigd (gesloten vorm)
+De directe voorganger van het alle-enen-getal 2^K - 1 via kanaal (1,1) heeft
+voorkant a = (2^(K+1) - 1)/3 = (4^m - 1)/3 = binair 0101...01 — het zuivere
+alternerende patroon (= de 2-adische expansie van -1/3, afgekapt). Kleinste
+instantie: 169 = 10101001 -> 127 = 1111111 -> 1093 (de klim). Numeriek: de
+teruggerekende klasse mod 2^10 is exact 0101010101.
+
+### Het patroon vóór het patroon (gesloten vorm)
+Kanaal (1,1) achterwaarts is m -> (4m - 1)/3 in Z2, vast punt 1, dus de
+t-staps-producent is EXACT
+  x_t = 1 + (4/3)^t (m - 1)     (2-adisch; noemer 3^t).
+Alle vier de dieptes numeriek OK. De "voor-patronen" zijn dus de expansies van
+steeds diepere 3-machten-breuken: t=2 geeft staart ...01100011100001, enz.
+Eerlijke correctie onderweg: een eerdere periodiciteitsverwachting (blokperiode
+2*3^(t-1) zichtbaar in het venster) klopte NIET — de periodieke staart van de
+rationale expansie ligt net BUITEN het vastgepinde bitvenster (transiënt ~ M+2t
+bits = vensterbreedte); de gesloten vorm hierboven is de juiste beschrijving.
+
+### Betekenis
+De verzameling starts die na t stappen een laag van >= K enen produceert is een
+expliciet berekenbare BOOM van rekenkundige rijen (één klasse per kanaalpad),
+met maat 2^-(K + som(k_i+v_i)). Terug-engineeren is dus volledig opgelost als
+algoritme. De open kern verschuift niet: of banen zulke dunne cellen ONBEPERKT
+kunnen blijven raken (divergentie) is weer de equidistributie van 3-machten in
+Z2 — maar de producenten-boom geeft nu wel het precieze doelwit: elke divergente
+baan moet oneindig vaak in klassen x_t = 1 + (4/3)^t(m-1)-achtige cellen liggen.
