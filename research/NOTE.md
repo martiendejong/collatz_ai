@@ -14662,3 +14662,33 @@ worden vervangen door exacte valuatie-sommen — de cascade-coefficienten van he
 kernmodel w = M3(K w) zijn hiermee in principe uitschrijfbaar in gesloten
 hierarchische vorm. Dit is de laatste structurele bouwsteen die het
 contractiebewijs nodig had aan de K-kant; het open residu blijft de min-transfer.
+
+## Obs 531 (2026-08-09): DE SIBLING-LAG-STELLING — DE MIN LEEFT OP DE TOP VAN DE VALUATIELADDER
+
+### Stelling (algebra + machineverificatie, Script 342)
+Translatie met Nl commuteert exact met T4 (4*Nl = Nl mod N; check: 0). Gevolg:
+de cykel-lag tussen i en i+Nl is een GLOBALE constante L0 met 3*L0 = 0 mod N;
+gemeten L0 = 2N/3, dus v3(L0) = k-2 — de MAXIMALE 3-adische valuatie.
+Via de valuatiewet (Obs 530): sibling-correlatie = phi(k-2) = de hoogste trede
+van de ladder. Gemeten: +1.0000 / +0.9963 / +0.9919 (lam=1.05/1.70/2.00, k=12).
+
+### Twee gevolgen
+(1) HET OBS-481-MYSTERIE OPGELOST: rho_intra -> 1 ("kolommen worden juist
+    gecorreleerder bij diepte") is nu een stelling-vormig gevolg van
+    commutatie + valuatiewet: siblings zitten per constructie op de
+    maximaal-gecorreleerde lag van het systeem.
+(2) DE ZELFCONSISTENTIE-ARCHITECTUUR (de kleinste vorm van de open vraag):
+    eps(k) := 1 - corr(siblings) = diepe-staart-fractie van het inc-spectrum
+    (die de cascade zelf bepaalt). De min raakt ALLEEN de eps-sliver: het
+    gemeenschappelijke deel passeert onaangetast; c is de vorm-functionaal van
+    de min op de residuele fluctuatiewet — dimensieloos en schaal-stabiel
+    (verklaart de k-stabiliteit van TR). De lus: cascade-vast-punt bepaalt de
+    residuele wet; de min-vorm-functionaal op die wet bepaalt c; c bepaalt het
+    cascade-vast-punt. EEN gesloten zelfconsistentievergelijking voor c(lambda).
+
+### Status van de architectuur
+K-kant: exact (kern, rijsommen, valuatiesommen). Min-kant: gelokaliseerd op de
+maximaal-valuatie-lag, werkend op een asymptotisch kleine sliver met stabiele vorm.
+Open: de vorm-functionaal (de verdeling van de residuele triple-fluctuaties en de
+min-variantie-transfer daarop) — het homogenisatie-lemma in zijn definitieve,
+kleinste gedaante.
