@@ -14900,3 +14900,35 @@ Per niveau sterft een derde van de takken (mod-3-wet). De stamboom van de
 enen-laag is dus een expliciete, zelfgelijkvormige boom van blokherhalende
 bitreeksen — dezelfde modulustoren 3^t als de valuatiewet (Obs 530,
 ord(4 mod 3^m) = 3^(m-1)): binaire en ternaire kant spiegelen elkaar exact.
+
+## Obs 538 (2026-08-09): BEPAALT DE BOOM DE LANGSTE REEKSEN? JA DE KLIMMEN, NEE DE RECORDS (Script 351)
+
+Vraag: kunnen we met de blokkenhierarchie de langste reeksen bepalen?
+
+### Wat WEL bepaald is (constructief)
+De langste KLIM uit B bits: alle-enen 2^B-1 (B conversies, piek ~3^B).
+Langste voorgeprogrammeerde meerfasige klim: diepe boomleden. Elke gepinde
+macro-stap kost k+v staartbits en levert 2k+v Collatz-stappen: rendement
+maximaal 2 stappen per gepinde bit (k groot, v=1).
+
+### Wat NIET (eerlijk negatief resultaat)
+Records totale stoptijd t/m 2e6 zijn GEEN diepe boomleden: 10-blokken en
+111000-blokken boven de staart-run: allemaal 0. Staartdiepte records gemiddeld
+3.9 bits vs 2.0 random — verhoogd maar bescheiden. Constructor-duel op 17 bits:
+alle-enen 224 stappen, familie-A-lid 229, maar het echte record 106239 = 353.
+Reden: het staartpatroon stuurt alleen de OPENING; de totale lengte wordt
+gedomineerd door het vervolg, waarin de x3-carries verse bits genereren die
+niet in de startklasse gepind zijn. Records halen ~26 stappen per bit;
+programmeren levert maximaal 2 per bit. De rest is de statistische laag —
+alweer de irreducibele kern.
+
+### De echte record-signatuur (nieuw, direct uit de groeiwet Obs 534)
+Records zijn STAPELS enen-runs met dunne gaten (v=1), niet diepe voorouders:
+  106239 = 1100111101 1111111 (run 8, gat 1, run 4)
+  511935 = 111110 0 11111 0 111111 (runs 6,5,6 met enkelbit-gaten)
+  1723519 = ...0001111111 (run 7)
+Elk blok [k enen][gat v<0.585k] garandeert voortgezette klim zolang de gepinde
+bits duren. De langste reeksen = zo lang mogelijk aan de groeiconditie blijven
+voldoen, eerst geprogrammeerd (staart), daarna op geluk (de verse carry-bits).
+Ondergrenzen zijn nu exact construeerbaar; het exacte maximum vergt de
+statistiek van het vervolg.
