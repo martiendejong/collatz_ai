@@ -15133,3 +15133,36 @@ het front naar K = 137,5 miljard met drempel 2^75.4 (~5.5 jaar verder).
 
 Bronnen: pcbarina.fit.vutbr.cz (2^71, 15 jan 2025); Barina "Improved
 verification limit" (2025); Hercher arXiv:2201.00406 (m<=91).
+
+## Obs 545 (2026-08-09): HET GEBALANCEERDE PATROON VAN HET TICKET WEERLEGD IN SECONDEN (Script 358)
+
+Martiens punt gecasht: onze conversiestructuur maakt patroon-evaluatie
+exponentieel sneller — O(log K) in plaats van O(K) — voor gestructureerde
+composities. De machinerie:
+  woordalgebra c(UV) = c(U)*3^T(V) + 2^L(U)*c(V), letter v = (1, v, 1);
+  het gebalanceerde patroon = mechanisch woord van helling (N-K)/K, dat
+  factoriseert langs de Stern-Brocot-boom (M(mediant) = M(links)M(rechts),
+  batchversnelling t = ceil(A/B)-1); 8 priemgetallen ~2^61 + CRT beslist
+  integraliteit van n = c/D rigoureus (cyclus-elementen << 2^150).
+Gevalideerd op 272 random hellingen tegen brute force: exact.
+
+### Kalibratie: de algebra hervindt de bekende cycli uit het niets
+  (K=1,N=2) gebalanceerd -> n = 1 (de triviale cyclus)
+  (K=2,N=3) gebalanceerd -> n = -5 (de -5-cyclus IS het gebalanceerde woord!)
+  (K=7,N=11) gebalanceerd -> weerlegd (correct: -17's patroon is niet gebalanceerd)
+
+### HET RESULTAAT
+Het gebalanceerde patroon van het 186-miljard-ticket (K=72.057.431.991,
+N=114.208.327.604): GEEN geheel vast punt (CRT-waarde ~2^492, elke
+cyclus-schaal < 2^150 uitgesloten) -> WEERLEGD. Plus alle 21 rotaties op
+SB-fasegrenzen: weerlegd. Een patroon van 186 miljard stappen beslist in
+seconden op een laptop, zonder één orbitstap.
+
+### Eerlijke scope en het vervolgprogramma
+Dit doodt een sliver van de C(N-1,K-1) ~ 10^(3e10) composities. Maar het
+opent een programma: een cykelwoord MOET lage discrepantie hebben (partiele
+sommen s_i - i*N/K begrensd door log2(max/min) van de elementen; het
+wiebelprofiel uit Obs 544 drukt die spreiding): de jachtgrond is dus exact
+de laag-discrepante familie waar onze algebra snel is. Volgende stap zou
+zijn: systematisch alle Ostrowski-gestructureerde patronen met discrepantie
+<= ~10 aftesten.
