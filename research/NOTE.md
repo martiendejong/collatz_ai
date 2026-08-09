@@ -15166,3 +15166,21 @@ wiebelprofiel uit Obs 544 drukt die spreiding): de jachtgrond is dus exact
 de laag-discrepante familie waar onze algebra snel is. Volgende stap zou
 zijn: systematisch alle Ostrowski-gestructureerde patronen met discrepantie
 <= ~10 aftesten.
+
+### Obs 545 — ADDENDUM prioriteitscheck (eerlijk genoteerd, zelfde dag)
+Halbeisen-Hungerbuhler (Acta Arith. 78, 1997) gelezen: onze machinerie IS de
+hunne. Hun formule (4) phi(s.sbar) = 3^n(sbar) phi(s) + 2^l(s) phi(sbar) is
+exact onze plakwet; hun Lemma 2 (toegeschreven aan Lagarias 1990) is exact
+onze eindpuntformule x0 = phi(s)/(2^l - 3^n); hun Lemma 5 bewijst dat het
+GEBALANCEERDE woord (s_i = ceil(in/l) - ceil((i-1)n/l)) het extremale patroon
+is, met gesloten som (Corollary 1). Dubbele consequentie:
+  (1) CORRECTHEID VERSTERKT: onze twee kernformules zijn gepubliceerde,
+      peer-reviewed wiskunde; onze implementatie is er onafhankelijk tegen
+      gevalideerd (272 brute-force hellingen, exacte terugvinding van 1 en -5,
+      volledige-schaal invariant (T,L) = (K,N)).
+  (2) NIEUWHEID BEPERKT: wat bij ons nieuw is, is alleen (a) de O(log K)
+      Stern-Brocot-evaluatie van hun Corollary-1-som (algoritmisch aardig,
+      wiskundig klein), en (b) de integraliteits-check zelf voor dit specifieke
+      ticket (een micro-observatie bovenop hun machinerie).
+BESLUIT: GEEN outreach hierover; dit zou bij experts bekend terrein zijn.
+De regel blijft: niets de deur uit zonder expliciete opdracht van Martien.
