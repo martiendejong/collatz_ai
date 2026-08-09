@@ -15069,3 +15069,37 @@ verificatie nog niet kan betalen. Het cyclusprobleem is een berekenbaar
 spectrum geworden: een aftelbare lijst (K, prijs)-kandidaten, waarvan
 verificatie er steeds meer wegstreept en de kettingbreuk van log2(3) de
 dienstregeling bepaalt.
+
+## Obs 543 (2026-08-09): DE 1/n-INTUITIE EXACT — TELESCOPIE, EINDPUNTFORMULE, KANDIDATENLIJST (Script 356)
+
+### De subtiliteit in Martiens intuitie (belangrijk)
+"De fractionele 1/n komt logischerwijs nooit meer op n uit" — bijna: onderweg
+vallen de breuken WEL perfect tegen elkaar weg (telescopie: elke n_i staat een
+keer in de teller en een keer in de noemer; prod(3n_i+1) = 2^N prod(n_i) is
+automatisch waar voor elke cyclische baan). De hele obstructie zit op het
+EINDPUNT: voor v-patroon (v_1..v_K) is het unieke rationale vaste punt
+  n_1 = c/(2^N - 3^K),  c = som 3^(K-1-i) 2^(v_1+..+v_i)
+en een cyclus bestaat dan en slechts dan als dat een oneven geheel getal is.
+Een dubbele eis: het klokvenster (grootte) EN exacte deelbaarheid (rekenkunde).
+
+### De formule reproduceert alle bekende cycli inclusief rotaties
+K<=7, N<=11 volledig doorzocht: gevonden integer-vaste-punten zijn exact
+1, -1, -5/-7 (beide elementen), en de -17-cyclus met ALLE ZEVEN elementen
+(-17,-25,-37,-41,-55,-61,-91), elk uit zijn eigen rotatie van het v-patroon.
+
+### De verwachtingskalibratie (mooi en eerlijk)
+E_K = som_N C(N-1,K-1)/(2^N - 3^K) = ~1.0 voor ELKE K (gemeten: E_40 = 0.9976).
+Verklaring: de gegarandeerde treffer is het patroon (2,2,...,2) = de K-voudige
+doorloop van de triviale cyclus (c = 2^2K - 3^K... check K=2: c=7, d=7, n=1).
+De heuristiek voorspelt dus precies wat bestaat. Het RESIDU (niet-triviale
+verwachting) is E_K - 1 -> ~0; en geconditioneerd op elementen > 2^68 (de
+overlevende klok-ticks, K >= 7.2e10) is de verwachting ~2^(-5.8e9):
+heuristisch volstrekt nul, maar niet bewezen nul — de bekende kloof.
+
+### De kandidatenlijst (antwoord op "kun je nu kandidaten genereren": JA)
+De lijst is aftelbaar en berekenbaar: per klok-tick (convergent/semiconvergent
+van log2(3), positieve zijde) een kandidaat (K, N=verplicht, prijs n~):
+  K = 72.057.431.991 (prijs 4.4e21), 137.528.045.312, ... (Script 355-ladder)
+Alles daaronder is dood (verificatie). Per kandidaat resteert de deelbaarheid
+(2^N - 3^K) | c voor een van de C(N-1,K-1) patronen. De lijst is willekeurig
+ver uit te breiden via de kettingbreuk.
