@@ -15290,3 +15290,45 @@ naar 1 doorkruipen zou nog ~35-40 dieptes vergen — buiten bereik van deze
 machine. De fork blijft data-onbeslisbaar maar de INSTRUMENTCONSISTENTIE is
 nu het sterkste empirische feit van het programma: een enkel getal c(2),
 driemaal onafhankelijk gemeten, driemaal hetzelfde.
+
+## Obs 550 (2026-08-09): NO-GO #10 — DE KAPPA-BARRIERE IS ONVERPLAATSBAAR VOOR ELKE ITINERARY-TELLING (Script 363; C5)
+
+Obs 340 item (2) hoopte dat een selectieregel-automaat (druk met arithmetische
+verboden vs Haar-druk) "de eerste telling zou zijn die de kappa-barriere kan
+verschuiven". Uitkomst: dat kan PRINCIPIEEL niet, en het bewijs is een regel.
+
+### De stelling
+Elke bepaalde eindige e-itinerary (e_1..e_t) met som S wordt gerealiseerd door
+exact 2^(W-1-S) oneven restklassen mod 2^W (Terras-parametrisatie). Exhaustief
+geverifieerd mod 2^16: 218 prefix-klassen over t=1..5, allemaal exact de
+voorspelde multipliciteit — GEEN ENKELE itinerary wordt ooit verwijderd.
+Mersenne-dood-stop, mod-8-selectieregels, kanaal-7-zelfversterking: alle
+verboden beperken WELKE x een itinerary draagt, nooit OF hij voorkomt. Dus:
+automaatdruk = Haar-druk op elke horizon; dim(D) = H_b(1/log2 3) is een
+GELIJKHEID onder tellen, geen bovengrens die telwerk kan verbeteren.
+
+### Consequentie (scherpste vorm van E6/Obs 341)
+Dit verklaart definitief de "5x herontdekking" van kappa en promoveert haar
+tot no-go #10: elk argument dat alleen itineraries telt (met welke eindige
+automaat-verfijning dan ook) reproduceert exact kappa = 0.0500/halving. De
+enige uitweg blijft per-baan-integraliteit: de residu-draad van een VAST
+geheel getal. Haar-DP-controle: maatrate 0.084 bits/stap bij T=3000 (eindige-
+T-correctie boven de asymptoot), vectorrate 1.4999 bits/stap.
+
+## Obs 551 (2026-08-09): HET SCRIPT-175-GAT GEDICHT — DE VERBLIJFSEXPONENT IS alpha*kappa; INTEGERS ZIJN HAAR (Script 364; C4)
+
+Meting van het langste D-geschikte venster (som e <= alpha*lengte) in banen
+van T=3000 stappen. RESULTAAT:
+  iid-model (4000 runs): langste venster gem. 80.9 (p10-p90: 59-107)
+  echte integer-banen, 1400-bit starts (300 runs): gem. 79.5 — identiek
+  directe staart-fit P(m* >= m): helling -0.0756/stap
+De kandidaten: naief-Cramer I(0) = 0.2113 (Obs 180) vs kappa' = 0.079
+(Obs 334). WINNAAR: kappa' — en de identiteit is nu duidelijk:
+  kappa'(per stap) = alpha * kappa(per halving) = 1.585 * 0.0500 = 0.0793.
+I(0) = 0.2113 regeert de STRIKTERE functionaal (alle partiele sommen
+nonnegatief); het eindpunt-venstercriterium (D-geschiktheid) betaalt alleen
+de gemiddelde-afwijking: de vierde gedaante van het ene getal (cyclus/kans/
+meetkunde/verblijf). Obs 337's voorspelling bevestigd; en integer-banen zijn
+op deze schalen statistisch NIET te onderscheiden van Haar — precies wat het
+programma verwacht: de anomalie die divergentie zou vergen is oneindig, niet
+eindig meetbaar.
