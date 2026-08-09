@@ -14835,3 +14835,38 @@ algoritme. De open kern verschuift niet: of banen zulke dunne cellen ONBEPERKT
 kunnen blijven raken (divergentie) is weer de equidistributie van 3-machten in
 Z2 — maar de producenten-boom geeft nu wel het precieze doelwit: elke divergente
 baan moet oneindig vaak in klassen x_t = 1 + (4/3)^t(m-1)-achtige cellen liggen.
+
+## Obs 536 (2026-08-09): DE ENEN-LADDER — VOORGANGERS VAN 2^K-1 VOLLEDIG (Script 349)
+
+Martiens lijst (1 -> 100 -> 1; niets -> 11; 1001 -> 111; niets -> 1111; ? -> 11111)
+compleet gemaakt. Drie regels verklaren alles (Syracuse-terugwaarts):
+  n = 0 mod 3: geen voorganger (blad, "niets")
+  n = 1 mod 3: voorgangers m_v = (2^v n - 1)/3 met v EVEN (kanoniek v=2)
+  n = 2 mod 3: idem met v ONEVEN (kanoniek v=1)
+
+### De spine
+2^K - 1 met K EVEN is deelbaar door 3: nooit een voorganger (11, 1111, 111111...).
+2^K - 1 met K ONEVEN heeft als kanonieke voorganger EXACT
+  P(K) = (2^(K+2) - 5)/3 = binair 10 10 ... 10 01  (alternerend + staart 001).
+Dus ? -> 11111 is 101001 = 41. Rij: 9, 41, 169, 681, 2729, 10921, 43689...
+
+### Het juweel: 27
+De keten voor K=5: 27 -> 41 -> 31. De beroemde baan van 27 BEGINT op een blad
+(27 = 0 mod 3), klimt direct via het alternerende getal 41 de enen-laag
+31 = 11111 in, en converteert dan omhoog. De mythische klim van 27 is dus
+letterlijk: blad -> alternerend patroon -> alle-enen -> conversieklim.
+
+### De kleurenwet (bewijsbaar, periode 3)
+P(K+2) = 4 P(K) + 5, dus P(K+2) = P(K) + 2 mod 3: de kleur van de alternerende
+voorganger doorloopt 0,2,1,0,2,1,... over K = 3,5,7,9,... Concreet:
+  K = 3, 9, 15, 21, ...: P is zelf een blad (keten stopt na één stap terug)
+  K = 5, 11, 17, 23, ...: keten vervolgt via v oneven (het 27-kanaal)
+  K = 7, 13, 19, 25, ...: keten vervolgt via v even
+Kanonieke ketens tot blad: K=9 en 15 stoppen meteen (681, 43689 bladeren);
+K=11 gaat 9 diep (2047 <- 2729 <- 1819 <- ... <- 2553 = 3*851).
+
+### Frame
+De "gigantische enen-laag" heeft dus een volledig gekarakteriseerde stamboom:
+elke tak eindigt op een veelvoud van 3 (blad), de ruggengraat is de familie
+alternerende getallen uit Obs 535, en de vertakkingsgraad wordt gestuurd door
+n mod 3 - de ternaire digitsom-kant van hetzelfde muntje (2 = -1 mod 3).
