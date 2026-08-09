@@ -14932,3 +14932,39 @@ bits duren. De langste reeksen = zo lang mogelijk aan de groeiconditie blijven
 voldoen, eerst geprogrammeerd (staart), daarna op geluk (de verse carry-bits).
 Ondergrenzen zijn nu exact construeerbaar; het exacte maximum vergt de
 statistiek van het vervolg.
+
+## Obs 539 (2026-08-09): DE TERUGREKENBOOM = HET VERMOEDEN; DE HARMONISCHE EXCURSIEWET (Script 352)
+
+### De equivalentie (scherp gemarkeerd)
+"Elke bitreeks komt uiteindelijk in de terugrekenboom (wortel 1) terecht" is
+niet een stap richting het vermoeden — het IS het vermoeden, woord voor woord.
+En pi_1(x) telt exact hoeveel getallen <= x in de boom zitten: het K-L-programma
+(x^0.84 bewezen; ons gamma->1-programma) is de kwantitatieve versie van deze
+zin. Niets van het bestaande werk gaat verloren in deze herformulering.
+
+### VOORSPELLING GEMIST en gecorrigeerd (eerlijk genoteerd)
+Voorspeld uit de groeiwet: excursiestaart P(piek/n >= 2^b) ~ 2^(-theta b) met
+theta = 1/(log2(3)-1) = 1.71 (goedkoopste klim = een enen-run). GEMETEN
+(120k banen): lokale hellingen 1.037, 1.001, 1.013, 1.036, 0.924, 1.029 —
+theta = 1.00, niet 1.71. De fout: klimmen gebeurt niet via een geprogrammeerde
+run maar via veel kleine excursies; de juiste boekhouding is een martingaal.
+
+### De martingaalidentiteit (exact, een regel)
+E[T(n)|n] = som_j 2^-j (3n+1)/2^j = (3n+1) * (1/3) = n + 1/3.
+Syracuse is (op +1/3 na) een MARTINGAAL. Optional stopping: P(piek >= P) ~ n/P:
+de piekverdeling is HARMONISCH, dus theta = 1 exact. Tilt-check: de vergelijking
+2^(theta*alpha) = 2^(1+theta) - 1 heeft theta = 1 als exacte wortel omdat
+2^alpha = 3 per definitie. De gemeten hellingen bevestigen dit op de procent.
+
+### Linearisatie-verdict voor de terugrekenboom (antwoord op de vraag)
+Wat WEL lineair is (bewezen/exact):
+  1. Elke eindige diepte t van de boom: één restklasse per pad, gesloten vormen,
+     periodeblokken B_t (Obs 535-537) — volledig lineaire structuur mod 3^t.
+  2. Het GEMIDDELDE van de dynamica: E[volgende] = n + 1/3 (de martingaal) —
+     de eerste-momentstructuur is exact lineair, vandaag gemeten via theta=1.
+Wat NIET lineair te maken is: het verlijmen van ALLE dieptes tegelijk. De
+blokperiodes 2*3^(t-1) zijn nooit commensurabel met bitvensters 2^m (log2(3)
+irrationeel): geen eindige lineaire recurrentie dekt alle niveaus. In de
+boomcoordinaten heet de muur: equidistributie van 2-machten mod 3^t voor alle
+t. Zelfde muur, nieuwe coordinaten — consistent met Obs 533: de niet-lineariteit
+zit uitsluitend in het tweede moment (log-drift/maat), niet in het gemiddelde.
