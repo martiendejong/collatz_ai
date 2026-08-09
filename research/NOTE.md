@@ -15201,3 +15201,45 @@ klasse-identiteiten, massa-identiteit, backbone-eliminatie, valuatiewet,
 sibling-lag, structuurfunctie Psi, productbalans b = kappa*e*gammabar) staat
 nergens in de literatuur. Onderzoeksenergie terug naar het homogenisatie-
 lemma / de productbalans; cyclusinzichten worden cursusmateriaal (blok 2/6).
+
+## Obs 546 (2026-08-09): PSI SLUIT EXACT OP MOD-81 BIJ lam=1.05 (Script 359; G2 uit de analyse)
+
+Obs 532 liet de out-of-sample variantie-sluiting bij lam=1.05 op 0.9727 staan
+(sleutels (cls,cls,d mod 27)). Test: modulus-sweep 9/27/81 met volledig
+trainingsvenster. RESULTAAT:
+  lam=1.05: mod-9: 0.8081 | mod-27: 0.9724 | mod-81: 1.0000 (exact)
+  lam=1.70: mod-9: 0.6456 | mod-27: 1.0000 | mod-81: 1.0000 (geen extra klassen)
+Het venster (30 vs volledig) doet er NIETS toe (0.9727 vs 0.9724): het defect
+was zuiver de modulus. CONCLUSIE: de structuurfunctie Psi is op elke lam een
+EINDIGE hierarchische tabel; de benodigde 3-adische diepte groeit richting het
+kritieke punt: 3^3 volstaat bij lam=1.70, 3^4 bij lam=1.05 — consistent met de
+valuatiewet (Obs 530): dichter bij lam=1 kijkt de covariantie een derde-machts-
+niveau dieper. De covariantiestructuur van het kernveld is daarmee op beide
+gemeten lambda's VOLLEDIG gesloten door een eindige tabel.
+
+## Obs 547 (2026-08-09): HOELDER-KALIBRATIE OPGELOST — EN DE ENVELOPE-VERZWAKKING (Script 360; G3)
+
+### De discrepantie (Obs 433) volledig verklaard
+Script 219 fit log(GEMIDDELDE |vhat|) per v3-laag; script 227 fit
+GEMIDDELDE(log|vhat|) (geometrisch gemiddelde). Zelfde vectoren, zelfde fft:
+verschil A-G = 0.029 (k=10) dalend naar 0.020 (k=16) — het is de Jensen-kloof
+tussen de twee aggregaties, niets anders. Obs 424-waarden = conventie A exact
+gereproduceerd (0.7055 bij k=10).
+
+### Reeksen op identieke vectoren (k=10..16, lam=1.70), |alpha|:
+  A (log-mean): 0.706 -> 0.666, decrements dalend (ratio ~0.85),
+    geo-extrapolatie |alpha_inf| ~ 0.64 (spoort met Obs 424's >= 0.646)
+  G (mean-log): 0.735 -> 0.686, extrapolatie ~ 0.65
+  M (max-ENVELOPE, de eigenlijke Hoelder-conditie): 0.440 -> 0.336,
+    decrements +0.014/stap met ratio ~0.94 — zelfde trage-creep-signatuur als
+    TR/f2/d_k; geo-extrapolatie onzeker, band ~0.05-0.20.
+(Correctie op de scriptuitvoer: de geprinte extrapolaties hadden een tekenfout
+in de staartrichting; bovenstaande waarden zijn de gecorrigeerde.)
+
+### Betekenis (eerlijk)
+De twee gemiddelde-conventies zijn allebei geldig en comfortabel positief;
+maar de LETTERLIJKE sup-Hoelder-exponent (max per laag) is veel zwakker en
+vertoont dezelfde onbeslisbare kruip als alle andere instrumenten. De directe
+"Fourier-test van G" uit Obs 424/433 meet dus het gemiddelde-verval (sterk),
+niet de envelope (zwak, open) — het Fourier-instrument voegt zich daarmee
+netjes in het ene fork-patroon van het programma in plaats van het te beslissen.
