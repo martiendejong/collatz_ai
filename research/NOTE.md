@@ -15035,3 +15035,37 @@ Cyclusbestaan = "valt 2^N/3^K ooit in (1, 1+2^-68)" = de irrationaliteitsmaat
 van log2(3). Baker doodt kleine faseaantallen; voor alle m is de stelling te
 zwak — dezelfde ene muur als de productbalans en de equidistributie, hier in
 zijn klassiekste gedaante.
+
+## Obs 542 (2026-08-09): HET UURWERK — MARTIENS (3+1/n)/2-HERSCHRIJVING ALS SPECTRUM (Script 355)
+
+Martiens idee: schrijf de oneven stap als (3+1/n)/2 = (3/2)(1+1/(3n)) en vraag
+hoeveel stappen het kost voor "de +1 rond is". Dat wordt exact berekenbaar.
+
+### Het uurwerk
+De wijzer draait per oneven stap log2(3) verder (irrationeel: exact rond komt
+hij NOOIT); de +1 duwt hem per stap 1/(3n ln2) extra vooruit. Een cyclus =
+de wijzer exact op nul na K ticks:
+  miss(K) = afstand van K*log2(3) tot het volgende gehele getal
+  benodigde elementschaal: n~ = K/(3 ln2 * miss(K)).
+Tekensplitsing: miss naar boven sluiten vergt POSITIEVE elementen, naar
+beneden NEGATIEVE — dat verklaart in één klap waarom de kleine cycli allemaal
+negatief zijn (de klok passeert vroeg dichter langs de onderkant).
+
+### De tabel benoemt de bekende cycli bij naam (exact geverifieerd)
+  K=1, n~+ = 1.16 -> n=1 (triviale cyclus); n~- = 0.82 -> n=-1
+  K=2, n~- = 5.66 -> de -5-cyclus (harmonisch gemiddelde 5,7 = 5.83)
+  K=7, n~- = 35.5 -> de -17-cyclus (elementen -17..-91, schaal klopt)
+Sluitingschecks 2^N = 3^K prod(1+1/(3n_i)): alle vier exact True.
+(K=12, miss 0.0196, n~- = 295: bijna-tick zonder cyclus — de schaal is
+noodzakelijk, niet voldoende; exacte deelbaarheid faalt daar.)
+
+### De positieve ladder: elke tick heeft een prijs
+Beste ticks (convergenten+semiconvergenten): K = 5, 17, 41, 306, 15601,
+190537, ..., met prijs n~+ = 32, 147, 1192, 1e5, 2.9e8, 9.8e11, ...
+ALLE ticks t/m K = 6.586.818.670 vergen elementen < 2^68: uitgesloten door
+verificatie. EERSTE OVERLEVENDE TICK: K = 72.057.431.991, prijs 4.4e21.
+De 186-miljard-grens (Obs 541) IS dus: de eerste tick van het uurwerk die
+verificatie nog niet kan betalen. Het cyclusprobleem is een berekenbaar
+spectrum geworden: een aftelbare lijst (K, prijs)-kandidaten, waarvan
+verificatie er steeds meer wegstreept en de kettingbreuk van log2(3) de
+dienstregeling bepaalt.
