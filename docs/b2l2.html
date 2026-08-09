@@ -272,6 +272,69 @@
     </div>
   </div>
 
+  <!-- ===== SUBJECT 6 ===== -->
+  <div class="subject">
+    <h2><span class="snum">6</span><span class="nl">De bit-stroom: lezen en schrijven aan de staart</span><span class="en">The bit stream: reading and writing at the tail</span></h2>
+
+    <p class="nl">De baan ís de conversie, bit voor bit uitgevoerd. Elke oneven stap <b>schrijft</b> één
+    ternaire digit (3n+1 = schuif en plak een 1); elke even stap <b>leest</b> één binaire digit
+    (de pariteitsbit valt weg) terwijl een carry-golf door de ternaire rij trekt. Beide processen
+    werken aan de staart (rechts); de kop ademt alleen mee via de carries. Kijk zelf:</p>
+    <p class="en">The orbit is the conversion, executed bit by bit. Every odd step <b>writes</b> one
+    ternary digit (3n+1 = shift and append a 1); every even step <b>reads</b> one binary digit
+    (the parity bit drops off) while a carry wave sweeps through the ternary row. Both processes
+    act at the tail (right); the head only breathes along via the carries. See for yourself:</p>
+
+    <style>
+      .digitrow { display: flex; justify-content: flex-end; gap: 3px; min-height: 34px;
+                  flex-wrap: wrap; padding: 6px 4px; }
+      .digitrow .dg {
+        width: 26px; height: 30px; border-radius: 5px; display: flex; align-items: center;
+        justify-content: center; font-family: monospace; font-size: 15px; font-weight: 700;
+        transition: background 0.25s, opacity 0.4s, transform 0.3s;
+      }
+      .rowbin .dg { background: #123c38; color: #5eead4; border: 1px solid #2c9c8a; }
+      .rowter .dg { background: #3a1f3f; color: #f0abfc; border: 1px solid #a855c7; }
+      .dg.flash { background: #7a6a1c !important; color: #fde68a !important; }
+      .dg.newdg { background: #14532d !important; color: #86efac !important; transform: scale(1.15); }
+      .dg.dying { opacity: 0.15; transform: translateY(10px); background: #7f1d1d !important; color: #fca5a5 !important; }
+      .rowlabel { color: var(--muted); font-size: 0.85rem; text-align: right; padding-right: 6px; }
+      .ledger { display: flex; gap: 26px; justify-content: center; margin-top: 10px; flex-wrap: wrap; font-size: 0.95rem; }
+      .ledger b { font-size: 1.15rem; }
+      .phasetxt { text-align: center; color: var(--warn); min-height: 1.4em; font-size: 0.95rem; margin-top: 6px; }
+    </style>
+
+    <div class="figure">
+      <div class="controls">
+        <input type="number" id="bsN" value="27" min="2" max="999999">
+        <button onclick="bsStart()"><span class="nl">Start</span><span class="en">Start</span></button>
+        <button class="secondary" onclick="bsPause()"><span class="nl">Pauze / verder</span><span class="en">Pause / resume</span></button>
+        <button class="secondary" onclick="bsStep()"><span class="nl">Stap</span><span class="en">Step</span></button>
+        <span class="nl">tempo:</span><span class="en">speed:</span>
+        <input type="range" id="bsSpeed" min="1" max="10" value="4" style="width:110px">
+      </div>
+      <div class="rowlabel"><span class="nl">binair · gelezen bits vallen rechts weg</span><span class="en">binary · read bits drop off at the right</span></div>
+      <div class="digitrow rowbin" id="bsBin"></div>
+      <div class="rowlabel"><span class="nl">ternair · geschreven digits haken rechts aan</span><span class="en">ternary · written digits attach at the right</span></div>
+      <div class="digitrow rowter" id="bsTer"></div>
+      <div class="phasetxt" id="bsPhase"></div>
+      <div class="ledger">
+        <div><span class="nl">geschreven: </span><span class="en">written: </span><b id="bsW" style="color:#f0abfc">0</b> <span class="nl">digits (× 1.585 bit)</span><span class="en">digits (× 1.585 bits)</span></div>
+        <div><span class="nl">gelezen: </span><span class="en">read: </span><b id="bsR" style="color:#5eead4">0</b> bits</div>
+        <div><span class="nl">netto-informatie: </span><span class="en">net information: </span><b id="bsNet" style="color:#fbbf24">–</b> bits (log₂ n)</div>
+        <div><span class="nl">stappen: </span><span class="en">steps: </span><b id="bsSteps">0</b></div>
+      </div>
+      <div class="caption nl">Gele flitsen = carries (digits die veranderen door de conversie-rekening);
+        groen = zojuist geschreven digit; rood/vallend = zojuist gelezen bit. De grootboekregel toont het
+        duw-en-trekspel: schrijven kost log₂3 ≈ 1.585 bit, lezen verwijdert er gemiddeld 2 per rondgang ·
+        netto −0.415 bit, en het vermoeden zegt dat dit lezen altijd wint tot alleen "1" overblijft.</div>
+      <div class="caption en">Yellow flashes = carries (digits changed by the conversion arithmetic);
+        green = digit just written; red/falling = bit just read. The ledger shows the tug-of-war:
+        writing costs log₂3 ≈ 1.585 bits, reading removes 2 per pass on average · net −0.415 bits, and
+        the conjecture says reading always wins until only "1" remains.</div>
+    </div>
+  </div>
+
   <div class="lesson-nav">
     <a href="b2l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 2.1 · Pariteitsvectoren</span><span class="en">Lesson 2.1 · Parity vectors</span></a>
@@ -298,6 +361,106 @@ function showOrb() {
     seen.length + '</span>';
 }
 window.addEventListener('DOMContentLoaded', showOrb);
+
+/* ===== subject 6: bit-stream animation ===== */
+var bsState = { n: 27n, steps: 0, w: 0, r: 0, running: false, timer: null, prevBin: '', prevTer: '' };
+
+function toTernary(n) {
+  if (n === 0n) return '0';
+  var s = '';
+  while (n > 0n) { s = (n % 3n).toString() + s; n = n / 3n; }
+  return s;
+}
+function renderRow(el, str, prevStr, extra) {
+  el.innerHTML = '';
+  var offset = str.length - prevStr.length;
+  for (var i = 0; i < str.length; i++) {
+    var d = document.createElement('div');
+    d.className = 'dg';
+    d.textContent = str[i];
+    // flash digits that differ from the aligned previous string (align at the right)
+    var pi = i - offset;
+    if (prevStr && (pi < 0 || prevStr[pi] !== str[i])) {
+      if (extra === 'new' && i === str.length - 1) d.classList.add('newdg');
+      else d.classList.add('flash');
+    }
+    el.appendChild(d);
+  }
+}
+function bsRender(phaseTxt, event) {
+  var binEl = document.getElementById('bsBin');
+  var terEl = document.getElementById('bsTer');
+  var bin = bsState.n.toString(2);
+  var ter = toTernary(bsState.n);
+  if (bin.length > 60) bin = '…' + bin.slice(-59);
+  if (ter.length > 60) ter = '…' + ter.slice(-59);
+  renderRow(binEl, bin, bsState.prevBin, event === 'append' ? '' : '');
+  renderRow(terEl, ter, bsState.prevTer, event === 'append' ? 'new' : '');
+  // dying bit visual on read
+  if (event === 'read') {
+    var ghost = document.createElement('div');
+    ghost.className = 'dg dying';
+    ghost.textContent = '0';
+    binEl.appendChild(ghost);
+    setTimeout(function () { if (ghost.parentNode) ghost.parentNode.removeChild(ghost); }, 400);
+  }
+  bsState.prevBin = bin; bsState.prevTer = ter;
+  document.getElementById('bsW').textContent = bsState.w;
+  document.getElementById('bsR').textContent = bsState.r;
+  document.getElementById('bsNet').textContent = (bsState.n.toString(2).length - 1);
+  document.getElementById('bsSteps').textContent = bsState.steps;
+  document.getElementById('bsPhase').textContent = phaseTxt;
+}
+function bsTick() {
+  var lang = document.documentElement.getAttribute('data-lang');
+  if (bsState.n === 1n) {
+    bsRender(lang === 'en' ? 'done: reached 1 · reading won' : 'klaar: 1 bereikt · het lezen heeft gewonnen', '');
+    bsPauseInternal();
+    return;
+  }
+  if (bsState.n % 2n === 1n) {
+    bsState.n = 3n * bsState.n + 1n;
+    bsState.w += 1; bsState.steps += 1;
+    bsRender(lang === 'en'
+      ? 'odd → 3n+1: one ternary digit written (green) · binary carries ripple (yellow)'
+      : 'oneven → 3n+1: één ternaire digit geschreven (groen) · binaire carries golven (geel)', 'append');
+  } else {
+    bsState.n = bsState.n / 2n;
+    bsState.r += 1; bsState.steps += 1;
+    bsRender(lang === 'en'
+      ? 'even → /2: one binary bit read (falls off) · ternary carry wave (yellow)'
+      : 'even → /2: één binaire bit gelezen (valt weg) · ternaire carry-golf (geel)', 'read');
+  }
+}
+function bsSchedule() {
+  var sp = parseInt(document.getElementById('bsSpeed').value, 10);
+  bsState.timer = setTimeout(function () {
+    if (!bsState.running) return;
+    bsTick();
+    if (bsState.n !== 1n && bsState.running) bsSchedule();
+  }, 1400 - sp * 120);
+}
+function bsStart() {
+  var n = parseInt(document.getElementById('bsN').value, 10);
+  if (!(n >= 2)) return;
+  bsPauseInternal();
+  bsState = { n: BigInt(n), steps: 0, w: 0, r: 0, running: true, timer: null, prevBin: '', prevTer: '' };
+  bsRender('', '');
+  bsSchedule();
+}
+function bsPauseInternal() {
+  bsState.running = false;
+  if (bsState.timer) { clearTimeout(bsState.timer); bsState.timer = null; }
+}
+function bsPause() {
+  if (bsState.running) { bsPauseInternal(); }
+  else { bsState.running = true; bsSchedule(); }
+}
+function bsStep() {
+  bsPauseInternal();
+  bsTick();
+}
+window.addEventListener('DOMContentLoaded', function () { bsStart(); bsPauseInternal(); bsRender('', ''); });
 </script>
 </body>
 </html>
