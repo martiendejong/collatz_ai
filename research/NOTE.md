@@ -15269,3 +15269,24 @@ schrijven log2(3) — de x3 schuift informatie omhoog met factor 3/2 per bit
 modulus); onder ~22 bits mengt alles vrijwel instantaan, daarboven wordt de
 keten diffusief. Obs 265's "gap -> 0" klopt dus asymptotisch, maar de exacte
 familie laat zien WAAR en HOE SNEL: (3/2)^m, niet N^(-1/2)-ruis.
+
+## Obs 549 (2026-08-09): GAMMABAR(2,k) VERLENGD NAAR k=17 — DERDE INSTRUMENT LANDT OP HETZELFDE GETAL (Script 361; C6)
+
+Via de exacte massa-identiteit 1 - rho(2,k) = (3/4)*gammabar(2,k), met
+warm-gestarte eindpuntvectoren (cache) en strikte convergentie (2x geverifieerd,
+identiek tot 1e-8):
+  gammabar: 0.10748 / 0.09770 / 0.08868 / 0.08021 / 0.07327 / 0.06670 /
+            0.06066 / 0.05531 / 0.05055   (k = 9..17)
+  ratio's:  0.9090 0.9077 0.9045 0.9134 0.9103 0.9095 0.9117 0.9140
+  c(2) = ratio^2: 0.8263 ... 0.8354 — staart STIJGEND +0.002/stap.
+
+KRUISINSTRUMENT-CONVERGENTIE: het TR-instrument (Obs 526) eindigde op
+c(2)-schatting 0.8357 bij k=18, ook stijgend. Twee volstrekt verschillende
+pijplijnen (increment-ratio's vs massa-identiteit-rate) zitten nu op hetzelfde
+getal 0.835-0.836 met dezelfde kruip. Het programmabrede beeld is hiermee
+drievoudig consistent: alle instrumenten (TR, gammabar-rate, f2, d_k, envelope-
+alpha) tonen niveau ~0.83-0.84 met trage opwaartse kruip van +0.002-0.005/stap;
+naar 1 doorkruipen zou nog ~35-40 dieptes vergen — buiten bereik van deze
+machine. De fork blijft data-onbeslisbaar maar de INSTRUMENTCONSISTENTIE is
+nu het sterkste empirische feit van het programma: een enkel getal c(2),
+driemaal onafhankelijk gemeten, driemaal hetzelfde.
