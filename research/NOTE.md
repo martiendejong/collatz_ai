@@ -14968,3 +14968,36 @@ irrationeel): geen eindige lineaire recurrentie dekt alle niveaus. In de
 boomcoordinaten heet de muur: equidistributie van 2-machten mod 3^t voor alle
 t. Zelfde muur, nieuwe coordinaten — consistent met Obs 533: de niet-lineariteit
 zit uitsluitend in het tweede moment (log-drift/maat), niet in het gemiddelde.
+
+## Obs 540 (2026-08-09): DE RUN-AUTOMAAT-TABEL — "HETZELFDE, STEEDS" EXACT GEMAAKT (Script 353)
+
+Martiens frame: alleen de staart doet er nu toe; het midden verandert steeds
+maar op dezelfde manier. Correct, met een nuance en twee stellingen.
+
+### De nuance
+Het midden doet er niet NU toe maar WEL later: de bits boven de run marcheren
+bij elke conversie de staart in (na transport door x3^k). Elke bit van n wordt
+uiteindelijk gelezen — de baan is de 2-adische codering van n zelf.
+
+### Stelling 1: er is EEN tijdsinvariante opzoektabel
+(k, a mod 2^w) -> (v, k') is een vaste tabel, elke stap opnieuw dezelfde.
+Sterker: de k-afhankelijkheid is alleen een HERLABELING (a -> 3a is een bijectie
+mod 2^w), dus in essentie is er precies een tabel. Gemeten: voor k=1,2,3 geven
+telkens exact 14/64 vensterklassen k'>=3 — hetzelfde aantal, gepermuteerde
+klassen. De rijke klassen zijn de afkappingen van de -1/3-familie (a=5 mod 16
+voor k=1, enz.) — consistent met Obs 534/537.
+
+### Stelling 2: neutraliteit buiten het venster (gemeten)
+E[k' | huidige k] = 2.010, 2.006, 1.992, 1.992, 2.003 voor k=1..5: exact de
+neutrale waarde 2, onafhankelijk van k. GEEN patroontype koopt extra toekomstige
+enen buiten zijn eigen gepinde venster; elke extra gegarandeerde een kost een
+factor-2 dunnere klasse. Enen-productie is martingaal-neutraal (spoort met de
+harmonische excursiewet, Obs 539).
+
+### Consequentie voor het vermoeden
+"Meer enen op het eind" is uitsluitend te koop door meer bits te pinnen, tegen
+prijs 1/2 per bit. Een divergente baan zou een ONEINDIGE samenzwering van
+venstertreffer vereisen — maat nul op elke schaal. Het vermoeden is de bewering
+dat geen enkel individueel getal die samenzwering in zijn expansie heeft
+zitten; de tabel maakt de samenzwering eindig-checkbaar per diepte, de limiet
+is de equidistributiemuur.
