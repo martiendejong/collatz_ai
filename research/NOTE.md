@@ -15103,3 +15103,33 @@ van log2(3), positieve zijde) een kandidaat (K, N=verplicht, prijs n~):
 Alles daaronder is dood (verificatie). Per kandidaat resteert de deelbaarheid
 (2^N - 3^K) | c voor een van de C(N-1,K-1) patronen. De lijst is willekeurig
 ver uit te breiden via de kettingbreuk.
+
+## Obs 544 (2026-08-09): HET 186-MILJARD-TICKET GECHECKT ZO VER ALS KAN (Script 357)
+
+Ticket: K = 72.057.431.991 oneven stappen, N = 114.208.327.604 halveringen,
+lengte 186.265.759.595. Volledige check (deelbaarheid over C(N-1,K-1)
+composities) is wereldrecord-territorium: voor niemand berekenbaar.
+
+### Check 1 — het venster (exact, 80 digits)
+Delta = N ln2 - K ln3 = 5.510890e-12: de +1-duwtjes moeten EXACT deze som
+leveren. Kill-drempel V* = K/(3 Delta) = 4.3585e21 = 2^71.884.
+Actuele verificatie (Barina, jan 2025): 2^71. STATUS: LEVEND, slack 1.846.
+
+### Check 2 — fasedwang (nieuw afgeleid voor dit ticket)
+Contributies binnen een klim vanaf faseminimum n0 sommeren geometrisch tot
+<= C/n0. Met alle elementen > 2^71 volgt: m >= Delta*V/C fasen:
+  C=1 (klim-toewijzing):     m >= 1.30e10 fasen, gem. faselengte <= 5.5
+  C=7/3 (klim+daal, conserv): m >= 5.6e9 fasen, gem. faselengte <= 12.9
+Hercher (m>=92) wordt hier met een factor ~10^8 overtroffen: ALS dit ticket
+een cyclus draagt, is het een snelle wiebel van miljarden micro-fasen van
+gemiddeld ~6-13 oneven stappen — geen enkele grote klim toegestaan.
+
+### Check 3 — de sterfdatum
+Nog 0.884 verificatiebits nodig. Historisch tempo (2^68 in 2021 -> 2^71 in
+jan 2025): ~0.79 bits/jaar -> verwachte dood ~1.1 jaar na jan 2025, dus
+BEGIN-MEDIO 2026: het ticket is mogelijk NU al dood maar onaangekondigd
+(laatste milestone op de projectpagina blijft jan 2025). Na de dood schuift
+het front naar K = 137,5 miljard met drempel 2^75.4 (~5.5 jaar verder).
+
+Bronnen: pcbarina.fit.vutbr.cz (2^71, 15 jan 2025); Barina "Improved
+verification limit" (2025); Hercher arXiv:2201.00406 (m<=91).
