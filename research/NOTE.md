@@ -15184,3 +15184,20 @@ is, met gesloten som (Corollary 1). Dubbele consequentie:
       ticket (een micro-observatie bovenop hun machinerie).
 BESLUIT: GEEN outreach hierover; dit zou bij experts bekend terrein zijn.
 De regel blijft: niets de deur uit zonder expliciete opdracht van Martien.
+
+## Strategienotitie (2026-08-09, na de prioriteitscheck)
+
+Eerlijke balans van de cyclus-dag: het uurwerk, de kandidatenlijst, de
+kettingbreukgrenzen en de woordalgebra zijn herontdekkingen (Steiner 1977,
+Eliahou 1993, H-H 1997, de Weger 2005, Hercher 2023). Wij liepen die keten
+in een dag na — validatie van het raamwerk, geen bijdrage aan het front.
+Kleine eigen randjes: de O(log K) SB-evaluatie, de integraliteitscheck van
+het eerste levende ticket, de fasedwang m >= ~10^10 voor dat ticket.
+
+CONSEQUENTIE: het cyclusfront is een druk bewerkt, volwassen veld (race
+tussen verificatie en kettingbreuk). Onze comparatieve voorsprong ligt NIET
+daar maar in het dichtheidsprogramma: de K-L-operatoranatomie (Obs 488-533:
+klasse-identiteiten, massa-identiteit, backbone-eliminatie, valuatiewet,
+sibling-lag, structuurfunctie Psi, productbalans b = kappa*e*gammabar) staat
+nergens in de literatuur. Onderzoeksenergie terug naar het homogenisatie-
+lemma / de productbalans; cyclusinzichten worden cursusmateriaal (blok 2/6).
