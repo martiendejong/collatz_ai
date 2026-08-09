@@ -317,6 +317,13 @@
         0% { transform: scale(1.4); box-shadow: 0 0 14px #a855c7; }
         100% { transform: scale(1); box-shadow: none; }
       }
+      /* poef: blokjes die door de herrekening van waarde veranderen poppen opnieuw binnen */
+      .dg.poef { animation: poef 0.6s cubic-bezier(.2,.8,.3,1.2); }
+      @keyframes poef {
+        0% { transform: scale(0.2) rotate(10deg); opacity: 0; filter: blur(6px); }
+        60% { transform: scale(1.3) rotate(-3deg); opacity: 1; filter: blur(1px); }
+        100% { transform: scale(1) rotate(0); opacity: 1; filter: blur(0); }
+      }
       .rowlabel { color: var(--muted); font-size: 0.85rem; text-align: right; padding-right: 6px; }
       .ledger { display: flex; gap: 26px; justify-content: center; margin-top: 10px; flex-wrap: wrap; font-size: 0.95rem; }
       .ledger b { font-size: 1.15rem; }
@@ -348,14 +355,16 @@
         ternair donker = 0, roze = 1, fel magenta = 2. Een vallend blok is een run die in één keer wordt
         gelezen. Bij de conversiestap vallen de binaire enen naar beneden en landen als enen in de
         ternaire rij: de onderkant leest de gegarandeerde nieuwe nul meteen mee, en (3<sup>k</sup> − 1)/2
-        is in basis 3 precies "11…1". De dualiteit is letterlijk: <i>k</i> binaire enen eruit =
-        <i>k</i> ternaire enen erin, en alleen ná een enen-run verandert de voorkant. De grootboekregel toont het duw-en-trekspel: schrijven kost
+        is in basis 3 precies "11…1". De voorkant van beide rijen wordt daarbij herrekend: blokjes
+        die van waarde veranderen poeffen opnieuw binnen. De dualiteit is letterlijk: <i>k</i> binaire
+        enen eruit = <i>k</i> ternaire enen erin, en alleen ná een enen-run verandert de voorkant. De grootboekregel toont het duw-en-trekspel: schrijven kost
         log₂3 ≈ 1.585 bit per digit, lezen verwijdert gemiddeld 2 bits per rondgang · netto −0.415 bit,
         en het vermoeden zegt dat het lezen altijd wint tot alleen "1" overblijft.</div>
       <div class="caption en">Colours are fixed per digit value: binary dark = 0, teal = 1; ternary
         dark = 0, pink = 1, bright magenta = 2. A falling block is a run being read in one go. At the
         conversion step the binary ones fall down and land as ones in the ternary row: the bottom reads
         the guaranteed new zero right away, and (3<sup>k</sup> − 1)/2 is exactly "11…1" in base 3.
+        The front of both rows is recomputed in the process: blocks that change value poof back in.
         The duality is literal: <i>k</i> binary ones out = <i>k</i> ternary ones in, and only after a
         run of ones does the front change. The ledger shows the tug-of-war: writing costs log₂3 ≈ 1.585 bits per digit,
         reading removes 2 bits per pass on average · net −0.415 bits, and the conjecture says reading
@@ -405,13 +414,26 @@ function toTernary(n) {
 }
 function bsClip(s) { return s.length > 60 ? '…' + s.slice(-59) : s; }
 
-function renderRow(el, str, base) {
+/* which digits changed value, comparing right-aligned against a reference string */
+function diffRight(str, ref) {
+  var flags = [], offset = str.length - ref.length;
+  for (var i = 0; i < str.length; i++) {
+    var pi = i - offset;
+    flags.push(!(pi >= 0 && pi < ref.length && ref[pi] === str[i]));
+  }
+  return flags;
+}
+function renderRow(el, str, base, poefFlags) {
   el.innerHTML = '';
   for (var i = 0; i < str.length; i++) {
     var ch = str[i];
     var d = document.createElement('div');
     d.className = 'dg ' + (base === 2 ? 'b' : 't') + (ch === '…' ? '0' : ch);
     d.textContent = ch;
+    if (poefFlags && poefFlags[i] && ch !== '…') {
+      d.classList.add('poef');
+      d.style.animationDelay = (i * 22) + 'ms';
+    }
     el.appendChild(d);
   }
 }
@@ -426,9 +448,17 @@ function markDyingRun(el, count, cls) {
 function bsRenderAll(mode, runLen) {
   var bin = bsClip(bsState.n.toString(2));
   var ter = bsClip(toTernary(bsState.n));
-  renderRow(document.getElementById('bsBin'), bin, 2);
+  var fBin = null, fTer = null;
+  if (mode === 'ones') {
+    var oldFront = bsState.prevBin.slice(0, Math.max(0, bsState.prevBin.length - runLen));
+    fBin = diffRight(bin, oldFront);
+    fTer = diffRight(ter, bsState.prevTer);
+    // de gelande enen krijgen de landings-animatie, geen poef
+    for (var q = 1; q <= runLen && fTer.length - q >= 0; q++) fTer[fTer.length - q] = false;
+  }
+  renderRow(document.getElementById('bsBin'), bin, 2, fBin);
   var terEl = document.getElementById('bsTer');
-  renderRow(terEl, ter, 3);
+  renderRow(terEl, ter, 3, fTer);
   if (mode === 'ones') {
     for (var z = 1; z <= runLen && terEl.children.length - z >= 0; z++) {
       terEl.children[terEl.children.length - z].classList.add('land');
