@@ -14870,3 +14870,33 @@ De "gigantische enen-laag" heeft dus een volledig gekarakteriseerde stamboom:
 elke tak eindigt op een veelvoud van 3 (blad), de ruggengraat is de familie
 alternerende getallen uit Obs 535, en de vertakkingsgraad wordt gestuurd door
 n mod 3 - de ternaire digitsom-kant van hetzelfde muntje (2 = -1 mod 3).
+
+## Obs 537 (2026-08-09): VOOR HET ALTERNERENDE PATROON — DE BLOKKENHIERARCHIE (Script 350)
+
+Vraag: wat komt er voor 1010...1001? Antwoord: de 111000-familie, en daaronder
+een zelfgelijkvormige hierarchie van blokpatronen.
+
+### Niveau 2: de 111000-families (blok = periode van 1/9, lengte 6)
+  K = 3 mod 6: niets (kleurenwet).
+  K = 5 mod 6 (familie A): (2^(K+3)-13)/9 = binair (111000)^j 11011, zaad 27.
+  K = 1 mod 6 (familie B): (2^(K+4)-23)/9 = binair (111000)^j 11100001, zaad 225.
+Gesloten vormen exact geverifieerd t/m K=41. Elke ladder-stap prepend één blok
+111000. De baan van 27 is dus het j=0-lid van familie A.
+
+### Niveau 3: EEN universeel blok (lengte 18 = ord(2 mod 27))
+Alle niveau-3-voorouders, ongeacht familie of restklasse K mod 18, herhalen
+hetzelfde 18-bits blok: 100101111011010000 (een rotatie van de periode van
+1/27 = (2^18-1)/27 = 9709). Vier onafhankelijke groepen gecheckt, allemaal
+consistent; zaden o.a. 2425, 9707, 77671, 1242753. Ook hier sterft ~1/3 van de
+takken als blad (27, 225 zelf; verderop 7456539, 59652321).
+
+### De algemene wet (het antwoord op "terugengineeren", volledig)
+Niveau-t-voorouders van de enen-laag = (B_t)^j + eindige staart, waar B_t het
+herhaalblok is van breuken met noemer 3^t: lengte ord(2 mod 3^t) = 2*3^(t-1).
+  t=1: blok 10      (alternerend; noemer 3)
+  t=2: blok 111000  (noemer 9)
+  t=3: blok 100101111011010000  (noemer 27)
+Per niveau sterft een derde van de takken (mod-3-wet). De stamboom van de
+enen-laag is dus een expliciete, zelfgelijkvormige boom van blokherhalende
+bitreeksen — dezelfde modulustoren 3^t als de valuatiewet (Obs 530,
+ord(4 mod 3^m) = 3^(m-1)): binaire en ternaire kant spiegelen elkaar exact.
