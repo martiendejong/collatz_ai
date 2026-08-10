@@ -2309,7 +2309,17 @@ $0.5\%$ at every $\lam$ and depth step. Consequently the association is
 self-improving with depth, and the domination condition asymptotically
 reduces to the clean inequality $\beta_* < \underline m/\overline m$
 (measured: $\beta \le 0.15$ versus $\underline m/\overline m \approx 0.31$ at
-the endpoint, a factor-two margin). The homogenisation 
+the endpoint, a factor-two margin). Finally the slack form factor itself is tamed (script 371): pointwise,
+$\mathrm{slack}(s) \approx \kappa\,[\,\mathrm{sd}(X) + \mathrm{sd}(Y) -
+\mathrm{sd}(X+Y)\,]$ with pointwise correlation $0.89$--$0.95$, a
+cell-independent shape constant $\kappa$ (within $1$--$2\%$ per cell, in the
+near-Gaussian range $1.02$--$1.20$ measured before for the sliver), and the
+cell-mean reconstruction reproduces the slack-triple shape to about $1\%$
+(e.g.\ $[1, 1.116, 2.952]$ versus $[1.007, 1.117, 2.944]$ at the endpoint,
+$k=14$). Since the standard-deviation defect is a pure second-moment object,
+it is dictated by the finite $\Psi$ covariance table: the domination
+inequality is thereby reduced, in every part, to exact algebra plus one
+margin scalar, one shape constant, and the finite table. The homogenisation 
 lemma thereby acquires, for the first time, a finite induction structure:
 prove $a_* >$ (an explicit function of) $\beta_*$ uniformly in depth, and
 Lemma~$\alpha$ follows at every level.

@@ -15536,3 +15536,27 @@ begrensd + dalend-waar-het-telt maar zonder gesloten vorm — het open hart
 is nu exact: (i) de margewet bewijzen (rate sqrt(c) < 1), (ii) beta_* < 0.31
 uniform maken. Beide zijn per-k certificeerbaar; (i) is de c<1-vraag zelf in
 zijn kleinste jas.
+
+## Obs 559 (2026-08-10): DE SLACK-VORMFACTOR GETEMD — slack = kappa * sd-DEFECT, VORM TOT ~1% GEREPRODUCEERD (Script 371; Route A stap 7)
+
+De kappa-gelineariseerde slack-functionaal sluit de laatste modelloze
+grootheid van de dominantie:
+  slack(s) ~ kappa * [sd(X) + sd(Y) - sd(X+Y)]  (het subadditiviteitstekort
+  van de triple-standaarddeviaties, een PUUR tweede-moment-object)
+GEMETEN (8 gridpunten, parent-0-vezels):
+  - puntsgewijze correlatie slack~D: 0.89-0.95;
+  - kappa CEL-ONAFHANKELIJK binnen 1-2% per (lam,k), waarden 1.02-1.20 =
+    exact de bijna-Gaussische sliver-kappa van Obs 533/346;
+  - vormreconstructie: kappa*D-celtriple reproduceert de stabiele S-vorm
+    tot ~1% (lam=2, k=14: [1, 1.116, 2.952] vs [1.007, 1.117, 2.944];
+    lam=1.7, k=12: [1, 1.154, 2.418] vs [1.002, 1.152, 2.418]).
+
+### Consequentie — de dominantie is volledig gemodelleerd
+Het sd-defect wordt gedicteerd door de covariantiestructuur = de EINDIGE
+Psi-tabel (Obs 532/546). Daarmee bestaat de dominantie-ongelijkheid nu in
+AL haar onderdelen uit: exacte algebra (M-matrices, kopieen, 9-stelsels)
++ een margescalar (drijft a, kwadratische wet Obs 557) + een vormconstante
+kappa (bijna-Gaussisch, celonafhankelijk) + de eindige Psi-tabel (drijft
+beta). Er is geen ongemodelleerd object meer over. Route-A-boog van zeven
+stappen rond: het homogenisatie-lemma = margewet + kappa-stabiliteit +
+Psi-tabel-gedrag, elk gemeten, elk per k certificeerbaar.
