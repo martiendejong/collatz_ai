@@ -6,6 +6,7 @@
 <title>Les 4.2 · De massa-identiteit</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -94,6 +95,54 @@
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is de exacte waarde van ρ_lin(2)?</span><span class="en">What is the exact value of ρ_lin(2)?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">3/4</span><span class="en">3/4</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">1 (want 2^α = 3 exact)</span><span class="en">1 (since 2^α = 3 exactly)</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">189/64</span><span class="en">189/64</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat zegt de massa-identiteit?</span><span class="en">What does the mass identity say?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">ρ(λ, k) = ρ_lin(λ) + de gapmassa</span><span class="en">ρ(λ, k) = ρ_lin(λ) + the gap mass</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">ρ(λ, k) = ρ_lin(λ) · γ̄(λ, k)</span><span class="en">ρ(λ, k) = ρ_lin(λ) · γ̄(λ, k)</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">ρ(λ, k) = ρ_lin(λ) − (B₁+B₃)/3 · γ̄(λ, k)</span><span class="en">ρ(λ, k) = ρ_lin(λ) − (B₁+B₃)/3 · γ̄(λ, k)</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Waartoe is de vraag "haalt het telprogramma γ = 1?" exact herleid?</span><span class="en">To what is the question "does the counting programme reach γ = 1?" exactly reduced?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">of de relatieve gapmassa bij λ = 2 verdwijnt als de diepte groeit</span><span class="en">whether the relative gap mass at λ = 2 vanishes as depth grows</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">of de backbone een permutatie blijft op grote diepte</span><span class="en">whether the backbone remains a permutation at large depth</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">of λ boven de 2 kan uitkomen</span><span class="en">whether λ can exceed 2</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Met welke geometrische rate per diepte-stap daalt de gemeten reeks 1 − ρ(2, k)?</span><span class="en">At what geometric rate per depth step does the measured sequence 1 − ρ(2, k) decrease?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">≈ 0.5</span><span class="en">≈ 0.5</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">≈ 0.91</span><span class="en">≈ 0.91</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">≈ 0.99</span><span class="en">≈ 0.99</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de massa-identiteit van het K-L-systeem?</span><span class="en">What is the mass identity of the K-L system?</span></summary>
+      <p class="nl">De massa-identiteit luidt ρ(λ, k) = ρ_lin(λ) − (B₁+B₃)/3 · γ̄(λ, k), met γ̄ = 𝔼[G]/𝔼[v] de relatieve gapmassa (G = gemiddelde − min per triple). De groeifactor van het telsysteem is dus de lineaire mean-field-waarde mín een gewogen gapmassa. Machinecontrole over twaalf (λ, k)-combinaties gaf verhouding linkerlid/rechterlid = 1.000000 in alle gevallen.</p>
+      <p class="en">The mass identity reads ρ(λ, k) = ρ_lin(λ) − (B₁+B₃)/3 · γ̄(λ, k), with γ̄ = E[G]/E[v] the relative gap mass (G = mean − min per triple). The growth factor of the counting system is thus the linear mean-field value minus a weighted gap mass. A machine check across twelve (λ, k) combinations gave left/right ratio = 1.000000 in every case.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de mean-field-eigenwaarde ρ_lin(λ)?</span><span class="en">What is the mean-field eigenvalue ρ_lin(λ)?</span></summary>
+      <p class="nl">Vervang in F de min door het gemiddelde van de drie liften; de resulterende lineaire operator F_lin heeft exact ρ_lin(λ) = λ⁻² + (λ^(α−2) + λ^(α−1))/3, op elke diepte k. De uniforme vector is een exacte linker-eigenvector, omdat de backbone een permutatie is en de feed-argumentmaps bijecties zijn.</p>
+      <p class="en">Replace the min in F by the mean of the three lifts; the resulting linear operator F_lin has exactly ρ_lin(λ) = λ⁻² + (λ^(α−2) + λ^(α−1))/3, at every depth k. The uniform vector is an exact left eigenvector, because the backbone is a permutation and the feed argument maps are bijections.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat gebeurt er op het eindpunt λ = 2?</span><span class="en">What happens at the endpoint λ = 2?</span></summary>
+      <p class="nl">Op λ = 2 (het doel γ = 1) geldt 2^α = 3 exact, zodat ρ_lin(2) = 1/4 + 3/4 = 1 precies. Daaruit volgt 1 − ρ(2, k) = ¾·γ̄(2, k): de vraag of het telprogramma γ = 1 haalt, is exact herleid tot de vraag of de relatieve gapmassa bij λ = 2 verdwijnt als de diepte groeit. Op het exacte eindpunt (ρ = 1, t = 1/4, R = 11/8) worden beide zijden van de gesloten vorm 189/64.</p>
+      <p class="en">At λ = 2 (the goal γ = 1) we have 2^α = 3 exactly, so ρ_lin(2) = 1/4 + 3/4 = 1 precisely. Hence 1 − ρ(2, k) = ¾·γ̄(2, k): the question whether the counting programme reaches γ = 1 is exactly reduced to whether the relative gap mass at λ = 2 vanishes as depth grows. At the exact endpoint (ρ = 1, t = 1/4, R = 11/8) both sides of the closed form become 189/64.</p></details>
+    <details class="faq-item"><summary><span class="nl">Hoe gedraagt de gemeten gapmassa zich als de diepte groeit?</span><span class="en">How does the measured gap mass behave as depth grows?</span></summary>
+      <p class="nl">De gemeten relatieve gapmassa bij λ = 2 daalt van 0.185 (k=5) naar 0.055 (k=16), en de reeks 1 − ρ(2, k) toont een strakke geometrische afname met rate ≈ 0.91 per diepte-stap. Of deze reeks écht naar nul gaat of afvlakt op een positieve constante is "de vork", het beslissende open punt van les 5.4.</p>
+      <p class="en">The measured relative gap mass at λ = 2 decreases from 0.185 (k=5) to 0.055 (k=16), and the sequence 1 − ρ(2, k) shows a tight geometric decrease with rate ≈ 0.91 per depth step. Whether this sequence truly goes to zero or levels off at a positive constant is "the fork", the decisive open point of lesson 5.4.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b4l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 4.1 · De klasse-identiteiten</span><span class="en">Lesson 4.1 · The class identities</span></a>
@@ -146,6 +195,86 @@ window.addEventListener('DOMContentLoaded', function () {
   ctx.fillStyle = '#9aa3c7';
   ctx.fillText('k →', W - 40, H - pad + 18);
 });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de massa-identiteit van het K-L-systeem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De massa-identiteit luidt rho(lambda, k) = rho_lin(lambda) - (B1+B3)/3 maal de relatieve gapmassa, waarbij de gapmassa de verwachting van G (gemiddelde min minimum per triple) gedeeld door de verwachting van v is. De groeifactor van het telsysteem is dus de lineaire mean-field-waarde min een gewogen gapmassa. Machinecontrole over twaalf (lambda, k)-combinaties gaf verhouding linkerlid/rechterlid = 1.000000 in alle gevallen."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de mean-field-eigenwaarde rho_lin(lambda)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vervang in F de min door het gemiddelde van de drie liften; de resulterende lineaire operator heeft exact rho_lin(lambda) = lambda^-2 + (lambda^(alfa-2) + lambda^(alfa-1))/3, op elke diepte k. De uniforme vector is een exacte linker-eigenvector, omdat de backbone een permutatie is en de feed-argumentmaps bijecties zijn."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat gebeurt er op het eindpunt lambda = 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Op lambda = 2 (het doel gamma = 1) geldt 2^alfa = 3 exact, zodat rho_lin(2) = 1/4 + 3/4 = 1 precies. Daaruit volgt 1 - rho(2, k) = 3/4 maal de gapmassa: de vraag of het telprogramma gamma = 1 haalt, is exact herleid tot de vraag of de relatieve gapmassa bij lambda = 2 verdwijnt als de diepte groeit. Op het exacte eindpunt (rho = 1, t = 1/4, R = 11/8) worden beide zijden van de gesloten vorm 189/64."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe gedraagt de gemeten gapmassa zich als de diepte groeit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De gemeten relatieve gapmassa bij lambda = 2 daalt van 0.185 (k=5) naar 0.055 (k=16), en de reeks 1 - rho(2, k) toont een strakke geometrische afname met rate ongeveer 0.91 per diepte-stap. Of deze reeks echt naar nul gaat of afvlakt op een positieve constante is de vork, het beslissende open punt van les 5.4."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the mass identity of the K-L system?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The mass identity reads rho(lambda, k) = rho_lin(lambda) - (B1+B3)/3 times the relative gap mass, where the gap mass is the expectation of G (mean minus minimum per triple) divided by the expectation of v. The growth factor of the counting system is thus the linear mean-field value minus a weighted gap mass. A machine check across twelve (lambda, k) combinations gave left/right ratio = 1.000000 in every case."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the mean-field eigenvalue rho_lin(lambda)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Replace the min in F by the mean of the three lifts; the resulting linear operator has exactly rho_lin(lambda) = lambda^-2 + (lambda^(alpha-2) + lambda^(alpha-1))/3, at every depth k. The uniform vector is an exact left eigenvector, because the backbone is a permutation and the feed argument maps are bijections."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What happens at the endpoint lambda = 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At lambda = 2 (the goal gamma = 1) we have 2^alpha = 3 exactly, so rho_lin(2) = 1/4 + 3/4 = 1 precisely. Hence 1 - rho(2, k) = 3/4 times the gap mass: the question whether the counting programme reaches gamma = 1 is exactly reduced to whether the relative gap mass at lambda = 2 vanishes as depth grows. At the exact endpoint (rho = 1, t = 1/4, R = 11/8) both sides of the closed form become 189/64."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How does the measured gap mass behave as depth grows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The measured relative gap mass at lambda = 2 decreases from 0.185 (k=5) to 0.055 (k=16), and the sequence 1 - rho(2, k) shows a tight geometric decrease with rate about 0.91 per depth step. Whether this sequence truly goes to zero or levels off at a positive constant is the fork, the decisive open point of lesson 5.4."
+      }
+    }
+  ]
+}
 </script>
 </body>
 </html>

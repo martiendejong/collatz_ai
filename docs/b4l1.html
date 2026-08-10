@@ -6,6 +6,7 @@
 <title>Les 4.1 · De klasse-identiteiten</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -128,6 +129,54 @@
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Hoe routeert de backbone T4 de drie klassen mod 3?</span><span class="en">How does the backbone T4 route the three classes mod 3?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">0 → 1 → 2 → 0</span><span class="en">0 → 1 → 2 → 0</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">elke klasse blijft in zichzelf</span><span class="en">each class stays inside itself</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">0 → 2 → 1 → 0, telkens bijectief</span><span class="en">0 → 2 → 1 → 0, each time bijectively</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat is de exacte waarde van de verhouding μ₁/μ₀?</span><span class="en">What is the exact value of the ratio μ₁/μ₀?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">t = A/ρ</span><span class="en">t = A/ρ</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">λ</span><span class="en">λ</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">R(λ) = (t² + λ)/(1 + tλ)</span><span class="en">R(λ) = (t² + λ)/(1 + tλ)</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is er bijzonder aan klasse 1?</span><span class="en">What is special about class 1?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">zij heeft het grootste klassegemiddelde</span><span class="en">it has the largest class mean</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">zij is een exacte, met factor t geschaalde kopie van klasse 0, inclusief de volledige verdeling</span><span class="en">it is an exact copy of class 0 scaled by factor t, including the entire distribution</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">zij ontvangt beide feeds tegelijk</span><span class="en">it receives both feeds at once</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat leverde het exacte criterium op bij diepte k = 20?</span><span class="en">What did the exact criterion deliver at depth k = 20?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">een snellere power-iteratie</span><span class="en">a faster power iteration</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">minder geheugengebruik</span><span class="en">lower memory use</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">een goed-geconditioneerde verhouding met 8% marge, waar het directe verschil onder de float-ruis (~10⁻⁶) zakte</span><span class="en">a well-conditioned ratio with an 8% margin, where the direct difference sank below float noise (~10⁻⁶)</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat zijn de klasse-identiteiten van het K-L-systeem?</span><span class="en">What are the class identities of the K-L system?</span></summary>
+      <p class="nl">Voor de Perron-eigenvector v (met Fv = ρv) gelden op elke eindige diepte k twee exacte identiteiten voor de klassegemiddelden: μ₁/μ₀ = t met t = A/ρ, en μ₂/μ₀ = R(λ) = (t² + λ)/(1 + tλ). Geen benadering, geen limiet: het is pure lineaire algebra op de klassegemiddelden, mogelijk doordat backbone en feed-indexmaps bijecties per klasse zijn.</p>
+      <p class="en">For the Perron eigenvector v (with Fv = ρv), two exact identities hold for the class means at every finite depth k: μ₁/μ₀ = t with t = A/ρ, and μ₂/μ₀ = R(λ) = (t² + λ)/(1 + tλ). No approximation, no limit: it is pure linear algebra on the class means, made possible because the backbone and feed index maps are bijections per class.</p></details>
+    <details class="faq-item"><summary><span class="nl">Hoe routeert de backbone i → 4i+2 de restklassen mod 3?</span><span class="en">How does the backbone i → 4i+2 route the residue classes mod 3?</span></summary>
+      <p class="nl">De backbone T4 stuurt klasse 0 → 2 → 1 → 0, want 4·3s+2 ≡ 2, 4·(3s+1)+2 ≡ 0 en 4·(3s+2)+2 ≡ 1 mod 3, telkens bijectief. Ook de feed-argumentmaps s → 4s en s → 2s+1 zijn bijecties. Daardoor middelen alle termen van de eigenvergelijking exact per klasse, de sleutel tot de identiteiten.</p>
+      <p class="en">The backbone T4 sends class 0 → 2 → 1 → 0, since 4·3s+2 ≡ 2, 4·(3s+1)+2 ≡ 0 and 4·(3s+2)+2 ≡ 1 mod 3, each time bijectively. The feed argument maps s → 4s and s → 2s+1 are bijections too. As a result, every term of the eigen-equation averages exactly per class, the key to the identities.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom is klasse 1 een exacte kopie van klasse 0?</span><span class="en">Why is class 1 an exact copy of class 0?</span></summary>
+      <p class="nl">Klasse-1-rijen hebben geen feed: v(3s+1) = t · v(3·(4s+2 mod N/3)). Elke klasse-1-component is dus t maal een gepermuteerde klasse-0-component; niet alleen de gemiddelden maar de volledige verdeling is een geschaalde kopie, inclusief de kolomgaps (g₁ = t·g₀ exact). Een derde van het systeem is daarmee volledig begrepen.</p>
+      <p class="en">Class-1 rows have no feed: v(3s+1) = t · v(3·(4s+2 mod N/3)). Every class-1 component is thus t times a permuted class-0 component; not just the means but the entire distribution is a scaled copy, including the column gaps (g₁ = t·g₀ exactly). A third of the system is thereby fully understood.</p></details>
+    <details class="faq-item"><summary><span class="nl">Hoe nauwkeurig kloppen de klasse-identiteiten in numerieke eigenvectoren?</span><span class="en">How accurately do the class identities hold in numerical eigenvectors?</span></summary>
+      <p class="nl">Omdat de identiteiten algebraïsch zijn, moeten ze op machine-precisie kloppen, en dat doen ze: over geteste combinaties van λ (1.05 tot 2.00) en diepten k = 10 en 12 blijven |μ₂/μ₀ − R| en |μ₁/μ₀ − t| onder circa 2.2 × 10⁻¹⁶. Bovendien werd bij k = 20 een slecht geconditioneerd verschil (ruis ~10⁻⁶) via de identiteit een goed-geconditioneerde verhouding met 8% marge.</p>
+      <p class="en">Because the identities are algebraic, they must hold to machine precision, and they do: across tested combinations of λ (1.05 to 2.00) and depths k = 10 and 12, |μ₂/μ₀ − R| and |μ₁/μ₀ − t| stay below about 2.2 × 10⁻¹⁶. Moreover, at k = 20 an ill-conditioned difference (noise ~10⁻⁶) became, via the identity, a well-conditioned ratio with an 8% margin.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b3l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 3.3 · Van feasibility naar record</span><span class="en">Lesson 3.3 · From feasibility to record</span></a>
@@ -136,5 +185,85 @@
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat zijn de klasse-identiteiten van het K-L-systeem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Voor de Perron-eigenvector v (met Fv = rho v) gelden op elke eindige diepte k twee exacte identiteiten voor de klassegemiddelden: mu_1/mu_0 = t met t = A/rho, en mu_2/mu_0 = R(lambda) = (t^2 + lambda)/(1 + t lambda). Geen benadering, geen limiet: pure lineaire algebra op de klassegemiddelden, mogelijk doordat backbone en feed-indexmaps bijecties per klasse zijn."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe routeert de backbone i naar 4i+2 de restklassen mod 3?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De backbone T4 stuurt klasse 0 naar 2, 2 naar 1 en 1 naar 0, want 4(3s)+2 = 2, 4(3s+1)+2 = 0 en 4(3s+2)+2 = 1 modulo 3, telkens bijectief. Ook de feed-argumentmaps s naar 4s en s naar 2s+1 zijn bijecties. Daardoor middelen alle termen van de eigenvergelijking exact per klasse."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom is klasse 1 een exacte kopie van klasse 0?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Klasse-1-rijen hebben geen feed: elke klasse-1-component is t maal een gepermuteerde klasse-0-component. Niet alleen de gemiddelden maar de volledige verdeling is een geschaalde kopie, inclusief de kolomgaps (g_1 = t g_0 exact). Een derde van het systeem is daarmee volledig begrepen."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe nauwkeurig kloppen de klasse-identiteiten in numerieke eigenvectoren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omdat de identiteiten algebraisch zijn, moeten ze op machine-precisie kloppen, en dat doen ze: over geteste combinaties van lambda (1.05 tot 2.00) en diepten k = 10 en 12 blijven de afwijkingen onder circa 2.2 maal 10^-16. Bij diepte k = 20 werd een slecht geconditioneerd verschil (ruis rond 10^-6) via de identiteit een goed-geconditioneerde verhouding met 8 procent marge."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What are the class identities of the K-L system?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For the Perron eigenvector v (with Fv = rho v), two exact identities hold for the class means at every finite depth k: mu_1/mu_0 = t with t = A/rho, and mu_2/mu_0 = R(lambda) = (t^2 + lambda)/(1 + t lambda). No approximation, no limit: pure linear algebra on the class means, made possible because the backbone and feed index maps are bijections per class."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How does the backbone i to 4i+2 route the residue classes mod 3?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The backbone T4 sends class 0 to 2, 2 to 1 and 1 to 0, since 4(3s)+2 = 2, 4(3s+1)+2 = 0 and 4(3s+2)+2 = 1 modulo 3, each time bijectively. The feed argument maps s to 4s and s to 2s+1 are bijections too. As a result, every term of the eigen-equation averages exactly per class."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why is class 1 an exact copy of class 0?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Class-1 rows have no feed: every class-1 component is t times a permuted class-0 component. Not just the means but the entire distribution is a scaled copy, including the column gaps (g_1 = t g_0 exactly). A third of the system is thereby fully understood."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How accurately do the class identities hold in numerical eigenvectors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the identities are algebraic, they must hold to machine precision, and they do: across tested combinations of lambda (1.05 to 2.00) and depths k = 10 and 12, the deviations stay below about 2.2 times 10^-16. At depth k = 20 an ill-conditioned difference (noise around 10^-6) became, via the identity, a well-conditioned ratio with an 8 percent margin."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

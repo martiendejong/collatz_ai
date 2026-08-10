@@ -6,6 +6,7 @@
 <title>Les 5.4 · De vork</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -114,6 +115,54 @@
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Waar nadert γ(k) toe in het CEILING-scenario?</span><span class="en">What does γ(k) approach in the CEILING scenario?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">1, want γ̄ verdwijnt geometrisch</span><span class="en">1, since γ̄ vanishes geometrically</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">0, want alles divergeert</span><span class="en">0, since everything diverges</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">een plafond γ∞ ≈ 0.95 &lt; 1</span><span class="en">a ceiling γ∞ ≈ 0.95 &lt; 1</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Met welke rate per stap daalt het tekort 1 − γ(k) volgens de γ-ladder-wet?</span><span class="en">At what rate per step does the deficit 1 − γ(k) decrease according to the γ ladder law?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">≈ 0.935</span><span class="en">≈ 0.935</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">≈ 0.83</span><span class="en">≈ 0.83</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">≈ 0.41</span><span class="en">≈ 0.41</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Welke voorspelling is bevroren vóór verdere metingen?</span><span class="en">Which prediction was frozen before further measurements?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">γ(28) = 0.95 exact</span><span class="en">γ(28) = 0.95 exactly</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">γ(25) = 0.9378 ± 0.002</span><span class="en">γ(25) = 0.9378 ± 0.002</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">c = 0.83 ± 0.01</span><span class="en">c = 0.83 ± 0.01</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Waarom kan de vork niet gewoon worden "uitgemeten"?</span><span class="en">Why can the fork not simply be measured out?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">de benodigde computers bestaan nog niet</span><span class="en">the required computers do not yet exist</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">de metingen zijn te ruizig om iets te zien</span><span class="en">the measurements are too noisy to see anything</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">een dalende en een afvlakkende reeks zijn bij eindige diepte vrijwel niet te onderscheiden; pas rond k ≈ 25–30 lopen de voorspellingen uiteen</span><span class="en">a decaying and a levelling sequence are nearly indistinguishable at finite depth; only around k ≈ 25–30 do the predictions diverge</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de vork DENSITY versus CEILING in het Collatz-telprogramma?</span><span class="en">What is the DENSITY versus CEILING fork in the Collatz counting programme?</span></summary>
+      <p class="nl">Via de massa-identiteit 1 − ρ(2, k) = (3/4)·γ̄(2, k) zijn er twee scenario's. DENSITY: γ̄(2, k) → 0 geometrisch, dus γ(k) → 1 en het telprogramma haalt vrijwel alles (π₁(x) ≥ x^(1−ε) voor elke ε). CEILING: γ̄(2, k) nadert een constante &gt; 0, dus γ(k) → γ∞ ≈ 0.95 &lt; 1 en er is een principieel nieuw idee nodig. Beide takken zijn verenigbaar met alle huidige metingen.</p>
+      <p class="en">Via the mass identity 1 − ρ(2, k) = (3/4)·γ̄(2, k) there are two scenarios. DENSITY: γ̄(2, k) → 0 geometrically, so γ(k) → 1 and the counting programme captures nearly all (π₁(x) ≥ x^(1−ε) for every ε). CEILING: γ̄(2, k) approaches a constant &gt; 0, so γ(k) → γ∞ ≈ 0.95 &lt; 1 and a fundamentally new idea is needed. Both branches are compatible with all current measurements.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat zegt de γ-ladder-wet?</span><span class="en">What does the γ ladder law say?</span></summary>
+      <p class="nl">De gecertificeerde recordpunten volgen een strakke wet: het tekort 1 − γ(k) daalt geometrisch over twaalf diepteniveaus met rate ≈ 0.935 per stap, met een maximale afwijking van 1,3%. Extrapolatie voorspelt de 0.95-kruising rond k ≈ 28. Er is een verleidelijke gesloten-vorm-kandidaat: (2/3)^(1/6) = 0.93466 tegen 0.9347 uit de fit.</p>
+      <p class="en">The certified record points follow a tight law: the deficit 1 − γ(k) decreases geometrically across twelve depth levels at rate ≈ 0.935 per step, with a maximal deviation of 1.3%. Extrapolation predicts the 0.95 crossing near k ≈ 28. There is a tempting closed-form candidate: (2/3)^(1/6) = 0.93466 versus 0.9347 from the fit.</p></details>
+    <details class="faq-item"><summary><span class="nl">Kan meer data de vork beslissen?</span><span class="en">Can more data decide the fork?</span></summary>
+      <p class="nl">Voorlopig niet. Een dalende reeks met rate ~0.91 en een reeks die afvlakt op een klein positief niveau zijn bij eindige diepte vrijwel niet te onderscheiden: de extra vrijheidsgraad van de afvlak-fit wint altijd een beetje zonder iets te bewijzen. Pas rond diepte k ≈ 25–30 lopen de voorspellingen ver genoeg uiteen. Een eerder "veiligheidsargument" op basis van zo'n fit is in dit project zelf teruggetrokken.</p>
+      <p class="en">Not for now. A decaying sequence at rate ~0.91 and a sequence levelling at a small positive value are nearly indistinguishable at finite depth: the extra degree of freedom of the levelling fit always wins a little without proving anything. Only around depth k ≈ 25–30 do the predictions diverge far enough. An earlier "safety argument" based on such a fit was retracted in this very project.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de eerlijke stand van het bewijsmateriaal?</span><span class="en">What is the honest state of the evidence?</span></summary>
+      <p class="nl">Alle empirie wijst dezelfde kant op: c ≈ 0.83 via vier instrumenten, twaalf niveaus geometrische ladder, geen spoor van afvlakking. Maar niets ervan sluit CEILING uit. De beslissing moet uit een bewijs komen: het homogenisatie-lemma van les 5.3, of een principieel nieuw argument. Dat is geen zwakte; het is de reden dat het probleem al negentig jaar openstaat.</p>
+      <p class="en">All the evidence points the same way: c ≈ 0.83 via four instruments, a twelve-level geometric ladder, no trace of levelling. But none of it excludes CEILING. The decision must come from a proof: the homogenisation lemma of lesson 5.3, or a fundamentally new argument. That is not a weakness; it is the reason the problem has been open for ninety years.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b5l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 5.3 · Op weg naar c &lt; 1</span><span class="en">Lesson 5.3 · Towards c &lt; 1</span></a>
@@ -122,5 +171,85 @@
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de vork DENSITY versus CEILING in het Collatz-telprogramma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Via de massa-identiteit 1 − ρ(2, k) = (3/4)·γ̄(2, k) zijn er twee scenario's. DENSITY: γ̄(2, k) → 0 geometrisch, dus γ(k) → 1 en het telprogramma haalt vrijwel alles (π₁(x) ≥ x^(1−ε) voor elke ε). CEILING: γ̄(2, k) nadert een constante groter dan 0, dus γ(k) → γ∞ ≈ 0.95 < 1 en er is een principieel nieuw idee nodig. Beide takken zijn verenigbaar met alle huidige metingen."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat zegt de γ-ladder-wet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De gecertificeerde recordpunten volgen een strakke wet: het tekort 1 − γ(k) daalt geometrisch over twaalf diepteniveaus met rate ≈ 0.935 per stap, met een maximale afwijking van 1,3%. Extrapolatie voorspelt de 0.95-kruising rond k ≈ 28. Er is een verleidelijke gesloten-vorm-kandidaat: (2/3)^(1/6) = 0.93466 tegen 0.9347 uit de fit."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Kan meer data de vork tussen DENSITY en CEILING beslissen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Voorlopig niet. Een dalende reeks met rate ~0.91 en een reeks die afvlakt op een klein positief niveau zijn bij eindige diepte vrijwel niet te onderscheiden: de extra vrijheidsgraad van de afvlak-fit wint altijd een beetje zonder iets te bewijzen. Pas rond diepte k ≈ 25 tot 30 lopen de voorspellingen ver genoeg uiteen. Een eerder veiligheidsargument op basis van zo'n fit is in dit project zelf teruggetrokken."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de eerlijke stand van het bewijsmateriaal voor de contractie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alle empirie wijst dezelfde kant op: c ≈ 0.83 via vier instrumenten, twaalf niveaus geometrische ladder, geen spoor van afvlakking. Maar niets ervan sluit CEILING uit. De beslissing moet uit een bewijs komen: het homogenisatie-lemma van les 5.3, of een principieel nieuw argument. De bevroren voorspelling is γ(25) = 0.9378 ± 0.002."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the DENSITY versus CEILING fork in the Collatz counting programme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Via the mass identity 1 − ρ(2, k) = (3/4)·γ̄(2, k) there are two scenarios. DENSITY: γ̄(2, k) → 0 geometrically, so γ(k) → 1 and the counting programme captures nearly all (π₁(x) ≥ x^(1−ε) for every ε). CEILING: γ̄(2, k) approaches a constant above 0, so γ(k) → γ∞ ≈ 0.95 < 1 and a fundamentally new idea is needed. Both branches are compatible with all current measurements."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What does the γ ladder law say?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The certified record points follow a tight law: the deficit 1 − γ(k) decreases geometrically across twelve depth levels at rate ≈ 0.935 per step, with a maximal deviation of 1.3%. Extrapolation predicts the 0.95 crossing near k ≈ 28. There is a tempting closed-form candidate: (2/3)^(1/6) = 0.93466 versus 0.9347 from the fit."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Can more data decide the fork between DENSITY and CEILING?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not for now. A decaying sequence at rate ~0.91 and a sequence levelling at a small positive value are nearly indistinguishable at finite depth: the extra degree of freedom of the levelling fit always wins a little without proving anything. Only around depth k ≈ 25 to 30 do the predictions diverge far enough. An earlier safety argument based on such a fit was retracted in this very project."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the honest state of the evidence for the contraction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All the evidence points the same way: c ≈ 0.83 via four instruments, a twelve-level geometric ladder, no trace of levelling. But none of it excludes CEILING. The decision must come from a proof: the homogenisation lemma of lesson 5.3, or a fundamentally new argument. The frozen prediction is γ(25) = 0.9378 ± 0.002."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

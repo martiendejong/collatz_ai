@@ -6,6 +6,7 @@
 <title>Les 3.1 · Tellen met ongelijkheden</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -112,18 +113,66 @@
     </table>
     <div class="figure">
       <canvas id="ladderCanvas" width="900" height="300"></canvas>
-      <div class="caption nl">De γ-ladder in beeld, inclusief de zeven recordpunten van dit project
+      <div class="caption nl">De γ-ladder in beeld, inclusief de zes recordpunten van dit project
         (diepten k=13 t/m 21, elk exact geverifieerd). De stippellijn markeert het doel γ = 1.
         Waarom de ladder zich zo regelmatig gedraagt · en of hij de 1 haalt · is het onderwerp van blok 5.</div>
-      <div class="caption en">The γ ladder visualised, including the seven record points of this project
+      <div class="caption en">The γ ladder visualised, including the six record points of this project
         (depths k=13 to 21, each exactly verified). The dashed line marks the goal γ = 1.
         Why the ladder behaves so regularly · and whether it reaches 1 · is the subject of block 5.</div>
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat telt de functie π₁(x)?</span><span class="en">What does the function π₁(x) count?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">het aantal oneven getallen ≤ x</span><span class="en">the number of odd integers ≤ x</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">het aantal startwaarden ≤ x waarvan de baan 1 bereikt</span><span class="en">the number of starting values ≤ x whose orbit reaches 1</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">het aantal stappen dat x nodig heeft om 1 te bereiken</span><span class="en">the number of steps x needs to reach 1</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Welke vorm hebben de bewezen ondergrenzen van het telprogramma?</span><span class="en">What form do the proven lower bounds of the counting programme take?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">π₁(x) ≥ x^γ voor grote x</span><span class="en">π₁(x) ≥ x^γ for large x</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">π₁(x) ≥ γ·x voor grote x</span><span class="en">π₁(x) ≥ γ·x for large x</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">π₁(x) ≥ (log x)^γ voor grote x</span><span class="en">π₁(x) ≥ (log x)^γ for large x</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Welke exponent γ bewezen Krasikov en Lagarias in 2003?</span><span class="en">Which exponent γ did Krasikov and Lagarias prove in 2003?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">0.43</span><span class="en">0.43</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">0.81</span><span class="en">0.81</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">0.84</span><span class="en">0.84</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is de beste exponent van dit project (2026), exact geverifieerd op diepte k=21?</span><span class="en">What is this project's best exponent (2026), exactly verified at depth k=21?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">0.84</span><span class="en">0.84</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">0.9184</span><span class="en">0.9184</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">1.0</span><span class="en">1.0</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Welke ondergrens is bewezen voor de Collatz-telfunctie?</span><span class="en">What lower bound is proven for the Collatz counting function?</span></summary>
+      <p class="nl">De telfunctie π₁(x), het aantal startwaarden ≤ x waarvan de baan 1 bereikt, voldoet aan π₁(x) ≥ x^0.9184 voor grote x. Dit record uit 2026 is verkregen met exacte certificaten tot diepte k=21, goed voor 3,5 miljard geverifieerde constraints. Het volledige vermoeden zou overeenkomen met exponent γ = 1.</p>
+      <p class="en">The counting function π₁(x), the number of starting values ≤ x whose orbit reaches 1, satisfies π₁(x) ≥ x^0.9184 for large x. This 2026 record was obtained with exact certificates up to depth k=21, comprising 3.5 billion verified constraints. The full conjecture would correspond to exponent γ = 1.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wie bewezen de eerdere ondergrenzen voor de Collatz-telfunctie?</span><span class="en">Who proved the earlier lower bounds for the Collatz counting function?</span></summary>
+      <p class="nl">Crandall gaf in 1979 de eerste expliciete ondergrens met γ ≈ 0.05. Krasikov haalde 0.43 in 1989 met difference inequalities mod 9, Applegate en Lagarias 0.81 in 1995 (computerondersteund, mod 3⁹), en Krasikov en Lagarias 0.84 in 2003 (verfijnd stelsel, mod 3¹¹).</p>
+      <p class="en">Crandall gave the first explicit lower bound in 1979 with γ ≈ 0.05. Krasikov reached 0.43 in 1989 using difference inequalities mod 9, Applegate and Lagarias proved 0.81 in 1995 (computer-assisted, mod 3⁹), and Krasikov and Lagarias 0.84 in 2003 (refined system, mod 3¹¹).</p></details>
+    <details class="faq-item"><summary><span class="nl">Hoe leveren difference inequalities een ondergrens voor Collatz?</span><span class="en">How do difference inequalities give a lower bound for Collatz?</span></summary>
+      <p class="nl">In de omgekeerde Collatz-boom groeien voorgangers via ×2 en soms via (m−1)/3, dus tellingen op schaal x worden van onderaf gevoed door tellingen op schaal x/2 en x/3 in gerelateerde restklassen. Vind je een zelfconsistente gewichtenset waarvoor dit stelsel zichzelf met groeifactor x^γ in stand houdt, dan is π₁(x) ≥ x^γ bewezen.</p>
+      <p class="en">In the inverse Collatz tree, predecessors grow via ×2 and sometimes via (m−1)/3, so counts at scale x are fed from below by counts at scales x/2 and x/3 in related residue classes. If you find a self-consistent set of weights for which this system sustains itself with growth factor x^γ, then π₁(x) ≥ x^γ is proved.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom verbetert het verfijnen van restklassen de exponent γ?</span><span class="en">Why does refining residue classes improve the exponent γ?</span></summary>
+      <p class="nl">Hoe fijner de restklassen (mod 9, mod 27, tot mod 3^k), hoe meer boomstructuur de ongelijkheden vangen en hoe hoger de haalbare γ. De prijs is exponentieel groeiende rekenkost: het huidige record γ = 0.9184 gebruikt diepte k=21 met 3,5 miljard constraints.</p>
+      <p class="en">The finer the residue classes (mod 9, mod 27, up to mod 3^k), the more tree structure the inequalities capture and the higher the achievable γ. The price is exponentially growing computational cost: the current record γ = 0.9184 uses depth k=21 with 3.5 billion constraints.</p></details>
+  </div>
+
   <div class="lesson-nav">
-    <a href="b2l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
-      <span class="nl">Les 2.4 · Cycli en divergentie</span><span class="en">Lesson 2.4 · Cycles and divergence</span></a>
+    <a href="b2l5.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 2.5 · Runs en patronen</span><span class="en">Lesson 2.5 · Runs and patterns</span></a>
     <a href="b3l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
       <span class="nl">Les 3.2 · De K-L-operator</span><span class="en">Lesson 3.2 · The K-L operator</span></a>
   </div>
@@ -169,6 +218,86 @@ window.addEventListener('DOMContentLoaded', function () {
   ctx.fillStyle = '#f0abfc'; ctx.font = 'bold 13px sans-serif';
   ctx.fillText('0.9184', X(2025.75) - 55, Y(0.9184) - 10);
 });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Welke ondergrens is bewezen voor de Collatz-telfunctie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De telfunctie pi_1(x), het aantal startwaarden kleiner of gelijk aan x waarvan de baan 1 bereikt, voldoet aan pi_1(x) >= x^0.9184 voor grote x. Dit record uit 2026 is verkregen met exacte certificaten tot diepte k=21, goed voor 3,5 miljard geverifieerde constraints. Het volledige vermoeden zou overeenkomen met exponent gamma = 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wie bewezen de eerdere ondergrenzen voor de Collatz-telfunctie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Crandall gaf in 1979 de eerste expliciete ondergrens met gamma ongeveer 0.05. Krasikov haalde 0.43 in 1989 met difference inequalities mod 9, Applegate en Lagarias 0.81 in 1995 (computerondersteund, mod 3^9), en Krasikov en Lagarias 0.84 in 2003 (verfijnd stelsel, mod 3^11)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe leveren difference inequalities een ondergrens voor Collatz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In de omgekeerde Collatz-boom groeien voorgangers via maal 2 en soms via (m-1)/3, dus tellingen op schaal x worden gevoed door tellingen op schaal x/2 en x/3 in gerelateerde restklassen. Een zelfconsistente gewichtenset die dit stelsel met groeifactor x^gamma in stand houdt, bewijst pi_1(x) >= x^gamma."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom verbetert het verfijnen van restklassen de exponent gamma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hoe fijner de restklassen (mod 9, mod 27, tot mod 3^k), hoe meer boomstructuur de ongelijkheden vangen en hoe hoger de haalbare gamma. De prijs is exponentieel groeiende rekenkost: het huidige record gamma = 0.9184 gebruikt diepte k=21 met 3,5 miljard constraints."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What lower bound is proven for the Collatz counting function?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The counting function pi_1(x), the number of starting values up to x whose orbit reaches 1, satisfies pi_1(x) >= x^0.9184 for large x. This 2026 record was obtained with exact certificates up to depth k=21, comprising 3.5 billion verified constraints. The full conjecture would correspond to exponent gamma = 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Who proved the earlier lower bounds for the Collatz counting function?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Crandall gave the first explicit lower bound in 1979 with gamma about 0.05. Krasikov reached 0.43 in 1989 using difference inequalities mod 9, Applegate and Lagarias proved 0.81 in 1995 (computer-assisted, mod 3^9), and Krasikov and Lagarias 0.84 in 2003 (refined system, mod 3^11)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How do difference inequalities give a lower bound for Collatz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the inverse Collatz tree, predecessors grow via times 2 and sometimes via (m-1)/3, so counts at scale x are fed from below by counts at scales x/2 and x/3 in related residue classes. A self-consistent set of weights that sustains this system with growth factor x^gamma proves pi_1(x) >= x^gamma."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why does refining residue classes improve the exponent gamma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The finer the residue classes (mod 9, mod 27, up to mod 3^k), the more tree structure the inequalities capture and the higher the achievable gamma. The price is exponentially growing computational cost: the current record gamma = 0.9184 uses depth k=21 with 3.5 billion constraints."
+      }
+    }
+  ]
+}
 </script>
 </body>
 </html>

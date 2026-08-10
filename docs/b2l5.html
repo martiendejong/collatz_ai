@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 2.5 · Runs, patronen en de stamboom van de enen</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 2 · De Arithmetische Structuur</span><span class="en">Block 2 · The Arithmetic Structure</span> › <b>2.5</b></div>
+    <h1 class="nl">Runs, patronen en de stamboom van de enen</h1>
+    <h1 class="en">Runs, patterns and the family tree of the ones</h1>
+    <p class="lead nl">De toekomst van een baan staat al in het binaire getal geschreven · en de voorouders van elk enen-blok vormen een stamboom met exacte regels.</p>
+    <p class="lead en">The future of an orbit is already written inside the binary number · and the ancestors of every block of ones form a family tree with exact rules.</p>
+  </div>
+
+  <!-- ===== SUBJECT 1 ===== -->
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De macro-stap: runs in één keer</span><span class="en">The macro step: runs in one go</span></h2>
+    <p class="nl">De staart van het binaire getal is altijd óf een blok nullen óf een blok enen ·
+    dat zagen we in de animatie van <a href="b2l2.html">les 2.2</a>. Dat maakt een <b>macro-stap</b>
+    mogelijk: in plaats van bit voor bit werken we run voor run. Een blok van \(j\) nullen valt er
+    in één keer af (\(j\) delingen door 2, de voorkant blijft onaangeroerd). Een blok van \(k\) enen
+    wordt in één keer verteerd:</p>
+    <p class="en">The tail of the binary number is always either a block of zeros or a block of ones ·
+    we saw this in the animation of <a href="b2l2.html">lesson 2.2</a>. That enables a <b>macro
+    step</b>: instead of working bit by bit, we work run by run. A block of \(j\) zeros drops off in
+    one go (\(j\) divisions by 2, the front stays untouched). A block of \(k\) ones is consumed in
+    one go:</p>
+    $$a \cdot 2^{k} - 1 \;\longrightarrow\; \frac{a \cdot 3^{k} - 1}{2}$$
+    <p class="nl">En de enen landen als enen: er verschijnen precies \(k\) énen aan de staart van de
+    ternaire schrijfwijze, want \((3^k - 1)/2\) is in basis 3 precies "11…1". Eén run binair eruit,
+    dezelfde run ternair erin. De hele baan is een rij van zulke macro-stappen, en deze les leest
+    die rij als een eigen taal.</p>
+    <p class="en">And the ones land as ones: exactly \(k\) ones appear at the tail of the ternary
+    spelling, because \((3^k - 1)/2\) is precisely "11…1" in base 3. One run of binary ones out,
+    the same run of ternary ones in. The whole orbit is a sequence of such macro steps, and this
+    lesson reads that sequence as a language of its own.</p>
+  </div>
+
+  <!-- ===== SUBJECT 2 ===== -->
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De leesraam-stelling</span><span class="en">The reading-frame theorem</span></h2>
+    <p class="nl">Waar komt de vólgende run vandaan? Schrijf het tussenproduct \(A = a \cdot 3^{k}\)
+    in het binaire stelsel. Dan leest de staart van \(A\), van onder naar boven:</p>
+    <p class="en">Where does the <i>next</i> run come from? Write the intermediate product
+    \(A = a \cdot 3^{k}\) in binary. Then the tail of \(A\), read from the bottom up, spells:</p>
+    <div class="callout">
+      <div class="title nl">Leesraam-stelling</div>
+      <div class="title en">Reading-frame theorem</div>
+      <span class="nl">De staart van \(A = a \cdot 3^k\) in basis 2 luidt: [volgende enen-run \(k'\)]
+      [\(v-1\) nullen] [1]. De toekomstige run-structuur van de baan ís de binaire ontwikkeling van
+      \(A\), van onderaf gelezen. Geverifieerd op 184.891 conversiestappen · nul afwijkingen.</span>
+      <span class="en">The tail of \(A = a \cdot 3^k\) in base 2 reads: [next ones-run \(k'\)]
+      [\(v-1\) zeros] [1]. The orbit's future run structure IS the binary expansion of \(A\), read
+      from the bottom. Verified on 184,891 conversion steps · zero failures.</span>
+    </div>
+    <p class="nl">Twee directe gevolgen. Ten eerste de <b>groeiwet</b>: één macro-stap verandert de
+    binaire lengte met \(k \log_2 3 - (k + v)\) bits, dus het getal groeit precies wanneer
+    \(v &lt; 0.585\,k\). Ten tweede is de eis "hierna volgen minstens \(K\) enen" exact één restklasse
+    van \(a\) modulo \(2^{\,v+K+1}\):</p>
+    <p class="en">Two immediate consequences. First the <b>growth law</b>: one macro step changes the
+    binary length by \(k \log_2 3 - (k + v)\) bits, so the number grows exactly when
+    \(v &lt; 0.585\,k\). Second, the requirement "at least \(K\) ones come next" is exactly one
+    residue class of \(a\) modulo \(2^{\,v+K+1}\):</p>
+    $$a \;\equiv\; \bigl(1 + 2^{v}\,(2^{K} - 1)\bigr)\cdot 3^{-k} \pmod{2^{\,v+K+1}}$$
+    <p class="nl">Elke extra gegarandeerde één halveert dus de verzameling die kwalificeert. Precies
+    dat zie je terug in de gemeten frequenties van de volgende enen-run \(k'\):</p>
+    <p class="en">Each extra guaranteed one thus halves the qualifying set. Exactly that shows up in
+    the measured frequencies of the next ones-run \(k'\):</p>
+    <table class="nice">
+      <tr><th>k′</th><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">4</td><td class="num">5</td></tr>
+      <tr><th><span class="nl">gemeten frequentie</span><span class="en">measured frequency</span></th>
+          <td class="num">0.51</td><td class="num">0.23</td><td class="num">0.13</td><td class="num">0.067</td><td class="num">0.028</td></tr>
+    </table>
+    <p class="nl">Steeds ongeveer een halvering per stap · de muntworp-statistiek van les 2.3, maar nu
+    afgeleid uit een exacte congruentie in plaats van aangenomen.</p>
+    <p class="en">Roughly one halving per step · the coin-flip statistics of lesson 2.3, but now
+    derived from an exact congruence instead of assumed.</p>
+  </div>
+
+  <!-- ===== SUBJECT 3 ===== -->
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De run-automaat</span><span class="en">The run automaton</span></h2>
+    <p class="nl">De leesraam-stelling maakt de hele run-dynamiek tot één <b>tijdsinvariante
+    opzoektabel</b>: \((k,\; a \bmod 2^{w}) \mapsto (v,\; k')\). Sterker nog: de afhankelijkheid van
+    \(k\) is slechts een heretikettering, want \(a \mapsto 3a\) is een bijectie op de restklassen.
+    Concreet: precies 14 van de 64 vensterklassen geven \(k' \ge 3\), en dat aantal is hetzelfde
+    voor élke \(k\).</p>
+    <p class="en">The reading-frame theorem turns the entire run dynamics into one
+    <b>time-invariant lookup table</b>: \((k,\; a \bmod 2^{w}) \mapsto (v,\; k')\). Better still:
+    the dependence on \(k\) is only a relabeling, since \(a \mapsto 3a\) is a bijection on residue
+    classes. Concretely: exactly 14 of the 64 window classes give \(k' \ge 3\), and that count is
+    the same for every \(k\).</p>
+    <table class="nice">
+      <tr><th>k</th><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">4</td><td class="num">5</td></tr>
+      <tr><th>E[k′ | k]</th><td class="num">2.010</td><td class="num">2.006</td><td class="num">1.992</td><td class="num">1.992</td><td class="num">2.003</td></tr>
+    </table>
+    <div class="callout">
+      <div class="title nl">Neutraliteitsstelling</div>
+      <div class="title en">Neutrality theorem</div>
+      <span class="nl">De verwachte volgende run is altijd \(\approx 2\), onafhankelijk van de huidige
+      run: géén patroon koopt toekomstige enen buiten zijn vastgepinde venster. Elke gegarandeerde
+      extra één kost een factor-2 dunnere restklasse · de automaat geeft niets gratis weg.</span>
+      <span class="en">The expected next run is always \(\approx 2\), independent of the current run:
+      no pattern buys future ones beyond its pinned window. Every guaranteed extra one costs a
+      factor-2 thinner residue class · the automaton gives nothing away for free.</span>
+    </div>
+  </div>
+
+  <!-- ===== SUBJECT 4 ===== -->
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De martingaal en de harmonische piekwet</span><span class="en">The martingale and the harmonic peak law</span></h2>
+    <p class="nl">De neutraliteit heeft een klassieke naam. Neem de Syracuse-stap \(T\) (één keer
+    ×3+1, dan alle delingen door 2 in één keer) en middel over de kansen \(2^{-j}\) dat er \(j\)
+    delingen volgen:</p>
+    <p class="en">The neutrality has a classical name. Take the Syracuse step \(T\) (one ×3+1, then
+    all divisions by 2 in one go) and average over the probabilities \(2^{-j}\) of \(j\) divisions:</p>
+    $$\mathbb{E}\,[\,T(n) \mid n\,] \;=\; \sum_{j \ge 1} 2^{-j}\,\frac{3n+1}{2^{j}} \;=\; n + \tfrac13$$
+    <p class="nl">Syracuse is dus (op de \(+\tfrac13\) na) een <b>martingaal</b>: de verdubbelingskansen
+    heffen de verdrievoudiging exact op, omdat \(2^{\log_2 3} = 3\). En voor martingalen geldt een
+    scherpe piekenwet: de kans dat de baan van \(n\) ooit boven \(P\) uitstijgt is</p>
+    <p class="en">So Syracuse is (up to the \(+\tfrac13\)) a <b>martingale</b>: the halving
+    probabilities cancel the tripling exactly, because \(2^{\log_2 3} = 3\). And martingales obey a
+    sharp peak law: the probability that the orbit of \(n\) ever exceeds \(P\) is</p>
+    $$\mathbb{P}\,(\text{piek} \ge P) \;\approx\; \frac{n}{P}$$
+    <p class="nl">de <b>harmonische wet</b>. De gemeten staarthellingen van excursies in vijf
+    onafhankelijke reeksen: 1.037 / 1.001 / 1.013 / 1.036 / 1.029 · exact exponent 1. Ook analytisch
+    klopt het precies: de gekantelde vergelijking \(2^{\theta\alpha} = 2^{1+\theta} - 1\) (met
+    \(\alpha = \log_2 3\)) heeft \(\theta = 1\) als exacte wortel.</p>
+    <p class="en">the <b>harmonic law</b>. The measured excursion tail slopes in five independent
+    series: 1.037 / 1.001 / 1.013 / 1.036 / 1.029 · exactly exponent 1. The analytics agree
+    precisely: the tilted equation \(2^{\theta\alpha} = 2^{1+\theta} - 1\) (with
+    \(\alpha = \log_2 3\)) has \(\theta = 1\) as an exact root.</p>
+  </div>
+
+  <!-- ===== SUBJECT 5 ===== -->
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">De stamboom van de enen</span><span class="en">The family tree of the ones</span></h2>
+    <p class="nl">Draai nu de tijd om: wíe produceert een blok van \(K\) enen, dus het getal
+    \(2^K - 1\)? Voor even \(K\) is \(2^K - 1\) deelbaar door 3, en zulke getallen hebben géén
+    oneven voorganger: <b>11 en 1111 zijn bladeren van de boom</b>. Voor oneven \(K\) bestaat er een
+    canonieke voorganger:</p>
+    <p class="en">Now reverse time: <i>who</i> produces a block of \(K\) ones, i.e. the number
+    \(2^K - 1\)? For even \(K\), \(2^K - 1\) is divisible by 3, and such numbers have no odd
+    predecessor: <b>11 and 1111 are leaves of the tree</b>. For odd \(K\) there is a canonical
+    predecessor:</p>
+    $$P(K) \;=\; \frac{2^{K+2} - 5}{3} \;=\; \texttt{10\,10\,\ldots\,10\,01}_{\,2}$$
+    <p class="nl">een alternerend patroon met slot 001: 1001 → 111, 101001 → 11111,
+    10101001 → 1111111. De recursie \(P(K+2) = 4P(K) + 5\) laat de klasse modulo 3 cyclisch
+    doorlopen als 0, 2, 1. Dat geeft een <b>kleurenwet</b> voor de stamboom:</p>
+    <p class="en">an alternating pattern ending in 001: 1001 → 111, 101001 → 11111,
+    10101001 → 1111111. The recursion \(P(K+2) = 4P(K) + 5\) cycles the class modulo 3 through
+    0, 2, 1. That gives a <b>colour law</b> for the tree:</p>
+    <table class="nice">
+      <tr><th>K</th>
+          <th><span class="nl">kleur van P(K) mod 3</span><span class="en">colour of P(K) mod 3</span></th>
+          <th><span class="nl">gevolg</span><span class="en">consequence</span></th></tr>
+      <tr><td class="num">3, 9, 15, …</td><td class="num">0</td>
+          <td><span class="nl">de voorganger is zélf een blad</span><span class="en">the predecessor is itself a leaf</span></td></tr>
+      <tr><td class="num">5, 11, …</td><td class="num">2</td>
+          <td><span class="nl">de tak loopt door via oneven v</span><span class="en">the branch continues via odd v</span></td></tr>
+      <tr><td class="num">7, 13, …</td><td class="num">1</td>
+          <td><span class="nl">de tak loopt door via even v</span><span class="en">the branch continues via even v</span></td></tr>
+    </table>
+    <div class="callout">
+      <div class="title nl">Het juweeltje: 27 → 41 → 31</div>
+      <div class="title en">The gem: 27 → 41 → 31</div>
+      <span class="nl">De beroemde baan van 27 begint op een blad (27 ≡ 0 mod 3), stapt het
+      alternerende getal 41 = 101001 binnen en klimt zo 11111 = 31 in. De wildste bekende kleine
+      baan is precies één tak van deze stamboom.</span>
+      <span class="en">The famous orbit of 27 starts at a leaf (27 ≡ 0 mod 3), steps into the
+      alternating number 41 = 101001 and thus climbs into 11111 = 31. The wildest known small orbit
+      is exactly one branch of this family tree.</span>
+    </div>
+    <p class="nl">Dieper terug in de tijd wordt de stamboom een <b>blokkenhiërarchie</b>. De
+    voorouders op niveau 2 zijn \((\texttt{111000})^{j}\) plus een staart 11011 (kiem 27) of
+    \((\texttt{111000})^{j}\) plus een staart 11100001 (kiem 225). Op niveau 3 herhaalt zich één
+    universeel 18-bits blok 100101111011010000 · een rotatie van de periode van 1/27. In het
+    algemeen gebruikt niveau \(t\) het binaire periodeblok van \(1/3^{t}\), met lengte
+    \(2 \cdot 3^{\,t-1}\); en op elk niveau sterft een derde van alle takken.</p>
+    <p class="en">Deeper back in time the tree becomes a <b>block hierarchy</b>. The level-2
+    ancestors are \((\texttt{111000})^{j}\) plus a tail 11011 (seed 27) or
+    \((\texttt{111000})^{j}\) plus a tail 11100001 (seed 225). At level 3 one universal 18-bit
+    block 100101111011010000 repeats · a rotation of the period of 1/27. In general, level \(t\)
+    uses the binary period block of \(1/3^{t}\), of length \(2 \cdot 3^{\,t-1}\); and one third of
+    all branches dies at every level.</p>
+    <table class="nice">
+      <tr><th><span class="nl">niveau</span><span class="en">level</span></th>
+          <th><span class="nl">blok</span><span class="en">block</span></th>
+          <th><span class="nl">lengte</span><span class="en">length</span></th></tr>
+      <tr><td class="num">1</td><td class="num">10</td><td class="num">2</td></tr>
+      <tr><td class="num">2</td><td class="num">111000</td><td class="num">6</td></tr>
+      <tr><td class="num">3</td><td class="num">100101111011010000</td><td class="num">18</td></tr>
+    </table>
+  </div>
+
+  <!-- ===== SUBJECT 6 ===== -->
+  <div class="subject">
+    <h2><span class="snum">6</span><span class="nl">Wat records écht zijn</span><span class="en">What records really are</span></h2>
+    <p class="nl">De stamboom bepaalt de langste <b>klims</b>: elk vastgepind bit levert hoogstens 2
+    baan-stappen op. Maar de stoptijd-records volgen er níet uit. Echte records zoals
+    106239 = 11001111011111111 zijn <b>stapels enen-runs</b> met enkelvoudige nul-gaatjes ertussen
+    (van onderaf: run 8, gaatje 1, run 4): elke etage voldoet opnieuw aan de groeivoorwaarde
+    \(v &lt; 0.585\,k\).</p>
+    <p class="en">The tree determines the longest <b>climbs</b>: each pinned bit yields at most 2
+    orbit steps. But the stop-time records do not follow from it. Real records such as
+    106239 = 11001111011111111 are <b>stacks of ones-runs</b> with single-zero gaps in between
+    (from the bottom: run 8, gap 1, run 4): each storey satisfies the growth condition
+    \(v &lt; 0.585\,k\) afresh.</p>
+    <p class="nl">Zulke records halen ongeveer 26 stappen per bit · veel meer dan een startklasse ooit
+    kan vastpinnen. De reden is de kern van dit hele blok: de carries van de ×3-stappen genereren
+    onderweg vérse bits die geen enkele startklasse kan voorschrijven. Die geregenereerde informatie
+    is precies de onherleidbare \(\log_2 3\)-kern van het probleem.</p>
+    <p class="en">Such records achieve roughly 26 steps per bit · far more than any starting class
+    can ever pin down. The reason is the core of this whole block: the carries of the ×3 steps
+    generate fresh bits along the way that no starting class can prescribe. That regenerated
+    information is exactly the irreducible \(\log_2 3\) core of the problem.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wanneer groeit het getal bij een macro-stap (enen-run k, gevolgd door v nullen)?</span><span class="en">When does the number grow in a macro step (ones-run k, followed by v zeros)?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">als v &gt; k</span><span class="en">when v &gt; k</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">precies als v &lt; 0.585 k</span><span class="en">exactly when v &lt; 0.585 k</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">bij elke macro-stap</span><span class="en">in every macro step</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat is de verwachte volgende enen-run E[k′ | k] volgens de neutraliteitsstelling?</span><span class="en">What is the expected next ones-run E[k′ | k] according to the neutrality theorem?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">altijd ≈ 2, onafhankelijk van de huidige run k</span><span class="en">always ≈ 2, independent of the current run k</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">groeit mee met k: lange runs kopen lange vervolgen</span><span class="en">grows with k: long runs buy long follow-ups</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">≈ ½, want enen zijn zeldzaam</span><span class="en">≈ ½, because ones are rare</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat zegt de harmonische piekwet over de kans dat de baan van n ooit boven P uitstijgt?</span><span class="en">What does the harmonic peak law say about the probability that the orbit of n ever exceeds P?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">≈ e^(−P)</span><span class="en">≈ e^(−P)</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">≈ n/P²</span><span class="en">≈ n/P²</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">≈ n/P</span><span class="en">≈ n/P</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Welke blokken enen (2^K − 1) zijn bladeren van de stamboom, zonder oneven voorganger?</span><span class="en">Which blocks of ones (2^K − 1) are leaves of the family tree, with no odd predecessor?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">die met oneven K, zoals 111 en 11111</span><span class="en">those with odd K, such as 111 and 11111</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">die met even K, zoals 11 en 1111: dan is 2^K − 1 deelbaar door 3</span><span class="en">those with even K, such as 11 and 1111: then 2^K − 1 is divisible by 3</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">die met priem-K, zoals 1111111</span><span class="en">those with prime K, such as 1111111</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is een macro-stap in de Collatz-dynamiek?</span><span class="en">What is a macro step in Collatz dynamics?</span></summary>
+      <p class="nl">De staart van het binaire getal is altijd óf een blok nullen óf een blok enen, dus je kunt run voor run werken in plaats van bit voor bit. Een blok van j nullen valt er in één keer af (j delingen door 2); een blok van k enen wordt in één keer verteerd via a·2^k − 1 → (a·3^k − 1)/2. De enen landen daarbij als enen: er verschijnen precies k énen aan de staart van de ternaire schrijfwijze, want (3^k − 1)/2 is in basis 3 precies "11…1".</p>
+      <p class="en">The tail of the binary number is always either a block of zeros or a block of ones, so you can work run by run instead of bit by bit. A block of j zeros drops off in one go (j divisions by 2); a block of k ones is consumed in one go via a·2^k − 1 → (a·3^k − 1)/2. The ones land as ones: exactly k ones appear at the tail of the ternary spelling, because (3^k − 1)/2 is precisely "11…1" in base 3.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de leesraam-stelling en de groeiwet?</span><span class="en">What is the reading-frame theorem and the growth law?</span></summary>
+      <p class="nl">De staart van het tussenproduct A = a·3^k in basis 2 spelt, van onderaf gelezen, de toekomstige run-structuur van de baan: [volgende enen-run k′] [v−1 nullen] [1]. Dit is geverifieerd op 184.891 conversiestappen met nul afwijkingen. Gevolg is de groeiwet: één macro-stap verandert de binaire lengte met k·log₂ 3 − (k + v) bits, dus het getal groeit precies wanneer v &lt; 0.585 k.</p>
+      <p class="en">The tail of the intermediate product A = a·3^k in base 2, read from the bottom up, spells the orbit's future run structure: [next ones-run k′] [v−1 zeros] [1]. This has been verified on 184,891 conversion steps with zero failures. A consequence is the growth law: one macro step changes the binary length by k·log₂ 3 − (k + v) bits, so the number grows exactly when v &lt; 0.585 k.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom is de Syracuse-afbeelding een martingaal en wat volgt daaruit?</span><span class="en">Why is the Syracuse map a martingale and what follows from that?</span></summary>
+      <p class="nl">Middel de Syracuse-stap over de kansen 2^(−j) op j delingen: E[T(n) | n] = n + 1/3. Op de +1/3 na is dat een martingaal: de verdubbelingskansen heffen de verdrievoudiging exact op, omdat 2^(log₂ 3) = 3. Voor martingalen geldt een scherpe piekenwet: P(piek ≥ P) ≈ n/P, de harmonische wet. Gemeten staarthellingen in vijf onafhankelijke reeksen: 1.037 / 1.001 / 1.013 / 1.036 / 1.029 · exact exponent 1.</p>
+      <p class="en">Average the Syracuse step over the probabilities 2^(−j) of j divisions: E[T(n) | n] = n + 1/3. Up to the +1/3 that is a martingale: the halving probabilities cancel the tripling exactly, because 2^(log₂ 3) = 3. Martingales obey a sharp peak law: P(peak ≥ P) ≈ n/P, the harmonic law. Measured tail slopes in five independent series: 1.037 / 1.001 / 1.013 / 1.036 / 1.029 · exactly exponent 1.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de stamboom van de enen?</span><span class="en">What is the family tree of the ones?</span></summary>
+      <p class="nl">Draai de tijd om en vraag wie een blok van K enen (het getal 2^K − 1) produceert. Voor even K is 2^K − 1 deelbaar door 3 en is er géén oneven voorganger: 11 en 1111 zijn bladeren. Voor oneven K bestaat de canonieke voorganger P(K) = (2^(K+2) − 5)/3, een alternerend patroon met slot 001: zo klimt de beroemde baan 27 → 41 → 31 (41 = 101001 binair). Dieper terug gebruikt niveau t het binaire periodeblok van 1/3^t (lengte 2·3^(t−1)), en op elk niveau sterft een derde van alle takken.</p>
+      <p class="en">Reverse time and ask who produces a block of K ones (the number 2^K − 1). For even K, 2^K − 1 is divisible by 3 and there is no odd predecessor: 11 and 1111 are leaves. For odd K there is the canonical predecessor P(K) = (2^(K+2) − 5)/3, an alternating pattern ending in 001: that is how the famous orbit climbs 27 → 41 → 31 (41 = 101001 in binary). Deeper back, level t uses the binary period block of 1/3^t (length 2·3^(t−1)), and one third of all branches dies at every level.</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b2l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 2.4 · Cycli en divergentie</span><span class="en">Lesson 2.4 · Cycles and divergence</span></a>
+    <a href="b3l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 3.1 · Tellen met ongelijkheden</span><span class="en">Lesson 3.1 · Counting with inequalities</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is een macro-stap in de Collatz-dynamiek?", "acceptedAnswer": {"@type": "Answer", "text": "De staart van het binaire getal is altijd of een blok nullen of een blok enen, dus je kunt run voor run werken in plaats van bit voor bit. Een blok van j nullen valt er in een keer af (j delingen door 2); een blok van k enen wordt in een keer verteerd via a x 2^k - 1 naar (a x 3^k - 1)/2. De enen landen daarbij als enen: er verschijnen precies k enen aan de staart van de ternaire schrijfwijze, want (3^k - 1)/2 is in basis 3 precies '11...1'."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is de leesraam-stelling en de groeiwet?", "acceptedAnswer": {"@type": "Answer", "text": "De staart van het tussenproduct A = a x 3^k in basis 2 spelt, van onderaf gelezen, de toekomstige run-structuur van de baan: eerst de volgende enen-run k', dan v-1 nullen, dan een 1. Dit is geverifieerd op 184.891 conversiestappen met nul afwijkingen. Gevolg is de groeiwet: een macro-stap verandert de binaire lengte met k log2 3 - (k + v) bits, dus het getal groeit precies wanneer v < 0.585 k."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom is de Syracuse-afbeelding een martingaal en wat volgt daaruit?", "acceptedAnswer": {"@type": "Answer", "text": "Middel de Syracuse-stap over de kansen 2^(-j) op j delingen: E[T(n) | n] = n + 1/3. Op de +1/3 na is dat een martingaal: de verdubbelingskansen heffen de verdrievoudiging exact op, omdat 2^(log2 3) = 3. Voor martingalen geldt een scherpe piekenwet: de kans dat de baan van n ooit boven P uitstijgt is ongeveer n/P, de harmonische wet. Gemeten staarthellingen in vijf onafhankelijke reeksen: 1.037 / 1.001 / 1.013 / 1.036 / 1.029, exact exponent 1."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is de stamboom van de enen?", "acceptedAnswer": {"@type": "Answer", "text": "Draai de tijd om en vraag wie een blok van K enen (het getal 2^K - 1) produceert. Voor even K is 2^K - 1 deelbaar door 3 en is er geen oneven voorganger: 11 en 1111 zijn bladeren. Voor oneven K bestaat de canonieke voorganger P(K) = (2^(K+2) - 5)/3, een alternerend patroon met slot 001: zo klimt de beroemde baan 27 naar 41 naar 31 (41 = 101001 binair). Dieper terug gebruikt niveau t het binaire periodeblok van 1/3^t (lengte 2 x 3^(t-1)), en op elk niveau sterft een derde van alle takken."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is a macro step in Collatz dynamics?", "acceptedAnswer": {"@type": "Answer", "text": "The tail of the binary number is always either a block of zeros or a block of ones, so you can work run by run instead of bit by bit. A block of j zeros drops off in one go (j divisions by 2); a block of k ones is consumed in one go via a x 2^k - 1 to (a x 3^k - 1)/2. The ones land as ones: exactly k ones appear at the tail of the ternary spelling, because (3^k - 1)/2 is precisely '11...1' in base 3."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is the reading-frame theorem and the growth law?", "acceptedAnswer": {"@type": "Answer", "text": "The tail of the intermediate product A = a x 3^k in base 2, read from the bottom up, spells the orbit's future run structure: first the next ones-run k', then v-1 zeros, then a 1. This has been verified on 184,891 conversion steps with zero failures. A consequence is the growth law: one macro step changes the binary length by k log2 3 - (k + v) bits, so the number grows exactly when v < 0.585 k."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why is the Syracuse map a martingale and what follows from that?", "acceptedAnswer": {"@type": "Answer", "text": "Average the Syracuse step over the probabilities 2^(-j) of j divisions: E[T(n) | n] = n + 1/3. Up to the +1/3 that is a martingale: the halving probabilities cancel the tripling exactly, because 2^(log2 3) = 3. Martingales obey a sharp peak law: the probability that the orbit of n ever exceeds P is about n/P, the harmonic law. Measured tail slopes in five independent series: 1.037 / 1.001 / 1.013 / 1.036 / 1.029, exactly exponent 1."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is the family tree of the ones?", "acceptedAnswer": {"@type": "Answer", "text": "Reverse time and ask who produces a block of K ones (the number 2^K - 1). For even K, 2^K - 1 is divisible by 3 and there is no odd predecessor: 11 and 1111 are leaves. For odd K there is the canonical predecessor P(K) = (2^(K+2) - 5)/3, an alternating pattern ending in 001: that is how the famous orbit climbs 27 to 41 to 31 (41 = 101001 in binary). Deeper back, level t uses the binary period block of 1/3^t (length 2 x 3^(t-1)), and one third of all branches dies at every level."}}
+  ]
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 7.3 · Wat bewezen niet kan</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 7 · De 2-adische wereld</span><span class="en">Block 7 · The 2-adic world</span> › <b>7.3</b></div>
+    <h1 class="nl">Wat bewezen niet kan</h1>
+    <h1 class="en">What provably cannot work</h1>
+    <p class="lead nl">Tien no-go-stellingen: tien wegen die aantoonbaar doodlopen · en daarmee tien redenen waarom de twee overgebleven routes de goede zijn.</p>
+    <p class="lead en">Ten no-go theorems: ten roads that provably dead-end · and thereby ten reasons why the two remaining routes are the right ones.</p>
+  </div>
+
+  <p class="nl">No-go-stellingen zijn geen mislukkingen maar positieve kennis: ze sluiten wegen
+  permanent af en kanaliseren alle toekomstige inspanning. Elke regel in de tabel hieronder is een
+  bewezen resultaat · niet "we hebben het geprobeerd en het lukte niet", maar "dit kán niet werken,
+  en hier is waarom". Wie aan Collatz begint, hoeft deze tien deuren nooit meer open te duwen.</p>
+  <p class="en">No-go theorems are not failures but positive knowledge: they close roads permanently
+  and channel all future effort. Every row in the table below is a proven result · not "we tried it
+  and it did not work", but "this cannot work, and here is why". Anyone starting on Collatz never
+  has to push on these ten doors again.</p>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De tien no-go's</span><span class="en">The ten no-gos</span></h2>
+    <table class="nice">
+      <tr><th>#</th>
+          <th><span class="nl">no-go</span><span class="en">no-go</span></th>
+          <th><span class="nl">wat het uitsluit</span><span class="en">what it rules out</span></th></tr>
+      <tr><td class="num">1</td>
+          <td><span class="nl">Geen eindige-diepte-Lyapunov</span><span class="en">No finite-depth Lyapunov</span></td>
+          <td><span class="nl">Er bestaat geen strikt Lyapunov-certificaat over eindige 2-adische residu-toestanden, op welke diepte dan ook (geverifieerd j = 10..60).</span>
+              <span class="en">No strict Lyapunov certificate exists over finite 2-adic residue states at any depth (verified j = 10..60).</span></td></tr>
+      <tr><td class="num">2</td>
+          <td><span class="nl">De digit-som-sector is integreerbaar</span><span class="en">The digit-sum sector is integrable</span></td>
+          <td><span class="nl">Het hele financieringskanaal via digit-sommen is aantoonbaar tautologisch; er leeft geen Lyapunov-functie in.</span>
+              <span class="en">The whole digit-sum financing channel is provably tautological; no Lyapunov function lives there.</span></td></tr>
+      <tr><td class="num">3</td>
+          <td><span class="nl">Locality-route dood</span><span class="en">Locality route dead</span></td>
+          <td><span class="nl">Multiplicativiteit van het K-L-veld kan niet via lokaliteit worden bewezen.</span>
+              <span class="en">Multiplicativity of the K-L field cannot be proven via locality.</span></td></tr>
+      <tr><td class="num">4</td>
+          <td><span class="nl">Frozen-linearisatie dood</span><span class="en">Frozen linearisation dead</span></td>
+          <td><span class="nl">De gap van de bevroren/gelineariseerde operator sluit met de diepte (|λ₂| → 0.959): geen uniforme contractie uit bevriezen.</span>
+              <span class="en">The frozen/linearised operator's gap closes with depth (|λ₂| → 0.959): no uniform contraction from freezing.</span></td></tr>
+      <tr><td class="num">5</td>
+          <td><span class="nl">Cone-absorption (Bushell) faalt</span><span class="en">Cone absorption (Bushell) fails</span></td>
+          <td><span class="nl">Kegel-absorptie op eindige horizon geldt niet.</span>
+              <span class="en">Finite-horizon cone absorption does not hold.</span></td></tr>
+      <tr><td class="num">6</td>
+          <td><span class="nl">AND-gesloten verzamelingen bestaan</span><span class="en">AND-closed sets exist</span></td>
+          <td><span class="nl">Een puur combinatorisch kernbewijs is onmogelijk; echte AND-gesloten verzamelingen bestaan.</span>
+              <span class="en">A purely combinatorial core proof is impossible; proper AND-closed sets exist.</span></td></tr>
+      <tr><td class="num">7</td>
+          <td><span class="nl">Venster-certificaten zijn orthogonaal</span><span class="en">Window certificates are orthogonal</span></td>
+          <td><span class="nl">Cyclus-venster-certificaten zijn logisch onafhankelijk (CRT): geen erfelijkheid tussen vensters.</span>
+              <span class="en">Cycle-window certificates are logically independent (CRT): no cross-window inheritance.</span></td></tr>
+      <tr><td class="num">8</td>
+          <td><span class="nl">Geen expander</span><span class="en">No expander</span></td>
+          <td><span class="nl">De Collatz-keten bij groeiende modulus is diffusief, geen expander met constante gap (exacte gap-wet (3/2)^m, les 7.2).</span>
+              <span class="en">The Collatz chain at growing modulus is diffusive, not a constant-gap expander (exact gap law (3/2)^m, lesson 7.2).</span></td></tr>
+      <tr><td class="num">9</td>
+          <td><span class="nl">Livšic + tekenblindheid</span><span class="en">Livšic + sign blindness</span></td>
+          <td><span class="nl">Er bestaat geen Hölder-continue 2-adische Lyapunov-functionaal; en tekenblinde analytische methoden zijn aantoonbaar ontoereikend (de L¹-massa overschrijdt de drempel met een factor 200-300).</span>
+              <span class="en">No Hölder-continuous 2-adic Lyapunov functional exists; and sign-blind analytic methods are provably insufficient (the L¹ mass exceeds the threshold by a factor 200-300).</span></td></tr>
+      <tr><td class="num">10</td>
+          <td><span class="nl">Telling-invariantie (les 7.2)</span><span class="en">Counting invariance (lesson 7.2)</span></td>
+          <td><span class="nl">De κ-barrière kan door géén enkele itinerarium-tellende verfijning worden verzet.</span>
+              <span class="en">The κ barrier cannot be moved by ANY itinerary-counting refinement.</span></td></tr>
+    </table>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Wat overblijft</span><span class="en">What remains</span></h2>
+    <p class="nl">Trek de tien afgesloten wegen af van de kaart, en er blijven precies twee levende
+    routes over:</p>
+    <p class="en">Subtract the ten closed roads from the map, and exactly two live routes remain:</p>
+    <table class="nice">
+      <tr><th><span class="nl">route</span><span class="en">route</span></th>
+          <th><span class="nl">wat er te doen staat</span><span class="en">what there is to do</span></th></tr>
+      <tr><td class="num">1</td>
+          <td><span class="nl">Bewijs de productbalans / Vermoeden G: dood de kruip (blok 5.5).</span>
+              <span class="en">Prove the product balance / Conjecture G: kill the creep (block 5.5).</span></td></tr>
+      <tr><td class="num">2</td>
+          <td><span class="nl">Exploiteer per-baan-integraliteit: de residu-draad van één vast getal (de enige uitgang van blok 7.2).</span>
+              <span class="en">Exploit per-orbit integrality: the residue thread of one fixed number (block 7.2's only exit).</span></td></tr>
+    </table>
+    <p class="nl">Al het andere op de lijst is gesloten. En dat is de eerlijke afsluiting van dit blok:
+    deze lijst is waaróm het probleem moeilijk is én waaróm de vooruitgang echt is. Tien gesloten
+    deuren zijn tien dingen die niemand ooit nog hoeft te proberen.</p>
+    <p class="en">Everything else on the list is closed. And that is the honest close of this block:
+    this list is why the problem is hard AND why the progress is real. Ten closed doors are ten
+    things nobody ever needs to try again.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Tot op welke diepte is geverifieerd dat er geen strikt Lyapunov-certificaat over eindige 2-adische residu-toestanden bestaat (no-go #1)?</span><span class="en">To what depth has it been verified that no strict Lyapunov certificate over finite 2-adic residue states exists (no-go #1)?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">j = 2..8</span><span class="en">j = 2..8</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">j = 10..60</span><span class="en">j = 10..60</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">j = 100..600</span><span class="en">j = 100..600</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Hoeveel levende routes blijven er over nadat de tien no-go's van de kaart zijn afgetrokken?</span><span class="en">How many live routes remain after subtracting the ten no-gos from the map?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">twee: productbalans / Vermoeden G en per-baan-integraliteit</span><span class="en">two: product balance / Conjecture G and per-orbit integrality</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">drie: Lyapunov, expander en digit-sommen</span><span class="en">three: Lyapunov, expander and digit sums</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">één: alleen de residu-draad</span><span class="en">one: only the residue thread</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Met welke factor overschrijdt de L¹-massa de drempel voor tekenblinde analytische methoden (no-go #9)?</span><span class="en">By what factor does the L¹ mass exceed the threshold for sign-blind analytic methods (no-go #9)?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">een factor 2-3</span><span class="en">a factor 2-3</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">een factor 20-30</span><span class="en">a factor 20-30</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">een factor 200-300</span><span class="en">a factor 200-300</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Waarom is de Collatz-keten bij groeiende modulus geen expander (no-go #8)?</span><span class="en">Why is the Collatz chain at growing modulus not an expander (no-go #8)?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">de keten heeft een constante spectrale gap op elke diepte</span><span class="en">the chain has a constant spectral gap at every depth</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">de keten is diffusief: de gap volgt de exacte wet (3/2)^m</span><span class="en">the chain is diffusive: the gap follows the exact law (3/2)^m</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">de keten is exact periodiek op elke modulus</span><span class="en">the chain is exactly periodic at every modulus</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat zijn de no-go-stellingen voor het Collatz-vermoeden?</span><span class="en">What are the no-go theorems for the Collatz conjecture?</span></summary>
+      <p class="nl">Tien bewezen stellingen sluiten wegen permanent af, waaronder: geen strikt Lyapunov-certificaat over eindige 2-adische residu-toestanden op welke diepte dan ook (geverifieerd j = 10..60), de digit-som-sector is integreerbaar en dus tautologisch, de keten is geen expander, en de κ-barrière kan door geen enkele itinerarium-tellende verfijning worden verzet. Het zijn geen mislukkingen maar positieve kennis: niet "we hebben het geprobeerd en het lukte niet", maar "dit kán niet werken, en hier is waarom".</p>
+      <p class="en">Ten proven theorems close roads permanently, among them: no strict Lyapunov certificate over finite 2-adic residue states at any depth (verified j = 10..60), the digit-sum sector is integrable and hence tautological, the chain is no expander, and the κ barrier cannot be moved by any itinerary-counting refinement. They are not failures but positive knowledge: not "we tried it and it did not work", but "this cannot work, and here is why".</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom is de Collatz-keten geen expander?</span><span class="en">Why is the Collatz chain not an expander?</span></summary>
+      <p class="nl">No-go #8: de Collatz-keten bij groeiende modulus is diffusief, geen expander met constante gap. De spectrale gap volgt de exacte wet (3/2)^m (les 7.2), dus de menging heeft een harde dieptegrens in plaats van een uniforme contractie. Ook de verwante frozen-linearisatie faalt (no-go #4): de gap van de bevroren operator sluit met de diepte, |λ₂| → 0.959.</p>
+      <p class="en">No-go #8: the Collatz chain at growing modulus is diffusive, not a constant-gap expander. The spectral gap follows the exact law (3/2)^m (lesson 7.2), so the mixing has a hard depth limit instead of a uniform contraction. The related frozen linearisation also fails (no-go #4): the frozen operator's gap closes with depth, |λ₂| → 0.959.</p></details>
+    <details class="faq-item"><summary><span class="nl">Welke aanpakken van het Collatz-vermoeden zijn nog levensvatbaar?</span><span class="en">Which approaches to the Collatz conjecture remain viable?</span></summary>
+      <p class="nl">Na aftrek van de tien afgesloten wegen blijven er precies twee levende routes over. Route 1: bewijs de productbalans / Vermoeden G, oftewel dood de kruip (blok 5.5). Route 2: exploiteer per-baan-integraliteit, de residu-draad van één vast getal, de enige uitgang van blok 7.2. Al het andere op de lijst is gesloten.</p>
+      <p class="en">After subtracting the ten closed roads, exactly two live routes remain. Route 1: prove the product balance / Conjecture G, that is, kill the creep (block 5.5). Route 2: exploit per-orbit integrality, the residue thread of one fixed number, block 7.2's only exit. Everything else on the list is closed.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom falen tekenblinde analytische methoden op Collatz?</span><span class="en">Why do sign-blind analytic methods fail on Collatz?</span></summary>
+      <p class="nl">No-go #9 combineert twee resultaten: er bestaat geen Hölder-continue 2-adische Lyapunov-functionaal (via Livšic), en tekenblinde analytische methoden zijn aantoonbaar ontoereikend omdat de L¹-massa de drempel overschrijdt met een factor 200-300. Een methode die het teken negeert kan het probleem dus niet sluiten, ongeacht verdere verfijning.</p>
+      <p class="en">No-go #9 combines two results: no Hölder-continuous 2-adic Lyapunov functional exists (via Livšic), and sign-blind analytic methods are provably insufficient because the L¹ mass exceeds the threshold by a factor of 200-300. A method that ignores the sign therefore cannot close the problem, regardless of further refinement.</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b7l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 7.2 · Kanalen en camouflage</span><span class="en">Lesson 7.2 · Channels and camouflage</span></a>
+    <a href="contribute.html" style="text-align:right"><span class="dir nl">verder ›</span><span class="dir en">onward ›</span>
+      <span class="nl">Bijdragen</span><span class="en">Contribute</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat zijn de no-go-stellingen voor het Collatz-vermoeden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tien bewezen stellingen sluiten wegen permanent af, waaronder: geen strikt Lyapunov-certificaat over eindige 2-adische residu-toestanden op welke diepte dan ook (geverifieerd j = 10..60), de digit-som-sector is integreerbaar en dus tautologisch, de keten is geen expander, en de κ-barrière kan door geen enkele itinerarium-tellende verfijning worden verzet. Het zijn geen mislukkingen maar positieve kennis: dit kan niet werken, en hier is waarom."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom is de Collatz-keten geen expander?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No-go #8: de Collatz-keten bij groeiende modulus is diffusief, geen expander met constante gap. De spectrale gap volgt de exacte wet (3/2)^m, dus de menging heeft een harde dieptegrens in plaats van een uniforme contractie. Ook de verwante frozen-linearisatie faalt (no-go #4): de gap van de bevroren operator sluit met de diepte, |λ2| → 0.959."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Welke aanpakken van het Collatz-vermoeden zijn nog levensvatbaar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Na aftrek van de tien afgesloten wegen blijven er precies twee levende routes over. Route 1: bewijs de productbalans / Vermoeden G, oftewel dood de kruip (blok 5.5). Route 2: exploiteer per-baan-integraliteit, de residu-draad van één vast getal, de enige uitgang van blok 7.2. Al het andere op de lijst is gesloten."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom falen tekenblinde analytische methoden op Collatz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No-go #9 combineert twee resultaten: er bestaat geen Hölder-continue 2-adische Lyapunov-functionaal (via Livšic), en tekenblinde analytische methoden zijn aantoonbaar ontoereikend omdat de L¹-massa de drempel overschrijdt met een factor 200-300. Een methode die het teken negeert kan het probleem dus niet sluiten, ongeacht verdere verfijning."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What are the no-go theorems for the Collatz conjecture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ten proven theorems close roads permanently, among them: no strict Lyapunov certificate over finite 2-adic residue states at any depth (verified j = 10..60), the digit-sum sector is integrable and hence tautological, the chain is no expander, and the κ barrier cannot be moved by any itinerary-counting refinement. They are not failures but positive knowledge: this cannot work, and here is why."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why is the Collatz chain not an expander?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No-go #8: the Collatz chain at growing modulus is diffusive, not a constant-gap expander. The spectral gap follows the exact law (3/2)^m, so the mixing has a hard depth limit instead of a uniform contraction. The related frozen linearisation also fails (no-go #4): the frozen operator's gap closes with depth, |λ2| → 0.959."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Which approaches to the Collatz conjecture remain viable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After subtracting the ten closed roads, exactly two live routes remain. Route 1: prove the product balance / Conjecture G, that is, kill the creep (block 5.5). Route 2: exploit per-orbit integrality, the residue thread of one fixed number, block 7.2's only exit. Everything else on the list is closed."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why do sign-blind analytic methods fail on Collatz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No-go #9 combines two results: no Hölder-continuous 2-adic Lyapunov functional exists (via Livšic), and sign-blind analytic methods are provably insufficient because the L¹ mass exceeds the threshold by a factor of 200-300. A method that ignores the sign therefore cannot close the problem, regardless of further refinement."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

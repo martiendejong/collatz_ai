@@ -6,6 +6,7 @@
 <title>Les 1.3 · Geschiedenis en context</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -236,6 +237,54 @@
     honestly discusses what is still missing.</p>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wie noteerde het probleem in 1937 in zijn notitieboek?</span><span class="en">Who recorded the problem in his notebook in 1937?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">Stanisław Ulam</span><span class="en">Stanisław Ulam</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">Lothar Collatz</span><span class="en">Lothar Collatz</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">Shizuo Kakutani</span><span class="en">Shizuo Kakutani</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat bewees Riho Terras in 1976?</span><span class="en">What did Riho Terras prove in 1976?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">bijna alle getallen dalen onder hun startwaarde</span><span class="en">almost all integers descend below their starting value</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">er bestaan geen cycli van lengte ≤ 91</span><span class="en">no cycles of length ≤ 91 exist</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">het vermoeden geldt tot 2⁶⁸</span><span class="en">the conjecture holds up to 2⁶⁸</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Hoe gedraagt de 3n − 1-variant zich?</span><span class="en">How does the 3n − 1 variant behave?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">alle banen bereiken 1, net als bij 3n + 1</span><span class="en">all orbits reach 1, just like 3n + 1</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">vrijwel alle banen vliegen naar oneindig</span><span class="en">nearly all orbits fly off to infinity</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">er zijn drie bekende cycli, dus het analoge vermoeden is daar fout</span><span class="en">there are three known cycles, so the analogous conjecture is false there</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Welk deelprobleem staat vandaag nog volledig open?</span><span class="en">Which sub-problem is still wide open today?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">het uitsluiten van m-cycli met m ≤ 91</span><span class="en">excluding m-cycles with m ≤ 91</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">bewijzen dat er géén divergente banen bestaan</span><span class="en">proving that no divergent orbits exist</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">bewijzen dat bijna alle banen bijna-begrensde waarden bereiken</span><span class="en">proving that almost all orbits attain almost bounded values</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wie bedacht het Collatz-probleem en wanneer?</span><span class="en">Who invented the Collatz problem and when?</span></summary>
+      <p class="nl">Lothar Collatz noteerde het probleem in 1937 in zijn notitieboek tijdens zijn studie van iteraties op getallen. Het circuleerde daarna decennialang mondeling via Hasse, Kakutani en Ulam, en draagt daardoor vele namen: het 3n+1-probleem, het Syracuse-probleem, het vermoeden van Ulam en Kakutani's probleem. Kakutani grapte zelfs dat het "een Sovjet-complot was om Amerikaans onderzoek te vertragen".</p>
+      <p class="en">Lothar Collatz recorded the problem in his notebook in 1937 while studying iterations on integers. It then circulated by word of mouth for decades via Hasse, Kakutani and Ulam, which is why it carries many names: the 3n+1 problem, the Syracuse problem, Ulam's conjecture and Kakutani's problem. Kakutani even joked it was "a Soviet plot to slow down American research".</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is het sterkste bekende resultaat over het Collatz-vermoeden?</span><span class="en">What is the strongest known result about the Collatz conjecture?</span></summary>
+      <p class="nl">Statistisch: Terence Tao bewees in 2019 dat bijna alle banen "bijna begrensde" waarden bereiken. Tellend: Krasikov en Lagarias bewezen in 2003 dat minstens x^0.84 startwaarden onder x het getal 1 bereiken; dit project tilt die grens met exact geverifieerde certificaten naar x^0.9184 (2026). Het volledige vermoeden, en met name de afwezigheid van divergente banen, blijft open.</p>
+      <p class="en">Statistically: Terence Tao proved in 2019 that almost all orbits attain "almost bounded" values. In counting terms: Krasikov and Lagarias proved in 2003 that at least x^0.84 starting values below x reach 1; this project lifts that bound to x^0.9184 with exactly verified certificates (2026). The full conjecture, in particular the absence of divergent orbits, remains open.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat gebeurt er als je de regel verandert in 3n − 1 of 5n + 1?</span><span class="en">What happens if you change the rule to 3n − 1 or 5n + 1?</span></summary>
+      <p class="nl">Bij 3n − 1 zijn drie cycli bekend: {1, 2}, {5, 14, 7, 20, 10} en een cyclus van lengte 18 vanaf 17, dus het analoge vermoeden is daar fout. Bij 5n + 1 is de drift positief (log₂ 5 &gt; 2) en lijken vrijwel alle banen naar oneindig te vliegen, ook onbewezen. De les: elk Collatz-bewijs moet een eigenschap gebruiken die 3n + 1 wél heeft en 3n − 1 níet.</p>
+      <p class="en">For 3n − 1 three cycles are known: {1, 2}, {5, 14, 7, 20, 10} and an 18-step cycle from 17, so the analogous conjecture is false there. For 5n + 1 the drift is positive (log₂ 5 &gt; 2) and orbits appear to fly off to infinity, also unproven. The lesson: any Collatz proof must use a property that 3n + 1 has and 3n − 1 lacks.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat bewees Conway in 1972 over Collatz-achtige functies?</span><span class="en">What did Conway prove in 1972 about Collatz-like functions?</span></summary>
+      <p class="nl">Conway construeerde een veralgemeende Collatz-functie (regels per restklasse modulo P) die een universele computer simuleert, via zijn taal FRACTRAN. Gevolg: er bestaat geen algemeen algoritme dat voor élke functie uit die familie bepaalt of alle banen bij 1 komen; de familie is onbeslisbaar. Over de éne specifieke Collatz-functie zegt dit niets definitiefs, maar het verklaart waarom generieke aanpakken stuklopen.</p>
+      <p class="en">Conway constructed a generalised Collatz function (rules per residue class modulo P) that simulates a universal computer, via his language FRACTRAN. Consequence: no general algorithm decides, for every function in that family, whether all orbits reach 1; the family is undecidable. This says nothing definitive about the one specific Collatz function, but it explains why generic approaches fail.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b1l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 1.2 · Eerste verkenningen</span><span class="en">Lesson 1.2 · First explorations</span></a>
@@ -247,5 +296,21 @@
     <a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course
   </footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "inLanguage": "nl", "name": "Wie bedacht het Collatz-probleem en wanneer?", "acceptedAnswer": {"@type": "Answer", "text": "Lothar Collatz noteerde het probleem in 1937 in zijn notitieboek tijdens zijn studie van iteraties op getallen. Het circuleerde daarna decennialang mondeling via Hasse, Kakutani en Ulam, en draagt daardoor vele namen: het 3n+1-probleem, het Syracuse-probleem, het vermoeden van Ulam en Kakutani's probleem."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is het sterkste bekende resultaat over het Collatz-vermoeden?", "acceptedAnswer": {"@type": "Answer", "text": "Statistisch: Terence Tao bewees in 2019 dat bijna alle banen 'bijna begrensde' waarden bereiken. Tellend: Krasikov en Lagarias bewezen in 2003 dat minstens x^0.84 startwaarden onder x het getal 1 bereiken; dit project tilt die grens met exact geverifieerde certificaten naar x^0.9184 (2026). Het volledige vermoeden, met name de afwezigheid van divergente banen, blijft open."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat gebeurt er als je de regel verandert in 3n-1 of 5n+1?", "acceptedAnswer": {"@type": "Answer", "text": "Bij 3n-1 zijn drie cycli bekend: {1, 2}, {5, 14, 7, 20, 10} en een cyclus van lengte 18 vanaf 17, dus het analoge vermoeden is daar fout. Bij 5n+1 is de drift positief (log2 5 > 2) en lijken vrijwel alle banen naar oneindig te vliegen, ook onbewezen. De les: elk Collatz-bewijs moet een eigenschap gebruiken die 3n+1 wel heeft en 3n-1 niet."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat bewees Conway in 1972 over Collatz-achtige functies?", "acceptedAnswer": {"@type": "Answer", "text": "Conway construeerde een veralgemeende Collatz-functie (regels per restklasse modulo P) die een universele computer simuleert, via zijn taal FRACTRAN. Gevolg: er bestaat geen algemeen algoritme dat voor elke functie uit die familie bepaalt of alle banen bij 1 komen; de familie is onbeslisbaar. Over de ene specifieke Collatz-functie zegt dit niets definitiefs."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Who invented the Collatz problem and when?", "acceptedAnswer": {"@type": "Answer", "text": "Lothar Collatz recorded the problem in his notebook in 1937 while studying iterations on integers. It then circulated by word of mouth for decades via Hasse, Kakutani and Ulam, which is why it carries many names: the 3n+1 problem, the Syracuse problem, Ulam's conjecture and Kakutani's problem."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is the strongest known result about the Collatz conjecture?", "acceptedAnswer": {"@type": "Answer", "text": "Statistically: Terence Tao proved in 2019 that almost all orbits attain 'almost bounded' values. In counting terms: Krasikov and Lagarias proved in 2003 that at least x^0.84 starting values below x reach 1; this project lifts that bound to x^0.9184 with exactly verified certificates (2026). The full conjecture, in particular the absence of divergent orbits, remains open."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What happens if you change the rule to 3n-1 or 5n+1?", "acceptedAnswer": {"@type": "Answer", "text": "For 3n-1 three cycles are known: {1, 2}, {5, 14, 7, 20, 10} and an 18-step cycle from 17, so the analogous conjecture is false there. For 5n+1 the drift is positive (log2 5 > 2) and orbits appear to fly off to infinity, also unproven. The lesson: any Collatz proof must use a property that 3n+1 has and 3n-1 lacks."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What did Conway prove in 1972 about Collatz-like functions?", "acceptedAnswer": {"@type": "Answer", "text": "Conway constructed a generalised Collatz function (rules per residue class modulo P) that simulates a universal computer, via his language FRACTRAN. Consequence: no general algorithm decides, for every function in that family, whether all orbits reach 1; the family is undecidable. This says nothing definitive about the one specific Collatz function."}}
+  ]
+}
+</script>
 </body>
 </html>

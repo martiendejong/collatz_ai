@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 4.5 · De kern in zijn kleinste gedaante</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 4 · Exacte Structuur</span><span class="en">Block 4 · Exact Structure</span> › <b>4.5</b></div>
+    <h1 class="nl">De kern in zijn kleinste gedaante</h1>
+    <h1 class="en">The core in its smallest form</h1>
+    <p class="lead nl">Het hele operatorprobleem herleid tot één veld, één niet-lineariteit en één expliciete kern · en de 3-adische wet die zijn correlaties dicteert.</p>
+    <p class="lead en">The whole operator problem reduced to one field, one nonlinearity and one explicit kernel · and the 3-adic law that dictates its correlations.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Backbone-eliminatie</span><span class="en">Backbone elimination</span></h2>
+    <p class="nl">De backbone \(T_4 : i \mapsto 4i+2 \bmod N\) (met \(N = 3^{k-1}\)) is één enkele
+    \(N\)-cykel. Dat is geen detail maar een hefboom: langs die cykel kan de eigenvergelijking
+    <i>opgelost</i> worden. Schrijf de vaste-punt-vergelijking als backbone-term plus feedveld \(f\);
+    dan geeft doorschuiven langs de cykel, met \(t = A/\rho\):</p>
+    <p class="en">The backbone \(T_4 : i \mapsto 4i+2 \bmod N\) (with \(N = 3^{k-1}\)) is a single
+    \(N\)-cycle. That is not a detail but a lever: along that cycle the eigen-equation can be
+    <i>solved</i>. Write the fixed-point equation as a backbone term plus feed field \(f\); then
+    unrolling along the cycle, with \(t = A/\rho\):</p>
+    $$v(i) \;=\; \frac{1}{\rho}\sum_{n} t^{\,n}\, f\!\left(T_4^{\,n}\, i\right)$$
+    <p class="nl">De backbone is daarmee volledig geëlimineerd. Wat overblijft is <b>één</b> vergelijking
+    in <b>één</b> veld: het min-veld \(w\) (per cel de kleinste van de drie liften) voldoet aan</p>
+    <p class="en">The backbone is thereby fully eliminated. What remains is <b>one</b> equation in
+    <b>one</b> field: the min-field \(w\) (per cell the smallest of the three lifts) satisfies</p>
+    $$\boxed{\;w \;=\; M_3\!\left(K\,w\right)\;}$$
+    <p class="nl">waarin \(M_3\) de min over de drie liften neemt en \(K\) een expliciete, positieve
+    kern is. Het volledige operatorprobleem uit les 4.1: één veld, één niet-lineariteit (de min),
+    één expliciete kern. Compacter kan het niet.</p>
+    <p class="en">where \(M_3\) takes the min over the three lifts and \(K\) is an explicit, positive
+    kernel. The full operator problem of lesson 4.1: one field, one nonlinearity (the min), one
+    explicit kernel. It does not get more compact.</p>
+    <div class="callout">
+      <div class="title nl">Machinecontrole · en een eerlijke les</div>
+      <div class="title en">Machine check · and an honest lesson</div>
+      <span class="nl">De gereduceerde vergelijking is numeriek geverifieerd tegen het volledige
+      systeem tot relatieve fout \(1{,}5\cdot 10^{-15}\). De eerste implementatie had een
+      dubbel-indexeringsfout die fouten van orde 1 gaf · gevonden, hersteld, en genoteerd. Reducties
+      verifieer je altijd tegen het origineel, niet tegen je eigen verwachting.</span>
+      <span class="en">The reduced equation was verified numerically against the full system to
+      relative error \(1.5\cdot 10^{-15}\). The first implementation had a double-indexing bug that
+      gave errors of order 1 · caught, fixed, and logged. You always verify a reduction against the
+      original, not against your own expectation.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De kern gekarteld</span><span class="en">The kernel charted</span></h2>
+    <p class="nl">De kern \(K\) is geen zwarte doos. Zijn rijsommen zijn <b>klasse-constant</b> en
+    hebben gesloten vormen; voor klasse 0 bijvoorbeeld:</p>
+    <p class="en">The kernel \(K\) is no black box. Its row sums are <b>class-constant</b> and have
+    closed forms; for class 0, for instance:</p>
+    $$\sum_j K_{ij}\Big|_{\text{klasse / class } 0} \;=\; \frac{B_1 + B_3\, t}{\rho\,(1 - t^3)}$$
+    <p class="nl">En de niet-lineariteit laat zich lokaal temmen: bevries per cel de argmin (welke
+    van de drie liften wint) en je krijgt de <b>bevroren Jacobiaan</b>, een lineaire operator. Diens
+    Euler-eigenwaarde is <b>exact 1</b> · precies wat een vaste-punt-vergelijking vereist · met
+    subleidende eigenwaarden 0.673 en 0.803, gemeten bij twee waarden van λ. De spectrale kloof onder
+    de 1 is de lokale versie van de contractievraag uit blok 5.</p>
+    <p class="en">And the nonlinearity can be tamed locally: freeze the argmin per cell (which of the
+    three lifts wins) and you obtain the <b>frozen Jacobian</b>, a linear operator. Its Euler
+    eigenvalue is <b>exactly 1</b> · precisely what a fixed-point equation requires · with subleading
+    eigenvalues 0.673 and 0.803, measured at two values of λ. The spectral gap below 1 is the local
+    version of the contraction question of block 5.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De valuatiewet</span><span class="en">The valuation law</span></h2>
+    <p class="nl">Hoe hangt het min-veld \(w\) langs de backbone-cykel met zichzelf samen? Het
+    antwoord is verrassend zuiver: de autocorrelatie hangt <i>alleen</i> af van de 3-adische valuatie
+    van de lag:</p>
+    <p class="en">How does the min-field \(w\) correlate with itself along the backbone cycle? The
+    answer is surprisingly clean: the autocorrelation depends <i>only</i> on the 3-adic valuation of
+    the lag:</p>
+    $$\text{ACF}(n) \;=\; \varphi_\lambda\!\left(v_3(n)\right)$$
+    <p class="nl">Het mechanisme is elementaire getaltheorie: de multiplicatieve orde van 4 modulo
+    \(3^m\) is \(3^{m-1}\). Daardoor behoudt \(T_4^{\,n}\) de laagste \(v_3(n)+1\) cijfers van de
+    3-tallige schrijfwijze, op een translatie na. Punten op lag \(n\) delen dus precies zoveel
+    digit-structuur als \(v_3(n)\) toelaat: het correlatielandschap van het kernveld is
+    <b>3-adisch gelaagd</b>, geen ruis maar cijferwerk.</p>
+    <p class="en">The mechanism is elementary number theory: the multiplicative order of 4 modulo
+    \(3^m\) is \(3^{m-1}\). Hence \(T_4^{\,n}\) preserves the lowest \(v_3(n)+1\) digits of the
+    base-3 expansion, up to a translation. Points at lag \(n\) therefore share exactly as much digit
+    structure as \(v_3(n)\) permits: the correlation landscape of the kernel field is
+    <b>3-adically layered</b>, not noise but digit arithmetic.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De sibling-lag-stelling</span><span class="en">The sibling-lag theorem</span></h2>
+    <p class="nl">Translatie over \(N/3\) commuteert met de backbone: \(4\cdot N/3 \equiv N/3
+    \pmod N\), dus \(T_4(i + N/3) = T_4(i) + N/3\). De drie liften van één cel · de
+    <i>siblings</i> · zitten daardoor op de backbone-cykel op onderlinge lag <b>exact</b>
+    \(2N/3\), en die lag heeft <b>maximale</b> 3-adische valuatie \(v_3(2N/3) = k-2\). De
+    valuatiewet uit onderwerp 3 voorspelt dan dat siblings vrijwel perfect gecorreleerd zijn ·
+    en dat klopt: gemeten sibling-correlaties liggen tussen 0.992 en 1.000.</p>
+    <p class="en">Translation by \(N/3\) commutes with the backbone: \(4\cdot N/3 \equiv N/3
+    \pmod N\), so \(T_4(i + N/3) = T_4(i) + N/3\). The three lifts of a cell · the
+    <i>siblings</i> · therefore sit on the backbone cycle at mutual lag <b>exactly</b> \(2N/3\),
+    and that lag has <b>maximal</b> 3-adic valuation \(v_3(2N/3) = k-2\). The valuation law of
+    subject 3 then predicts that siblings are almost perfectly correlated · and so they are:
+    measured sibling correlations lie between 0.992 and 1.000.</p>
+    <div class="callout">
+      <div class="title nl">Een raadsel opgelost</div>
+      <div class="title en">A mystery resolved</div>
+      <span class="nl">Waarom neigt de intra-cel-correlatie naar 1 · een eerder mysterie · en waarom
+      is de cascade zo zwak? Omdat de min drie <i>bijna-identieke</i> kopieën vergelijkt. De
+      min-bias is daardoor een tweede-orde-effect, en juist dat maakt de contractieconstante
+      \(c < 1\) plausibel.</span>
+      <span class="en">Why does the intra-cell correlation tend to 1 · an earlier mystery · and why
+      is the cascade so weak? Because the min compares three <i>nearly identical</i> copies. The
+      min-bias is thereby a second-order effect, and exactly that makes the contraction constant
+      \(c < 1\) plausible.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">De structuurfunctie Ψ</span><span class="en">The structure function Ψ</span></h2>
+    <p class="nl">De valuatiewet gaat verder dan autocorrelaties. <i>Alle</i> covarianties tussen
+    kernveld-evaluaties, \(\mathrm{Cov}(w\circ\arg_n,\, w\circ\arg_m)\), worden bepaald door een
+    <b>eindige tabel</b> Ψ met sleutel (klasse van \(n\), klasse van \(m\), \((m{-}n) \bmod 3^{d}\))
+    voor een kleine 3-adische diepte \(d\). Gemeten variantie-sluiting, out-of-sample:</p>
+    <p class="en">The valuation law goes beyond autocorrelations. <i>All</i> covariances between
+    kernel-field evaluations, \(\mathrm{Cov}(w\circ\arg_n,\, w\circ\arg_m)\), are determined by a
+    <b>finite table</b> Ψ keyed by (class of \(n\), class of \(m\), \((m{-}n) \bmod 3^{d}\)) for a
+    small 3-adic depth \(d\). Measured variance closure, out of sample:</p>
+    <table class="nice">
+      <tr><th>λ</th>
+          <th><span class="nl">sleutels mod 27</span><span class="en">keys mod 27</span></th>
+          <th><span class="nl">sleutels mod 81</span><span class="en">keys mod 81</span></th></tr>
+      <tr><td>1.05</td><td>0.9727</td><td>1.0000</td></tr>
+      <tr><td>1.70</td><td>1.0000</td><td>1.0000</td></tr>
+    </table>
+    <p class="nl">De vereiste 3-adische diepte groeit richting het kritieke punt · precies wat de
+    valuatiewet voorspelt: dieper in de kritieke zone tellen diepere cijfers mee. De consequentie is
+    groot: de volledige tweede-orde-structuur van het kernveld is <b>eindig</b>. Wat openstaat is
+    niet langer <i>welke</i> structuur er is, maar alleen hoe de getallen in de tabel zich gedragen
+    als \(k \to \infty\).</p>
+    <p class="en">The required 3-adic depth grows toward the critical point · exactly what the
+    valuation law predicts: deeper in the critical zone, deeper digits matter. The consequence is
+    large: the entire second-order structure of the kernel field is <b>finite</b>. What remains open
+    is no longer <i>what</i> structure there is, but only how the numbers in the table behave as
+    \(k \to \infty\).</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Tot welke vergelijking reduceert het operatorprobleem na backbone-eliminatie?</span><span class="en">To what equation does the operator problem reduce after backbone elimination?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">v = Fv, het oorspronkelijke stelsel</span><span class="en">v = Fv, the original system</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">w = M₃(K·w): één veld, één min, één expliciete kern</span><span class="en">w = M₃(K·w): one field, one min, one explicit kernel</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">w = K·w, een puur lineaire vergelijking</span><span class="en">w = K·w, a purely linear equation</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Waarvan hangt de autocorrelatie van het min-veld langs de backbone-cykel uitsluitend af?</span><span class="en">On what does the autocorrelation of the min-field along the backbone cycle depend exclusively?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">de 3-adische valuatie v₃(n) van de lag</span><span class="en">the 3-adic valuation v₃(n) of the lag</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">de absolute grootte van de lag n</span><span class="en">the absolute size of the lag n</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">de pariteit van de lag n</span><span class="en">the parity of the lag n</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Op welke onderlinge lag zitten de drie siblings van één cel op de backbone-cykel?</span><span class="en">At what mutual lag do the three siblings of a cell sit on the backbone cycle?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">N/2</span><span class="en">N/2</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">N/9</span><span class="en">N/9</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">exact 2N/3, met maximale 3-adische valuatie k−2</span><span class="en">exactly 2N/3, with maximal 3-adic valuation k−2</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat is de Euler-eigenwaarde van de bevroren Jacobiaan?</span><span class="en">What is the Euler eigenvalue of the frozen Jacobian?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">exact 1 · precies wat een vaste-punt-vergelijking vereist</span><span class="en">exactly 1 · precisely what a fixed-point equation requires</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">0.673</span><span class="en">0.673</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">0.803</span><span class="en">0.803</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Hoe wordt de backbone uit het K-L-systeem geëlimineerd?</span><span class="en">How is the backbone eliminated from the K-L system?</span></summary>
+      <p class="nl">De backbone T₄: i → 4i+2 mod N is één enkele N-cykel, en langs die cykel kan de eigenvergelijking worden opgelost: v(i) = (1/ρ)·Σₙ tⁿ·f(T₄ⁿ i), met t = A/ρ en f het feedveld. Wat overblijft is één vergelijking in één veld: het min-veld w voldoet aan w = M₃(K·w), met M₃ de min over de drie liften en K een expliciete, positieve kern. Compacter kan het operatorprobleem niet.</p>
+      <p class="en">The backbone T₄: i → 4i+2 mod N is a single N-cycle, and along that cycle the eigen-equation can be solved: v(i) = (1/ρ)·Σₙ tⁿ·f(T₄ⁿ i), with t = A/ρ and f the feed field. What remains is one equation in one field: the min-field w satisfies w = M₃(K·w), with M₃ the min over the three lifts and K an explicit, positive kernel. The operator problem does not get more compact.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de valuatiewet voor het min-veld van het K-L-systeem?</span><span class="en">What is the valuation law for the min-field of the K-L system?</span></summary>
+      <p class="nl">De autocorrelatie van het min-veld langs de backbone-cykel hangt alleen af van de 3-adische valuatie van de lag: ACF(n) = φ_λ(v₃(n)). Het mechanisme is elementaire getaltheorie: de multiplicatieve orde van 4 modulo 3^m is 3^(m−1), waardoor T₄ⁿ de laagste v₃(n)+1 cijfers van de 3-tallige schrijfwijze behoudt, op een translatie na. Het correlatielandschap is dus 3-adisch gelaagd: geen ruis maar cijferwerk.</p>
+      <p class="en">The autocorrelation of the min-field along the backbone cycle depends only on the 3-adic valuation of the lag: ACF(n) = φ_λ(v₃(n)). The mechanism is elementary number theory: the multiplicative order of 4 modulo 3^m is 3^(m−1), so T₄ⁿ preserves the lowest v₃(n)+1 digits of the base-3 expansion, up to a translation. The correlation landscape is thus 3-adically layered: not noise but digit arithmetic.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom zijn de drie siblings van een cel bijna perfect gecorreleerd?</span><span class="en">Why are the three siblings of a cell almost perfectly correlated?</span></summary>
+      <p class="nl">Translatie over N/3 commuteert met de backbone (T₄(i + N/3) = T₄(i) + N/3), dus de drie liften van één cel zitten op de backbone-cykel op onderlinge lag exact 2N/3, met maximale 3-adische valuatie v₃(2N/3) = k−2. De valuatiewet voorspelt dan bijna perfecte correlatie, en de meting bevestigt het: sibling-correlaties liggen tussen 0.992 en 1.000. Omdat de min drie bijna-identieke kopieën vergelijkt, is de min-bias een tweede-orde-effect.</p>
+      <p class="en">Translation by N/3 commutes with the backbone (T₄(i + N/3) = T₄(i) + N/3), so the three lifts of a cell sit on the backbone cycle at mutual lag exactly 2N/3, with maximal 3-adic valuation v₃(2N/3) = k−2. The valuation law then predicts near-perfect correlation, and measurement confirms it: sibling correlations lie between 0.992 and 1.000. Because the min compares three nearly identical copies, the min-bias is a second-order effect.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat legt de structuurfunctie Ψ vast?</span><span class="en">What does the structure function Ψ capture?</span></summary>
+      <p class="nl">Alle covarianties tussen kernveld-evaluaties worden bepaald door een eindige tabel Ψ met sleutel (klasse van n, klasse van m, (m−n) mod 3^d) voor een kleine 3-adische diepte d. Gemeten variantie-sluiting out-of-sample: 0.9727 met sleutels mod 27 en 1.0000 met sleutels mod 81 bij λ = 1.05, en 1.0000 al mod 27 bij λ = 1.70. De volledige tweede-orde-structuur van het kernveld is dus eindig; open blijft alleen hoe de tabelwaarden zich gedragen als k → ∞.</p>
+      <p class="en">All covariances between kernel-field evaluations are determined by a finite table Ψ keyed by (class of n, class of m, (m−n) mod 3^d) for a small 3-adic depth d. Measured variance closure out of sample: 0.9727 with keys mod 27 and 1.0000 with keys mod 81 at λ = 1.05, and 1.0000 already at mod 27 for λ = 1.70. The entire second-order structure of the kernel field is thus finite; what remains open is only how the table values behave as k → ∞.</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b4l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 4.4 · Gaps, slack en certificering</span><span class="en">Lesson 4.4 · Gaps, slack and certification</span></a>
+    <a href="b5l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 5.1 · Digit-decompositie</span><span class="en">Lesson 5.1 · Digit decomposition</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe wordt de backbone uit het K-L-systeem geelimineerd?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De backbone T4 (i naar 4i+2 mod N) is een enkele N-cykel, en langs die cykel kan de eigenvergelijking worden opgelost als meetkundige som van het feedveld. Wat overblijft is een vergelijking in een veld: het min-veld w voldoet aan w = M3(K w), met M3 de min over de drie liften en K een expliciete, positieve kern. De reductie is numeriek geverifieerd tegen het volledige systeem tot relatieve fout 1,5 maal 10^-15."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de valuatiewet voor het min-veld van het K-L-systeem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De autocorrelatie van het min-veld langs de backbone-cykel hangt alleen af van de 3-adische valuatie van de lag: ACF(n) = phi_lambda(v3(n)). Het mechanisme: de multiplicatieve orde van 4 modulo 3^m is 3^(m-1), waardoor T4^n de laagste v3(n)+1 cijfers van de 3-tallige schrijfwijze behoudt, op een translatie na. Het correlatielandschap is dus 3-adisch gelaagd: geen ruis maar cijferwerk."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom zijn de drie siblings van een cel bijna perfect gecorreleerd?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Translatie over N/3 commuteert met de backbone, dus de drie liften van een cel zitten op de backbone-cykel op onderlinge lag exact 2N/3, met maximale 3-adische valuatie k-2. De valuatiewet voorspelt dan bijna perfecte correlatie, en de meting bevestigt het: sibling-correlaties liggen tussen 0.992 en 1.000. Omdat de min drie bijna-identieke kopieen vergelijkt, is de min-bias een tweede-orde-effect."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat legt de structuurfunctie Psi vast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alle covarianties tussen kernveld-evaluaties worden bepaald door een eindige tabel Psi met sleutel (klasse van n, klasse van m, (m-n) mod 3^d) voor een kleine 3-adische diepte d. Gemeten variantie-sluiting out-of-sample: 0.9727 met sleutels mod 27 en 1.0000 met sleutels mod 81 bij lambda = 1.05, en 1.0000 al mod 27 bij lambda = 1.70. De volledige tweede-orde-structuur van het kernveld is dus eindig."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How is the backbone eliminated from the K-L system?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The backbone T4 (i to 4i+2 mod N) is a single N-cycle, and along that cycle the eigen-equation can be solved as a geometric sum of the feed field. What remains is one equation in one field: the min-field w satisfies w = M3(K w), with M3 the min over the three lifts and K an explicit, positive kernel. The reduction was verified numerically against the full system to relative error 1.5 times 10^-15."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the valuation law for the min-field of the K-L system?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The autocorrelation of the min-field along the backbone cycle depends only on the 3-adic valuation of the lag: ACF(n) = phi_lambda(v3(n)). The mechanism: the multiplicative order of 4 modulo 3^m is 3^(m-1), so T4^n preserves the lowest v3(n)+1 digits of the base-3 expansion, up to a translation. The correlation landscape is thus 3-adically layered: not noise but digit arithmetic."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why are the three siblings of a cell almost perfectly correlated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Translation by N/3 commutes with the backbone, so the three lifts of a cell sit on the backbone cycle at mutual lag exactly 2N/3, with maximal 3-adic valuation k-2. The valuation law then predicts near-perfect correlation, and measurement confirms it: sibling correlations lie between 0.992 and 1.000. Because the min compares three nearly identical copies, the min-bias is a second-order effect."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What does the structure function Psi capture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All covariances between kernel-field evaluations are determined by a finite table Psi keyed by (class of n, class of m, (m-n) mod 3^d) for a small 3-adic depth d. Measured variance closure out of sample: 0.9727 with keys mod 27 and 1.0000 with keys mod 81 at lambda = 1.05, and 1.0000 already at mod 27 for lambda = 1.70. The entire second-order structure of the kernel field is thus finite."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

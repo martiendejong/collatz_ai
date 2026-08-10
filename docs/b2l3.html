@@ -6,6 +6,7 @@
 <title>Les 2.3 · Dichtheid en maat</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -128,6 +129,54 @@
     programme of block 3.</p>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat is de natuurlijke dichtheid van de kwadraten in de positieve gehele getallen?</span><span class="en">What is the natural density of the perfect squares among the positive integers?</span></p>
+        <label><input type="radio" name="q1" value="a"> 0</label>
+        <label><input type="radio" name="q1" value="b"> 1/2</label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">niet gedefinieerd</span><span class="en">undefined</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">"Bijna alle getallen hebben eigenschap E" (dichtheid 1) laat nog ruimte voor…</span><span class="en">"Almost all integers have property E" (density 1) still leaves room for…</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">geen enkele uitzondering</span><span class="en">no exceptions at all</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">hoogstens eindig veel uitzonderingen</span><span class="en">at most finitely many exceptions</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">oneindig veel uitzonderingen</span><span class="en">infinitely many exceptions</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Een baan blijft alleen boven zijn startwaarde als het aandeel enen in de pariteitsbits minstens … is.</span><span class="en">An orbit stays above its start only if the share of ones in the parity bits is at least …</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">½</span><span class="en">½</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">log 2 / log 3 ≈ 0.63</span><span class="en">log 2 / log 3 ≈ 0.63</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">≈ 0.2075</span><span class="en">≈ 0.2075</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat bewees Terence Tao in 2019?</span><span class="en">What did Terence Tao prove in 2019?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">alle banen bereiken 1</span><span class="en">all orbits reach 1</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">bijna alle banen (in logaritmische dichtheid) komen ooit onder f(n), voor elke f die naar oneindig gaat</span><span class="en">almost all orbits (in logarithmic density) eventually dip below f(n), for any f tending to infinity</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">er bestaan geen cycli korter dan 10¹¹ stappen</span><span class="en">no cycles shorter than 10¹¹ steps exist</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat betekent "bijna alle getallen" in de wiskunde?</span><span class="en">What does "almost all integers" mean in mathematics?</span></summary>
+      <p class="nl">De natuurlijke dichtheid van een verzameling A is de limiet van het aandeel van A onder de eerste x getallen, als x naar oneindig gaat. Even getallen hebben dichtheid 1/2, kwadraten en priemgetallen dichtheid 0 · terwijl er van beide oneindig veel zijn. "Bijna alle" (dichtheid 1) laat dus ruimte voor oneindig veel uitzonderingen, en dat is precies de kloof tussen de bekende stellingen en het volledige vermoeden.</p>
+      <p class="en">The natural density of a set A is the limiting share of A among the first x integers as x tends to infinity. Even numbers have density 1/2, squares and primes density 0 · although there are infinitely many of both. "Almost all" (density 1) thus leaves room for infinitely many exceptions, and that is exactly the gap between the known theorems and the full conjecture.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat bewezen Terras en Everett over Collatz-banen?</span><span class="en">What did Terras and Everett prove about Collatz orbits?</span></summary>
+      <p class="nl">Terras (1976) en Everett (1977) bewezen dat bijna alle getallen een eindige stoptijd hebben: de verzameling startwaarden die na k stappen nog niet onder hun start zijn gedoken heeft dichtheid hoogstens e^(−ck), exponentieel klein. Het argument combineert de bijectie van pariteitsbits met grote-afwijkingen-theorie: een baan blijft alleen boven zijn start als het aandeel enen minstens log 2 / log 3 ≈ 0.63 is, ver boven het gemiddelde ½.</p>
+      <p class="en">Terras (1976) and Everett (1977) proved that almost all integers have finite stopping time: the set of starting values that have not yet dipped below their start after k steps has density at most e^(−ck), exponentially small. The argument combines the parity-bit bijection with large-deviations theory: an orbit stays above its start only if the share of ones is at least log 2 / log 3 ≈ 0.63, far above the average ½.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat zegt de stelling van Tao uit 2019 precies?</span><span class="en">What exactly does Tao's 2019 theorem say?</span></summary>
+      <p class="nl">Voor elke functie f met f(n) → ∞, hoe langzaam ook, bereiken bijna alle banen (in logaritmische dichtheid) ooit een waarde onder f(n) · bijvoorbeeld onder log log log log n. Tao vond een manier om dalingen te ketenen met een gewogen (logaritmische) dichtheid die bijna behouden blijft onder de afbeelding. Het is het sterkste bekende statistische resultaat over het Collatz-probleem.</p>
+      <p class="en">For any function f with f(n) → ∞, however slowly, almost all orbits (in logarithmic density) eventually reach a value below f(n) · for instance below log log log log n. Tao found a way to chain descents using a weighted (logarithmic) density that is almost preserved by the map. It is the strongest known statistical result on the Collatz problem.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom bewijst Taos methode het volledige vermoeden niet?</span><span class="en">Why does Tao's method not prove the full conjecture?</span></summary>
+      <p class="nl">Het argument verliest onvermijdelijk een klein beetje massa per daalronde; binnen die aanpak kan "bijna begrensd" niet tot "bereikt 1" worden opgewaardeerd, en "bijna alle" niet tot "alle". Voor meer is een ander soort greep op de uitzonderingsverzameling nodig · dat is de opening voor het telprogramma van blok 3.</p>
+      <p class="en">The argument inevitably loses a little mass per descent round; within that approach "almost bounded" cannot be upgraded to "reaches 1", and "almost all" cannot become "all". Anything more requires a different grip on the exceptional set · which is the opening for the counting programme of block 3.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b2l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 2.2 · De ternaire kant</span><span class="en">Lesson 2.2 · The ternary side</span></a>
@@ -178,6 +227,22 @@ window.addEventListener('DOMContentLoaded', function () {
   ctx.fillText(lang === 'en' ? 'share with σ(n) > k   (log scale)' : 'aandeel met σ(n) > k   (log-schaal)', W - 300, pad + 14);
   ctx.fillText('k →', W - 40, H - pad + 18);
 });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat betekent 'bijna alle getallen' in de wiskunde?", "acceptedAnswer": {"@type": "Answer", "text": "De natuurlijke dichtheid van een verzameling A is de limiet van het aandeel van A onder de eerste x getallen, als x naar oneindig gaat. Even getallen hebben dichtheid 1/2, kwadraten en priemgetallen dichtheid 0, terwijl er van beide oneindig veel zijn. 'Bijna alle' (dichtheid 1) laat dus ruimte voor oneindig veel uitzonderingen, en dat is precies de kloof tussen de bekende stellingen en het volledige vermoeden."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat bewezen Terras en Everett over Collatz-banen?", "acceptedAnswer": {"@type": "Answer", "text": "Terras (1976) en Everett (1977) bewezen dat bijna alle getallen een eindige stoptijd hebben: de verzameling startwaarden die na k stappen nog niet onder hun start zijn gedoken heeft dichtheid hoogstens e^(-ck), exponentieel klein. Een baan blijft alleen boven zijn start als het aandeel enen in de pariteitsbits minstens log 2 / log 3, ongeveer 0.63, is; ver boven het gemiddelde 1/2."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat zegt de stelling van Tao uit 2019 precies?", "acceptedAnswer": {"@type": "Answer", "text": "Voor elke functie f met f(n) naar oneindig, hoe langzaam ook, bereiken bijna alle banen (in logaritmische dichtheid) ooit een waarde onder f(n), bijvoorbeeld onder log log log log n. Tao vond een manier om dalingen te ketenen met een gewogen (logaritmische) dichtheid die bijna behouden blijft onder de afbeelding. Het is het sterkste bekende statistische resultaat over het Collatz-probleem."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom bewijst Taos methode het volledige vermoeden niet?", "acceptedAnswer": {"@type": "Answer", "text": "Het argument verliest onvermijdelijk een klein beetje massa per daalronde; binnen die aanpak kan 'bijna begrensd' niet tot 'bereikt 1' worden opgewaardeerd, en 'bijna alle' niet tot 'alle'. Voor meer is een ander soort greep op de uitzonderingsverzameling nodig; dat is de opening voor het telprogramma van blok 3."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What does 'almost all integers' mean in mathematics?", "acceptedAnswer": {"@type": "Answer", "text": "The natural density of a set A is the limiting share of A among the first x integers as x tends to infinity. Even numbers have density 1/2, squares and primes density 0, although there are infinitely many of both. 'Almost all' (density 1) thus leaves room for infinitely many exceptions, and that is exactly the gap between the known theorems and the full conjecture."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What did Terras and Everett prove about Collatz orbits?", "acceptedAnswer": {"@type": "Answer", "text": "Terras (1976) and Everett (1977) proved that almost all integers have finite stopping time: the set of starting values that have not yet dipped below their start after k steps has density at most e^(-ck), exponentially small. An orbit stays above its start only if the share of ones in the parity bits is at least log 2 / log 3, about 0.63; far above the average 1/2."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What exactly does Tao's 2019 theorem say?", "acceptedAnswer": {"@type": "Answer", "text": "For any function f with f(n) tending to infinity, however slowly, almost all orbits (in logarithmic density) eventually reach a value below f(n), for instance below log log log log n. Tao found a way to chain descents using a weighted (logarithmic) density that is almost preserved by the map. It is the strongest known statistical result on the Collatz problem."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why does Tao's method not prove the full conjecture?", "acceptedAnswer": {"@type": "Answer", "text": "The argument inevitably loses a little mass per descent round; within that approach 'almost bounded' cannot be upgraded to 'reaches 1', and 'almost all' cannot become 'all'. Anything more requires a different grip on the exceptional set; which is the opening for the counting programme of block 3."}}
+  ]
+}
 </script>
 </body>
 </html>

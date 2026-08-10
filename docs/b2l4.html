@@ -6,6 +6,7 @@
 <title>Les 2.4 · Cycli en divergentie</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -130,13 +131,203 @@
     </div>
   </div>
 
+  <!-- ===== SUBJECT 5 ===== -->
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">Het uurwerk</span><span class="en">The clockwork</span></h2>
+    <p class="nl">De cyclusvergelijking wordt tastbaar als je de oneven stap herschrijft als
+    vermenigvuldigingsfactor:</p>
+    <p class="en">The cycle equation becomes tangible once you rewrite the odd step as a
+    multiplication factor:</p>
+    $$\frac{3 + 1/n}{2} \;=\; \frac{3}{2}\left(1 + \frac{1}{3n}\right)$$
+    <p class="nl">Op de logaritmische schaal is dit een <b>uurwerk</b>: de wijzer schuift per oneven
+    stap het irrationale \(\log_2 3\) vooruit, en de +1 duwt hem \(1/(3n \ln 2)\) extra. Een cyclus
+    betekent: na \(K\) tikken staat de wijzer weer exact op nul. Definieer
+    \(\mathrm{miss}(K)\) = de afstand van \(K \log_2 3\) tot het dichtstbijzijnde gehele getal; dan
+    moeten de elementen van een cyclus de schaal</p>
+    <p class="en">On the logarithmic scale this is a <b>clockwork</b>: the hand advances by the
+    irrational \(\log_2 3\) per odd step, and the +1 pushes it \(1/(3n \ln 2)\) extra. A cycle
+    means: after \(K\) ticks the hand is exactly back at zero. Define \(\mathrm{miss}(K)\) = the
+    distance from \(K \log_2 3\) to the nearest integer; then the elements of a cycle must have
+    scale</p>
+    $$n \;\approx\; \frac{K}{3 \ln 2 \cdot \mathrm{miss}(K)}$$
+    <p class="nl">En er is een tekensplitsing: mist de wijzer naar bóven, dan zijn positieve
+    elementen nodig; mist hij naar benéden, dan negatieve. Precies daarom zijn alle kleine cycli
+    negatief. De eerste tikken van de klok:</p>
+    <p class="en">And there is a sign split: missing on the upper side requires positive elements;
+    missing on the lower side requires negative ones. That is exactly why all small cycles are
+    negative. The first ticks of the clock:</p>
+    <table class="nice">
+      <tr><th>K</th>
+          <th><span class="nl">mist naar</span><span class="en">misses</span></th>
+          <th><span class="nl">schaal</span><span class="en">scale</span></th>
+          <th><span class="nl">cyclus</span><span class="en">cycle</span></th></tr>
+      <tr><td class="num">1</td><td><span class="nl">boven</span><span class="en">above</span></td><td class="num">1.16</td>
+          <td><span class="nl">de triviale cyclus: 4 = 3·(1 + 1/3) exact</span>
+              <span class="en">the trivial cycle: 4 = 3·(1 + 1/3) exactly</span></td></tr>
+      <tr><td class="num">1</td><td><span class="nl">beneden</span><span class="en">below</span></td><td class="num">0.82</td>
+          <td><span class="nl">de −1-cyclus</span><span class="en">the −1 cycle</span></td></tr>
+      <tr><td class="num">2</td><td><span class="nl">beneden</span><span class="en">below</span></td><td class="num">5.66</td>
+          <td><span class="nl">de −5-cyclus (harmonisch gemiddelde van 5 en 7 is 5.83)</span>
+              <span class="en">the −5 cycle (harmonic mean of 5 and 7 is 5.83)</span></td></tr>
+      <tr><td class="num">7</td><td><span class="nl">beneden</span><span class="en">below</span></td><td class="num">35.5</td>
+          <td><span class="nl">de −17-cyclus (elementen −17 t/m −91)</span>
+              <span class="en">the −17 cycle (elements −17 to −91)</span></td></tr>
+    </table>
+    <p class="nl">Alle vier de sluitingen \(2^{N} = 3^{K} \prod_i (1 + \frac{1}{3 n_i})\) zijn exact
+    geverifieerd: het uurwerk voorspelt precies de cycli die bestaan, op precies de schaal waarop
+    ze bestaan.</p>
+    <p class="en">All four closures \(2^{N} = 3^{K} \prod_i (1 + \frac{1}{3 n_i})\) have been
+    verified exactly: the clockwork predicts precisely the cycles that exist, at precisely the
+    scale at which they exist.</p>
+  </div>
+
+  <!-- ===== SUBJECT 6 ===== -->
+  <div class="subject">
+    <h2><span class="snum">6</span><span class="nl">De kandidatenlijst en het eerste levende ticket</span><span class="en">The candidate list and the first living ticket</span></h2>
+    <p class="nl">Voor positieve cycli levert het uurwerk een <b>kandidatenlijst</b>: elke convergent
+    of semiconvergent van \(\log_2 3\) aan de bovenkant is één kandidaat, met een gedwongen aantal
+    oneven stappen \(K\), een gedwongen lengte \(N\), en een prijskaartje: de minimale schaal van de
+    elementen. Alle tikken tot \(K = 6.586.818.670\) (prijs \(2^{67.56}\)) worden gedood door de
+    verificatiegrens \(2^{71}\) (Barina-project, januari 2025).</p>
+    <p class="en">For positive cycles the clockwork yields a <b>candidate list</b>: every convergent
+    or semiconvergent of \(\log_2 3\) on the upper side is one candidate, with a forced number of
+    odd steps \(K\), a forced length \(N\), and a price tag: the minimal scale of the elements. All
+    ticks up to \(K = 6{,}586{,}818{,}670\) (price \(2^{67.56}\)) are killed by the verification
+    bound \(2^{71}\) (Barina project, January 2025).</p>
+    <div class="callout">
+      <div class="title nl">Het eerste levende ticket</div>
+      <div class="title en">The first living ticket</div>
+      <span class="nl">De eerste overlevende kandidaat: \(K = 72.057.431.991\) oneven stappen,
+      totale lengte \(N = 186.265.759.595\), prijs \(2^{71.88}\) · slechts een factor 1.85 boven de
+      verificatiegrens. Het front van het cyclusprobleem is op dit moment één concreet getal.</span>
+      <span class="en">The first surviving candidate: \(K = 72{,}057{,}431{,}991\) odd steps, total
+      length \(N = 186{,}265{,}759{,}595\), price \(2^{71.88}\) · only a factor 1.85 above the
+      verification frontier. The front line of the cycle problem is, right now, one concrete
+      number.</span>
+    </div>
+    <p class="nl">Er valt hier bovendien een extra beperking af te leiden: omdat alle elementen boven
+    \(2^{71}\) moeten liggen, zou zo'n cyclus minstens ~\(10^{10}\) klim-en-daalfasen nodig hebben,
+    met gemiddeld hoogstens 13 oneven stappen per fase · een snelle wiebel, geen grootse klimpartijen
+    (vergelijk Hercher 2023: \(m \le 91\) uitgesloten). Bij het historische verificatietempo van
+    het project (~0.8 bits per jaar) sterft dit ticket rond 2026; de volgende kandidaat staat op
+    \(K = 137.5\) miljard, prijs \(2^{75.4}\).</p>
+    <p class="en">An extra constraint can be derived here as well: since all elements must lie above
+    \(2^{71}\), such a cycle would need at least ~\(10^{10}\) climb-and-descent phases, averaging at
+    most 13 odd steps per phase · a fast wobble, no grand climbs (compare Hercher 2023:
+    \(m \le 91\) excluded). At the project's historical verification pace (~0.8 bits per year) this
+    ticket dies around 2026; the next candidate stands at \(K = 137.5\) billion, price
+    \(2^{75.4}\).</p>
+  </div>
+
+  <!-- ===== SUBJECT 7 ===== -->
+  <div class="subject">
+    <h2><span class="snum">7</span><span class="nl">Zelf naar de rand</span><span class="en">Reaching the frontier yourself</span></h2>
+    <p class="nl">De hele machinerie is naspeelbaar met één formule. Kies een halveringspatroon
+    \((v_1, \ldots, v_K)\); het vaste punt van de bijbehorende samenstelling is</p>
+    <p class="en">The whole machinery can be replayed with one formula. Pick a halving pattern
+    \((v_1, \ldots, v_K)\); the fixed point of the corresponding composition is</p>
+    $$n_1 \;=\; \frac{c}{2^{N} - 3^{K}}, \qquad c \;=\; \sum_{i=0}^{K-1} 3^{\,K-1-i}\, 2^{\,v_1 + \cdots + v_i}$$
+    <p class="nl">Het opsommen van kleine patronen reproduceert álle bekende cycli, inclusief elke
+    rotatie: 1; −1; −5 en −7; en de −17-cyclus met alle zeven elementen. De kalibratie klopt ook
+    kwantitatief: het verwachte aantal gehele treffers per \(K\) is ≈ 1.0, en die ene treffer is
+    precies de \(K\)-voudige doorloop van de triviale cyclus (patroon \((2,2,\ldots,2)\)) · de
+    heuristiek voorspelt exact wat er bestaat, en niets meer. En het gebalanceerde
+    (Sturmiaanse) patroon van het 186-miljard-ticket is in seconden weerlegd via de
+    Stern-Brocot-woordalgebra: \(O(\log K)\) in plaats van \(O(K)\).</p>
+    <p class="en">Enumerating small patterns reproduces ALL known cycles, including every rotation:
+    1; −1; −5 and −7; and the −17 cycle with all seven elements. The calibration is quantitative
+    too: the expected number of integer hits per \(K\) is ≈ 1.0, and that one hit is exactly the
+    \(K\)-fold traversal of the trivial cycle (pattern \((2,2,\ldots,2)\)) · the heuristic predicts
+    precisely what exists, and nothing more. And the balanced (Sturmian) pattern of the 186-billion
+    ticket was refuted in seconds via the Stern-Brocot word algebra: \(O(\log K)\) instead of
+    \(O(K)\).</p>
+    <div class="callout warn">
+      <div class="title nl">Eerlijkheid over eigenaarschap</div>
+      <div class="title en">Honesty about ownership</div>
+      <span class="nl">Deze machinerie is klassiek (Lagarias 1990; Halbeisen-Hungerbühler 1997);
+      haar in dagen herontdekken valideerde het raamwerk, meer niet. De écht eigen onvoorwaardelijke
+      stukken staan elders: alle kritieke vensters \(S \le 41\) zijn cyclusvrij gecertificeerd
+      (mediant-MITM-methode), en de coalescentie-conjectuur is gereduceerd tot convergenten van
+      \(\log_2 3\), onvoorwaardelijk tot \(\tau \le 4700\).</span>
+      <span class="en">This machinery is classical (Lagarias 1990; Halbeisen-Hungerbühler 1997);
+      rediscovering it in days validated the framework, nothing more. The genuinely own
+      unconditional pieces live elsewhere: all critical windows \(S \le 41\) are certified
+      cycle-free (mediant-MITM method), and the coalescence conjecture has been reduced to
+      convergents of \(\log_2 3\), unconditional to \(\tau \le 4700\).</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">De cyclusvergelijking dwingt 2^K ≈ 3^m af. Een cyclus is daarom in essentie…</span><span class="en">The cycle equation forces 2^K ≈ 3^m. A cycle is therefore essentially…</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">een rationale benadering van log₂ 3</span><span class="en">a rational approximation of log₂ 3</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">een macht van 2</span><span class="en">a power of 2</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">een veelvoud van 27</span><span class="en">a multiple of 27</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Tot welke m zijn m-cycli uitgesloten (Simons–de Weger 2011)?</span><span class="en">Up to which m have m-cycles been excluded (Simons–de Weger 2011)?</span></p>
+        <label><input type="radio" name="q2" value="a"> m ≤ 17</label>
+        <label><input type="radio" name="q2" value="b"> m ≤ 91</label>
+        <label><input type="radio" name="q2" value="c"> m ≤ 4700</label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Hoe lang moet een niet-triviale cyclus minstens zijn?</span><span class="en">How long must a non-trivial cycle be at minimum?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">~10⁵ stappen</span><span class="en">~10⁵ steps</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">~10⁸ stappen</span><span class="en">~10⁸ steps</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">meer dan ~10¹¹ stappen</span><span class="en">more than ~10¹¹ steps</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Waarom is divergentie zoveel slechter begrepen dan cycli?</span><span class="en">Why is divergence so much less understood than cycles?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">er is geen vergelijking die een divergente baan moet oplossen, geen diofantisch mechanisme dat hem klemzet</span><span class="en">there is no equation a divergent orbit must solve, no Diophantine mechanism pinning it down</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">divergente banen zijn te groot om ooit door te rekenen</span><span class="en">divergent orbits are too large ever to compute</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">divergentie is al uitgesloten, dus niemand onderzoekt het meer</span><span class="en">divergence is already excluded, so nobody studies it any more</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Waarom is een Collatz-cyclus een rationale benadering van log₂ 3?</span><span class="en">Why is a Collatz cycle a rational approximation of log₂ 3?</span></summary>
+      <p class="nl">Keert een baan na K T-stappen (waarvan m oneven) terug bij zijn start n, dan geldt n = restterm / (2^K − 3^m). Wil n positief en niet te groot zijn, dan moet de noemer 2^K − 3^m klein zijn, dus 2^K ≈ 3^m, oftewel K/m ≈ log₂ 3 = 1.58496… De beste benaderingen komen uit de kettingbreuk van log₂ 3: 8/5, 19/12, 65/41, 84/53, 485/306. Omdat log₂ 3 zich niet extreem goed laat benaderen (Baker/Rhin), worden kandidaat-cycli naar astronomische lengtes gedwongen.</p>
+      <p class="en">If an orbit returns to its start n after K T-steps (m of them odd), then n = remainder / (2^K − 3^m). For n to be positive and not too large, the denominator 2^K − 3^m must be small, hence 2^K ≈ 3^m, i.e. K/m ≈ log₂ 3 = 1.58496… The best approximations come from the continued fraction of log₂ 3: 8/5, 19/12, 65/41, 84/53, 485/306. Because log₂ 3 does not admit extremely good approximations (Baker/Rhin), candidate cycles are forced to astronomical lengths.</p></details>
+    <details class="faq-item"><summary><span class="nl">Welke Collatz-cycli zijn al uitgesloten?</span><span class="en">Which Collatz cycles have already been ruled out?</span></summary>
+      <p class="nl">1-cycli en 2-cycli bestaan niet (Steiner 1977; Simons 2005, via lineaire vormen in logaritmen), en m-cycli bestaan niet voor m ≤ 91 (Simons–de Weger 2011, kettingbreuken plus rekenwerk). Gecombineerd met de verificatie tot 2⁶⁸ volgt bovendien dat elke niet-triviale cyclus meer dan ~10¹¹ stappen moet hebben. Volledig uitgesloten zijn cycli echter nog niet.</p>
+      <p class="en">1-cycles and 2-cycles do not exist (Steiner 1977; Simons 2005, via linear forms in logarithms), and m-cycles do not exist for m ≤ 91 (Simons–de Weger 2011, continued fractions plus computation). Combined with verification up to 2⁶⁸ it also follows that any non-trivial cycle must have more than ~10¹¹ steps. Fully excluded, however, cycles are not.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is het "eerste levende ticket" voor een positieve cyclus?</span><span class="en">What is the "first living ticket" for a positive cycle?</span></summary>
+      <p class="nl">Het uurwerkmodel levert een kandidatenlijst uit de (semi)convergenten van log₂ 3. Alle kandidaten tot K = 6.586.818.670 (prijs 2^67.56) worden gedood door de verificatiegrens 2⁷¹. De eerste overlevende kandidaat heeft K = 72.057.431.991 oneven stappen, totale lengte N = 186.265.759.595 en prijs 2^71.88 · slechts een factor 1.85 boven de verificatiegrens. Het front van het cyclusprobleem is op dit moment dus één concreet getal.</p>
+      <p class="en">The clockwork model yields a candidate list from the (semi)convergents of log₂ 3. All candidates up to K = 6,586,818,670 (price 2^67.56) are killed by the verification bound 2^71. The first surviving candidate has K = 72,057,431,991 odd steps, total length N = 186,265,759,595 and price 2^71.88 · only a factor 1.85 above the verification frontier. The front line of the cycle problem is thus, right now, one concrete number.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom is divergentie de zwarte doos van het Collatz-probleem?</span><span class="en">Why is divergence the black box of the Collatz problem?</span></summary>
+      <p class="nl">Voor cycli bestaat een vergelijking en een diofantisch mechanisme (de stugheid van log₂ 3); voor divergente banen bestaat niets vergelijkbaars. Alle statistiek zegt "bijna geen enkele baan divergeert", maar tegen één hardnekkige uitzondering is geen gereedschap. Vergelijk 5n+1: daar divergeert vermoedelijk bijna alles, en toch kan niemand van één concrete baan divergentie bewijzen.</p>
+      <p class="en">For cycles there is an equation and a Diophantine mechanism (the rigidity of log₂ 3); for divergent orbits nothing comparable exists. All statistics say "almost no orbit diverges", but there is no tool against a single stubborn exception. Compare 5n+1: there presumably almost everything diverges, yet nobody can prove divergence for a single concrete orbit.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b2l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 2.3 · Dichtheid en maat</span><span class="en">Lesson 2.3 · Density and measure</span></a>
-    <a href="b3l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
-      <span class="nl">Les 3.1 · Tellen met ongelijkheden</span><span class="en">Lesson 3.1 · Counting with inequalities</span></a>
+    <a href="b2l5.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 2.5 · Runs en patronen</span><span class="en">Lesson 2.5 · Runs and patterns</span></a>
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom is een Collatz-cyclus een rationale benadering van log2 3?", "acceptedAnswer": {"@type": "Answer", "text": "Keert een baan na K T-stappen (waarvan m oneven) terug bij zijn start n, dan geldt n = restterm / (2^K - 3^m). Wil n positief en niet te groot zijn, dan moet de noemer 2^K - 3^m klein zijn, dus 2^K is ongeveer 3^m, oftewel K/m is ongeveer log2 3 = 1.58496... De beste benaderingen komen uit de kettingbreuk van log2 3: 8/5, 19/12, 65/41, 84/53, 485/306. Omdat log2 3 zich niet extreem goed laat benaderen (Baker/Rhin), worden kandidaat-cycli naar astronomische lengtes gedwongen."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Welke Collatz-cycli zijn al uitgesloten?", "acceptedAnswer": {"@type": "Answer", "text": "1-cycli en 2-cycli bestaan niet (Steiner 1977; Simons 2005, via lineaire vormen in logaritmen), en m-cycli bestaan niet voor m <= 91 (Simons-de Weger 2011, kettingbreuken plus rekenwerk). Gecombineerd met de verificatie tot 2^68 volgt bovendien dat elke niet-triviale cyclus meer dan ongeveer 10^11 stappen moet hebben. Volledig uitgesloten zijn cycli echter nog niet."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is het 'eerste levende ticket' voor een positieve cyclus?", "acceptedAnswer": {"@type": "Answer", "text": "Het uurwerkmodel levert een kandidatenlijst uit de (semi)convergenten van log2 3. Alle kandidaten tot K = 6.586.818.670 (prijs 2^67.56) worden gedood door de verificatiegrens 2^71. De eerste overlevende kandidaat heeft K = 72.057.431.991 oneven stappen, totale lengte N = 186.265.759.595 en prijs 2^71.88, slechts een factor 1.85 boven de verificatiegrens. Het front van het cyclusprobleem is op dit moment dus een concreet getal."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom is divergentie de zwarte doos van het Collatz-probleem?", "acceptedAnswer": {"@type": "Answer", "text": "Voor cycli bestaat een vergelijking en een diofantisch mechanisme (de stugheid van log2 3); voor divergente banen bestaat niets vergelijkbaars. Alle statistiek zegt 'bijna geen enkele baan divergeert', maar tegen een hardnekkige uitzondering is geen gereedschap. Vergelijk 5n+1: daar divergeert vermoedelijk bijna alles, en toch kan niemand van een concrete baan divergentie bewijzen."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why is a Collatz cycle a rational approximation of log2 3?", "acceptedAnswer": {"@type": "Answer", "text": "If an orbit returns to its start n after K T-steps (m of them odd), then n = remainder / (2^K - 3^m). For n to be positive and not too large, the denominator 2^K - 3^m must be small, hence 2^K is close to 3^m, i.e. K/m is close to log2 3 = 1.58496... The best approximations come from the continued fraction of log2 3: 8/5, 19/12, 65/41, 84/53, 485/306. Because log2 3 does not admit extremely good approximations (Baker/Rhin), candidate cycles are forced to astronomical lengths."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Which Collatz cycles have already been ruled out?", "acceptedAnswer": {"@type": "Answer", "text": "1-cycles and 2-cycles do not exist (Steiner 1977; Simons 2005, via linear forms in logarithms), and m-cycles do not exist for m <= 91 (Simons-de Weger 2011, continued fractions plus computation). Combined with verification up to 2^68 it also follows that any non-trivial cycle must have more than about 10^11 steps. Fully excluded, however, cycles are not."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is the 'first living ticket' for a positive cycle?", "acceptedAnswer": {"@type": "Answer", "text": "The clockwork model yields a candidate list from the (semi)convergents of log2 3. All candidates up to K = 6,586,818,670 (price 2^67.56) are killed by the verification bound 2^71. The first surviving candidate has K = 72,057,431,991 odd steps, total length N = 186,265,759,595 and price 2^71.88, only a factor 1.85 above the verification frontier. The front line of the cycle problem is thus, right now, one concrete number."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why is divergence the black box of the Collatz problem?", "acceptedAnswer": {"@type": "Answer", "text": "For cycles there is an equation and a Diophantine mechanism (the rigidity of log2 3); for divergent orbits nothing comparable exists. All statistics say 'almost no orbit diverges', but there is no tool against a single stubborn exception. Compare 5n+1: there presumably almost everything diverges, yet nobody can prove divergence for a single concrete orbit."}}
+  ]
+}
+</script>
 </body>
 </html>

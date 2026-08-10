@@ -6,6 +6,7 @@
 <title>Les 2.1 · Pariteitsvectoren en de 2-adische kant</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -143,6 +144,54 @@
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat doet de versnelde afbeelding T met een oneven getal n?</span><span class="en">What does the accelerated map T do with an odd number n?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">T(n) = 3n + 1</span><span class="en">T(n) = 3n + 1</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">T(n) = (3n + 1)/2</span><span class="en">T(n) = (3n + 1)/2</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">T(n) = (3n − 1)/2</span><span class="en">T(n) = (3n − 1)/2</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Waarvan hangen volgens Terras (1976) de eerste k pariteitsbits van n af?</span><span class="en">According to Terras (1976), what do the first k parity bits of n depend on?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">alleen van n mod 2^k</span><span class="en">only on n mod 2^k</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">alleen van n mod 3^k</span><span class="en">only on n mod 3^k</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">van de volledige grootte van n</span><span class="en">on the full size of n</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat betekent een 1 in de pariteitsvector?</span><span class="en">What does a 1 in the parity vector mean?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">het getal was even en de stap was ×1/2</span><span class="en">the number was even and the step was ×1/2</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">de baan heeft 1 bereikt</span><span class="en">the orbit has reached 1</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">het getal was oneven en de stap ×3/2 duwt de baan omhoog</span><span class="en">the number was odd and the ×3/2 step pushes the orbit up</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Hoe gedraagt de Collatz-afbeelding zich op de 2-adische gehele getallen ℤ₂?</span><span class="en">How does the Collatz map behave on the 2-adic integers ℤ₂?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">als een nette isometrie, conjugaat aan de bitshift · daar volledig begrepen</span><span class="en">as a clean isometry, conjugate to the bit shift · fully understood there</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">als volslagen chaos zonder enige structuur</span><span class="en">as complete chaos without any structure</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">daar is het vermoeden al bewezen voor de gewone gehele getallen</span><span class="en">the conjecture is already proved there for the ordinary integers</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de versnelde Collatz-afbeelding T?</span><span class="en">What is the accelerated Collatz map T?</span></summary>
+      <p class="nl">Omdat na elke oneven stap 3n + 1 gegarandeerd een deling door 2 volgt, plakt men die samen: T(n) = n/2 voor even n en T(n) = (3n + 1)/2 voor oneven n. Dezelfde vraag ("bereikt elke baan 1?"), maar elke stap doet nu precies één deling door 2, wat de statistiek zuiver maakt: per stap is de factor óf 1/2 óf ≈ 3/2. Voorbeeld: de C-baan van 7 kost 11 stappen tot 5, de T-baan maar 8.</p>
+      <p class="en">Because every odd step 3n + 1 is guaranteed to be followed by a division by 2, the two are glued together: T(n) = n/2 for even n and T(n) = (3n + 1)/2 for odd n. Same question ("does every orbit reach 1?"), but every step now performs exactly one division by 2, cleaning up the statistics: each step multiplies by either 1/2 or ≈ 3/2. Example: the C-orbit of 7 takes 11 steps to reach 5, the T-orbit only 8.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is een pariteitsvector in het Collatz-probleem?</span><span class="en">What is a parity vector in the Collatz problem?</span></summary>
+      <p class="nl">Noteer bij elke T-stap een bit: 1 als het getal oneven was (stap ×3/2), 0 als het even was (stap ×1/2). Die bitrij heet de pariteitsvector van n en bepaalt de hele baan: ken je de bits, dan ken je alle vermenigvuldigingsfactoren. Meer enen dan het gemiddelde ½ betekent een stijgende baan.</p>
+      <p class="en">Record one bit per T-step: 1 if the number was odd (step ×3/2), 0 if it was even (step ×1/2). That bit sequence is called the parity vector of n and determines the whole orbit: knowing the bits means knowing all multiplication factors. More ones than the average ½ means a rising orbit.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat zegt de stelling van Terras uit 1976 over pariteitsbits?</span><span class="en">What does Terras' 1976 theorem say about parity bits?</span></summary>
+      <p class="nl">De eerste k pariteitsbits van n hangen alleen af van n mod 2^k, en de afbeelding van restklassen naar bitpatronen is een bijectie: elk van de 2^k mogelijke patronen komt precies één keer voor per 2^k opeenvolgende startwaarden. Gevolg: over grote bereiken gedragen de pariteitsbits zich exact als eerlijke muntworpen. Dit is hét gereedschap achter alle "bijna alle"-resultaten.</p>
+      <p class="en">The first k parity bits of n depend only on n mod 2^k, and the map from residue classes to bit patterns is a bijection: each of the 2^k possible patterns occurs exactly once per 2^k consecutive starting values. Consequence: over large ranges the parity bits behave exactly like fair coin flips. This is the key tool behind all "almost all" results.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom lost de 2-adische theorie het Collatz-vermoeden niet op?</span><span class="en">Why does the 2-adic theory not solve the Collatz conjecture?</span></summary>
+      <p class="nl">Op de 2-adische gehele getallen ℤ₂ is de Collatz-afbeelding volledig begrepen: een afstandsbewarende isometrie, conjugaat aan de bitshift. Maar het vermoeden gaat over de gewone gehele getallen, een deelverzameling van maat nul binnen ℤ₂, en de prachtige 2-adische theorie ziet dat dunne lijntje niet. De structuur leeft in het continuüm, het vermoeden in de discrete punten.</p>
+      <p class="en">On the 2-adic integers ℤ₂ the Collatz map is fully understood: a distance-preserving isometry, conjugate to the bit shift. But the conjecture is about the ordinary integers, a measure-zero subset of ℤ₂, and the beautiful 2-adic theory cannot see that thin line. The structure lives in the continuum, the conjecture in the discrete points.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b1l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 1.3 · Geschiedenis en context</span><span class="en">Lesson 1.3 · History and context</span></a>
@@ -167,6 +216,22 @@ function showPV() {
     '<br><span style="color:#9aa3c7">' + ones + ' × 1, ' + (bits.length - ones) + ' × 0</span>';
 }
 window.addEventListener('DOMContentLoaded', showPV);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is de versnelde Collatz-afbeelding T?", "acceptedAnswer": {"@type": "Answer", "text": "Omdat na elke oneven stap 3n+1 gegarandeerd een deling door 2 volgt, plakt men die samen: T(n) = n/2 voor even n en T(n) = (3n+1)/2 voor oneven n. Dezelfde vraag, maar elke stap doet nu precies een deling door 2, wat de statistiek zuiver maakt: per stap is de factor of 1/2 of ongeveer 3/2. Voorbeeld: de C-baan van 7 kost 11 stappen tot 5, de T-baan maar 8."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is een pariteitsvector in het Collatz-probleem?", "acceptedAnswer": {"@type": "Answer", "text": "Noteer bij elke T-stap een bit: 1 als het getal oneven was (stap maal 3/2), 0 als het even was (stap maal 1/2). Die bitrij heet de pariteitsvector van n en bepaalt de hele baan: ken je de bits, dan ken je alle vermenigvuldigingsfactoren. Meer enen dan het gemiddelde 1/2 betekent een stijgende baan."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat zegt de stelling van Terras uit 1976 over pariteitsbits?", "acceptedAnswer": {"@type": "Answer", "text": "De eerste k pariteitsbits van n hangen alleen af van n mod 2^k, en de afbeelding van restklassen naar bitpatronen is een bijectie: elk van de 2^k mogelijke patronen komt precies een keer voor per 2^k opeenvolgende startwaarden. Gevolg: over grote bereiken gedragen de pariteitsbits zich exact als eerlijke muntworpen. Dit is het gereedschap achter alle 'bijna alle'-resultaten."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom lost de 2-adische theorie het Collatz-vermoeden niet op?", "acceptedAnswer": {"@type": "Answer", "text": "Op de 2-adische gehele getallen Z2 is de Collatz-afbeelding volledig begrepen: een afstandsbewarende isometrie, conjugaat aan de bitshift. Maar het vermoeden gaat over de gewone gehele getallen, een deelverzameling van maat nul binnen Z2, en de 2-adische theorie ziet dat dunne lijntje niet. De structuur leeft in het continuum, het vermoeden in de discrete punten."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is the accelerated Collatz map T?", "acceptedAnswer": {"@type": "Answer", "text": "Because every odd step 3n+1 is guaranteed to be followed by a division by 2, the two are glued together: T(n) = n/2 for even n and T(n) = (3n+1)/2 for odd n. Same question, but every step now performs exactly one division by 2, cleaning up the statistics: each step multiplies by either 1/2 or about 3/2. Example: the C-orbit of 7 takes 11 steps to reach 5, the T-orbit only 8."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is a parity vector in the Collatz problem?", "acceptedAnswer": {"@type": "Answer", "text": "Record one bit per T-step: 1 if the number was odd (step times 3/2), 0 if it was even (step times 1/2). That bit sequence is called the parity vector of n and determines the whole orbit: knowing the bits means knowing all multiplication factors. More ones than the average 1/2 means a rising orbit."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What does Terras' 1976 theorem say about parity bits?", "acceptedAnswer": {"@type": "Answer", "text": "The first k parity bits of n depend only on n mod 2^k, and the map from residue classes to bit patterns is a bijection: each of the 2^k possible patterns occurs exactly once per 2^k consecutive starting values. Consequence: over large ranges the parity bits behave exactly like fair coin flips. This is the key tool behind all 'almost all' results."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why does the 2-adic theory not solve the Collatz conjecture?", "acceptedAnswer": {"@type": "Answer", "text": "On the 2-adic integers Z2 the Collatz map is fully understood: a distance-preserving isometry, conjugate to the bit shift. But the conjecture is about the ordinary integers, a measure-zero subset of Z2, and the beautiful 2-adic theory cannot see that thin line. The structure lives in the continuum, the conjecture in the discrete points."}}
+  ]
+}
 </script>
 </body>
 </html>

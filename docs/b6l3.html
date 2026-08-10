@@ -6,6 +6,7 @@
 <title>Les 6.3 · De open kern en de grote kloof</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -110,7 +111,30 @@
   </div>
 
   <div class="subject">
-    <h2><span class="snum">4</span><span class="nl">Zelf meedoen</span><span class="en">Getting involved</span></h2>
+    <h2><span class="snum">4</span><span class="nl">De stand van het bord</span><span class="en">The state of the board</span></h2>
+    <p class="nl">Een korte, eerlijke tussenstand. De voorspellings-scorekaart heeft haar eerste
+    invullingen: één MISS, eerlijk genoteerd en herinterpreteerd, en één HIT met kanttekening,
+    waarbij het stationariteits-voorbehoud opnieuw is geopend. Drie onafhankelijke instrumenten
+    stemmen nu overeen op c(2) ≈ 0.835 · met identieke langzame kruip (les 5.5). En een tiende
+    no-go-stelling laat zien dat de κ-barrière invariant is onder <b>alle</b> verfijningen die
+    itineraries tellen: geen slimmere telling van banen kan de barrière omzeilen.</p>
+    <p class="en">A brief, honest interim score. The prediction scorecard has its first entries: one
+    MISS, honestly recorded and reinterpreted, and one qualified HIT, with the stationarity caveat
+    reopened. Three independent instruments now agree on c(2) ≈ 0.835 · with identical slow creep
+    (lesson 5.5). And a tenth no-go theorem shows the κ barrier is invariant under <b>all</b>
+    itinerary-counting refinements: no cleverer counting of orbits can route around the barrier.</p>
+    <p class="nl">De resterende routes zijn daarmee exact twee: de kruip analytisch doden
+    (Vermoeden G, de productbalans van les 5.5) óf per-baan-geheeltalligheid uitbuiten (de
+    residu-draad). Blok 7, waar aanwezig in de navigatie, behandelt de 2-adische wereld waarin deze
+    uitspraken leven.</p>
+    <p class="en">The remaining routes are thereby exactly two: kill the creep analytically
+    (Conjecture G, the product balance of lesson 5.5) or exploit per-orbit integrality (the residue
+    thread). Block 7, where present in the navigation, covers the 2-adic world these statements
+    live in.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">Zelf meedoen</span><span class="en">Getting involved</span></h2>
     <p class="nl">Deze cursus eindigt waar het onderzoek verdergaat. Concrete open vragen, oplopend
     in zwaarte:</p>
     <p class="en">This course ends where the research continues. Concrete open questions, in increasing
@@ -153,13 +177,141 @@
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Welke ondergrens is op dit moment bewezen (de NU-laag van de implicatie-toren)?</span><span class="en">Which lower bound is proved right now (the NOW layer of the implication tower)?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">π₁(x) ≥ x^0.9184</span><span class="en">π₁(x) ≥ x^0.9184</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">π₁(x)/x → 1</span><span class="en">π₁(x)/x → 1</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">π₁(x) ≥ x^(1−ε) voor elke ε</span><span class="en">π₁(x) ≥ x^(1−ε) for every ε</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Zou γ → 1 het volledige Collatz-vermoeden bewijzen?</span><span class="en">Would γ → 1 prove the full Collatz conjecture?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">ja, dan volgt het vermoeden direct</span><span class="en">yes, the conjecture then follows directly</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">nee: divergente banen en cycli blijven dan nog open</span><span class="en">no: divergent orbits and cycles would still remain open</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">nee, want γ → 1 is al weerlegd</span><span class="en">no, because γ → 1 has already been refuted</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Waaruit bestaat de uitzonderingsverzameling in het homogenisatie-lemma?</span><span class="en">What does the exceptional set in the homogenisation lemma consist of?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">de priemgetallen</span><span class="en">the prime numbers</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">de machten van 2</span><span class="en">the powers of 2</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">de korte banen van u ↦ 2u+1</span><span class="en">the short orbits of u ↦ 2u+1</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat laat de tiende no-go-stelling zien?</span><span class="en">What does the tenth no-go theorem show?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">geen enkele verfijning die itineraries telt kan de κ-barrière omzeilen</span><span class="en">no refinement that counts itineraries can route around the κ barrier</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">er bestaat een extra cyclus naast 1-4-2</span><span class="en">an extra cycle exists besides 1-4-2</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">het homogenisatie-lemma is onbewijsbaar</span><span class="en">the homogenisation lemma is unprovable</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is het homogenisatie-lemma en wat zou het opleveren?</span><span class="en">What is the homogenisation lemma and what would it yield?</span></summary>
+      <p class="nl">Het is de ene open uitspraak waarin alle draden van blokken 4 en 5 samenkomen: de conditionele gap-triples zijn asymptotisch evenredig aan de conditionele niveau-triples, met een coëfficiënt die gewogen wegblijft van 0, buiten een uitzonderingsverzameling van verdwijnende dichtheid (de korte banen van u ↦ 2u+1). Gegeven het lemma: c &lt; 1 ⟹ de cascade contracteert ⟹ γ̄(2, k) → 0 ⟹ γ(k) → 1. Het basisgeval is bewezen en 72 gevallen zijn gecertificeerd, maar het lemma zelf is open.</p>
+      <p class="en">It is the one open statement in which all threads of blocks 4 and 5 converge: the conditional gap triples are asymptotically proportional to the conditional level triples, with a coefficient weightedly bounded away from 0, outside an exceptional set of vanishing density (the short orbits of u ↦ 2u+1). Given the lemma: c &lt; 1 ⟹ the cascade contracts ⟹ γ̄(2, k) → 0 ⟹ γ(k) → 1. The base case is proved and 72 cases are certified, but the lemma itself is open.</p></details>
+    <details class="faq-item"><summary><span class="nl">Hoeveel startwaarden bereiken bewezen de waarde 1?</span><span class="en">How many starting values provably reach 1?</span></summary>
+      <p class="nl">De bewezen stand van dit project is π₁(x) ≥ x^0.9184: minstens x^0.92 startwaarden onder x bereiken 1. Het doel van het programma, γ → 1, zou dat versterken tot π₁(x) ≥ x^(1−ε) voor elke ε. Een dichtheid-1-uitspraak (π₁(x)/x → 1) is nóg sterker en wordt niet door γ → 1 geïmpliceerd.</p>
+      <p class="en">The proved state of this project is π₁(x) ≥ x^0.9184: at least x^0.92 starting values below x reach 1. The programme's goal, γ → 1, would strengthen that to π₁(x) ≥ x^(1−ε) for every ε. A density-1 statement (π₁(x)/x → 1) is stronger still and is not implied by γ → 1.</p></details>
+    <details class="faq-item"><summary><span class="nl">Zou γ → 1 het Collatz-vermoeden bewijzen?</span><span class="en">Would γ → 1 prove the Collatz conjecture?</span></summary>
+      <p class="nl">Nee. Zelfs met γ → 1 binnen blijft het volledige vermoeden open: tegen divergente banen bestaat geen enkel individueel gereedschap, en cycli zijn klemgezet maar niet uitgesloten. Voor de sprong van "bijna alle" naar "alle" heeft niemand, dit project inbegrepen, op dit moment een begaanbare route · maar de geschiedenis van de wiskunde laat zien dat "bijna"-resultaten vaak de humus zijn waaruit het beslissende idee groeit.</p>
+      <p class="en">No. Even with γ → 1 in hand the full conjecture remains open: against divergent orbits no individual tool exists at all, and cycles are cornered but not excluded. For the jump from "almost all" to "all" nobody, this project included, currently has a viable route · but the history of mathematics shows that "almost" results are often the soil from which the decisive idea grows.</p></details>
+    <details class="faq-item"><summary><span class="nl">Welke routes naar een bewijs blijven er over?</span><span class="en">Which routes to a proof remain?</span></summary>
+      <p class="nl">Exact twee: de kruip analytisch doden (Vermoeden G, de productbalans van les 5.5) óf per-baan-geheeltalligheid uitbuiten (de residu-draad). Drie onafhankelijke instrumenten stemmen overeen op c(2) ≈ 0.835 met identieke langzame kruip, en een tiende no-go-stelling laat zien dat de κ-barrière invariant is onder alle verfijningen die itineraries tellen: geen slimmere telling van banen kan de barrière omzeilen.</p>
+      <p class="en">Exactly two: kill the creep analytically (Conjecture G, the product balance of lesson 5.5) or exploit per-orbit integrality (the residue thread). Three independent instruments agree on c(2) ≈ 0.835 with identical slow creep, and a tenth no-go theorem shows the κ barrier is invariant under all itinerary-counting refinements: no cleverer counting of orbits can route around the barrier.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b6l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 6.2 · Van meting naar bewijs</span><span class="en">Lesson 6.2 · From measurement to proof</span></a>
-    <a href="index.html" style="text-align:right"><span class="dir nl">einde ›</span><span class="dir en">end ›</span>
-      <span class="nl">Terug naar het cursusoverzicht</span><span class="en">Back to the course overview</span></a>
+    <a href="b7l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 7.1 · Het ene getal</span><span class="en">Lesson 7.1 · The one number</span></a>
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is het homogenisatie-lemma en wat zou het opleveren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Het is de ene open uitspraak waarin alle draden van blokken 4 en 5 samenkomen: de conditionele gap-triples zijn asymptotisch evenredig aan de conditionele niveau-triples, met een coëfficiënt die gewogen wegblijft van 0, buiten een uitzonderingsverzameling van verdwijnende dichtheid (de korte banen van u ↦ 2u+1). Gegeven het lemma volgt c < 1, dus de cascade contracteert, dus γ̄(2, k) → 0, dus γ(k) → 1. Het basisgeval is bewezen en 72 gevallen zijn gecertificeerd, maar het lemma zelf is open."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoeveel startwaarden bereiken bewezen de waarde 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De bewezen stand van dit project is π₁(x) ≥ x^0.9184: minstens x^0.92 startwaarden onder x bereiken 1. Het doel van het programma, γ → 1, zou dat versterken tot π₁(x) ≥ x^(1−ε) voor elke ε. Een dichtheid-1-uitspraak (π₁(x)/x → 1) is nog sterker en wordt niet door γ → 1 geïmpliceerd."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Zou γ → 1 het Collatz-vermoeden bewijzen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nee. Zelfs met γ → 1 binnen blijft het volledige vermoeden open: tegen divergente banen bestaat geen enkel individueel gereedschap, en cycli zijn klemgezet maar niet uitgesloten. Voor de sprong van bijna alle naar alle heeft niemand, dit project inbegrepen, op dit moment een begaanbare route. De geschiedenis van de wiskunde laat wel zien dat bijna-resultaten vaak de humus zijn waaruit het beslissende idee groeit."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Welke routes naar een bewijs blijven er over?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exact twee: de kruip analytisch doden (Vermoeden G, de productbalans van les 5.5) of per-baan-geheeltalligheid uitbuiten (de residu-draad). Drie onafhankelijke instrumenten stemmen overeen op c(2) ≈ 0.835 met identieke langzame kruip, en een tiende no-go-stelling laat zien dat de κ-barrière invariant is onder alle verfijningen die itineraries tellen: geen slimmere telling van banen kan de barrière omzeilen."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the homogenisation lemma and what would it yield?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the one open statement in which all threads of blocks 4 and 5 converge: the conditional gap triples are asymptotically proportional to the conditional level triples, with a coefficient weightedly bounded away from 0, outside an exceptional set of vanishing density (the short orbits of u ↦ 2u+1). Given the lemma, c < 1 follows, so the cascade contracts, so γ̄(2, k) → 0, so γ(k) → 1. The base case is proved and 72 cases are certified, but the lemma itself is open."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How many starting values provably reach 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The proved state of this project is π₁(x) ≥ x^0.9184: at least x^0.92 starting values below x reach 1. The programme's goal, γ → 1, would strengthen that to π₁(x) ≥ x^(1−ε) for every ε. A density-1 statement (π₁(x)/x → 1) is stronger still and is not implied by γ → 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Would γ → 1 prove the Collatz conjecture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Even with γ → 1 in hand the full conjecture remains open: against divergent orbits no individual tool exists at all, and cycles are cornered but not excluded. For the jump from almost all to all nobody, this project included, currently has a viable route. The history of mathematics does show that almost-results are often the soil from which the decisive idea grows."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Which routes to a proof of the Collatz conjecture remain?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exactly two: kill the creep analytically (Conjecture G, the product balance of lesson 5.5) or exploit per-orbit integrality (the residue thread). Three independent instruments agree on c(2) ≈ 0.835 with identical slow creep, and a tenth no-go theorem shows the κ barrier is invariant under all itinerary-counting refinements: no cleverer counting of orbits can route around the barrier."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

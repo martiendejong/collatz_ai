@@ -6,6 +6,7 @@
 <title>Les 2.2 · De ternaire kant</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -372,6 +373,54 @@
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is de stap n → 3n+1 in het ternaire stelsel (basis 3)?</span><span class="en">What is the step n → 3n+1 in the ternary system (base 3)?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">een chaotische carry-golf door alle digits</span><span class="en">a chaotic carry wave through all digits</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">schuif alle digits één plek en plak een 1 achteraan</span><span class="en">shift all digits one place and append a 1</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">spiegel de digits en tel er 1 bij op</span><span class="en">mirror the digits and add 1</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat doet de afbeelding u → 2u+1 op digit 0 (de klassen mod 3)?</span><span class="en">What does the map u → 2u+1 do on digit 0 (the classes mod 3)?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">klassen 0 en 1 wisselen, klasse 2 blijft staan</span><span class="en">classes 0 and 1 swap, class 2 stays fixed</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">alle drie de klassen schuiven cyclisch door</span><span class="en">all three classes rotate cyclically</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">alle klassen blijven op hun plek</span><span class="en">all classes stay in place</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Hoeveel krimpt het getal gemiddeld per volledige rondgang van de Collatz-lus?</span><span class="en">By how much does the number shrink on average per full pass of the Collatz loop?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">×1/2</span><span class="en">×1/2</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">×2/3</span><span class="en">×2/3</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">×3/4</span><span class="en">×3/4</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is het vaste punt van u → 2u+1 modulo 3^j?</span><span class="en">What is the fixed point of u → 2u+1 modulo 3^j?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">u ≡ 0</span><span class="en">u ≡ 0</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">u ≡ −1, want 2(−1)+1 = −1</span><span class="en">u ≡ −1, since 2(−1)+1 = −1</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">u ≡ 1, want 2·1+1 = 3 ≡ 0</span><span class="en">u ≡ 1, since 2·1+1 = 3 ≡ 0</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Waarom bekijk je het Collatz-probleem in basis 3?</span><span class="en">Why look at the Collatz problem in base 3?</span></summary>
+      <p class="nl">In basis 3 is n → 3n+1 gewoon "schuif alle digits één plek en plak een 1 achteraan": alle informatie schuift intact door. De prijs is dat delen door 2 chaotisch wordt, maar er is een beslissende asymmetrie: delen door 2 is een bijectie op restklassen mod 3^k (2 is inverteerbaar mod 3), terwijl ×3 informatie toevoegt. De ternaire bril houdt dus precies bij hoeveel nieuwe getallen er per niveau ontstaan · de basis van het telprogramma.</p>
+      <p class="en">In base 3, n → 3n+1 is just "shift all digits one place and append a 1": all information shifts through intact. The price is that dividing by 2 becomes chaotic, but a decisive asymmetry remains: dividing by 2 is a bijection on residues mod 3^k (2 is invertible mod 3), while ×3 adds information. The ternary glasses thus track exactly how many new numbers appear per level · the basis of the counting programme.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de orde van 2 modulo 3^j en waarom is dat belangrijk?</span><span class="en">What is the order of 2 modulo 3^j and why does it matter?</span></summary>
+      <p class="nl">Voor j ≥ 2 geldt ord(2 mod 3^j) = 2 · 3^(j−2): modulo 9 splitsen de banen van u → 2u+1 in lengtes 6 + 2 + 1, modulo 27 in 18 + 6 + 2 + 1, modulo 81 in 54 + 18 + 6 + 2 + 1. Het vaste punt is steeds u ≡ −1, de "zelfvoedende lijn" (2(−1)+1 = −1). In blok 5 blijkt dit meetbare natuurkunde: cellen op korte banen zijn systematisch "gap-rijker" dan cellen op lange banen.</p>
+      <p class="en">For j ≥ 2, ord(2 mod 3^j) = 2 · 3^(j−2): modulo 9 the orbits of u → 2u+1 split into lengths 6 + 2 + 1, modulo 27 into 18 + 6 + 2 + 1, modulo 81 into 54 + 18 + 6 + 2 + 1. The fixed point is always u ≡ −1, the "self-feeding line" (2(−1)+1 = −1). In block 5 this turns out to be measurable physics: cells on short orbits are systematically "gap-richer" than cells on long orbits.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de Collatz-lus of conversie-pijplijn?</span><span class="en">What is the Collatz loop or conversion pipeline?</span></summary>
+      <p class="nl">Eén volledige Collatz-passage bestaat uit vier stappen: (1) strip de nullen (deel door 2 tot oneven), (2) de conversiestap 3n+1 (shift-en-plak in basis 3), (3) voeg in bij een verdubbelingsketen, en (4) de carry-automaat van de basisconversie. Stappen 1 tot 3 zijn volledig begrepen; alleen stap 4 laat zich niet lineariseren. Per rondgang krimpt het getal gemiddeld ×3/4, en het vaste punt 1 → 4 → 2 → 1 bestaat omdat 2² − 3 = 1, de kleinste bijna-botsing van machten van 2 en 3.</p>
+      <p class="en">One full Collatz pass consists of four steps: (1) strip the zeros (divide by 2 until odd), (2) the conversion step 3n+1 (shift-and-append in base 3), (3) merge into a doubling chain, and (4) the carry automaton of the base conversion. Steps 1 to 3 are fully understood; only step 4 resists linearisation. Per pass the number shrinks by ×3/4 on average, and the fixed point 1 → 4 → 2 → 1 exists because 2² − 3 = 1, the smallest near-collision of powers of 2 and 3.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat zegt het informatie-grootboek van de bit-stroom?</span><span class="en">What does the information ledger of the bit stream say?</span></summary>
+      <p class="nl">De baan is letterlijk een basisconversie: binaire runs worden gelezen, ternaire digits geschreven. Schrijven kost log₂ 3 ≈ 1.585 bit per digit, lezen verwijdert gemiddeld 2 bits per rondgang · netto −0.415 bit. Het vermoeden zegt dat het lezen altijd wint tot alleen "1" overblijft. Mooi detail: een run van k binaire enen landt als precies k ternaire enen, want (3^k − 1)/2 is in basis 3 precies "11…1".</p>
+      <p class="en">The orbit is literally a base conversion: binary runs are read, ternary digits are written. Writing costs log₂ 3 ≈ 1.585 bits per digit, reading removes 2 bits per pass on average · net −0.415 bits. The conjecture says reading always wins until only "1" remains. Nice detail: a run of k binary ones lands as exactly k ternary ones, since (3^k − 1)/2 is precisely "11…1" in base 3.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b2l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 2.1 · Pariteitsvectoren</span><span class="en">Lesson 2.1 · Parity vectors</span></a>
@@ -540,6 +589,22 @@ function bsStep() {
   bsMacro();
 }
 window.addEventListener('DOMContentLoaded', function () { bsRenderAll(); });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom bekijk je het Collatz-probleem in basis 3?", "acceptedAnswer": {"@type": "Answer", "text": "In basis 3 is n naar 3n+1 gewoon 'schuif alle digits een plek en plak een 1 achteraan': alle informatie schuift intact door. De prijs is dat delen door 2 chaotisch wordt, maar er is een beslissende asymmetrie: delen door 2 is een bijectie op restklassen mod 3^k (2 is inverteerbaar mod 3), terwijl maal 3 informatie toevoegt. De ternaire bril houdt dus precies bij hoeveel nieuwe getallen er per niveau ontstaan."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is de orde van 2 modulo 3^j en waarom is dat belangrijk?", "acceptedAnswer": {"@type": "Answer", "text": "Voor j >= 2 geldt ord(2 mod 3^j) = 2 x 3^(j-2): modulo 9 splitsen de banen van u naar 2u+1 in lengtes 6 + 2 + 1, modulo 27 in 18 + 6 + 2 + 1, modulo 81 in 54 + 18 + 6 + 2 + 1. Het vaste punt is steeds u = -1, de zelfvoedende lijn, want 2(-1)+1 = -1. Cellen op korte banen blijken systematisch gap-rijker dan cellen op lange banen."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is de Collatz-lus of conversie-pijplijn?", "acceptedAnswer": {"@type": "Answer", "text": "Een volledige Collatz-passage bestaat uit vier stappen: strip de nullen (deel door 2 tot oneven), de conversiestap 3n+1 (shift-en-plak in basis 3), voeg in bij een verdubbelingsketen, en de carry-automaat van de basisconversie. Stappen 1 tot 3 zijn volledig begrepen; alleen stap 4 laat zich niet lineariseren. Per rondgang krimpt het getal gemiddeld met factor 3/4, en het vaste punt 1, 4, 2, 1 bestaat omdat 2^2 - 3 = 1."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat zegt het informatie-grootboek van de bit-stroom?", "acceptedAnswer": {"@type": "Answer", "text": "De baan is letterlijk een basisconversie: binaire runs worden gelezen, ternaire digits geschreven. Schrijven kost log2 3, ongeveer 1.585 bit per digit; lezen verwijdert gemiddeld 2 bits per rondgang; netto -0.415 bit. Het vermoeden zegt dat het lezen altijd wint tot alleen '1' overblijft. Een run van k binaire enen landt als precies k ternaire enen, want (3^k - 1)/2 is in basis 3 precies '11...1'."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why look at the Collatz problem in base 3?", "acceptedAnswer": {"@type": "Answer", "text": "In base 3, n to 3n+1 is just 'shift all digits one place and append a 1': all information shifts through intact. The price is that dividing by 2 becomes chaotic, but a decisive asymmetry remains: dividing by 2 is a bijection on residues mod 3^k (2 is invertible mod 3), while times 3 adds information. The ternary glasses thus track exactly how many new numbers appear per level."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is the order of 2 modulo 3^j and why does it matter?", "acceptedAnswer": {"@type": "Answer", "text": "For j >= 2, ord(2 mod 3^j) = 2 x 3^(j-2): modulo 9 the orbits of u to 2u+1 split into lengths 6 + 2 + 1, modulo 27 into 18 + 6 + 2 + 1, modulo 81 into 54 + 18 + 6 + 2 + 1. The fixed point is always u = -1, the self-feeding line, since 2(-1)+1 = -1. Cells on short orbits turn out to be systematically gap-richer than cells on long orbits."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What is the Collatz loop or conversion pipeline?", "acceptedAnswer": {"@type": "Answer", "text": "One full Collatz pass consists of four steps: strip the zeros (divide by 2 until odd), the conversion step 3n+1 (shift-and-append in base 3), merge into a doubling chain, and the carry automaton of the base conversion. Steps 1 to 3 are fully understood; only step 4 resists linearisation. Per pass the number shrinks by a factor 3/4 on average, and the fixed point 1, 4, 2, 1 exists because 2^2 - 3 = 1."}},
+    {"@type": "Question", "inLanguage": "en", "name": "What does the information ledger of the bit stream say?", "acceptedAnswer": {"@type": "Answer", "text": "The orbit is literally a base conversion: binary runs are read, ternary digits are written. Writing costs log2 3, about 1.585 bits per digit; reading removes 2 bits per pass on average; net -0.415 bits. The conjecture says reading always wins until only '1' remains. A run of k binary ones lands as exactly k ternary ones, since (3^k - 1)/2 is precisely '11...1' in base 3."}}
+  ]
+}
 </script>
 </body>
 </html>

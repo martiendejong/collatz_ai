@@ -6,6 +6,7 @@
 <title>Les 5.3 · Op weg naar c &lt; 1</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -141,6 +142,54 @@
     understood exceptional structure. Open · but attackable.</p>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Met welke klassieke ongelijkheid is het basisgeval b₀ &gt; 0 bewezen?</span><span class="en">With which classical inequality was the base case b₀ &gt; 0 proved?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">de Cauchy-Schwarz-ongelijkheid</span><span class="en">the Cauchy-Schwarz inequality</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">Chebyshev's som-ongelijkheid</span><span class="en">Chebyshev's sum inequality</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">de ongelijkheid van Jensen</span><span class="en">Jensen's inequality</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat zegt de orbit-stratificatiewet over de baanlengte en de gap-rijkdom?</span><span class="en">What does the orbit stratification law say about orbit length and gap richness?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">korter orbit ⟹ rijker, strikt monotoon bij alle drie λ's</span><span class="en">shorter orbit ⟹ richer, strictly monotone at all three λ's</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">langer orbit ⟹ rijker, want meer middeling</span><span class="en">longer orbit ⟹ richer, due to more averaging</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">baanlengte en rijkdom zijn ongecorreleerd</span><span class="en">orbit length and richness are uncorrelated</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat is de orde van 2 modulo 3^j?</span><span class="en">What is the order of 2 modulo 3^j?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">3^j − 1</span><span class="en">3^j − 1</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">j</span><span class="en">j</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">2 · 3^(j−2)</span><span class="en">2 · 3^(j−2)</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Hoeveel lage-diepte-gevallen van de c-ladder zijn rigoureus gecertificeerd?</span><span class="en">How many low-depth cases of the c ladder have been rigorously certified?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">27</span><span class="en">27</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">72</span><span class="en">72</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">18</span><span class="en">18</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Hoe wordt de open ongelijkheid c &lt; 1 opgesplitst?</span><span class="en">How is the open inequality c &lt; 1 split up?</span></summary>
+      <p class="nl">Via de exacte decompositie c_q = (1 − b_q)² + Var(ε_q)/inc_q, waarbij gap-incrementen op niveau-incrementen worden geregresseerd. De meting is opvallend schoon: het residu is nul op vier decimalen voor q ≤ 7, met correlaties tot +0.99. Daarmee splitst c &lt; 1 in twee delen: (H1) evenredigheid per cel en (H2) positiviteit van b.</p>
+      <p class="en">Via the exact decomposition c_q = (1 − b_q)² + Var(ε_q)/inc_q, regressing gap increments on level increments. The measurement is strikingly clean: the residual is zero to four decimals for q ≤ 7, with correlations up to +0.99. Thus c &lt; 1 splits into two parts: (H1) proportionality per cell and (H2) positivity of b.</p></details>
+    <details class="faq-item"><summary><span class="nl">Welk deel van c &lt; 1 is al bewezen?</span><span class="en">Which part of c &lt; 1 is already proved?</span></summary>
+      <p class="nl">Het basisgeval q = 0 is volledig bewezen: daar zijn de cellen precies de drie klassen, en de positiviteit van b₀ volgt uit Chebyshev's som-ongelijkheid met expliciete marge. Daarnaast zijn 72 lage-diepte-gevallen rigoureus gecertificeerd. Open blijven de per-cel-evenredigheid (H1) in de limiet en het weg-van-0-blijven van b op diepe niveaus (H2).</p>
+      <p class="en">The base case q = 0 is fully proved: there the cells are exactly the three classes, and positivity of b₀ follows from Chebyshev's sum inequality with an explicit margin. In addition, 72 low-depth cases have been rigorously certified. Still open are per-cell proportionality (H1) in the limit and b staying bounded away from 0 at deep levels (H2).</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de orbit-stratificatiewet?</span><span class="en">What is the orbit stratification law?</span></summary>
+      <p class="nl">Stratificeer de cellen naar de baanlengte van hun feed-routing onder u ↦ 2u+1; op Z/27 zijn de banen 18 + 6 + 2 + 1. Dan geldt: korter orbit ⟹ rijkere relatieve gap, strikt monotoon bij λ = 1.05, 1.70 en 1.90. Mechanisme: het vaste punt u ≡ −1 is de zelfvoedende lijn van de verdubbeling (2·(−1)+1 = −1); korte banen recirculeren hun eigen gap-informatie, lange banen middelen uit.</p>
+      <p class="en">Stratify the cells by the orbit length of their feed routing under u ↦ 2u+1; on Z/27 the orbits are 18 + 6 + 2 + 1. Then: shorter orbit ⟹ richer relative gap, strictly monotone at λ = 1.05, 1.70 and 1.90. Mechanism: the fixed point u ≡ −1 is the self-feeding line of doubling (2·(−1)+1 = −1); short orbits recirculate their own gap information, long orbits average out.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom geeft die wet hoop op een bewijs?</span><span class="en">Why does that law give hope for a proof?</span></summary>
+      <p class="nl">Omdat de orde van 2 modulo 3^j gelijk is aan 2 · 3^(j−2): typische banen worden lang naarmate je dieper gaat, en de korte (rijke) banen vormen een verzameling met verdwijnende dichtheid. De storende cel-heterogeniteit is dus geconcentreerd op een expliciet dunne uitzonderingsverzameling · precies de vorm die een homogenisatie-argument nodig heeft.</p>
+      <p class="en">Because the order of 2 modulo 3^j equals 2 · 3^(j−2): typical orbits become long at depth, and the short (rich) orbits form a set of vanishing density. The disturbing cell heterogeneity is thus concentrated on an explicitly thin exceptional set · exactly the shape a homogenisation argument needs.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b5l2.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 5.2 · De contractieconstante c</span><span class="en">Lesson 5.2 · The contraction constant c</span></a>
@@ -149,5 +198,85 @@
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe wordt de open ongelijkheid c < 1 opgesplitst?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Via de exacte decompositie c_q = (1 − b_q)² + Var(ε_q)/inc_q, waarbij gap-incrementen op niveau-incrementen worden geregresseerd. De meting is opvallend schoon: het residu is nul op vier decimalen voor q ≤ 7, met correlaties tot +0.99. Daarmee splitst c < 1 in twee delen: (H1) evenredigheid per cel en (H2) positiviteit van b."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Welk deel van c < 1 is al bewezen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Het basisgeval q = 0 is volledig bewezen: daar zijn de cellen precies de drie klassen, en de positiviteit van b₀ volgt uit Chebyshev's som-ongelijkheid met expliciete marge. Daarnaast zijn 72 lage-diepte-gevallen rigoureus gecertificeerd. Open blijven de per-cel-evenredigheid (H1) in de limiet en het weg-van-0-blijven van b op diepe niveaus (H2)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de orbit-stratificatiewet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stratificeer de cellen naar de baanlengte van hun feed-routing onder u ↦ 2u+1; op Z/27 zijn de banen 18 + 6 + 2 + 1. Dan geldt: korter orbit betekent rijkere relatieve gap, strikt monotoon bij λ = 1.05, 1.70 en 1.90. Mechanisme: het vaste punt u ≡ −1 is de zelfvoedende lijn van de verdubbeling; korte banen recirculeren hun eigen gap-informatie, lange banen middelen uit."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom geeft de orbit-stratificatiewet hoop op een bewijs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omdat de orde van 2 modulo 3^j gelijk is aan 2 · 3^(j−2): typische banen worden lang naarmate je dieper gaat, en de korte (rijke) banen vormen een verzameling met verdwijnende dichtheid. De storende cel-heterogeniteit is dus geconcentreerd op een expliciet dunne uitzonderingsverzameling, precies de vorm die een homogenisatie-argument nodig heeft."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How is the open inequality c < 1 split up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Via the exact decomposition c_q = (1 − b_q)² + Var(ε_q)/inc_q, regressing gap increments on level increments. The measurement is strikingly clean: the residual is zero to four decimals for q ≤ 7, with correlations up to +0.99. Thus c < 1 splits into two parts: (H1) proportionality per cell and (H2) positivity of b."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Which part of c < 1 is already proved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The base case q = 0 is fully proved: there the cells are exactly the three classes, and positivity of b₀ follows from Chebyshev's sum inequality with an explicit margin. In addition, 72 low-depth cases have been rigorously certified. Still open are per-cell proportionality (H1) in the limit and b staying bounded away from 0 at deep levels (H2)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the orbit stratification law?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stratify the cells by the orbit length of their feed routing under u ↦ 2u+1; on Z/27 the orbits are 18 + 6 + 2 + 1. Then: shorter orbit means richer relative gap, strictly monotone at λ = 1.05, 1.70 and 1.90. Mechanism: the fixed point u ≡ −1 is the self-feeding line of doubling; short orbits recirculate their own gap information, long orbits average out."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why does the orbit stratification law give hope for a proof?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the order of 2 modulo 3^j equals 2 · 3^(j−2): typical orbits become long at depth, and the short (rich) orbits form a set of vanishing density. The disturbing cell heterogeneity is thus concentrated on an explicitly thin exceptional set, exactly the shape a homogenisation argument needs."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

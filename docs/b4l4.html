@@ -6,6 +6,7 @@
 <title>Les 4.4 · Gaps, slack en certificering</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -125,6 +126,54 @@
     conjecture: the machine computes, the mathematics guarantees.</p>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Als welke vergelijking wordt de kernvraag "stap 3b" exact herschreven?</span><span class="en">As what comparison is the core question "step 3b" exactly rewritten?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">s₀ = s₂</span><span class="en">s₀ = s₂</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">λ·s₂ &gt; s₀</span><span class="en">λ·s₂ &gt; s₀</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">λ·s₀ &gt; s₂, één vergelijking van twee slacks</span><span class="en">λ·s₀ &gt; s₂, one comparison of two slacks</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Welke grens voor s₂/s₀ is gemeten over alle 144 testgevallen?</span><span class="en">What bound on s₂/s₀ was measured over all 144 test cases?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">s₂/s₀ ≤ 0.74, terwijl λ ≥ 1.05 volstaat</span><span class="en">s₂/s₀ ≤ 0.74, while λ ≥ 1.05 suffices</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">s₂/s₀ ≤ 1.05, terwijl λ ≥ 0.74 volstaat</span><span class="en">s₂/s₀ ≤ 1.05, while λ ≥ 0.74 suffices</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">s₂/s₀ ≤ 8, met marge 1.55</span><span class="en">s₂/s₀ ≤ 8, with margin 1.55</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Hoeveel gevallen zijn in de certificeringspijplijn rigoureus gecertificeerd?</span><span class="en">How many cases were rigorously certified in the certification pipeline?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">144 gevallen</span><span class="en">144 cases</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">72 gevallen (12 waarden van λ × diepten k = 5…10)</span><span class="en">72 cases (12 values of λ × depths k = 5…10)</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">12 gevallen</span><span class="en">12 cases</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Waarom itereer je in gewone hoge precisie en doe je daarna één enkele intervalpass?</span><span class="en">Why iterate in ordinary high precision and then do a single interval pass?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">omdat intervalrekening geen min-operaties aankan</span><span class="en">because interval arithmetic cannot handle min operations</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">omdat één pass toevallig sneller compileert</span><span class="en">because a single pass happens to compile faster</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">omdat interval-iteratie over honderden stappen de insluitingen opblaast · het "wrapping"-effect</span><span class="en">because interval iteration over hundreds of steps inflates the enclosures · the "wrapping" effect</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de slack-functionaal en welke eigenschappen heeft zij?</span><span class="en">What is the slack functional and what properties does it have?</span></summary>
+      <p class="nl">De slack S(a, b) = 𝔼[min(ax + by)] − a·𝔼[min x] − b·𝔼[min y] ≥ 0 meet hoeveel de min "verliest" ten opzichte van lineair gedrag. Zij is 1-homogeen (want min is 1-homogeen), concaaf in (a, b) (min van lineaire functies min lineair) en stijgend in elk gewicht (∂S/∂a = 𝔼[x_J − min x] ≥ 0). Met deze functionaal wordt de kernvraag van het diepteprogramma exact herschreven als λ·s₀ &gt; s₂.</p>
+      <p class="en">The slack S(a, b) = E[min(ax + by)] − a·E[min x] − b·E[min y] ≥ 0 measures how much the min "loses" relative to linear behaviour. It is 1-homogeneous (since min is 1-homogeneous), concave in (a, b) (min of linear functions minus linear) and increasing in each weight (∂S/∂a = E[x_J − min x] ≥ 0). With this functional, the core question of the depth programme is rewritten exactly as λ·s₀ &gt; s₂.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de marge-identiteit en waarom is zij numeriek belangrijk?</span><span class="en">What is the margin identity and why does it matter numerically?</span></summary>
+      <p class="nl">Omdat μ₂ = R·μ₀ exact geldt, is R − c₂/c₀ = (g₂ − R·g₀)/c₀ exact, met c_r de gemiddelde kolom-minima en g_r = μ_r − c_r de gemiddelde kolomgaps. Links staat een slecht geconditioneerd verschil van bijna gelijke getallen dat op grote diepte onder de float-ruis zakt; rechts staat hetzelfde getal als direct gemeten verschil van gaps, goed geconditioneerd met marges van ~8% zelfs op de grootste dieptes.</p>
+      <p class="en">Because μ₂ = R·μ₀ holds exactly, R − c₂/c₀ = (g₂ − R·g₀)/c₀ is exact, with c_r the mean column minima and g_r = μ_r − c_r the mean column gaps. The left side is an ill-conditioned difference of nearly equal numbers that sinks below float noise at large depth; the right side is the same number as a directly measured difference of gaps, well conditioned with ~8% margins even at the largest depths.</p></details>
+    <details class="faq-item"><summary><span class="nl">Hoe worden numerieke metingen aan het K-L-systeem rigoureus gecertificeerd?</span><span class="en">How are numerical measurements of the K-L system rigorously certified?</span></summary>
+      <p class="nl">Drie ingrediënten vormen de keten: intervalrekening (elke bewerking levert een gegarandeerde insluiting [lo, hi]), de Collatz-Wielandt-grenzen (ρ onvoorwaardelijk ingesloten door élke positieve testvector) en Birkhoff-lokalisatie (contractie in de projectieve metriek sluit de echte eigenvector in, tot d(w, v*) ≤ 10⁻²⁸). In de stijl van Hales' bewijs van de Kepler-conjectuur: de machine rekent, de wiskunde garandeert.</p>
+      <p class="en">Three ingredients form the chain: interval arithmetic (every operation returns a guaranteed enclosure [lo, hi]), the Collatz-Wielandt bounds (ρ unconditionally enclosed by any positive test vector) and Birkhoff localisation (contraction in the projective metric encloses the true eigenvector, down to d(w, v*) ≤ 10⁻²⁸). In the style of Hales' proof of the Kepler conjecture: the machine computes, the mathematics guarantees.</p></details>
+    <details class="faq-item"><summary><span class="nl">Welke resultaten leverde de certificeringspijplijn op?</span><span class="en">What results did the certification pipeline deliver?</span></summary>
+      <p class="nl">Een blok van 72 gevallen (12 waarden van λ × diepten k = 5…10) waarin de kernongelijkheid rigoureus is gecertificeerd, met kleinste marge +1.55 × 10⁻⁴ en identiteiten bevestigd tot 33 decimalen. Tussen de eigenvector-lokalisatie (10⁻²⁸) en de marges zit veertien ordes van grootte speling.</p>
+      <p class="en">A block of 72 cases (12 values of λ × depths k = 5…10) in which the core inequality is rigorously certified, with smallest margin +1.55 × 10⁻⁴ and identities confirmed to 33 decimals. Between the eigenvector localisation (10⁻²⁸) and the margins lie fourteen orders of magnitude of slack.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b4l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 4.3 · De gevezelde hiërarchie</span><span class="en">Lesson 4.3 · The fibered hierarchy</span></a>
@@ -133,5 +182,85 @@
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de slack-functionaal en welke eigenschappen heeft zij?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De slack S(a, b) = E[min(ax + by)] - a E[min x] - b E[min y] >= 0 meet hoeveel de min verliest ten opzichte van lineair gedrag. Zij is 1-homogeen, concaaf in (a, b) en stijgend in elk gewicht, elk met een bewijs van een regel. Met deze functionaal wordt de kernvraag van het diepteprogramma exact herschreven als lambda maal s0 > s2; gemeten over alle 144 testgevallen geldt s2/s0 <= 0.74, terwijl lambda >= 1.05 volstaat."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de marge-identiteit en waarom is zij numeriek belangrijk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omdat mu_2 = R mu_0 exact geldt, is R - c2/c0 = (g2 - R g0)/c0 exact, met c_r de gemiddelde kolom-minima en g_r de gemiddelde kolomgaps. Links staat een slecht geconditioneerd verschil van bijna gelijke getallen dat op grote diepte onder de float-ruis zakt; rechts staat hetzelfde getal als direct gemeten verschil van gaps, goed geconditioneerd met marges van ongeveer 8 procent zelfs op de grootste dieptes."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe worden numerieke metingen aan het K-L-systeem rigoureus gecertificeerd?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drie ingredienten vormen de keten: intervalrekening (elke bewerking levert een gegarandeerde insluiting), de Collatz-Wielandt-grenzen (rho onvoorwaardelijk ingesloten door elke positieve testvector) en Birkhoff-lokalisatie (contractie in de projectieve metriek sluit de echte eigenvector in, tot 10^-28). Architectuurles: itereer in gewone hoge precisie en doe daarna een enkele intervalpass, want interval-iteratie over honderden stappen blaast de insluitingen op (het wrapping-effect)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Welke resultaten leverde de certificeringspijplijn op?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Een blok van 72 gevallen (12 waarden van lambda maal diepten k = 5 tot 10) waarin de kernongelijkheid rigoureus is gecertificeerd, met kleinste marge +1.55 maal 10^-4 en identiteiten bevestigd tot 33 decimalen. Tussen de eigenvector-lokalisatie (10^-28) en de marges zit veertien ordes van grootte speling."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the slack functional and what properties does it have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The slack S(a, b) = E[min(ax + by)] - a E[min x] - b E[min y] >= 0 measures how much the min loses relative to linear behaviour. It is 1-homogeneous, concave in (a, b) and increasing in each weight, each with a one-line proof. With this functional, the core question of the depth programme is rewritten exactly as lambda times s0 > s2; measured over all 144 test cases, s2/s0 <= 0.74, while lambda >= 1.05 suffices."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the margin identity and why does it matter numerically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because mu_2 = R mu_0 holds exactly, R - c2/c0 = (g2 - R g0)/c0 is exact, with c_r the mean column minima and g_r the mean column gaps. The left side is an ill-conditioned difference of nearly equal numbers that sinks below float noise at large depth; the right side is the same number as a directly measured difference of gaps, well conditioned with margins of about 8 percent even at the largest depths."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How are numerical measurements of the K-L system rigorously certified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three ingredients form the chain: interval arithmetic (every operation returns a guaranteed enclosure), the Collatz-Wielandt bounds (rho unconditionally enclosed by any positive test vector) and Birkhoff localisation (contraction in the projective metric encloses the true eigenvector, down to 10^-28). Architecture lesson: iterate in ordinary high precision and then do a single interval pass, because interval iteration over hundreds of steps inflates the enclosures (the wrapping effect)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What results did the certification pipeline deliver?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A block of 72 cases (12 values of lambda times depths k = 5 to 10) in which the core inequality is rigorously certified, with smallest margin +1.55 times 10^-4 and identities confirmed to 33 decimals. Between the eigenvector localisation (10^-28) and the margins lie fourteen orders of magnitude of slack."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

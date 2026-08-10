@@ -6,6 +6,7 @@
 <title>Les 5.1 · Digit-decompositie</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -109,9 +110,57 @@
     the limit?</i> That is the contraction question of lessons 5.2 and 5.3.</p>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Welk aandeel van Var(log v) komt bij λ = 1.05, k = 13 voor rekening van de hoofdeffecten (losse digits)?</span><span class="en">At λ = 1.05, k = 13, what share of Var(log v) is carried by the main effects (single digits)?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">50.0%</span><span class="en">50.0%</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">86.3%</span><span class="en">86.3%</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">99.6%</span><span class="en">99.6%</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Op welke waarde ligt het plateau van het increment-ratio-profiel (de cascade-ratio) bij λ = 1.70?</span><span class="en">At what value does the plateau of the increment-ratio profile (the cascade ratio) sit at λ = 1.70?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">≈ 0.41</span><span class="en">≈ 0.41</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">≈ 1.00</span><span class="en">≈ 1.00</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">≈ 0.70</span><span class="en">≈ 0.70</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Welke incrementen reproduceert het additieve model (hoofdeffecten + buurparen) exact?</span><span class="en">Which increments does the additive model (main effects + adjacent pairs) reproduce exactly?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">alleen de eerste twee (p = 0 en p = 1)</span><span class="en">only the first two (p = 0 and p = 1)</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">alle incrementen op elke diepte</span><span class="en">all increments at every depth</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">geen enkele, het faalt overal</span><span class="en">none, it fails everywhere</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Van welke structuur is de fijnstructuur van de eigenvector de signatuur?</span><span class="en">The fine structure of the eigenvector is the signature of which structure?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">witte ruis zonder samenhang</span><span class="en">white noise without coherence</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">een zuiver periodieke golf</span><span class="en">a purely periodic wave</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">een multiplicatieve cascade, verwant aan turbulentie</span><span class="en">a multiplicative cascade, akin to turbulence</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de digit-decompositie (ANOVA) van de Collatz-eigenvector?</span><span class="en">What is the digit decomposition (ANOVA) of the Collatz eigenvector?</span></summary>
+      <p class="nl">Omdat de ternaire digits van de index exact onafhankelijk en uniform zijn, valt de variantie van log v exact orthogonaal uiteen in digit-bijdragen. Bij λ = 1.05, k = 13 dragen hoofdeffecten 86.3% bij, buurdigit-interacties 11.3%, niet-buur-paren 0.4% en drieweg-en-hoger 2.1%. Het veld is daarmee bijna een naaste-buur-structuur in de digits.</p>
+      <p class="en">Because the ternary digits of the index are exactly independent and uniform, the variance of log v splits exactly orthogonally into digit contributions. At λ = 1.05, k = 13 main effects contribute 86.3%, adjacent-digit interactions 11.3%, non-adjacent pairs 0.4% and three-way-and-higher 2.1%. The field is thus nearly a nearest-neighbour structure in the digits.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de cascade-ratio en welke waarden heeft die?</span><span class="en">What is the cascade ratio and what values does it take?</span></summary>
+      <p class="nl">De cascade-ratio is het plateau van de verhoudingen inc(p+1)/inc(p): de factor waarmee de fijnstructuur per extra digit uitdooft. Het profiel is vrijwel onafhankelijk van de diepte k, met een plateau van ≈ 0.70 bij λ = 1.70 en ≈ 0.41 bij λ = 1.05.</p>
+      <p class="en">The cascade ratio is the plateau of the ratios inc(p+1)/inc(p): the factor by which fine structure decays per extra digit. The profile is nearly independent of the depth k, with a plateau of ≈ 0.70 at λ = 1.70 and ≈ 0.41 at λ = 1.05.</p></details>
+    <details class="faq-item"><summary><span class="nl">Beschrijft een additief model de eigenvector volledig?</span><span class="en">Does an additive model fully describe the eigenvector?</span></summary>
+      <p class="nl">Nee. Een model uit alleen hoofdeffecten en buurparen reproduceert de eerste twee incrementen exact (0.1123 en 0.0158 op alle getoonde cijfers), maar vanaf diepte 3 faalt het volledig: bij p = 3 verklaart het nog maar ~1% van het gemeten increment. De diepe incrementen bestaan bijna geheel uit hogere-orde-interacties van aaneengesloten digitblokken.</p>
+      <p class="en">No. A model built from main effects and adjacent pairs only reproduces the first two increments exactly (0.1123 and 0.0158 to all displayed digits), but from depth 3 on it fails completely: at p = 3 it explains only ~1% of the measured increment. The deep increments consist almost entirely of higher-order interactions of contiguous digit blocks.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom heet de fijnstructuur een multiplicatieve cascade?</span><span class="en">Why is the fine structure called a multiplicative cascade?</span></summary>
+      <p class="nl">De grove lagen zijn additief en volledig begrepen, maar de fijne lagen vormen een zichzelf herhalend product van correcties dat door de min-operator wordt gegenereerd · verwant aan structuren uit de turbulentietheorie. Het vaste plateau is de vervalratio van die cascade. De open vraag is of die ratio tot in de limiet echt kleiner dan 1 blijft: de contractievraag van les 5.2 en 5.3.</p>
+      <p class="en">The coarse layers are additive and fully understood, but the fine layers form a self-repeating product of corrections generated by the min operator · akin to structures from turbulence theory. The fixed plateau is the decay ratio of that cascade. The open question is whether that ratio truly stays below 1 in the limit: the contraction question of lessons 5.2 and 5.3.</p></details>
+  </div>
+
   <div class="lesson-nav">
-    <a href="b4l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
-      <span class="nl">Les 4.4 · Gaps, slack en certificering</span><span class="en">Lesson 4.4 · Gaps, slack and certification</span></a>
+    <a href="b4l5.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 4.5 · De kern in zijn kleinste gedaante</span><span class="en">Lesson 4.5 · The core in its smallest form</span></a>
     <a href="b5l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
       <span class="nl">Les 5.2 · De contractieconstante c</span><span class="en">Lesson 5.2 · The contraction constant c</span></a>
   </div>
@@ -158,6 +207,86 @@ window.addEventListener('DOMContentLoaded', function () {
   ctx.fillStyle = '#e8eaf6';
   ctx.fillText(lang === 'en' ? 'inc ratio (λ = 1.70)' : 'inc-ratio (λ = 1.70)', pad + 8, 30);
 });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de digit-decompositie (ANOVA) van de Collatz-eigenvector?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omdat de ternaire digits van de index exact onafhankelijk en uniform zijn, valt de variantie van log v exact orthogonaal uiteen in digit-bijdragen. Bij λ = 1.05, k = 13 dragen hoofdeffecten 86.3% bij, buurdigit-interacties 11.3%, niet-buur-paren 0.4% en drieweg-en-hoger 2.1%. Het veld is daarmee bijna een naaste-buur-structuur in de digits."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de cascade-ratio en welke waarden heeft die?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De cascade-ratio is het plateau van de verhoudingen inc(p+1)/inc(p): de factor waarmee de fijnstructuur per extra digit uitdooft. Het profiel is vrijwel onafhankelijk van de diepte k, met een plateau van ongeveer 0.70 bij λ = 1.70 en ongeveer 0.41 bij λ = 1.05."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Beschrijft een additief model de eigenvector volledig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nee. Een model uit alleen hoofdeffecten en buurparen reproduceert de eerste twee incrementen exact (0.1123 en 0.0158), maar vanaf diepte 3 faalt het volledig: bij p = 3 verklaart het nog maar circa 1% van het gemeten increment. De diepe incrementen bestaan bijna geheel uit hogere-orde-interacties van aaneengesloten digitblokken."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom heet de fijnstructuur een multiplicatieve cascade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De grove lagen zijn additief en volledig begrepen, maar de fijne lagen vormen een zichzelf herhalend product van correcties dat door de min-operator wordt gegenereerd, verwant aan turbulentietheorie. Het vaste plateau is de vervalratio van die cascade. De open vraag is of die ratio tot in de limiet echt kleiner dan 1 blijft: de contractievraag van les 5.2 en 5.3."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the digit decomposition (ANOVA) of the Collatz eigenvector?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the ternary digits of the index are exactly independent and uniform, the variance of log v splits exactly orthogonally into digit contributions. At λ = 1.05, k = 13 main effects contribute 86.3%, adjacent-digit interactions 11.3%, non-adjacent pairs 0.4% and three-way-and-higher 2.1%. The field is thus nearly a nearest-neighbour structure in the digits."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the cascade ratio and what values does it take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cascade ratio is the plateau of the ratios inc(p+1)/inc(p): the factor by which fine structure decays per extra digit. The profile is nearly independent of the depth k, with a plateau of about 0.70 at λ = 1.70 and about 0.41 at λ = 1.05."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Does an additive model fully describe the Collatz eigenvector?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A model built from main effects and adjacent pairs only reproduces the first two increments exactly (0.1123 and 0.0158), but from depth 3 on it fails completely: at p = 3 it explains only about 1% of the measured increment. The deep increments consist almost entirely of higher-order interactions of contiguous digit blocks."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why is the fine structure called a multiplicative cascade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The coarse layers are additive and fully understood, but the fine layers form a self-repeating product of corrections generated by the min operator, akin to structures from turbulence theory. The fixed plateau is the decay ratio of that cascade. The open question is whether that ratio truly stays below 1 in the limit: the contraction question of lessons 5.2 and 5.3."
+      }
+    }
+  ]
+}
 </script>
 </body>
 </html>

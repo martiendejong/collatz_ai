@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 7.1 · Het ene getal</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 7 · De 2-adische wereld</span><span class="en">Block 7 · The 2-adic world</span> › <b>7.1</b></div>
+    <h1 class="nl">Het ene getal</h1>
+    <h1 class="en">The one number</h1>
+    <p class="lead nl">Eén schaal-invariante constante, κ = 0.050044 bits per halvering, duikt op in elke telling · en de dunne verzameling waar het vermoeden zou kunnen falen blijkt bewoond, door de negatieve getallen.</p>
+    <p class="lead en">One scale-invariant constant, κ = 0.050044 bits per halving, appears in every count · and the thin set where the conjecture could fail turns out to be inhabited, by the negative numbers.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">κ in vier gedaanten</span><span class="en">κ in four guises</span></h2>
+    <p class="nl">Door het hele veld heen keert één getal terug: \(\kappa = 0.050044\) bits per halvering.
+    Het is schaal-invariant · het hangt niet af van de modulus, de venstergrootte of de steekproef.
+    Vier op het oog verschillende berekeningen leveren hetzelfde getal, in vier gedaanten.</p>
+    <p class="en">Across the entire field one number keeps returning: \(\kappa = 0.050044\) bits per halving.
+    It is scale-invariant · it does not depend on the modulus, the window size or the sample.
+    Four apparently different computations produce the same number, in four guises.</p>
+    <table class="nice">
+      <tr><th><span class="nl">gedaante</span><span class="en">guise</span></th>
+          <th><span class="nl">berekening</span><span class="en">computation</span></th>
+          <th><span class="nl">waarde</span><span class="en">value</span></th></tr>
+      <tr><td><span class="nl">cyclus</span><span class="en">cycle</span></td>
+          <td><span class="nl">de entropie-gap van cycli</span><span class="en">the cycle entropy gap</span></td>
+          <td class="num">κ</td></tr>
+      <tr><td><span class="nl">kans</span><span class="en">probability</span></td>
+          <td><span class="nl">KL-divergentie tussen de op \(1/\alpha\) afgestemde geometrische verdeling en Geom(1/2)</span>
+              <span class="en">KL divergence between the \(1/\alpha\)-tuned geometric distribution and Geom(1/2)</span></td>
+          <td class="num">κ</td></tr>
+      <tr><td><span class="nl">geometrie</span><span class="en">geometry</span></td>
+          <td><span class="nl">dimensietekort van de divergentie-capabele verzameling: 1 − 0.9507</span>
+              <span class="en">dimension deficit of the divergence-capable set: 1 − 0.9507</span></td>
+          <td class="num">0.0493</td></tr>
+      <tr><td><span class="nl">verblijftijd</span><span class="en">sojourn</span></td>
+          <td><span class="nl">gemeten staart-exponent van de langste klim-vensters: 0.076 per stap ≈ α·κ</span>
+              <span class="en">measured tail exponent of the longest climb windows: 0.076 per step ≈ α·κ</span></td>
+          <td class="num">0.0793</td></tr>
+    </table>
+    <p class="nl">De vierde rij vraagt één omrekening: de staart-exponent is gemeten <i>per stap</i>, terwijl
+    κ leeft <i>per halvering</i>. Omdat een gemiddelde stap α = log₂3 ≈ 1.585 halveringen waard is, is de
+    voorspelling per stap \(\alpha \cdot \kappa = 0.0793\) · en gemeten wordt 0.076. Vier gedaanten,
+    één getal: elk telargument in dit veld herontdekt ditzelfde ene getal.</p>
+    <p class="en">The fourth row needs one conversion: the tail exponent is measured <i>per step</i>, while
+    κ lives <i>per halving</i>. Since an average step is worth α = log₂3 ≈ 1.585 halvings, the per-step
+    prediction is \(\alpha \cdot \kappa = 0.0793\) · and the measurement gives 0.076. Four guises,
+    one number: every counting argument in this field rediscovers this same one number.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De fractal D</span><span class="en">The fractal D</span></h2>
+    <p class="nl">Wie zou er kunnen divergeren? Onder de Syracuse-afbeelding \(T(n) = (3n+1)/2^{e(n)}\) met
+    \(e(n) = v_2(3n+1)\) groeit een baan alleen als de halveringen achterblijven: divergentie-capabele
+    punten hebben langs de baan een gemiddelde \(e \le \alpha = \log_2 3\) nodig. Dat is een strenge eis ·
+    het Haar-typische gemiddelde is 2.</p>
+    <p class="en">Who could diverge? Under the Syracuse map \(T(n) = (3n+1)/2^{e(n)}\) with
+    \(e(n) = v_2(3n+1)\), an orbit only grows if the halvings lag behind: divergence-capable points need
+    a mean \(e \le \alpha = \log_2 3\) along the orbit. That is a strict demand · the Haar-typical
+    mean is 2.</p>
+    <p class="nl">Noem D de verzameling 2-adische punten die aan die eis voldoen. De multifractale
+    afschatting geeft:</p>
+    <p class="en">Call D the set of 2-adic points meeting that demand. The multifractal bound gives:</p>
+    $$\dim_H(D) \;\le\; H_b\!\left(\tfrac{1}{\log_2 3}\right) \;=\; 0.9507$$
+    <p class="nl">D heeft dus Hausdorff-dimensie hoogstens 0.9507 en Haar-maat nul: een echte fractal,
+    strikt dunner dan de volle ruimte. Het dimensietekort is precies de derde gedaante van κ uit
+    onderwerp 1. D is de dunne verzameling waar het vermoeden zou kunnen falen · alles buiten D valt.</p>
+    <p class="en">So D has Hausdorff dimension at most 0.9507 and Haar measure zero: a genuine fractal,
+    strictly thinner than the full space. The dimension deficit is exactly the third guise of κ from
+    subject 1. D is the thin set where the conjecture could fail · everything outside D falls.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">D is bewoond</span><span class="en">D is inhabited</span></h2>
+    <p class="nl">Een maat-nul-verzameling zou leeg kunnen aanvoelen. Maar D bevat echte gehele getallen:
+    de <b>negatieve</b>. De bekende negatieve cycli zitten allemaal ónder de drempel α = 1.585:</p>
+    <p class="en">A measure-zero set might feel empty. But D contains actual integers:
+    the <b>negative</b> ones. The known negative cycles all sit <i>below</i> the threshold α = 1.585:</p>
+    <table class="nice">
+      <tr><th><span class="nl">cyclus</span><span class="en">cycle</span></th>
+          <th><span class="nl">gemiddelde e</span><span class="en">mean e</span></th>
+          <th><span class="nl">t.o.v. α = 1.585</span><span class="en">vs α = 1.585</span></th></tr>
+      <tr><td>−1</td><td class="num">1</td>
+          <td><span class="nl">onder</span><span class="en">below</span></td></tr>
+      <tr><td>−5 → −7</td><td class="num">1.5</td>
+          <td><span class="nl">onder</span><span class="en">below</span></td></tr>
+      <tr><td><span class="nl">−17-cyclus</span><span class="en">−17 cycle</span></td><td class="num">11/7 ≈ 1.571</td>
+          <td><span class="nl">onder</span><span class="en">below</span></td></tr>
+    </table>
+    <p class="nl">Dat is geen toeval maar een tekenstelling. Voor elke cyclus met A oneven stappen en B
+    halveringen geldt exact:</p>
+    <p class="en">That is not a coincidence but a sign theorem. For any cycle with A odd steps and B
+    halvings, exactly:</p>
+    $$\frac{B}{A} \;=\; \log_2 3 \;+\; \frac{1}{A}\sum_i \log_2\!\left(1 + \frac{1}{3n_i}\right)$$
+    <p class="nl">Negatieve elementen maken de correctieterm negatief en duwen het gemiddelde ónder de
+    drempel; positieve elementen duwen het erbóven. 2-adisch gelezen: negatieve gehele getallen hebben
+    enen-staarten, positieve hebben nullen-staarten.</p>
+    <p class="en">Negative elements make the correction term negative and push the mean <i>below</i> the
+    threshold; positive elements push it above. Read 2-adically: negative integers have ones-tails,
+    positive integers have zeros-tails.</p>
+    <div class="callout">
+      <div class="title nl">Muur 2, herschreven</div>
+      <div class="title en">Wall 2, rewritten</div>
+      <span class="nl">D is bewoond, maar (voor zover bekend) uitsluitend door punten met een
+      enen-staart. Muur 2 (divergentie) is daarmee letterlijk de vraag: <b>bevat D een punt met een
+      nullen-staart?</b> Eén positief geheel getal in D zou een divergente baan zijn.</span>
+      <span class="en">D is inhabited, but (as far as is known) only by points with a ones-tail.
+      Wall 2 (divergence) is thus literally the question: <b>does D contain a point with a
+      zeros-tail?</b> One positive integer in D would be a divergent orbit.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De schaduw-decompositie</span><span class="en">The shadow decomposition</span></h2>
+    <p class="nl">Als de negatieve cycli de enige bekende bewoners van D zijn, wat doet een positieve baan
+    dan tijdens een klim? Antwoord: hij <b>schaduwt</b> ze. Langs de klimmen van 27 en 703 zit de baan op
+    elke stap diep (4 tot 12 digits) in de 2-adische schaduw van een negatieve-cykel-punt · en het
+    schaduwpunt loopt de negatieve cyclus <i>in cyclusvolgorde</i> af. Bij 703, stappen 25-28:
+    schaduwpunten −17 → −25 → −37 → −55 met dieptes 9, 8, 7, 6 · precies één digit verlies per stap,
+    zoals de 2-adische afgeleide \(|T'|_2 = 2^{e}\) dicteert.</p>
+    <p class="en">If the negative cycles are the only known inhabitants of D, what does a positive orbit
+    do during a climb? Answer: it <b>shadows</b> them. Along the climbs of 27 and 703 the orbit is, at
+    every step, deep (4 to 12 digits) in the 2-adic shadow of a negative-cycle point · and the shadow
+    point walks the negative cycle <i>in cycle order</i>. For 703, steps 25-28: shadow points
+    −17 → −25 → −37 → −55 with depths 9, 8, 7, 6 · exactly one digit lost per step, as the 2-adic
+    derivative \(|T'|_2 = 2^{e}\) dictates.</p>
+    <p class="nl">De dieptestatistiek bevestigt het beeld: E[diepte | klim] = 5.3-6.8 tegenover
+    E[diepte | val] = 4.3-5.1, met random controle 4.88. Klimmen is diep-in-de-schaduw zijn;
+    vallen is de schaduw kwijt zijn.</p>
+    <p class="en">The depth statistics confirm the picture: E[depth | climb] = 5.3-6.8 versus
+    E[depth | fall] = 4.3-5.1, with a random control at 4.88. Climbing is being deep in the shadow;
+    falling is having lost it.</p>
+    <p class="nl">De boekhouding per episode maakt het kwantitatief: een schaduw-episode die op diepte d
+    wordt binnengegaan kost d digits aan "geluk" bij de intrede, en kan tijdens de episode zijn eigen
+    diepte nooit terugbetalen · er geldt een universeel episode-tekort van minstens \(0.415 \cdot d\)
+    bits. Divergentie zou dus oneindig vaak herhaald systematisch her-intrede-geluk vergen.</p>
+    <p class="en">Per-episode accounting makes it quantitative: a shadow episode entered at depth d costs
+    d digits of "luck" at entry, and during the episode can never repay its own depth · a universal
+    episode deficit of at least \(0.415 \cdot d\) bits holds. Divergence would therefore require
+    infinitely repeated systematic re-entry luck.</p>
+    <div class="callout">
+      <div class="title nl">Muur 2 in schaduwtaal</div>
+      <div class="title en">Wall 2 in shadow language</div>
+      <span class="nl">Divergentie = oneindig herhaald her-intrede-geluk. Muur 2 wordt: <b>geen enkel
+      positief geheel getal heeft oneindig her-intrede-geluk.</b> Dezelfde vraag als in onderwerp 3,
+      nu met een prijskaartje per episode.</span>
+      <span class="en">Divergence = infinitely repeated re-entry luck. Wall 2 becomes: <b>no positive
+      integer has infinite re-entry luck.</b> The same question as in subject 3, now with a price
+      tag per episode.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is de waarde van de schaal-invariante constante κ?</span><span class="en">What is the value of the scale-invariant constant κ?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">0.0793 bits per halvering</span><span class="en">0.0793 bits per halving</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">0.050044 bits per halvering</span><span class="en">0.050044 bits per halving</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">0.9507 bits per halvering</span><span class="en">0.9507 bits per halving</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat is de bovengrens voor de Hausdorff-dimensie van de divergentie-capabele verzameling D?</span><span class="en">What is the upper bound for the Hausdorff dimension of the divergence-capable set D?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">0.9507, met Haar-maat nul</span><span class="en">0.9507, with Haar measure zero</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">1.585, met positieve Haar-maat</span><span class="en">1.585, with positive Haar measure</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">0.5, met Haar-maat nul</span><span class="en">0.5, with Haar measure zero</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Welke echte gehele getallen zijn de bekende bewoners van D?</span><span class="en">Which actual integers are the known inhabitants of D?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">de Mersenne-getallen 2ᴷ − 1</span><span class="en">the Mersenne numbers 2ᴷ − 1</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">de veelvouden van 27</span><span class="en">the multiples of 27</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">de negatieve getallen (met enen-staarten)</span><span class="en">the negative integers (with ones-tails)</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Hoeveel bedraagt het universele episode-tekort van een schaduw-episode die op diepte d wordt binnengegaan?</span><span class="en">What is the universal episode deficit of a shadow episode entered at depth d?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">minstens 0.415 · d bits</span><span class="en">at least 0.415 · d bits</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">minstens 0.076 · d bits</span><span class="en">at least 0.076 · d bits</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">precies 2 · d bits</span><span class="en">exactly 2 · d bits</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de constante κ in het Collatz-probleem?</span><span class="en">What is the constant κ in the Collatz problem?</span></summary>
+      <p class="nl">κ = 0.050044 bits per halvering is een schaal-invariante constante die niet afhangt van modulus, venstergrootte of steekproef. Ze duikt op in vier gedaanten: de entropie-gap van cycli, de KL-divergentie tussen de op 1/α afgestemde geometrische verdeling en Geom(1/2), het dimensietekort 1 − 0.9507 = 0.0493, en de staart-exponent van klim-vensters (gemeten 0.076 per stap, voorspeld α·κ = 0.0793). Elk telargument in dit veld herontdekt ditzelfde ene getal.</p>
+      <p class="en">κ = 0.050044 bits per halving is a scale-invariant constant that does not depend on the modulus, window size or sample. It appears in four guises: the cycle entropy gap, the KL divergence between the 1/α-tuned geometric distribution and Geom(1/2), the dimension deficit 1 − 0.9507 = 0.0493, and the tail exponent of climb windows (measured 0.076 per step, predicted α·κ = 0.0793). Every counting argument in this field rediscovers this same one number.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de Hausdorff-dimensiegrens voor divergente Collatz-banen?</span><span class="en">What is the Hausdorff dimension bound for divergent Collatz orbits?</span></summary>
+      <p class="nl">De divergentie-capabele verzameling D bestaat uit 2-adische punten met een baangemiddelde e ≤ α = log₂3 ≈ 1.585. De multifractale afschatting geeft dim_H(D) ≤ H_b(1/log₂3) = 0.9507, en D heeft Haar-maat nul. D is dus een echte fractal, strikt dunner dan de volle ruimte; het dimensietekort 0.0493 is precies een gedaante van κ.</p>
+      <p class="en">The divergence-capable set D consists of 2-adic points with orbit mean e ≤ α = log₂3 ≈ 1.585. The multifractal bound gives dim_H(D) ≤ H_b(1/log₂3) = 0.9507, and D has Haar measure zero. So D is a genuine fractal, strictly thinner than the full space; the dimension deficit 0.0493 is exactly one guise of κ.</p></details>
+    <details class="faq-item"><summary><span class="nl">Voldoen negatieve getallen aan de Collatz-divergentievoorwaarde?</span><span class="en">Do negative numbers satisfy the Collatz divergence condition?</span></summary>
+      <p class="nl">Ja: alle bekende negatieve cycli zitten onder de drempel α = 1.585. De cyclus van −1 heeft gemiddelde e = 1, de cyclus −5 → −7 heeft 1.5, en de −17-cyclus heeft 11/7 ≈ 1.571. Dat is geen toeval maar een tekenstelling: negatieve elementen maken de correctieterm in de exacte cyclusvergelijking negatief en duwen het gemiddelde onder de drempel, terwijl positieve elementen het erboven duwen.</p>
+      <p class="en">Yes: all known negative cycles sit below the threshold α = 1.585. The cycle of −1 has mean e = 1, the cycle −5 → −7 has 1.5, and the −17 cycle has 11/7 ≈ 1.571. That is not a coincidence but a sign theorem: negative elements make the correction term in the exact cycle equation negative and push the mean below the threshold, while positive elements push it above.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de schaduw-decompositie van een Collatz-klim?</span><span class="en">What is the shadow decomposition of a Collatz climb?</span></summary>
+      <p class="nl">Tijdens klimmen zit een positieve baan op elke stap diep (4 tot 12 digits) in de 2-adische schaduw van een negatieve-cykel-punt, en het schaduwpunt loopt de negatieve cyclus in cyclusvolgorde af. De statistiek bevestigt dit: E[diepte | klim] = 5.3-6.8 tegenover E[diepte | val] = 4.3-5.1, met random controle 4.88. Een episode die op diepte d begint kost d digits geluk en kent een universeel tekort van minstens 0.415 · d bits, dus divergentie zou oneindig herhaald her-intrede-geluk vergen.</p>
+      <p class="en">During climbs a positive orbit is, at every step, deep (4 to 12 digits) in the 2-adic shadow of a negative-cycle point, and the shadow point walks the negative cycle in cycle order. The statistics confirm this: E[depth | climb] = 5.3-6.8 versus E[depth | fall] = 4.3-5.1, with a random control at 4.88. An episode entered at depth d costs d digits of luck and carries a universal deficit of at least 0.415 · d bits, so divergence would require infinitely repeated re-entry luck.</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b6l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 6.3 · De open kern</span><span class="en">Lesson 6.3 · The open core</span></a>
+    <a href="b7l2.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 7.2 · Kanalen en camouflage</span><span class="en">Lesson 7.2 · Channels and camouflage</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de constante κ in het Collatz-probleem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "κ = 0.050044 bits per halvering is een schaal-invariante constante die niet afhangt van modulus, venstergrootte of steekproef. Ze duikt op in vier gedaanten: de entropie-gap van cycli, de KL-divergentie tussen de op 1/α afgestemde geometrische verdeling en Geom(1/2), het dimensietekort 1 − 0.9507 = 0.0493, en de staart-exponent van klim-vensters (gemeten 0.076 per stap, voorspeld α·κ = 0.0793). Elk telargument in dit veld herontdekt ditzelfde ene getal."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de Hausdorff-dimensiegrens voor divergente Collatz-banen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De divergentie-capabele verzameling D bestaat uit 2-adische punten met een baangemiddelde e ≤ α = log₂3 ≈ 1.585. De multifractale afschatting geeft dim_H(D) ≤ 0.9507, en D heeft Haar-maat nul. D is dus een echte fractal, strikt dunner dan de volle ruimte; het dimensietekort 0.0493 is precies een gedaante van κ."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Voldoen negatieve getallen aan de Collatz-divergentievoorwaarde?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja: alle bekende negatieve cycli zitten onder de drempel α = 1.585. De cyclus van −1 heeft gemiddelde e = 1, de cyclus −5 → −7 heeft 1.5, en de −17-cyclus heeft 11/7 ≈ 1.571. Dat is geen toeval maar een tekenstelling: negatieve elementen duwen het gemiddelde onder de drempel, positieve elementen erboven."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de schaduw-decompositie van een Collatz-klim?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tijdens klimmen zit een positieve baan op elke stap diep (4 tot 12 digits) in de 2-adische schaduw van een negatieve-cykel-punt, en het schaduwpunt loopt de negatieve cyclus in cyclusvolgorde af. E[diepte | klim] = 5.3-6.8 tegenover E[diepte | val] = 4.3-5.1, met random controle 4.88. Een episode die op diepte d begint kent een universeel tekort van minstens 0.415 · d bits, dus divergentie zou oneindig herhaald her-intrede-geluk vergen."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the constant κ in the Collatz problem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "κ = 0.050044 bits per halving is a scale-invariant constant that does not depend on the modulus, window size or sample. It appears in four guises: the cycle entropy gap, the KL divergence between the 1/α-tuned geometric distribution and Geom(1/2), the dimension deficit 1 − 0.9507 = 0.0493, and the tail exponent of climb windows (measured 0.076 per step, predicted α·κ = 0.0793). Every counting argument in this field rediscovers this same one number."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the Hausdorff dimension bound for divergent Collatz orbits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The divergence-capable set D consists of 2-adic points with orbit mean e ≤ α = log₂3 ≈ 1.585. The multifractal bound gives dim_H(D) ≤ 0.9507, and D has Haar measure zero. So D is a genuine fractal, strictly thinner than the full space; the dimension deficit 0.0493 is exactly one guise of κ."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Do negative numbers satisfy the Collatz divergence condition?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes: all known negative cycles sit below the threshold α = 1.585. The cycle of −1 has mean e = 1, the cycle −5 → −7 has 1.5, and the −17 cycle has 11/7 ≈ 1.571. That is not a coincidence but a sign theorem: negative elements push the mean below the threshold, positive elements push it above."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the shadow decomposition of a Collatz climb?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "During climbs a positive orbit is, at every step, deep (4 to 12 digits) in the 2-adic shadow of a negative-cycle point, and the shadow point walks the negative cycle in cycle order. E[depth | climb] = 5.3-6.8 versus E[depth | fall] = 4.3-5.1, with a random control at 4.88. An episode entered at depth d carries a universal deficit of at least 0.415 · d bits, so divergence would require infinitely repeated re-entry luck."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

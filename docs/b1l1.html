@@ -6,6 +6,7 @@
 <title>Les 1.1 · Wat is het Collatz-vermoeden?</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -222,6 +223,54 @@
     without control over each individual one.</p>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat doe je in het Collatz-proces met een oneven getal?</span><span class="en">In the Collatz process, what do you do with an odd number?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">delen door 2</span><span class="en">divide it by 2</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">vermenigvuldigen met 3 en er 1 bij optellen</span><span class="en">multiply by 3 and add 1</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">vermenigvuldigen met 3 en er 1 van aftrekken</span><span class="en">multiply by 3 and subtract 1</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Op welk hoogste punt piekt de baan van 27?</span><span class="en">What is the peak value of the orbit of 27?</span></p>
+        <label><input type="radio" name="q2" value="a"> 9232</label>
+        <label><input type="radio" name="q2" value="b"> 2762</label>
+        <label><input type="radio" name="q2" value="c"> 729</label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat is de enige bekende cyclus in de positieve gehele getallen?</span><span class="en">What is the only known cycle among the positive integers?</span></p>
+        <label><input type="radio" name="q3" value="a"> 1 → 2 → 4 → 8 → 1</label>
+        <label><input type="radio" name="q3" value="b"> 5 → 16 → 8 → 5</label>
+        <label><input type="radio" name="q3" value="c"> 1 → 4 → 2 → 1</label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wie bewees in 1972 dat veralgemeende Collatz-functies onbeslisbaar zijn?</span><span class="en">Who proved in 1972 that generalised Collatz functions are undecidable?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">John Conway</span><span class="en">John Conway</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">Paul Erdős</span><span class="en">Paul Erdős</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">Lothar Collatz</span><span class="en">Lothar Collatz</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is het Collatz-vermoeden precies?</span><span class="en">What exactly is the Collatz conjecture?</span></summary>
+      <p class="nl">Neem een positief geheel getal: is het even, deel het door 2; is het oneven, vermenigvuldig met 3 en tel er 1 bij. Het vermoeden zegt dat je, waar je ook begint, altijd bij 1 uitkomt. Vanaf 6 gaat het bijvoorbeeld zo: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1. Ondanks bijna een eeuw pogingen is dit nooit bewezen.</p>
+      <p class="en">Take a positive whole number: if it is even, divide it by 2; if it is odd, multiply by 3 and add 1. The conjecture states that wherever you start, you always reach 1. From 6, for example: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1. Despite almost a century of attempts, this has never been proved.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom is de baan van het getal 27 zo beroemd?</span><span class="en">Why is the orbit of the number 27 so famous?</span></summary>
+      <p class="nl">Het onschuldige tweecijferige getal 27 heeft 111 stappen nodig om 1 te bereiken en piekt onderweg op 9232, ruim 340 keer zijn startwaarde. Zijn buren 26 en 28 zijn in ongeveer tien stappen klaar. Dit laat zien hoe onvoorspelbaar individuele banen zijn, ook al is de gemiddelde trend dalend.</p>
+      <p class="en">The innocent two-digit number 27 needs 111 steps to reach 1 and peaks at 9232 along the way, over 340 times its starting value. Its neighbours 26 and 28 finish in about ten steps. This shows how unpredictable individual orbits are, even though the average trend is downward.</p></details>
+    <details class="faq-item"><summary><span class="nl">Op welke manieren zou het Collatz-vermoeden kunnen falen?</span><span class="en">In what ways could the Collatz conjecture fail?</span></summary>
+      <p class="nl">Er zijn precies twee faalwijzen: een baan belandt in een andere cyclus dan de bekende 1 → 4 → 2 → 1, of een baan divergeert naar oneindig. Het vermoeden sluit beide uit en splitst dus in twee deelbeweringen: geen niet-triviale cycli en geen divergente banen. Die twee delen blijken heel verschillend moeilijk te zijn.</p>
+      <p class="en">There are exactly two failure modes: an orbit lands in a cycle other than the known 1 → 4 → 2 → 1, or an orbit diverges to infinity. The conjecture excludes both, splitting into two sub-claims: no non-trivial cycles and no divergent orbits. These two parts turn out to differ greatly in difficulty.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom is het Collatz-probleem zo moeilijk?</span><span class="en">Why is the Collatz problem so hard?</span></summary>
+      <p class="nl">De stap "deel door 2" is triviaal in het binaire stelsel, de stap "maal 3 plus 1" is triviaal in basis 3, maar geen enkel talstelsel maakt beide stappen tegelijk eenvoudig. Dat samenspel genereert pseudo-toevallig gedrag. Bovendien bewees Conway in 1972 dat veralgemeningen van dit soort functies onbeslisbaar zijn; Erdős zei zelfs: "Mathematics may not be ready for such problems."</p>
+      <p class="en">The step "divide by 2" is trivial in binary, the step "times 3 plus 1" is trivial in base 3, but no number system makes both steps simple at once. That interplay generates pseudo-random behaviour. Moreover, Conway proved in 1972 that generalisations of such functions are undecidable; Erdős even said: "Mathematics may not be ready for such problems."</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="index.html"><span class="dir nl">‹ terug</span><span class="dir en">‹ back</span>
       <span class="nl">Cursusoverzicht</span><span class="en">Course overview</span></a>
@@ -317,6 +366,22 @@ window.addEventListener('DOMContentLoaded', function () {
   runOrbit();
   replay27();
 });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "inLanguage": "nl", "name": "Wat is het Collatz-vermoeden precies?", "acceptedAnswer": {"@type": "Answer", "text": "Neem een positief geheel getal: is het even, deel het door 2; is het oneven, vermenigvuldig met 3 en tel er 1 bij. Het vermoeden zegt dat je, waar je ook begint, altijd bij 1 uitkomt. Vanaf 6 gaat het bijvoorbeeld zo: 6, 3, 10, 5, 16, 8, 4, 2, 1. Ondanks bijna een eeuw pogingen is dit nooit bewezen."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom is de baan van het getal 27 zo beroemd?", "acceptedAnswer": {"@type": "Answer", "text": "Het onschuldige tweecijferige getal 27 heeft 111 stappen nodig om 1 te bereiken en piekt onderweg op 9232, ruim 340 keer zijn startwaarde. Zijn buren 26 en 28 zijn in ongeveer tien stappen klaar. Dit laat zien hoe onvoorspelbaar individuele banen zijn, ook al is de gemiddelde trend dalend."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Op welke manieren zou het Collatz-vermoeden kunnen falen?", "acceptedAnswer": {"@type": "Answer", "text": "Er zijn precies twee faalwijzen: een baan belandt in een andere cyclus dan de bekende 1, 4, 2, 1, of een baan divergeert naar oneindig. Het vermoeden sluit beide uit en splitst dus in twee deelbeweringen: geen niet-triviale cycli en geen divergente banen. Die twee delen blijken heel verschillend moeilijk te zijn."}},
+    {"@type": "Question", "inLanguage": "nl", "name": "Waarom is het Collatz-probleem zo moeilijk?", "acceptedAnswer": {"@type": "Answer", "text": "De stap 'deel door 2' is triviaal in het binaire stelsel, de stap 'maal 3 plus 1' is triviaal in basis 3, maar geen enkel talstelsel maakt beide stappen tegelijk eenvoudig. Dat samenspel genereert pseudo-toevallig gedrag. Bovendien bewees Conway in 1972 dat veralgemeningen van dit soort functies onbeslisbaar zijn; Erdős zei zelfs: 'Mathematics may not be ready for such problems.'"}},
+    {"@type": "Question", "inLanguage": "en", "name": "What exactly is the Collatz conjecture?", "acceptedAnswer": {"@type": "Answer", "text": "Take a positive whole number: if it is even, divide it by 2; if it is odd, multiply by 3 and add 1. The conjecture states that wherever you start, you always reach 1. From 6, for example: 6, 3, 10, 5, 16, 8, 4, 2, 1. Despite almost a century of attempts, this has never been proved."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why is the orbit of the number 27 so famous?", "acceptedAnswer": {"@type": "Answer", "text": "The innocent two-digit number 27 needs 111 steps to reach 1 and peaks at 9232 along the way, over 340 times its starting value. Its neighbours 26 and 28 finish in about ten steps. This shows how unpredictable individual orbits are, even though the average trend is downward."}},
+    {"@type": "Question", "inLanguage": "en", "name": "In what ways could the Collatz conjecture fail?", "acceptedAnswer": {"@type": "Answer", "text": "There are exactly two failure modes: an orbit lands in a cycle other than the known 1, 4, 2, 1, or an orbit diverges to infinity. The conjecture excludes both, splitting into two sub-claims: no non-trivial cycles and no divergent orbits. These two parts turn out to differ greatly in difficulty."}},
+    {"@type": "Question", "inLanguage": "en", "name": "Why is the Collatz problem so hard?", "acceptedAnswer": {"@type": "Answer", "text": "The step 'divide by 2' is trivial in binary, the step 'times 3 plus 1' is trivial in base 3, but no number system makes both steps simple at once. That interplay generates pseudo-random behaviour. Moreover, Conway proved in 1972 that generalisations of such functions are undecidable; Erdős even said: 'Mathematics may not be ready for such problems.'"}}
+  ]
+}
 </script>
 </body>
 </html>

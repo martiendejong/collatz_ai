@@ -6,6 +6,7 @@
 <title>Les 3.2 · De K-L-operator</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -136,6 +137,54 @@
     </div>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Welke restklasse mod 3 krijgt in de K-L-operator géén feed?</span><span class="en">Which residue class mod 3 receives no feed in the K-L operator?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">i ≡ 0</span><span class="en">i ≡ 0</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">i ≡ 2</span><span class="en">i ≡ 2</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">i ≡ 1</span><span class="en">i ≡ 1</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is de enige niet-lineariteit in het hele systeem?</span><span class="en">What is the only nonlinearity in the whole system?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">de backbone-permutatie i → 4i+2</span><span class="en">the backbone permutation i → 4i+2</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">de min over drie liften in het min-veld v̄</span><span class="en">the min over three lifts in the min-field v̄</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">de gewichten A, B₁ en B₃</span><span class="en">the weights A, B₁ and B₃</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat volgt er als een strikt positieve vector v bestaat met v ≤ Fv?</span><span class="en">What follows if a strictly positive vector v exists with v ≤ Fv?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">π₁(x) ≥ x^(log₂ λ) voor grote x</span><span class="en">π₁(x) ≥ x^(log₂ λ) for large x</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">het volledige Collatz-vermoeden</span><span class="en">the full Collatz conjecture</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">dat er geen divergente banen bestaan</span><span class="en">that no divergent orbits exist</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat is het verband tussen de exponent γ en de parameter λ?</span><span class="en">What is the relation between the exponent γ and the parameter λ?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">γ = 2^λ</span><span class="en">γ = 2^λ</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">γ = λ/2</span><span class="en">γ = λ/2</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">γ = log₂ λ</span><span class="en">γ = log₂ λ</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de Krasikov-Lagarias-operator?</span><span class="en">What is the Krasikov-Lagarias operator?</span></summary>
+      <p class="nl">De K-L-operator F werkt op vectoren met één component per restklasse i ∈ {0, …, 3^(k−1)−1} en bestaat uit een backbone (de permutatie i → 4i+2, die de deel-door-2-structuur codeert) plus twee feeds met gewichten B₁ = λ^(α−2) en B₃ = λ^(α−1), waarin α = log₂ 3. De feeds gaan alleen naar klassen i ≡ 0 en i ≡ 2 mod 3 en gebruiken de min over drie liften; klasse i ≡ 1 krijgt geen feed.</p>
+      <p class="en">The K-L operator F acts on vectors with one component per residue class i ∈ {0, …, 3^(k−1)−1} and consists of a backbone (the permutation i → 4i+2, encoding the divide-by-2 structure) plus two feeds with weights B₁ = λ^(α−2) and B₃ = λ^(α−1), where α = log₂ 3. The feeds only enter classes i ≡ 0 and i ≡ 2 mod 3 and use the min over three lifts; class i ≡ 1 receives no feed.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is een feasibility-certificaat voor het Collatz-telprogramma?</span><span class="en">What is a feasibility certificate for the Collatz counting programme?</span></summary>
+      <p class="nl">Een feasibility-certificaat is een strikt positieve vector v met v ≤ Fv componentsgewijs. Volgens de stelling van Krasikov en Lagarias (2003) volgt daaruit π₁(x) ≥ x^(log₂ λ) voor grote x. De bewering "v ≤ Fv" is een eindige lijst van 3^(k−1) elementaire ongelijkheden die iedereen, mens of machine, kan nachecken.</p>
+      <p class="en">A feasibility certificate is a strictly positive vector v with v ≤ Fv componentwise. By the Krasikov-Lagarias theorem (2003), this implies π₁(x) ≥ x^(log₂ λ) for large x. The claim "v ≤ Fv" is a finite list of 3^(k−1) elementary inequalities that anyone, human or machine, can recheck.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom staat er een min in de K-L-operator?</span><span class="en">Why is there a min in the K-L operator?</span></summary>
+      <p class="nl">Het min-veld v̄(r) = min{v(r), v(r+N/3), v(r+2N/3)} neemt per triple de slechtste van de drie "liften", omdat een telling pas gegarandeerd is als hij het in de slechtste lift haalt. Het is een worst-case-operator, en tegelijk de enige niet-lineariteit in het hele systeem.</p>
+      <p class="en">The min-field v̄(r) = min{v(r), v(r+N/3), v(r+2N/3)} takes the worst of the three "lifts" per triple, because a count is guaranteed only if it survives the worst lift. It is a worst-case operator, and at the same time the only nonlinearity in the whole system.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom bestaat er per diepte k een scherpe rand λ*(k)?</span><span class="en">Why is there a sharp edge λ*(k) per depth k?</span></summary>
+      <p class="nl">F is monotoon en 1-homogeen, dus er bestaat een Perron-achtige grootste groeifactor ρ(λ) met de Collatz-Wielandt-karakterisering: voor elke positieve testvector w ligt ρ tussen minᵢ (Fw)ᵢ/wᵢ en maxᵢ (Fw)ᵢ/wᵢ. Feasibility kan precies dan als ρ(λ) ≥ 1, en omdat ρ(λ) daalt in λ, is er per diepte k een hoogste λ waarvoor het nog lukt: de rand λ*(k). Dieper betekent fijnere klassen en een hogere rand.</p>
+      <p class="en">F is monotone and 1-homogeneous, so a Perron-type largest growth factor ρ(λ) exists with the Collatz-Wielandt characterisation: for every positive test vector w, ρ lies between minᵢ (Fw)ᵢ/wᵢ and maxᵢ (Fw)ᵢ/wᵢ. Feasibility is possible precisely when ρ(λ) ≥ 1, and since ρ(λ) decreases in λ, each depth k has a highest λ that still works: the edge λ*(k). Deeper means finer classes and a higher edge.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b3l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 3.1 · Tellen met ongelijkheden</span><span class="en">Lesson 3.1 · Counting with inequalities</span></a>
@@ -144,5 +193,85 @@
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de Krasikov-Lagarias-operator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De K-L-operator F werkt op vectoren met een component per restklasse i in {0, ..., 3^(k-1)-1} en bestaat uit een backbone (de permutatie i naar 4i+2, die de deel-door-2-structuur codeert) plus twee feeds met gewichten B1 = lambda^(alfa-2) en B3 = lambda^(alfa-1), waarin alfa = log2 van 3. De feeds gaan alleen naar klassen i = 0 en i = 2 mod 3 en gebruiken de min over drie liften; klasse i = 1 mod 3 krijgt geen feed."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is een feasibility-certificaat voor het Collatz-telprogramma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Een feasibility-certificaat is een strikt positieve vector v met v <= Fv componentsgewijs. Volgens de stelling van Krasikov en Lagarias (2003) volgt daaruit pi_1(x) >= x^(log2 lambda) voor grote x. De bewering v <= Fv is een eindige lijst van 3^(k-1) elementaire ongelijkheden die iedereen, mens of machine, kan nachecken."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom staat er een min in de K-L-operator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Het min-veld neemt per triple de slechtste van de drie liften, omdat een telling pas gegarandeerd is als hij het in de slechtste lift haalt. Het is een worst-case-operator, en tegelijk de enige niet-lineariteit in het hele systeem."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom bestaat er per diepte k een scherpe rand lambda*(k)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "F is monotoon en 1-homogeen, dus er bestaat een Perron-achtige grootste groeifactor rho(lambda) met de Collatz-Wielandt-karakterisering: voor elke positieve testvector w ligt rho tussen de minimale en maximale verhouding (Fw)_i / w_i. Feasibility kan precies dan als rho(lambda) >= 1, en omdat rho(lambda) daalt in lambda, is er per diepte k een hoogste lambda waarvoor het nog lukt: de rand lambda*(k). Dieper betekent fijnere klassen en een hogere rand."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the Krasikov-Lagarias operator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The K-L operator F acts on vectors with one component per residue class i in {0, ..., 3^(k-1)-1} and consists of a backbone (the permutation i to 4i+2, encoding the divide-by-2 structure) plus two feeds with weights B1 = lambda^(alpha-2) and B3 = lambda^(alpha-1), where alpha = log2 of 3. The feeds only enter classes i = 0 and i = 2 mod 3 and use the min over three lifts; class i = 1 mod 3 receives no feed."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is a feasibility certificate for the Collatz counting programme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A feasibility certificate is a strictly positive vector v with v <= Fv componentwise. By the Krasikov-Lagarias theorem (2003), this implies pi_1(x) >= x^(log2 lambda) for large x. The claim v <= Fv is a finite list of 3^(k-1) elementary inequalities that anyone, human or machine, can recheck."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why is there a min in the K-L operator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The min-field takes the worst of the three lifts per triple, because a count is guaranteed only if it survives the worst lift. It is a worst-case operator, and at the same time the only nonlinearity in the whole system."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why is there a sharp edge lambda*(k) per depth k?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "F is monotone and 1-homogeneous, so a Perron-type largest growth factor rho(lambda) exists with the Collatz-Wielandt characterisation: for every positive test vector w, rho lies between the minimal and maximal ratio (Fw)_i / w_i. Feasibility is possible precisely when rho(lambda) >= 1, and since rho(lambda) decreases in lambda, each depth k has a highest lambda that still works: the edge lambda*(k). Deeper means finer classes and a higher edge."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <title>Les 5.2 · De contractieconstante c</title>
 <link rel="stylesheet" href="style.css">
 <script src="lang.js"></script>
+<script src="quiz.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -135,6 +136,54 @@
     exactly what the next two lessons are about.</p>
   </div>
 
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat zegt Stelling A (backbone-behoud) over het increment-spectrum?</span><span class="en">What does Theorem A (backbone preservation) say about the increment spectrum?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">de operator T₄ laat elk inc_p exact onveranderd</span><span class="en">the operator T₄ leaves every inc_p exactly unchanged</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">T₄ verdubbelt elk inc_p</span><span class="en">T₄ doubles every inc_p</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">T₄ schuift het spectrum één digit op</span><span class="en">T₄ shifts the spectrum by one digit</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat gebeurt er op het eindpunt λ = 2, ρ = 1 met de plateau-formule?</span><span class="en">What happens to the plateau formula at the endpoint λ = 2, ρ = 1?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">de formule divergeert: r wordt oneindig</span><span class="en">the formula diverges: r becomes infinite</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">teller-gewicht en noemer zijn beide 15/16, dus r = c exact</span><span class="en">numerator weight and denominator both equal 15/16, so r = c exactly</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">c valt weg en r hangt alleen van A af</span><span class="en">c drops out and r depends on A only</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Welke waarde geven de vier onafhankelijke instrumenten voor de eindpunt-contractie c?</span><span class="en">What value do the four independent instruments give for the endpoint contraction c?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">≈ 0.50</span><span class="en">≈ 0.50</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">≈ 1.00</span><span class="en">≈ 1.00</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">≈ 0.83</span><span class="en">≈ 0.83</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Tot welke uitspraak reduceert de hele contractievraag op het eindpunt?</span><span class="en">To which statement does the entire contraction question reduce at the endpoint?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">de scalaire ongelijkheid c &lt; 1</span><span class="en">the scalar inequality c &lt; 1</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">de gelijkheid W₂ = A²</span><span class="en">the equality W₂ = A²</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">de ongelijkheid ρ &gt; 1</span><span class="en">the inequality ρ &gt; 1</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de contractieconstante c in het Collatz-cascadeprogramma?</span><span class="en">What is the contraction constant c in the Collatz cascade programme?</span></summary>
+      <p class="nl">c is de min-transfercoëfficiënt: de fractie van laag-digit-incrementvariantie die de min-operator doorlaat. Het is de enige niet-algebraïsche grootheid in de gesloten plateau-formule r(λ) = W₂·c / (ρ² − A²). Vier onafhankelijke instrumenten meten dezelfde waarde: c ≈ 0.83.</p>
+      <p class="en">c is the min transfer coefficient: the fraction of low-digit increment variance the min operator passes through. It is the only non-algebraic quantity in the closed plateau formula r(λ) = W₂·c / (ρ² − A²). Four independent instruments measure the same value: c ≈ 0.83.</p></details>
+    <details class="faq-item"><summary><span class="nl">Hoe goed voorspelt de plateau-formule de gemeten cascade-ratio?</span><span class="en">How well does the plateau formula predict the measured cascade ratio?</span></summary>
+      <p class="nl">Op 2% nauwkeurig. Bij λ = 1.05 voorspelt de formule r = 0.403 tegen een gemeten plateau van 0.41; bij λ = 1.70 voorspelt zij 0.685 tegen 0.70. De resterende 2% is verklaard door kleine kruistermen, die ook gemeten zijn.</p>
+      <p class="en">To within 2%. At λ = 1.05 the formula predicts r = 0.403 against a measured plateau of 0.41; at λ = 1.70 it predicts 0.685 against 0.70. The remaining 2% is accounted for by small cross terms, which were also measured.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom geldt op het eindpunt λ = 2 precies r = c?</span><span class="en">Why does r = c hold exactly at the endpoint λ = 2?</span></summary>
+      <p class="nl">Met 2^α = 3, A = 1/4, B₁ = 3/4 en B₃ = 3/2 wordt het teller-gewicht W₂ = ((3/4)² + (3/2)²)/3 = 15/16, en de noemer ρ² − A² = 1 − 1/16 = 15/16. Beide zijn exact gelijk, dus r = c. Daarmee is de hele "toren-contractie" van het γ → 1-programma equivalent aan de ene scalaire ongelijkheid c &lt; 1.</p>
+      <p class="en">With 2^α = 3, A = 1/4, B₁ = 3/4 and B₃ = 3/2 the numerator weight becomes W₂ = ((3/4)² + (3/2)²)/3 = 15/16, and the denominator ρ² − A² = 1 − 1/16 = 15/16. Both are exactly equal, so r = c. The whole "tower contraction" of the γ → 1 programme is thereby equivalent to the single scalar inequality c &lt; 1.</p></details>
+    <details class="faq-item"><summary><span class="nl">Is c &lt; 1 daarmee bewezen?</span><span class="en">Does that prove c &lt; 1?</span></summary>
+      <p class="nl">Nee. Vier onafhankelijke observabelen · het prefix-plateau, de toren-variantiekolom (0.824), de ρ-convergentiesnelheid² (≈ 0.83) en de gap-verdwijning (0.83) · geven één waarde c ≈ 0.83, comfortabel onder 1. Maar "gemeten 0.83" bewijst niet dat de limietwaarde onder 1 blijft; dat onderscheid behandelen les 5.3 en 5.4.</p>
+      <p class="en">No. Four independent observables · the prefix plateau, the tower variance column (0.824), the squared ρ convergence rate (≈ 0.83) and the gap vanishing (0.83) · give one value c ≈ 0.83, comfortably below 1. But "measured 0.83" does not prove that the limiting value stays below 1; that distinction is the subject of lessons 5.3 and 5.4.</p></details>
+  </div>
+
   <div class="lesson-nav">
     <a href="b5l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
       <span class="nl">Les 5.1 · Digit-decompositie</span><span class="en">Lesson 5.1 · Digit decomposition</span></a>
@@ -143,5 +192,85 @@
   </div>
   <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de contractieconstante c in het Collatz-cascadeprogramma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "c is de min-transfercoëfficiënt: de fractie van laag-digit-incrementvariantie die de min-operator doorlaat. Het is de enige niet-algebraïsche grootheid in de gesloten plateau-formule r(λ) = W₂·c / (ρ² − A²). Vier onafhankelijke instrumenten meten dezelfde waarde: c ≈ 0.83."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Hoe goed voorspelt de plateau-formule de gemeten cascade-ratio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Op 2% nauwkeurig. Bij λ = 1.05 voorspelt de formule r = 0.403 tegen een gemeten plateau van 0.41; bij λ = 1.70 voorspelt zij 0.685 tegen 0.70. De resterende 2% is verklaard door kleine kruistermen, die ook gemeten zijn."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom geldt op het eindpunt λ = 2 precies r = c?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Met 2^α = 3, A = 1/4, B₁ = 3/4 en B₃ = 3/2 wordt het teller-gewicht W₂ = ((3/4)² + (3/2)²)/3 = 15/16, en de noemer ρ² − A² = 1 − 1/16 = 15/16. Beide zijn exact gelijk, dus r = c. Daarmee is de hele toren-contractie van het γ → 1-programma equivalent aan de ene scalaire ongelijkheid c < 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Is c < 1 daarmee bewezen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nee. Vier onafhankelijke observabelen, het prefix-plateau, de toren-variantiekolom (0.824), de ρ-convergentiesnelheid in het kwadraat (≈ 0.83) en de gap-verdwijning (0.83), geven één waarde c ≈ 0.83, comfortabel onder 1. Maar gemeten 0.83 bewijst niet dat de limietwaarde onder 1 blijft; dat onderscheid behandelen les 5.3 en 5.4."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the contraction constant c in the Collatz cascade programme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "c is the min transfer coefficient: the fraction of low-digit increment variance the min operator passes through. It is the only non-algebraic quantity in the closed plateau formula r(λ) = W₂·c / (ρ² − A²). Four independent instruments measure the same value: c ≈ 0.83."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "How well does the plateau formula predict the measured cascade ratio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To within 2%. At λ = 1.05 the formula predicts r = 0.403 against a measured plateau of 0.41; at λ = 1.70 it predicts 0.685 against 0.70. The remaining 2% is accounted for by small cross terms, which were also measured."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why does r = c hold exactly at the endpoint λ = 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With 2^α = 3, A = 1/4, B₁ = 3/4 and B₃ = 3/2 the numerator weight becomes W₂ = ((3/4)² + (3/2)²)/3 = 15/16, and the denominator ρ² − A² = 1 − 1/16 = 15/16. Both are exactly equal, so r = c. The whole tower contraction of the γ → 1 programme is thereby equivalent to the single scalar inequality c < 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Does the measured value prove c < 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Four independent observables, the prefix plateau, the tower variance column (0.824), the squared ρ convergence rate (about 0.83) and the gap vanishing (0.83), give one value c ≈ 0.83, comfortably below 1. But a measured 0.83 does not prove that the limiting value stays below 1; that distinction is the subject of lessons 5.3 and 5.4."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 7.2 · Kanalen, verboden en camouflage</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 7 · De 2-adische wereld</span><span class="en">Block 7 · The 2-adic world</span> › <b>7.2</b></div>
+    <h1 class="nl">Kanalen, verboden en camouflage</h1>
+    <h1 class="en">Channels, prohibitions and camouflage</h1>
+    <p class="lead nl">De macro-keten heeft een verborgen kanaalstructuur mod 8 die klimmen en dood-stops afdwingt · maar in de symbolen is die structuur exact onzichtbaar, en tellen alléén kan de κ-barrière nooit verzetten.</p>
+    <p class="lead en">The macro chain has a hidden channel structure mod 8 that forces climbs and dead stops · but in the symbols that structure is exactly invisible, and counting alone can never move the κ barrier.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">De kanaaltabel mod 8</span><span class="en">The channel table mod 8</span></h2>
+    <p class="nl">Werk in de macro-notatie \(n = a \cdot 2^K - 1\) (K sluitende enen) en volg de
+    multiplicator-keten van macro-stappen. Het volgende symbool wordt afgedwongen door één residu:
+    het <b>kanaal</b> \(c = 3^K a \bmod 8\).</p>
+    <p class="en">Work in the macro notation \(n = a \cdot 2^K - 1\) (K trailing ones) and follow the
+    multiplier chain of macro steps. The next symbol is forced by a single residue:
+    the <b>channel</b> \(c = 3^K a \bmod 8\).</p>
+    <table class="nice">
+      <tr><th><span class="nl">kanaal c</span><span class="en">channel c</span></th>
+          <th><span class="nl">gedwongen uitgang</span><span class="en">forced exit</span></th>
+          <th><span class="nl">betekenis</span><span class="en">meaning</span></th></tr>
+      <tr><td class="num">3</td><td class="num">l = 1, K′ = 1</td>
+          <td><span class="nl">dood-stop</span><span class="en">dead stop</span></td></tr>
+      <tr><td class="num">7</td><td class="num">l = 1, K′ ≥ 2</td>
+          <td><span class="nl">dé klim-snelweg</span><span class="en">THE climbing highway</span></td></tr>
+      <tr><td class="num">5</td><td class="num">l = 2</td>
+          <td><span class="nl">milde val</span><span class="en">mild fall</span></td></tr>
+      <tr><td class="num">1</td><td class="num">l ≥ 3</td>
+          <td><span class="nl">diepe val</span><span class="en">deep fall</span></td></tr>
+    </table>
+    <p class="nl">De snelweg is zelfversterkend: de eerste snelweg-stap kost precies 3 bits
+    (kans 1/8), maar elke volgende stap slechts ~2 bits, omdat kanaal 7 de voorwaarde K ≥ 2 van de
+    <i>volgende</i> stap alvast vooruitbetaalt. De verzameling punten die voor altijd op de snelweg
+    blijft heeft dimensie ≈ 0.5: dun, maar geen lege dreiging.</p>
+    <p class="en">The highway is self-reinforcing: the first highway step costs exactly 3 bits
+    (probability 1/8), but every subsequent step only ~2 bits, because channel 7 pays the K ≥ 2
+    condition of the <i>next</i> step forward. The set of points that stays on the highway forever
+    has dimension ≈ 0.5: thin, but not an empty threat.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De Mersenne-dood-stop en 27 gelezen</span><span class="en">The Mersenne dead stop and 27, read</span></h2>
+    <p class="nl"><b>Stelling.</b> a = 1 met K oneven dwingt K′ = 1 af: door LTE (lifting the exponent)
+    geldt \(v_2(3^K + 1) = 2\). Maximale klimmers · de Mersenne-getallen \(2^K - 1\) zelf · kunnen dus
+    niet doorschakelen: na de klim volgt onvermijdelijk een dood-stop.</p>
+    <p class="en"><b>Theorem.</b> a = 1 with K odd forces K′ = 1: by LTE (lifting the exponent),
+    \(v_2(3^K + 1) = 2\). Maximal climbers · the Mersenne numbers \(2^K - 1\) themselves · therefore
+    cannot chain: after the climb a dead stop follows inevitably.</p>
+    <p class="nl">Hiermee wordt de beroemdste baan van het vak leesbare rekenkunde. Decodeer 27:</p>
+    <p class="en">With this, the most famous orbit in the subject becomes readable arithmetic. Decode 27:</p>
+    <table class="nice">
+      <tr><th><span class="nl">punt</span><span class="en">point</span></th>
+          <th><span class="nl">lezing</span><span class="en">reading</span></th>
+          <th><span class="nl">gevolg</span><span class="en">consequence</span></th></tr>
+      <tr><td class="num">27 = (K=2, a=7)</td>
+          <td>a ≡ 7 mod 8</td>
+          <td><span class="nl">diepe herstart K′ = 5</span><span class="en">deep restart K′ = 5</span></td></tr>
+      <tr><td class="num">31 = 2⁵ − 1</td>
+          <td><span class="nl">landt exact op Mersenne</span><span class="en">lands exactly on a Mersenne</span></td>
+          <td><span class="nl">dood-stop (stelling)</span><span class="en">dead stop (theorem)</span></td></tr>
+      <tr><td class="num">91 = (K=2, a=23)</td>
+          <td><span class="nl">regel raak</span><span class="en">rule hit</span></td>
+          <td>⟹ 103</td></tr>
+      <tr><td class="num">103</td>
+          <td><span class="nl">regel raak</span><span class="en">rule hit</span></td>
+          <td>⟹ 175</td></tr>
+      <tr><td class="num">175 = (K=4, a=11)</td>
+          <td>a ≡ 3</td>
+          <td><span class="nl">regel-falen voorspeld ⟹ de val</span><span class="en">rule failure predicted ⟹ the fall</span></td></tr>
+    </table>
+    <p class="nl">Drie regel-conforme treffers, daarna voorspeld falen: de beroemdste klim in het vak is
+    deterministische, leesbare rekenkunde · geen toevalstreffer.</p>
+    <p class="en">Three rule-conform hits, then predicted failure: the most famous climb in the subject is
+    deterministic, readable arithmetic · not a lucky streak.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Symboolcamouflage</span><span class="en">Symbol camouflage</span></h2>
+    <p class="nl"><b>Stelling.</b> Onder de natuurlijke (Haar-) maat is het symboolpaar \((l, K')\)
+    <b>exact</b> onafhankelijk Geometrisch(1/2) × Geometrisch(1/2). Het volledige symboolproces van de
+    macro-keten is dus i.i.d.</p>
+    <p class="en"><b>Theorem.</b> Under the natural (Haar) measure the symbol pair \((l, K')\) is
+    <b>exactly</b> independent Geometric(1/2) × Geometric(1/2). The whole symbol process of the macro
+    chain is therefore i.i.d.</p>
+    <p class="nl">Dat is opmerkelijk: onderwerp 1 en 2 laten harde structuur zien · kanalen, dood-stops,
+    selectieregels · maar in de symbolen is daarvan <i>niets</i> te zien. De kanaaltabel is een
+    verborgen-variabele-decompositie die in de symbolen onzichtbaar is. Alle rekenkunde leeft
+    uitsluitend in de deterministische residu-draad van een concreet getal, nooit in de statistiek
+    van de symbolen.</p>
+    <p class="en">That is remarkable: subjects 1 and 2 show hard structure · channels, dead stops,
+    selection rules · yet in the symbols <i>none</i> of it shows. The channel table is a
+    hidden-variable decomposition invisible in the symbols. All arithmetic lives exclusively in the
+    deterministic residue thread of a concrete number, never in the statistics of the symbols.</p>
+    <div class="callout">
+      <div class="title nl">Camouflage als les</div>
+      <div class="title en">Camouflage as a lesson</div>
+      <span class="nl">Wie alleen naar de symboolstatistiek kijkt, ziet perfecte munten en concludeert
+      "puur toeval". De structuur is er wél · ze is alleen exact weggemiddeld. Dit verklaart waarom
+      probabilistische modellen zo goed passen én waarom ze het probleem niet kunnen sluiten.</span>
+      <span class="en">Looking only at symbol statistics, one sees perfect coins and concludes "pure
+      chance". The structure is there · it is just exactly averaged away. This explains why
+      probabilistic models fit so well and why they cannot close the problem.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">No-go #10: tellen kan de barrière niet verzetten</span><span class="en">No-go #10: counting cannot move the barrier</span></h2>
+    <p class="nl">De camouflage heeft een harde, kwantitatieve keerzijde. Elk eindig e-itinerarium
+    \((e_1, \ldots, e_t)\) met som S wordt gerealiseerd door <b>exact</b> \(2^{\,W-1-S}\) oneven
+    residuklassen mod \(2^W\) (de Terras-parametrisatie; uitputtend geverifieerd mod \(2^{16}\):
+    218 prefixklassen, alle multipliciteiten exact).</p>
+    <p class="en">The camouflage has a hard, quantitative flip side. Every finite e-itinerary
+    \((e_1, \ldots, e_t)\) with sum S is realised by <b>exactly</b> \(2^{\,W-1-S}\) odd residue classes
+    mod \(2^W\) (the Terras parametrisation; verified exhaustively mod \(2^{16}\): 218 prefix classes,
+    all exact multiplicities).</p>
+    <p class="nl">Arithmetische verboden beperken dus <i>welk</i> getal welk itinerarium draagt, nooit
+    <i>of</i> het voorkomt. Gevolg: elke selectieregel-automaat berekent exact de Haar-druk, en de
+    κ-barrière (les 7.1) is invariant onder <b>alle</b> verfijningen die itineraria tellen. De enige
+    uitgang is per-baan-integraliteit: de residu-draad van één <b>vast</b> getal.</p>
+    <p class="en">Arithmetic prohibitions therefore constrain <i>which</i> number carries which itinerary,
+    never <i>whether</i> it occurs. Consequence: any selection-rule automaton computes exactly the Haar
+    pressure, and the κ barrier (lesson 7.1) is invariant under <b>all</b> itinerary-counting
+    refinements. The only exit is per-orbit integrality: the residue thread of one <b>fixed</b> number.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">De exacte kern en de menggrens</span><span class="en">The exact kernel and the mixing limit</span></h2>
+    <p class="nl">Hoe mengt de keten eigenlijk? De Haar-gemiddelde Syracuse-kern op oneven residuen mod
+    \(2^m\) is exact rationaal: \(j = v_2(3r+1)\) is deterministisch per klasse, opvolgers zijn uniform
+    over de \(2^j\) liften, en er is één uitzonderingsklasse per modulus met een exact uniforme rij.
+    Bewezen met exacte rationale rekenkunde: de matrix is dubbel-stochastisch (uniform is exact
+    stationair) en \(\mathbb{E}[v_2(3n+1)]\) = exact 2.</p>
+    <p class="en">How does the chain actually mix? The Haar-averaged Syracuse kernel on odd residues mod
+    \(2^m\) is exactly rational: \(j = v_2(3r+1)\) is deterministic per class, successors are uniform
+    over the \(2^j\) lifts, and there is one exceptional class per modulus with an exactly uniform row.
+    Proven by exact rational arithmetic: the matrix is doubly stochastic (uniform is exactly stationary)
+    and \(\mathbb{E}[v_2(3n+1)]\) = exactly 2.</p>
+    <p class="nl">De spectrale gap: \(|\lambda_2| = 0.0029\) bij mod \(2^8\) · bijna-perfecte
+    één-staps-menging (een eerdere gesamplede schatting 0.938 was ruis). Maar de gap groeit met factor
+    ~3/2 per bit:</p>
+    <p class="en">The spectral gap: \(|\lambda_2| = 0.0029\) at mod \(2^8\) · near-perfect one-step
+    mixing (an earlier sampled estimate of 0.938 was noise). But the gap grows by a factor ~3/2
+    per bit:</p>
+    $$|\lambda_2(m)| \;\approx\; 0.003 \cdot \left(\tfrac{3}{2}\right)^{m-8}$$
+    <p class="nl">De gap sluit dus rond m ≈ 22-24: één macro-stap kan maar een begrensde hoeveelheid
+    residu-informatie mengen · onder ~22 bits mengt alles in één keer, daarboven wordt de keten
+    diffusief. Dit is de kwantitatieve reden dat "de keten is een expander" faalt (no-go #8,
+    les 7.3): de menging is echt, maar heeft een harde dieptegrens.</p>
+    <p class="en">So the gap closes around m ≈ 22-24: one macro step can only mix a bounded amount of
+    residue information · below ~22 bits everything mixes at once, above that the chain turns
+    diffusive. This is the quantitative reason "the chain is an expander" fails (no-go #8,
+    lesson 7.3): the mixing is real, but has a hard depth limit.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Welk kanaal c = 3ᴷa mod 8 is dé klim-snelweg?</span><span class="en">Which channel c = 3ᴷa mod 8 is THE climbing highway?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">kanaal 3 (l = 1, K′ = 1)</span><span class="en">channel 3 (l = 1, K′ = 1)</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">kanaal 5 (l = 2)</span><span class="en">channel 5 (l = 2)</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">kanaal 7 (l = 1, K′ ≥ 2)</span><span class="en">channel 7 (l = 1, K′ ≥ 2)</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Wat is onder de Haar-maat de exacte verdeling van het symboolpaar (l, K′)?</span><span class="en">Under the Haar measure, what is the exact distribution of the symbol pair (l, K′)?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">onafhankelijk Geometrisch(1/2) × Geometrisch(1/2)</span><span class="en">independent Geometric(1/2) × Geometric(1/2)</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">sterk gecorreleerd via de kanaaltabel mod 8</span><span class="en">strongly correlated via the channel table mod 8</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">uniform over alle paren met l + K′ ≤ 8</span><span class="en">uniform over all pairs with l + K′ ≤ 8</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Hoe groot is de spectrale gap |λ₂| van de exacte Syracuse-kern bij mod 2⁸?</span><span class="en">How large is the spectral gap |λ₂| of the exact Syracuse kernel at mod 2⁸?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">0.938 · trage menging</span><span class="en">0.938 · slow mixing</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">0.0029 · bijna-perfecte één-staps-menging</span><span class="en">0.0029 · near-perfect one-step mixing</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">precies 0.5 · half gemengd</span><span class="en">exactly 0.5 · half mixed</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Door hoeveel oneven residuklassen mod 2ᵂ wordt een e-itinerarium met som S gerealiseerd?</span><span class="en">How many odd residue classes mod 2ᵂ realise an e-itinerary with sum S?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">2ˢ, exponentieel in de som</span><span class="en">2ˢ, exponential in the sum</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">exact 2^(W−1−S)</span><span class="en">exactly 2^(W−1−S)</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">dat hangt af van arithmetische verboden</span><span class="en">that depends on arithmetic prohibitions</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat is de kanaalstructuur mod 8 in de Collatz-macro-keten?</span><span class="en">What is the mod 8 channel structure in the Collatz macro chain?</span></summary>
+      <p class="nl">In de macro-notatie n = a · 2ᴷ − 1 wordt het volgende symbool afgedwongen door één residu, het kanaal c = 3ᴷa mod 8. Kanaal 3 dwingt een dood-stop af (l = 1, K′ = 1), kanaal 7 is dé klim-snelweg (l = 1, K′ ≥ 2), kanaal 5 geeft een milde val (l = 2) en kanaal 1 een diepe val (l ≥ 3). De snelweg is zelfversterkend: de eerste stap kost 3 bits (kans 1/8), elke volgende slechts ~2 bits, en de voor-altijd-snelweg-verzameling heeft dimensie ≈ 0.5.</p>
+      <p class="en">In the macro notation n = a · 2ᴷ − 1 the next symbol is forced by a single residue, the channel c = 3ᴷa mod 8. Channel 3 forces a dead stop (l = 1, K′ = 1), channel 7 is THE climbing highway (l = 1, K′ ≥ 2), channel 5 gives a mild fall (l = 2) and channel 1 a deep fall (l ≥ 3). The highway is self-reinforcing: the first step costs 3 bits (probability 1/8), each subsequent one only ~2 bits, and the forever-highway set has dimension ≈ 0.5.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom klimt de Collatz-baan van 27 zo lang en waarom stopt hij?</span><span class="en">Why does the Collatz orbit of 27 climb so long and why does it stop?</span></summary>
+      <p class="nl">De klim van 27 is deterministische, leesbare rekenkunde, geen toevalstreffer. 27 = (K=2, a=7) met a ≡ 7 mod 8 geeft een diepe herstart K′ = 5; daarna landt de baan exact op de Mersenne 31 = 2⁵ − 1, waar de LTE-stelling (a = 1, K oneven dwingt K′ = 1 af) een dood-stop oplegt. Vervolgens drie regel-conforme treffers (91 ⟹ 103 ⟹ 175), en bij 175 = (K=4, a=11) met a ≡ 3 wordt het regel-falen voorspeld: de val.</p>
+      <p class="en">The climb of 27 is deterministic, readable arithmetic, not a lucky streak. 27 = (K=2, a=7) with a ≡ 7 mod 8 gives a deep restart K′ = 5; the orbit then lands exactly on the Mersenne 31 = 2⁵ − 1, where the LTE theorem (a = 1 with K odd forces K′ = 1) imposes a dead stop. Then three rule-conform hits (91 ⟹ 103 ⟹ 175), and at 175 = (K=4, a=11) with a ≡ 3 the rule failure is predicted: the fall.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom passen probabilistische modellen zo goed op Collatz maar kunnen ze het vermoeden niet bewijzen?</span><span class="en">Why do probabilistic models fit Collatz so well yet cannot prove the conjecture?</span></summary>
+      <p class="nl">Vanwege symboolcamouflage: onder de Haar-maat is het symboolpaar (l, K′) exact onafhankelijk Geometrisch(1/2) × Geometrisch(1/2), dus het volledige symboolproces is i.i.d. De harde structuur (kanalen, dood-stops, selectieregels) is in de symbolen exact weggemiddeld en dus onzichtbaar. Alle rekenkunde leeft uitsluitend in de deterministische residu-draad van een concreet getal, nooit in de statistiek van de symbolen.</p>
+      <p class="en">Because of symbol camouflage: under the Haar measure the symbol pair (l, K′) is exactly independent Geometric(1/2) × Geometric(1/2), so the whole symbol process is i.i.d. The hard structure (channels, dead stops, selection rules) is exactly averaged away in the symbols and therefore invisible. All arithmetic lives exclusively in the deterministic residue thread of a concrete number, never in the statistics of the symbols.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de spectrale gap van de Syracuse-kern en waar sluit die?</span><span class="en">What is the spectral gap of the Syracuse kernel and where does it close?</span></summary>
+      <p class="nl">De exacte Haar-gemiddelde Syracuse-kern is dubbel-stochastisch met E[v₂(3n+1)] = exact 2, en de spectrale gap is |λ₂| = 0.0029 bij mod 2⁸: bijna-perfecte één-staps-menging (de eerdere gesamplede schatting 0.938 was ruis). De gap groeit met factor ~3/2 per bit, |λ₂(m)| ≈ 0.003 · (3/2)^(m−8), en sluit rond m ≈ 22-24. Eén macro-stap kan dus maar een begrensde hoeveelheid residu-informatie mengen: daarboven wordt de keten diffusief.</p>
+      <p class="en">The exact Haar-averaged Syracuse kernel is doubly stochastic with E[v₂(3n+1)] = exactly 2, and the spectral gap is |λ₂| = 0.0029 at mod 2⁸: near-perfect one-step mixing (the earlier sampled estimate of 0.938 was noise). The gap grows by a factor ~3/2 per bit, |λ₂(m)| ≈ 0.003 · (3/2)^(m−8), and closes around m ≈ 22-24. One macro step can therefore only mix a bounded amount of residue information: above that the chain turns diffusive.</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b7l1.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 7.1 · Het ene getal</span><span class="en">Lesson 7.1 · The one number</span></a>
+    <a href="b7l3.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 7.3 · Wat bewezen niet kan</span><span class="en">Lesson 7.3 · What provably cannot work</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de kanaalstructuur mod 8 in de Collatz-macro-keten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In de macro-notatie n = a · 2^K − 1 wordt het volgende symbool afgedwongen door het kanaal c = 3^K a mod 8. Kanaal 3 dwingt een dood-stop af (l = 1, K′ = 1), kanaal 7 is de klim-snelweg (l = 1, K′ ≥ 2), kanaal 5 geeft een milde val (l = 2) en kanaal 1 een diepe val (l ≥ 3). De snelweg is zelfversterkend: de eerste stap kost 3 bits (kans 1/8), elke volgende slechts ~2 bits, en de voor-altijd-snelweg-verzameling heeft dimensie ≈ 0.5."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom klimt de Collatz-baan van 27 zo lang en waarom stopt hij?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De klim van 27 is deterministische, leesbare rekenkunde, geen toevalstreffer. 27 = (K=2, a=7) met a ≡ 7 mod 8 geeft een diepe herstart K′ = 5; daarna landt de baan exact op de Mersenne 31 = 2^5 − 1, waar de LTE-stelling (a = 1, K oneven dwingt K′ = 1 af) een dood-stop oplegt. Vervolgens drie regel-conforme treffers (91, 103, 175), en bij 175 = (K=4, a=11) met a ≡ 3 wordt het regel-falen voorspeld: de val."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waarom passen probabilistische modellen zo goed op Collatz maar kunnen ze het vermoeden niet bewijzen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vanwege symboolcamouflage: onder de Haar-maat is het symboolpaar (l, K′) exact onafhankelijk Geometrisch(1/2) × Geometrisch(1/2), dus het volledige symboolproces is i.i.d. De harde structuur (kanalen, dood-stops, selectieregels) is in de symbolen exact weggemiddeld en dus onzichtbaar. Alle rekenkunde leeft uitsluitend in de deterministische residu-draad van een concreet getal, nooit in de statistiek van de symbolen."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de spectrale gap van de Syracuse-kern en waar sluit die?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De exacte Haar-gemiddelde Syracuse-kern is dubbel-stochastisch met E[v2(3n+1)] = exact 2, en de spectrale gap is |λ2| = 0.0029 bij mod 2^8: bijna-perfecte één-staps-menging (de eerdere gesamplede schatting 0.938 was ruis). De gap groeit met factor ~3/2 per bit en sluit rond m ≈ 22-24. Eén macro-stap kan dus maar een begrensde hoeveelheid residu-informatie mengen: daarboven wordt de keten diffusief."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the mod 8 channel structure in the Collatz macro chain?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the macro notation n = a · 2^K − 1 the next symbol is forced by the channel c = 3^K a mod 8. Channel 3 forces a dead stop (l = 1, K′ = 1), channel 7 is the climbing highway (l = 1, K′ ≥ 2), channel 5 gives a mild fall (l = 2) and channel 1 a deep fall (l ≥ 3). The highway is self-reinforcing: the first step costs 3 bits (probability 1/8), each subsequent one only ~2 bits, and the forever-highway set has dimension ≈ 0.5."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why does the Collatz orbit of 27 climb so long and why does it stop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The climb of 27 is deterministic, readable arithmetic, not a lucky streak. 27 = (K=2, a=7) with a ≡ 7 mod 8 gives a deep restart K′ = 5; the orbit then lands exactly on the Mersenne 31 = 2^5 − 1, where the LTE theorem (a = 1 with K odd forces K′ = 1) imposes a dead stop. Then three rule-conform hits (91, 103, 175), and at 175 = (K=4, a=11) with a ≡ 3 the rule failure is predicted: the fall."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Why do probabilistic models fit Collatz so well yet cannot prove the conjecture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because of symbol camouflage: under the Haar measure the symbol pair (l, K′) is exactly independent Geometric(1/2) × Geometric(1/2), so the whole symbol process is i.i.d. The hard structure (channels, dead stops, selection rules) is exactly averaged away in the symbols and therefore invisible. All arithmetic lives exclusively in the deterministic residue thread of a concrete number, never in the statistics of the symbols."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the spectral gap of the Syracuse kernel and where does it close?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The exact Haar-averaged Syracuse kernel is doubly stochastic with E[v2(3n+1)] = exactly 2, and the spectral gap is |λ2| = 0.0029 at mod 2^8: near-perfect one-step mixing (the earlier sampled estimate of 0.938 was noise). The gap grows by a factor ~3/2 per bit and closes around m ≈ 22-24. One macro step can therefore only mix a bounded amount of residue information: above that the chain turns diffusive."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

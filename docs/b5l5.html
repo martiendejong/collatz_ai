@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 5.5 · De linearisatie en de productbalans</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 5 · De Cascade en de Contractie</span><span class="en">Block 5 · The Cascade and the Contraction</span> › <b>5.5</b></div>
+    <h1 class="nl">De linearisatie en de productbalans</h1>
+    <h1 class="en">Linearisation and the product balance</h1>
+    <p class="lead nl">De hele niet-lineariteit past in één bilineair getal · en drie onafhankelijke instrumenten meten op het eindpunt dezelfde waarde, met dezelfde kruip.</p>
+    <p class="lead en">The entire nonlinearity fits in one bilinear number · and three independent instruments measure the same value at the endpoint, with the same creep.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Waar de niet-lineariteit precies zit</span><span class="en">Where the nonlinearity exactly sits</span></h2>
+    <p class="nl">Het enige niet-lineaire element van het hele K-L-systeem is de min-selectie. Maar
+    hoe niet-lineair is die eigenlijk? Het <b>eerste moment</b> van de selectie-bias is exact lineair
+    en volledig bekend: dat is de massa-identiteit met de gesloten vorm voor \(\bar\gamma\) uit
+    les 4.2. Gemiddeld genomen weten we dus precies wat de min doet.</p>
+    <p class="en">The only nonlinear element of the whole K-L system is the min selection. But how
+    nonlinear is it, really? The <b>first moment</b> of the selection bias is exactly linear and
+    fully known: that is the mass identity with the closed form for \(\bar\gamma\) of lesson 4.2.
+    On average, then, we know precisely what the min does.</p>
+    <p class="nl">Alle niet-lineariteit van het probleem is daarmee gelokaliseerd in het
+    <b>tweede moment</b> van de selectie-bias: de covariantie van de bias met het lokale niveau.
+    Niet "de min is moeilijk", maar: <i>hoe hangt de min-korting samen met hoe hoog je zit?</i>
+    Dat is de hele resterende vraag.</p>
+    <p class="en">All nonlinearity of the problem is thereby localised in the <b>second moment</b> of
+    the selection bias: the covariance of the bias with the local level. Not "the min is hard", but:
+    <i>how does the min discount correlate with how high you sit?</i> That is the entire remaining
+    question.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">De bilineaire vorm</span><span class="en">The bilinear form</span></h2>
+    <p class="nl">Schrijf een cel-triple als niveau maal kleine ruwheid: \(x = m(1 + \varepsilon\,\xi)\)
+    met \(\varepsilon\) klein (les 4.5: de siblings zijn bijna identiek). Dan is
+    \(\min x = m(1 + \varepsilon\,\min\xi)\), en conditioneel op de cel:</p>
+    <p class="en">Write a cell triple as level times a small sliver: \(x = m(1 + \varepsilon\,\xi)\)
+    with \(\varepsilon\) small (lesson 4.5: the siblings are nearly identical). Then
+    \(\min x = m(1 + \varepsilon\,\min\xi)\), and conditionally on the cell:</p>
+    $$\mathbb{E}[\min \mid \text{cel/cell}] \;=\; m \;-\; \kappa\,\sigma_w$$
+    <p class="nl">met \(\kappa\) een zuivere <b>vormconstante</b> van de triple-verdeling. Tot op
+    tweede orde is het systeem dus lineair plus <b>één</b> bilineaire term: niveau × ruwheid. En de
+    vorm blijkt bijna-Gaussisch:</p>
+    <p class="en">with \(\kappa\) a pure <b>shape constant</b> of the triple distribution. To second
+    order the system is thus linear plus <b>one</b> bilinear term: level × roughness. And the shape
+    turns out to be near-Gaussian:</p>
+    <table class="nice">
+      <tr><th>λ</th><th>κ <span class="nl">gemeten</span><span class="en">measured</span></th>
+          <th>κ <span class="nl">Gaussisch</span><span class="en">Gaussian</span></th>
+          <th><span class="nl">verhouding</span><span class="en">ratio</span></th></tr>
+      <tr><td>1.05</td><td>1.183</td><td>1.16972</td><td>1.011</td></tr>
+      <tr><td>1.70</td><td>1.096</td><td>1.16972</td><td>0.937</td></tr>
+      <tr><td>2.00</td><td>1.044</td><td>1.16972</td><td>0.893</td></tr>
+    </table>
+    <div class="callout">
+      <div class="title nl">Eerlijke statistische valkuil</div>
+      <div class="title en">Honest statistical pitfall</div>
+      <span class="nl">Wie de vorm van de triples wil toetsen, meet al snel de kurtosis van de
+      som-nul-triples genormaliseerd op hun eigen σ. Maar die grootheid is voor <i>elke</i>
+      verdeling exact −1.5: een algebraïsche dwang, geen meting. Die kolom draagt nul informatie;
+      alleen κ en de scheefheid discrimineren. Genoteerd in het log, zodat niemand er nog intrapt.</span>
+      <span class="en">Whoever wants to test the shape of the triples soon measures the kurtosis of
+      the sum-zero triples normalised by their own σ. But that quantity equals exactly −1.5 for
+      <i>any</i> law: an algebraic constraint, not a measurement. That column carries zero
+      information; only κ and the skew discriminate. Logged, so nobody falls for it again.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">De productbalans</span><span class="en">The product balance</span></h2>
+    <p class="nl">Rijg de schakels aaneen · vorm, elasticiteit, relatieve gap · en de bias-term van
+    de cascade wordt één product:</p>
+    <p class="en">Chain the links together · shape, elasticity, relative gap · and the bias term of
+    the cascade becomes a single product:</p>
+    $$b \;=\; \kappa \cdot e \cdot \bar\gamma$$
+    <p class="nl">Als \(k\) groeit gebeuren er twee tegengestelde dingen: \(\bar\gamma \to 0\)
+    (de gapmassa verdwijnt) en \(e \to \infty\) (de elasticiteit explodeert). De open kern is dat
+    het <b>product</b> eindig blijft: \(b^* \in (0, 2)\). Gemeten: \(b \approx 0.10\)-\(0.19\),
+    stabiel over de bereikbare dieptes. De volledige contractievraag \(c < 1\) is equivalent aan
+    deze ene productbalans · het is de uiteindelijke lineair-defect-vorm van het
+    homogenisatie-lemma (les 6.3).</p>
+    <p class="en">As \(k\) grows two opposing things happen: \(\bar\gamma \to 0\) (the gap mass
+    vanishes) and \(e \to \infty\) (the elasticity explodes). The open core is that the
+    <b>product</b> stays finite: \(b^* \in (0, 2)\). Measured: \(b \approx 0.10\)-\(0.19\), stable
+    across the reachable depths. The full contraction question \(c < 1\) is equivalent to this one
+    product balance · it is the final linear-defect form of the homogenisation lemma (lesson 6.3).</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">Drie instrumenten, één getal</span><span class="en">Three instruments, one number</span></h2>
+    <p class="nl">Op het eindpunt \(\lambda = 2\) meten drie volledig onafhankelijke pijplijnen nu
+    hetzelfde:</p>
+    <p class="en">At the endpoint \(\lambda = 2\) three fully independent pipelines now measure the
+    same thing:</p>
+    <table class="nice">
+      <tr><th><span class="nl">Instrument</span><span class="en">Instrument</span></th>
+          <th><span class="nl">Schatting c(2)</span><span class="en">Estimate c(2)</span></th>
+          <th><span class="nl">Diepte</span><span class="en">Depth</span></th></tr>
+      <tr><td><span class="nl">TR-increment-ratio</span><span class="en">TR increment ratio</span></td>
+          <td>0.8357</td><td>k = 18</td></tr>
+      <tr><td><span class="nl">γ̄-rate via de massa-identiteit</span><span class="en">γ̄ rate via the mass identity</span></td>
+          <td>0.8354</td><td>k = 17</td></tr>
+      <tr><td><span class="nl">operator/profiel-familie (f₂, d_k)</span><span class="en">operator/profile family (f₂, d_k)</span></td>
+          <td>0.83-0.84</td><td><span class="nl">zelfde band</span><span class="en">same band</span></td></tr>
+    </table>
+    <p class="nl">Alle drie kruipen nog steeds omhoog, met +0.002 tot +0.005 per diepte-stap; om
+    in dit tempo 1 te bereiken zouden zo'n 35 tot 40 extra dieptes nodig zijn. De
+    kruis-instrumentele overeenstemming · één getal, drie metingen, dezelfde waarde én dezelfde
+    kruip · is het sterkste empirische feit van het programma. Of de kruip uitsterft (DENSITY) of
+    aanhoudt (CEILING) is precies Vermoeden G, de vork van les 5.4.</p>
+    <p class="en">All three still creep upward, by +0.002 to +0.005 per depth step; at this pace,
+    reaching 1 would take some 35 to 40 more depths. The cross-instrument agreement · one number,
+    three measurements, the same value and the same creep · is the strongest empirical fact of the
+    programme. Whether the creep dies out (DENSITY) or persists (CEILING) is exactly Conjecture G,
+    the fork of lesson 5.4.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">De envelope-eerlijkheid</span><span class="en">Envelope honesty</span></h2>
+    <p class="nl">Een vierde instrument, Fourier-Hölder, verdient een aparte eerlijkheidsparagraaf.
+    De op gemiddelden gebaseerde exponenten zijn robuust: \(|\alpha| \approx 0.64\)-\(0.65\), nadat
+    een calibratie-discrepantie was opgelost die exact de Jensen-kloof bleek tussen
+    log-van-gemiddelde en gemiddelde-van-log als aggregatie. Maar de letterlijke
+    <b>sup-envelope</b>-exponent is veel zwakker · 0.34 bij k = 16 · en vertoont dezelfde langzame
+    kruip als de drie instrumenten hierboven.</p>
+    <p class="en">A fourth instrument, Fourier-Hölder, deserves its own honesty paragraph. The
+    mean-based exponents are robust: \(|\alpha| \approx 0.64\)-\(0.65\), after resolving a
+    calibration discrepancy that turned out to be exactly the Jensen gap between log-of-mean and
+    mean-of-log aggregation. But the literal <b>sup-envelope</b> exponent is much weaker · 0.34 at
+    k = 16 · and shows the same slow creep as the three instruments above.</p>
+    <div class="callout">
+      <div class="title nl">De les</div>
+      <div class="title en">The lesson</div>
+      <span class="nl">Instrumenten die gemiddelden meten, flatteren de waarheid. De sup-functionaal ·
+      de grootheid die het bewijs uiteindelijk nodig heeft · beslist de vork niet, maar sluit zich
+      erbij aan. Wie alleen naar de mooie gemiddelde-exponenten kijkt, denkt dat de zaak rond is;
+      wie naar de sup kijkt, ziet dat de vork nog wijd open staat.</span>
+      <span class="en">Instruments that measure averages flatter the truth. The sup functional · the
+      quantity the proof ultimately needs · does not decide the fork but joins it. Whoever looks
+      only at the pretty mean exponents thinks the case is closed; whoever looks at the sup sees the
+      fork still wide open.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Waar is alle niet-lineariteit van het K-L-systeem gelokaliseerd?</span><span class="en">Where is all nonlinearity of the K-L system localised?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">in het tweede moment van de selectie-bias: de covariantie van de bias met het lokale niveau</span><span class="en">in the second moment of the selection bias: the covariance of the bias with the local level</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">in het eerste moment: het gemiddelde van de min is onbekend</span><span class="en">in the first moment: the mean of the min is unknown</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">in de eigenwaarde ρ zelf</span><span class="en">in the eigenvalue ρ itself</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is de kurtosis van de som-nul-triples, genormaliseerd op hun eigen σ?</span><span class="en">What is the kurtosis of the sum-zero triples, normalised by their own σ?</span></p>
+        <label><input type="radio" name="q2" value="a"> <span class="nl">precies 0, alleen voor Gaussische verdelingen</span><span class="en">exactly 0, only for Gaussian laws</span></label>
+        <label><input type="radio" name="q2" value="b"> <span class="nl">exact −1.5 voor élke verdeling: een algebraïsche dwang, geen meting</span><span class="en">exactly −1.5 for any law: an algebraic constraint, not a measurement</span></label>
+        <label><input type="radio" name="q2" value="c"> <span class="nl">1.16972, de Gaussische waarde</span><span class="en">1.16972, the Gaussian value</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Hoe luidt de productbalans voor de bias-term van de cascade?</span><span class="en">What is the product balance for the bias term of the cascade?</span></p>
+        <label><input type="radio" name="q3" value="a"> <span class="nl">b = κ + e + γ̄</span><span class="en">b = κ + e + γ̄</span></label>
+        <label><input type="radio" name="q3" value="b"> <span class="nl">b = κ / (e · γ̄)</span><span class="en">b = κ / (e · γ̄)</span></label>
+        <label><input type="radio" name="q3" value="c"> <span class="nl">b = κ · e · γ̄</span><span class="en">b = κ · e · γ̄</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Op welke waarde stemmen de drie onafhankelijke instrumenten op het eindpunt λ = 2 overeen?</span><span class="en">On what value do the three independent instruments agree at the endpoint λ = 2?</span></p>
+        <label><input type="radio" name="q4" value="a"> <span class="nl">c(2) ≈ 0.835, met dezelfde langzame kruip</span><span class="en">c(2) ≈ 0.835, with the same slow creep</span></label>
+        <label><input type="radio" name="q4" value="b"> <span class="nl">c(2) ≈ 0.935, de ladder-rate</span><span class="en">c(2) ≈ 0.935, the ladder rate</span></label>
+        <label><input type="radio" name="q4" value="c"> <span class="nl">c(2) ≈ 0.64, de Hölder-exponent</span><span class="en">c(2) ≈ 0.64, the Hölder exponent</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Waar zit de niet-lineariteit van het K-L-systeem precies?</span><span class="en">Where exactly does the nonlinearity of the K-L system sit?</span></summary>
+      <p class="nl">Het enige niet-lineaire element is de min-selectie, en het eerste moment daarvan is exact lineair en volledig bekend via de massa-identiteit. Alle niet-lineariteit is daarmee gelokaliseerd in het tweede moment van de selectie-bias: de covariantie van de min-korting met het lokale niveau. Dat is de hele resterende vraag.</p>
+      <p class="en">The only nonlinear element is the min selection, and its first moment is exactly linear and fully known via the mass identity. All nonlinearity is thereby localised in the second moment of the selection bias: the covariance of the min discount with the local level. That is the entire remaining question.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de vormconstante κ en hoe Gaussisch is de triple-verdeling?</span><span class="en">What is the shape constant κ and how Gaussian is the triple distribution?</span></summary>
+      <p class="nl">In de linearisatie geldt E[min | cel] = m − κ·σ_w, met κ een zuivere vormconstante van de triple-verdeling. Gemeten: κ = 1.183 bij λ = 1.05, 1.096 bij λ = 1.70 en 1.044 bij λ = 2.00, tegen de Gaussische waarde 1.16972 · de vorm is dus bijna-Gaussisch (verhoudingen 1.011, 0.937, 0.893).</p>
+      <p class="en">In the linearisation E[min | cell] = m − κ·σ_w, with κ a pure shape constant of the triple distribution. Measured: κ = 1.183 at λ = 1.05, 1.096 at λ = 1.70 and 1.044 at λ = 2.00, against the Gaussian value 1.16972 · so the shape is near-Gaussian (ratios 1.011, 0.937, 0.893).</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de productbalans b = κ·e·γ̄ en waarom is die de open kern?</span><span class="en">What is the product balance b = κ·e·γ̄ and why is it the open core?</span></summary>
+      <p class="nl">Als k groeit gebeuren twee tegengestelde dingen: γ̄ → 0 (de gapmassa verdwijnt) en e → ∞ (de elasticiteit explodeert). De open kern is dat het product eindig blijft: b* ∈ (0, 2). Gemeten is b ≈ 0.10 tot 0.19, stabiel over de bereikbare dieptes. De volledige contractievraag c &lt; 1 is equivalent aan deze ene productbalans.</p>
+      <p class="en">As k grows two opposing things happen: γ̄ → 0 (the gap mass vanishes) and e → ∞ (the elasticity explodes). The open core is that the product stays finite: b* ∈ (0, 2). Measured, b ≈ 0.10 to 0.19, stable across the reachable depths. The full contraction question c &lt; 1 is equivalent to this one product balance.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat meten de drie instrumenten op het eindpunt λ = 2?</span><span class="en">What do the three instruments measure at the endpoint λ = 2?</span></summary>
+      <p class="nl">De TR-increment-ratio geeft 0.8357 (k = 18), de γ̄-rate via de massa-identiteit 0.8354 (k = 17), en de operator/profiel-familie 0.83 tot 0.84. Alle drie kruipen nog omhoog met +0.002 tot +0.005 per diepte-stap; in dit tempo zou 1 bereiken zo'n 35 tot 40 extra dieptes vergen. Of die kruip uitsterft (DENSITY) of aanhoudt (CEILING) is precies Vermoeden G.</p>
+      <p class="en">The TR increment ratio gives 0.8357 (k = 18), the γ̄ rate via the mass identity 0.8354 (k = 17), and the operator/profile family 0.83 to 0.84. All three still creep upward by +0.002 to +0.005 per depth step; at this pace reaching 1 would take some 35 to 40 more depths. Whether that creep dies out (DENSITY) or persists (CEILING) is exactly Conjecture G.</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b5l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 5.4 · De vork</span><span class="en">Lesson 5.4 · The fork</span></a>
+    <a href="b6l1.html" style="text-align:right"><span class="dir nl">volgende ›</span><span class="dir en">next ›</span>
+      <span class="nl">Les 6.1 · Eerlijk rekenen</span><span class="en">Lesson 6.1 · Honest computation</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Waar zit de niet-lineariteit van het K-L-systeem precies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Het enige niet-lineaire element is de min-selectie, en het eerste moment daarvan is exact lineair en volledig bekend via de massa-identiteit. Alle niet-lineariteit is daarmee gelokaliseerd in het tweede moment van de selectie-bias: de covariantie van de min-korting met het lokale niveau. Dat is de hele resterende vraag."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de vormconstante κ en hoe Gaussisch is de triple-verdeling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In de linearisatie geldt E[min | cel] = m − κ·σ_w, met κ een zuivere vormconstante van de triple-verdeling. Gemeten: κ = 1.183 bij λ = 1.05, 1.096 bij λ = 1.70 en 1.044 bij λ = 2.00, tegen de Gaussische waarde 1.16972. De vorm is dus bijna-Gaussisch (verhoudingen 1.011, 0.937, 0.893)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat is de productbalans b = κ·e·γ̄ en waarom is die de open kern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Als k groeit gebeuren twee tegengestelde dingen: γ̄ → 0 (de gapmassa verdwijnt) en e → ∞ (de elasticiteit explodeert). De open kern is dat het product eindig blijft: b* in (0, 2). Gemeten is b ≈ 0.10 tot 0.19, stabiel over de bereikbare dieptes. De volledige contractievraag c < 1 is equivalent aan deze ene productbalans."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "nl",
+      "name": "Wat meten de drie onafhankelijke instrumenten op het eindpunt λ = 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De TR-increment-ratio geeft 0.8357 (k = 18), de γ̄-rate via de massa-identiteit 0.8354 (k = 17), en de operator/profiel-familie 0.83 tot 0.84. Alle drie kruipen nog omhoog met +0.002 tot +0.005 per diepte-stap; in dit tempo zou 1 bereiken zo'n 35 tot 40 extra dieptes vergen. Of die kruip uitsterft (DENSITY) of aanhoudt (CEILING) is precies Vermoeden G."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "Where exactly does the nonlinearity of the K-L system sit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The only nonlinear element is the min selection, and its first moment is exactly linear and fully known via the mass identity. All nonlinearity is thereby localised in the second moment of the selection bias: the covariance of the min discount with the local level. That is the entire remaining question."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the shape constant κ and how Gaussian is the triple distribution?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the linearisation E[min | cell] = m − κ·σ_w, with κ a pure shape constant of the triple distribution. Measured: κ = 1.183 at λ = 1.05, 1.096 at λ = 1.70 and 1.044 at λ = 2.00, against the Gaussian value 1.16972. So the shape is near-Gaussian (ratios 1.011, 0.937, 0.893)."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What is the product balance b = κ·e·γ̄ and why is it the open core?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As k grows two opposing things happen: γ̄ → 0 (the gap mass vanishes) and e → ∞ (the elasticity explodes). The open core is that the product stays finite: b* in (0, 2). Measured, b ≈ 0.10 to 0.19, stable across the reachable depths. The full contraction question c < 1 is equivalent to this one product balance."
+      }
+    },
+    {
+      "@type": "Question",
+      "inLanguage": "en",
+      "name": "What do the three independent instruments measure at the endpoint λ = 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The TR increment ratio gives 0.8357 (k = 18), the γ̄ rate via the mass identity 0.8354 (k = 17), and the operator/profile family 0.83 to 0.84. All three still creep upward by +0.002 to +0.005 per depth step; at this pace reaching 1 would take some 35 to 40 more depths. Whether that creep dies out (DENSITY) or persists (CEILING) is exactly Conjecture G."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>
