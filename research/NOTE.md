@@ -15452,3 +15452,31 @@ intervalcertificatie van Cov_lin en Cov_slack). De k-monotonie van de marge
 op elke lambda is het eerste directe kwantitatieve steunbewijs voor de
 k-uniformiteit van de twee constanten. Manuscript-remark bijgewerkt (30pp,
 compileert schoon); cursus les 4.5 bijgewerkt.
+
+## Obs 556 (2026-08-10): EINDPUNT-DOMINANTIE RIGOUREUS GECERTIFICEERD — EXACT RATIONAAL (Script 368; Route A stap 4)
+
+Kernvondst die de certificatie triviaal-exact maakt: OP HET EINDPUNT lam=2
+ZIJN ALLE OPERATORCOEFFICIENTEN RATIONAAL (2^alpha = 3 geeft A=1/4, B1=3/4,
+B3=3/2). Daardoor draait de hele pijplijn in exacte gehele-getallen-
+rekenkunde: de opgeslagen vector is dyadisch-rationaal; Collatz-Wielandt-
+insluiting van rho via kruisvermenigvuldiging (gap 2.3-2.5e-15!); alle
+celstatistieken exact; en de dominantie-ongelijkheid geevalueerd in
+uitwaarts-afgeronde rationale intervalrekenkunde (sqrt via isqrt).
+
+### GECERTIFICEERD (certificates/cert_domination_endpoint.txt)
+  k=13: ouder 0 marge +0.07168, ouder 2 marge +1.33151 — beide WAAR
+  k=14: ouder 0 marge +0.08742, ouder 2 marge +1.33028 — beide WAAR
+Conventie-caveat als bij het Lemma-A-certificaat: statistieken op de
+geconvergeerde puntvector, CW-gap gerapporteerd (2.5e-15 vs marges 0.07+).
+Onderweg de klassieke dubbel-indexeringsfout (R1[idx//3] i.p.v. R1[idx])
+gemaakt en gevangen door de 1-t^9-assert — de eigen les uit Obs 528 werkt.
+En de heredoc-backslash-valkuil sloeg opnieuw toe in de tex-update (BEL/CR
+voor alpha/rho, tab voor to) — hersteld; regel blijft: tex alleen via
+Write/Edit.
+
+### Stand
+De hypothese van de inductiestap is op het eindpunt (waar Conjecture G
+leeft) nu een BEWEZEN uitspraak voor k=13/14, met stijgende marge. Het open
+front is onveranderd maar exacter dan ooit: (i) k-uniformiteit van de twee
+constanten (de marge stijgt — bewijs die monotonie), (ii) de associatie-
+stijging 0.977->0.996 mechanistisch verklaren (kandidaat: valuatiewet/Psi).

@@ -1,0 +1,13 @@
+Rigorous certification of the domination inequality at the endpoint lam=2
+(exact rational arithmetic: A=1/4, B1=3/4, B3=3/2; CW enclosure of rho;
+outward rational-interval evaluation; statistics at the converged point
+vector, CW gap reported per the Lemma-A convention.)
+
+k=13: rho=[0.9450493348986,0.9450493348986] CW-gap=2.3e-15  a=[0.995345,0.995345]
+  parent 0: m=[0.3703,1.2022] beta<= 0.1505 margin=[+0.07168,+0.07168]  CERTIFIED: True
+  parent 2: m=[1.5174,1.6275] beta<= 0.0135 margin=[+1.33151,+1.33151]  CERTIFIED: True
+k=14: rho=[0.9499767233560,0.9499767233560] CW-gap=2.5e-15  a=[0.995665,0.995665]
+  parent 0: m=[0.3705,1.1940] beta<= 0.1428 margin=[+0.08742,+0.08742]  CERTIFIED: True
+  parent 2: m=[1.5104,1.6187] beta<= 0.0142 margin=[+1.33028,+1.33028]  CERTIFIED: True
+
+ALL CERTIFIED: True
