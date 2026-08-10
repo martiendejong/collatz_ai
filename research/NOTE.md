@@ -15368,3 +15368,43 @@ punt (1)), (ii) positieve-coefficient-overdracht van input-covarianties
 in Obs 506, met de gemeten inputassociatie ~0.98 als motor. Het patroon per
 sport is nu tweemaal identiek: exact skelet + een associatie + een bandpaar.
 De uniforme-coefficient-vraag (volledige homogenisatie) blijft de open kern.
+
+## Obs 553 (2026-08-10): DE OVERDRACHTSALGEBRA VAN DE q=1-SPORT — DRIE STELLINGEN, EEN GEKWANTIFICEERD RESIDU (Script 366; Route A stap 2)
+
+### Stelling 1 — U = M*C met expliciete positieve matrix
+Het vezel-toren-transport (Obs 552) plus de affiene celbijecties geven het
+exacte 9-stelsel rho*U[0,b] = A*U[2,b]+B1*C[b]; rho*U[1,b] = A*U[0,b+2];
+rho*U[2,b] = A*U[1,b]+B3*C[tau b], opgelost: U_a = M_a C met positieve
+matrices (noemer 1-t^9). Residuen 1e-16 op alle 12 gridpunten. Bewijsbaar
+uit twee eenregel-getalfeiten (4Nl = Nl mod N; Nl = 0 mod 3).
+
+### Stelling 2 — NIEUW: de gap kopieert op klasse-1-vezels
+Op d0=1-vezels kopieert niet alleen v maar ook cb puntsgewijs (alle lifts
+blijven klasse 1, dus de klasse-1-identiteit geldt per lift en de min
+commuteert): G(s) = t*G(sigma4 s) exact (rel. 1e-14..1e-16), dus
+W[1,b] = t*W[0,b+2] (1e-18).
+
+### Stelling 3 — ouder 1 is gratis
+Cov(ouder 1) = t^2 * Cov(ouder 0): gemeten ratio 1.0000 op ALLE 12 punten.
+De q=1-sport reduceert van drie covarianties naar twee (ouders 0 en 2).
+
+### Stelling 4 — eenzijdige lineaire grenzen met niet-negatieve slack
+Min-superadditiviteit op vezelniveau: rho*W[0,b] <= A*W[2,b] + B1*GC[b] en
+rho*W[2,b] <= A*W[1,b] + B3*GC[tau b]; alle 72 slacks >= 0 (T3: overal waar).
+
+### Het gekwantificeerde residu (Q)
+Slackloze overdracht What_a = M_a*GC verklaart de ware covariantie op
+0.92-1.24 na (lin-fracties per ouder/punt): de slack-MEANS zijn groot maar
+bijna constant over cellen; alleen hun variatie draagt bij, en die is <= ~25%
+van de covariantie. Dit is exact Lemma-beta-vormig residu.
+
+### Bewijsskelet b1 > 0 (stand)
+  ouder 1: stelling (klaar). Ouders 0/2: Cov = Cov_lin + Cov_slack;
+  Cov_lin > 0 via input-parallellisme (associatie 0.98: GC ~ kappa_in*C + eps,
+  dan Cov_lin ~ kappa_in*Var(U_a) + begrensde kruisterm, M_a positief);
+  |Cov_slack| < Cov_lin vergt een slack-variatie-grens (gemeten <= 0.25).
+De inductie sluit op zichzelf: de associatie-input is dezelfde uitspraak een
+torenniveau dieper, en de toren EINDIGT op eindige diepte in expliciete kleine
+stelsels — certificeerbaar per k. Het homogenisatie-lemma krijgt hiermee voor
+het eerst een eindige inductiestructuur met twee uniforme constanten
+(associatie-ondergrens > slack-fractie-bovengrens).
