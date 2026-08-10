@@ -15506,3 +15506,33 @@ twee ruimte. Het homogenisatie-lemma hangt daarmee nog aan twee stabiele,
 gemeten, per-k-certificeerbare grootheden zonder enige kruip in de
 verkeerde richting. Manuscript-remark uitgebreid (30pp schoon); cursus 4.5
 bijgewerkt.
+
+## Obs 558 (2026-08-10): HET SLACK-MECHANISME — GEEN KOPIE-ERFENIS (EERLIJKE MISS), WEL BEGRENSD EN DALEND WAAR HET TELT (Script 370; Route A stap 6)
+
+### Weerlegd (eerlijk genoteerd)
+De hypothese "slack-triples erven de (1,t)-structuur zoals de associatie" is
+FOUT: S1[1]/S1[0] = 1.09-1.23 over het hele grid (geen t-kopie; kon ook niet
+exact: de superadditiviteits-slack is geen lineair getransporteerd object).
+De slack heeft dus GEEN gesloten vorm via de kopie-algebra — hij is en
+blijft de werkelijke drager van de resterende niet-lineariteit (het ware
+thuis van Lemma beta).
+
+### Wat wel vaststaat (gemeten, 16 gridpunten)
+- S-triple-VORM is stabiel met k (bv. lam=2: [1, 1.12, 3.0] langzaam
+  drijvend) en de uitlijning met de U-triple groeit met lam (0.94 op het
+  eindpunt): de slack-variatie volgt het niveau, met een vaste vormfactor.
+- beta0 <= 0.213 op ALLE punten; beta2 <= 0.11 (meest ~0.02-0.03).
+- Op het eindpunt lam=2 DAALT beta0: 0.184 -> 0.143, rate ~0.94/stap,
+  parallel aan de relatieve slack-schaal relS (0.180 -> 0.147, rate
+  0.94-0.96, ~ sqrt(c(2)) = 0.914). Bij lam=1.3 is beta0 vlak (~0.21):
+  het verval is een eindpunt-fenomeen, geen universele wet.
+
+### Stand van de dominantie na stap 6
+Asymptotische eis: beta_* < m_min/m_max ~ 0.31 (eindpunt). Gemeten maximum
+over het HELE grid: 0.213. De eis houdt overal met marge; op het eindpunt
+(waar Conjecture G leeft) met dalende beta en factor >2. Route-A-balans na
+zes stappen: associatie = gesloten algebra + margewet (klaar); slack =
+begrensd + dalend-waar-het-telt maar zonder gesloten vorm — het open hart
+is nu exact: (i) de margewet bewijzen (rate sqrt(c) < 1), (ii) beta_* < 0.31
+uniform maken. Beide zijn per-k certificeerbaar; (i) is de c<1-vraag zelf in
+zijn kleinste jas.
