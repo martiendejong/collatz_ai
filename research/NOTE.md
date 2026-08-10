@@ -15332,3 +15332,39 @@ meetkunde/verblijf). Obs 337's voorspelling bevestigd; en integer-banen zijn
 op deze schalen statistisch NIET te onderscheiden van Haar — precies wat het
 programma verwacht: de anomalie die divergentie zou vergen is oneindig, niet
 eindig meetbaar.
+
+## Obs 552 (2026-08-10): DE q=1-SPORT — EXACTE TOREN-IDENTITEIT OP CELNIVEAU, PAREN POSITIEF OVER HET HELE GRID, INPUT-ASSOCIATIE ~0.98 (Script 365; Route A stap 1)
+
+### (1) Nieuwe exacte identiteit: het vezel-toren-transport
+Omdat alle drie de lifts van s dezelfde klasse delen (Nl = 0 mod 3) en de
+sibling-lag 4Nl = Nl mod N geeft, geldt EXACT (machineprecisie 1e-15/16 op
+alle 16 gridpunten):
+  rho*vbar3(s) = A*vbar3((4s+2) mod Nl) + [s=0 mod 3] B1*cb3(R1'(s))
+                                        + [s=2 mod 3] B3*cb3(R3'(s))
+met cb3 het volgende torenniveau. Het gemiddelde-veld vbar3 gehoorzaamt dus
+LETTERLIJK hetzelfde K-L-systeem een niveau lager (Obs 383's toren, nu als
+puntsgewijze identiteit inclusief de feed-argumenten).
+
+### (2) De q=1-Chebyshev over het volledige grid
+Per oudercel d0 in {0,1,2}: subtriples U[d0,.] (niveau) en W[d0,.] (gap) over
+digit-1. Alle 48 per-ouder-covarianties (16 gridpunten x 3 ouders,
+lam in {1.05,1.30,1.70,2.00}, k in {10,12,13,14}) zijn POSITIEF. Paarvorm:
+bij lam=1.05/1.70/2.00 zijn alle 9 paarproducten per punt positief; alleen
+lam=1.30 heeft consequent 1 negatief paar per punt — precies de (0,2)-band
+die in het q=0-bewijs (Obs 506) met de begrenzingsstap werd afgehandeld.
+Zelfde bewijsvorm, een sport hoger.
+
+### (3) De "(3b)-op-schaal"-input gemeten
+De inductie-input is de associatie van de INPUT-triples op cb-niveau:
+genormaliseerde Cov_d(celgemiddelden cb3, celgemiddelden Gc) = 0.977-0.996,
+positief op alle 16 punten en STIJGEND met k en lam (2.00/k=14: 0.9957).
+De diepere laag is dus bijna-perfect geassocieerd — homogenisatie zichtbaar
+in actie: de inputkwaliteit verbetert met diepte.
+
+### Reductiestand
+b1 > 0 is hiermee herleid tot: (i) het exacte lineaire transport (bewezen,
+punt (1)), (ii) positieve-coefficient-overdracht van input-covarianties
+(algebra, uit te schrijven), (iii) een begrenzing van het ene bandpaar zoals
+in Obs 506, met de gemeten inputassociatie ~0.98 als motor. Het patroon per
+sport is nu tweemaal identiek: exact skelet + een associatie + een bandpaar.
+De uniforme-coefficient-vraag (volledige homogenisatie) blijft de open kern.
