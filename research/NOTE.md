@@ -15426,3 +15426,29 @@ STAND: Lemma alpha hangt nu aan EEN dominantie-ongelijkheid tussen twee
 gemeten grootheden (a_* > f(beta_*)); per eindige k is de keten
 certificeerbaar; k-uniformiteit is de resterende inhoud — de kleinste
 gedaante die het homogenisatie-lemma ooit heeft gehad.
+
+## Obs 555 (2026-08-10): DE DOMINANTIE GEKWANTIFICEERD — EINDPUNT-CERTIFICATIE VANAF k=13 (Script 367; Route A stap 3)
+
+Singuliere waarden van de transfermatrices op de gecentreerde-triple-ruimte
+expliciet berekend; de dominantie-ongelijkheid a*m_min > (sqrt(1-a^2)+beta)*m_max
+per gridpunt getoetst (24 ouder/punt-combinaties).
+
+### Resultaten
+- Ouder 2: goed geconditioneerd (cond 1.07-1.92); conservatieve dominantie
+  gecertificeerd op ALLE 12 punten, marges groeiend richting eindpunt
+  (0.14 -> 1.33).
+- Ouder 0: slecht geconditioneerd (cond 3.2-4.1); Cauchy-Schwarz-vorm faalt
+  weg van het eindpunt — MAAR de marge verbetert monotoon met k bij ELKE
+  lambda (1.05: -0.061 -> -0.006; 1.70: -0.106 -> -0.046; 2.00: -0.002 ->
+  +0.087), en OP HET EINDPUNT lam=2 certificeert de conservatieve vorm beide
+  ouders vanaf k=13 (+0.072, +0.087, stijgend).
+- Exacte covariantie positief: 24/24.
+
+### Betekenis
+Precies in het regime waar Conjecture G leeft (het eindpunt) is de hypothese
+van de inductiestap nu in zijn STERKSTE vorm numeriek geverifieerd, met
+groeiende marge; elders volstaat de exacte-decompositie-route (Lemma-A-stijl
+intervalcertificatie van Cov_lin en Cov_slack). De k-monotonie van de marge
+op elke lambda is het eerste directe kwantitatieve steunbewijs voor de
+k-uniformiteit van de twee constanten. Manuscript-remark bijgewerkt (30pp,
+compileert schoon); cursus les 4.5 bijgewerkt.
