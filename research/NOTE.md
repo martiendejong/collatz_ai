@@ -15408,3 +15408,21 @@ torenniveau dieper, en de toren EINDIGT op eindige diepte in expliciete kleine
 stelsels — certificeerbaar per k. Het homogenisatie-lemma krijgt hiermee voor
 het eerst een eindige inductiestructuur met twee uniforme constanten
 (associatie-ondergrens > slack-fractie-bovengrens).
+
+## Obs 554 (2026-08-10): FORMALISATIE — SECTIE "FIBER-TOWER" IN density_one.tex; CURSUS BIJGEWERKT
+
+De resultaten van Obs 552-553 zijn geformaliseerd als nieuwe sectie
+(\section{The fiber-tower transfer and a finite induction scheme for the
+association lemma}) in papers/density_one.tex: Lemma (twee getalfeiten),
+Prop (vezeltoren-transport), Cor (9-stelsel, U=MC positief), Thm (gap-kopie
+op klasse-1-vezels), Cor (ouder 1 gratis), Prop (slack-tekens), Def (twee
+uniforme constanten a_*, beta_*), Lemma (voorwaardelijke inductiestap met
+expliciete dominantie-ongelijkheid), Rem (gemeten marges + eindige
+verankering). Compileert schoon: 30 pagina's, 0 fouten. Cursus bijgewerkt:
+les 4.5 subject 6 (vezeltoren + eindige inductie) en de stand-van-het-bord
+in les 6.3.
+
+STAND: Lemma alpha hangt nu aan EEN dominantie-ongelijkheid tussen twee
+gemeten grootheden (a_* > f(beta_*)); per eindige k is de keten
+certificeerbaar; k-uniformiteit is de resterende inhoud — de kleinste
+gedaante die het homogenisatie-lemma ooit heeft gehad.

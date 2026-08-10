@@ -2130,6 +2130,176 @@ combinatorial/mod-$3$, and Track~3 is specific to the K-L eigenvector.
 Track~3 is the novel contribution of this framework.
 \end{remark}
 
+
+\section{The fiber-tower transfer and a finite induction scheme for the association lemma}
+\label{sec:fibertower}
+
+This section formalises the results of Obs.~552--553 (scripts 365--366): the
+per-cell Chebyshev programme of Lemma~$\alpha$ acquires an exact linear
+skeleton one fiber level down, one of the three parent covariances becomes a
+theorem, the slack acquires a sign, and the whole induction closes onto a
+finite tower with two uniform constants.
+
+\subsection{Setting}
+
+Fix $\lam \in (1,2]$ and depth $k$; write $N = 3^{k-1}$, $N_\ell = N/3$,
+$N_{\ell\ell} = N/9$, $A = \lam^{-2}$, $t = A/\rho$. For $s \in \Z/N_\ell$
+let the three \emph{lifts} of $s$ be $s, s+N_\ell, s+2N_\ell \in \Z/N$, and set
+\[
+\bar v_3(s) = \tfrac13\sum_{j=0}^{2} v(s+jN_\ell), \qquad
+\mathrm{cb}(s) = \min_{j} v(s+jN_\ell), \qquad
+G = \bar v_3 - \mathrm{cb} .
+\]
+One level down, $\overline{\mathrm{cb}}_3$ and $\mathrm{cbb}$ denote the same
+average and minimum of $\mathrm{cb}$ over its $N_{\ell\ell}$-lifts, and
+$G_c = \overline{\mathrm{cb}}_3 - \mathrm{cbb}$.
+Cells at split level one are indexed by the parent digit $d_0 = s \bmod 3$ and
+the child digit $d_1 = \lfloor s/3 \rfloor \bmod 3$; write
+$U[a,b] = \E[\bar v_3 \mid d_0 = a, d_1 = b]$ and
+$W[a,b] = \E[G \mid d_0 = a, d_1 = b]$, and let
+$C[b], \, GC[b]$ be the class means of $\overline{\mathrm{cb}}_3$ and $G_c$
+on $\{x \equiv b \bmod 3\}$.
+
+\begin{lemma}[two arithmetic facts]\label{lem:arith}
+For $k \ge 4$: (i) $4N_\ell \equiv N_\ell \pmod N$; (ii) $N_\ell \equiv 0
+\pmod 3$.
+\end{lemma}
+
+\begin{proof}
+$3N_\ell = N \equiv 0$; $N_\ell = 3^{k-2}$.
+\end{proof}
+
+\begin{proposition}[fiber-tower transport]\label{prop:tower}
+Pointwise on $\Z/N_{\ell}$, with $\sigma_4(s) = (4s+2) \bmod N_\ell$,
+\[
+\rho\,\bar v_3(s) \;=\; A\,\bar v_3(\sigma_4 s)
+\;+\; \mathbf 1_{s \equiv 0}\, B_1\, \overline{\mathrm{cb}}_3\!\big(4\lfloor s/3\rfloor \bmod N_{\ell\ell}\big)
+\;+\; \mathbf 1_{s \equiv 2}\, B_3\, \overline{\mathrm{cb}}_3\!\big(2\lfloor s/3\rfloor + 1 \bmod N_{\ell\ell}\big).
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:arith}(ii) all three lifts of $s$ lie in the same class
+$s \bmod 3$, so the eigen-equation takes the same branch at each lift. By
+Lemma~\ref{lem:arith}(i), $T_4(s + jN_\ell) = \sigma_4(s) + jN_\ell$: the
+backbone permutes the lift set of $\sigma_4 s$. For the feed arguments,
+$4\,(jN_\ell/3) \equiv jN_{\ell\ell} \pmod{N_\ell}$, so the three feed
+arguments are exactly the $N_{\ell\ell}$-lifts of the base argument, and
+averaging the eigen-equation over $j$ produces
+$\overline{\mathrm{cb}}_3$. \PROVED{} (machine check: max.\ relative residual
+$1.1 \cdot 10^{-15}$ over $\lam \in \{1.05, 1.30, 1.70, 2.00\}$,
+$k \in \{10,12,13,14\}$.)
+\end{proof}
+
+\begin{corollary}[cell nine-system; $U = MC$]\label{cor:ninesys}
+With $\tau = (0\,1)(2)$ acting on child digits,
+\[
+\rho\,U[0,b] = A\,U[2,b] + B_1 C[b], \quad
+\rho\,U[1,b] = A\,U[0,b+2], \quad
+\rho\,U[2,b] = A\,U[1,b] + B_3 C[\tau b],
+\]
+and solving along the $3$-cycle $b \mapsto b+2$,
+$U_a = M_a C$ with matrices $M_a$ having \emph{strictly positive} entries,
+explicitly, for the parent-$0$ row,
+\[
+U[0,b] \;=\; \frac{1}{1-t^9} \sum_{j=0}^{2} t^{3j}
+\Big( \tfrac{B_1}{\rho}\, C[b+2j] + t\,\tfrac{B_3}{\rho}\, C[\tau(b+2j)] \Big).
+\]
+\PROVED{} (residuals $\le 10^{-15}$ on the full grid.)
+\end{corollary}
+
+\begin{theorem}[gap copy on class-1 fibers]\label{thm:gapcopy}
+For $s \equiv 1 \pmod 3$: $\bar v_3(s) = t\, \bar v_3(\sigma_4 s)$ \emph{and}
+$\mathrm{cb}(s) = t\, \mathrm{cb}(\sigma_4 s)$ pointwise; hence
+$G(s) = t\,G(\sigma_4 s)$ and $W[1,b] = t\,W[0,b+2]$.
+\end{theorem}
+
+\begin{proof}
+Each lift $s + jN_\ell$ is itself $\equiv 1 \pmod 3$
+(Lemma~\ref{lem:arith}(ii)), so the feed-free class-1 identity
+$v(i) = t\,v(T_4 i)$ holds at every lift; averaging gives the first claim,
+and taking minima over the lift set, which $T_4$ permutes onto the lift set of
+$\sigma_4 s$, gives the second: the minimum of $t$-scaled copies is the
+$t$-scaled minimum. \PROVED{} (pointwise relative residual
+$\le 5 \cdot 10^{-14}$.)
+\end{proof}
+
+\begin{corollary}[parent 1 is free]\label{cor:parent1}
+$\mathrm{Cov}_b\big(U[1,\cdot],\, W[1,\cdot]\big) =
+t^2\, \mathrm{Cov}_b\big(U[0,\cdot],\, W[0,\cdot]\big)$. The level-one
+Chebyshev claim reduces from three parent covariances to two.
+\PROVED{} (measured ratio $1.0000$ on all twelve grid points.)
+\end{corollary}
+
+\begin{proposition}[one-sided slack bounds]\label{prop:slack}
+There exist cellwise slacks $S_1[b], S_3[b] \ge 0$ with
+\[
+\rho\,W[0,b] = A\,W[2,b] + B_1\,GC[b] - S_1[b], \qquad
+\rho\,W[2,b] = A\,W[1,b] + B_3\,GC[\tau b] - S_3[b].
+\]
+\end{proposition}
+
+\begin{proof}
+Superadditivity of the minimum along the lift decomposition of the
+eigen-equation: $\rho\,\mathrm{cb}(s) \ge A\,\mathrm{cb}(\sigma_4 s) +
+B_r\,\mathrm{cbb}(\cdot)$ on the feed classes; subtract from
+Proposition~\ref{prop:tower} and take cell means. \PROVED{} (all $72$
+cell-slacks nonnegative on the grid.)
+\end{proof}
+
+\subsection{The conditional induction step}
+
+\begin{definition}[uniform constants]\label{def:constants}
+At split level $q$ let $a_q$ be the normalised input association
+$\mathrm{Corr}_b(C, GC)$ of the next tower level, and let $\beta_q$ be the
+slack fraction $|\mathrm{Cov}_b(U_a, S_a)| / \mathrm{Cov}_b(U_a, M_a GC)$,
+maximised over the feed parents $a \in \{0,2\}$.
+\end{definition}
+
+\begin{lemma}[induction step, conditional]\label{lem:induction}
+Suppose $a_{q+1} \ge a_*$ and $\beta_q \le \beta_*$ with
+$a_*$ close enough to $1$ and $\beta_* < 1$ that the explicit positive
+quadratic form dominates, i.e.
+$a_*\,\underline{m} - \sqrt{1-a_*^2}\,\overline{m} > \beta_*\,\overline{m}$
+for the extreme singular values $\underline m, \overline m$ of the positive
+matrices $M_a$ restricted to centred triples. Then
+$\mathrm{Cov}_b(U_a, W_a) > 0$ for $a \in \{0, 2\}$, and with
+Corollary~\ref{cor:parent1} for $a = 1$: the level-$q$ association
+coefficient $b_q$ is strictly positive.
+\end{lemma}
+
+\begin{proof}
+Write $GC = \kappa\,C + \varepsilon$ with
+$\|\varepsilon\| \le \sqrt{1-a_{q+1}^2}\,\|GC\|$ (orthogonal decomposition of
+the association). Then by Proposition~\ref{prop:slack},
+$\mathrm{Cov}(U_a, W_a) = \kappa\,\mathrm{Cov}(U_a, M_a C)
++ \mathrm{Cov}(U_a, M_a \varepsilon) - \mathrm{Cov}(U_a, S_a)$.
+The first term is positive since $U_a = M_a C$ and $M_a$ is entrywise
+positive with singular values in $[\underline m, \overline m]$ on centred
+triples; the second is bounded relative to it by
+$\sqrt{1-a_{q+1}^2}\,\overline m / (a_{q+1} \underline m)$ (Cauchy--Schwarz);
+the third by $\beta_q$ relative to the linear part, by
+Definition~\ref{def:constants}. The displayed inequality is exactly the
+domination condition.
+\end{proof}
+
+\begin{remark}[measured margins and finite anchoring]\label{rem:anchoring}
+\MEASURED{} On the grid $\lam \in \{1.05, 1.30, 1.70, 2.00\}$,
+$k \le 14$: $a_1 \in [0.977, 0.996]$, increasing in both $k$ and $\lam$, and
+$\beta_1 \le 0.25$; all $48$ parent covariances are positive, and the
+pair structure repeats the base-case pattern of the $q=0$ proof (one
+potentially negative band pair, dominated). Two features make this scheme
+finite: the tower \emph{terminates} after $k-2$ levels in explicit
+three-dimensional systems, so for every fixed $k$ the full chain of
+induction steps is a finite computation certifiable in interval arithmetic
+(as in the $72$-case Lemma-A certificate); and the input association is the
+\emph{same} statement one tower level deeper, so the only $k$-uniform inputs
+are the two constants of Definition~\ref{def:constants}. The homogenisation
+lemma thereby acquires, for the first time, a finite induction structure:
+prove $a_* >$ (an explicit function of) $\beta_*$ uniformly in depth, and
+Lemma~$\alpha$ follows at every level.
+\end{remark}
+
 \section{The five bookkeeping tasks}
 
 \begin{enumerate}
