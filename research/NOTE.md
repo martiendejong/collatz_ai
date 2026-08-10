@@ -15480,3 +15480,29 @@ leeft) nu een BEWEZEN uitspraak voor k=13/14, met stijgende marge. Het open
 front is onveranderd maar exacter dan ooit: (i) k-uniformiteit van de twee
 constanten (de marge stijgt — bewijs die monotonie), (ii) de associatie-
 stijging 0.977->0.996 mechanistisch verklaren (kandidaat: valuatiewet/Psi).
+
+## Obs 557 (2026-08-10): HET ASSOCIATIE-MECHANISME ONTRAFELD — 1-a = (MARGEVERVAL)^2, DOMINANTIE HERLEIDT TOT beta < m_min/m_max (Script 369; Route A stap 5)
+
+Vier voorspellingen, vier treffers, over het volledige grid:
+(P1) Kopie-identiteiten op torenniveau 2 EXACT (1e-15/16): C[1] = t*C[0],
+     GC[1] = t*GC[0] — beide inputtriples delen hun (1,t)-deel.
+(P2) De associatie is daardoor een GESLOTEN VORM: a = F(t, Rt, xt) met
+     Rt = C[2]/C[0], xt = GC[2]/GC[0]; gemeten = formule op 5 decimalen exact,
+     alle 16 punten.
+(P3) 1 - a = G(t,Rt)*m2^2 op een factor 1.11-1.33 na, met m2 = xt - Rt: de
+     HELE misalignment is een scalar — het niveau-2-marge, hetzelfde object
+     als het gecertificeerde (3b)-criterium een torenniveau dieper.
+(P4) rate(1-a) = rate(m2)^2 binnen 0.5% bij ELKE lambda en elke dieptestap
+     (ratio's 0.982-1.005). De associatie-stijging IS de margewet in het
+     kwadraat: homogenisatie die de toren afdaalt, kwantitatief.
+
+### Structureel gevolg (het cadeau)
+Omdat 1-a geometrisch naar 0 gaat zolang het marge krimpt, is de associatie-
+kant van de dominantie ZELFVERBETEREND met diepte. De k-uniformiteits-eis
+herleidt asymptotisch tot de schone ongelijkheid
+  beta_* < m_min/m_max
+— gemeten: beta <= 0.15 versus m_min/m_max ~ 0.31 op het eindpunt: factor
+twee ruimte. Het homogenisatie-lemma hangt daarmee nog aan twee stabiele,
+gemeten, per-k-certificeerbare grootheden zonder enige kruip in de
+verkeerde richting. Manuscript-remark uitgebreid (30pp schoon); cursus 4.5
+bijgewerkt.
