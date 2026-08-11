@@ -15583,3 +15583,23 @@ de k-uniformiteit van de dominantie herleid tot: de Psi-limiet bestaat
 alle bewegende delen van het homogenisatie-lemma zijn nu convergente,
 gemeten, per-k-certificeerbare objecten met expliciete rates — en elke
 rate is een gedaante van hetzelfde ene getal.
+
+## Obs 561 (2026-08-11): DE PSI-RATE IS SPECTRAAL — |lam2(J)|/rho MATCHT DE TABELCONVERGENTIE (Script 373; Route A stap 9)
+
+Gedefleerde power-iteratie op de bevroren Jacobiaan (argmin bevroren op de
+geconvergeerde vector, k=13):
+  lam=1.70: |lam2(J)|/rho = 0.8556  vs Psi-tabelrate ~0.840
+  lam=2.00: |lam2(J)|/rho = 0.8815  vs Psi-tabelrate ~0.859
+Match binnen de meetruis van de per-stap-tabelrates. (Obs 529's eerdere
+0.673/0.803 gebruikte een andere deflatie/subruimte-conventie; eerlijk
+genoteerd, conventies nog te harmoniseren.)
+
+### Consequentie — de limietvraag wordt lineair-spectraal
+Het bestaan van de Psi-limiet herleidt tot een SPECTRALE-GAP-uitspraak over
+een expliciete LINEAIRE operator met positieve kern (de bevroren Jacobiaan,
+Euler-eigenwaarde exact 1, subleiding gemeten 0.86-0.88 < 1). Daarmee komt
+Birkhoff/Perron-machinerie voor lineaire operatoren beschikbaar — bewijsbare
+klasse, geen min-niet-lineariteit meer in de weg. De laatste onderdelen van
+de uniformiteitsvraag zijn nu: (i) spectrale gap van J uniform in k
+(lineair!), (ii) de margewet. Route-A-boog stap 9 sluit de mechanistische
+keten: tabel-Cauchy <- spectrale gap <- expliciete lineaire operator.
