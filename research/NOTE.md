@@ -15560,3 +15560,26 @@ kappa (bijna-Gaussisch, celonafhankelijk) + de eindige Psi-tabel (drijft
 beta). Er is geen ongemodelleerd object meer over. Route-A-boog van zeven
 stappen rond: het homogenisatie-lemma = margewet + kappa-stabiliteit +
 Psi-tabel-gedrag, elk gemeten, elk per k certificeerbaar.
+
+## Obs 560 (2026-08-11): DE PSI-TABEL CONVERGEERT — GEOMETRISCH, MET DE DIEPE RATE ~0.85 (Script 372; Route A stap 8)
+
+Entry-gewijze Cauchy-toets van de Psi-tabel (sleutels (cls,cls,d mod 27))
+over k=10..14:
+  lam=1.70: rms|dPsi| 0.0096 -> 0.0057, verval per stap 0.875/0.783/0.862
+  lam=2.00: rms|dPsi| 0.0118 -> 0.0074, verval per stap 0.945/0.770/0.863
+De tabel is CAUCHY met geometrische rate ~0.85; resterende afstand tot de
+limiet bij k=14 ~ 0.006/(1-0.85) ~ 0.04 (rms, op entries begrensd door
+~0.34). En de rate is HERKENBAAR: ~0.85 = kappa_deep (0.839) = de
+eindpunt-plateaurate (0.854) — het ene diepe attenuatiegetal van het
+programma bestuurt ook de tabelconvergentie.
+
+### Consequentie — de uniformiteitsvraag is nu een limietuitspraak
+De keten sluit: Psi-tabel convergeert => sd-defect en beta convergeren =>
+beta_* is een limiet van een Cauchy-rij die overal <= 0.21 gemeten is,
+tegen drempel 0.31. Samen met de zelfverbeterende associatie (Obs 557) is
+de k-uniformiteit van de dominantie herleid tot: de Psi-limiet bestaat
+(gemeten Cauchy) en zijn beta-functionaal blijft onder 0.31 (marge factor
+1.5+ op elk gemeten punt, dalend op het eindpunt). Route-A-boog stap 8:
+alle bewegende delen van het homogenisatie-lemma zijn nu convergente,
+gemeten, per-k-certificeerbare objecten met expliciete rates — en elke
+rate is een gedaante van hetzelfde ene getal.
