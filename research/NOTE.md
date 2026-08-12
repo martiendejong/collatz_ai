@@ -15659,3 +15659,19 @@ met Psi-consistente lokale oscillatie) waarvan (i) L hem invariant laat met
 marge (L glijkt — plausibel, te bewijzen), en (ii) de diameter erop klein
 en k-vrij is. Dat is een Doeblin/gewogen-kegel-klus, geen raadsel: de
 metingen (0.85 vlak in ALLE instrumenten) zeggen dat zo'n kegel bestaat.
+
+## Obs 566 (2026-08-12): L BEHOUDT HET EVENWICHTSPROFIEL EN CONTRAHEERT OVERTOLLIGE RUWHEID — DE SUB-KEGEL BESTAAT (Script 378; Route A stap 14)
+
+Oscillatieprofielen per 3-adische schaal (k=12):
+  echt veld cb3: ratio uit/in = 1.01 op ELKE schaal (beide lambda's) — het
+    evenwichtsprofiel is een vast punt van de oscillatie-afbeelding.
+  ruwe verstoring (cb3 * exp(0.5 N(0,1))): ratio 0.93-0.94 (lam=1.70) resp.
+    0.97 (lam=2.00) — UNIFORM OVER ALLE SCHALEN: L contraheert de
+    OVERTOLLIGE ruwheid richting het profiel.
+De invariante sub-kegel is daarmee empirisch aangewezen: een profielbuurt
+van het evenwichtsoscillatieprofiel, L-invariant met marge; de excess
+contraheert per niveau met een schaal-uniforme factor (zwakker op het
+eindpunt: 0.97 — eerlijk genoteerd). Resterende bewijsklus: de excess-
+contractie als lemma (gladstrijking van de Neumann-som — lineair object,
+Doeblin-klasse). Route-A-stand na veertien stappen: sub-kegel gevonden,
+kwantificatie open; plus de margewet. Al het overige: stelling/certificaat.
