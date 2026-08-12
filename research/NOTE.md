@@ -15603,3 +15603,15 @@ klasse, geen min-niet-lineariteit meer in de weg. De laatste onderdelen van
 de uniformiteitsvraag zijn nu: (i) spectrale gap van J uniform in k
 (lineair!), (ii) de margewet. Route-A-boog stap 9 sluit de mechanistische
 keten: tabel-Cauchy <- spectrale gap <- expliciete lineaire operator.
+
+## Obs 562 (2026-08-12): DE JACOBIAAN-GAP IS k-UNIFORM — EN OPENT OP HET EINDPUNT (Script 374; Route A stap 10)
+
+|lam2(J)|/rho over k=10..16:
+  lam=1.70: 0.8611 0.8562 0.8526 0.8543 0.8508 0.8530 — VLAK (spreiding 0.010)
+  lam=2.00: 0.9038 0.8924 0.8813 0.8750 (k=10..14) — DALEND: de gap OPENT
+De spectrale-gap-input voor het bestaan van de Psi-limiet is daarmee
+empirisch k-uniform, en op het eindpunt beweegt hij van de kritieke waarde
+AF — de eerste grootheid in het hele programma waarvan de eindpunt-trend de
+goede kant op gaat in plaats van te kruipen. Route-A-stand na tien stappen:
+uniformiteitsvraag = (i) lineaire spectrale gap (gemeten vlak/openend,
+Birkhoff-bewijsbaar-klasse) + (ii) de margewet (= c(2)<1, de ene kern).
