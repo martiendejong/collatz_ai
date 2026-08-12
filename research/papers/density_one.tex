@@ -2327,7 +2327,20 @@ $\beta_*$ is the limit of a convergent sequence measured $\le 0.21$
 throughout against the threshold $0.31$, and the $k$-uniformity of the
 domination reduces to two limit statements about convergent, measured,
 per-$k$-certifiable objects: the $\Psi$ limit exists, and its
-$\beta$-functional stays below $\underline m/\overline m$. The homogenisation 
+$\beta$-functional stays below $\underline m/\overline m$. The route to proving this gap uniform is now mapped (scripts 373--378):
+the $\Psi$-convergence rate is the subleading eigenvalue of the frozen
+Jacobian ($0.856/0.882$ measured, matching the table rates), that eigenvalue
+is flat in $k$ at $\lam = 1.70$ and \emph{decreasing} at the endpoint
+($0.904 \to 0.875$, the first quantity in the programme trending away from
+critical), and the Hilbert-metric contraction is measured $k$-uniform at
+$0.84$--$0.87$ per step. Two crude Birkhoff bounds fail honestly (the
+primitivity index grows like $3.5k$ and the one-level cone diameter grows
+linearly in $k$, so worst-case cone geometry cannot see the true rate), but
+the correct sub-cone is identified: the one-level transport preserves the
+equilibrium oscillation profile exactly (ratio $1.01$ per 3-adic scale) and
+contracts excess roughness by a scale-uniform factor $0.93$--$0.97$ per
+level. The remaining job for this leg is a Doeblin-type lemma quantifying
+that excess contraction for the explicit Neumann-sum kernel. The homogenisation 
 lemma thereby acquires, for the first time, a finite induction structure:
 prove $a_* >$ (an explicit function of) $\beta_*$ uniformly in depth, and
 Lemma~$\alpha$ follows at every level.
