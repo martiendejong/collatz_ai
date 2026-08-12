@@ -15630,3 +15630,18 @@ daarmee van "gemeten spectraal feit" naar "gemeten contractie in de
 bewijsbare metriek" getild; de resterende bewijsklus is de eindige
 projectieve diameter van een geschikte macht J^m uniform begrenzen
 (kegelbeeld-diameter, expliciete kern — afgebakend werk).
+
+## Obs 564 (2026-08-12): PRIMITIVITEIT EN DIAMETER — EINDIG EN VLAK, MAAR DE NAIEVE BIRKHOFF-GRENS IS TE ZWAK (Script 376; Route A stap 12)
+
+Metingen: primitiviteitsindex m* ~ 3.0-3.6k (lineair in k; startafhankelijk,
+een kolom bij 1.70/k=10 nog nul op M=39 — eerlijk genoteerd). Diameter
+Delta(J^M) = 5.4-6.8, EINDIG en vlak in k. Daarmee is gap > 0 per k in
+principe bewijsbaar. MAAR: de naieve machtgrens tanh(Delta/4)^(1/M) geeft
+0.997-0.999 per stap, en omdat m* ~ k groeit terwijl Delta vlak blijft,
+tendeert die grens naar 1 voor k -> oneindig: DE CRUDE ROUTE LEVERT GEEN
+k-UNIFORMITEIT. De ware contractie (0.84-0.87 per stap, Obs 563) is twee
+ordes sterker dan de bound — het bewijs vergt een fijnere structuur die de
+crude kegelbound negeert. KANDIDAAT: Birkhoff op de vezeltoren-recursie in
+plaats van op J direct — elk torenniveau is een VAST klein systeem
+(k-onafhankelijk), en de toren telescopeert; per-niveau-contractie zou dan
+k-vrij zijn per constructie. Dat is de volgende afgebakende klus.
