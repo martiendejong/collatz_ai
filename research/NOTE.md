@@ -15692,3 +15692,21 @@ gelineariseerde Neumann-som-gladstrijking excess-oscillatie met een
 k-vrije factor < 1 contraheert — de metingen geven 0.6 met marge, op alle
 assen uniform. Route-A-stand na vijftien stappen: twee schrijfklussen
 (Doeblin-lemma met factor 0.6; margewet) — nul meetraadsels over.
+
+## Obs 568 (2026-08-12): HET DOEBLIN-LEMMA UITGESCHREVEN — COHERENTIE BEWEZEN, Q ALS CERTIFICEERBARE KWADRATISCHE VORM (density_one sec. "excess-contraction"; Route A stap 16)
+
+Nieuwe subsectie in density_one.tex (32pp, compileert schoon):
+- LEMMA COHERENTIE (bewezen, drie regels): sigma4 is affien, dus
+  s = s' mod 3^m impliceert x_n(s) = x_n(s') mod 3^(m-1) en gelijke
+  klassegewichten voor ALLE n — de argumentstructuur van L is exact
+  cel-coherent.
+- LEMMA EXCESS-CONTRACTIE (voorwaardelijk): voor Psi-consistente velden
+  osc_m^2(Lh) <= Q * osc_(m-1)^2(h), met Q = som w~_n w~_n' phi(n-n') —
+  een kwadratische vorm in k-VRIJE objecten (geometrische gewichten,
+  klassepatroon, phi uit de Cauchy-limiet van de Psi-tabel).
+  Gemeten sqrt(Q) ~ 0.60 met 40% marge, uniform op elke as (Obs 567).
+- REMARK: twee certificeerbare stappen resteren voor dit been:
+  (i) Q < 1 uniform via intervalevaluatie van de limiettabel + staartbound
+  (tabel Cauchy op 0.85), (ii) sub-kegel-invariantie (profielbehoud 1.01
+  gemeten). Daarna is het uniformiteitsbeen analytisch LEEG en blijft als
+  enige open analytische uitspraak van het programma: de margewet c(2)<1.

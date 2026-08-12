@@ -2346,6 +2346,85 @@ prove $a_* >$ (an explicit function of) $\beta_*$ uniformly in depth, and
 Lemma~$\alpha$ follows at every level.
 \end{remark}
 
+
+\subsection{The excess-contraction lemma (Doeblin form)}
+\label{sec:doeblin}
+
+We now write the smoothing statement identified above as a lemma with an
+explicit, certifiable constant. Recall the one-level transport: for a
+positive input field $h$ on $\Z/N_{\ell\ell}$,
+\[
+(Lh)(s) \;=\; \sum_{n \ge 0} t^{\,n}\, \beta_n(s)\, h\big(x_n(s)\big),
+\qquad
+x_n(s) = \text{feed argument of } \sigma_4^{\,n} s,
+\]
+where $\beta_n(s) \in \{\beta_1, \beta_3, 0\}$ follows the class of
+$\sigma_4^{\,n} s$ and the weights are $k$-free.
+
+\begin{lemma}[argument coherence]\label{lem:coherence}
+If $s \equiv s' \pmod{3^m}$ then $x_n(s) \equiv x_n(s') \pmod{3^{m-1}}$ and
+$\beta_n(s) = \beta_n(s')$ for \emph{every} $n \ge 0$.
+\end{lemma}
+
+\begin{proof}
+$\sigma_4$ is affine, so $\sigma_4^n s - \sigma_4^n s' = 4^n(s-s') \equiv 0
+\pmod{3^m}$ for all $n$; in particular the classes mod $3$ agree (equal
+$\beta_n$), and the feed arguments, which divide the index by $3$, agree mod
+$3^{m-1}$.
+\end{proof}
+
+Write $\mathrm{osc}_m^2(h)$ for the mean within-cell variance of $\log h$
+over cells of scale $3^m$ (the quantity measured in scripts 378--379), and
+let $\phi$ denote the lag-correlation function of the centred
+log-fluctuations of the input field, which by the valuation law depends on
+the lag only through its $3$-adic valuation and class data, and is captured
+by the finite $\Psi$ table (out-of-sample variance closure $1.0000$;
+Obs.~532/546).
+
+\begin{lemma}[excess contraction, conditional]\label{lem:doeblin}
+Let $h$ be $\Psi$-consistent (its within-cell fluctuation covariances at all
+lags along the $\sigma_4$-orbit are given by the table, up to the small-sliver
+linearisation of Section~\ref{sec:fibertower}). Then
+\[
+\mathrm{osc}_{m}^2(Lh) \;\le\; Q \cdot \mathrm{osc}_{m-1}^2(h) \,(1 + o(1)),
+\qquad
+Q \;=\; \sum_{n, n'} \tilde w_n \tilde w_{n'}\, \phi\big(n - n'\big),
+\]
+where $\tilde w_n = t^n \beta_n / \sum_j t^j \beta_j$ are the normalised
+transport weights. All ingredients of $Q$ · the geometric weights, the class
+pattern along the backbone, and the $\phi$ values · are $k$-free ($\phi$ via
+the Cauchy limit of the $\Psi$ table, rate $\approx 0.85$).
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+By Lemma~\ref{lem:coherence} the within-cell fluctuation of $\log Lh$ at
+scale $m$ is the fluctuation of a fixed positive weighted mean of input
+values whose pairwise within-cell covariances at scale $m-1$ are the
+$\phi$-values; expanding the variance of the weighted mean gives the
+quadratic form. The $o(1)$ collects the second-order linearisation error of
+$\log$ of a weighted mean, controlled by the sliver bounds of
+Section~\ref{sec:fibertower}. \MEASURED{} (script 379): the realised
+contraction of \emph{excess} oscillation above the equilibrium profile is
+$0.57$--$0.66$ per level, flat in $k$ ($10/12/14$ within $0.02$), identical
+at perturbation amplitudes $0.5$ and $0.1$ (the linearised regime governs),
+uniform over the four measured $3$-adic scales, and essentially
+$\lam$-independent up to the endpoint · i.e.\ $\sqrt{Q} \approx 0.60$ with
+$40\%$ margin below $1$, on every axis we can vary.
+\end{proof}
+
+\begin{remark}[what remains for this leg]\label{rem:doeblinstatus}
+Two certifiable steps promote Lemma~\ref{lem:doeblin} to a $k$-uniform gap
+theorem: (i) evaluate $Q$ from the limiting $\Psi$ table in interval
+arithmetic (the table is Cauchy at rate $\approx 0.85$, so a finite-depth
+table evaluation plus the tail bound certifies $Q < 1$ uniformly); (ii) the
+invariance of the $\Psi$-consistent sub-cone under $L$, measured as exact
+profile preservation (ratio $1.01$ per scale, script 378). Both are
+finite computations in the style of the Lemma-A and endpoint-domination
+certificates. The remaining analytic content of the uniformity leg is then
+empty; the programme's single open analytic statement stays the margin law
+($c(2) < 1$).
+\end{remark}
+
 \section{The five bookkeeping tasks}
 
 \begin{enumerate}
