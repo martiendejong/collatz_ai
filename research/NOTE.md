@@ -15727,3 +15727,16 @@ slechtste geval. De Doeblin-constante is daarmee: formule klopt, waarde
 Route-A-stand na zeventien stappen: het uniformiteitsbeen is empirisch
 DICHT (formule + waarde + staart + sub-kegel); rest machinaal certificeren
 en, als enige analytische kern van het programma: de margewet c(2) < 1.
+
+## Obs 570 (2026-08-12): Q < 1 GECERTIFICEERD OP GROF-BUDGET-NIVEAU (Script 381; certificates/cert_Q_doeblin.txt; Route A stap 18)
+
+Certificaat-boekhouding op het eindpunt, k=13/14, met RELATIEVE deviaties
+(rationaal-gedefinieerd object i.p.v. log; eerlijke noot: dat geeft
+Q_float = 0.525/0.528, hoger dan de log-versie 0.40 uit Obs 569 — zelfde
+familie, certificaat-precieze definitie):
+  Q_cert = Q_float + E_float(1e-11) + E_rho(1e-12) + E_tail(0.267)
+         = 0.792 / 0.795  <  1   — WAAR, marge ~0.21 in het slechtste geval.
+Daarmee is het uniformiteitsbeen van het homogenisatie-lemma op alle
+onderdelen gesloten op certificaat- of stellingsniveau behalve de formele
+intervalversie van de log-variant (mechanisch). Het programma heeft nu EEN
+open analytische uitspraak: de margewet c(2) < 1.

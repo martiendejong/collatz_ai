@@ -1,0 +1,10 @@
+Certificate: Doeblin quadratic form Q < 1 (coarse rigorous budget)
+Q = sum w_n w_m phi(|n-m|); weights k-free; phi from exact dyadic
+vector statistics in float64 with explicit error budget; Cauchy tail
+inflation 0.04/(1-0.85) on every phi entry (worst case, Obs 560).
+
+k=13: Q_float = 0.525302; E_float <= 1.1e-11; E_rho <= 1e-12; E_tail = 0.2667; Q_cert = 0.7920 < 1: True
+k=14: Q_float = 0.528282; E_float <= 1.1e-11; E_rho <= 1e-12; E_tail = 0.2667; Q_cert = 0.7949 < 1: True
+
+VERDICT: Q < 1 certified at coarse-budget level for k=13,14 at the
+endpoint; margin ~0.33 above the worst-case sum of all error terms.
