@@ -15710,3 +15710,20 @@ Nieuwe subsectie in density_one.tex (32pp, compileert schoon):
   (tabel Cauchy op 0.85), (ii) sub-kegel-invariantie (profielbehoud 1.01
   gemeten). Daarna is het uniformiteitsbeen analytisch LEEG en blijft als
   enige open analytische uitspraak van het programma: de margewet c(2)<1.
+
+## Obs 569 (2026-08-12): Q GEEVALUEERD — DE FORMULE REPRODUCEERT DE DOEBLIN-FACTOR EN OVERLEEFT DE STAARTOPSLAG (Script 380; Route A stap 17)
+
+De kwadratische vorm Q = som w~_n w~_n' phi(n-n') expliciet berekend
+(k-vrije gewichten; phi gemeten langs de echte argumentstructuur):
+  k=12: Q = 0.4002, sqrt(Q) = 0.6326
+  k=14: Q = 0.4055, sqrt(Q) = 0.6368
+— reproduceert de direct gemeten excess-contractie 0.60-0.62 binnen ~4%
+(linearisatie-orde), en is k-stabiel. Met de CRUDE Cauchy-staartopslag
+(alle phi-entries opgeblazen met de volledige resterende tabelafstand
+0.04/(1-0.85) = 0.27): Q_hi = 0.67 — RUIM ONDER 1, 33% marge zelfs in het
+slechtste geval. De Doeblin-constante is daarmee: formule klopt, waarde
+0.40, staartbestendig. De promotie naar intervalcertificaat is mechanisch
+(zelfde pijplijn als het eindpunt-dominantie-certificaat, script 368).
+Route-A-stand na zeventien stappen: het uniformiteitsbeen is empirisch
+DICHT (formule + waarde + staart + sub-kegel); rest machinaal certificeren
+en, als enige analytische kern van het programma: de margewet c(2) < 1.
