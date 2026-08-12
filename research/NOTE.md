@@ -15761,3 +15761,13 @@ beide klokken samenvallen; Steiner/Baker sluit de kleine syncs uit, de
 verificatie de betaalbare, en het spectrum (Obs 542) geeft de resterende
 dienstregeling. De formulering verenigt uurwerk en deelbaarheid in een
 enkel leesbeeld: front-terugkeer op het moment van staart-uitputting.
+
+### Obs 571 — addendum (meting): het patroon in de bijna-terugkeren
+Dichtste terugkeer-missers per baan (bits, |log2(n_t/a)|): 27: 0.199@K=2,
+0.231@K=37; 41: 0.197@K=2, 0.228@K=37 (identiek verschoven: zelfde baan!);
+31: 0.175@K=36. Het patroon: (1) banen die een traject delen hebben
+identieke misser-lijsten, getransleerd; (2) bijna-terugkeer = het moment
+waarop de excursie zijn startniveau weer KRUIST (27's klim piekt en daalt
+door niveau-27 rond K=36-38); (3) de diepte van zo'n misser = klok-misser
+plus carry-som — sluiting zou vereisen dat een kruising EXACT op a landt:
+de twee-mirakels-eis uit de hoofdobservatie, nu zichtbaar per baan.
