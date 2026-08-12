@@ -15675,3 +15675,20 @@ eindpunt: 0.97 — eerlijk genoteerd). Resterende bewijsklus: de excess-
 contractie als lemma (gladstrijking van de Neumann-som — lineair object,
 Doeblin-klasse). Route-A-stand na veertien stappen: sub-kegel gevonden,
 kwantificatie open; plus de margewet. Al het overige: stelling/certificaat.
+
+## Obs 567 (2026-08-12): DE EXCESS-CONTRACTIE IS ~0.60 PER NIVEAU — k-VLAK, AMPLITUDE-LINEAIR, SCHAAL-UNIFORM, EINDPUNT-VEILIG (Script 379; Route A stap 15)
+
+De juiste grootheid (excess boven het evenwichtsprofiel i.p.v. ruwe ratio):
+  (osc_uit - osc_evenwicht)/(osc_in - osc_evenwicht) = 0.57-0.66
+  - k-VLAK: k=10/12/14 identiek binnen 0.02 (bv. 0.593/0.573/0.575);
+  - AMPLITUDE-LINEAIR: eps=0.5 en eps=0.1 geven dezelfde factoren — het
+    gelineariseerde regime regeert, precies wat het Doeblin-lemma nodig heeft;
+  - SCHAAL-UNIFORM over alle vier gemeten 3-adische schalen;
+  - EINDPUNT-VEILIG: lam=2.00 geeft 0.59-0.66, nauwelijks zwakker dan 1.70
+    (de eerdere 0.97 uit Obs 566 was verdund door het evenwichtsdeel).
+De invariante sub-kegel contraheert zijn excess dus met factor ~0.6 per
+torenniveau, uniform in alles. Het Doeblin-lemma dat rest is: bewijs dat de
+gelineariseerde Neumann-som-gladstrijking excess-oscillatie met een
+k-vrije factor < 1 contraheert — de metingen geven 0.6 met marge, op alle
+assen uniform. Route-A-stand na vijftien stappen: twee schrijfklussen
+(Doeblin-lemma met factor 0.6; margewet) — nul meetraadsels over.
