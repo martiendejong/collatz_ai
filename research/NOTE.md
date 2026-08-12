@@ -15740,3 +15740,24 @@ Daarmee is het uniformiteitsbeen van het homogenisatie-lemma op alle
 onderdelen gesloten op certificaat- of stellingsniveau behalve de formele
 intervalversie van de log-variant (mechanisch). Het programma heeft nu EEN
 open analytische uitspraak: de margewet c(2) < 1.
+
+## Obs 571 (2026-08-12): MARTIENS VENSTER-SYNC-FORMULERING VAN HET CYCLUSCRITERIUM
+
+Formulering (Martien): een cyclus vereist dat als je bij reeks a begint en
+x3 blijft doen, je uiteindelijk reeks a als voorloper terugkrijgt, PRECIES
+op het moment dat de laatste 1 uit de trail verwerkt is. Dit is exact de
+gelijktijdige vervulling van onze twee cycluslagen:
+  (1) SYNC (het uurwerk, Obs 542): de schrijfklok (K conversies, elk
+      log2(3) bits de kop op) en de leesklok (N staartbits geconsumeerd)
+      moeten simultaan rond zijn: N - K*log2(3) = miss(K) binnen het
+      +1-budget — de kettingbreuk-dienstregeling.
+  (2) INHOUD (de eindpuntformule, Obs 543): de geaccumuleerde carries
+      moeten de bitinhoud van a exact reproduceren: (2^N - 3^K) | c —
+      de deelbaarheidsloterij bovenop het venster.
+Triviale check in dit beeld: a=1: x3 -> 11, +1 -> 100, twee staartbits
+lezen -> front = 1 exact bij de laatste leesstap: sync en inhoud tegelijk
+(2^2 - 3 = 1 deelt alles). De bekende cycli zijn precies de gevallen waar
+beide klokken samenvallen; Steiner/Baker sluit de kleine syncs uit, de
+verificatie de betaalbare, en het spectrum (Obs 542) geeft de resterende
+dienstregeling. De formulering verenigt uurwerk en deelbaarheid in een
+enkel leesbeeld: front-terugkeer op het moment van staart-uitputting.
