@@ -15645,3 +15645,17 @@ crude kegelbound negeert. KANDIDAAT: Birkhoff op de vezeltoren-recursie in
 plaats van op J direct — elk torenniveau is een VAST klein systeem
 (k-onafhankelijk), en de toren telescopeert; per-niveau-contractie zou dan
 k-vrij zijn per constructie. Dat is de volgende afgebakende klus.
+
+## Obs 565 (2026-08-12): OOK DE EEN-NIVEAU-KEGELDIAMETER GROEIT — DE CRUDE BIRKHOFF-ROUTES ZIJN OP; INVARIANTE SUB-KEGEL IS DE ECHTE KLUS (Script 377; Route A stap 13)
+
+Diameter van L(kegel) per niveau: 9.3->11.9 (lam=1.70, k=10->14),
+9.9->12.6 (lam=2.00) — GROEIT ~lineair met k (random inputs verkennen
+fijnere verschillen; kernratio's ~ t^(-bereik)). tanh(D/4) -> 1: ook de
+naieve torenroute levert geen k-vrije factor. EERLIJKE CONCLUSIE na twee
+crude pogingen (Obs 564-565): de ware contractie (0.85, vlak) komt niet uit
+worst-case-kegelmeetkunde maar uit de gladheid van ECHTE velden. De
+bewijskandidaat is nu scherp: een OSCILLATIE-BEGRENSDE SUB-KEGEL (velden
+met Psi-consistente lokale oscillatie) waarvan (i) L hem invariant laat met
+marge (L glijkt — plausibel, te bewijzen), en (ii) de diameter erop klein
+en k-vrij is. Dat is een Doeblin/gewogen-kegel-klus, geen raadsel: de
+metingen (0.85 vlak in ALLE instrumenten) zeggen dat zo'n kegel bestaat.
