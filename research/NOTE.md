@@ -15615,3 +15615,18 @@ AF — de eerste grootheid in het hele programma waarvan de eindpunt-trend de
 goede kant op gaat in plaats van te kruipen. Route-A-stand na tien stappen:
 uniformiteitsvraag = (i) lineaire spectrale gap (gemeten vlak/openend,
 Birkhoff-bewijsbaar-klasse) + (ii) de margewet (= c(2)<1, de ene kern).
+
+## Obs 563 (2026-08-12): BIRKHOFF-CONTRACTIE VAN J GEMETEN — k-UNIFORM 0.84-0.87 IN DE HILBERT-METRIEK (Script 375; Route A stap 11)
+
+Hilbert-projectieve afstanden onder J-iteratie (random positieve starts,
+d_H ~ 6-7 initieel):
+  lam=1.70: contractie/stap 0.8399 / 0.8433 / 0.8541  (k=10/12/14)
+  lam=2.00: 0.8662 / 0.8671 / 0.8700
+d_H collabeert naar 1e-4..1e-5 binnen 6k stappen. De factoren matchen de
+spectrale metingen (Obs 561/562) en zijn VLAK in k: de bevroren Jacobiaan
+contraheert de kegel k-uniform in de projectieve metriek — precies het
+gedrag dat een Birkhoff-bewijs vereist en levert. De gap-uniformiteit is
+daarmee van "gemeten spectraal feit" naar "gemeten contractie in de
+bewijsbare metriek" getild; de resterende bewijsklus is de eindige
+projectieve diameter van een geschikte macht J^m uniform begrenzen
+(kegelbeeld-diameter, expliciete kern — afgebakend werk).
