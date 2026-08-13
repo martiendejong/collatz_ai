@@ -15771,3 +15771,21 @@ waarop de excursie zijn startniveau weer KRUIST (27's klim piekt en daalt
 door niveau-27 rond K=36-38); (3) de diepte van zo'n misser = klok-misser
 plus carry-som — sluiting zou vereisen dat een kruising EXACT op a landt:
 de twee-mirakels-eis uit de hoofdobservatie, nu zichtbaar per baan.
+
+## Obs 572 (2026-08-13): LINEAIRE CARRY-VOORSPELBAARHEID — EXACT 3 STAPPEN PERFECT, DAARNA HALVERING PER ~2 STAPPEN (meting 200k seeds)
+
+Vraag (Martien): kun je de carries op de een of andere manier van tevoren
+bepalen? Meting: max |correlatie| van pariteitsbit t met lineaire
+voorspellers (losse seed-bits + buur-XOR), 200k random 62-bit starts:
+  t=1..3: 1.0000 (EXACT lineair — drie stappen carry-vrij voorspelbaar)
+  t=4..5: 0.50 | t=6..7: 0.25 | t=8: 0.06 | t>=9: ruisvloer ~0.01-0.03
+WET: de beste lineaire voorspeller verliest de helft van zijn correlatie
+per ~2 stappen (plateaus 1,1,1 / .5,.5 / .25,.25 / ...). Carries zijn dus
+WEL vooruit bepaalbaar met lineaire middelen, maar met exponentieel
+vervallende getrouwheid: drie stappen gratis, daarna 1 informatiebit
+verlies per twee stappen — de gemeten lineaire-opaciteitswet van de
+carry-cascade. Spoort met het leesritme (1 bit/stap geconsumeerd) en met
+incompressibiliteit: het niet-lineaire deel groeit precies zo snel als het
+venster leest. Voor "in het voren bepalen" is dit het eerlijke antwoord:
+lineair kan, met halveringswet; exact kan, zolang het venster reikt
+(carry_i = floor((3(n mod 2^i)+1)/2^i)); onbegrensd exact = de muur.
