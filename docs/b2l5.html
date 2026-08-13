@@ -232,7 +232,46 @@
     information is exactly the irreducible \(\log_2 3\) core of the problem.</p>
   </div>
 
-  <div class="subject">
+    <div class="subject">
+    <h2><span class="snum">7</span><span class="nl">Carries vooruit bepalen · en het cyclus-synchronisatiebeeld</span><span class="en">Determining carries in advance · and the cycle-sync picture</span></h2>
+    <p class="nl">De carry is onderdeel van het getal en afleidbaar: de carry die positie i binnenkomt
+    bij 3n+1 is exact ⌊(3·(n mod 2<sup>i</sup>)+1)/2<sup>i</sup>⌋ · lineair over de gehele getallen
+    plus één afronding. Ken je de laagste m bits, dan liggen alle carries vast tot de baan die m bits
+    geconsumeerd heeft; het horizon ontrolt zich per trailing run (carry-ripple-lengte =
+    trailing-enen-lengte).</p>
+    <p class="en">The carry is part of the number and derivable: the carry entering position i in
+    3n+1 is exactly ⌊(3·(n mod 2<sup>i</sup>)+1)/2<sup>i</sup>⌋ · linear over the integers plus one
+    rounding. Knowing the lowest m bits fixes all carries until the orbit has consumed those m bits;
+    the horizon unrolls run by run (carry-ripple length = trailing-ones length).</p>
+    <p class="nl">Gemeten over 200.000 starts: de beste <b>lineaire</b> voorspeller van pariteitsbit t
+    is exact voor t = 1, 2, 3 en verliest daarna de helft van zijn correlatie per twee stappen
+    (1 → ½ → ¼ → …): één informatiebit verlies per twee stappen, precies het leesritme van de
+    machine. De carry-cascade is dus drie stappen gratis leesbaar en daarna lineair-opaak volgens een
+    strakke halveringswet.</p>
+    <p class="en">Measured over 200,000 starts: the best <b>linear</b> predictor of parity bit t is
+    exact for t = 1, 2, 3 and then loses half its correlation every two steps (1 → ½ → ¼ → …): one
+    bit of information per two steps, exactly the machine's reading rate. The carry cascade is three
+    steps free, then linearly opaque by a clean halving law.</p>
+    <div class="callout">
+      <div class="title nl">Het cyclus-synchronisatiebeeld</div>
+      <div class="title en">The cycle-sync picture</div>
+      <span class="nl">Een cyclus vereist dat de voorkant exact terugkeert als reeks a, precies op het
+      moment dat de laatste 1 uit de staart verwerkt is: schrijfklok en leesklok simultaan rond
+      (het uurwerk, les 2.4) én de carry-inhoud exact kloppend (de deelbaarheid). Gemeten per baan:
+      bijna-terugkeren zijn de momenten waarop de excursie zijn startniveau kruist; banen die een
+      traject delen hebben identieke misser-lijsten (27 en 41: 0.199 vs 0.197 bit bij K=2); en 27
+      komt in zijn hele leven nooit dichter dan ~0.2 bit bij zichzelf · geen pech maar
+      dienstregeling.</span>
+      <span class="en">A cycle requires the front to return exactly as sequence a at the very moment
+      the last 1 of the tail is processed: write-clock and read-clock simultaneously round (the
+      clockwork, lesson 2.4) and the carry content exactly right (the divisibility). Measured per
+      orbit: near-returns are the moments the excursion crosses its starting level; orbits sharing a
+      trajectory have identical miss lists (27 and 41: 0.199 vs 0.197 bits at K=2); and 27 never
+      comes closer than ~0.2 bits to itself in its whole life · not bad luck but timetable.</span>
+    </div>
+  </div>
+
+<div class="subject">
     <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
     <div class="quiz">
       <div class="q" data-answer="b">
