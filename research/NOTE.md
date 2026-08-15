@@ -15828,3 +15828,23 @@ staart/marge), met de plek waar het ontbrekende gegeven moet aangrijpen
 exact gemarkeerd (nullen-staart vs oneindige enen-voorraad; het getal -1
 als het perfecte klimmer-model dat positieve gehelen alleen eindig kunnen
 naspelen).
+
+## Obs 575 (2026-08-15): DE LAATSTE 5% GEIDENTIFICEERD — HET CEILING-PLAFOND IS NUMERIEK DE ESCAPE-DIMENSIE
+
+Vraag (Martien): als de ladder niet tot 1 reikt, wat zit er dan in de
+laatste 5%? Antwoord in drie lagen:
+  (1) Geen tegenvoorbeelden: CEILING zou methode-blindheid zijn, geen
+      waarheids-plafond. (En x^0.95 is in dichtheid een verdwijnende
+      fractie: de "laatste 5% exponent" is bijna iedereen.)
+  (2) De bewoners: de excursie-zware getallen — de -1-naspelers die de
+      schaduw van D diep involgen; hun terugkeerinformatie ligt buiten elk
+      eindig venster, dus elke vaste-diepte-boekhouding mist ze. De
+      verlorenmassa-plek (gap gammabar) is exact hun spoor.
+  (3) DE IDENTIFICATIE: CEILING-waarde gemeten ~0.950; escape-dimensie
+      H_b(1/log2 3) = 0.94996 (Obs 91's "5%-taks", dim_H(D) <= 0.9507).
+      Lezing: als de ladder plafonneert, plafonneert hij op de DIMENSIE
+      van de divergentie-geschikte fractal — de telling kan niet door de
+      schaduw van D heen. Vork-herformulering: DENSITY = de schaduw van -1
+      op de positieve gehelen dooft uit met diepte; CEILING = de schaduw
+      is permanent met breedte exact kappa. De vork is daarmee de vraag:
+      is de schaduw van -1 eindig of oneindig diep?
