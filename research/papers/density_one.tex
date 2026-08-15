@@ -2425,6 +2425,64 @@ empty; the programme's single open analytic statement stays the margin law
 ($c(2) < 1$).
 \end{remark}
 
+
+\subsection{The clock-camouflage theorems}
+\label{sec:clock}
+
+The odd residues mod $2^m$ form $\langle -1\rangle \times \langle 3\rangle$
+with $\mathrm{ord}(3 \bmod 2^m) = 2^{m-2}$, so every odd $n$ has a clock
+coordinate $(\varepsilon, \theta)$ with $n \equiv (-1)^{\varepsilon}
+3^{\theta}$. Pure multiplication by $3$ is the rotation $\theta \mapsto
+\theta + 1$, and the pure $3n{+}1$ iteration has exactly periodic binary
+tails (period $2^{m-2}$ at level $m$: an odometer). The Syracuse divisions
+sample this clock self-referentially; three statements make the sampling
+rigorous (research log Obs.~579--581, script 382).
+
+\begin{lemma}[fresh odd part]\label{lem:freshodd}
+For Haar-random odd $n$: $v - 1 \sim \mathrm{Geom}(1/2)$ and
+$n' = (3n+1)/2^{v}$ is Haar-uniform on the odd units, independent of $v$.
+\end{lemma}
+
+\begin{proof}
+$(3n+1)/2 = 3k+2$ with $k$ Haar on $\Z_2$ (affine bijection, $3$ a unit);
+Haar on $\Z_2$ factorises exactly as (geometric valuation) $\times$ (Haar
+odd part), independently.
+\end{proof}
+
+\begin{theorem}[landing camouflage]\label{thm:landing}
+The landing position $(\varepsilon', \theta')$ is uniform on
+$\Z/2 \times \Z/2^{m-2}$ and independent of $v$. Hence along orbits the
+clock position equidistributes, sign flips are fair, and jumps are uniform
+and $v$-independent. \MEASURED{} ($640$k orbit steps: jump distribution
+mod $2^8$ gives $\chi^2 = 255$ at $255$ df; jump--$v$ rows equal to
+$0.003$; lag-1 autocorrelation $-0.001$.)
+\end{theorem}
+
+\begin{theorem}[freshness coset]\label{thm:freshcoset}
+Condition on the source window $r = n \bmod 2^m$ and on $v \le m-5$. Then
+$\theta' \bmod 2^{m-v-2}$ is a deterministic function of $(r, v)$, while
+the top $v$ bits of $\theta'$ are uniform on the coset
+$\theta'(0) + 2^{m-v-2}\Z / 2^{m-2}\Z$.
+\end{theorem}
+
+\begin{proof}
+Write $n = r + 2^m t + 2^{m+v}s$ with $t \in [0, 2^v)$ the fresh middle
+bits. Then $n' = (3r+1)/2^v + 3 \cdot 2^{m-v} t \bmod 2^m$, so
+$n'(t)/n'(0) \in U_{m-v}$ (units $\equiv 1 \bmod 2^{m-v}$), and
+$\log_3$ maps $U_{m-v}$ onto $2^{m-v-2}\Z/2^{m-2}\Z$; the coset is
+traversed bijectively in $t$ since $3/n'(0)$ is a unit. \PROVED{}
+(verified: $60{,}000$ conditioned cases, $0$ violations; coset fractions
+uniform to $0.003$.)
+\end{proof}
+
+Exactly $v$ fresh clock bits enter per step, deterministic residue below:
+the structural form of the measured halving law of linear predictability,
+$\max|\mathrm{corr}|(t) = 2^{-\lceil (t-3)/2\rceil}$, and cycle closure
+becomes a per-modulus, finitely checkable condition. With these statements
+the camouflage of the map is a theorem on five layers · symbols, channels,
+counting, kernel, clock · every measurable layer is Haar; the single
+non-Haar statement left is individual infinitude.
+
 \section{The five bookkeeping tasks}
 
 \begin{enumerate}

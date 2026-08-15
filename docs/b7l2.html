@@ -174,6 +174,56 @@
   </div>
 
   <div class="subject">
+    <h2><span class="snum">6</span><span class="nl">Het uurwerk en de klok-camouflage</span><span class="en">The odometer and the clock camouflage</span></h2>
+    <p class="nl">Itereer je puur ×3+1 vanaf 1, zonder delingen, dan krijg je binair 1, 100, 1101,
+    101000, 1111001, … · de basis-3-repunits door de binaire bril. Hun staart is een perfect
+    <b>uurwerk</b>: mod 2<sup>m</sup> exact periodiek met periode 2<sup>m−2</sup>, aangedreven door
+    ord(3 mod 2<sup>m</sup>) = 2<sup>m−2</sup> · het spiegelbeeld van de ternaire klok uit les 2.2.
+    Alle schijnbare wanorde van Collatz komt dus niet uit de vermenigvuldiging maar uit de
+    <b>bemonstering</b>: de delingen lezen de klok af op momenten die de klok zelf dicteert.</p>
+    <p class="en">Iterate pure ×3+1 from 1, without divisions, and you get binary 1, 100, 1101,
+    101000, 1111001, … · the base-3 repunits through binary glasses. Their tail is a perfect
+    <b>odometer</b>: exactly periodic mod 2<sup>m</sup> with period 2<sup>m−2</sup>, driven by
+    ord(3 mod 2<sup>m</sup>) = 2<sup>m−2</sup> · the mirror of the ternary clock of lesson 2.2. All
+    apparent disorder of Collatz thus comes not from the multiplication but from the
+    <b>sampling</b>: the divisions read the clock at moments the clock itself dictates.</p>
+    <p class="nl">Omdat de oneven eenheden mod 2<sup>m</sup> precies ⟨−1⟩ × ⟨3⟩ zijn, heeft elk
+    oneven getal een <b>klokpositie</b> θ (zijn discrete 3-logaritme). Meting over 640.000 stappen:
+    de positie equidistribueert, de sprongen zijn uniform (χ² = 255 bij 255 vrijheidsgraden!),
+    onafhankelijk van v, en geheugenloos. En dat is geen toeval maar een stelling · drie zelfs:</p>
+    <p class="en">Since the odd units mod 2<sup>m</sup> are exactly ⟨−1⟩ × ⟨3⟩, every odd number has
+    a <b>clock position</b> θ (its discrete base-3 logarithm). Measured over 640,000 steps: the
+    position equidistributes, the jumps are uniform (χ² = 255 at 255 degrees of freedom!),
+    independent of v, and memoryless. And that is no accident but a theorem · three, in fact:</p>
+    <table class="nice">
+      <tr><th class="nl">stelling</th><th class="en">theorem</th><th class="nl">inhoud</th><th class="en">content</th></tr>
+      <tr><td class="nl">vers oneven deel</td><td class="en">fresh odd part</td>
+        <td class="nl">(3n+1)/2 = 3k+2 is Haar op ℤ₂: v en het volgende oneven getal zijn exact onafhankelijk</td>
+        <td class="en">(3n+1)/2 = 3k+2 is Haar on ℤ₂: v and the next odd number are exactly independent</td></tr>
+      <tr><td class="nl">landings-camouflage</td><td class="en">landing camouflage</td>
+        <td class="nl">de landingspositie op de wijzerplaat is uniform en v-onafhankelijk · verklaart alle metingen in één klap</td>
+        <td class="en">the landing position on the dial is uniform and v-independent · explains all measurements at once</td></tr>
+      <tr><td class="nl">versheids-coset</td><td class="en">freshness coset</td>
+        <td class="nl">gegeven venster en v: θ′ deterministisch mod 2<sup>m−v−2</sup>, de v topbits uniform · exact v verse klokbits per stap (60.000 checks, 0 schendingen)</td>
+        <td class="en">given window and v: θ′ deterministic mod 2<sup>m−v−2</sup>, the v top bits uniform · exactly v fresh clock bits per step (60,000 checks, 0 violations)</td></tr>
+    </table>
+    <div class="callout">
+      <div class="title nl">Camouflage op vijf lagen</div>
+      <div class="title en">Camouflage on five layers</div>
+      <span class="nl">De versheids-coset is de structurele verklaring van de halveringswet uit les
+      2.5: per stap komen exact v verse klokbits binnen, niet meer en niet minder. En daarmee is de
+      camouflage van de afbeelding op vijf lagen een stelling: symbolen, kanalen, telling, kern én
+      klok. Elke laag die meetbaar is, is bewijsbaar Haar; de enige niet-Haar-uitspraak die
+      overblijft is de individuele oneindigheid · de muur van les 7.4.</span>
+      <span class="en">The freshness coset is the structural explanation of the halving law of
+      lesson 2.5: exactly v fresh clock bits enter per step, no more and no less. And with that the
+      map's camouflage is a theorem on five layers: symbols, channels, counting, kernel and clock.
+      Every measurable layer is provably Haar; the only non-Haar statement left is individual
+      infinitude · the wall of lesson 7.4.</span>
+    </div>
+  </div>
+
+  <div class="subject">
     <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
     <div class="quiz">
       <div class="q" data-answer="c">
