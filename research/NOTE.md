@@ -15848,3 +15848,15 @@ laatste 5%? Antwoord in drie lagen:
       op de positieve gehelen dooft uit met diepte; CEILING = de schaduw
       is permanent met breedte exact kappa. De vork is daarmee de vraag:
       is de schaduw van -1 eindig of oneindig diep?
+
+### Obs 575 — addendum: de groeiwet van de schaduw als no-conspiracy-signatuur
+Martiens observatie: de maximale schaduwlengte groeit mee met de verzameling.
+Exact: diepste enkelblok-schaduw onder x = floor(log2 x) (alle-enen); records
+~C log n (26 stappen/bit; klassiek ~41.7 ln n); pieken ~x^2 (onze martingaal-
+wet n/P). SIGNATUUR-LEZING: logaritmische recordgroei is exact de
+Erdos-Renyi-voorspelling van puur toeval (gemeten: integer-banen identiek
+aan het iid-model, Obs 551). Elke verborgen klim-structuur zou
+bovenlogaritmische records geven — niet waargenomen op 5 ordes. Divergentie
+zou een getal vergen dat zijn eigen extreme-waarden-wet oneindig overtreft:
+niet een kampioen, maar een spelverlater. De meegroeiende maxima zijn dus
+geen bedreiging maar de signatuur van een samenzweringsvrije wereld.
