@@ -15896,3 +15896,22 @@ toevalligheden bevatten" = disjunctie van een AFTELBARE verzameling
 (gehelen) en een OVERAFTELBARE MAAT-NUL-verzameling (D): tellen en maat
 falen beide per constructie — de lege doorsnede (Obs 574) bereikt via het
 duivenhok. Alles behalve "en dat kan niet oneindig" is nu stelling.
+
+## Obs 577 (2026-08-15): MARTIENS SLIP-MECHANISME — HET SPIEGELPAAR -1 / -1/3 EN DE BOREL-CANTELLI-INKADERING
+
+Observatie (Martien): de x3+1-stap "van 1 naar 100" kan alleen als de bits
+erna slippen en precies die +1 leveren (101 -> 10000); en per extra bit
+halveert de kans dat de hele staart precies die carry levert.
+Uitwerking: perfecte instorters (3n+1 = 2^m) zijn n = (2^m-1)/3 = binair
+1, 101, 10101, ... = afkappingen van -1/3 = ...0101. SPIEGELPAAR:
+  perfecte klimmer  = afkapping van -1   (...1111)
+  perfecte instorter = afkapping van -1/3 (...0101)
+— de twee extreme gedragingen zijn schaduwen van de twee simpelste
+bewoners van de negatieve wereld. De kans-halvering per bit = de
+een-restklasse-wet (Obs 534). Opgeteld over de rondes van een type-3-
+klimmer: som van kansen convergeert => Borel-Cantelli: vrijwel zeker
+eindig veel diepe slip-events — divergentie maat nul (stelling). Niet
+afdekbaar: een individueel getal dat zijn verwachting oneindig vaak
+verslaat (kans is daar metafoor; bits liggen vast) — de muur, nu ook van
+de kansen-kant volledig ingekaderd: het monster moet oneindig vaak een
+gebeurtenis realiseren waarvan de gezamenlijke verwachting eindig is.
