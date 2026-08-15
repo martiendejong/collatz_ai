@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 7.4 · De drie eeuwige klimmers</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 7 · De 2-adische Wereld</span><span class="en">Block 7 · The 2-adic World</span> › <b>7.4</b></div>
+    <h1 class="nl">De drie eeuwige klimmers · en het precieze type van de muur</h1>
+    <h1 class="en">The three eternal climbers · and the precise type of the wall</h1>
+    <p class="lead nl">Als een getal nooit naar 1 zou vallen, hoe zou dat er dan uitzien? Deze les
+    volgt een redeneerroute uit augustus 2026 die alle mogelijkheden één voor één elimineert · en
+    eindigt bij de exacte plek waar het open probleem woont.</p>
+    <p class="lead en">If a number never fell to 1, what would that look like? This lesson follows a
+    line of reasoning from August 2026 that eliminates every possibility one by one · and ends at
+    the exact spot where the open problem lives.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Drie manieren om eeuwig te klimmen</span><span class="en">Three ways to climb forever</span></h2>
+    <p class="nl">Een tegenvoorbeeld voor het vermoeden moet een baan zijn die nooit bij 1 komt:
+    een cyclus, of een eeuwige klim. In bitreeks-taal zijn er precies drie denkbare vormen. Je kunt
+    ze zelf ontdekken, van klein naar groot: welke bitreeksen komen na verwerking weer op zichzelf
+    uit?</p>
+    <p class="en">A counterexample to the conjecture must be an orbit that never reaches 1: a cycle,
+    or an eternal climb. In bit-sequence language there are exactly three conceivable forms. You can
+    discover them yourself, from small to large: which bit sequences return to themselves after
+    processing?</p>
+    <table class="nice">
+      <tr><th></th><th class="nl">reeks</th><th class="en">sequence</th><th class="nl">wat er gebeurt</th><th class="en">what happens</th></tr>
+      <tr><td>1</td><td colspan="2">1</td>
+        <td class="nl">1 → 100: zichzelf, met twee nullen erachter · en terug</td>
+        <td class="en">1 → 100: itself, with two zeros appended · and back</td></tr>
+      <tr><td>2</td><td colspan="2">10</td>
+        <td class="nl">via 1 weer terug bij zichzelf</td>
+        <td class="en">returns to itself via 1</td></tr>
+      <tr><td>3</td><td colspan="2">100</td>
+        <td class="nl">terug bij zichzelf · 11, 101, 110, 111: nooit</td>
+        <td class="en">back to itself · 11, 101, 110, 111: never</td></tr>
+      <tr><td>≥4</td><td colspan="2">…</td>
+        <td class="nl">geen enkele reeks keert exact terug</td>
+        <td class="en">no sequence returns exactly</td></tr>
+    </table>
+    <p class="nl">De exacte terugkeerders zijn dus precies {1, 2, 4}: de triviale cyclus. Dat is
+    <b>type 1</b>. Maar er zijn twee sluwere vormen denkbaar: <b>type 2</b>, dezelfde staart keert
+    terug met extra bits ervoor (een zelfgelijkvormige stijger die elke ronde hetzelfde patroon
+    draait), en <b>type 3</b>, een klim waarvan het patroon élke ronde anders is. De rest van deze
+    les elimineert type 1 en 2 met stellingen, en drijft type 3 in een hoek.</p>
+    <p class="en">The exact returners are precisely {1, 2, 4}: the trivial cycle. That is
+    <b>type 1</b>. But two slyer forms are conceivable: <b>type 2</b>, the same tail returns with
+    extra bits in front (a self-similar riser running the same pattern every round), and
+    <b>type 3</b>, a climb whose pattern differs every round. The rest of this lesson eliminates
+    types 1 and 2 with theorems, and drives type 3 into a corner.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Type 1 en 2 gedood: het limietobject is −1</span><span class="en">Types 1 and 2 killed: the limit object is −1</span></h2>
+    <p class="nl">Type 1 is de cyclusvraag: uitgesloten tot 2<sup>71</sup> aan startgetallen en tot
+    186 miljard stappen aan cykellengtes (les 2.4). Voor type 2 is er een verrassend korte
+    doodsteek. Herhaalt een baan hetzelfde patroon (K oneven stappen, N gelezen bits per ronde),
+    dan convergeert hij 2-adisch naar een vast punt van dat patroon · en die vaste punten zijn
+    volledig geclassificeerd: de breuken \(c/(2^N - 3^K)\).</p>
+    <p class="en">Type 1 is the cycle question: excluded up to 2<sup>71</sup> in starting values and
+    186 billion steps in cycle length (lesson 2.4). For type 2 there is a surprisingly short kill.
+    If an orbit repeats the same pattern (K odd steps, N bits read per round), it converges
+    2-adically to a fixed point of that pattern · and those fixed points are fully classified: the
+    fractions \(c/(2^N - 3^K)\).</p>
+    <div class="callout">
+      <div class="title nl">De tekenstelling</div>
+      <div class="title en">The sign theorem</div>
+      <span class="nl">Klimmen betekent \(N/K < \log_2 3\), dus \(2^N - 3^K < 0\): <b>het
+      limietobject van elke zelfgelijkvormige stijger is een negatief getal</b>. Het perfecte
+      exemplaar ken je uit les 7.1: de oneindige enen-staart …1111 = −1, de eeuwige klimmer die
+      elke stap met factor 3/2 groeit. Een positief geheel getal heeft een eindige enen-voorraad en
+      kan met een negatief limietobject maar eindig veel bits delen: type 2 is voor positieve
+      gehele getallen <b>bewijsbaar onmogelijk</b>.</span>
+      <span class="en">Climbing means \(N/K < \log_2 3\), so \(2^N - 3^K < 0\): <b>the limit object
+      of every self-similar riser is a negative number</b>. You know the perfect specimen from
+      lesson 7.1: the infinite ones-tail …1111 = −1, the eternal climber growing by 3/2 every step.
+      A positive integer has a finite supply of ones and can share only finitely many bits with a
+      negative limit object: type 2 is <b>provably impossible</b> for positive integers.</span>
+    </div>
+    <p class="nl">En de prijs van imitatie is exact bekend: één extra bit overeenstemming met het
+    limietobject kost een factor 2 in zeldzaamheid en koopt precies één venster extra schaduwtijd.
+    Lineaire opbrengst voor exponentiële prijs · daarom groeien de recordklimmers maar logaritmisch
+    met de zoekruimte, en de piekhoogtes als \(x^2\) (de martingaalwet van les 2.5). Sterker: de
+    records groeien <i>exact</i> op het tempo dat puur toeval voorspelt, geen fractie sneller ·
+    over vijf ordes van steekproefgrootte gemeten. Als er ergens verborgen structuur was die
+    klimmers hielp, zou dat hier zichtbaar zijn. Er is niets.</p>
+    <p class="en">And the price of imitation is known exactly: one extra bit of agreement with the
+    limit object costs a factor 2 in rarity and buys exactly one more window of shadow time. Linear
+    return for exponential price · which is why record climbers grow only logarithmically with the
+    search space, and peak heights like \(x^2\) (the martingale law of lesson 2.5). Stronger: the
+    records grow at <i>exactly</i> the pace pure chance predicts, not a fraction faster · measured
+    across five orders of magnitude. If hidden structure helped climbers anywhere, it would show
+    here. There is nothing.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Type 3 in het keurslijf: duivenhok en compactheid</span><span class="en">Type 3 in a straitjacket: pigeonhole and compactness</span></h2>
+    <p class="nl">Blijft over: de klim waarvan het patroon elke ronde verandert. Maar "elke ronde
+    een echt nieuw patroon" bestaat niet. Bij venstergrootte m zijn er maar 2<sup>m</sup> mogelijke
+    staarten, dus een oneindige baan <b>moet</b> op elke schaal oneindig vaak in dezelfde
+    restklasse terugkeren (duivenhokprincipe). En de 2-adische wereld is compact: elke oneindige
+    baan heeft ophopingspunten. Voor een divergente baan liggen die noodzakelijk in de
+    enen-staart-wereld · de fractal D uit les 7.1.</p>
+    <p class="en">That leaves the climb whose pattern changes every round. But "a genuinely new
+    pattern every round" does not exist. At window size m there are only 2<sup>m</sup> possible
+    tails, so an infinite orbit <b>must</b> return to the same residue class infinitely often at
+    every scale (pigeonhole). And the 2-adic world is compact: every infinite orbit has
+    accumulation points. For a divergent orbit those necessarily lie in the ones-tail world · the
+    fractal D of lesson 7.1.</p>
+    <p class="nl">Conclusie: een divergente baan is verplicht een oneindige rij <b>steeds diepere
+    schaduw-episodes</b> van D-punten · precies het gedrag dat de recordklimmers eindig vertonen
+    (27 en 703 volgen aantoonbaar de −17-familie, in cyclusvolgorde, één digit verlies per stap).
+    Elke episode wordt betaald door de verse hoge bits van dat moment; het oude venster spreekt
+    niets tegen, maar het nieuwe venster moet de volgende toevalligheid bevatten · en er zijn
+    oneindig veel nieuwe vensters.</p>
+    <p class="en">Conclusion: a divergent orbit is forced to be an infinite sequence of <b>ever
+    deeper shadow episodes</b> of D-points · exactly the behaviour record climbers show finitely
+    (27 and 703 demonstrably track the −17 family, in cycle order, one digit lost per step). Each
+    episode is paid by the fresh high bits of that moment; the old window contradicts nothing, but
+    the new window must contain the next coincidence · and there are infinitely many new
+    windows.</p>
+    <div class="callout">
+      <div class="title nl">De open deur, exact</div>
+      <div class="title en">The open door, exactly</div>
+      <span class="nl">De vraag wordt: kan één getal oneindig veel steeds diepere toevalligheden in
+      zijn eigen expansie hebben voorgebakken? De eeuwige klimmers vormen een <b>overaftelbare</b>
+      verzameling van <b>maat nul</b> (dimensie 0.95); de positieve gehelen zijn <b>aftelbaar</b>.
+      "Zijn die twee disjunct?" is precies het type vraag waar tellen faalt (beide oneindig) én
+      maat faalt (beide maat-nul-kwesties). Alles behalve "en dat kan niet oneindig doorgaan" is
+      stelling.</span>
+      <span class="en">The question becomes: can one number have infinitely many ever-deeper
+      coincidences pre-baked into its own expansion? The eternal climbers form an
+      <b>uncountable</b> set of <b>measure zero</b> (dimension 0.95); the positive integers are
+      <b>countable</b>. "Are those two disjoint?" is exactly the type of question where counting
+      fails (both infinite) and measure fails (both are measure-zero matters). Everything except
+      "and that cannot continue forever" is a theorem.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De muur, precies getypeerd</span><span class="en">The wall, precisely typed</span></h2>
+    <p class="nl">Het vermoeden vraagt een uitspraak die tegelijk <b>individueel</b> is (elk getal,
+    niet bijna alle), <b>oneindig diep</b> (ooit, niet binnen een venster) en <b>onbegrensd
+    complex</b> (hoe grillig de baan ook). De drie gereedschapsfamilies van de wiskunde dekken
+    bewijsbaar precies de drie complementen:</p>
+    <p class="en">The conjecture demands a statement that is simultaneously <b>individual</b>
+    (every number, not almost all), <b>infinitely deep</b> (eventually, not within a window) and
+    <b>unboundedly complex</b> (however erratic the orbit). The three tool families of mathematics
+    provably cover exactly the three complements:</p>
+    <table class="nice">
+      <tr><th class="nl">gereedschap</th><th class="en">tool</th><th class="nl">levert</th><th class="en">delivers</th><th class="nl">bewezen blinde vlek</th><th class="en">proven blind spot</th></tr>
+      <tr><td class="nl">maat &amp; telling</td><td class="en">measure &amp; counting</td>
+        <td class="nl">"bijna alle" (Terras, Tao, γ = 0.9184)</td><td class="en">"almost all" (Terras, Tao, γ = 0.9184)</td>
+        <td class="nl">ziet geen individu: elke telling = Haar-druk (no-go #10, les 7.2)</td>
+        <td class="en">sees no individual: every count = Haar pressure (no-go #10, lesson 7.2)</td></tr>
+      <tr><td class="nl">algebra &amp; automaten</td><td class="en">algebra &amp; automata</td>
+        <td class="nl">exact, per eindige diepte</td><td class="en">exact, per finite depth</td>
+        <td class="nl">sluit op elk eindig venster níets uit (Terras-bijectie)</td>
+        <td class="en">excludes nothing at any finite window (Terras bijection)</td></tr>
+      <tr><td class="nl">Diophantiek</td><td class="en">Diophantine analysis</td>
+        <td class="nl">individueel, begrensd complex (Baker: ≤ 91 fasen)</td>
+        <td class="en">individual, boundedly complex (Baker: ≤ 91 phases)</td>
+        <td class="nl">te zwak voor onbegrensd veel fasen</td>
+        <td class="en">too weak for unboundedly many phases</td></tr>
+    </table>
+    <p class="nl">De muur is de <b>lege doorsnede</b> van die drie. De familienaam: de
+    lokaal-globaal-kloof voor multiplicatieve dynamica · bewijs dat één specifiek deterministisch
+    object het generieke gedrag van zijn statistische model erft. In hetzelfde huis wonen
+    Furstenbergs ×2/×3-vermoeden, de normaliteit van de cijfers van π, en Erdős' vraag over
+    2<sup>n</sup> in basis 3. En Conway bewees dat de <i>algemene</i> klasse van zulke systemen
+    onbeslisbaar is: elk bewijs moet dus de specifieke rekenkunde van 2 en 3 gebruiken.</p>
+    <p class="en">The wall is the <b>empty intersection</b> of those three. Its family name: the
+    local-global gap for multiplicative dynamics · proving that one specific deterministic object
+    inherits the generic behaviour of its statistical model. The same house holds Furstenberg's
+    ×2/×3 conjecture, the normality of the digits of π, and Erdős' question about 2<sup>n</sup> in
+    base 3. And Conway proved the <i>general</i> class of such systems undecidable: any proof must
+    therefore use the specific arithmetic of 2 and 3.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">De laatste 5%: de schaduw van −1</span><span class="en">The last 5%: the shadow of −1</span></h2>
+    <p class="nl">Les 5.4 liet de vork open: reikt de telladder tot γ = 1 (DENSITY) of plafonneert
+    hij rond 0.95 (CEILING)? Deze les geeft het plafond een gezicht. Als de ladder plafonneert,
+    dan is de gemiste massa geen verzameling tegenvoorbeelden maar een <b>certificeringsschaduw</b>:
+    de excursie-zware getallen · de −1-naspelers · wier terugkeer-informatie dieper ligt dan elk
+    eindig venster reikt.</p>
+    <p class="en">Lesson 5.4 left the fork open: does the counting ladder reach γ = 1 (DENSITY) or
+    does it cap near 0.95 (CEILING)? This lesson gives the cap a face. If the ladder caps, the
+    missed mass is not a set of counterexamples but a <b>certification shadow</b>: the
+    excursion-heavy numbers · the −1 impersonators · whose return information lies deeper than any
+    finite window reaches.</p>
+    <div class="callout">
+      <div class="title nl">Een opvallende numerieke klik</div>
+      <div class="title en">A striking numerical click</div>
+      <span class="nl">Het CEILING-plafond meet ~0.950; de dimensie van de klim-geschikte fractal D
+      is \(H_b(1/\log_2 3) = 0.94996\) · het ene getal κ = 0.0500 van les 7.1, in zijn
+      dimensie-gedaante. Als de ladder plafonneert, plafonneert hij op de <b>dimensie van de
+      schaduw</b>. De hele vork wordt dan één zin: <i>dooft de schaduw van −1 op de positieve
+      getallen uit met de diepte, of is hij permanent met breedte exact κ?</i></span>
+      <span class="en">The CEILING cap measures ~0.950; the dimension of the climb-capable fractal
+      D is \(H_b(1/\log_2 3) = 0.94996\) · the one number κ = 0.0500 of lesson 7.1, in its
+      dimension guise. If the ladder caps, it caps at the <b>dimension of the shadow</b>. The whole
+      fork then becomes one sentence: <i>does the shadow of −1 on the positive integers fade with
+      depth, or is it permanent with width exactly κ?</i></span>
+    </div>
+    <p class="nl">En daarmee is de cursus rond. Elke route die we liepen · vooruit, achteruit, als
+    klok, als staart, als carry, als boom · landt op ditzelfde punt. Dat ze dat allemaal doen is
+    precies hoe je weet dat de reductie af is: het probleem is niet groter en niet kleiner dan dit
+    ene punt, en wie er ooit doorheen komt, weet dankzij dit soort werk exact waar de deur zit.</p>
+    <p class="en">And with that the course comes full circle. Every route we walked · forward,
+    backward, as clock, as tail, as carry, as tree · lands on this same point. That they all do is
+    precisely how you know the reduction is complete: the problem is neither bigger nor smaller
+    than this one point, and whoever gets through it will know, thanks to work like this, exactly
+    where the door is.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Test jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Welke bitreeksen keren exact op zichzelf terug?</span><span class="en">Which bit sequences return exactly to themselves?</span></p>
+        <label><input type="radio" name="q1" value="a"> <span class="nl">Alle reeksen die op 1 eindigen</span><span class="en">All sequences ending in 1</span></label>
+        <label><input type="radio" name="q1" value="b"> <span class="nl">Alleen 1, 10 en 100 · de triviale cyclus {1, 2, 4}</span><span class="en">Only 1, 10 and 100 · the trivial cycle {1, 2, 4}</span></label>
+        <label><input type="radio" name="q1" value="c"> <span class="nl">Ook enkele langere reeksen, zoals 11011</span><span class="en">Some longer sequences too, such as 11011</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Waarom is de zelfgelijkvormige stijger (type 2) onmogelijk voor positieve gehele getallen?</span><span class="en">Why is the self-similar riser (type 2) impossible for positive integers?</span></p>
+        <label><input type="radio" name="q1b" value="a"> <span class="nl">Zijn limietobject is een negatief getal (tekenstelling), en een positief geheel getal deelt er maar eindig veel bits mee</span><span class="en">Its limit object is a negative number (sign theorem), and a positive integer shares only finitely many bits with it</span></label>
+        <label><input type="radio" name="q1b" value="b"> <span class="nl">Omdat computers dat tot 2^71 gecontroleerd hebben</span><span class="en">Because computers checked it up to 2^71</span></label>
+        <label><input type="radio" name="q1b" value="c"> <span class="nl">Omdat elke klim gemiddeld daalt</span><span class="en">Because every climb descends on average</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat dwingen duivenhok en compactheid af voor een divergente baan (type 3)?</span><span class="en">What do pigeonhole and compactness force upon a divergent orbit (type 3)?</span></p>
+        <label><input type="radio" name="q1c" value="a"> <span class="nl">Dat hij uiteindelijk periodiek wordt</span><span class="en">That it eventually becomes periodic</span></label>
+        <label><input type="radio" name="q1c" value="b"> <span class="nl">Dat hij hoogstens log n stappen kan duren</span><span class="en">That it can last at most log n steps</span></label>
+        <label><input type="radio" name="q1c" value="c"> <span class="nl">Verplichte herhaling op elke schaal én ophopingspunten in de enen-staart-wereld: een oneindige rij steeds diepere schaduw-episodes</span><span class="en">Forced recurrence at every scale plus accumulation points in the ones-tail world: an infinite sequence of ever-deeper shadow episodes</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Welk getal valt numeriek samen met het mogelijke CEILING-plafond van de telladder?</span><span class="en">Which number numerically coincides with the possible CEILING cap of the counting ladder?</span></p>
+        <label><input type="radio" name="q1d" value="a"> <span class="nl">log₂ 3 ≈ 1.585</span><span class="en">log₂ 3 ≈ 1.585</span></label>
+        <label><input type="radio" name="q1d" value="b"> <span class="nl">De dimensie van de fractal D: H_b(1/log₂ 3) = 0.94996</span><span class="en">The dimension of the fractal D: H_b(1/log₂ 3) = 0.94996</span></label>
+        <label><input type="radio" name="q1d" value="c"> <span class="nl">De contractieconstante c ≈ 0.83</span><span class="en">The contraction constant c ≈ 0.83</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Hoe zou een Collatz-tegenvoorbeeld eruitzien?</span><span class="en">What would a Collatz counterexample look like?</span></summary>
+      <p class="nl">Er zijn maar drie denkbare vormen: een exact terugkerende reeks (bewezen: alleen de triviale cyclus 1→4→2→1), een zelfgelijkvormige stijger die elke ronde hetzelfde patroon draait (bewezen onmogelijk: zijn limietobject is een negatief getal), of een aperiodieke klim waarvan het patroon elke ronde verandert. Alleen die laatste vorm is niet uitgesloten, en die is door duivenhok en compactheid gedwongen tot een oneindige rij steeds diepere schaduw-episodes van de negatieve wereld.</p>
+      <p class="en">Only three forms are conceivable: an exactly returning sequence (proven: only the trivial cycle 1→4→2→1), a self-similar riser running the same pattern every round (proven impossible: its limit object is a negative number), or an aperiodic climb whose pattern changes every round. Only that last form is not excluded, and pigeonhole plus compactness force it into an infinite sequence of ever-deeper shadow episodes of the negative world.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom is het Collatz-vermoeden zo moeilijk te bewijzen?</span><span class="en">Why is the Collatz conjecture so hard to prove?</span></summary>
+      <p class="nl">Het vermoeden vraagt een uitspraak die tegelijk individueel (elk getal), oneindig diep en onbegrensd complex is. De drie gereedschapsfamilies van de wiskunde dekken bewijsbaar precies de drie complementen: maat en telling zien geen individu, algebra sluit op eindige diepte niets uit, en Diophantische methoden reiken maar tot begrensde complexiteit (91 fasen). De muur is de lege doorsnede van die drie · dezelfde kloof als bij Furstenbergs ×2/×3-vermoeden en de normaliteit van π.</p>
+      <p class="en">The conjecture demands a statement that is simultaneously individual (every number), infinitely deep and unboundedly complex. The three tool families of mathematics provably cover exactly the three complements: measure and counting see no individual, algebra excludes nothing at finite depth, and Diophantine methods reach only bounded complexity (91 phases). The wall is the empty intersection of those three · the same gap as Furstenberg's ×2/×3 conjecture and the normality of π.</p></details>
+    <details class="faq-item"><summary><span class="nl">Wat is de rol van het getal −1 in het Collatz-probleem?</span><span class="en">What is the role of the number −1 in the Collatz problem?</span></summary>
+      <p class="nl">In de 2-adische wereld is −1 de oneindige enen-staart …1111, en het is de perfecte eeuwige klimmer: 3(−1)+1 = −2, gedeeld door 2 is weer −1, elke stap groei met factor 3/2. Elke grote klim van een positief getal is een eindige imitatie van −1: de recordhouders (zoals 27) volgen aantoonbaar de schaduw van de negatieve cycli, en de imitatie eindigt precies waar hun eindige enen-voorraad ophoudt.</p>
+      <p class="en">In the 2-adic world −1 is the infinite ones-tail …1111, and it is the perfect eternal climber: 3(−1)+1 = −2, halved is −1 again, growing by 3/2 every step. Every large climb of a positive integer is a finite imitation of −1: the record holders (like 27) demonstrably track the shadow of the negative cycles, and the imitation ends exactly where their finite supply of ones runs out.</p></details>
+    <details class="faq-item"><summary><span class="nl">Betekent het CEILING-scenario dat sommige getallen niet naar 1 gaan?</span><span class="en">Does the CEILING scenario mean some numbers do not reach 1?</span></summary>
+      <p class="nl">Nee. CEILING zou betekenen dat de telmethode plafonneert rond exponent 0.95, niet dat er tegenvoorbeelden bestaan. De gemiste getallen zouden de excursie-zware klimmers zijn, wier terugkeer-informatie buiten elk eindig venster ligt. Opvallend: dat plafond valt numeriek samen met de dimensie van de klim-geschikte fractal (0.94996), zodat de open vraag wordt: dooft de schaduw van −1 uit met de diepte, of is hij permanent met breedte κ = 0.05?</p>
+      <p class="en">No. CEILING would mean the counting method caps near exponent 0.95, not that counterexamples exist. The missed numbers would be the excursion-heavy climbers whose return information lies beyond every finite window. Strikingly, that cap numerically coincides with the dimension of the climb-capable fractal (0.94996), so the open question becomes: does the shadow of −1 fade with depth, or is it permanent with width κ = 0.05?</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b7l3.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 7.3 · Wat bewezen niet kan</span><span class="en">Lesson 7.3 · What provably cannot work</span></a>
+    <a href="contribute.html" style="text-align:right"><span class="dir nl">verder ›</span><span class="dir en">onward ›</span>
+      <span class="nl">Draag bij</span><span class="en">Contribute</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","inLanguage":"nl","name":"Hoe zou een Collatz-tegenvoorbeeld eruitzien?","acceptedAnswer":{"@type":"Answer","text":"Er zijn maar drie denkbare vormen: een exact terugkerende reeks (alleen de triviale cyclus 1-4-2-1), een zelfgelijkvormige stijger (bewezen onmogelijk: zijn limietobject is negatief), of een aperiodieke klim. Alleen die laatste is niet uitgesloten, en die is gedwongen tot een oneindige rij steeds diepere schaduw-episodes van de negatieve wereld."}},
+{"@type":"Question","inLanguage":"nl","name":"Waarom is het Collatz-vermoeden zo moeilijk te bewijzen?","acceptedAnswer":{"@type":"Answer","text":"Het vermoeden vraagt een uitspraak die tegelijk individueel, oneindig diep en onbegrensd complex is. Maat en telling zien geen individu, algebra sluit op eindige diepte niets uit, en Diophantische methoden reiken tot 91 fasen. De muur is de lege doorsnede van die drie gereedschapsfamilies."}},
+{"@type":"Question","inLanguage":"nl","name":"Wat is de rol van het getal -1 in het Collatz-probleem?","acceptedAnswer":{"@type":"Answer","text":"In de 2-adische wereld is -1 de oneindige enen-staart en de perfecte eeuwige klimmer: elke stap groei met factor 3/2. Elke grote klim van een positief getal is een eindige imitatie van -1 die eindigt waar de eindige enen-voorraad ophoudt."}},
+{"@type":"Question","inLanguage":"nl","name":"Betekent het CEILING-scenario dat sommige getallen niet naar 1 gaan?","acceptedAnswer":{"@type":"Answer","text":"Nee. CEILING zou betekenen dat de telmethode plafonneert rond exponent 0.95, niet dat er tegenvoorbeelden bestaan. Dat plafond valt numeriek samen met de dimensie van de klim-geschikte fractal (0.94996), dus de vraag wordt: dooft de schaduw van -1 uit of is hij permanent met breedte 0.05?"}},
+{"@type":"Question","inLanguage":"en","name":"What would a Collatz counterexample look like?","acceptedAnswer":{"@type":"Answer","text":"Only three forms are conceivable: an exactly returning sequence (only the trivial cycle 1-4-2-1), a self-similar riser (proven impossible: its limit object is negative), or an aperiodic climb. Only the last is not excluded, and it is forced into an infinite sequence of ever-deeper shadow episodes of the negative world."}},
+{"@type":"Question","inLanguage":"en","name":"Why is the Collatz conjecture so hard to prove?","acceptedAnswer":{"@type":"Answer","text":"The conjecture demands a statement that is simultaneously individual, infinitely deep and unboundedly complex. Measure and counting see no individual, algebra excludes nothing at finite depth, and Diophantine methods reach only 91 phases. The wall is the empty intersection of those three tool families."}},
+{"@type":"Question","inLanguage":"en","name":"What is the role of the number -1 in the Collatz problem?","acceptedAnswer":{"@type":"Answer","text":"In the 2-adic world -1 is the infinite ones-tail and the perfect eternal climber, growing by 3/2 every step. Every large climb of a positive integer is a finite imitation of -1 that ends where its finite supply of ones runs out."}},
+{"@type":"Question","inLanguage":"en","name":"Does the CEILING scenario mean some numbers do not reach 1?","acceptedAnswer":{"@type":"Answer","text":"No. CEILING would mean the counting method caps near exponent 0.95, not that counterexamples exist. That cap numerically coincides with the dimension of the climb-capable fractal (0.94996), so the question becomes: does the shadow of -1 fade with depth or is it permanent with width 0.05?"}}
+]}
+</script>
+</body>
+</html>
