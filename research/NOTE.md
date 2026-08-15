@@ -15953,3 +15953,23 @@ leesvenster met v2 = functie van de venster-inhoud). Alle regelmaat zit in
 de klok (stelling); alle openheid in de bemonstering: kan een
 zelfreferentiele bemonstering van een perfect periodiek uurwerk eeuwig
 samenspannen? — het strakste gezicht van de muur tot nu toe.
+
+## Obs 580 (2026-08-15): DE DISCRETE-LOG-WANDELING — DE BEMONSTERING IS OOK OP DE WIJZERPLAAT PERFECTE CAMOUFLAGE (Script 382)
+
+Nieuw instrument voor de bemonstering-vraag (Obs 579): de klok-coordinaat.
+Oneven eenheden mod 2^m = <-1> x <3>, dus elk oneven n heeft een discrete
+3-log (eps, theta): zijn positie op het uurwerk. Pure x3 = theta -> theta+1
+(rotatie); Syracuse laat theta springen. Gemeten (640k stappen, 400 banen
+van 900-bit starts, klok mod 2^20):
+  (1) theta equidistribueert: max afwijking 1.8-3.3 sd op alle schalen;
+  (2) sprong delta ONAFHANKELIJK van v: rijen mod 8 identiek op 0.003;
+  (3) sprongverdeling mod 2^8 exact uniform: chi2 = 255 bij 255 df (!);
+  (4) tekenwissel-fractie 0.4999 (Haar 0.5);
+  (5) sprong-autocorrelatie lag-1: -0.0012 (geheugenloos).
+CONCLUSIE: de zelfreferentiele bemonstering is ook in klok-coordinaten
+volstrekt Haar — de camouflage-stelling (E6/Obs 341) strekt zich uit tot de
+discrete-log-wandeling. Chi2 = 255.0 bij 255 df is bijna verdacht perfect:
+de +1-carry werkt op de wijzerplaat als een exacte hash. Betekenis: geen
+exploiteerbare klok-structuur voor banen — de samenzwering kan ook hier
+nergens goedkoop wonen; en het bevestigt het muur-type: elke meetbare laag
+is Haar, alleen de individuele oneindigheid blijft.
