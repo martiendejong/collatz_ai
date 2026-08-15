@@ -15806,3 +15806,25 @@ gehalveerd spoor dat nooit helemaal verdwijnt en nooit exploiteerbaar
 genoeg wordt. (Vermoedelijke structuur: elke twee stappen betreedt precies
 een verse carry-onzekerheid het venster; bewijskandidaat via de
 run-automaat — nog uit te schrijven.)
+
+## Obs 574 (2026-08-15): DE MUUR PRECIES GETYPEERD — DE LEGE DOORSNEDE VAN DRIE GEREEDSCHAPSFAMILIES
+
+Culminerende typering (n.a.v. Martiens vraag "wat voor type muur is dit"):
+Het vermoeden is individueel-oneindig-onbegrensd ("elke n, ooit, hoe complex
+ook"); de drie bestaande gereedschapsfamilies dekken exact de complementen:
+  (1) maat/telling: "bijna alle" — bewezen blind voor individuele
+      samenzwering (no-go #10: elke telling = Haar-druk);
+  (2) algebra/automaten: exact maar per eindige diepte — bewezen niets
+      uitsluitend op elk eindig venster (Terras-bijectie);
+  (3) Diophantiek: individueel maar begrensd-complex (Baker: <= 91 fasen).
+TYPE: lokaal-globaal-kloof voor multiplicatieve dynamica — bewijs dat een
+specifiek nul-entropie-object het generieke gedrag van zijn statistische
+model erft. Familie: Furstenberg x2/x3 (individuele banen), normaliteit
+van pi/sqrt2, Erdos 2^n-ternair, Mahler Z-getallen. Conway-onbeslisbaarheid
+van de algemene klasse => elk bewijs moet de specifieke (2,3)-rekenkunde
+gebruiken. Onze bijdrage: aangetoond (per reductie, meting en no-go) dat
+Collatz na volledig afpellen exact deze vraag is, in drie gedaanten (klok/
+staart/marge), met de plek waar het ontbrekende gegeven moet aangrijpen
+exact gemarkeerd (nullen-staart vs oneindige enen-voorraad; het getal -1
+als het perfecte klimmer-model dat positieve gehelen alleen eindig kunnen
+naspelen).
