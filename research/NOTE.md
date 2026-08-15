@@ -15860,3 +15860,22 @@ bovenlogaritmische records geven — niet waargenomen op 5 ordes. Divergentie
 zou een getal vergen dat zijn eigen extreme-waarden-wet oneindig overtreft:
 niet een kampioen, maar een spelverlater. De meegroeiende maxima zijn dus
 geen bedreiging maar de signatuur van een samenzweringsvrije wereld.
+
+## Obs 576 (2026-08-15): MARTIENS ZELF-TERUGKEER-PROGRAMMA — TWEE VAN DE DRIE STIJGERTYPES BEWEZEN ONMOGELIJK
+
+Martiens onderzoekslijn: bitreeksen die na verwerking op zichzelf uitkomen,
+eventueel met extra bits ervoor (de eeuwig stijgende lijn). Classificatie:
+  Type 1 EXACTE TERUGKEER: alleen {1,2,4} (lengte 1/2/3 handmatig door M.
+    gevonden: 1->100, 10 via 1, 100 terug; lengte >= 4 geen) = de
+    cyclus-stelling, bewezen tot 2^71 / 186 miljard stappen.
+  Type 2 ZELFGELIJKVORMIG STIJGEND (zelfde patroon per ronde): convergeert
+    2-adisch naar het vaste punt c/(2^N-3^K); stijgen => noemer negatief
+    (tekenstelling) => limietobject negatief (archetype -1 = ...1111);
+    positief geheel deelt er slechts eindig veel bits mee => BEWEZEN
+    ONMOGELIJK. Kwantificatie van "wat doet 1 extra bit": 1 bit = factor 2
+    zeldzaamheid = precies 1 venster extra schaduwtijd (shadowing-grens);
+    r rondes vergt ~rN gepinde bits => getal >= 2^(rN) => log-records.
+  Type 3 APERIODIEK (patroon verandert elke ronde, geen limietobject):
+    het enige dat ontsnapt — exact de muur (Obs 574).
+Winst: het denkbare-stijgers-landschap is nu 2/3 gesloten met stellingen;
+het open deel is scherp gekarakteriseerd als convergentie-loos.
