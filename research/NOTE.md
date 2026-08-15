@@ -15915,3 +15915,26 @@ afdekbaar: een individueel getal dat zijn verwachting oneindig vaak
 verslaat (kans is daar metafoor; bits liggen vast) — de muur, nu ook van
 de kansen-kant volledig ingekaderd: het monster moet oneindig vaak een
 gebeurtenis realiseren waarvan de gezamenlijke verwachting eindig is.
+
+## Obs 578 (2026-08-15): HET SIGNALEMENT — ALLE BEWEZEN NOODZAKELIJKE VOORWAARDEN VOOR DE ONEINDIGE KLIMMER
+
+Op Martiens vraag "we kunnen dus bepalen waar zo'n getal aan moet voldoen":
+het volledige opsporingsbericht, elk punt een stelling:
+  1. n > 2^71; de hele baan divergeert mee (oneindige familie, T-gesloten).
+  2. Pariteitsrij blijvend niet-generiek: enen-fractie >= 0.63 (maat-nul-
+     symboolklasse); multiplier-gemiddelde >= 3.419.
+  3. Aperiodiek (type 2 dood) maar verplicht recurrent op elke schaal
+     (duivenhok): nooit convergerend, altijd terugkerend.
+  4. 2-adische ophoping op de enen-staart-wereld: oneindig veel steeds
+     diepere D-schaduw-episodes, elk met onherstelbaar 0.415d-bits-tekort.
+  5. Oneindig veel voorgebakken restklasse-treffers (factor 2/bit); moet
+     een eindige-verwachting-gebeurtenis oneindig vaak realiseren (B-C).
+  6. Moet zijn eigen extreme-waarden-wet oneindig overtreffen (log-records).
+  7. En toch: een nullen-staart (eindige enen-voorraad).
+DE ANGEL: de lijst is niet leeg te krijgen met meer van hetzelfde, want het
+signalement is VERVULBAAR — de 2-adische monsters (fractal D, overaftelbaar)
+voldoen aan 2-6 volledig. Elke voorwaarde bewijsbaar met de drie families
+geldt ook voor hen. De enige lijst-sluiter is een rekenkundig feit dat
+punt 7 (nullen-staart) onverenigbaar maakt met punt 4-6 (oneindige
+schaduwplicht) — per Conway noodzakelijk (2,3)-specifiek. Het monster is
+volledig gekarakteriseerd, op zijn bestaan na.
