@@ -15938,3 +15938,18 @@ geldt ook voor hen. De enige lijst-sluiter is een rekenkundig feit dat
 punt 7 (nullen-staart) onverenigbaar maakt met punt 4-6 (oneindige
 schaduwplicht) — per Conway noodzakelijk (2,3)-specifiek. Het monster is
 volledig gekarakteriseerd, op zijn bestaan na.
+
+## Obs 579 (2026-08-15): MARTIENS REEKS 1,100,1101,101000,... — DE ODOMETER-STELLING
+
+Martiens waarneming: in de pure x3+1-iteratie vanaf 1 (binair 1, 100, 1101,
+101000, 1111001, ... = (3^k-1)/2 = de basis-3-repunits) herhaalt en wisselt
+het staartpatroon. BEVESTIGD ALS STELLING: staart mod 2^m is exact periodiek
+in k met periode 2^(m-2) (m>=3; mod 2: periode 2 — het "omwisselen"), motor
+ord(3 mod 2^m) = 2^(m-2) — de spiegel van ord(2 mod 3^m) (les 2.2/Obs 530).
+De binaire staart van de pure x3+1-machine is een ODOMETER: perfect
+periodiek op elke diepte. HERFORMULERING VAN DE MUUR: Collatz = deze
+perfecte klok zelfreferentieel bemonsterd (de delingen verschuiven het
+leesvenster met v2 = functie van de venster-inhoud). Alle regelmaat zit in
+de klok (stelling); alle openheid in de bemonstering: kan een
+zelfreferentiele bemonstering van een perfect periodiek uurwerk eeuwig
+samenspannen? — het strakste gezicht van de muur tot nu toe.
