@@ -15973,3 +15973,51 @@ de +1-carry werkt op de wijzerplaat als een exacte hash. Betekenis: geen
 exploiteerbare klok-structuur voor banen — de samenzwering kan ook hier
 nergens goedkoop wonen; en het bevestigt het muur-type: elke meetbare laag
 is Haar, alleen de individuele oneindigheid blijft.
+
+## Obs 581 (2026-08-15): DE KLOK-CAMOUFLAGE-STELLINGEN — E6-FAMILIE COMPLEET, MET DE VERSHEIDS-COSET ALS NIEUW STUK (Script 382 + verificatie)
+
+Drie stellingen verklaren alle metingen van Obs 580 exact; het motortje is
+een regel.
+
+### Lemma A (vers oneven deel; het E6-motortje)
+n Haar-uniform op de oneven 2-adischen. Dan is v-1 ~ Geom(1/2) en
+n' = (3n+1)/2^v Haar-uniform op de oneenheden, ONAFHANKELIJK van v.
+BEWIJS: n = 2k+1 met k Haar op Z2; (3n+1)/2 = 3k+2 is Haar op Z2 (affiene
+bijectie, 3 eenheid); Haar op Z2 factoriseert exact als (v2 ~ Geom) x
+(oneven deel Haar), onafhankelijk. QED.
+
+### Stelling B (landings-camouflage)
+De landingspositie (eps', theta') op de wijzerplaat (eenheden mod 2^m =
+<-1> x <3>, ord(3) = 2^(m-2)) is uniform op Z/2 x Z/2^(m-2) en
+onafhankelijk van v. Gevolg: langs banen is theta marginaal uniform,
+tekenwissel eerlijk, sprong marginaal uniform en sprong-v-onafhankelijk —
+ALLE vijf metingen van Obs 580 (incl. chi2 = 255/255 df).
+BEWIJS: Lemma A + dlog is een groepsisomorfisme; Haar op eenheden = uniform
+op (eps, theta). (Haar-behoud van de stap zelf is de dubbel-stochasticiteit
+die in Obs 548 exact gecertificeerd is.) QED.
+
+### Stelling C (de versheids-coset — nieuw)
+Conditioneer op het bronvenster r = n mod 2^m en op v (v <= m-5). Dan is
+  theta' mod 2^(m-v-2) DETERMINISTISCH (functie van r, v),
+en de v topbits van theta' zijn UNIFORM over de coset
+theta'(0) + 2^(m-v-2)*Z / 2^(m-2)Z.
+BEWIJS: schrijf n = r + 2^m t + 2^(m+v) s met t in [0, 2^v) de verse
+middenbits. Dan n' = (3r+1)/2^v + 3*2^(m-v) t mod 2^m, dus
+n'(t)/n'(0) = 1 + (3t/n'(0))*2^(m-v) in U_(m-v) (eenheden = 1 mod 2^(m-v)),
+en log3 beeldt U_(m-v) af op 2^(m-v-2)*Z/2^(m-2): de lage klokbits liggen
+vast, de v topbits doorlopen de coset bijectief in t (3/n'(0) is eenheid).
+QED. GEVERIFIEERD: 60.000 gevallen 0 schendingen; cosetfracties 0.249/
+0.245/0.253/0.253 bij v=2.
+
+### Gevolgen
+(i) INFORMATIE-GROOTBOEK OP DE WIJZERPLAAT: per stap komen exact v verse
+klokbits binnen aan de TOP van de coordinaat en schuift het deterministische
+deel omlaag — de klok-versie van de halveringswet (Obs 572-573): lineaire
+voorspelbaarheid sterft precies op het leesritme, nu ook bewezen-structureel
+in de coordinaat waarin x3 triviaal is. (ii) CYCLUS-SLUITING PER SCHAAL:
+een (K,N)-cyclus vereist exacte kloksluiting op ELKE modulus, met de
+deterministische lage bits als per-m eindig checkbare voorwaarde —
+consistent met de venstercertificaten. (iii) De camouflage is nu op VIJF
+lagen stelling: symbolen (E6), kanalen (E6-corr), telling (no-go #10),
+kern (Obs 548), klok (B/C hier). Elke laag die meetbaar is, is Haar; de
+enige niet-Haar-uitspraak die overblijft is de individuele oneindigheid.
