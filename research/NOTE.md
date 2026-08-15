@@ -15879,3 +15879,20 @@ eventueel met extra bits ervoor (de eeuwig stijgende lijn). Classificatie:
     het enige dat ontsnapt — exact de muur (Obs 574).
 Winst: het denkbare-stijgers-landschap is nu 2/3 gesloten met stellingen;
 het open deel is scherp gekarakteriseerd als convergentie-loos.
+
+### Obs 576 — addendum: Martiens duivenhok sluit het aperiodieke type verder in
+Argument (Martien): als het patroon elke ronde verandert loop je tegen de
+eindige optievoorraad per schaal aan; een reeks bepaalt zijn uitvoer en een
+toegevoegd bit verandert daar niets aan. Rigoureus gemaakt: (1) duivenhok:
+oneindige baan => verplichte oneindige herhaling in een restklasse op ELKE
+schaal m; (2) compactheid van Z2: het aperiodieke type heeft verplicht
+ophopingspunten (omega-limiet), voor divergentie noodzakelijk in de
+enen-staart-wereld => divergentie = oneindige rij steeds diepere
+D-schaduw-episodes (= atoomlemma + schaduwdecompositie, door M. zelfstandig
+herontdekt). (3) De open deur exact: elke episode wordt betaald door VERSE
+hoge bits (het oude venster spreekt niets tegen — M.'s punt); oneindig veel
+vensters => de vraag "kan een getal oneindig veel voorgebakken
+toevalligheden bevatten" = disjunctie van een AFTELBARE verzameling
+(gehelen) en een OVERAFTELBARE MAAT-NUL-verzameling (D): tellen en maat
+falen beide per constructie — de lege doorsnede (Obs 574) bereikt via het
+duivenhok. Alles behalve "en dat kan niet oneindig" is nu stelling.
