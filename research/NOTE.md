@@ -16050,3 +16050,22 @@ vinden van dat patroon maar het bewijzen dat de KOPPELING (de
 zelfreferentiele bemonstering die kop-informatie via de staart terugvoert)
 geen eeuwige samenzwering toelaat — de muur van Obs 574/579, nu ingeklemd
 tussen twee bewezen uurwerken.
+
+## Obs 583 (2026-08-16): MARTIENS MINIMALE GROEI-EENHEID — "TWEE ENEN, EEN NUL" BEVESTIGD ALS HET GROEIKWANTUM; 28.6% VAN DE STAPPEN GROEIT, EXACT OP KANSNIVEAU
+
+Martiens boekhouding (een 1 voegt netto log2(3)-1 = 0.585 bit toe, een 0
+haalt 1 bit weg; dus minimaal twee enen op rij en dan een nul) is exact de
+groeiwet v < 0.585k in menselijke vorm. Bevestigd:
+  - minimale groei-eenheid: k=2, v=1 ("110"-staart), winst +0.170 bits,
+    frequentie exact 1/8; kleinste voorbeeld 3 = 11 -> 5 = 101.
+  - P(groeiende macro-stap) exact berekend: 0.2863; empirisch (200 banen,
+    waarde-groei): 0.2869. (Meetvalkuil eerlijk genoteerd: strikte
+    bit-lengte-groei ondertelt — een +0.17-bit-stap kruist maar in 17% van
+    de gevallen een macht van 2; waarde-vergelijking is de juiste maat.)
+  - Antwoord op "wordt dat patroon normaliter gegenereerd": JA, exact op
+    kansniveau en NOOIT daarboven — de neutraliteitsstelling (E[k']=2,
+    Obs 540) garandeert dat het proces groeipatronen niet verrijkt. 28.6%
+    van de stappen groeit, maar de verwachting blijft -0.83 bits/macro-stap
+    en aanhoudende groei vergt onafhankelijke herhaling van het kwantum:
+    geometrisch stervend, op het toevalstempo (harmonische wet). De gehele
+    klim-economie: kwantum +0.17 (kans 1/8), tegen gemiddeld verlies -0.83.
