@@ -16021,3 +16021,32 @@ consistent met de venstercertificaten. (iii) De camouflage is nu op VIJF
 lagen stelling: symbolen (E6), kanalen (E6-corr), telling (no-go #10),
 kern (Obs 548), klok (B/C hier). Elke laag die meetbaar is, is Haar; de
 enige niet-Haar-uitspraak die overblijft is de individuele oneindigheid.
+
+## Obs 582 (2026-08-16): HET PATROON VAN DE VOORKANT — PUUR x3 IS EEN BEWEZEN ROTATIE: STURMIAN-LENGTES, BENFORD-2-FRONTEN, NUL ENTROPIE (Script 383)
+
+Martiens vraag: er MOET een patroon zitten in de bitreeks die vooraan
+ontstaat bij herhaald x3. Antwoord: ja, en het is een van de weinige
+plekken waar alles BEWIJSBAAR is (Weyl-equidistributie: k*alpha mod 1
+equidistribueert omdat alpha = log2 3 irrationeel is).
+  (H1) De lengte-incrementen van 3^k vormen EXACT het Sturmian-woord van
+       helling alpha-1: d=2 <=> {k*alpha} >= 2-alpha. Match 1.000000 op
+       20.000 stappen; fractie tweeen 0.58496 = alpha-1 exact.
+  (H2) De frontblokken volgen de basis-2-Benford-wet op 4 decimalen:
+       P(front 10) = log2(3/2) = 0.58496, P(front 11) = 2-alpha = 0.41504;
+       alle acht 4-bit-fronten kloppen (bv. 1000: 0.16991 vs 0.16993).
+       DE POINTE: de fundamentele constanten 0.585/0.415 van het programma
+       ZIJN de Benford-frequenties van de voorkant.
+  (H3) De voorkant is een ROTATIE: gelijke {k*alpha} (precisie 2^-12) =>
+       gelijke topbits (15.903 herhalingen, 0.05% randgevallen). Nul
+       entropie: volledig voorspelbaar uit een hoekcoordinaat.
+STRUCTUURBEELD COMPLEET: een getal onder puur x3 heeft (a) staart =
+odometer (periodiek, Obs 579), (b) kop = irrationale rotatie (Sturmian/
+Benford, bewezen equidistributie), (c) midden = de carry-interface waar
+beide structuren elkaar ontmoeten. Collatz koppelt de twee uiteinden via
++1-en-delen. Antwoord op Martiens vervolgvraag ("is dit de essentie?"):
+het patroon-van-x3-in-basis-2 is op beide uiteinden VOLLEDIG opgelost
+(allebei nul-entropie-uurwerken!); de essentie van Collatz is niet het
+vinden van dat patroon maar het bewijzen dat de KOPPELING (de
+zelfreferentiele bemonstering die kop-informatie via de staart terugvoert)
+geen eeuwige samenzwering toelaat — de muur van Obs 574/579, nu ingeklemd
+tussen twee bewezen uurwerken.
