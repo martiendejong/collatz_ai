@@ -16069,3 +16069,20 @@ groeiwet v < 0.585k in menselijke vorm. Bevestigd:
     en aanhoudende groei vergt onafhankelijke herhaling van het kwantum:
     geometrisch stervend, op het toevalstempo (harmonische wet). De gehele
     klim-economie: kwantum +0.17 (kans 1/8), tegen gemiddeld verlies -0.83.
+
+## Obs 584 (2026-08-16): DE 110-TREIN — MARTIENS ZELFREGENERERENDE GROEIKWANTUM IS EXACT DE -5-CYCLUS (meting + vaste-punt-oplossing)
+
+Vraag (Martien): kan een staart "110" na de x9-verwerking weer "110"
+opleveren — het groeikwantum dat zichzelf regenereert? OPLOSSING: het
+samengestelde patroon (v=1 dan v=2) is x -> (9x+5)/8 met vast punt x = -5
+(andere fase: (9x+7)/8, x = -7): DE EEUWIGE 110-MACHINE IS DE TWEEDE
+NEGATIEVE CYCLUS {-5, -7} (2-adisch -5 = ...1111011). Positieve meerijders:
+n = -5 mod 2^m (familie 2^m - 5, binair 111...11011), en de wet is exact
+EEN RONDE PER DRIE BITS overeenstemming (gemeten m=5..26: rondes =
+(m-2)/3 foutloos; 27 = 2^5 - 5 is het kleinste lid en rijdt 1 ronde:
+27 -> 41 -> 31, groei 9/8). Prijskaartje: 3 gepinde bits per ronde,
++0.17 bits winst per ronde => ~17.6 gepinde bits per gewonnen bit.
+Betekenis: Martiens 110-spoor herontdekt de schaduwdecompositie vanaf de
+patroonkant — aanhoudende groei = trein van een negatieve cyclus, lineaire
+winst voor lineair gepinde bits, en het oneindige kaartje vergt een
+oneindige enen-staart: geen positief geheel getal.
