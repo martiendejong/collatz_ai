@@ -16086,3 +16086,19 @@ Betekenis: Martiens 110-spoor herontdekt de schaduwdecompositie vanaf de
 patroonkant — aanhoudende groei = trein van een negatieve cyclus, lineaire
 winst voor lineair gepinde bits, en het oneindige kaartje vergt een
 oneindige enen-staart: geen positief geheel getal.
+
+### Obs 584 — addendum: stations en treinen — wat "de enige" precies betekent
+Martiens vraag: zijn de treinen de enige mogelijke oneindige klimmers/cycli?
+Precisering in drie lagen: (1) CYCLI: geen treinreizigers maar eigen
+stations (eigen vaste punten c/(2^N-3^K)), volledig geclassificeerd via het
+uurwerk-spectrum, uitgesloten tot 186 miljard stappen — hier is "alle
+kandidaten bekend" een stelling. (2) EINDIGE KLIMMEN: bewezen treinritten
+op D (schaduwstelling), empirisch alle op de drie bekende stations.
+(3) ONEINDIGE KLIM: bewezen eeuwige treinreiziger op D (duivenhok +
+compactheid), maar D bevat naast de drie cyclus-stations overaftelbaar
+veel APERIODIEKE stations; de enige onbesliste mogelijkheid is de eeuwige
+aperiodieke stations-hopper (nooit tweemaal hetzelfde station) — even duur
+per kaartje (een restklasse/bit), niet goedkoper, alleen
+niet-classificeerbaar. Als 3x-1 waar is zijn -1/-5/-17 de enige gehele
+stations. De taxonomie is compleet: het monster heeft geen naam, geen
+station, geen herhaling — alleen een te bewijzen niet-bestaan.
