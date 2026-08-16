@@ -16139,3 +16139,23 @@ WEERLEGD, plus alle 22 rotaties op SB-grenzen. De dienstregeling verder:
 na ticket 2 komen de diepere convergent-familien (q ~ 5.4e12, prijs ~2^84).
 De kandidatenlijst blijft aftelbaar, berekenbaar, en per kandidaat direct
 toetsbaar op zijn regelmatigste patroon.
+
+## Obs 587 (2026-08-16): HET EXTREEMSTE TESTBARE TICKET — CYCLUSKANDIDAAT VAN 1e300 STAPPEN WEERLEGD IN 30 SECONDEN (Script 386)
+
+Martiens vraag: wat is het extreemste geval dat nog testbaar is? Antwoord:
+de testbaarheidsgrens van de woordalgebra ligt LOGARITMISCH in de
+cykellengte — dus praktisch onbegrensd. Gedemonstreerd op drie tickets uit
+de diepe kettingbreuk-dienstregeling van log2(3) (mp.dps=800):
+  lengte ~1e20:  venster 1e-22,  elementen ~2^139:  WEERLEGD in 0.0s
+  lengte ~1e101: venster 1e-101, elementen ~2^672:  WEERLEGD in 1.2s
+  lengte ~1e300: venster 1e-300, elementen ~2^1994: WEERLEGD in 29.5s
+    (68 priemgetallen; CRT-waarde ~2^4144 versus cyclus-grens 2^4052)
+Het 1e300-ticket beschrijft een hypothetische cyclus van meer stappen dan
+er atomen in het waarneembare universum zijn (~1e80), met elementen van
+~600 cijfers — en zijn regelmatigste patroon is exact getoetst zonder ook
+maar EEN orbitstap te zetten. Schaalwet: kosten ~ (log K)^2-achtig
+(CF-lengte x priemtal x modpow); 1e1000 zou ~10 min kosten.
+EERLIJKE SCOPE: dit toetst per ticket alleen het gebalanceerde patroon
+(+ rotaties bij eerdere tickets), niet alle C(N-1,K-1) composities — de
+demonstratie is dat de TOETSBAARHEID onbegrensd diep reikt, niet dat de
+tickets volledig gesloten zijn.
