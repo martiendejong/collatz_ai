@@ -16122,3 +16122,20 @@ Schaalperspectief: de volledige rit zou 114 miljard gepinde bits vergen
 gebalanceerde patroon sluit bewezen niet (Obs 545). De imitatie toont
 daarmee precies wat het ticket is: een voorschrift dat elk getal eindig
 kan naspelen (1.585 gepinde bits per stap) en niemand oneindig.
+
+## Obs 586 (2026-08-16): TICKET 2 GEIDENTIFICEERD EN ZIJN GEBALANCEERDE PATROON WEERLEGD (Script 385)
+
+De volgende cycluskandidaat na het 186-miljard-ticket: de t=2-mediant uit
+dezelfde kettingbreuk-familie (6.586.818.670 + 2x65.470.613.321):
+  K = 137.528.045.312 oneven stappen, N = 217.976.794.617 halveringen,
+  LENGTE = 355.504.839.929 stappen (~355,5 miljard)
+  venster Delta = 8.99e-13; vereiste elementschaal 2^75.43
+  (wordt frontrunner zodra verificatie 2^71.88 passeert; sterft zelf pas
+  bij verificatie 2^75.43 — huidig tempo ~0.8 bits/jaar: ~4.5 jaar later)
+Zelfde behandeling als ticket 1 (Obs 545): het gebalanceerde patroon van
+355 miljard stappen in seconden geevalueerd via de Stern-Brocot-woordalgebra
+(8 priemgetallen + CRT): GEEN geheel vast punt onder 2^160 (CRT ~2^493) —
+WEERLEGD, plus alle 22 rotaties op SB-grenzen. De dienstregeling verder:
+na ticket 2 komen de diepere convergent-familien (q ~ 5.4e12, prijs ~2^84).
+De kandidatenlijst blijft aftelbaar, berekenbaar, en per kandidaat direct
+toetsbaar op zijn regelmatigste patroon.
