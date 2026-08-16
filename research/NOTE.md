@@ -16102,3 +16102,23 @@ per kaartje (een restklasse/bit), niet goedkoper, alleen
 niet-classificeerbaar. Als 3x-1 waar is zijn -1/-5/-17 de enige gehele
 stations. De taxonomie is compleet: het monster heeft geen naam, geen
 station, geen herhaling — alleen een te bewijzen niet-bestaan.
+
+## Obs 585 (2026-08-16): HET 186-MILJARD-TICKET NAGEBOOTST — DE KLEINSTE MEERIJDER GECONSTRUEERD EN GEREDEN (Script 384)
+
+Op Martiens vraag "kun je het ticket nabootsen": ja, de eindige imitatie is
+exact construeerbaar. Het gebalanceerde patroon van het ticket
+(K=72.057.431.991, N=114.208.327.604) omgezet naar Terras-pariteitsstring;
+bit-lifting geeft de unieke kleinste positieve meerijder voor t=120 stappen:
+  n0 = 2065546032516366332104880618463806615278339655132835109883 (191 bits)
+GEVERIFIEERD: volgt het ticketpatroon exact 120/120 Syracuse-stappen.
+HET CYCLUS-KENMERK ZICHTBAAR: geen klim maar een VLAKKE WIEBEL —
+log2(n_i/n0) blijft in [0, +0.99] over de hele rit (een echte cyclus zou op
+exact 0 eindigen; deze rit eindigt op +0.196). Na het venster: gewone
+sterveling — zakt binnen 8 extra stappen onder n0.
+Leerzame bijvangst: de eerste run volgde 119/120 — de laatste stap vergde
+precies EEN extra gepinde bit (de venstergrens-wet live).
+Schaalperspectief: de volledige rit zou 114 miljard gepinde bits vergen
+(~13 GB aan getal), en zou hij sluiten dan WAS dat de cyclus — maar het
+gebalanceerde patroon sluit bewezen niet (Obs 545). De imitatie toont
+daarmee precies wat het ticket is: een voorschrift dat elk getal eindig
+kan naspelen (1.585 gepinde bits per stap) en niemand oneindig.
