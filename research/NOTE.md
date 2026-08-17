@@ -16195,3 +16195,10 @@ TICKET 1: eerste 1.000.000 rotaties — GEEN integer-treffer (30s; ~33k
 rotaties/s). Achtergrondrun naar 100M gestart (388b). Hiermee is de
 patroon-dekking van ticket 1 uitgebreid van 22 rotaties (SB-grenzen) naar
 miljoenen; de volledige 72 miljard zou ~600 uur kosten — pad bestaat.
+
+### Obs 590 — addendum: 100 MILJOEN rotaties van ticket 1 schoon (Script 388b)
+Achtergrondrun voltooid: 100.000.000 rotaties in 2767s (~36k/s), NUL
+integer-treffers. Dekking van ticket 1 nu 0.14% van alle 72 miljard
+rotaties — een factor 4.5 miljoen boven de oorspronkelijke 22. Volledige
+sweep zou ~55 uur op deze ene kern kosten (parallelliseerbaar per segment:
+de baan kan op elk punt herstart worden via de prefix-algebra).
