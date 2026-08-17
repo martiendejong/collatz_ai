@@ -16202,3 +16202,31 @@ integer-treffers. Dekking van ticket 1 nu 0.14% van alle 72 miljard
 rotaties — een factor 4.5 miljoen boven de oorspronkelijke 22. Volledige
 sweep zou ~55 uur op deze ene kern kosten (parallelliseerbaar per segment:
 de baan kan op elk punt herstart worden via de prefix-algebra).
+
+## Obs 591 (2026-08-17): AND-BOOM-MECHANISME WEERLEGD (EERLIJKE MISS) — DE NIET-LINEARITEIT IS DIFFUUS (Script 391)
+
+De mechanisme-kandidaat uit Obs 588 (f_j = AND-boom, een laag per twee
+stappen; dan zou een graad-2-voorspeller factor 2 terugwinnen) is GETOETST
+EN WEERLEGD: beste voorspeller met een extra AND-term wint slechts factor
+1.0-1.4 (nooit 2) op alle dieptes j=4..14. De niet-lineariteit f_j is dus
+niet ondiep-boomvormig maar DIFFUUS: geen enkele individuele graad-2-term
+draagt substantieel. De halveringswet zelf staat (drie onafhankelijke
+frames), maar het bewijs vergt een andere route — kandidaat: de
+versheids-coset-keten (Obs 581 Thm C geitereerd), niet Boolean-diepte.
+
+## Obs 592 (2026-08-17): DE NEUTRALITEITSSTELLING BEWEZEN — E[k'|k] = 2 EXACT, ZES REGELS (formalisatie van Obs 540)
+
+STELLING: zij n Haar-willekeurig oneven met exact k trailing enen. Dan is
+de volgende run k' verdeeld als P(k' = c) = 2^-c (c >= 1), dus E[k'] = 2,
+ONAFHANKELIJK van k en van de gelezen gap v.
+BEWIJS: conditioneren op "exact k trailing enen" betekent n = (2^k - 1) +
+2^(k+1) m met m Haar op Z2. Dan a = (n+1)/2^k = 1 + 2m, en na de conversie
+A = a*3^k geldt (A-1)/2 = (3^k - 1)/2 + 3^k * m =: y — een affiene bijectie
+in m met eenheid 3^k, dus y is EXACT Haar op Z2. Haar op Z2 factoriseert
+als (v2 ~ Geom(1/2)) x (oneven deel Haar, onafhankelijk); het oneven deel
+is n', en de trailing-enen-telling van een Haar-oneven getal is P(k'=c) =
+2^-c (een restklasse mod 2^(c+1) per c). QED.
+GEVOLG: geen enkel staartpatroon verrijkt zijn opvolger — het groeikwantum
+(Obs 583) wordt exact op kansniveau gegenereerd, als STELLING. Samen met
+Lemma A / Obs 581 is de hele run-statistiek van de machine nu bewezen:
+runs, gaps, en hun onafhankelijkheid.
