@@ -16159,3 +16159,39 @@ EERLIJKE SCOPE: dit toetst per ticket alleen het gebalanceerde patroon
 (+ rotaties bij eerdere tickets), niet alle C(N-1,K-1) composities — de
 demonstratie is dat de TOETSBAARHEID onbegrensd diep reikt, niet dat de
 tickets volledig gesloten zijn.
+
+## Obs 588 (2026-08-17): DE HALVERINGSWET ZIT AL IN DE T-MACHINE — ZELFDE VORM, DIAGONALE DRAGER (Script 387)
+
+T-frame-decompositie (versnelde afbeelding, 400k seeds): pariteitsbit j
+heeft max lineaire correlatie exact 1.0 voor j <= 3, dan 0.50/0.50/0.25/
+0.25/0.127/0.126/0.062... — DEZELFDE wet 2^(-ceil((j-3)/2)) als in het
+Syracuse-frame (Obs 573). De halveringswet is dus geen bemonstering-artefact
+maar een eigenschap van de kale T-machine. Dominante voorspeller is telkens
+(iets XOR) de DIAGONALE seed-bit j — consistent met de driehoekige
+Terras-structuur p_j = n_j XOR f_j(lagere bits): de niet-lineariteit f_j
+vreet de correlatie met een factor 2 per twee stappen op.
+MECHANISME-KANDIDAAT (te bewijzen): x3 = n + 2n bouwt een carry-AND-laag
+per twee stappen; een AND-boom van diepte d heeft beste lineaire correlatie
+2^-d. Dat zou de wet exact geven — nog uit te schrijven.
+
+## Obs 589 (2026-08-17): DE KOPPELING VAN DE TWEE UURWERKEN IS OOK HAAR — ZESDE CAMOUFLAGE-LAAG (Script 389)
+
+Eerste directe meting van de zelfreferentiele bemonstering: gezamenlijke
+verdeling van kop-hoek phi = frac(log2 n) (Weyl-rotatiecoordinaat) en
+staart-klok theta (discrete 3-log), 479.761 stappen langs 400 banen:
+  marginalen uniform (0.38 / 2.21 sd), onafhankelijkheid chi2 = 228 bij
+  225 df, wederzijdse informatie 3.4e-4 bits (steekproefvloer).
+De koppeling waar de muur op leeft — archimedisch versus 2-adisch — is
+op dit meetniveau VOLMAAKT Haar. Camouflage nu op ZES lagen: symbolen,
+kanalen, telling, kern, klok, en kop-staart-koppeling.
+
+## Obs 590 (2026-08-17): ROTATIE-SWEEP VAN TICKET 1 — EERSTE MILJOEN ROTATIES SCHOON; SLEUTELINZICHT MAAKT ALLE ROTATIES ITEREERBAAR (Script 388)
+
+Sleutelinzicht: het vaste punt van de geroteerde cykelwoord is het VOLGENDE
+baan-element van het rationale vaste punt n1 = c/(2^N - 3^K). Rotaties
+aflopen = de rationale baan itereren mod priemgetallen: O(1) per rotatie.
+KALIBRATIE: (K,N)=(2,3) detecteert exact de integer-vaste-punten -5 en -7.
+TICKET 1: eerste 1.000.000 rotaties — GEEN integer-treffer (30s; ~33k
+rotaties/s). Achtergrondrun naar 100M gestart (388b). Hiermee is de
+patroon-dekking van ticket 1 uitgebreid van 22 rotaties (SB-grenzen) naar
+miljoenen; de volledige 72 miljard zou ~600 uur kosten — pad bestaat.
