@@ -16230,3 +16230,19 @@ GEVOLG: geen enkel staartpatroon verrijkt zijn opvolger — het groeikwantum
 (Obs 583) wordt exact op kansniveau gegenereerd, als STELLING. Samen met
 Lemma A / Obs 581 is de hele run-statistiek van de machine nu bewezen:
 runs, gaps, en hun onafhankelijkheid.
+
+### Obs 592 — addendum: Martiens duivenhok-herhalingsargument en het Sturmian-gat
+Bewijspoging (Martien): eindig veel opties per schaal + "zelfde patroon
+eeuwig is onmogelijk" (tekenstelling) => oneindige stijging onmogelijk?
+Keuring: stappen 1-4 correct; het gat zit in "geen exacte herhaling =>
+onmogelijk": daartussen leeft het RECURRENTE APERIODIEKE WOORD — elk
+eindig stuk herhaalt oneindig vaak (duivenhok tevreden), het geheel nooit
+(tekenstelling grijpt nergens). Standaardvoorbeeld: het gebalanceerde
+woord van log2(3) zelf — het patroon van onze cyclustickets. WAT HET
+ARGUMENT WEL BEWIJST: de eeuwige stijger is gedwongen tot precies deze
+klasse: recurrent + aperiodiek + klim-gebalanceerd (enen-dichtheid >=
+0.63), gerealiseerd in de bits van een getal met nullen-staart. De open
+vraag versmalt tot: kan een geheel getal een aperiodiek-recurrent
+klimwoord dragen? (Periodiek/rationaal: bewezen nee — de negatieve
+wereld. Aperiodiek: de Mahler-dunne-reeksen-muur.) De redenering legt
+zelf bloot waarom type 3 het enige overlevende type is.
