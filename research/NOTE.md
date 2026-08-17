@@ -16246,3 +16246,25 @@ vraag versmalt tot: kan een geheel getal een aperiodiek-recurrent
 klimwoord dragen? (Periodiek/rationaal: bewezen nee — de negatieve
 wereld. Aperiodiek: de Mahler-dunne-reeksen-muur.) De redenering legt
 zelf bloot waarom type 3 het enige overlevende type is.
+
+## Obs 593 (2026-08-17): DE BEGRENSDE-WIEBEL-STELLING — GEEN GEHEEL GETAL REALISEERT EEN APERIODIEK WOORD MET BEGRENSDE DISCREPANTIE (drie regels, onvoorwaardelijk)
+
+Antwoord op Martiens vraag "kunnen we zien of zo'n reeks binnen de formule
+uberhaupt kan": voor de hele Sturmian-klasse JA — onmogelijk, bewijs:
+  (1) log2(n_t) = log2(n0) + t*log2(3) - S_t; begrensde discrepantie van
+      het woord => de baan blijft in een begrensde band;
+  (2) begrensde baan van een geheel getal => eindig veel waarden => een
+      waarde herhaalt => baan uiteindelijk periodiek;
+  (3) periodieke baan => uiteindelijk-periodiek woord — tegenspraak met
+      aperiodiciteit. QED.
+GEVOLG: geen enkel Sturmian-woord (welke helling/intercept ook, incl. het
+kanonieke neutrale woord van log2(3)) is realiseerbaar door een positief
+geheel getal. Het "Sturmian-gat" uit het duivenhok-argument (Obs 592-add.)
+is daarmee voor zijn natuurlijkste bewoners GEDICHT.
+VERSCHERPTE TAXONOMIE: divergentie vereist S_t - t*log2(3) -> -oneindig:
+het klimwoord moet ONBEGRENSD eenzijdig van zijn eigen gemiddelde
+wegdrijven. Het type-3-monster is nu: recurrent (duivenhok) + aperiodiek
+(tekenstelling) + onbegrensde discrepantie (deze stelling) — geen
+rotatiewoord maar een object met steeds langere excursies in zijn eigen
+patroon op elke schaal. Elke "nette" kandidaat is dood; alleen het
+zelf-versnellende woord rest.
