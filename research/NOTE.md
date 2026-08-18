@@ -16268,3 +16268,16 @@ wegdrijven. Het type-3-monster is nu: recurrent (duivenhok) + aperiodiek
 rotatiewoord maar een object met steeds langere excursies in zijn eigen
 patroon op elke schaal. Elke "nette" kandidaat is dood; alleen het
 zelf-versnellende woord rest.
+
+## Obs 594 (2026-08-18): GAMMABAR(2,18) = 0.04634 — DERDE INSTRUMENT NU OOK OP k=18; KRUIP ZET DOOR (Script 390)
+
+Koude float32-run (3000 iters, rho-oscillatie ±2e-7): rho(2,18) =
+0.96524310, gammabar = 0.04634253. Ratio t.o.v. k=17: 0.9167, dus
+c(2)-schatting = 0.8404. De reeks ratio's: 0.9090 0.9077 0.9045 0.9134
+0.9103 0.9095 0.9117 0.9140 0.9167 (k=10..18) — de kruip zet door
+(+0.0027 op de laatste stap). Instrumentvergelijking op k=18: TR gaf
+0.8357, gammabar-rate geeft 0.8404 — beide stijgend, zelfde band, kloof
+~0.005 (verwacht: verschillende eindige-diepte-correcties). De vork
+blijft data-onbeslisbaar; de consistentie van de kruip over drie
+instrumenten en negen dieptes is zelf het hardste feit. Vector gecached
+(v_lam2.00_k18.npy) voor vervolgmetingen.
