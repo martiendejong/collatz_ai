@@ -2483,6 +2483,49 @@ the camouflage of the map is a theorem on five layers · symbols, channels,
 counting, kernel, clock · every measurable layer is Haar; the single
 non-Haar statement left is individual infinitude.
 
+
+\subsection{The Boolean-spectral instrument: the regenerating forest}
+\label{sec:walsh}
+
+A further exact instrument family (research log Obs.~596--599, scripts
+392--395). The Terras parity bit $p_j$ depends only on $n \bmod 2^{j+1}$,
+so its \emph{complete} Walsh spectrum over all $2^{j}$ linear masks is a
+finite exact computation (fast Walsh--Hadamard over the full residue space;
+no eigenvector, no sampling). Findings:
+
+\begin{itemize}
+\item \textbf{Corrected halving law.} The measured law
+$\max|\mathrm{corr}|(j) = 2^{-\lceil (j-3)/2 \rceil}$ (Obs.~573) is the law
+of \emph{low-weight} masks only; the full linear class decays more slowly.
+The maximum coefficient decays at $0.85$--$0.91$ per step, numerically the
+programme's deep-constant family ($c(2) \approx 0.835$,
+$\kappa_{\mathrm{deep}} = 0.839$, endpoint plateau $0.854$; the amplitude
+reading $\sqrt{c(2)} = 0.914$ remains a candidate). The argmax masks live
+at the reading frontier and carry the shadow motifs $0101$ ($-1/3$) and
+$1111$ ($-1$) of the negative world.
+\item \textbf{Exact doubling law.} The number of coherent coefficients
+(above four times the Haar noise floor $2^{-j/2}$) doubles per step
+(ratios $2.08, 2.05, 2.04, 2.01 \to 2$): one fresh structural bit per
+consumed bit, the Boolean-spectral face of the information ledger.
+\item \textbf{Regeneration, not translation.} Consecutive coherent sets
+share \emph{zero} exact masks and only $\sim 23\%$ shifted copies; three
+quarters of each generation is new, while the count doubles exactly. The
+spectrum is a regenerating object, not a static self-similar set: the map
+writes a fresh layer of spectral structure at the frontier every step.
+\item \textbf{Odd-weight dominance.} Coherent energy concentrates on
+odd-weight masks ($w = 9$ dominant at $0.20$--$0.24$, flanked by $7$ and
+$11$; together $\sim 50\%$), with the profile slowly growing heavier ·
+the same creep signature as every other instrument. The coherent energy
+fraction itself rises slowly ($0.094 \to 0.128$ over $j = 18..24$),
+possibly saturating at a new constant of the map.
+\end{itemize}
+
+Open questions raised: the limit of the coherent fraction; the arithmetic
+explanation of odd-weight dominance (candidate: the sign structure of the
+$\times 3$ carries); and whether the heavy-tailed maximum identifies with
+$c$ or $\sqrt{c}$ · decidable by deeper exact depths or by theory. The
+instrument is certificate-grade at every finite depth.
+
 \section{The five bookkeeping tasks}
 
 \begin{enumerate}
