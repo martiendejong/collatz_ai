@@ -16281,3 +16281,33 @@ c(2)-schatting = 0.8404. De reeks ratio's: 0.9090 0.9077 0.9045 0.9134
 blijft data-onbeslisbaar; de consistentie van de kruip over drie
 instrumenten en negen dieptes is zelf het hardste feit. Vector gecached
 (v_lam2.00_k18.npy) voor vervolgmetingen.
+
+## Obs 595 (2026-08-18): DE LOGARITMISCHE SNELHEIDSLIMIET — HET MONSTER MOET EEUWIG OP DE RECORDWET-RAND LEVEN (twee stellingen, onvoorwaardelijk)
+
+Vervolg op de begrensde-wiebel-stelling (Obs 593): hoe snel MOET de
+discrepantie D_t = t*log2(3) - S_t van een divergente baan groeien?
+
+### Stelling 1 — liminf = oneindig
+Een divergente baan heeft n_t -> oneindig ECHT (niet alleen limsup):
+anders keert de baan oneindig vaak terug in een begrensd venster [L, 2L],
+dat eindig veel gehele getallen bevat, dus een waarde herhaalt => cyclus
+=> tegenspraak met divergentie. QED.
+
+### Stelling 2 — logaritmische ondergrens
+Alle baanwaarden zijn verschillende gehele getallen (herhaling => cyclus),
+dus na T stappen zijn er T verschillende waarden bezocht, allen <= piek(T):
+  piek(T) >= T,  oftewel  D_max(T) >= log2(T) - log2(n_0).
+Boven: D_t <= 0.585*t (v >= 1 per stap). Het monster is dus geklemd:
+  log2(T) - C  <=  D_max(T)  <=  0.585*T.
+
+### Het slot (de poetische scherpte)
+De GEDWONGEN minimumsnelheid (log T, uit distinctheid) is exact dezelfde
+orde als de MAXIMAAL door toeval toegestane snelheid (de Erdos-Renyi-
+recordwet: langste klim onder T kandidaten ~ log T, Obs 551/575-add).
+Het monster moet dus niet af en toe een record breken — het moet PERMANENT
+op de rand van de extreme-waarden-wet leven, elk moment van zijn oneindige
+bestaan, zonder ooit onder de recordlijn te zakken (dan wordt hij eindig)
+en zonder erboven te kunnen (dan schendt hij de neutraliteit die bewezen
+is). De divergente baan is gedefinieerd als een eeuwige koorddans op een
+lijn met breedte nul — de kwantitatieve gedaante van "maat nul, individueel
+onbeslist".
