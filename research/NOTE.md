@@ -16360,3 +16360,25 @@ Structuur van de argmax-maskers per diepte j (exact, FWHT tot j=26):
       beweegt daarheen. Alternatief blijft de c-familie zelf (0.84);
       identificatie open, diepere j of theorie nodig. Zelfde kruip-
       signatuur als alle instrumenten.
+
+## Obs 598 (2026-08-18): HET SPECTRUM IS EEN ZELFGELIJKVORMIG BOS — COHERENTE STEUN VERDUBBELT EXACT PER STAP (Script 394; discriminatie-uitkomst eerlijk)
+
+De discriminatie-meting (coherente energie boven 4x de Haar-ruisvloer,
+exact via FWHT, j=12..24) gaf NIET de verwachte sqrt(c)/c-splitsing maar
+een nieuw structuurbeeld:
+  (1) AANTAL coherente maskers verdubbelt per stap: ratio's 2.08, 2.05,
+      2.07, 2.04, 2.01 -> convergeert naar EXACT 2. Een nieuwe structurele
+      bit per geconsumeerde bit — het Booleaans-spectrale gezicht van het
+      informatiegrootboek (1 bit/T-stap).
+  (2) max^2 vervalt ~0.70-0.75/stap (max ~0.85); de GEMIDDELDE coherente
+      coefficient-energie vervalt ~0.52/stap: de top is zwaarstaartig.
+  (3) COHERENTE ENERGIE stijgt langzaam: 0.094 -> 0.128 (j=18..24),
+      +4-6%/stap met dalende groei — zelfde kruip-signatuur; mogelijk
+      saturatie op een nieuwe constante (de "coherente fractie" van het
+      pariteitsspectrum), mogelijk langzame groei richting iets anders.
+CONCLUSIE (eerlijk): de wortelwet-lezing van Obs 597 is NIET bevestigd op
+energieniveau — het spectrum is geen vervallende piek maar een groeiend
+zelfgelijkvormig bos: steun x2, individuele energie x~0.52, netto x~1.05.
+Het 0.85-getal woont in de MAX (zwaarstaartige top), niet in de energie.
+Nieuwe vraag geopend: convergeert de coherente fractie, en is die limiet
+een nieuwe fundamentele constante van de afbeelding?
