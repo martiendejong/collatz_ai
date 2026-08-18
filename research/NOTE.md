@@ -16382,3 +16382,24 @@ zelfgelijkvormig bos: steun x2, individuele energie x~0.52, netto x~1.05.
 Het 0.85-getal woont in de MAX (zwaarstaartige top), niet in de energie.
 Nieuwe vraag geopend: convergeert de coherente fractie, en is die limiet
 een nieuwe fundamentele constante van de afbeelding?
+
+## Obs 599 (2026-08-18): ANATOMIE VAN HET BOS — ONEVEN GEWICHTEN DOMINEREN, EN HET BOS REGENEREERT IN PLAATS VAN TE VERSCHUIVEN (Script 395)
+
+Twee structuurfeiten over de coherente maskers (j=19..22, exact):
+  (1) GEWICHTSPROFIEL: de energie concentreert op ONEVEN gewichten —
+      w=9 domineert (0.20-0.24), met w=7 en w=11 ernaast; samen ~50%.
+      Het profiel verschuift langzaam zwaarder (w=11 groeit, w=7 krimpt):
+      het bos wordt geleidelijk rijker — zelfde kruip.
+  (2) REGENERATIE, GEEN TRANSLATIE: coherent(j+1) bevat NUL exacte kopieen
+      van coherent(j), en slechts ~22-25% is een verschoven kopie
+      (frontvolgend). Driekwart van elke generatie is GLOEDNIEUW — terwijl
+      het totaal toch exact verdubbelt. Het bos is dus geen statisch
+      zelfgelijkvormig object dat meeschuift, maar een organisme dat per
+      stap grotendeels vers wordt aangemaakt op het leesfront, met een
+      exacte verdubbelingswet als enige invariant.
+Beeld compleet: de machine schrijft per geconsumeerde bit een verse laag
+spectrale structuur (verdubbeling), draagt slechts een kwart daarvan over
+(verschoven), en houdt de individuele sterktes zwaarstaartig krimpend —
+het Booleaanse gezicht van "toekomst = seed, elke stap vers geschreven".
+De oneven-gewicht-dominantie is een nieuw arithmetisch spoor (kandidaat:
+tekenstructuur van de x3-carries) — nog te verklaren.
