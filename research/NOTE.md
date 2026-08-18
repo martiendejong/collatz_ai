@@ -16311,3 +16311,30 @@ en zonder erboven te kunnen (dan schendt hij de neutraliteit die bewezen
 is). De divergente baan is gedefinieerd als een eeuwige koorddans op een
 lijn met breedte nul — de kwantitatieve gedaante van "maat nul, individueel
 onbeslist".
+
+## Obs 596 (2026-08-18): DE EXACTE WALSH-SPECTRUM-METING — HALVERINGSWET GECORRIGEERD, EN HET ENE GETAL DUIKT OP IN DE BOOLEAANSE FOURIER-WERELD (Script 392)
+
+### Eerlijke correctie op Obs 573
+De FWHT over ALLE 2^j lineaire maskers (exact, certificaat-waardig per j:
+volledige residu-enumeratie mod 2^(j+1)) toont: de "halveringswet
+2^-ceil((j-3)/2)" gold alleen voor de GETESTE familie (losse bits +
+XOR-paren). Rijkere maskers doen het beter: max|corr| bij j=20 is 0.0234
+(wet voorspelde 0.0020). Obs 573's "voorspeller-onafhankelijk binnen de
+hele lineaire klasse" is WEERLEGD — de klasse was niet uitgeput. De
+halveringswet blijft de wet van LAAG-GEWICHT maskers.
+
+### De echte wet — en de verrassing
+Exacte maxima j=1..24: 1,1,1 (j<=3), dan 0.5, 0.5, 0.375, 0.4375, ...,
+0.01306 (j=24). Vervalratio per stap (staart, geometrisch gemiddelde over
+j=17..24): 0.868; over j=10..20: ~0.84. HET VERVAL VAN DE VOLLEDIGE
+LINEAIRE VOORSPELBAARHEID LIGT IN DE 0.84-0.87-BAND — numeriek dezelfde
+familie als HET ene programmagetal: c(2) ~ 0.835, kappa_deep 0.839,
+eindpunt-plateau 0.854, Jacobiaan-subleiding 0.853-0.88, Psi-tabelrate
+0.85. Het diepe attenuatiegetal van het dichtheidsprogramma verschijnt nu
+ook als de spectrale vervalvoet van de Booleaanse Fourier-transformatie
+van de Terras-pariteitsfunctie — een SPECTRAAL EXACT nieuw instrument
+(geen eigenvector nodig, geen steekproef: FWHT is exact per diepte).
+Voorzichtigheid: de identificatie (welke van de familie precies, en of
+het verval zuiver geometrisch is) vergt diepere j en/of theorie; de
+ratio's fluctueren 0.72-0.94 met een langzaam stijgende trend — zelfde
+kruip-signatuur als alle andere instrumenten.
