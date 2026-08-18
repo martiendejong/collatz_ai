@@ -16338,3 +16338,25 @@ Voorzichtigheid: de identificatie (welke van de familie precies, en of
 het verval zuiver geometrisch is) vergt diepere j en/of theorie; de
 ratio's fluctueren 0.72-0.94 met een langzaam stijgende trend — zelfde
 kruip-signatuur als alle andere instrumenten.
+
+## Obs 597 (2026-08-18): DE WINNENDE MASKERS — SCHADUWMOTIEVEN OP HET LEESFRONT, EN DE AMPLITUDE-LEZING VIA DE WORTELWET (Script 393)
+
+Structuur van de argmax-maskers per diepte j (exact, FWHT tot j=26):
+  (1) VENSTER: de winnende maskers gebruiken bits rond het LEESFRONT —
+      de leidende nullen groeien mee met j; de relevante bits schuiven op
+      met de consumptie. De voorspelkracht woont waar gelezen wordt.
+  (2) MOTIEVEN: de maskerpatronen bevatten prominent 0101-blokken (het
+      -1/3-motief) en 1111-blokken (het -1-motief): de beste lineaire
+      voorspellers van de toekomstige pariteit zijn opgebouwd uit de
+      SCHADUWPATRONEN VAN DE NEGATIEVE WERELD — de vingerafdrukken van de
+      cycli in het Booleaanse spectrum.
+  (3) GEWICHT groeit langzaam: 3 -> 5 -> 7 -> 9 (11 bij j=25) — de
+      voorspeller wordt rijker maar blijft dun.
+  (4) RATE: maxima niet-monotoon (j=25/26 stijgen zelfs); vervalvoet-band
+      verschuift van ~0.85-0.87 (j=14-24) naar ~0.91 (staart t/m 26).
+      KANDIDAAT-IDENTIFICATIE via de wortelwet (Obs 513: amplitudes
+      vervallen als sqrt van varianties): max-Walsh-coefficient is een
+      AMPLITUDE, dus verwachte vervalvoet sqrt(c(2)) = 0.914 — de staart
+      beweegt daarheen. Alternatief blijft de c-familie zelf (0.84);
+      identificatie open, diepere j of theorie nodig. Zelfde kruip-
+      signatuur als alle instrumenten.
