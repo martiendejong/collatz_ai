@@ -16450,3 +16450,25 @@ ontstaan, zodat brute force volstaat? Drieledig antwoord, vastgelegd:
       vraag is dus wiskundig identiek aan de ene open uitspraak — en
       zelfs het beste geval geeft "vrijwel alle", nooit "alle" (de
       individuele muur blijft na gamma = 1).
+
+## Obs 602 (2026-08-19): HET BIAS-KANAAL IS HET INSTORTINGSMOTIEF — f_t WORDT DETERMINISTISCH OP 101-SNEDES (Script 398)
+
+Mechanisme van de laag-gewicht-halveringswet gevonden. De junk-functie
+f_t = p_t XOR n_t wordt EXACT deterministisch (conditionele bias exact
+1, 1, 3/4, 3/4, 1/4, ... — zuivere dyadica) op snedes van de vorm
+n_a & n_{a+2} = 1 nabij het leesfront (a ~ t-3): het lokale 101-motief —
+het -1/3-instortingspatroon (101 -> 10000: de +1-cascade wist lokaal alle
+carries, waardoor het gedrag twee stappen deterministisch wordt).
+BOEKHOUDING EXACT (met n_0 = 1 voor oneven seeds):
+  t=5: P(n_2=1) = 1/2, bias|1 = 1.0000, bias|0 = 0.001 -> totaal 0.5006
+       (gemeten 0.5003 ✓)
+  t=4: P(n_1&n_3) = 1/4, bias|1 = +1.0, bias|0 = -1/3 -> totaal ~0.0005
+       (gemeten 0.0003 ✓ — tekens heffen elkaar bijna op!)
+De halveringswet-constanten zijn dus dichtheden-van-motiefsnedes maal hun
+exacte geconditioneerde biases. BEWIJSROUTE nu concreet: een lokaal
+carry-wis-lemma (het 101-motief op het front dwingt een carryvrije
++1-cascade af, dus deterministische f voor de volgende twee stappen) plus
+de dyadische boekhouding — geen Boolean-diepte nodig (verklaring waarom
+Obs 591's AND-boom-toets faalde: het mechanisme is motief-conditioneel,
+niet term-additief). En opnieuw: het -1/3-motief (het perfecte instortings-
+patroon) blijkt de drager — de negatieve wereld stuurt ook de bias.
