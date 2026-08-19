@@ -16429,3 +16429,24 @@ de afbeelding — de kwantitatieve, eeuwige echo van het plus-min-paar: de
 positieve en negatieve wereld blijven elkaar op elke diepte een beetje
 tegenspreken. Open: gesloten vorm van mu; verband met kappa/c-familie;
 en de exacte periode-2-structuur.
+
+## Obs 601 (2026-08-19): MARTIENS SATURATIEVRAAG — "KUNNEN WE BRUTE-FORCEN?" IS EQUIVALENT AAN DE MARGEWET
+
+Vraag: kan het zijn dat er vanaf zekere k geen nieuwe patronen meer
+ontstaan, zodat brute force volstaat? Drieledig antwoord, vastgelegd:
+  (1) PATRONEN SATUREREN NOOIT (bewezen): Terras-bijectie (elke diepte
+      2^j echt verschillende prefixen), het spectrale bos (verdubbeling
+      exact, 75% vers per generatie, Obs 598-599), no-go #1 (geen
+      eindige-diepte-certificaat, j=10..60). Diepe reden: saturatie op
+      eindige diepte zou resonantie 2^N = 3^K vergen — log2(3) irrationeel.
+  (2) DE STATISTIEK SATUREERT WEL: Psi-tabel Cauchy (0.85), operator-
+      constantes vlak, excess-contractie k-uniform — nieuwe patronen
+      blijven komen maar wegen geometrisch minder.
+  (3) DE EQUIVALENTIE: brute force + een contractielemma = het Kepler/
+      vierkleuren-model, en dat lemma is exact de margewet. c(2) < 1
+      bewezen => elke eindige k geeft een bewezen exponent en de ladder
+      convergeert: gamma >= 1-eps is brute-forceerbaar voor elke eps.
+      Zonder margewet blijft elke eindige berekening eindig. Martiens
+      vraag is dus wiskundig identiek aan de ene open uitspraak — en
+      zelfs het beste geval geeft "vrijwel alle", nooit "alle" (de
+      individuele muur blijft na gamma = 1).
