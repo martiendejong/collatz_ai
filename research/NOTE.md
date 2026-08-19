@@ -16525,3 +16525,17 @@ divergentie uit (zelfde patroon), en tijdens die synchronisatie kan er
 per (1) niet gemerged worden terwijl de waarden dalen — dus hoe langer
 samen, hoe dieper het uiteindelijke merge-punt. Contra-intuitief en
 verklaard door hetzelfde kleine feit.
+
+## Obs 605 (2026-08-19): DE STROOMKAART — 93% DOOR 5, EN DE HOOFDADER IS HET SLOT VAN 27'S BAAN (Script 401; graaf in cursus les 1.2)
+
+Flow-meting (6000 banen van 64-bit starts, alle stations < 2^22):
+  - P(baan passeert 5) = 0.9345: de 5-trechter is bijna universeel.
+  - Er is EEN hoofdader met ~36-48% van al het verkeer: ... -> 3077 -> 577
+    -> 433 -> 325 -> 61 -> 23 -> 35 -> 53 -> 5 -> 1 — EXACT het slot van
+    de baan van 27 (na piek 9232). De beroemdste baan is niet toevallig
+    beroemd: zijn afdaling is de hoofdrivier van het hele systeem.
+  - Twee stromingswetten: generieke stations ~ C/w (harmonisch); de
+    hoofdader vervalt veel trager (~w^-0.56): het hoofdkanaal houdt
+    onevenredig veel verkeer vast (riviermorfologie).
+Visualisatie: 151 knopen (flow >= 2%) als graaf in cursus les 1.2
+(canvas: x = afstand tot 1, y = log2 w, oppervlak = flow, ader rood).
