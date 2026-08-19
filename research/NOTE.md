@@ -16539,3 +16539,37 @@ Flow-meting (6000 banen van 64-bit starts, alle stations < 2^22):
     onevenredig veel verkeer vast (riviermorfologie).
 Visualisatie: 151 knopen (flow >= 2%) als graaf in cursus les 1.2
 (canvas: x = afstand tot 1, y = log2 w, oppervlak = flow, ader rood).
+
+## Obs 606 (2026-08-19): HET RIVIERENNETWERK — TWEE GROTE TAKKEN, SAMENVLOEIING BIJ 5, VERVAL w^-0.83 LANGS DE HOOFDSTROOM (Script 402)
+
+Instroom-decomposities (6000 banen, randflows):
+  in 1: 5 draagt 0.938; daarnaast exact de alternerende stations 341
+        (0.037) en 85 (0.025) — de (4^k-1)/3-familie als verwacht.
+  in 5: DE GROTE SAMENVLOEIING: de 13-rivier (0.487) en de 53-rivier
+        (0.447) — samen 0.934. Vrijwel al het verkeer bereikt 5 via
+        precies twee monden.
+  in 11: de eerste grote vork stroomopwaarts: 29-tak (0.243) + 7-tak
+        (0.196) — de rivier splitst bijna gelijk.
+EERLIJKE VERFIJNING VAN OBS 605: de max-flow-hoofdstroom is de 13-RIVIER
+(5 <- 13 <- 17 <- 11 <- 29 <- 19 <- 101 <- 67 <- 89 <- 59 <- 157 <- ...);
+het 27-slot (de 53-rivier via 35, 23, 61, 325, 433, 577, 3077) is de
+CO-DOMINANTE tweede rivier (0.447 vs 0.487). Beide beelden kloppen; de
+kroon gaat nipt naar de 13-kant.
+VERVALWET: langs de hoofdstroom omhoog flow ~ w^-0.828 (fit over 20
+stations tot 1387). VOORZICHTIGE NOOT: numeriek dicht bij de c-familie
+(0.835) — mogelijk toeval; een geprerigistreerde toets op diepere
+stations/grotere steekproef is nodig voordat hier iets geclaimd wordt.
+De boomdichtheid van trechterstations raakt wel aan de telmachinerie
+(K-L telt exact zulke bomen) — een echt verband is denkbaar.
+
+## Obs 607 (2026-08-19): HET CARRY-WIS-LEMMA — STATUS STELLING PER EINDIGE t (VIA UITPUTTENDE VERIFICATIE)
+
+Formeel genoteerd: de uitspraken "f_t is exact deterministisch op de
+101-motiefsnede, met conditionele bias 1, 1, 3/4, 3/4, 1/4 (t = 4..8)"
+zijn STELLINGEN: p_t hangt alleen af van n mod 2^(t+1), en script 399
+verifieerde de complete residuruimte — een geldige eindige bewijsvorm
+(zelfde status als de venstercertificaten). Open blijft de mechanistische
+hand-afleiding voor algemene t (de 101 -> 10000-instorting wist lokaal de
+carry-keten; voor t = 4/5 direct narekenbaar, voor grotere t versplintert
+het motief per Obs 603). De laag-gewicht-halveringswet rust nu dus op
+bewezen sokkels tot t = 8 en op exacte metingen daarboven.
