@@ -16472,3 +16472,25 @@ de dyadische boekhouding — geen Boolean-diepte nodig (verklaring waarom
 Obs 591's AND-boom-toets faalde: het mechanisme is motief-conditioneel,
 niet term-additief). En opnieuw: het -1/3-motief (het perfecte instortings-
 patroon) blijkt de drager — de negatieve wereld stuurt ook de bias.
+
+## Obs 603 (2026-08-19): EXACTE REEKSEN — SPIEGELTELLERS ZONDER LAGE RECURRENTIE (EERLIJK NEGATIEF), BIAS-TABEL EXACT DYADISCH (Script 399)
+
+### (A) De spiegelreeks exact, en een negatief resultaat
+A_j exact als breuken (j=1..20): -1, 1, -1, 0, 0, 0, -3/8, 0, -5/32,
+-1/32, -15/128, -1/256, -5/64, -3/128, -53/1024, -37/2048, -171/4096,
+-83/4096, -1127/32768, -1465/65536. GEEN lineaire recurrentie met
+rationale coefficienten t/m orde 6 (ook niet op de even/oneven
+subreeksen): de spiegelconstante mu heeft geen simpele rationale
+genererende functie — de gesloten vorm moet, als hij bestaat, uit de
+motief-structuur komen, niet uit recurrentie-detectie. Eerlijk genoteerd.
+
+### (B) De bias-kanaal-tabel exact (volledige enumeratie)
+Totale biases exact dyadisch: 0, 1/2, 1/8, 1/4, 0, -1/64, -1/32, 3/128,
+1/512, 9/512, 1/128 (t=4..14) — tekenwisselend, geen simpele wet.
+Conditionele biases op de beste motiefsnede: EXACT 1, 1, 3/4, 3/4, 1/4
+voor t=4..8 (de carry-wis-kern: bij t=4/5 is f_t VOLLEDIG deterministisch
+op de snede), daarna mengend (-7/32, -1/8, 1/8, 25/256, ...): het zuivere
+een-motief-mechanisme draagt exact vijf stappen en versplintert dan in
+meerdere motieven. Bewijsdoel verscherpt: het carry-wis-lemma voor t<=8
+(zuivere dyadica, eindige verificatie al gedaan); daarboven is de bias een
+SOM over motiefsnedes — de volgende patroonjacht is die decompositie.
