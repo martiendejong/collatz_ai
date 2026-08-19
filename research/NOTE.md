@@ -16494,3 +16494,34 @@ een-motief-mechanisme draagt exact vijf stappen en versplintert dan in
 meerdere motieven. Bewijsdoel verscherpt: het carry-wis-lemma voor t<=8
 (zuivere dyadica, eindige verificatie al gedaan); daarboven is de bias een
 SOM over motiefsnedes — de volgende patroonjacht is die decompositie.
+
+## Obs 604 (2026-08-19): MERGE-PUNTEN — DE EXACTE LOKALE WET, DE 5-TRECHTER, EN DE HARMONISCH-KWADRAAT-STAART BEVESTIGD (Script 400)
+
+Vraag (Martien): wat gebeurt er als twee reeksen mergen en waar komen ze
+terecht? Drie lagen:
+
+### (1) De exacte lokale wet
+n en 4n+1 mergen ALTIJD in een stap (3(4n+1)+1 = 4(3n+1): zelfde oneven
+deel; 2000/2000 geverifieerd). De hele familie 4^k n + (4^k-1)/3 merget
+dus instantaan — merge-partners zijn geparametriseerd. Elke oneven w die
+geen drievoud is, is een merge-station met ONEINDIG veel binnenkomende
+takken ((2^v w - 1)/3 per geldige v); drievouden zijn nooit merge-punt.
+KLEIN NIEUW FEIT: gesynchroniseerde paren (zelfde venster/patroon) kunnen
+NIET mergen zolang ze synchroon lopen — hun verschil is 3^K(n-m)/2^S,
+nooit nul. Mergen vereist gedesynchroniseerde paden.
+
+### (2) Waar willekeurige paren landen: de 5-trechter
+400 paren van 80-bit starts: mediaan merge-waarde = 5 (!); 40% merget
+exact op 5, top-stations 5, 11, 1, 47, 911, 91. De stations naar 1 zijn
+de familie (4^k-1)/3 = 1, 5, 21, 85, ... — alweer de alternerende
+101-patronen. VOORREGISTRATIE BEVESTIGD: de harmonische wet voorspelde
+P(merge > X) ~ C/X; gemeten in het middenbereik X=100..1000: ratio
+16.5 -> 15.0 (vlak, wet klopt), met eindige-grootte-cutoff daarboven.
+
+### (3) Nabije paren: meer gedeelde bits => LAGER mergen
+Paren die k lage bits delen: mediaan blijft laag (11-35) maar p90 DAALT
+met k (2^55 bij k=8 naar 5.6e7 bij k=32): gedeelde bits stellen
+divergentie uit (zelfde patroon), en tijdens die synchronisatie kan er
+per (1) niet gemerged worden terwijl de waarden dalen — dus hoe langer
+samen, hoe dieper het uiteindelijke merge-punt. Contra-intuitief en
+verklaard door hetzelfde kleine feit.
