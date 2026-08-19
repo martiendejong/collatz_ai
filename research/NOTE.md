@@ -16573,3 +16573,37 @@ hand-afleiding voor algemene t (de 101 -> 10000-instorting wist lokaal de
 carry-keten; voor t = 4/5 direct narekenbaar, voor grotere t versplintert
 het motief per Obs 603). De laag-gewicht-halveringswet rust nu dus op
 bewezen sokkels tot t = 8 en op exacte metingen daarboven.
+
+## Obs 608 (2026-08-19): DE MONDEN-STELLING — HET VERMOEDEN ALS "IEDEREEN SPELT OOIT HET ALTERNERENDE PATROON EXACT"
+
+Martiens vraag: alle getallen komen op een paar monden uit, en alle monden
+zijn (4^k-1)/3 — kunnen we dan bewijzen dat vanuit de monden alle
+(4^k-1)/3-getallen te maken zijn? Antwoord in drie lagen:
+
+### (1) De triviale-maar-mooie stelling (geverifieerd)
+De oneven voorgangers van 1 zijn EXACT de familie (4^k-1)/3 = 1, 5, 21,
+85, 341, ... (3m+1 = 2^v vergt v even). Elke familielid -> 1 in een stap.
+Dus: "vanuit de monden zijn alle familieleden te maken" is trivieel waar —
+DE FAMILIELEDEN ZIJN DE MONDEN. En het vermoeden krijgt een equivalente,
+poetische vorm: BEREIK 1 <=> RAAK OOIT EXACT DE ALTERNERENDE LADDER —
+elk getal moet ooit een waarde aannemen waarvan de binaire schrijfwijze
+zuiver 10101...01 is (het -1/3-patroon, een sport per factor 4).
+
+### (2) De mondenstructuur (nieuw detail, geverifieerd)
+Een derde van de monden is BLAD: k = 0 mod 3 (21, 1365, 87381, ...) heeft
+geen oneven voorgangers (21*2^v - 1 is nooit deelbaar door 3) en bedient
+alleen zijn eigen 2^j-straal. De werkende monden zijn k != 0 mod 3;
+gemeten verkeer: 5 draagt 93.8%, 341 3.7%, 85 2.5% — met de curieuze
+inversie dat 341 (groter) meer draagt dan 85 (mini-open vraagje).
+
+### (3) De valkuil (eerlijk)
+De niet-triviale richting — elk getal BEREIKT ooit een mond — is exact
+het vermoeden zelf (mond -> 1 is een stap; 1's enige ingangen zijn de
+monden: perfecte equivalentie, geen versterking of verzwakking). De
+flowmetingen (93% door 5) zijn dichtheids-uitspraken: "vrijwel alle",
+de bekende muur. Winst van de herformulering: het doelwit is geen punt
+maar een geometrische ladder met een sport per twee bits, en het
+vermoeden zegt dat de carry-machine iedereen ooit het zuiverste
+-1/3-woord laat spellen — de negatieve wereld als eindstation, letterlijk.
+(Bijvangst: rho(2,19) definitief niet RAM-haalbaar op deze machine —
+geparkeerd; geheugengrens 1.44GB-allocatie.)
