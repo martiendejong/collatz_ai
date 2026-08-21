@@ -16607,3 +16607,30 @@ vermoeden zegt dat de carry-machine iedereen ooit het zuiverste
 -1/3-woord laat spellen — de negatieve wereld als eindstation, letterlijk.
 (Bijvangst: rho(2,19) definitief niet RAM-haalbaar op deze machine —
 geparkeerd; geheugengrens 1.44GB-allocatie.)
+
+## Obs 609 (2026-08-21): DE RECURSIE-STELLING VAN MARTIEN — HET HELE VERMOEDEN IS EEN INDUCTIESTAP, EN DE STATUSKAART ERVAN
+
+Martiens synthese: "de clou is het recursieve proces bewijzen." Exact
+gemaakt: het vermoeden heeft een perfecte sterke-inductie-vorm —
+  ALS elk getal n > 1 ooit ONDER zijn startwaarde duikt (eindige
+  stoptijd), DAN volgt alles: strong induction sluit onmiddellijk
+  (het duikpunt is kleiner, dus bereikt 1 per hypothese).
+De hele moeilijkheid is dus EEN inductiestap: "elke n duikt". Statuskaart
+van die stap over al ons werk:
+  - BASIS: astronomisch — verificatie 2^71 is de inductiebasis; elke
+    duik-bewezen restklasse cascadeert gratis.
+  - DE STAP VOOR BIJNA ALLE: bewezen (Terras: dichtheid 1; onze telling
+    x^0.9184; per venster diepte k is de niet-gedekte fractie de
+    klim-geschikte restklassen ~ 2^(-kappa' k) — de 5%-taks per venster).
+  - DE STAP ALS STRUCTUUR: de renormalisatie-toren is exact (vezeltoren-
+    transport), zijn contractie gemeten en deels gecertificeerd (Q < 1,
+    excess 0.60): het recursieve proces contraheert aantoonbaar in de
+    telzin — mits de margewet (c(2) < 1) het eindpunt draagt.
+  - DE STAP INDIVIDUEEL: het monsterprofiel (Obs 578/595) is de exacte
+    beschrijving van een n waarvoor de stap zou falen: eeuwig boven
+    zichzelf, permanente recordlijn, oneindig voorgebakken treffers.
+DE CLOU-VAN-DE-CLOU: de inductiestap is een uitspraak over EEN getal
+tegelijk, en al onze gereedschappen middelen. Elke laag herbevestigt
+Martiens zin: bewijs de recursie (de duik, voor iedereen) en alles valt;
+de recursie is bewezen voor elke meetbare meerderheid en gekarakteriseerd
+tot op het individu — alleen dat laatste woord ontbreekt.
