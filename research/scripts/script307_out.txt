@@ -1,0 +1,59 @@
+computing rho_k(lambda) grid...
+  lam=1.85 k=9: rho=0.967295450 cwgap=1.8e-15
+  lam=1.85 k=10: rho=0.973801598 cwgap=1.8e-15
+  lam=1.85 k=11: rho=0.979787729 cwgap=2.0e-15
+  lam=1.85 k=12: rho=0.985186305 cwgap=2.0e-15
+  lam=1.85 k=13: rho=0.989659065 cwgap=2.4e-15
+  lam=1.85 k=14: rho=0.993781353 cwgap=2.2e-15
+  lam=1.85 k=15: rho=0.997468410 cwgap=2.4e-15
+  lam=1.85 k=16: rho=1.000687405 cwgap=2.7e-15
+  lam=1.87 k=9: rho=0.960406815 cwgap=1.6e-15
+  lam=1.87 k=10: rho=0.967030104 cwgap=1.6e-15
+  lam=1.87 k=11: rho=0.973128898 cwgap=2.0e-15
+  lam=1.87 k=12: rho=0.978658873 cwgap=2.2e-15
+  lam=1.87 k=13: rho=0.983238179 cwgap=2.2e-15
+  lam=1.87 k=14: rho=0.987472923 cwgap=2.4e-15
+  lam=1.87 k=15: rho=0.991276672 cwgap=2.9e-15
+  lam=1.87 k=16: rho=0.994605780 cwgap=2.9e-15
+  lam=1.89 k=9: rho=0.953687865 cwgap=1.6e-15
+  lam=1.89 k=10: rho=0.960419349 cwgap=2.0e-15
+  lam=1.89 k=11: rho=0.966632842 cwgap=2.2e-15
+  lam=1.89 k=12: rho=0.972292439 cwgap=2.0e-15
+  lam=1.89 k=13: rho=0.976974912 cwgap=2.4e-15
+  lam=1.89 k=14: rho=0.981320267 cwgap=2.4e-15
+  lam=1.89 k=15: rho=0.985239354 cwgap=2.4e-15
+  lam=1.89 k=16: rho=0.988677542 cwgap=3.1e-15
+  lam=1.91 k=9: rho=0.947131415 cwgap=1.6e-15
+  lam=1.91 k=10: rho=0.953966698 cwgap=2.2e-15
+  lam=1.91 k=11: rho=0.960289547 cwgap=1.8e-15
+  lam=1.91 k=12: rho=0.966077938 cwgap=2.0e-15
+  lam=1.91 k=13: rho=0.970862523 cwgap=2.4e-15
+  lam=1.91 k=14: rho=0.975316719 cwgap=2.4e-15
+  lam=1.91 k=15: rho=0.979349383 cwgap=2.7e-15
+  lam=1.91 k=16: rho=0.982895539 cwgap=2.9e-15
+  lam=1.93 k=9: rho=0.940731199 cwgap=1.6e-15
+  lam=1.93 k=10: rho=0.947665963 cwgap=2.2e-15
+  lam=1.93 k=11: rho=0.954092118 cwgap=2.0e-15
+  lam=1.93 k=12: rho=0.960010061 cwgap=2.2e-15
+  lam=1.93 k=13: rho=0.964894240 cwgap=2.4e-15
+  lam=1.93 k=14: rho=0.969455496 cwgap=2.7e-15
+  lam=1.93 k=15: rho=0.973600389 cwgap=2.7e-15
+  lam=1.93 k=16: rho=0.977253233 cwgap=2.9e-15
+
+=== VALIDATION against certified records (certified are lower bounds) ===
+k=17: extrapolated gamma=0.8968 lambda*=1.8620 | certified 0.8953 (diff +0.0015)
+k=19: extrapolated gamma=0.9105 lambda*=1.8797 | certified 0.9069 (diff +0.0036)
+k=20: extrapolated gamma=0.9167 lambda*=1.8878 | certified 0.9146 (diff +0.0021)
+k=21: extrapolated gamma=0.9226 lambda*=1.8955 | certified 0.9184 (diff +0.0042)
+
+=== PREDICTIONS k=22..28 ===
+law (2/3)^(1/6): gamma_law(k) = 1 - 0.0816*(2/3)^((k-21)/6)
+k=22: extrapolated gamma=0.9281 | law=0.9237 (diff +0.0044)
+k=23: extrapolated gamma=0.9333 | law=0.9287 (diff +0.0045)
+k=24: extrapolated gamma=0.9382 | law=0.9334 (diff +0.0048)
+k=25: extrapolated gamma=0.9429 | law=0.9377 (diff +0.0051)
+k=26: extrapolated gamma=0.9472 | law=0.9418 (diff +0.0054)
+k=27: extrapolated gamma=0.9512 | law=0.9456 (diff +0.0056)
+k=28: extrapolated gamma=0.9548 | law=0.9492 (diff +0.0056)
+
+DONE
