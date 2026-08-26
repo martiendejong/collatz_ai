@@ -142,3 +142,21 @@ S1 en S3 zijn puur formalisatiewerk op bestaand bewezen materiaal en
 kunnen direct; S2 en S4 zijn goedkope experimenten met beslisbare
 uitkomst; S5 is een inventarisatie-pass over het dossier. Voorstel
 volgorde: S1 → S2 → S3 → S4 → S5.
+
+## 6. Status (bijgewerkt 2026-08-26)
+
+- **S1 KLAAR (Obs 611)**: flip-pariteit oneven op elk niveau j=3..20;
+  de klok vertakt nooit · Rule 30's verdubbelingscriterium herbewijst
+  LTE in automaat-vorm en de klok-multiverse is bewijsbaar triviaal.
+  Script: `scripts/404_family_innovation.py`.
+- **S2 KLAAR + BESLIST (Lemma 38, Obs 611)**: familie-klok-dichotomie
+  mod 8 (vlak voor a≡5,7; affiene toren voor a≡1,3, bewezen via
+  index-2-coset). Geen Rule 30-hardheid in de klok-laag; alle hardheid
+  zit bewijsbaar in de koppeling klok×roulette. Bijvangst:
+  vlakke-klok-coset = rijke refill-kaste (alle alternators).
+- **S3 OPEN**: achtergrond-stelling als papersectie (volgende stap).
+- **S4 OPEN**: vertakkingspunt-census in stream-ruimte; na S1 is de
+  scherpe vraag: de klok levert géén branch-punten, dus elke
+  overlevende zaad-informatie moet via de w-keuze/min-branch lopen ·
+  census die configuraties.
+- **S5 OPEN**: tijdomkeer-inventarisatie.

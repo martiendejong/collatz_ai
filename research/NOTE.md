@@ -16689,3 +16689,63 @@ overeen omdat beide door 2-adische klokken op lage diepte worden
 gedreven, niet omdat Rule 30 en Collatz dezelfde machine zijn; vanaf
 v2(k)=3 divergeren ze definitief. De waarde is strategisch (waar zit
 de hardheid, welke bewijsvormen dragen over), niet inhoudelijk.
+
+## Obs 611 (2026-08-26): S1+S2 VAN DE RULE 30-LENS UITGEVOERD · geen vertakkingspunten in de klok, en de familie-klok-dichotomie (Lemma 38)
+
+Vervolg op Obs 610; script scripts/404_family_innovation.py (draait
+schoon, 101 families, alle asserties groen).
+
+### (1) S1 · de klok vertakt NOOIT (flip-pariteit oneven op elk niveau)
+De vermenigvuldig-met-3-machine op binaire kolommen is een carry-
+automaat: bit_j(3^(k+1)) = bit_j(3^k) XOR driver_j(k), waarbij de
+driver alleen van het onderblok 3^k mod 2^j afhangt en dus periodiek is
+met p_j = ord(3 mod 2^j) = 2^(j-2). Rule 30's verdubbelingscriterium
+zegt: periode van bit j verdubbelt t.o.v. het onderblok DESDA het
+aantal driver-treffers per onderperiode ONEVEN is; bij EVEN ontstaat
+een vertakkingspunt (zaad-informatie overleeft). Geverifieerd
+j = 3..20: pariteit oneven op ELK niveau. Dit is LTE herbewezen in
+automaat-vorm, met nieuwe inhoud: de geordende zijde van Collatz heeft
+NUL vertakkingspunten · waar Rule 30's linkerhelft zeldzame
+branch-punten heeft (diagonaal 53208 etc.) en daarmee een multiverse,
+is onze klok-multiverse bewijsbaar triviaal. CA-niveau-echo van de
+nul-opslag-lijn (Thm 20/22).
+
+### (2) S2 · LEMMA 38 (familie-klok-dichotomie, bewezen + geverifieerd)
+Voor oneven a en B_a(k) = v2(a*3^k - 1):
+  - a = 5,7 mod 8: B_a <= 2 voor alle k (VLAKKE klok). Bewijs: diepte
+    >= 3 eist 3^k = a^(-1) mod 8, maar 3^k mod 8 in {1,3} en
+    a^(-1) mod 8 in {5,7}. Strijdig.
+  - a = 1,3 mod 8: AFFIENE TOREN: {k : B_a(k) >= j} is voor elke j >= 3
+    exact EEN restklasse mod 2^(j-2), genest met index exact 2, nooit
+    gecapt (cykliciteit van <3> mod 2^j, index 2 in de eenhedengroep).
+Geverifieerd: 50/50 families vlak, 51/51 families affiene toren
+(K=1024, diepte t/m j=9, klassen vol en genest). De volledige familie-
+identiteit zit in het FASEWOORD (welke lift per niveau) = de binaire
+cijfers van de 2-adische discrete log van a^(-1) in <3>; voorbeelden:
+a=1: 000000 (repuniet), a=3: 111111, a=11: 001101, a=17: 011001.
+
+### (3) De strategische uitkomst (beslist)
+S2 was opgezet als beslisbare localisering: OF een familie heeft een
+niet-affiene innovatiereeks (Rule 30-hardheid IN de klok), OF de
+tamheid is universeel en alle hardheid zit bewijsbaar in de
+rotatielaag. Uitkomst: het TWEEDE. De klok-laag van Collatz is in zijn
+geheel opgelost (waarden affien, fasen = makkelijk berekenbare discrete
+logs); er is geen Rule 30-achtige ondoorgrondelijkheid in de 2-adische
+laag te vinden. De Conversie-These wordt daarmee scherper: de volledige
+moeilijkheid van 3n+1 zit in de KOPPELING tussen de (opgeloste) klok en
+de (opgeloste) roulette, niet in een van beide lagen.
+
+### (4) Bijvangst · kaste-correlatie
+De vlakke-klok-coset {5,7 mod 8} is exact de RIJKE refill-kaste
+(2.49 enen/burn; alle alternators = 5 mod 8), de diepe-toren-coset
+{1,3 mod 8} exact de ARME kaste. Dynamische rijkdom correleert met
+2-adische AFSTAND tot de <3>-baan van 1: de gateways naar 1 liggen
+buiten de diepe klokresonantie. Nog slechts correlatie-op-definitie-
+niveau; mechanisme niet uitgewerkt.
+
+### (5) De valkuil (eerlijk)
+S1's "geen vertakkingspunten" gaat over de klok-laag (de geordende
+zijde), niet over de volle dynamiek: de w-keuzes/min-branch blijven de
+plek waar informatie sterft en waar E* leeft. Lemma 38's bewijs is
+elementair (index-2-coset + cykliciteit); de numeriek is bevestiging,
+geen bewijslast. Fasewoorden geverifieerd t/m diepte j=9, K=1024.
