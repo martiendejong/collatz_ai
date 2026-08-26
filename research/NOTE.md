@@ -16749,3 +16749,64 @@ zijde), niet over de volle dynamiek: de w-keuzes/min-branch blijven de
 plek waar informatie sterft en waar E* leeft. Lemma 38's bewijs is
 elementair (index-2-coset + cykliciteit); de numeriek is bevestiging,
 geen bewijslast. Fasewoorden geverifieerd t/m diepte j=9, K=1024.
+
+## Obs 612 (2026-08-26): S3 · DE ACHTERGROND-STELLING · het vermoeden als uniciteit-van-geschiedenis, paper-klare sectie
+
+Rule 30's situatie: voorwaarts deterministisch; achterwaarts is de
+geschiedenis alleen uniek ONDER de achtergrond-aanname (zwart blijft
+zwart), en zonder die aanname bestaan alternatieve geschiedenissen.
+Ons dossier bevat exact dezelfde structuur, verspreid over F17, F19,
+F20, Thm 9/9'/9'', Thm 17 en R216. Hier verzameld tot een sectie.
+
+### Setting
+Versnelde Collatz T(n) = (3n+1)/2^k op oneven n. Een GESCHIEDENIS van v
+is een oneindige achterwaartse keten ... -> n2 -> n1 -> v. De backward
+stairway rule (R216, exact bewezen): trap van hoogte k landt op v desda
+v ternair op minstens k enen eindigt; n = (2Q+1)*2^k - 1 met
+Q = (v - rep3(k))/3^k. De in-graad staat dus in de ternaire staart en
+de achteruit-mint is geometrisch(1/3).
+
+### De vier bouwstenen (alle bewezen in dit dossier)
+B1 (stream-determinisme, R25): elke pariteits/shape-stream bepaalt een
+    uniek 2-adisch realisatiepunt; periodiek: rho = B/(2^(K+W) - 3^K).
+B2 (realisatie-census, F19 + Thm 17): de geheel-getal-gerealiseerde
+    periodieke streams zijn exact de bekende cykels {1, -1, -5, -17},
+    compleet t/m periode 12; de positieve kant is leeg op de triviale
+    cykel na.
+B3 (teken-stelling, F20): positieve cykels eisen netto-dalende shapes;
+    klimmers realiseren negatief (daarom zijn -5 en -17 negatief; de
+    twee "gratis" Catalan-gaten (1,2) en (2,3) zijn opgebruikt).
+B4 (shadowing, Thm 9/9'/9''): een positief geheel getal kan een
+    niet-geheel realisatiepunt hooguit log2(n + |rho|)/d perioden
+    volgen; elke periodieke drift-defiance is log-gethrotteld;
+    divergentie eist onbegrensde aperiodieke complexiteit.
+
+### De stelling in achtergrond-vorm
+ACHTERGROND-STELLING (herformulering van het vermoeden): elke
+"samenzwering" (oneindige klim- of cykel-consistente stream) is als
+geschiedenis realiseerbaar, maar uitsluitend in 2-adische punten
+buiten de positieve gehele getallen; de oneindige ladder convergeert
+naar n = -5, de bekende alternatieve geschiedenissen zijn exact
+{-1, -5, -17}. Het vermoeden zegt: onder de achtergrond-aanname
+"n is een positief geheel getal" is de asymptotische geschiedenis
+uniek (iedereen deelt het verleden en de toekomst van de triviale
+cykel). Kort: 3n+1 heeft alternatieve geschiedenissen, maar ze zijn
+allemaal negatief of niet-geheel · precies zoals Rule 30's alternatieve
+verledens bestaan maar de zwarte achtergrond schenden.
+
+### Wat dit koopt
+(i) Een verenigde formulering van beide helften: cykel-helft = B2
+(census leeg op positieve zijde), divergentie-helft = B4 + E*
+(aperiodieke complexiteit); (ii) de juiste plaats voor Obs 611:
+de klok-laag levert bewijsbaar geen vertakkingspunten, dus elke
+niet-triviale geschiedenis moet zijn vrijheid uit de w-keuzes halen;
+(iii) een paper-klare sectie (kandidaat voor de arXiv-note of paper 7)
+die F17/F19/F20/Thm 9/Thm 17 als een geheel presenteert i.p.v. als
+losse vondsten.
+
+### De valkuil (eerlijk)
+Dit is herformulering plus verpakking, geen nieuw wiskundig feit: de
+census is eindig geverifieerd (periode <= 12), shadowing dekt alleen
+(uiteindelijk-)periodieke modi, en de aperiodieke divergentie-modus
+blijft de open kern. De winst is architectuur: een frame waarin elk
+bestaand resultaat zijn rol heeft en de open kern scherp zichtbaar is.
