@@ -154,7 +154,10 @@ volgorde: S1 → S2 → S3 → S4 → S5.
   index-2-coset). Geen Rule 30-hardheid in de klok-laag; alle hardheid
   zit bewijsbaar in de koppeling klok×roulette. Bijvangst:
   vlakke-klok-coset = rijke refill-kaste (alle alternators).
-- **S3 OPEN**: achtergrond-stelling als papersectie (volgende stap).
+- **S3 KLAAR (Obs 612)**: achtergrond-stelling geschreven · het
+  vermoeden als uniciteit-van-geschiedenis onder de positiviteits-
+  aanname; bouwstenen B1-B4 (R25, F19/Thm 17, F20, Thm 9) verenigd;
+  paper-klaar voor arXiv-note of paper 7.
 - **S4 OPEN**: vertakkingspunt-census in stream-ruimte; na S1 is de
   scherpe vraag: de klok levert géén branch-punten, dus elke
   overlevende zaad-informatie moet via de w-keuze/min-branch lopen ·
