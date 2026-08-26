@@ -158,8 +158,17 @@ volgorde: S1 → S2 → S3 → S4 → S5.
   vermoeden als uniciteit-van-geschiedenis onder de positiviteits-
   aanname; bouwstenen B1-B4 (R25, F19/Thm 17, F20, Thm 9) verenigd;
   paper-klaar voor arXiv-note of paper 7.
-- **S4 OPEN**: vertakkingspunt-census in stream-ruimte; na S1 is de
-  scherpe vraag: de klok levert géén branch-punten, dus elke
-  overlevende zaad-informatie moet via de w-keuze/min-branch lopen ·
-  census die configuraties.
-- **S5 OPEN**: tijdomkeer-inventarisatie.
+- **S4 KLAAR (Obs 613)**: naald-census LEEG · survivor-geheugen =
+  geconditioneerde-muntloop-geheugen op elke lag, ook hoogte-
+  geconditioneerd (twee echte vensters, twee nul-replicaten,
+  permutatievloeren). Zelfs op de uitzonderingsverzameling onthoudt de
+  machine alleen haar hoogte. Script: `scripts/405_survivor_memory.py`.
+- **S5 KLAAR (Obs 614)**: tijdomkeer-inventaris · 4 wetten reeds
+  achterwaarts geforceerd, 3 promotie-kandidaten; de grote =
+  eigen-bezoek-brug (r=0.985) promoveren tot exacte identiteit
+  (K-L-certificaat = voorwaartse bezoekmaat via tijdomkering).
+
+**AGENDA AFGEROND (Obs 610-614).** Netto-oogst: het rand-isomorfisme,
+Lemma 38, twee schone negatieven (klok vertakt nooit; naald-census
+leeg), de achtergrond-stelling, en de eigen-bezoek-brug als
+vervolgprogramma. S6-werkregels blijven permanent van kracht.

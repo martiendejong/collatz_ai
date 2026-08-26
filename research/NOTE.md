@@ -16810,3 +16810,83 @@ census is eindig geverifieerd (periode <= 12), shadowing dekt alleen
 (uiteindelijk-)periodieke modi, en de aperiodieke divergentie-modus
 blijft de open kern. De winst is architectuur: een frame waarin elk
 bestaand resultaat zijn rol heeft en de open kern scherp zichtbaar is.
+
+## Obs 613 (2026-08-26): S4 · DE VERTAKKINGSPUNT-CENSUS OP DE NAALD IS LEEG · survivors onthouden alleen hun eigen hoogte
+
+Script scripts/405_survivor_memory.py (28 s). Vraag uit de Rule 30-
+lens: Thm 20/22 geven nul opslag op dichtheidsniveau, maar Rule 30's
+linkerhelft leert dat zaad-informatie kan overleven op ZELDZAME
+configuraties die je alleen ziet door op de uitzonderingsverzameling
+te conditioneren. Onze uitzonderingsverzameling = de naald (orbits die
+nooit onder hun startwaarde duiken). Test: seriele geheugenmeting
+I(k_i; k_{i+d}) op survivor-prefixes, (a) onvoorwaardelijk en
+(b) geconditioneerd op hoogte-bin, tegen de eerlijke nulhypothese:
+een iid-muntloop (P(k)=2^-k) onder IDENTIEKE overlevings-conditionering
+(conditioneren op positief blijven induceert zelf geheugen via de
+hoogte; de nul kwantificeert precies dat). Permutatievloer voor
+MI-bias; twee disjuncte zaadvensters (10^6 en 3*10^7) tegen de
+orbit-sampling-valkuil (R187); lags 1, 2, 4; ~44k orbits en ~600k
+stappen per venster.
+
+RESULTAAT: Collatz-excess = nul-excess op elke lag, zowel
+onvoorwaardelijk (0.0028/0.0025/0.0015 vs 0.0027/0.0024/0.0014) als
+hoogte-geconditioneerd (0.0011-0.0013 vs 0.0008-0.0012); de spreiding
+tussen de twee echte vensters is even groot als tussen twee
+nul-replicaten. Het restant conditionele MI (~0.001) zit identiek in
+de nul: het is de onvolledige afscherming van 6 grove hoogte-bins,
+geen structuur.
+
+VERDICT: de vertakkingspunt-census op de naald is LEEG. Waar Rule 30's
+geordende zijde zeldzame branch-punten heeft waar zaad-informatie
+asymptotisch overleeft, heeft Collatz er (op dit meetniveau) geen:
+survivors zijn in hun seriele k-statistiek ononderscheidbaar van
+munt-lopen geconditioneerd op overleven. Puntsgewijze-ensemble-
+verscherping van Thm 22: zelfs op de uitzonderingsverzameling onthoudt
+de machine niets behalve haar eigen hoogte. Tevens de eerste directe
+toets van het E*-muntmodel OP het naald-ensemble zelf (eerder alleen
+marginalen: trailing-ones-rijkdom, die door de conditionering wordt
+verklaard).
+
+Valkuil (eerlijk): dit is een meting met gematchte nul, geen bewijs;
+bereik zaad ~10^6-10^7.5, prefix-diepte >= 8, lags t/m 4, k gecapt op
+6, hoogte in 6 bins. Diepere lags/fijnere bins kunnen later; de
+tweevoudige replicatie (echt en nul) is de bescherming tegen de
+bekende sampling-artefacten.
+
+## Obs 614 (2026-08-26): S5 · TIJDOMKEER-INVENTARIS · wat achterstevoren geforceerd is en wat promoveerbaar is
+
+Rule 30 wint zijn sterkste structuurresultaat (periodiciteit vanaf rij
+0) door informatie-behoud achterstevoren te draaien. Inventaris van ons
+dossier op die as.
+
+REEDS ACHTERWAARTS GEFORCEERD (bewezen):
+  1. Backward stairway rule: in-graad staat in de ternaire staart
+     (R216, exact).
+  2. Achteruit-mint geometrisch(1/3): boomverdunning omhoog =
+     fundament van het dichtheidsrecord (R216).
+  3. Torenwet (200/200 exact) en de bottom-up boomstructuur.
+  4. Lemma 38 (vandaag): de klok-dichotomie is een uitspraak over de
+     achterwaartse diepte-structuur van families.
+
+KANDIDATEN VOOR PROMOTIE (voorwaarts gemeten, achterwaartse afleiding
+plausibel):
+  5. Bezoekmaat gemiddeld exact 1/v: zou uit achterwaartse in-graad-
+     telling moeten volgen (de multifractale correcties niet).
+  6. Tourniquet/deur-verkeer (93% via poort 5): deurgewichten =
+     achterwaartse mint-massa's van subbomen; coset-structuur van
+     Lemma 38 geeft het skelet.
+  7. DE GROTE: de eigen-bezoek-brug (r=0.985 mod 27, R259-308) zegt
+     dat het K-L-certificaat de voorwaartse bezoekmaat IS via
+     tijdomkering; promotie van meting naar identiteit zou de
+     dichtheidsmachine en de orbit-statistiek exact verbinden en is
+     het natuurlijke Rule 30-eindpunt van dit programma.
+
+OPEN/NIET PROMOVEERBAAR LANGS DEZE AS: alles wat de w-keuze aggregeert
+(min/branch): daar sterft de injectiviteit, per Obs 611(1) en de
+Conversie-These.
+
+Hiermee is de Rule 30-lens-agenda (S1-S6) volledig afgewerkt:
+S1/S2/S3/S4/S5 uitgevoerd (Obs 610-614), S6 = permanente werkregels in
+RULE30_LENS.md par. 4. Netto-oogst: Lemma 38, twee schone negatieven
+(klok vertakt nooit; naald-census leeg), de achtergrond-stelling als
+frame, en kandidaat 7 hierboven als vervolgprogramma.
