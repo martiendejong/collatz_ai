@@ -16634,3 +16634,58 @@ tegelijk, en al onze gereedschappen middelen. Elke laag herbevestigt
 Martiens zin: bewijs de recursie (de duik, voor iedereen) en alles valt;
 de recursie is bewezen voor elke meetbare meerderheid en gekarakteriseerd
 tot op het individu — alleen dat laatste woord ontbreekt.
+
+## Obs 610 (2026-08-26): HET RAND-ISOMORFISME MET RULE 30 · Collatz bevat een opgeloste Rule 30, en de lens levert een campagneplan
+
+Analyse van het Rule 30-randonderzoek (permutiviteit, diagonaal-
+periodiciteit, alternatieve geschiedenissen) vertaald naar ons dossier;
+volledig strategie-document in research/RULE30_LENS.md, verificatie in
+scripts/403_rule30_lens.py (draait schoon).
+
+### (1) Het geverifieerde feit
+Rule 30's randobservabele A (rechtste blauwe-bloklengte per rij:
+1,3,1,4,1,3,1,6,...) en onze klokreeks B(k) = v2(3^k - 1)
+(1,3,1,4,1,3,1,5,...) voldoen aan de IDENTIEKE herhalingswet: nieuw
+getal alleen op posities 2^m, daarna replay van de volledige prefix.
+Scherpste vorm: beide zijn ruler-functies, waarde hangt alleen van
+v2(k) af:
+  A(k) = g(v2(k)), g: 1,3,4,6,7,9,... ONBEKEND (open ondanks rekenwerk
+                                      tot rij 2^46, 9 biljard bits);
+  B(k) = f(v2(k)), f(0)=1, f(j)=2+j   BEWEZEN (LTE).
+Overeenstemming exact op {v2(k)<=2} (7/8 van de posities), verschil
+exact op de diepe kloksloten {v2(k)>=3}. Beide wetten worden door
+hetzelfde mechanisme geforceerd: een permutieve (informatie-behoudende)
+richting plus duiventil geeft periodes die machten van 2 zijn; ons
+uurwerk ord(3 mod 2^j) = 2^(j-2) is structureel dezelfde machine als
+Rule 30's rechterrand.
+
+### (2) De lezing
+Collatz bevat een OPGELOSTE Rule 30: onze innovatiefunctie is affien en
+bewezen waar die van Rule 30 ondoorgrondelijk is. De hardheid zit bij
+ons verplaatst naar de Sturmian/rotatielaag van log2(3) en de
+carry-koppeling (de Conversie-These, nu met een externe spiegel).
+Sterkste conceptuele overdracht: Rule 30's "alternatieve
+geschiedenissen bestaan, maar niet onder de achtergrond-aanname" is
+letterlijk onze realisatie-census (F17/F19): elke samenzwering is een
+2-adisch punt (-5, -17), het vermoeden = geen positieve-integer
+alternatieve geschiedenis. Ook methodologisch gevalideerd: hun zoeken
+in cykel-ruimte i.p.v. beginstaat-ruimte = onze shape/census-machinerie,
+onafhankelijk uitgevonden.
+
+### (3) Campagne XVI-kandidaten uit de lens (details in RULE30_LENS.md)
+S1 permutiviteits-audit van de delings-automaat (Thm 36) + uurwerk als
+corollarium; S2 familie-innovatiereeksen a*3^k-1 (affien of niet =
+beslisbare localisering van de hardheid); S3 achtergrond-stelling
+(census als uniciteit-onder-aanname, papersectie); S4 vertakkingspunt-
+jacht in stream-ruimte (de Rule 30-vorm van E*); S5 tijdomkeer-
+systematiek (metingen promoveren naar achteruit-geforceerde
+stellingen); S6 lichtkegel/shear/innovatie-epistemologie als
+permanente werkregels.
+
+### (4) De valkuil (eerlijk)
+Het isomorfisme is een structurele analogie op de OPGELOSTE laag: het
+bewijst niets nieuws over 3n+1. De eerste 7 termen van A en B stemmen
+overeen omdat beide door 2-adische klokken op lage diepte worden
+gedreven, niet omdat Rule 30 en Collatz dezelfde machine zijn; vanaf
+v2(k)=3 divergeren ze definitief. De waarde is strategisch (waar zit
+de hardheid, welke bewijsvormen dragen over), niet inhoudelijk.
