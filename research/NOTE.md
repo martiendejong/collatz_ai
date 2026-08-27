@@ -17195,3 +17195,36 @@ Standaard-uitweg (regeltechniek): m-staps-contractie ||M^m||_Q < 1 --
 meting loopt (m=2,3,4,6). De k-invariantie van het normlandschap is
 zelf goed nieuws: wat we ook vinden bij m>=2, het is waarschijnlijk
 diepte-stabiel en dus inductie-materiaal.
+
+## Obs 625 vervolg (2026-08-27): MEER-STAPS-LYAPUNOV OOK NEGATIEF · de operator is zwaar niet-normaal met k-invariante transient; alle routes convergeren op het profiel-niveau
+
+Script 418b. ||M^m||_Q GROEIT door t/m m=6 (s=0: 3.13/5.21/8.40/20.8;
+s=-1: 2.47/3.83/5.87/12.9; per-stap ~1.53-1.78; k=15 identiek beeld,
+verschillen <5%). Met radius 0.95/0.87 betekent dit een lange
+niet-normale transient: paden die herhaald W8-rijen raken (gewicht
+lambda^(beta-1) = 1.42 > 1 per stap) stapelen amplificatie voordat
+menging domineert; crossover ligt voorbij m=6. GEEN diagonale metriek
+(en waarschijnlijk geen enkele lokale) tamt het microscopische
+systeem. De k-invariantie van het hele patroon (normen op k=13 en k=15
+binnen procenten gelijk) zegt: dit is structuur, geen toeval.
+
+SYNTHESE VAN DE SPECIALIST-ARC (Obs 622-625): drie routes wijzen naar
+een punt.
+  - LP-dualiteit: gerepareerd lemma (vorm-decorrelatie + gewogen
+    vorm-marge, beide gemeten k-vlak) -- maar het mechanisme van de
+    decorrelatie is niet via schaal-separatie bewijsbaar (Obs 624).
+  - Microscopische Lyapunov: bestaat niet diagonaal, transient
+    k-invariant (dit Obs).
+  - PROFIEL-NIVEAU (de uitweg die al half bewezen is): de cascade-
+    recursie CV_p = a*CV_(p-1) + c*CV_(p+1) heeft PROVEN a+c <= 1
+    (Lemma 24). Voor de tridiagonale profieloperator geldt klassiek:
+    spectraalnorm <= a+c <= 1, en radius <= 2*sqrt(ac) < a+c ZODRA
+    a != c. Het enige open stuk is dus exact het al gelokaliseerde
+    a != c (driftrichting, R601-660: robuust c > a gemeten onder elke
+    conventie, emergent/stationair). Rest-obstakel: de profiel-
+    recursie bestaat alleen stationair (R836), dus het bewijs moet
+    variationeel over het vaste punt, niet per-applicatie.
+EINDVORM VAN DE OPEN KERN NA DEZE ARC: een stationaire variationele
+karakterisering van het profiel-vaste-punt waaruit a != c volgt.
+Lemma 24 + [a != c] + Thm 19 = gamma -> 1. Alle andere formuleringen
+(kappa, clipping, vorm-marge) zijn hiervan gedaanten.

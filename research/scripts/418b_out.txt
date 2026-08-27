@@ -1,0 +1,18 @@
+k=13: nonlinear eigen-iteration lambda_norm = 1.000279 (want ~1); argmin rows 354,294
+k=13 s=+0.0 m=2: ||M^m||_Q = 3.1333  per-stap 1.7701
+k=13 s=+0.0 m=3: ||M^m||_Q = 5.2100  per-stap 1.7336
+k=13 s=+0.0 m=4: ||M^m||_Q = 8.3994  per-stap 1.7024
+k=13 s=+0.0 m=6: ||M^m||_Q = 20.7819  per-stap 1.6581
+k=13 s=-1.0 m=2: ||M^m||_Q = 2.4675  per-stap 1.5708
+k=13 s=-1.0 m=3: ||M^m||_Q = 3.8293  per-stap 1.5645
+k=13 s=-1.0 m=4: ||M^m||_Q = 5.8696  per-stap 1.5565
+k=13 s=-1.0 m=6: ||M^m||_Q = 12.8729  per-stap 1.5309
+k=15: nonlinear eigen-iteration lambda_norm = 1.000307 (want ~1); argmin rows 3,188,646
+k=15 s=+0.0 m=2: ||M^m||_Q = 3.1786  per-stap 1.7829
+k=15 s=+0.0 m=3: ||M^m||_Q = 5.2180  per-stap 1.7345
+k=15 s=+0.0 m=4: ||M^m||_Q = 8.7092  per-stap 1.7179
+k=15 s=+0.0 m=6: ||M^m||_Q = 23.1622  per-stap 1.6884
+k=15 s=-1.0 m=2: ||M^m||_Q = 2.4788  per-stap 1.5744
+k=15 s=-1.0 m=3: ||M^m||_Q = 3.8834  per-stap 1.5718
+k=15 s=-1.0 m=4: ||M^m||_Q = 6.0082  per-stap 1.5656
+k=15 s=-1.0 m=6: ||M^m||_Q = 13.8367  per-stap 1.5494
