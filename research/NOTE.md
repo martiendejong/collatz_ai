@@ -16999,3 +16999,58 @@ scripts 403-411. Kernoogst: Lemma 38+38b, kaste=(-2/a), fasewoord-
 coordinaten, achtergrond-stelling, brug = mean-field (exponent 1.00,
 puntsgewijs weerlegd), tourniquet-constanten = boom-dekpunten, drie
 schone negatieven (klok vertakt nooit / naald leeg / kampioenen munt).]
+
+## Obs 620 (2026-08-27): HET PAAR-MECHANISME · dalen wint van stijgen; spring-plaatsing op de lage sporten maakt de constanten
+
+Scripts 412 (+ N=64M achtergrondrun). Drie uitkomsten:
+
+(1) MECHANISME (roulette op de lage sporten): v mod 3 bepaalt de
+eerste sport: v = 2 mod 3 heeft m=1 (kind ~ 2v/3: de keten DAALT de
+dichte bulk in), v = 1 mod 3 begint bij m=2 (kind ~ 4v/3: de keten
+STIJGT de ijle zone in). In elk alternator-paar is het y = 2 mod 3-lid
+(341, 21845) het dalende lid en dat wint: 341's hoofdkind 227 draagt
+95.2% en de dominante keten blijft laag (227 -> 151 -> ... -> 635);
+85's keten klimt (113 -> 301 -> ... -> 20269) en verdunt. De grotere
+asymmetrie van paar twee: 5461 verliest zijn laagste sport GEHEEL aan
+spring 7281 en start pas op m=4 (kind ~ 5.3v) — vandaar ~6 i.p.v.
+~1.6. De paar/spring-collapse-structuur uit Obs 616 is daarmee
+mechanisch verklaard: sport-springness = roulette (mod 9-familie).
+
+(2) ROBUUSTHEID: lognormale rand-ruis van een ORDE per frontier-knoop
+(sigma = 1.0, 20 reps) verschuift de dekpunten nauwelijks: 341/85 =
+1.599 +- 0.033, 53/13 = 0.955 +- 0.007. Het dekpunt is statistisch
+robuust zonder uniforme puntsgewijze bracket (die bestaat niet:
+multifractaliteit). 21845/5461 = 4.95 +- 1.32 is nog rand-gedomineerd.
+
+(3) LOG2(3)-VRAAG ONBESLIST: N=64M geeft d(341)/d(85) = 1.58884;
+reeks over N: 1.624 / 1.601 / 1.585 / 1.582 / 1.5888 — fluctueert rond
+1.585 +- 0.004 met log2(3) = 1.58496 er middenin, maar het mechanisme
+(spring-patronen langs de keten) geeft geen reden voor een exacte
+identiteit. Status: intrigerende numerologie, geen claim.
+d(21845)/d(5461) = 6.00 bij 64M (stijgend, spoort met dekpunt-trend).
+
+## Obs 621 (2026-08-27): DE CORRECTIELAAG IS DE BOOM · dekpunt-veld verklaart R2 = 0.988 waar lokale features 0.36 halen
+
+Scripts 413 + 414. Het multifractale afwijkingsveld log(v*P(raak v))
+(1837 waarden v < 3^8, sd 0.99) ontleed:
+
+(a) LOKALE FEATURES: richting (v mod 3) 0.068; + springness van de
+eerste twee sporten +0.266 (dominant); ternaire trailing ones, log v,
+mod 9-dummies samen +0.025. Totaal R2 = 0.358: een derde is lokaal.
+
+(b) HET VOLLE DEKPUNT-VELD (gememoiseerde recursie P(v) = som
+kinderen, rand 1/u voorbij 10^6): corr(log P_meas, log P_fp) = 0.9941,
+helling 0.988, R2 = 0.988. De correctielaag is dus KETEN-GEACCUMULEERD
+en volledig berekenbaar: mean-field (K-L/roulette) x boom-dekpunt =
+vrijwel de hele puntsgewijze bezoekstructuur op deze schaal. Residu
+sd 0.143 bevat meet-vensterartefacten (uitschieters zijn waarden waar
+het smalle startvenster 1.0-1.6M atypisch doorstroomt; asymptotisch vs
+venster-P).
+
+ARCHITECTUUR-CONCLUSIE (sluit Obs 617 rond): bezoekmaat = (mean-field
+zichtbaar voor K-L, exponent 1.00) x (boom-dekpunt-correctie,
+puntsgewijs berekenbaar, onzichtbaar voor K-L). Niets aan de
+puntstructuur op deze schaal is mysterieus; wat open blijft is de
+CONVERGENTIE van het dekpunt (gemeten, robuust onder rand-ruis, niet
+bewezen) — en die convergentievraag is de bezoekmaat-gedaante van de
+bekende open kern.
