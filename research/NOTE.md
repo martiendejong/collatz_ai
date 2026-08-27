@@ -17119,3 +17119,46 @@ Saturatie (Prop 23-patroon) => gerepareerd lemma waar-vormig;
 geometrisch verval => kappa-creep, gamma-plafond, programma faalt
 eerlijk. VOLGENDE METING: zelfde probe op cert_k17 (RAM) en cert_k19
 (memmap) beslist de trend. Een scalar, twee runs, programma-gezondheid.
+
+## Obs 623 (2026-08-27): DE BESLISSENDE SCALAR, GECORRIGEERD EN BESLIST · triples krimpen maar behouden hun vorm; het gerepareerde lemma is gezond
+
+Scripts 416 + vorm-probe (k=13/15/17, met k=17 = 43M klassen, 4 min).
+Drieakter met een normalisatieles:
+
+(1) EERSTE METING (misleidend): de duaal-gewogen gap-mediaan vervalt
+geometrisch: 0.0327 / 0.0255 / 0.0199, 3-punts-fit c_inf = -0.0006,
+rate 0.784 per 2 digits — oogt als kappa-creep. MAAR dit botst met de
+direct gemeten vlakke kappa (0.841/0.840/0.837/0.838, Prop 35).
+
+(2) DE CORRECTIE: kappa hangt niet van de absolute gap af maar van de
+gap-tot-fluctuatie-VERHOUDING. Homogenisatie krimpt alle triples
+(totale spreiding (v3-v1)/v1: 0.078 / 0.063 / 0.051, zelfde rate
+~0.80) — de juiste, schaalvrije gezondheidsscalar is de VORM
+s = (v2-v1)/(v3-v1) in [0,1].
+
+(3) DE BESLISSING: de vorm is VLAK in k, zelfs licht stijgend:
+flat mediaan 0.4140 / 0.4239 / 0.4334; duaal-gewogen 0.5161 / 0.5393 /
+0.5326. Triples krimpen maar behouden hun vorm — precies consistent
+met vlakke kappa. Bovendien: duaal-gewogen > flat betekent dat de
+duale maat op relatief-brede triples zit (milde GUNSTIGE selectie).
+
+OPEN LEMMA'' (definitieve gerepareerde vorm):
+  (A) decorrelatie: duale maat en triple-vorm asymptotisch
+      onafhankelijk (corr ~ 0.03, geen adverse massa, k-stabiel);
+  (B) duaal-gewogen vorm-mediaan van onder begrensd (gemeten vlak
+      ~0.53 over drie dieptes; kappa zelf vlak t/m k=19).
+Dan kappa_max < 1 uniform via L2(u)-sensitiviteit. Beide delen
+schaalvrij geformuleerd; de creep-dreiging van meting (1) is een
+normalisatie-artefact gebleken.
+
+BIJVANGST (P1): links-rechts-vergelijking grofkorrelig: de duale maat
+is ANTI-gealigneerd met het certificaat (corr(log) = -0.52/-0.48/-0.46
+op mod 27/81/243, exponent -0.065 -> -0.113): duale massa concentreert
+op KLEINE-c-klassen = strakke/bindende constraints, zoals LP-logica
+voorspelt; linker-tempering heeft dus een negatieve, met verfijning
+groeiende exponent — nieuwe wet om te formaliseren.
+
+Valkuil: alles gemeten op drie dieptes (13/15/17); k=19-vormmeting kan
+via memmap (~uur) maar kappa-vlakheid op k=19 is al onafhankelijk
+gemeten. De les van vandaag zelf gelogd: normaliseer gezondheids-
+scalars schaalvrij voordat je creep concludeert.
