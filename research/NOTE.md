@@ -17284,3 +17284,54 @@ rigor. De hele gamma->1-vraag hangt nu aan EEN meetbaar-vlakke,
 schaalvrij geformuleerde scalar met een bewezen padgewijze hefboom
 eromheen. Dit is de scherpste vorm die de open kern in dit programma
 heeft gehad.
+
+## Obs 627 (2026-08-27): DE VARIATIONELE BOEKHOUDING VAN STAP (iv) · exact op eindige k, met de twee resterende deellemma's benoemd
+
+Doel: de identificatie "emergente coefficienten = stroom x verzwakking"
+(stap iv van Prop 40) van schets naar skelet, zonder kansrekening ·
+alles is op eindige k een exacte eindige som over de duale maat.
+
+### Definities (alles eindig en exact)
+Zij (lambda_k, c_k, u_k) het kritieke eigenpaar en Delta[c](j; delta)
+het relatieve offsetverschil-veld van Thm 16. Definieer per schaal p
+de duaal-gewogen profielenergie V_p := E_u[ Delta^2 | v3(delta) = p ].
+Thm 16 is puntsgewijs exact:
+  Delta(j; delta) = lambda^-2 Delta(i4 j; 4 delta) + w Delta(t j; 4 delta/3),
+met offset-algebra 4 delta = delta + 3 delta (omhoog-menging p, p+1) en
+4 delta / 3 = delta/3 + delta (omlaag-menging p-1, p). Kwadrateren en
+duaal middelen geeft een EXACTE identiteit tussen {V_q} en de
+kruistermen (de getekende kanalen van R611: Bl, Bh, Tl, Th met hun
+covarianties; cov(Bl,Bh) = -0.357 gemeten).
+
+### Deellemma (iv-a) · SLUITING: de stationaire V-recursie is
+tweetermig op een kleine fout na: er bestaan a_k(p), c_k(p) met
+  V_p = a_k(p) V_(p-1) + c_k(p) V_(p+1) + e_k(p),
+waarbij a_k, c_k de exacte kruisterm-quotienten aan het vaste punt
+zijn (eindige sommen, geen model) en e_k de sluitingsfout (gemeten
+1.2% fit-fout op vier dieptes, R174; residu van de niet-buurschaal-
+menging). TE BEWIJZEN: |e_k| klein genoeg dat tekens overleven ·
+concreet |e_k| < (c_k - a_k) V-schaal. Route: de scale-scatter-meting
+(R836: 60-68% energie naar digit 0) zegt dat verre menging bestaat
+maar via het STATIONAIRE veld terugvouwt in de buurschaal-vorm; het
+bewijs moet de vouw-operator normeren (ultrametrische cascade-
+structuur, R259).
+
+### Deellemma (iv-b) · TEKENMARGE op eindige k: uit Lemma 39 volgt
+padgewijs dat elke omlaag-doorgang verzwakt is met de lokale clipping
+(xi_1 - xi_2 - g)^+, terwijl de omhoog-doorgang (x4-lift) exact
+helling 1 heeft (Prop 34b). Duaal middelen geeft
+  a_k <= (1 - lam_k^clip) . F_down,  c_k >= F_up,
+met F_down = F_up exact (balans, Prop 32) en lam_k^clip >= de
+hypothese-(N)-scalar. Dus c_k - a_k >= lam_k^clip . F - |cross-
+correctie|. TE BEWIJZEN: de cross-correctie (teken-decoherentie van
+het branch-kanaal, R183: s_eff 0.487 -> 0.359) vernietigt de marge
+niet · gemeten marge c - a ~ 0.05 bij lam^clip . F ~ 0.06: consistent
+maar krap; de +-0.026-antisymmetrie (Prop 33) is de te normeren term.
+
+### Status na dit skelet
+De keten gamma -> 1 = Lemma 24 [BEWEZEN] + balans [BEWEZEN] +
+Prop 34b [BEWEZEN] + Lemma 39 [BEWEZEN] + (N) [gemeten vlak ~0.25,
+drie dieptes] + (iv-a) sluiting [gemeten 1.2%, te normeren] + (iv-b)
+cross-correctie [gemeten, te normeren] + Thm 19 [BEWEZEN].
+Vier bewezen schakels, een vlakke scalar, twee normeringsklussen.
+Geen enkele schakel is nog "mysterieus"; twee zijn nog niet rigoureus.

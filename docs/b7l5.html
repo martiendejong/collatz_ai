@@ -184,6 +184,47 @@
   </div>
 
   <div class="subject">
+    <h2><span class="snum">6</span><span class="nl">De laatste scalar</span><span class="en">The last scalar</span></h2>
+    <p class="nl">Na de lens kreeg het open probleem nog één behandeling: een audit met de bril van
+    een LP/optimalisatie-specialist. Die vond eerst iets vervelends · de gangbare bewijsschets
+    leunde op twee aannames (uniforme duale gewichten, uniforme gaps) die op het echte optimum
+    aantoonbaar <b>onwaar</b> zijn. Maar de reparatie bleek sterker dan het origineel. De metingen
+    lieten zien dat de triples van de telmachine met de diepte krimpen maar hun <b>vorm</b> behouden,
+    en op die schaalvrije vorm is alles gezond: de marge is vlak over elke geteste diepte.</p>
+    <p class="en">After the lens, the open problem got one more treatment: an audit through the eyes
+    of an LP/optimization specialist. It first found something awkward · the standing proof sketch
+    leaned on two assumptions (uniform dual weights, uniform gaps) that are provably <b>false</b> on
+    the actual optimum. But the repair turned out stronger than the original. The measurements
+    showed that the counting machine's triples shrink with depth while keeping their <b>shape</b>,
+    and on that scale-free shape everything is healthy: the margin is flat at every tested depth.</p>
+    <div class="callout">
+      <div class="title nl">De padgewijze clipping-ongelijkheid (bewezen)</div>
+      <div class="title en">The pathwise clipping inequality (proven)</div>
+      <span class="nl">Voor elke gesorteerde triple \(v_1\le v_2\le v_3\) met gap \(g\) en elke
+      verstoring \(\xi\) geldt: \(\min_i(v_i+\xi_i) \le v_1+\xi_1-(\xi_1-\xi_2-g)^+\). Twee regels,
+      nul aannames. Elke verstoring die over de gap heen springt wordt afgeroomd · en op het echte
+      optimum springt een kwart van de verstoringen over de gap, op elke diepte hetzelfde kwart.
+      Daarmee hangt de hele route naar volle telkracht (dichtheid \(x^{1-\varepsilon}\)) aan
+      <b>één schaalvrije scalar</b>: blijft dat kwart van nul weg? Vier schakels van de keten zijn
+      bewezen, de scalar is op drie dieptes vlak gemeten, en twee boekhoudstappen wachten op
+      volledige precisie.</span>
+      <span class="en">For every sorted triple \(v_1\le v_2\le v_3\) with gap \(g\) and any
+      perturbation \(\xi\): \(\min_i(v_i+\xi_i) \le v_1+\xi_1-(\xi_1-\xi_2-g)^+\). Two lines, zero
+      assumptions. Every perturbation that jumps the gap gets clipped · and on the actual optimum a
+      quarter of perturbations jump the gap, the same quarter at every depth. With that, the whole
+      route to full counting power (density \(x^{1-\varepsilon}\)) hangs on <b>one scale-free
+      scalar</b>: does that quarter stay away from zero? Four links of the chain are proven, the
+      scalar measures flat at three depths, and two bookkeeping steps await full precision.</span>
+    </div>
+    <p class="nl">Zo eindigt deze les waar het hele onderzoek nu staat: de vraag "waarom vallen
+    Collatz-banen?" is op telniveau samengeperst tot de vraag of één gemeten kwart een bewezen
+    kwart kan worden. Dezelfde muur als altijd · maar nog nooit zo dun.</p>
+    <p class="en">So this lesson ends where the whole investigation now stands: the question "why do
+    Collatz orbits fall?" has been compressed, at counting level, to whether one measured quarter
+    can become a proven quarter. The same wall as ever · but never this thin.</p>
+  </div>
+
+  <div class="subject">
     <h2><span class="snum">✓</span><span class="nl">Toets jezelf</span><span class="en">Test yourself</span></h2>
     <div class="quiz">
       <div class="q" data-answer="b">
@@ -227,8 +268,8 @@
       <p class="nl">Op elk gemeten niveau: nee, behalve de eigen hoogte. De klok vertakt nooit (dus zaad-informatie kan daar niet overleven), overlevers die nooit onder hun start duiken hebben exact het seriegeheugen van munt-lopen onder dezelfde conditionering, en zelfs de twaalf stoptijd-recordhouders passen parametervrij op het getilte-munt-model. Kampioenen zijn gelukkig, niet slim.</p>
       <p class="en">At every measured level: no, except its own altitude. The clock never branches (so seed information cannot survive there), survivors that never dip below their start have exactly the serial memory of coin walks under the same conditioning, and even the twelve stopping-time record holders fit the tilted-coin model parameter-free. Champions are lucky, not clever.</p></details>
     <details class="faq-item"><summary><span class="nl">Is het Collatz-vermoeden hiermee dichter bij een bewijs?</span><span class="en">Is the Collatz conjecture closer to a proof now?</span></summary>
-      <p class="nl">De open kern is niet kleiner geworden maar wel scherper: de klok-laag en de roulette zijn opgelost, de puntlaag van de bezoekmaat is berekenbaar als boom-dekpunt, en drie mogelijke schuilplaatsen voor structuur zijn met schone negatieven gesloten. Wat rest is één convergentievraag over dat dekpunt · dezelfde muur als de cascade-contractie uit blok 6, in een nieuwe, concretere gedaante.</p>
-      <p class="en">The open core has not shrunk but it has sharpened: the clock layer and the roulette are solved, the point layer of the visit measure is computable as a tree fixed point, and three possible hiding places for structure are closed with clean negatives. What remains is one convergence question about that fixed point · the same wall as block 6's cascade contraction, in a new, more concrete guise.</p></details>
+      <p class="nl">De open kern is niet kleiner geworden maar wel veel scherper: de klok-laag en de roulette zijn opgelost, de puntlaag van de bezoekmaat is berekenbaar als boom-dekpunt, drie schuilplaatsen zijn met schone negatieven gesloten, en de telroute is samengeperst tot één schaalvrije scalar (de clipping-fractie, gemeten vlak ~0.25) met een bewezen padgewijze ongelijkheid als hefboom. Vier schakels van de keten naar dichtheid \(x^{1-\varepsilon}\) zijn bewezen; de scalar zelf en twee boekhoudstappen resteren.</p>
+      <p class="en">The open core has not shrunk but it has sharpened considerably: the clock layer and the roulette are solved, the point layer of the visit measure is computable as a tree fixed point, three hiding places are closed with clean negatives, and the counting route has been compressed to one scale-free scalar (the clipping fraction, measuring flat ~0.25) with a proven pathwise inequality as its lever. Four links of the chain toward density \(x^{1-\varepsilon}\) are proven; the scalar itself and two bookkeeping steps remain.</p></details>
   </div>
 
   <div class="lesson-nav">
