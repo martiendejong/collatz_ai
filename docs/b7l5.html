@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 7.5 · De lens van Rule 30</title>
+<link rel="stylesheet" href="style.css">
+<script src="lang.js"></script>
+<script src="quiz.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a href="index.html" style="color:inherit">COLLATZ<span class="dot">·</span>CURSUS</a></div>
+  <div class="langswitch"><button data-lang="nl">NL</button><button data-lang="en">EN</button></div>
+</div>
+
+<div class="wrap">
+  <div class="lesson-header">
+    <div class="crumbs"><a href="index.html"><span class="nl">Cursus</span><span class="en">Course</span></a> ›
+      <span class="nl">Blok 7 · De 2-adische Wereld</span><span class="en">Block 7 · The 2-adic World</span> › <b>7.5</b></div>
+    <h1 class="nl">De lens van Rule 30 · en de anatomie van de bezoekmaat</h1>
+    <h1 class="en">The Rule 30 lens · and the anatomy of the visit measure</h1>
+    <p class="lead nl">Soms leer je het meest over je eigen universum door naast een ander te gaan
+    staan. Deze les legt Collatz naast het beroemdste speelgoeduniversum uit de studie van cellulaire
+    automaten · Rule 30 · en oogst: een bewezen spiegelwet voor families, drie schone negatieven, en
+    een verrassend antwoord op de vraag welke getallen het drukst bezocht worden en waarom.</p>
+    <p class="lead en">Sometimes you learn most about your own universe by standing next to another
+    one. This lesson places Collatz beside the most famous toy universe in cellular automata ·
+    Rule 30 · and harvests: a proven mirror law for families, three clean negatives, and a
+    surprising answer to which numbers get visited most, and why.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">1</span><span class="nl">Twee universa, één randwet</span><span class="en">Two universes, one boundary law</span></h2>
+    <p class="nl">Rule 30 is een rij vakjes die volgens een piepklein regeltje evolueert, en zijn
+    rechterrand produceert een beroemde getallenreeks: 1, 3, 1, 4, 1, 3, 1, <b>6</b>, … met een
+    prachtige herhalingswet: een níeuw getal verschijnt alleen op posities die machten van 2 zijn,
+    en direct daarna herhaalt de hele reeks-tot-dan-toe zich. Welke nieuwe getallen er komen
+    (1, 3, 4, 6, 7, 9, …) weet niemand te voorspellen · zelfs niet na 9 biljard bits rekenwerk.</p>
+    <p class="en">Rule 30 is a row of cells evolving by a tiny rule, and its right boundary produces
+    a famous number sequence: 1, 3, 1, 4, 1, 3, 1, <b>6</b>, … with a beautiful repetition law: a
+    <i>new</i> number appears only at positions that are powers of 2, and right after it the entire
+    sequence-so-far replays. Which new numbers arrive (1, 3, 4, 6, 7, 9, …) nobody can predict ·
+    even after 9 quadrillion bits of computation.</p>
+    <div class="callout">
+      <div class="title nl">Het rand-isomorfisme</div>
+      <div class="title en">The boundary isomorphism</div>
+      <span class="nl">De Collatz-klokreeks \(v_2(3^k-1)\) (hoeveel factoren 2 zitten er in
+      \(3^k-1\)?) gehoorzaamt <b>exact dezelfde herhalingswet</b>: 1, 3, 1, 4, 1, 3, 1, <b>5</b>, …
+      Beide reeksen hangen alleen af van \(v_2(k)\). Het verschil: Rule 30's nieuwe getallen zijn
+      ondoorgrondelijk, de onze zijn bewezen \(2+v_2(k)\) · een rechte lijn. Collatz bevat dus een
+      <b>opgeloste Rule 30</b>; de moeilijkheid van 3n+1 zit niet in de klok maar in de koppeling
+      tussen de klok en de ternaire wereld.</span>
+      <span class="en">The Collatz clock sequence \(v_2(3^k-1)\) (how many factors 2 divide
+      \(3^k-1\)?) obeys <b>exactly the same repetition law</b>: 1, 3, 1, 4, 1, 3, 1, <b>5</b>, …
+      Both sequences depend only on \(v_2(k)\). The difference: Rule 30's new numbers are opaque,
+      ours are provably \(2+v_2(k)\) · a straight line. So Collatz contains a <b>solved
+      Rule 30</b>; the hardness of 3n+1 lives not in the clock but in the coupling between the
+      clock and the ternary world.</span>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">2</span><span class="nl">Twee klokken, één karakter</span><span class="en">Two clocks, one character</span></h2>
+    <p class="nl">Elke oneven familie \(a\cdot 3^k\) draagt twee kandidaat-klokken: de min-klok
+    \(v_2(a\cdot 3^k-1)\) en de plus-klok \(v_2(a\cdot 3^k+1)\). De spiegelwet (Lemma 38b) zegt:
+    <b>precies één van de twee resoneert</b>, en welke wordt bepaald door \(a\) modulo 8. Voor
+    \(a\equiv 1,3\) is het de min-klok, voor \(a\equiv 5,7\) de plus-klok. Diepe plus-klok betekent
+    letterlijk: veel enen aan het eind van het getal · brandstof voor klimmen. De "rijke"
+    brandstof-families zijn dus exact één van de twee cosets: kaste is geen statistiek maar een
+    <b>karakter</b>, het Kronecker-symbool \((-2/a)\).</p>
+    <p class="en">Every odd family \(a\cdot 3^k\) carries two candidate clocks: the minus clock
+    \(v_2(a\cdot 3^k-1)\) and the plus clock \(v_2(a\cdot 3^k+1)\). The mirror law (Lemma 38b)
+    says: <b>exactly one of the two resonates</b>, decided by \(a\) modulo 8. For
+    \(a\equiv 1,3\) it is the minus clock, for \(a\equiv 5,7\) the plus clock. A deep plus clock
+    literally means: many trailing ones · fuel for climbing. The "rich" fuel families are exactly
+    one of the two cosets: caste is not a statistic but a <b>character</b>, the Kronecker symbol
+    \((-2/a)\).</p>
+    <p class="nl">De poortwachters van 1 · de alternators \((4^y-1)/3\), de laatste oneven getallen
+    van elke baan · zijn de extreemste leden: \(3A_y+1 = 4^y\), dus hun diepste brandstof-event zit
+    op de állereerste kloktik. En de "beginstand" van elke familieklok is exact het fasewoord: de
+    2-adische discrete logaritme van \(a\), een coördinaat die families volledig classificeert.</p>
+    <p class="en">The gatekeepers of 1 · the alternators \((4^y-1)/3\), the last odd numbers of
+    every orbit · are the most extreme members: \(3A_y+1 = 4^y\), so their deepest fuel event sits
+    at the very first clock tick. And each family clock's "starting position" is exactly its phase
+    word: the 2-adic discrete logarithm of \(a\), a coordinate that classifies families
+    completely.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">3</span><span class="nl">Drie schone negatieven</span><span class="en">Three clean negatives</span></h2>
+    <p class="nl">De lens leverde ook drie afwijzingen op, en elk daarvan maakt het open probleem
+    scherper:</p>
+    <p class="en">The lens also delivered three rejections, each of which sharpens the open
+    problem:</p>
+    <table class="nice">
+      <tr><th class="nl">test</th><th class="en">test</th><th class="nl">uitkomst</th><th class="en">outcome</th></tr>
+      <tr>
+        <td class="nl">Vertakt de klok ooit? (Rule 30's linkerhelft heeft zeldzame vertakkingspunten waar zaad-informatie overleeft)</td>
+        <td class="en">Does the clock ever branch? (Rule 30's left half has rare branch points where seed information survives)</td>
+        <td class="nl"><b>Nooit</b>: de flip-pariteit is oneven op elk niveau; de klok-multiverse is bewijsbaar triviaal</td>
+        <td class="en"><b>Never</b>: flip parity is odd at every level; the clock multiverse is provably trivial</td>
+      </tr>
+      <tr>
+        <td class="nl">Onthouden overlevers iets? (banen die nooit onder hun start duiken, vergeleken met munt-lopen onder dezelfde conditionering)</td>
+        <td class="en">Do survivors remember anything? (orbits never dropping below their start, versus coin walks under identical conditioning)</td>
+        <td class="nl"><b>Niets</b>: identiek seriegeheugen; de machine onthoudt alleen haar eigen hoogte</td>
+        <td class="en"><b>Nothing</b>: identical serial memory; the machine remembers only its own altitude</td>
+      </tr>
+      <tr>
+        <td class="nl">Zijn recordhouders slim? (twaalf kampioenen, alleen hun driftsnelheid gematcht)</td>
+        <td class="en">Are record holders clever? (twelve champions, only their drift rate matched)</td>
+        <td class="nl"><b>Nee, gelukkig</b>: variantie, kansen en onafhankelijkheid volgen parametervrij het getilte-munt-model</td>
+        <td class="en"><b>No, lucky</b>: variance, probabilities and independence follow the tilted-coin model parameter-free</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">4</span><span class="nl">De bezoekmaat ontleed: gemiddelde × boom</span><span class="en">The visit measure dissected: mean × tree</span></h2>
+    <p class="nl">Welke getallen worden het drukst bezocht? 93.8% van alle banen verlaat het
+    systeem door poort 5. Het simpelste model · bezoekkans evenredig met \(1/v\) · voorspelt die
+    kop goed (93.05%), maar faalt daaronder spectaculair: poort 341 verslaat poort 85 met een
+    stabiele factor 1.585, en de sporten 13 en 53 delen het verkeer bijna 50/50 waar het model
+    80/20 zegt.</p>
+    <p class="en">Which numbers get visited most? 93.8% of all orbits exit through gate 5. The
+    simplest model · hit probability proportional to \(1/v\) · predicts that headline well
+    (93.05%) but fails spectacularly below it: gate 341 beats gate 85 by a stable factor 1.585,
+    and rungs 13 and 53 split the traffic nearly 50/50 where the model says 80/20.</p>
+    <div class="callout">
+      <div class="title nl">De dekpunt-wet</div>
+      <div class="title en">The fixed-point law</div>
+      <span class="nl">De exacte vergelijking is kinderlijk eenvoudig: <b>P(raak v) = som van
+      P(raak u) over alle directe voorgangers u</b>, waarbij drievouden (springs) nul bijdragen.
+      Los dat dekpunt op op de echte achterwaartse boom en alle constanten rollen eruit, binnen
+      1-1.5% van de meting · en het volledige veld verklaart de gemeten bezoekkansen met
+      R² = 0.988, waar lokale kenmerken op 0.36 blijven steken. Het mechanisme achter 341 &gt; 85:
+      \(v \bmod 3\) bepaalt of de laagste sport <i>daalt</i> (\(u\approx\tfrac23 v\), de keten
+      blijft in de dichte bulk) of <i>stijgt</i> (\(u\approx\tfrac43 v\), de keten verdunt).
+      Dalen wint.</span>
+      <span class="en">The exact equation is childishly simple: <b>P(hit v) = sum of P(hit u) over
+      all direct predecessors u</b>, with multiples of 3 (springs) contributing zero. Solve that
+      fixed point on the actual backward tree and all constants fall out, within 1-1.5% of
+      measurement · and the full field explains the measured visit probabilities with R² = 0.988,
+      where local features stall at 0.36. The mechanism behind 341 &gt; 85: \(v \bmod 3\) decides
+      whether the lowest rung <i>descends</i> (\(u\approx\tfrac23 v\), the chain stays in the
+      dense bulk) or <i>ascends</i> (\(u\approx\tfrac43 v\), the chain thins out). Descending
+      wins.</span>
+    </div>
+    <p class="nl">Tegelijk bleek een verhoopte kortere weg dood te lopen: het telcertificaat uit
+    blok 6 is wél evenredig met de bezoekmaat in het gemiddelde (exponent exact 1.00), maar
+    puntsgewijs blind · de correlatie zakt naarmate je fijner kijkt. De bezoekmaat is dus een
+    product: <b>gemiddelde-veld × boom-dekpunt</b>, en alleen de eerste factor is zichtbaar voor
+    de telmachine.</p>
+    <p class="en">Meanwhile a hoped-for shortcut turned out dead: the counting certificate from
+    block 6 <i>is</i> proportional to the visit measure on average (exponent exactly 1.00) but
+    pointwise blind · the correlation drops as you look finer. The visit measure is thus a
+    product: <b>mean field × tree fixed point</b>, and only the first factor is visible to the
+    counting machine.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">5</span><span class="nl">Waar het open probleem nu woont</span><span class="en">Where the open problem now lives</span></h2>
+    <p class="nl">Rule 30 kent alternatieve geschiedenissen: verledens die de regels respecteren
+    maar de achtergrond-aanname schenden. Collatz precies zo: de eeuwige samenzweringen bestaan
+    écht, maar als 2-adische punten (−1, −5, −17) · negatief of niet-geheel. Het vermoeden is de
+    uitspraak dat er onder de aanname "positief geheel getal" maar één asymptotische geschiedenis
+    is. En na deze campagne is de open kern nog één keer van gedaante gewisseld: de klok is
+    opgelost, de roulette is opgelost, de puntlaag van de bezoekmaat is berekenbaar · wat
+    overblijft is bewijzen dat het boom-dekpunt <i>convergeert</i>. Dat is dezelfde muur als
+    altijd, maar hij heeft er weer een naam bij.</p>
+    <p class="en">Rule 30 has alternate histories: pasts that respect the rules but violate the
+    background assumption. Collatz exactly so: the eternal conspiracies genuinely exist, but as
+    2-adic points (−1, −5, −17) · negative or non-integer. The conjecture is the statement that
+    under the assumption "positive integer" there is only one asymptotic history. And after this
+    campaign the open core has changed shape once more: the clock is solved, the roulette is
+    solved, the point layer of the visit measure is computable · what remains is proving that the
+    tree fixed point <i>converges</i>. It is the same wall as ever, but it has gained another
+    name.</p>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">✓</span><span class="nl">Toets jezelf</span><span class="en">Test yourself</span></h2>
+    <div class="quiz">
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat deelt de Collatz-klokreeks \(v_2(3^k-1)\) met Rule 30's randreeks, en wat niet?</span><span class="en">What does the Collatz clock sequence \(v_2(3^k-1)\) share with Rule 30's boundary sequence, and what not?</span></p>
+        <label><input type="radio" name="q1a" value="a"> <span class="nl">Beide zijn volledig onvoorspelbaar</span><span class="en">Both are completely unpredictable</span></label>
+        <label><input type="radio" name="q1a" value="b"> <span class="nl">Dezelfde herhalingswet (nieuw getal alleen op machten van 2, daarna replay), maar onze nieuwe getallen zijn bewezen 2+v₂(k) terwijl die van Rule 30 open zijn</span><span class="en">The same repetition law (new number only at powers of 2, then replay), but our new numbers are provably 2+v₂(k) while Rule 30's are open</span></label>
+        <label><input type="radio" name="q1a" value="c"> <span class="nl">Dezelfde nieuwe getallen, maar een andere herhalingswet</span><span class="en">The same new numbers, but a different repetition law</span></label>
+      </div>
+      <div class="q" data-answer="c">
+        <p class="qq"><span class="nl">Wat bepaalt of een familie \(a\cdot 3^k\) op de min-klok of de plus-klok resoneert?</span><span class="en">What decides whether a family \(a\cdot 3^k\) resonates on the minus clock or the plus clock?</span></p>
+        <label><input type="radio" name="q1b" value="a"> <span class="nl">De grootte van a</span><span class="en">The size of a</span></label>
+        <label><input type="radio" name="q1b" value="b"> <span class="nl">Of a priem is</span><span class="en">Whether a is prime</span></label>
+        <label><input type="radio" name="q1b" value="c"> <span class="nl">a modulo 8: de coset {1,3} pakt de min-klok, {5,7} de plus-klok · het kaste-karakter (−2/a)</span><span class="en">a modulo 8: coset {1,3} takes the minus clock, {5,7} the plus clock · the caste character (−2/a)</span></label>
+      </div>
+      <div class="q" data-answer="a">
+        <p class="qq"><span class="nl">Waarom verslaat poort 341 poort 85 in het achterwaartse verkeer?</span><span class="en">Why does gate 341 beat gate 85 in backward traffic?</span></p>
+        <label><input type="radio" name="q1c" value="a"> <span class="nl">341 ≡ 2 mod 3 heeft de dalende sport m=1 (kind ≈ ⅔v, keten blijft in de dichte bulk); 85 ≡ 1 mod 3 begint stijgend en verdunt</span><span class="en">341 ≡ 2 mod 3 has the descending rung m=1 (child ≈ ⅔v, chain stays in the dense bulk); 85 ≡ 1 mod 3 starts ascending and thins out</span></label>
+        <label><input type="radio" name="q1c" value="b"> <span class="nl">341 is groter, dus heeft meer voorgangers</span><span class="en">341 is bigger, so it has more predecessors</span></label>
+        <label><input type="radio" name="q1c" value="c"> <span class="nl">Toeval: de ratio drift met de meetgrens</span><span class="en">Chance: the ratio drifts with the measurement cutoff</span></label>
+      </div>
+      <div class="q" data-answer="b">
+        <p class="qq"><span class="nl">Wat is de bezoekmaat uiteindelijk gebleken?</span><span class="en">What did the visit measure ultimately turn out to be?</span></p>
+        <label><input type="radio" name="q1d" value="a"> <span class="nl">Exact 1/v voor elk getal</span><span class="en">Exactly 1/v for every number</span></label>
+        <label><input type="radio" name="q1d" value="b"> <span class="nl">Gemiddelde-veld × boom-dekpunt: het certificaat ziet alleen de eerste factor; het dekpunt-veld verklaart de puntlaag met R² = 0.988</span><span class="en">Mean field × tree fixed point: the certificate sees only the first factor; the fixed-point field explains the point layer with R² = 0.988</span></label>
+        <label><input type="radio" name="q1d" value="c"> <span class="nl">Onberekenbaar: de multifractale laag is structuurloos</span><span class="en">Uncomputable: the multifractal layer is structureless</span></label>
+      </div>
+      <button onclick="checkQuiz(this)"><span class="nl">Controleer</span><span class="en">Check</span></button>
+      <div class="quiz-result"></div>
+    </div>
+  </div>
+
+  <div class="subject">
+    <h2><span class="snum">?</span><span class="nl">Veelgestelde vragen</span><span class="en">FAQ</span></h2>
+    <details class="faq-item"><summary><span class="nl">Wat heeft Rule 30 met het Collatz-vermoeden te maken?</span><span class="en">What does Rule 30 have to do with the Collatz conjecture?</span></summary>
+      <p class="nl">Beide zijn simpele deterministische regels die onvoorspelbaar gedrag produceren, en ze delen een exacte structuur: de rand van Rule 30 en de 2-adische klok van Collatz gehoorzamen dezelfde herhalingswet met machten van 2. Het verschil is leerzaam: bij Collatz is die laag volledig opgelost (de nieuwe getallen zijn 2+v₂(k)), dus de moeilijkheid van 3n+1 zit bewijsbaar niet in de klok maar in de koppeling tussen de binaire en ternaire wereld.</p>
+      <p class="en">Both are simple deterministic rules producing unpredictable behaviour, and they share an exact structure: Rule 30's boundary and Collatz's 2-adic clock obey the same powers-of-2 repetition law. The difference is instructive: in Collatz that layer is fully solved (the new numbers are 2+v₂(k)), so the hardness of 3n+1 provably lives not in the clock but in the coupling between the binary and ternary worlds.</p></details>
+    <details class="faq-item"><summary><span class="nl">Waarom gaat 93.8% van alle Collatz-banen door het getal 5?</span><span class="en">Why do 93.8% of all Collatz orbits pass through the number 5?</span></summary>
+      <p class="nl">Elke baan eindigt via een alternator (4^y−1)/3: 1, 5, 21, 85, 341, … Alternators die drievoud zijn (21, 1365) hebben geen voorgangers en krijgen nul verkeer; van de rest voorspelt het eenvoudige 1/v-model de hoofdverdeling: (1/5) gedeeld door de som over alle levende poorten ≈ 93%. De fijnverdeling wordt bepaald door het boom-dekpunt: welke poorten dalende sporten hebben en welke hun laagste sport aan een drievoud verliezen.</p>
+      <p class="en">Every orbit exits via an alternator (4^y−1)/3: 1, 5, 21, 85, 341, … Alternators divisible by 3 (21, 1365) have no predecessors and get zero traffic; among the rest the simple 1/v model predicts the headline split: (1/5) divided by the sum over all live gates ≈ 93%. The fine split is set by the tree fixed point: which gates have descending rungs and which lose their lowest rung to a multiple of 3.</p></details>
+    <details class="faq-item"><summary><span class="nl">Onthoudt het Collatz-proces iets van zijn verleden?</span><span class="en">Does the Collatz process remember anything of its past?</span></summary>
+      <p class="nl">Op elk gemeten niveau: nee, behalve de eigen hoogte. De klok vertakt nooit (dus zaad-informatie kan daar niet overleven), overlevers die nooit onder hun start duiken hebben exact het seriegeheugen van munt-lopen onder dezelfde conditionering, en zelfs de twaalf stoptijd-recordhouders passen parametervrij op het getilte-munt-model. Kampioenen zijn gelukkig, niet slim.</p>
+      <p class="en">At every measured level: no, except its own altitude. The clock never branches (so seed information cannot survive there), survivors that never dip below their start have exactly the serial memory of coin walks under the same conditioning, and even the twelve stopping-time record holders fit the tilted-coin model parameter-free. Champions are lucky, not clever.</p></details>
+    <details class="faq-item"><summary><span class="nl">Is het Collatz-vermoeden hiermee dichter bij een bewijs?</span><span class="en">Is the Collatz conjecture closer to a proof now?</span></summary>
+      <p class="nl">De open kern is niet kleiner geworden maar wel scherper: de klok-laag en de roulette zijn opgelost, de puntlaag van de bezoekmaat is berekenbaar als boom-dekpunt, en drie mogelijke schuilplaatsen voor structuur zijn met schone negatieven gesloten. Wat rest is één convergentievraag over dat dekpunt · dezelfde muur als de cascade-contractie uit blok 6, in een nieuwe, concretere gedaante.</p>
+      <p class="en">The open core has not shrunk but it has sharpened: the clock layer and the roulette are solved, the point layer of the visit measure is computable as a tree fixed point, and three possible hiding places for structure are closed with clean negatives. What remains is one convergence question about that fixed point · the same wall as block 6's cascade contraction, in a new, more concrete guise.</p></details>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="b7l4.html"><span class="dir nl">‹ vorige</span><span class="dir en">‹ previous</span>
+      <span class="nl">Les 7.4 · De drie eeuwige klimmers</span><span class="en">Lesson 7.4 · The three eternal climbers</span></a>
+    <a href="contribute.html" style="text-align:right"><span class="dir nl">verder ›</span><span class="dir en">onward ›</span>
+      <span class="nl">Draag bij</span><span class="en">Contribute</span></a>
+  </div>
+  <footer><a href="https://github.com/martiendejong/collatz_ai">collatz_ai</a> · Collatz Cursus / Course</footer>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","inLanguage":"nl","name":"Wat heeft Rule 30 met het Collatz-vermoeden te maken?","acceptedAnswer":{"@type":"Answer","text":"Beide zijn simpele deterministische regels met onvoorspelbaar gedrag, en ze delen een exacte structuur: de rand van Rule 30 en de 2-adische klok van Collatz gehoorzamen dezelfde herhalingswet met machten van 2. Bij Collatz is die laag volledig opgelost, dus de moeilijkheid van 3n+1 zit bewijsbaar in de koppeling tussen de binaire en ternaire wereld."}},
+{"@type":"Question","inLanguage":"nl","name":"Waarom gaat 93.8% van alle Collatz-banen door het getal 5?","acceptedAnswer":{"@type":"Answer","text":"Elke baan eindigt via een alternator (4^y-1)/3. Drievoud-alternators krijgen nul verkeer; het 1/v-model voorspelt de hoofdverdeling (93%), en de fijnverdeling volgt uit het boom-dekpunt: dalende sporten winnen van stijgende."}},
+{"@type":"Question","inLanguage":"nl","name":"Onthoudt het Collatz-proces iets van zijn verleden?","acceptedAnswer":{"@type":"Answer","text":"Op elk gemeten niveau alleen de eigen hoogte: de klok vertakt nooit, overlevers hebben exact het geheugen van geconditioneerde munt-lopen, en recordhouders passen parametervrij op het getilte-munt-model. Kampioenen zijn gelukkig, niet slim."}},
+{"@type":"Question","inLanguage":"nl","name":"Is het Collatz-vermoeden hiermee dichter bij een bewijs?","acceptedAnswer":{"@type":"Answer","text":"De open kern is scherper geworden: klok en roulette zijn opgelost, de puntlaag van de bezoekmaat is berekenbaar als boom-dekpunt, en drie schuilplaatsen zijn met schone negatieven gesloten. Wat rest is een convergentievraag over dat dekpunt."}},
+{"@type":"Question","inLanguage":"en","name":"What does Rule 30 have to do with the Collatz conjecture?","acceptedAnswer":{"@type":"Answer","text":"Both are simple deterministic rules with unpredictable behaviour, and they share an exact structure: Rule 30's boundary and Collatz's 2-adic clock obey the same powers-of-2 repetition law. In Collatz that layer is fully solved, so the hardness of 3n+1 provably lives in the coupling between the binary and ternary worlds."}},
+{"@type":"Question","inLanguage":"en","name":"Why do 93.8% of all Collatz orbits pass through the number 5?","acceptedAnswer":{"@type":"Answer","text":"Every orbit exits via an alternator (4^y-1)/3. Alternators divisible by 3 get zero traffic; the 1/v model predicts the headline split (93%), and the fine split follows from the tree fixed point: descending rungs beat ascending ones."}},
+{"@type":"Question","inLanguage":"en","name":"Does the Collatz process remember anything of its past?","acceptedAnswer":{"@type":"Answer","text":"At every measured level only its own altitude: the clock never branches, survivors have exactly the memory of conditioned coin walks, and record holders fit the tilted-coin model parameter-free. Champions are lucky, not clever."}},
+{"@type":"Question","inLanguage":"en","name":"Is the Collatz conjecture closer to a proof now?","acceptedAnswer":{"@type":"Answer","text":"The open core has sharpened: clock and roulette are solved, the point layer of the visit measure is computable as a tree fixed point, and three hiding places are closed with clean negatives. What remains is one convergence question about that fixed point."}}
+]}
+</script>
+</body>
+</html>
