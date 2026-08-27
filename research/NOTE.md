@@ -17054,3 +17054,68 @@ puntstructuur op deze schaal is mysterieus; wat open blijft is de
 CONVERGENTIE van het dekpunt (gemeten, robuust onder rand-ruis, niet
 bewezen) — en die convergentievraag is de bezoekmaat-gedaante van de
 bekende open kern.
+
+## Obs 622 (2026-08-27): LP-SPECIALIST-AUDIT VAN HET OPEN LEMMA · stap 2 is ONWAAR zoals geformuleerd; gerepareerde vorm geidentificeerd + de beslissende scalar
+
+Scripts 415 + inline k=15-probe. Het Open Lemma (drift_lowpass,
+open:kappa) geanalyseerd zoals een optimalisatie-specialist dat zou
+doen: eerst de degeneratie-structuur en duale concentratie op het
+ECHTE optimum bekijken (cert_k13, lambda=1.818; cert_k15, 1.841).
+
+### (1) Herformulering in optimalisatietaal
+Het K-L-systeem is de Bellman-operator van een 3-actie-MDP (waarde-
+functie c, argmin = optimale policy, kritieke lambda = multiplicatieve
+reward-rate); het Open Lemma = "de Markov-keten van de optimale policy
+heeft een uniforme spectrale gap op de fijne-mode-deelruimte, uniform
+in k". Relevante literatuur: topical/min-plus spectraaltheorie
+(Nussbaum; Akian-Gaubert), policy-iteratie-stabiliteit, IQC/Lyapunov-
+certificaten voor contractie.
+
+### (2) De audit: stap 2 van de bewijsschets is FEITELIJK ONWAAR
+Gemeten op cert_k13 (354.294 min-rijen):
+  - Gaps NIET uniform niet-degeneraat: p01 = 0.0005, 2% onder 1e-3,
+    continue staart naar 0. Elk bewijs dat een uniforme gap-ondergrens
+    per rij eist is DOOD.
+  - Duale gewichten NIET uniform van onder begrensd: linker-Perron-
+    vector extreem geconcentreerd (top-1% draagt 63%; onderste helft
+    0.03%). De hypothese "pinning strength bounded below uniformly
+    over rows" is vals op het echte optimum.
+Dit is winst: niemand hoeft maanden te verspillen aan de letterlijke
+schets.
+
+### (3) Waarom kappa < 1 toch waar is: de gerepareerde vorm
+De twee reddende metingen, stabiel k=13 -> k=15:
+  - DECORRELATIE: corr(log duaal gewicht, log gap) = 0.029 / 0.034
+    (~nul); duale massa op de degeneratie-verzameling gap<1e-3 =
+    1.6% / 2.0% = de vlakke fractie (geen adverse selectie); zwaar-EN-
+    degeneraat = 1.5% van de rijen.
+  - GEWOGEN MARGE: duaal-gewogen gap-mediaan 0.0327 (k=13), 0.0255
+    (k=15) ~ vlakke mediaan.
+OPEN LEMMA' (gerepareerd, tweedelig):
+  (A) de duale maat en het gap-veld zijn asymptotisch onafhankelijk
+      (schaal-separatie: gap = fijnste-trit-functionaal, duale maat =
+      grove roulette-functionaal);
+  (B) de duaal-gewogen gap-mediaan is van onder begrensd in k.
+Dan volgt kappa_max < 1 via standaard L2(u)-sensitiviteitsanalyse.
+Beide delen zijn van een type dat dit systeem al eens exact heeft
+opgeleverd (Thm 27-factorisatie resp. Prop 23-saturatie).
+
+### (4) Drie aanvalsplannen, gerangschikt
+  P1 (schaal-separatie): bewijs (A) met de factorisatie-machinerie;
+     duale-vector-tempering eerst meten (geldt roulette^alpha ook
+     links? nieuwe goedkope meting).
+  P2 (renormalisatie-Lyapunov): zoek numeriek een roulette-diagonale
+     kwadratische vorm Q met M^T Q M <= kappa^2 Q op fijne modes voor
+     k=5..13; k-stabiel patroon -> inductiestap bewijzen via Thm 16
+     (exacte roosteridentiteit) + massa/balans + bewezen 1/4-demping.
+     Zet het lemma om in eindige zoektocht + inductie; past bij de
+     certificaat-cultuur van dit project.
+  P3 (MDP/policy-route): uniciteit-op-kleine-duale-massa van de
+     optimale policy + Akian-Gaubert-spectraaltheorie.
+
+### (5) De beslissende scalar (falsificatie ingebouwd)
+Duaal-gewogen gap-mediaan vs k: 0.0327 -> 0.0255 (x0.78 per 2 digits).
+Saturatie (Prop 23-patroon) => gerepareerd lemma waar-vormig;
+geometrisch verval => kappa-creep, gamma-plafond, programma faalt
+eerlijk. VOLGENDE METING: zelfde probe op cert_k17 (RAM) en cert_k19
+(memmap) beslist de trend. Een scalar, twee runs, programma-gezondheid.
