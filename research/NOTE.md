@@ -16890,3 +16890,74 @@ S1/S2/S3/S4/S5 uitgevoerd (Obs 610-614), S6 = permanente werkregels in
 RULE30_LENS.md par. 4. Netto-oogst: Lemma 38, twee schone negatieven
 (klok vertakt nooit; naald-census leeg), de achtergrond-stelling als
 frame, en kandidaat 7 hierboven als vervolgprogramma.
+
+## Obs 615 (2026-08-27): LEMMA 38b · DE SPIEGELKLOK-DICHOTOMIE — kaste = coset-karakter (-2/a)
+
+Script scripts/406_mirror_clock.py (201 families, alles groen). De
+eenhedengroep mod 2^j (j>=3) splitst als <3> u (-<3>) (index 2; -1 = 7
+mod 8 zit niet in <3> = {1,3} mod 8). Gevolg: elke oneven familie a
+resoneert met precies EEN klok:
+  a = 1,3 mod 8: min-klok v2(a*3^k-1) affiene toren; plus-klok <= 2.
+  a = 5,7 mod 8: plus-klok v2(a*3^k+1) affiene toren; min-klok <= 2.
+Bewijs van de caps in twee regels (3^k mod 8 in {1,3}, +-a^(-1) mod 8
+in de verkeerde coset); torens via cykliciteit als Lemma 38.
+CONSEQUENTIES: (C1) diepe v2(a*3^k+1) = diepe trailing ONES van a*3^k
+= brandstof: de rijke refill-kaste {5,7 mod 8} is exact de
+plus-resonante coset — het kaste-mechanisme uit Obs 611(4) is
+OPGELOST: kaste = het Kronecker-karakter (-2/a). (C2) alternators
+(4^y-1)/3 = 5 mod 8 (y>=2): de poortwachters van 1 zijn maximaal
+brandstof-resonant. (C3) verenigde klok W_a = max(beide): elke familie
+draagt exact een affiene toren; het teken is het kaste-karakter.
+
+## Obs 616 (2026-08-27): TOURNIQUET-METING · d(5)=93.79% gereproduceerd; 1/v-model raakt de kop maar de subleidende orde is OMGEKEERD; stabiele paar-constanten
+
+Scripts 407 + inline N-drift (250k t/m 16M): gateway-verdeling (laatste
+oneven voor 1) exact gemeten: d(5)=93.79% (dossier 93.8% ✓); model
+P(raak v) ~ 1/v over niet-spring-alternators voorspelt 93.05% — de kop
+klopt, maar subleidend faalt het model met OMKERINGEN: gemeten
+d(341) > d(85) (3.77% vs 2.38%) en d(21845) > d(5461) (0.047% vs
+0.008%), tegen 1/v in. Sporten van poort 5: 13 en 53 dragen 50.7% en
+48.6% (bijna 50/50, model zegt 79/19); beide zijn snelwegen (v*P = 6.2
+en 24.2 waar het gemiddelde 1 is — multifractaliteit direct zichtbaar).
+NIEUWE STRUCTUUR: niet-spring-poorten komen in PAREN tussen springs;
+binnen een paar kan het hogere lid domineren; per spring-overgang
+stort het verkeer ~twee ordes in. N-DRIFT-TEST: ratio's zijn STABIELE
+constanten (d(341)/d(85): 1.624/1.601/1.585/1.582 bij N=0.25/1/4/16M;
+d(21845)/d(5461) -> 5.7): geen exponent-verschillen maar echte
+prefactoren. (Numerologie-vlag: 1.582 ligt 0.2% van log2(3);
+mechanisme vereist — zie Obs 617 dat dit als dekpunt verklaart zonder
+gesloten vorm te claimen.)
+
+## Obs 617 (2026-08-27): DE BRUG IS EXACT-IN-HET-GEMIDDELDE MAAR NIET PUNTSGEWIJS; DE TOURNIQUET-CONSTANTEN ZIJN BOOM-DEKPUNTEN
+
+Scripts 408 + 409. Twee kanten:
+
+(a) PROMOTIE PUNTSGEWIJS WEERLEGD: de eigen-bezoek-brug degradeert
+met verfijning: r(log) = 0.985 (mod 27, R285) -> 0.922 (mod 81) ->
+0.889 (mod 243); puntsgewijs (949 waarden v = 2 mod 3 < 6561 tegen
+cert_k13 op v's eigen klasse) r = 0.55, en de sleutelratio's slaan om:
+C zegt C(341)/C(5) = 3.6 waar gemeten P-ratio 0.04 is. MAAR de globale
+machtfit is P ~ C^0.995: exponent exact 1. Verdict: het K-L-certificaat
+is de MEAN-FIELD van de bezoekmaat (proportioneel in het gemiddelde),
+blind voor de puntsgewijze multifractale laag — zelfde thema als
+spiegel-blindheid/Thm 22/naald-census, nu kwantitatief op de brug.
+
+(b) DE CONSTANTEN AFGELEID: exacte zelfconsistentie P(raak v) =
+som over oneven niet-spring-voorgangers P(raak u) (voorwaartse orbits
+injectief; takken disjunct; springs dragen 0). Dekpunt opgelost op de
+echte achterwaartse boom met waarde-afkap (recursie onder VCUT, rand
+1/u erbuiten; ratio's lineair-invariant onder randschaal, en
+rand-VORM-ongevoelig getest met u^-0.9/u^-1.1):
+  VCUT 1e4/1e5/1e6/4e6: P(341)/P(85) = 1.88/1.41/1.59/1.606 (meting
+  1.582); P(21845)/P(5461) = 2.0/2.5/5.0/5.65 (meting 5.7);
+  P(53)/P(13) = 1.15/0.99/0.955/0.962 (meting 0.959).
+Alle drie convergeren binnen 1-1.5% naar de gemeten waarden. De
+tourniquet-prefactoren zijn dus BEREKENBARE dekpunt-constanten van de
+achterwaartse mint — geen vrije parameters, geen eigenvector-
+componenten, geen (bewezen) gesloten vormen. De log2(3)-numerologie
+uit Obs 616 blijft onbewezen; het dekpunt is de eerlijke verklaring.
+
+Valkuil: de dekpunt-berekening gebruikt de 1/u-rand als asymptotische
+aanname (= de gemiddelde bezoekwet, gemeten exact als gemiddelde);
+convergentie in VCUT is gemeten, niet bewezen. Statuslijn: kop-wet
+(93%) = mean-field; paar-constanten = dekpunt; beide reproduceren.
