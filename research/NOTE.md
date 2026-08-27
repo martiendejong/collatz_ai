@@ -17347,3 +17347,51 @@ ook stijgend) wijst alles dezelfde kant op: de duale geometrie van het
 K-L-optimum wordt met de diepte GUNSTIGER voor de clipping-hefboom.
 Voor het creep-scenario (kappa -> 1) is er op geen enkele schaalvrije
 meting nog een spoor van steun.
+
+## Obs 628 (2026-08-27): LEMMA 41 (energie-ontbinding, exact) + de normering van (iv-a)/(iv-b) tot op het bot
+
+Script 420 (cert_k13 + k15, duaal-gewogen).
+
+### LEMMA 41 (exacte energie-ontbinding van het min-kanaal, BEWEZEN)
+Met X = max(0, xi1-xi2-g2, xi1-xi3-g3) en op {X>0} de schakelindex j
+(zodat respons R = xi_j + g_j en dus xi1 = X + xi_j + g_j) geldt
+    L := E[xi1^2] - E[R^2] = E[X^2] + 2 E[X g_j] + 2 E[X xi_j].
+BEWIJS: L = E[X(2xi1 - X)] en op het schakelevent 2xi1 - X =
+X + 2xi_j + 2g_j; buiten het event X = 0. QED.
+De eerste twee termen zijn PADGEWIJS niet-negatief (product van
+niet-negatieve grootheden). Al het tekenrisico van de energie-clipping
+zit in EEN term: de selectieterm E[X xi_j] (de nieuwe argmin wordt
+door selectie naar kleine xi_j geduwd). Dit is de exacte gedaante van
+de "+-0.026-antisymmetrie" uit Prop 33: geen mysterieuze correctie
+maar een benoemde covariantie.
+
+### Meting (iv-b) met het eigen veld, duaal-gewogen
+k=13: L/E[xi^2] = 0.5481 (identiteit: 0.5481 = 0.5481 exact);
+k=15: 0.5876. Splitsing (gap-term vs som-term als in de tekst):
+main 0.179/0.175, correctie +0.369/+0.413 -- de correctie is hier
+POSITIEF (helpt), gedreven door de rechts-scheve veldverdeling. De
+te normeren rest voor het bewijs: een ondergrens op E[X xi_j]
+(of: volstaan met de twee padgewijs-niet-negatieve termen plus een
+Cauchy-Schwarz-afweging op de selectieterm).
+
+### Meting (iv-a): sluiting op kanaalniveau
+Duaal-gewogen per schaal P=3..7 op cert_k13:
+  corr(T,B) = -0.035/-0.040/-0.067/-0.079/-0.053 -- de twee kanalen
+  van de exacte Thm 16-identiteit zijn op elke schaal bijna
+  ongecorreleerd (kruisterm tweede-orde); identiteitsresidu 0.0003.
+  Energieprofiel V(P) daalt ~x0.6/schaal; twee-terms-sluiting fit
+  residuen |e/V| = 0.003/0.026/0.093 per schaal (P=6 randeffect,
+  k=13 heeft maar 8 schalen). Caveat: deze V-normalisatie is niet
+  1-op-1 de CV-profielconventie van R174; de kanaal-decorrelatie is
+  het conventie-onafhankelijke feit dat de sluitingsfout de tekens
+  niet kan bedreigen zolang hij tweede-orde blijft.
+
+### Status na de normering
+(iv-b): gereduceerd tot tekencontrole van EEN benoemde covariantie
+(selectieterm), met twee bewezen niet-negatieve bodemtermen.
+(iv-a): kruisterm genormeerd als tweede-orde (kanaal-decorrelatie
+klein en vlak over schalen); rest = de conventie-vaste sluitingsfout
+in de CV-normalisatie uitschrijven. De keten van Prop 40 staat
+hiermee op: 5 bewezen schakels (Lemma 24, balans, 34b, 39, 41 +
+Thm 19), 1 stijgende scalar (N), 2 benoemde covarianties om te
+begrenzen. Er is in dit programma geen ongedefinieerde stap meer.
