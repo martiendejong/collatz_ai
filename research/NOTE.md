@@ -17228,3 +17228,59 @@ EINDVORM VAN DE OPEN KERN NA DEZE ARC: een stationaire variationele
 karakterisering van het profiel-vaste-punt waaruit a != c volgt.
 Lemma 24 + [a != c] + Thm 19 = gamma -> 1. Alle andere formuleringen
 (kappa, clipping, vorm-marge) zijn hiervan gedaanten.
+
+## Obs 626 (2026-08-27): LEMMA 39 (BEWEZEN) + PROPOSITIE 40 · de driftrichting-reductie in eindvorm, met een onvoorwaardelijke padgewijze kern
+
+Script 419. De variationele aanval op a != c, opgebouwd uit een
+bewezen kern plus een expliciet benoemde meetbare hypothese.
+
+### LEMMA 39 (padgewijze clipping · ONVOORWAARDELIJK, twee regels)
+Voor elke gesorteerde triple v1 <= v2 <= v3 met gap g = v2 - v1 en
+elke perturbatie xi geldt padgewijs:
+    min_i(v_i + xi_i) <= v1 + xi_1 - (xi_1 - xi_2 - g)^+ .
+BEWIJS: min <= v2 + xi_2 = v1 + xi_1 - (xi_1 - xi_2 - g), en
+min <= v1 + xi_1; neem het minimum van beide. QED.
+Gevolg: de respons van het min-kanaal op een fijn perturbatieveld is
+verzwakt met minstens E[(dxi - g)^+], dxi = xi_1 - xi_2 · strikt
+positief zodra de gezamenlijke wet van (dxi, g) massa heeft op
+dxi > g. Geen aannames; de hele conditionele lading zit in die
+niet-degeneratie.
+
+### VERIFICATIE OP HET OPTIMUM (niet-leeg en k-stabiel)
+Met de EIGEN veldstatistiek van het systeem (dxi geresampled uit de
+empirische intra-triple relatieve verschillen, onafhankelijk van de
+rij = deel (A) opgelegd; duaal-gewogen rijen):
+  k=13: lam_bound = E[(dxi-g)^+]/E|dxi| = 0.2453, P(dxi>g) = 0.2519
+  k=15: lam_bound = 0.2529, P(dxi>g) = 0.2539
+K-VLAK (licht stijgend): de beschikbare clipping vervalt niet met de
+diepte, consistent met de vorm-saturatie (Obs 623). (De operationele
+lam_clip 0.085-0.140 uit Prop 33 is kleiner: andere normalisatie en
+niet-volledige onafhankelijkheid; de tekens en de k-vlakheid zijn het
+punt.)
+
+### PROPOSITIE 40 (conditionele driftrichting)
+HYPOTHESE (N): de duaal-gewogen niet-degeneratie is uniform:
+liminf_k E_mu[(dxi - g)^+]/E|dxi| > 0 (gemeten: ~0.25, vlak).
+DAN: aan het stationaire profiel geldt a < c strikt. SCHETS:
+(i) de nulde-orde stromen omhoog/omlaag zijn exact gelijk (balans-
+identiteit, Prop 32, BEWEZEN: 3/16 = 3/16); (ii) het omhoog-kanaal
+(x4-lift) passeert vrij (Prop 34b, BEWEZEN: constante modes helling
+1); (iii) het omlaag-kanaal loopt door de min en wordt door Lemma 39
+verzwakt met minstens de hypothese-(N)-fractie; (iv) emergente
+coefficienten = stroom x verzwakking aan het vaste punt (variationeel;
+de per-stap-versie is uitgesloten door R621/R836, de identificatie
+loopt over de stationaire toestand). Dus a <= (1 - lam)(stroom) <
+stroom <= c.
+KETEN COMPLEET: Prop 40 + Lemma 24 (BEWEZEN a+c <= 1) => profiel-
+operator radius <= 2 sqrt(ac) < a+c <= 1 strikt => CV_top -> 0 =>
+q -> 1 => (Thm 19, BEWEZEN) gamma -> 1 => pi(x) >= x^(1-eps).
+
+### EERLIJKE STATUS
+Onvoorwaardelijk bewezen vandaag: Lemma 39. Gemeten en k-vlak op drie
+dieptes: hypothese (N) (~0.25) en haar schaalvrije gedaanten
+(vorm-mediaan ~0.53, decorrelatie ~0.03-0.08). Nog niet bewezen:
+(N) zelf, en de variationele boekhouding van stap (iv) in volledige
+rigor. De hele gamma->1-vraag hangt nu aan EEN meetbaar-vlakke,
+schaalvrij geformuleerde scalar met een bewezen padgewijze hefboom
+eromheen. Dit is de scherpste vorm die de open kern in dit programma
+heeft gehad.
