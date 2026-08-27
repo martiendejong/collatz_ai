@@ -17335,3 +17335,15 @@ drie dieptes] + (iv-a) sluiting [gemeten 1.2%, te normeren] + (iv-b)
 cross-correctie [gemeten, te normeren] + Thm 19 [BEWEZEN].
 Vier bewezen schakels, een vlakke scalar, twee normeringsklussen.
 Geen enkele schakel is nog "mysterieus"; twee zijn nog niet rigoureus.
+
+## Obs 626 addendum (2026-08-27): HYPOTHESE (N) OP k=17 · derde diepte, en de scalar STIJGT
+
+Script 419b: k=17 (43M klassen): lam_bound = 0.2614, P(dxi > g) =
+0.2585. De reeks over drie dieptes: 0.2453 -> 0.2529 -> 0.2614 ·
+monotoon STIJGEND (+3% per 2 digits). De niet-degeneratie-scalar van
+Prop 40 vervalt niet, satureert niet eens van boven: hij wordt sterker
+met de diepte. Samen met de vorm-mediaan (0.414 -> 0.424 -> 0.433,
+ook stijgend) wijst alles dezelfde kant op: de duale geometrie van het
+K-L-optimum wordt met de diepte GUNSTIGER voor de clipping-hefboom.
+Voor het creep-scenario (kappa -> 1) is er op geen enkele schaalvrije
+meting nog een spoor van steun.

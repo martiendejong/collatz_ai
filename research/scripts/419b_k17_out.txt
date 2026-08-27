@@ -1,0 +1,3 @@
+k=17: E[(dxi-g)^+] = 0.00773, scale E|dxi| = 0.02956
+      lam_bound = 0.2614   P(dxi > g) = 0.2585
+      (measured lam_clip on this system: 0.085-0.140; bound nonvacuous if > 0)
