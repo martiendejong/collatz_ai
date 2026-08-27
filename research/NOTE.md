@@ -16961,3 +16961,41 @@ Valkuil: de dekpunt-berekening gebruikt de 1/u-rand als asymptotische
 aanname (= de gemiddelde bezoekwet, gemeten exact als gemiddelde);
 convergentie in VCUT is gemeten, niet bewezen. Statuslijn: kop-wet
 (93%) = mean-field; paar-constanten = dekpunt; beide reproduceren.
+
+## Obs 618 (2026-08-27): FASEWOORDEN ZIJN COORDINATEN, GEEN STATISTIEK · alternators zijn fase-extremaal
+
+Script scripts/410_phase_words.py. (1) EXACTE BIJECTIE (bewezen en
+geverifieerd j=5/8/11): a mod 2^j <-> (kaste-teken, fase r_j) via
+a*3^r = +-1 mod 2^j; fasewoorden zijn dus exact equiverdeeld over
+families — het fasewoord is een COORDINAAT op de familieruimte
+(kaste-karakter + 2-adische discrete log), geen te toetsen statistiek.
+Dit maakt R531 ("families = zelfde uurwerk, andere beginstand") exact:
+de beginstand IS het fasewoord. (2) ALTERNATOR-EXTREMALITEIT (exact,
+y=2..11): A_y*3+1 = 4^y dus v2(A_y*3^k+1) = 2y al bij k=1 en r_j = 1
+voor alle j <= 2y: de poortwachters van 1 zijn de families met het
+diepst mogelijke brandstof-event op de eerste kloktik. Gateway-wet,
+kaste-karakter (Obs 615) en discrete-log-coordinaat vormen nu een
+gesloten geheel.
+
+## Obs 619 (2026-08-27): KAMPIOENS-ANATOMIE = GETILTE EERLIJKE MUNTEN · gelukkig, niet slim, nu individueel
+
+Script scripts/411_champion_anatomy.py. Twaalf stoptijd-recordhouders
+(27 t/m 2788008987), per kampioen het klimvenster (start -> maximum):
+w-verdeling vergeleken met het getilte-geometrische muntmodel waarbij
+ALLEEN het gemiddelde (de driftsnelheid) wordt gematcht; daarna zijn
+variantie, P(w=1) en seriele 2-gram-MI (tegen permutatievloer)
+parametervrije voorspellingen. Resultaat: varianties en P(w=1) op
+modelniveau (grote kampioenen: 0.77/0.76, 0.77/0.79, 0.66/0.66);
+MI-z-scores alle twaalf binnen |z| <= 1.6, gemiddeld +0.2: geen
+surplus-structuur. R541 ("klimmen = geometrisch belaste geluksruns")
+geldt dus niet alleen in ensemble (Obs 613) maar voor elk individueel
+record: kampioenen onderscheiden zich van het muntmodel in NIETS
+behalve hun getrokken drift. Valkuil: korte klimvensters (len 16-33)
+zijn ruisig; het oordeel leunt op de zes lange (len 87-209), die het
+strakst passen.
+
+[Campagne XVI (Rule 30-lens + uitwerking) hiermee rond: Obs 610-619,
+scripts 403-411. Kernoogst: Lemma 38+38b, kaste=(-2/a), fasewoord-
+coordinaten, achtergrond-stelling, brug = mean-field (exponent 1.00,
+puntsgewijs weerlegd), tourniquet-constanten = boom-dekpunten, drie
+schone negatieven (klok vertakt nooit / naald leeg / kampioenen munt).]
