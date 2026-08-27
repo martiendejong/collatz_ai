@@ -17162,3 +17162,36 @@ Valkuil: alles gemeten op drie dieptes (13/15/17); k=19-vormmeting kan
 via memmap (~uur) maar kappa-vlakheid op k=19 is al onafhankelijk
 gemeten. De les van vandaag zelf gelogd: normaliseer gezondheids-
 scalars schaalvrij voordat je creep concludeert.
+
+## Obs 624 (2026-08-27): SCHAAL-SEPARATIE WEERLEGD ALS MECHANISME VOOR (A) · beide velden zijn diep-multiscale en toch bijna onafhankelijk
+
+Script 417 (k=13/15). Hypothese was: decorrelatie duale maat x
+triple-vorm komt doordat ze op verschillende digit-schalen leven.
+GEMETEN: geen van beide leeft op ENIGE lage-dimensionale digit-
+projectie. R2 van log u op grove residu-dummies: 0.001/0.002/0.004
+(mod 27/243/2187); R2 van vorm s idem: 0.0000-0.0020; top-3-trits van
+de klasse-index: beide ~0.001. Zelfde beeld op k=15. De eerder gemeten
+mod-27-anti-alignatie (corr -0.52) is een between-group-trend die maar
+0.1% van de variantie draagt: beide velden zijn vrijwel volledig
+WITHIN-klasse (multifractale diepte, spoort met het lokaal-witte
+CV-veld met ultrametrische correlaties uit R259-308). Directe
+corr(log u, s) = 0.080/0.079. CONCLUSIE: de onafhankelijkheid van deel
+(A) is echt maar NIET via schaal-separatie bewijsbaar; het mechanisme
+moet uit de ultrametrische cascade-structuur komen (of (A) wordt
+omzeild via de Lyapunov-route die geen verklaring nodig heeft).
+
+## Obs 625 (2026-08-27): LYAPUNOV-ZOEKTOCHT DEEL 1 · radius valideert de framing (0.953 -> 0.867, dalend), maar geen een-staps diagonale metriek: niet-normaliteit is k-INVARIANT
+
+Script 418 (19 min, k=13 + k=15, echte eigenparen via nonlineaire
+iteratie, lambda_norm = 1.0003 beide). (1) SPECTRALE RADIUS op de
+fijne ruimte (ker u, M-invariant): 0.9534 (k=13) -> 0.8672 (k=15) --
+onder Prop 35's 0.95 en dalend richting kappa_inf = 0.839: de
+spectrale contractie-framing klopt. (2) EEN-STAPS-METRIEK BESTAAT NIET
+in de familie Q = diag(c^s): alle normen > 1, best 1.573 bij s = -1,
+en het HELE normlandschap is k-invariant (1.5730/1.5740 enz. op twee
+dieptes). Mechanisme: het W0-deel (deterministische x4-permutatie) is
+isometrie-achtig; geen diagonale metriek contracteert het in een stap.
+Standaard-uitweg (regeltechniek): m-staps-contractie ||M^m||_Q < 1 --
+meting loopt (m=2,3,4,6). De k-invariantie van het normlandschap is
+zelf goed nieuws: wat we ook vinden bij m>=2, het is waarschijnlijk
+diepte-stabiel en dus inductie-materiaal.
