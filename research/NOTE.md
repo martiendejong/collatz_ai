@@ -17395,3 +17395,30 @@ in de CV-normalisatie uitschrijven. De keten van Prop 40 staat
 hiermee op: 5 bewezen schakels (Lemma 24, balans, 34b, 39, 41 +
 Thm 19), 1 stijgende scalar (N), 2 benoemde covarianties om te
 begrenzen. Er is in dit programma geen ongedefinieerde stap meer.
+
+## Obs 629 (2026-08-29): LEMMA 42 (paar-exacte verliesidentiteit) · de selectieterm valt voor symmetrische velden EXACT weg; scheefheid helpt 3.6-9.4x
+
+Numerieke verificatie inline (4M samples, drie gap-waarden). Kandidaat
+nu vrijwel rond als stelling:
+
+LEMMA 42 (paar-geval): voor iid SYMMETRISCHE perturbaties is het
+energieverlies van het paar-minimum EXACT
+    L = g . E[(D - g)^+],   D = xi1 - xi2.
+BEWIJS(schets, algebra compleet): Lemma 41 geeft L = E[X^2] + 2g E[X]
++ 2E[X xi2]; schrijf xi2 = (S - D)/2 met S = xi1+xi2; symmetrie geeft
+E[X S] = 0; en X.D = X^2 + g X identiek; alles telescopeert tot
+g E[X]. De enige teken-risico-term van Lemma 41 (de selectie-
+covariantie) valt dus voor de symmetrische component IDENTIEK weg.
+
+VERIFICATIE: gauss, g = 0.3/1.0/3.0: ratio L / (g E[X]) = 1.001/
+0.998/1.001 (exact binnen MC-ruis). Voor een rechts-scheef veld
+(lognormaal, zoals de echte pool): L = 3.6-9.4x de symmetrische
+bodem — de scheefheids-correctie is sterk POSITIEF (spoort met de
+gemeten +0.37/+0.41 correctieterm in Obs 628).
+
+GEVOLG VOOR DE KETEN: hypothese (N) voedt direct de bewezen bodem
+g E[(D-g)^+] > 0. Resterend werk in deze tak: (1) triple-extensie
+(Lemma 41-structuur met max van twee clips); (2) eenzijdige begrenzing
+van de scheefheids-rest (gemeten: helpt ruim); (3) de zelfconsistentie
+(veld = eigen cascade) variationeel. De "laatste scalar" heeft nu een
+bewezen hefboomformule in plaats van alleen een ongelijkheid.
