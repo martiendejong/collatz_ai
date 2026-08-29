@@ -17467,3 +17467,52 @@ positieve numeriek. Scheefheid: helpt overal (lognormaal >> gauss).
 Rest: triple-bewijs, scheefheids-decompositie, en de zelfconsistentie/
 (iv-a)-conventie. Caveats eerlijk: iid-resampling legt deel (A) op;
 een doorgang is nog niet de stationaire compositie.
+
+## Obs 631 (2026-08-29): LEMMA 43 · het triple-bewijs gereduceerd tot een eendimensionale ongelijkheid; staart-hypothese NOODZAKELIJK (tegenvoorbeeld t_2.2); echte veld wint 14-47x
+
+Vervolg op Obs 630; de triple-tak van de clipping-stelling.
+
+### LEMMA 43 (bewezen delen)
+(a) REDUCTIE: min(Y1,Y2,Y3) = min(Y1, W) met W = min(Y2,Y3)
+    onafhankelijk van Y1; Var(W) <= Var(xi) via het bewezen
+    paar-Lemma 42' op het verschoven paar (Y2,Y3). Het triple-geval
+    is dus een paar-geval met niet-identieke onafhankelijke armen.
+(b) EXACTE IDENTITEIT (totale variantie, onvoorwaardelijk):
+      Var(U) - Var(min(U,W)) = E[psi(W)] - Var(h(W)),
+    met psi(w) = Var(U) - Var(U ^ w) >= 0 (klippen op een CONSTANT
+    niveau contraheert altijd: 1-Lipschitz monotone functie) en
+    h(w) = E[(U-w)^+], zelf 1-Lipschitz (h' = -Fbar_U in [-1,0]).
+(c) GEVOLG: triple-contractie <=> de 1-dim ongelijkheid
+      E[psi(W)] >= Var(h(W))
+    (gemiddelde klip-winst >= variantie van het klip-niveau).
+    Van een 3-dim orde-statistiek-probleem naar een vergelijking van
+    twee integraal-functionalen van (F_U, F_W).
+
+### STAART-HYPOTHESE IS NOODZAKELIJK (tegenvoorbeeld)
+Symmetrische student-t, g=0, min van 3: nu=2.2: Var 8.0 -> 10.2
+(EXPANSIE: de linkerstaart verdrievoudigt en domineert het tweede
+moment); nu=2.5: 4.96 -> 4.90 (net contractie); nu=3: 3.17 -> 2.59;
+nu=5: 1.67 -> 1.13. Elke correcte triple-stelling vereist dus een
+mild staartconditie (log-concaaf of begrensd volstaat ruim); voor ons
+veld (begrensde relatieve triple-verschillen) kosteloos.
+
+### Numeriek verdict
+Identiteit (b) reproduceert het Var-verlies op alle cellen (gauss +
+lognormaal + gaps-grid, afwijking 0.3-0.8% = kwantielgrid-bias).
+ECHTE veld-pool (k=13): E[psi(W)] / Var(h(W)) = 14x / 28x / 47x op
+drie gap-configuraties · de ongelijkheid geldt met enorme marge.
+
+### Certificeerbaar corollarium (voor de certificaat-cultuur)
+Voor begrensd veld met W-drager [w_min, w_max]: Var(h(W)) <=
+Fbar_U(w_min)^2 Var(W) en E[psi(W)] >= psi(w_max), dus een EINDIG
+per-diepte-criterium: psi(w_max) >= Fbar_U(w_min)^2 Var(W) => triple-
+contractie. Beide kanten zijn per certificaat exact berekenbaar: de
+triple-contractie is daarmee CERTIFICEERBAAR per k, net als de
+dichtheidsrecords zelf.
+
+### Status clipping-tak
+Paar: bewezen (42'). Triple: gereduceerd tot 1-dim ongelijkheid met
+noodzakelijke-en-milde hypothese, certificeerbaar criterium, en
+14-47x gemeten marge. Volgende: het log-concave/begrensde bewijs van
+(c) netjes uitschrijven (paper-klusje), dan scheefheid, dan
+zelfconsistentie.
