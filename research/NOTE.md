@@ -17422,3 +17422,48 @@ g E[(D-g)^+] > 0. Resterend werk in deze tak: (1) triple-extensie
 van de scheefheids-rest (gemeten: helpt ruim); (3) de zelfconsistentie
 (veld = eigen cascade) variationeel. De "laatste scalar" heeft nu een
 bewezen hefboomformule in plaats van alleen een ongelijkheid.
+
+## Obs 630 (2026-08-29): LEMMA 42' (variantievorm) · paar-geval volledig bewezen, strikte contractie voor ALLE gaps; triple overal positief gemeten incl. het echte veld (0.63)
+
+Vervolg op Obs 629, met een tweede normalisatieles en de definitieve
+gedaante van de clipping-tak.
+
+### De les: centreer voor je concludeert
+De ongecentreerde verliesgrootheid L = E[xi1^2] - E[R^2] kan in het
+TRIPLE-geval negatief worden bij kleine gaps (gemeten: -0.028 bij
+g=(0.1,0.5), gauss): het minimum van drie pakt de extreme staart en
+E[min^2] kan groeien. Het paar-geval maskeerde dit (L = g E[X] -> 0
+bij g=0). MAAR de cascade transporteert GECENTREERDE fluctuaties (de
+systematische min-verschuiving zit al in het vaste punt); de juiste
+grootheid is Var(R), en centrering voegt exact E[X]^2 toe:
+    Var-verlies = L + E[X]^2.
+
+### LEMMA 42' (paar, variantievorm · BEWEZEN)
+Voor iid symmetrische perturbaties:
+    Var(xi1) - Var(R) = g E[X] + E[X]^2  > 0  voor ALLE g >= 0.
+(Lemma 42 + E[R] = -E[X].) Onvoorwaardelijke strikte contractie van
+het paar-min-kanaal; geen gap-conditie meer nodig voor striktheid ·
+hypothese (N) verscherpt de marge, maar selectie alleen (E[X]^2)
+draagt al.
+
+### Triple: overal positief gemeten
+Var-verlies over het volledige grid (g2,g3) in {0..3}^2:
+gauss 0.047-0.440, lognormaal-scheef 0.471-0.965 · GEEN negatieve cel,
+inclusief de gap-nul-hoek. Op het ECHTE veld (cert_k13, duaal-gewogen,
+eigen pool): Var-verlies/Var = 0.6265 (E[X]^2-term 0.078) · het
+omlaag-kanaal verliest >60% variantie per doorgang.
+TRIPLE-CONJECTUUR (42'-t): Var-verlies = E[X gj] + E[X(xi1+xij)] +
+E[X]^2 > 0 voor symmetrische iid; bewijsroutes: (a) Cov(Y1, X) >=
+Var(X)/2-vorm via Efron-Stein/orde-statistiek-variantie voor
+log-concave velden; (b) exacte uitwisselbaarheid bij gelijke gaps +
+monotone interpolatie in (g2,g3). Harris/FKG geeft alvast
+onvoorwaardelijk E[X xi1] >= 0 en E[X xij] <= 0 (X monotoon in de
+coordinaten).
+
+### Status van de clipping-tak na deze ronde
+Paar: BEWEZEN strikte variantie-contractie (alle gaps, symmetrisch
+veld). Triple: een schone conjectuur met twee routes en overal
+positieve numeriek. Scheefheid: helpt overal (lognormaal >> gauss).
+Rest: triple-bewijs, scheefheids-decompositie, en de zelfconsistentie/
+(iv-a)-conventie. Caveats eerlijk: iid-resampling legt deel (A) op;
+een doorgang is nog niet de stationaire compositie.
