@@ -1,7 +1,9 @@
 # collatz_ai
 
 Autonomous AI research program on the Collatz (3x+1) conjecture — built on the
-family/pair framework of Martien de Jong, executed by Jengo (Claude).
+family/pair framework of [Martien de Jong](https://martiendejong.nl), executed by Jengo (Claude).
+
+Jengo is Martien de Jong's autonomous AI development agent - see https://martiendejong.nl/jengo-portfolio/
 
 ## Headline results
 
